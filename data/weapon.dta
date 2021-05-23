@@ -1,0 +1,206 @@
+name: Dagger
+att1: none
+att2: none
+fists: 2
+fists: 1
+fists: 0
+fists: 0
+fists: 0
+
+name: Rapier
+att1: none
+att2: none
+shrtswrd: 6
+shrtswrd: 5
+shrtswrd: 0
+shrtswrd: 0
+shrtswrd: 50
+
+name: +1 Rapier
+att1: magical
+att2: none
+rapier: 7
+rapier: 6
+rapier: 0
+rapier: 0
+rapier: 200
+
+name: Longsword
+att1: none
+att2: none
+lngswrd: 10
+lngswrd: 5 
+lngswrd: 0
+lngswrd: 0
+lngswrd: 200
+
+name: Spitfire
+att1: none
+att2: fire
+dama: 10
+Dmod: 10
+2hit: 0
+Lstl: 0
+Cost: 600
+
+name: TrollSword
+att1: none
+att2: none
+tswrd: 15
+tswrd: 5
+tswrd: 0
+tswrd: 0
+tswrd: 500
+
+name: +1Longsword
+att1: magical
+att2: none
+lngswrd: 11
+lngswrd: 6
+lngswrd: 0
+lngswrd: 0
+lngswrd: 800
+
+name: Scimitar
+att1: none
+att2: none
+sc: 15
+sc: 10
+sc: 0
+sc: 0
+sc: 350
+
+name: +1 Scimitar
+att1: magical
+att2: none
+sc: 17
+sc: 12
+sc: 0
+sc: 0
+sc: 1150
+
+name: Claymore
+att1: none
+att2: none
+bigswrd: 20
+bigswrd: 10
+bigswrd: 0
+bigswrd: 0
+bigswrd: 500
+
+name: +1 Claymore
+att1: magical
+att2: none
+cm: 22
+cm: 11
+cm: 0
+cm: 0
+cm: 2000
+
+name: OrcBlade
+att1: magical
+att2: none
+dama: 15
+Dmod: 30
+2hit: 0
+Lstl: 0
+Cost: 3000
+
+name: ElfBlade
+att1: magical
+att2: none
+dama: 30
+Dmod: 15
+2hit: 0
+Lstl: 0
+Cost: 2500
+
+name: Fire Sword
+att1: magical
+att2: fire
+firswrd: 30
+firswrd: 31
+firswrd: 0
+firswrd: 0
+firswrd: 10000
+
+name: Ice Sword
+att1: magical
+att2: ice
+iceswrd: 20
+iceswrd: 31
+iceswrd: 0
+iceswrd: 0
+iceswrd: 20000
+
+name: Mage Sword
+att1: magical
+att2: none
+mageswrd: 50
+mageswrd: 51
+mageswrd: 0
+mageswrd: 0
+mageswrd: 40000
+
+name: Drain Sword
+att1: magical
+att2: none
+vampswrd: 30
+vampswrd: 21
+vampswrd: 0
+vampswrd: 1
+vampswrd: 80000
+
+name: Slicer
+att1: magical
+att2: none
+dama: 20
+Dmod: 31
+2hit: 0
+Lstl: 0
+Cost: 5000
+
+name: StormSword
+att1: magical
+att2: lightning
+dama: 30
+Dmod: 30
+2hit: 1
+Lstl: 0
+Cost: 6000
+
+name: Katana
+att1: none
+att2: none
+dama: 50
+Dmod: 41
+2hit: 0
+Lstl: 0
+Cost: 4000
+
+name: Hammer
+att1: none
+att2: none
+dama: 40
+Dmod: 31
+2hit: 0
+Lstl: 0
+Cost: 2000
+
+name: DeathSword
+att1: magical
+att2: neutral
+ds: 40
+ds: 40
+ds: 0
+ds: 0
+ds: 500000
+
+name: x
+att1: x
+att2: x
+dama: 0
+Dmod: 0
+2hit: 0
+Lstl: 0
+Cost: 0

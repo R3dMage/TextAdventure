@@ -1,0 +1,55 @@
+town: 0
+music: icehall.mp3
+MC: iceshrine
+X: 1
+Y: 9
+X: 1
+Y: 1
+L: +
+S: is the door
+
+X: 1
+Y: 2
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 3
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 4
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 5
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 6
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 7
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 8
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 9
+L: This hall is pristine in condition. You can sense the powerful magic that keeps it intact.
+S: is more hallway
+
+X: 1
+Y: 10
+L: Here is the nest of an ice dragon. A fearsome foe, but if you're reading this, you already know that now don't you.
+S: is something new!
+

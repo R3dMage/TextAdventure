@@ -1,0 +1,133 @@
+town: 0
+music: cemetary.mp3
+X: 1
+Y: 1
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 2
+Y: 1
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 3
+Y: 1
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 4
+Y: 1
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+MC: catacombs4
+X: 1
+Y: 5
+X: 5
+Y: 1
+L: +
+S: you see stairs going up
+
+X: 1
+Y: 2
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 2
+Y: 2
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 3
+Y: 2
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 4
+Y: 2
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 5
+Y: 2
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 1
+Y: 3
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 2
+Y: 3
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 3
+Y: 3
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 4
+Y: 3
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 5
+Y: 3
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 1
+Y: 4
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 2
+Y: 4
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 3
+Y: 4
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 4
+Y: 4
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 5
+Y: 4
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 1
+Y: 5
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 2
+Y: 5
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+X: 3
+Y: 5
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+
+MC: island3
+x: 5
+Y: 4
+X: 4
+Y: 5
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see a way OUT!
+
+X: 5
+Y: 5
+L: You sense nothing. A haunting, burning, hole of NOTHING tearing at your soul. This is a place that living things were not meant to be.
+S: you see more catacombs
+

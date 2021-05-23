@@ -1,0 +1,502 @@
+town: 0
+music: island.mp3
+X: 1
+Y: 1
+L: The ocean waves lap the shore.
+S: you see the ocean
+
+X: 2
+Y: 1
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 3
+Y: 1
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 4
+Y: 1
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 5
+Y: 1
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 6
+Y: 1
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 7
+Y: 1
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 8
+Y: 1
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 9
+Y: 1
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 10
+Y: 1
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+
+X: 1
+Y: 2
+L: The sand threatens to invade your shoes, and it's succeeding.
+S: you see sand
+
+X: 2
+Y: 2
+L: Sand dunes abound, in great abundance.
+S: is sand.
+
+X: 3
+Y: 2
+L: Seagulls circle high overhead, as if searching for food, or leftover food.
+S: you see sand.
+
+X: 4
+Y: 2
+L: The beach is littered with the remains of feasting seagulls.
+S: you see sand.
+
+X: 5
+Y: 2
+L: There is a lot of sand everywhere. Beachsand not desert sand, because you can tell the difference.
+S: you see sand
+
+X: 6
+Y: 2
+L: Sand dunes dominate your view, you smell the salt of the ocean.
+S: you see sand
+
+X: 7
+Y: 2
+L: Movement in the sand is difficult, as the sand moves about as you step in it.
+S: you see sand
+
+X: 8
+Y: 2
+L: There is a lot of sand.
+S: there is sand
+
+X: 9
+Y: 2
+L: Sand threatens to infest your boots in the worst way.
+S: there is sand
+
+X: 10
+Y: 2
+L: There is a lot of sand everywhere. Beachsand not desert sand, because you can tell the difference.
+S: you see sand
+
+X: 1
+Y: 3
+L: The ocean waves lap the shore.
+S: you see the ocean
+
+X: 2
+Y: 3
+L: There is a burnt out remain of a bonfire, probably an old ritual practiced in these parts. But you're not familiar with it.
+S: there is ashen ground
+
+X: 3
+Y: 3
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 4
+Y: 3
+L: The grass looks as though it hasn't been disturbed.
+S: is grass
+
+X: 5
+Y: 3
+L: The grass is running rampant, crazy and untamed!
+S: is grass
+
+X: 6
+Y: 3
+L: A mighty tree from the days of yore stands here in the plains mute testimony to dense woods that exist.
+S: you see a big tree
+
+X: 7
+Y: 3
+L: The grass keeps growing whilst you stand there.
+S: is grass
+
+X: 8
+Y: 3
+L: Grassy tufts dominate the ground.
+S: is grass
+
+X: 9
+Y: 3
+L: There is plenty of lovely grass around.
+S: is grass
+
+X: 10
+Y: 3
+L: The sand threatens to invade your shoes, and it's succeeding.
+S: you see sand
+
+X: 1
+Y: 4
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 2
+Y: 4
+L: The grass is running rampant, crazy and untamed!
+S: is grass
+
+X: 3
+Y: 4
+L: The grass looks as though it hasn't been disturbed.
+S: is grass
+
+X: 4
+Y: 4
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 5
+Y: 4
+L: The grass here grows greenily
+S: is grass
+
+X: 6
+Y: 4
+L: The grass ripples in the breeze
+S: is grass
+
+X: 7
+Y: 4
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 8
+Y: 4
+L: A stunning array of grasses is laid out before you.
+S: is grass
+
+X: 9
+Y: 4
+L: At the whim of the wind, the grass bends and waves.
+S: is grass
+
+X: 10
+Y: 4
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 1
+Y: 5
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 2
+Y: 5
+L: There is plenty of lovely grass around.
+S: is grass
+
+X: 3
+Y: 5
+L: The grass here seems more dense than before.
+S: is grass
+
+X: 4
+Y: 5
+L: At the whim of the wind, the grass bends and waves.
+S: is grass
+
+X: 5
+Y: 5
+L: A stunning array of grasses is laid out before you.
+S: is grass
+
+X: 6
+Y: 5
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 7
+Y: 5
+L: The grass ripples in the breeze
+S: is grass
+
+X: 8
+Y: 5
+L: The grass here grows greenily
+S: is grass
+
+X: 9
+Y: 5
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 10
+Y: 5
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 1
+Y: 6
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 2
+Y: 6
+L: The grass keeps growing whilst you stand there.
+S: is grass
+
+X: 3
+Y: 6
+L: The grass is running rampant, crazy and untamed!
+S: is grass
+
+X: 4
+Y: 6
+L: The grass looks as though it hasn't been disturbed.
+S: is grass
+
+X: 5
+Y: 6
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 6
+Y: 6
+L: The grass here grows greenily
+S: is grass
+
+X: 7
+Y: 6
+L: The grass ripples in the breeze
+S: is grass
+
+X: 8
+Y: 6
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 9
+Y: 6
+L: At the whim of the wind, the grass bends and waves.
+S: is grass
+
+X: 10
+Y: 6
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 1
+Y: 7
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 2
+Y: 7
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 3
+Y: 7
+L: The grass ripples in the breeze
+S: is grass
+
+X: 4
+Y: 7
+L: The grass here grows greenily
+S: is grass
+
+X: 5
+Y: 7
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 6
+Y: 7
+L: Your eyes wander to the horizon, and you think of the town of Valesh for some reason.
+S: is a strange place
+
+X: 7
+Y: 7
+L: The grass keeps growing whilst you stand there.
+S: is grass
+
+X: 8
+Y: 7
+L: Grassy tufts dominate the ground.
+S: is grass
+
+X: 9
+Y: 7
+L: There is plenty of lovely grass around.
+S: is grass
+
+X: 10
+Y: 7
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 1
+Y: 8
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 2
+Y: 8
+L: The grass is running rampant, crazy and untamed!
+S: is grass
+
+X: 3
+Y: 8
+L: The grass keeps growing whilst you stand there.
+S: is grass
+
+X: 4
+Y: 8
+L: Grassy tufts dominate the ground.
+S: is grass
+
+X: 5
+Y: 8
+L: At the whim of the wind, the grass bends and waves.
+S: is grass
+
+X: 6
+Y: 8
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 7
+Y: 8
+L: The grass ripples in the breeze
+S: is grass
+
+X: 8
+Y: 8
+L: The grass here grows greenily
+S: is grass
+
+X: 9
+Y: 8
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 10
+Y: 8
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach
+
+X: 1
+Y: 9
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 2
+Y: 9
+L: The grass is running rampant, crazy and untamed!
+S: is grass
+
+X: 3
+Y: 9
+L: The grass looks as though it hasn't been disturbed.
+S: is grass
+
+X: 4
+Y: 9
+L: The grass bends and yields to the wind.
+S: is grass
+
+X: 5
+Y: 9
+L: The grass here grows greenily
+S: is grass
+
+X: 6
+Y: 9
+L: Endless grass, looking cleanly cropped by wildlife covers the ground here.
+S: is grass
+
+X: 7
+Y: 9
+L: At the whim of the wind, the grass bends and waves.
+S: is grass
+
+X: 8
+Y: 9
+L: Grassy tufts dominate the ground.
+S: is grass
+
+X: 9
+Y: 9
+L: The grass keeps growing whilst you stand there.
+S: is grass
+
+X: 10
+Y: 9
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 1
+Y: 10
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 2
+Y: 10
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 3
+Y: 10
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 4
+Y: 10
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 5
+Y: 10
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 6
+Y: 10
+L: The ocean waves lap the shore.
+S: you see the ocean
+
+X: 7
+Y: 10
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see the ocean
+
+X: 8
+Y: 10
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 9
+Y: 10
+L: The ocean waves lap the shore, slowly but steadily. It's a most calming scene.
+S: you see beach
+
+X: 10
+Y: 10
+L: The sand sinks ever so slightly below your feet as you tread the beach.
+S: you see beach

@@ -1,0 +1,88 @@
+town: 0
+music: cemetary.mp3
+X: 1
+Y: 1
+L: Here is the tombstone of Godfried Ruben
+S: you see graves
+
+X: 2
+Y: 1
+L: Here is the tombstone of Terry Lotus.
+S: you see graves
+
+MC: field
+X: 11
+Y: 2
+X: 3
+Y: 1
+L: +
+S: are the cemetary gates
+
+X: 4
+Y: 1
+L: Here lies Jeffery Goldblume
+S: you see graves
+
+X: 1
+Y: 2
+L: Here lies Pastor Dave Marbel
+S: you see graves
+
+X: 2
+Y: 2
+L: Here lies Polite Conversation
+S: you see graves
+
+X: 3
+Y: 2
+L: Here lies Common Decency
+S: you see graves
+
+X: 4
+Y: 2
+L: Here lies Common Sense
+S: you see graves
+
+X: 1
+Y: 3
+L: You cannot read this tombstone, it is so old, broken, and worn.
+S: you see graves
+
+X: 2
+Y: 3
+L: There is no grave here, just empty space waiting for another soul to swallow up. Maybe even yours...
+S: you see ghostly absence
+
+X: 3
+Y: 3
+L: The tombstone here has no writing on it....
+S: you see graves
+
+X: 4
+Y: 3
+L: Here stands a knotted old tree, withered and dead, just like everything else here.
+S: you see a tree
+
+X: 1
+Y: 4
+L: The tombstones here are all so old that you can't make them out.
+S: you see graves
+
+X: 2
+Y: 4
+L: The tombstones here are all so old that you can't make them out.
+S: you see graves
+
+X: 3
+Y: 4
+L: The tombstones here are all so old that you can't make them out.
+S: you see graves
+
+MC: catacombs1
+X: 6
+Y: 2
+X: 4
+Y: 4
+L: The tombstones here are all so old that you can't make them out.
+S: lies a mausoleum
+

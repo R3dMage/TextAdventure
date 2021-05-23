@@ -1,0 +1,157 @@
+town: 0
+X: 1
+Y: 1
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+MC: mtnaltar
+X: 3
+Y: 2
+X: 2
+Y: 1
+L: +
+S: the cave widens vastly
+
+X: 3
+Y: 1
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 2
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 2
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 2
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 3
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 3
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 3
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 4
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 4
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 4
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 5
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 5
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 5
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 6
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 6
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 6
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 7
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 7
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 7
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 8
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 8
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 8
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 9
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 2
+Y: 9
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 3
+Y: 9
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+X: 1
+Y: 10
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+
+MC: mountainpath
+X: 5
+Y: 2
+X: 2
+Y: 10
+L: +
+S: leads out of the cave
+
+X: 3
+Y: 10
+L: The cave is strewn with rocks, and ancient cobwebs, no one has been here in a VERY LONG time.
+S: you sense more cave
+

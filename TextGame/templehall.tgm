@@ -1,0 +1,63 @@
+town: 0
+music: temple.mp3
+MC: temple
+X: 3
+Y: 4
+X: 1
+Y: 1
+L: +
+S: the door back
+
+X: 1
+Y: 2
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 3
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 4
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 5
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 6
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 7
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 8
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 9
+L: This hall seems untouched by time.
+S: more hall
+
+X: 1
+Y: 10
+L: This hall seems untouched by time.
+S: more hall
+
+MC: temple2
+X: 3
+Y: 2
+X: 1
+Y: 11
+L: door to the inner sanctum
+S: +
+

@@ -1,0 +1,137 @@
+town: 0
+music: Marintown.mp3
+Shop: buy
+X: 1
+Y: 1
+L: Brawley's Pawnshop. Here you can sell your soul if you wanted to. Oh, by the way, you DONT want to.
+S: pawnshop awesome
+
+X: 2
+Y: 1
+L: The docks are set a few yards above the waterline.
+S: docks
+
+MC: field1
+X: 16
+Y: 2
+X: 3
+Y: 1
+L: +
+S: the way out of the village
+
+X: 4
+Y: 1
+L: The docks are set a few yards above the waterline.
+S: docks
+
+X: 5
+Y: 1
+L: Here are some docks. No ships though. Just docks. They sit there and the water laps up against them.
+S: some docks
+
+X: 1
+Y: 2
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 2
+Y: 2
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 3
+Y: 2
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 4
+Y: 2
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 5
+Y: 2
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+Shop: armory
+X: 1
+Y: 3
+L: The blacksmith of the Green Shirt. He's always got a green shirt on. How many could the guy own?
+S: local blacksmith
+
+X: 2
+Y: 3
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 3
+Y: 3
+L: Here is a bustling thriving town square, people everywhere taking care of their everyday needs.
+S: town square
+
+X: 4
+Y: 3
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+Shop: magic
+X: 5
+Y: 3
+L: Sweet Magic Shop here you can get crazy potions CRAZY potions.
+S: potion shop
+
+X: 1
+Y: 4
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 2
+Y: 4
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 3
+Y: 4
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 4
+Y: 4
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 5
+Y: 4
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+MC: island1
+X: 5
+Y: 9
+X: 1
+Y: 5
+L: All about you is the bustle of a small town.
+S: you see the island ferry
+
+X: 2
+Y: 5
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+Shop: inn
+X: 3
+Y: 5
+L: Ah the Inn of Soft Love, cuz the lovin' here it be soft.
+S: is the inn
+
+X: 4
+Y: 5
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
+X: 5
+Y: 5
+L: All about you is the bustle of a small town.
+S: your next step beckons
+
