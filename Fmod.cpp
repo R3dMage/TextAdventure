@@ -129,7 +129,7 @@ bool CFmod::LoadSong(char *strName)
 	}
 
 	// Set the file name to the name passed in
-	strcpy(m_strName, strName);
+	strcpy_s(m_strName, strName);
 
 	// Return a success!
 	return true;
