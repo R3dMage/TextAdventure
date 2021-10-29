@@ -705,13 +705,13 @@ void world::armory(vector<item*> &pstuff,player *p2,string Map)
 		text(asell2->getname(),15,6,white);		num(asell2->getCost(),28,6,white);
 		text(asell3->getname(),15,7,white);		num(asell3->getCost(),28,7,white);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		wsell1->display();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -857,12 +857,12 @@ void world::inn(player *p2,string Map)
 		text("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,12,13))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -969,13 +969,13 @@ void world::magicshop(vector<item*> &pstuff,player *p2,string Map)
 		text(isell5->getname(),15,6,white);		num(isell5->getCost(),28,6,white);
 		text(isell6->getname(),15,7,white);		num(isell6->getCost(),28,7,white);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		isell1->display();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -1118,7 +1118,7 @@ void world::buyer(player *p2, vector<item*> &pstuff,string Map)
 			CursPos.X = 13;
 			CursPos.Y = 12;
 
-			DrawCurs(CursPos,yellow,26);			
+			DrawCurs(CursPos,yellow,175);			
 			Offset = CursPos.Y - 12;
 			pstuff[Offset]->display();
 			do
@@ -1126,7 +1126,7 @@ void world::buyer(player *p2, vector<item*> &pstuff,string Map)
 				choice = static_cast<int>(11+pstuff.size());
 				if(MoveCurs(CursPos,bSel,bEsc,12,choice))
 				{
-					DrawCurs(CursPos,yellow,26);
+					DrawCurs(CursPos,yellow,175);
 					Offset = CursPos.Y - 12;
 					pstuff[Offset]->display();
 				}
@@ -1153,7 +1153,7 @@ void world::buyer(player *p2, vector<item*> &pstuff,string Map)
 			
 			if(MoveCurs(CursPos,bSel,bEsc,CursPos.Y,CursPos.Y))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);

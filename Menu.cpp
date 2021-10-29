@@ -42,12 +42,12 @@ void world::menu(player *p2, vector<magik*> &spells,vector<item*> &stuff, vector
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("           ",1,17,blue);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,12,15))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -109,12 +109,12 @@ void world::inventory(player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 		text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,12,13))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text("",79,23,white);
 		}while(!bSel);
@@ -181,12 +181,12 @@ void world::inventory(player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 				text("|  XXXX   |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 				text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				do
 				{
 					if(MoveCurs(CursPos,bSel,bEsc,12,15))
 					{
-						DrawCurs(CursPos,yellow,26);
+						DrawCurs(CursPos,yellow,175);
 					}
 					text(" ", 79, 23,white);
 				}while(!bSel);
@@ -267,14 +267,14 @@ void world::equip(player *p2,vector<item*> &pstuff)
 		CursPos.X = 13;
 		CursPos.Y = 12;
 		Offset = CursPos.Y - 12;
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		pstuff[Offset]->display();
 		do
 		{
 			choice = static_cast<int>(11+pstuff.size());
 			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
 				pstuff[Offset]->display();
 			}
@@ -315,7 +315,7 @@ void world::equip(player *p2,vector<item*> &pstuff)
 	text("              ",CursPos.X,CursPos.Y,white);
 	p2->info();
 	items(pstuff);
-	text("                                           ",26,11,white);
+	text("                                           ",175,11,white);
 	text("           ",1,22,white);
 	text("           ",1,23,white);
 }
@@ -337,13 +337,13 @@ void world::drop(player *p2,vector<item*> &stuff,vector<item*> &pstuff,string Ma
 		bSel = false;
 		CursPos.X = 13;
 		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			choice = static_cast<int>(11+pstuff.size());
 			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
 				pstuff[Offset]->display();
 			}
@@ -388,13 +388,13 @@ void world::XXX(vector<item*> &pstuff)
 		bSel = false;
 		CursPos.X = 13;
 		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			choice = static_cast<int>(11+pstuff.size());
 			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
 				pstuff[Offset]->display();
 			}
@@ -417,7 +417,7 @@ void world::XXX(vector<item*> &pstuff)
 			
 			if(MoveCurs(CursPos,bSel,bEsc,CursPos.Y,CursPos.Y))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -455,12 +455,12 @@ void world::options(player *p2, vector<item*> &stuff,vector<item*> &pstuff,vecto
 		text("|  Quit   |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,12,15))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -522,13 +522,13 @@ void world::setup(player *p2, vector<item*> &stuff,vector<item*> &pstuff,vector<
 		else if(CursPos.Y == 12 && !p2->getMusic())
 			text("Music: Off   ",13,12,yellow);
 		//========================================
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,12,15))
 			{
 				//clr(11);
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				/*=======================================
 				Displays the current music status
 				========================================*/
@@ -610,12 +610,12 @@ void world::useItem(player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 		text("|  XXXX   |",1,18,ftext);
 		text("\\---------/",1,19,ftext);
 
-		DrawCurs(CursPos,ftext,26);
+		DrawCurs(CursPos,ftext,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,15,18))
 			{
-				DrawCurs(CursPos,ftext,26);
+				DrawCurs(CursPos,ftext,175);
 			}
 			text("", 79, 23,ftext);
 		}while(!bSel);
@@ -693,7 +693,7 @@ void world::use(player *p2,vector<item*> &pstuff,bool &Iused,bool bFight)
 		bSel = false;
 		CursPos.X = 13;
 		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		
 		pstuff[Offset]->display();
 		do
@@ -701,7 +701,7 @@ void world::use(player *p2,vector<item*> &pstuff,bool &Iused,bool bFight)
 			choice = static_cast<int>(11+pstuff.size());
 			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
 			{
-				DrawCurs(CursPos,yellow,26);				
+				DrawCurs(CursPos,yellow,175);				
 				Offset = CursPos.Y - 12;
 				pstuff[Offset]->display();
 			}
@@ -826,14 +826,14 @@ void world::magic(player *p2,vector<magik*> &spells)
 			else
 				spells[i]->tout(i+13,green);
 		}
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		offset = CursPos.Y - 13;
 		spells[offset]->Disp();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,13,12 + static_cast<int>(spells.size())))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				offset = CursPos.Y - 13;
 				spells[offset]->Disp();
 			}
@@ -896,12 +896,12 @@ void world::fmagic(player *p2,creature *enemy,vector<magik*> &spells,bool &bEsc)
 				spells[i]->tout(i+13,green);
 		}
 		spells[offset]->Disp();
-		DrawCurs(CursPos,yellow,26);
+		DrawCurs(CursPos,yellow,175);
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,13,12 + static_cast<int>(spells.size())))
 			{
-				DrawCurs(CursPos,yellow,26);
+				DrawCurs(CursPos,yellow,175);
 				offset = CursPos.Y - 13;
 				spells[offset]->Disp();
 			}
