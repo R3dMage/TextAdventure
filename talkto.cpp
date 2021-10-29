@@ -35,12 +35,12 @@ bool elf::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -109,12 +109,12 @@ bool mage::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -183,12 +183,12 @@ bool warrior::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -293,12 +293,12 @@ bool Orc::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -374,12 +374,12 @@ bool sorceror::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -455,12 +455,12 @@ bool osoldier::talkto(player *p2)
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -546,12 +546,12 @@ bool human::talkto(player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,26);
+	DrawCurs(CursPos,yellow,175);
 	do
 	{
 		if(MoveCurs(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,26);
+			DrawCurs(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
