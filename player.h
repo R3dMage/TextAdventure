@@ -132,8 +132,8 @@ private:
 	string	Name;							// Player's Name
 	weapon*	EquippedWeapon;					// Current Weapon
 	armor*	EquippedArmor;					// Current Armor
-	int		X;								// Players X coordinate on the current map
-	int		Y;								// Players Y coordinate on the current map
+	int		PositionX;								// Players X coordinate on the current map
+	int		PositionY;								// Players Y coordinate on the current map
 	int		Strength;						// Strength
 	int		Mind;							// Mental Ability
 	int		Gold;							// Um, Gold

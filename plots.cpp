@@ -7,7 +7,7 @@
 =================================================================================*/
 void Player::plots(string map)
 {
-	if(map == "valesh" && X == 2 && Y == 1 && !PlotEventStates.Start)
+	if(map == "valesh" && PositionX == 2 && PositionY == 1 && !PlotEventStates.Start)
 	{
 		clrtop(1);
 		text("The town elder approaches you. He tells you of a priest who",13,2,white);
