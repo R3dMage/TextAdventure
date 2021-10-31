@@ -49,7 +49,7 @@ void creature::info()
 
 }
 
-void creature::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff,string Map)
+void creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,string Map)
 {
 	int Damage;
 	armor *arm;
@@ -366,8 +366,8 @@ bool creature::dropItem()
 { return false; }
 
 
-item* creature::token(string Map)
-{ item *flag = new item; return flag;}
+Item* creature::token(string Map)
+{ Item *flag = new Item; return flag;}
 
 void creature::loadPos(int X, int Y)
 {

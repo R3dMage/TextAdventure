@@ -13,9 +13,9 @@ using namespace std;
 void text(string,int,int,WORD);
 void num(int,int,int,WORD);
 
-class item {
+class Item {
 public:
-	item();
+	Item();
 	void setname(string N);
 	string getname();
 	void setmap(string M);

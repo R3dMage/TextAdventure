@@ -75,8 +75,8 @@ void world::locations(string Map, Player *p2,bool load)
 	vector< creature* > mk(0);					//This is a seperate vector for THE monk.
 
 
-	vector< item* > Globals(0);						//Globals will contain ALL the items in the world
-	vector< item* > inv(0);							//inv is the players inventory
+	vector< Item* > Globals(0);						//Globals will contain ALL the items in the world
+	vector< Item* > inv(0);							//inv is the players inventory
 	vector< creature* > encounter(0);				//encounter holds all the enemies on a certain map
 	vector< location* > Vmap(0);					//Vmap holds the Map in memory, so no running around
 													//taking up time looking in map files. Well we look once. Then keep it in memory
@@ -93,16 +93,16 @@ void world::locations(string Map, Player *p2,bool load)
 //			This section of code creates the items that will be placed throughout the game
 //==============================================================================================================
 
-		item *vial;
-		vial = new item;
+		Item *vial;
+		vial = new Item;
 		vial->setname("Empty Vial");
 		vial->setmap("forest1");
 		vial->setX(5);
 		vial->setY(5);
 		vial->setkeep(true);	
 
-		item *horseshoe;
-		horseshoe = new item;
+		Item *horseshoe;
+		horseshoe = new Item;
 		horseshoe->setname("Horseshoe");
 		horseshoe->setmap("field");
 		horseshoe->setX(5);
@@ -635,7 +635,7 @@ bool world::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 return false;	
 }
 //				This is the shop where you buy weapons and armor
-void world::armory(vector<item*> &pstuff,Player *p2,string Map)
+void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -898,19 +898,19 @@ void world::inn(Player *p2,string Map)
 	clear();
 }
 
-void world::magicshop(vector<item*> &pstuff,Player *p2,string Map)
+void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
 	bool bSel = false;
 	bool funds = true;
 	COORD CursPos; 
-	item *isell1;
-	item *isell2;
-	item *isell3;
-	item *isell4;
-	item *isell5;
-	item *isell6;
+	Item *isell1;
+	Item *isell2;
+	Item *isell3;
+	Item *isell4;
+	Item *isell5;
+	Item *isell6;
 
 	if(Map == "valesh")
 	{
@@ -1071,10 +1071,10 @@ void world::magicshop(vector<item*> &pstuff,Player *p2,string Map)
 	clear();
 }
 
-void world::buyer(Player *p2, vector<item*> &pstuff,string Map)
+void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 {
 	//item *temp;
-	item *iUsed;
+	Item *iUsed;
 	unsigned int Offset = 0;
 	int choice = 0;
 	int num;
@@ -1082,7 +1082,7 @@ void world::buyer(Player *p2, vector<item*> &pstuff,string Map)
 	bool bEsc = false;
 	bool bSel = false;
 	bool bLeave = false;
-	item holder;
+	Item holder;
 	COORD CursPos;
 	
 

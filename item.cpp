@@ -10,7 +10,7 @@
 ;
 using namespace std;
  
-item::item()
+Item::Item()
 {
 	X = 0;
 	Y = 0;
@@ -22,80 +22,80 @@ item::item()
 	cost = 0;
 	type = -1;
 }
-int item::getType()
+int Item::getType()
 {
 	return type;
 }
-void item::setType(int T)
+void Item::setType(int T)
 {
 	type = T;
 }
-void item::setarm(bool A)
+void Item::setarm(bool A)
 {
 	arm = A;
 }
-bool item::getarm()
+bool Item::getarm()
 {
 	return arm;
 }
-void item::setweap(bool A)
+void Item::setweap(bool A)
 {
 	weap = A;
 }
-bool item::getweap()
+bool Item::getweap()
 {
 	return weap;
 }
-void item::setCost(int C)
+void Item::setCost(int C)
 {
 	cost = C;
 }
-int item::getCost()
+int Item::getCost()
 {
 	return cost;
 }
-void item::setname(string N)
+void Item::setname(string N)
 {
 	name = N;
 }
-string item::getname()
+string Item::getname()
 {
 	return name;
 }
-void item::setmap(string M)
+void Item::setmap(string M)
 {
 	map = M;
 }
-string item::getmap()
+string Item::getmap()
 {
 	return map;
 }
-void item::setX(int neoX)
+void Item::setX(int neoX)
 {
 	X = neoX;
 }
-int item::getX()
+int Item::getX()
 {
 	return X;
 }
-void item::setY(int neoY)
+void Item::setY(int neoY)
 {
 	Y = neoY;
 }
-int item::getY()
+int Item::getY()
 {
 	return Y;
 }
-void item::setkeep(bool K)
+void Item::setkeep(bool K)
 {
 	keep = K;
 }
-bool item::getkeep()
+bool Item::getkeep()
 {
 	return keep;
 }
 
-void item::display()
+void Item::display()
 {
 	switch(type)
 	{
@@ -127,7 +127,7 @@ void item::display()
 	showcost();
 }
 
-void item::showcost()
+void Item::showcost()
 {
 	text("Value: ",1,22,white);
 	num(cost,2,23,white);

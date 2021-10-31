@@ -20,9 +20,9 @@ bool elf::dropItem()
 	else 
 		return false;	
 }
-item* elf::body(string Map) const 
+Item* elf::body(string Map) const 
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -31,9 +31,9 @@ item* elf::body(string Map) const
 	left->setCost(50);
 	return left;
 }
-item* elf::token(string Map)
+Item* elf::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);
@@ -85,9 +85,9 @@ bool mage::dropItem()
 	else 
 		return false;	
 }
-item* mage::body(string Map) const 
+Item* mage::body(string Map) const 
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -96,9 +96,9 @@ item* mage::body(string Map) const
 	left->setCost(100);
 	return left;
 }
-item* mage::token(string Map)
+Item* mage::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -118,9 +118,9 @@ bool warrior::dropItem()
 	else 
 		return false;	
 }
-item* warrior::body(string Map) const
+Item* warrior::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -129,9 +129,9 @@ item* warrior::body(string Map) const
 	left->setCost(100);
 	return left;
 }
-item* warrior::token(string Map)
+Item* warrior::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("Elvenchain");
 	token->setX(X);
 	token->setY(Y);
@@ -151,9 +151,9 @@ bool fireelf::dropItem()
 	else
 	return false;
 }
-item* fireelf::body(string Map) const
+Item* fireelf::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Red Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -162,9 +162,9 @@ item* fireelf::body(string Map) const
 	left->setCost(200);
 	return left;
 }
-item* fireelf::token(string Map)
+Item* fireelf::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -184,9 +184,9 @@ bool iceelf::dropItem()
 	else
 	return false;
 }
-item* iceelf::body(string Map) const
+Item* iceelf::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Bluewhite Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -195,9 +195,9 @@ item* iceelf::body(string Map) const
 	left->setCost(200);
 	return left;
 }
-item* iceelf::token(string Map)
+Item* iceelf::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);
@@ -217,9 +217,9 @@ bool ranger::dropItem()
 	else
 	return false;
 }
-item* ranger::body(string Map) const
+Item* ranger::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Elven Lock");
 	left->setmap(Map);
 	left->setX(X);
@@ -228,10 +228,10 @@ item* ranger::body(string Map) const
 	left->setCost(50 * level);
 	return left;
 }
-item* ranger::token(string Map)
+Item* ranger::token(string Map)
 {
 	int num = rand()% 6 + 1;
-	item *token = new item;
+	Item *token = new Item;
 	switch(num)
 	{
 	case 1:
@@ -265,9 +265,9 @@ bool Orc::dropItem()
 	else 
 		return false;	
 }
-item* Orc::body(string Map) const
+Item* Orc::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Orc Ear");
 	left->setmap(Map);
 	left->setX(X);
@@ -276,9 +276,9 @@ item* Orc::body(string Map) const
 	left->setCost(75);
 	return left;
 }
-item* Orc::token(string Map)
+Item* Orc::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);
@@ -328,9 +328,9 @@ bool sorceror::dropItem()
 	else 
 		return false;	
 }
-item* sorceror::body(string Map) const 
+Item* sorceror::body(string Map) const 
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Orc Ear");
 	left->setmap(Map);
 	left->setX(X);
@@ -339,9 +339,9 @@ item* sorceror::body(string Map) const
 	left->setCost(300);
 	return left;
 }
-item* sorceror::token(string Map)
+Item* sorceror::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -361,9 +361,9 @@ bool osoldier::dropItem()
 	else 
 		return false;	
 }
-item* osoldier::body(string Map) const
+Item* osoldier::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Orc Ear");
 	left->setmap(Map);
 	left->setX(X);
@@ -372,9 +372,9 @@ item* osoldier::body(string Map) const
 	left->setCost(150);
 	return left;
 }
-item* osoldier::token(string Map)
+Item* osoldier::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("Orc_Mail");
 	token->setX(X);
 	token->setY(Y);
@@ -395,9 +395,9 @@ bool fireorc::dropItem()
  else
   return false;
 }
-item* fireorc::body(string Map) const
+Item* fireorc::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Red Orc Ear");
  left->setmap(Map);
  left->setX(X);
@@ -406,9 +406,9 @@ item* fireorc::body(string Map) const
  left->setCost(200);
  return left;
 }
-item* fireorc::token(string Map)
+Item* fireorc::token(string Map)
 {
- item *token = new item;
+ Item *token = new Item;
  token = loaditem("Potion2");
  token->setX(X);
  token->setY(Y);
@@ -428,9 +428,9 @@ bool iceorc::dropItem()
  else
   return false;
 }
-item* iceorc::body(string Map) const
+Item* iceorc::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Blue Orc Ear");
  left->setmap(Map);
  left->setX(X);
@@ -439,9 +439,9 @@ item* iceorc::body(string Map) const
  left->setCost(200);
  return left;
 }
-item* iceorc::token(string Map)
+Item* iceorc::token(string Map)
 {
- item *token = new item;
+ Item *token = new Item;
  token = loaditem("Potion2");
  token->setX(X);
  token->setY(Y);
@@ -461,9 +461,9 @@ bool wanderer::dropItem()
  else
   return false;
 }
-item* wanderer::body(string Map) const
+Item* wanderer::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Orc Ear");
  left->setmap(Map);
  left->setX(X);
@@ -472,10 +472,10 @@ item* wanderer::body(string Map) const
  left->setCost(250);
  return left;
 }
-item* wanderer::token(string Map)
+Item* wanderer::token(string Map)
 {
 	int num = rand()% 6 + 1;
-	item *token = new item;
+	Item *token = new Item;
 	switch(num)
 	{
 	case 1:
@@ -508,18 +508,18 @@ bool human::dropItem()
 	else 
 		return false;	
 }
-item* human::token(string Map)
+Item* human::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);
 	token->setmap(Map);
 	return token;
 }
-item* human::body(string Map) const
+Item* human::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Last Will");
 	left->setmap(Map);
 	left->setX(X);
@@ -577,10 +577,10 @@ bool knight::dropItem()
 	else 
 		return false;	
 }
-item* knight::token(string Map)
+Item* knight::token(string Map)
 {
 	int num = rand()% 3 + 1;
-	item *token = new item;
+	Item *token = new Item;
 	switch(num)
 	{
 	case 1:
@@ -607,10 +607,10 @@ bool adventure::dropItem()
 {
 	return true;
 }
-item* adventure::token(string Map)
+Item* adventure::token(string Map)
 {
 	int num = rand()% 3 + 1;
-	item *token = new item;
+	Item *token = new Item;
 	switch(num)
 	{
 	case 1:
@@ -763,9 +763,9 @@ bool wizard::dropItem()
 	else 
 		return false;	
 }
-item* wizard::token(string Map)
+Item* wizard::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -787,9 +787,9 @@ bool goblin::dropItem()
 	else 
 		return false;	
 }
-item*goblin::body(string Map) const
+Item*goblin::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Goblin Claw");
 	left->setmap(Map);
 	left->setX(X);
@@ -798,9 +798,9 @@ item*goblin::body(string Map) const
 	left->setCost(10);
 	return left;
 }
-item* goblin::token(string Map)
+Item* goblin::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);
@@ -813,9 +813,9 @@ creature* goblin::replenish() const
 }
 //================================================ Giant Spider ===============================================
 
-item* gspider::body(string Map) const
+Item* gspider::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Spider Silk");
 	left->setmap(Map);
 	left->setX(X);
@@ -830,9 +830,9 @@ creature* gspider::replenish() const
 }
 //======================================================< WOLF-------------------------------->>>
 
-item* wolf::body(string Map) const
+Item* wolf::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Wolf pelt");
 	left->setmap(Map);
 	left->setX(X);
@@ -846,9 +846,9 @@ creature* wolf::replenish() const
 	return new wolf;
 }
 //====================================================== Raven ============================================
-item*raven::body(string Map) const
+Item*raven::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Black Feather");
 	left->setmap(Map);
 	left->setX(X);
@@ -862,9 +862,9 @@ creature* raven::replenish() const
 	return new raven;
 }
 //====================================================== Snake ============================================
-item* snake::body(string Map) const
+Item* snake::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Snake Skin");
 	left->setmap(Map);
 	left->setX(X);
@@ -878,9 +878,9 @@ creature* snake::replenish() const
 	return new snake;
 }
 //====================================================== Eagle ============================================
-item* eagle::body(string Map) const
+Item* eagle::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Talon");
  left->setmap(Map);
  left->setX(X);
@@ -894,9 +894,9 @@ creature* eagle::replenish() const
  return new eagle;
 }
 //====================================================== Polar Bear ============================================
-item* pbear::body(string Map) const
+Item* pbear::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Polar Paw");
  left->setmap(Map);
  left->setX(X);
@@ -910,9 +910,9 @@ creature* pbear::replenish() const
  return new pbear;
 }
 //====================================================== Salamander ============================================
-item* salamander::body(string Map) const
+Item* salamander::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Salamander Tongue");
  left->setmap(Map);
  left->setX(X);
@@ -926,9 +926,9 @@ creature* salamander::replenish() const
  return new salamander;
 }
 //====================================================== Centipede ============================================
-item* centipede::body(string Map) const
+Item* centipede::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Insectoid Leg");
  left->setmap(Map);
  left->setX(X);
@@ -942,9 +942,9 @@ creature* centipede::replenish() const
  return new centipede;
 }
 //====================================================== Wyvern ============================================
-item* wyvern::body(string Map) const
+Item* wyvern::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Wyvern Wing");
  left->setmap(Map);
  left->setX(X);
@@ -958,9 +958,9 @@ creature* wyvern::replenish() const
  return new wyvern;
 }
 //====================================================== Hydra ============================================
-item* hydra::body(string Map) const
+Item* hydra::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Hydra Scale");
  left->setmap(Map);
  left->setX(X);
@@ -974,9 +974,9 @@ creature* hydra::replenish() const
  return new hydra;
 }
 //====================================================== Minotaur ============================================
-item* minator::body(string Map) const
+Item* minator::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Minotaur Horn");
  left->setmap(Map);
  left->setX(X);
@@ -998,9 +998,9 @@ bool gargoyle::dropItem()
  else
   return false;
 }
-item* gargoyle::body(string Map) const
+Item* gargoyle::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Rock Hand");
  left->setmap(Map);
  left->setX(X);
@@ -1009,9 +1009,9 @@ item* gargoyle::body(string Map) const
  left->setCost(10);
  return left;
 }
-item* gargoyle::token(string Map)
+Item* gargoyle::token(string Map)
 {
- item *token = new item;
+ Item *token = new Item;
  token = loaditem("Potion");
  token->setX(X);
  token->setY(Y);
@@ -1034,9 +1034,9 @@ bool margoyle::dropItem()
  else
   return false;
 }
-item* margoyle::body(string Map) const
+Item* margoyle::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Rock Foot");
  left->setmap(Map);
  left->setX(X);
@@ -1045,9 +1045,9 @@ item* margoyle::body(string Map) const
  left->setCost(100);
  return left;
 }
-item* margoyle::token(string Map)
+Item* margoyle::token(string Map)
 {
- item *token = new item;
+ Item *token = new Item;
  token = loaditem("Potion3");
  token->setX(X);
  token->setY(Y);
@@ -1066,9 +1066,9 @@ bool stargoyle::dropItem()
 {
 	return true;
 }
-item* stargoyle::body(string Map) const
+Item* stargoyle::body(string Map) const
 {
- item *left = new item;
+ Item *left = new Item;
  left->setname("Rock Horn");
  left->setmap(Map);
  left->setX(X);
@@ -1077,9 +1077,9 @@ item* stargoyle::body(string Map) const
  left->setCost(10);
  return left;
 }
-item* stargoyle::token(string Map)
+Item* stargoyle::token(string Map)
 {
- item *token = new item;
+ Item *token = new Item;
  token = loaditem("Potion4");
  token->setX(X);
  token->setY(Y);
@@ -1099,9 +1099,9 @@ bool ogre::dropItem()
 	else 
 		return false;	
 }
-item* ogre::body(string Map) const
+Item* ogre::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Ogre Skull");
 	left->setmap(Map);
 	left->setX(X);
@@ -1110,9 +1110,9 @@ item* ogre::body(string Map) const
 	left->setCost(30);
 	return left;
 }
- item* ogre::token(string Map)
+ Item* ogre::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1132,18 +1132,18 @@ bool troll::dropItem()
 	else 
 		return false;
 }
- item* troll::token(string Map)
+ Item* troll::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadWeapon("TrollSword");
 	token->setX(X);
 	token->setY(Y);
 	token->setmap(Map);
 	return token;
 }
- item* troll::body(string Map) const
+ Item* troll::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Troll Heart");
 	left->setmap(Map);
 	left->setX(X);
@@ -1165,18 +1165,18 @@ bool magmaman::dropItem()
 	else 
 		return false;
 }
- item* magmaman::token(string Map)
+ Item* magmaman::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion3");
 	token->setX(X);
 	token->setY(Y);
 	token->setmap(Map);
 	return token;
 }
- item* magmaman::body(string Map) const
+ Item* magmaman::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Red Rock");
 	left->setmap(Map);
 	left->setX(X);
@@ -1201,9 +1201,9 @@ bool cyclops::dropItem()
 	else
 		return false;
 }
-item*cyclops::body(string Map) const
+Item*cyclops::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Giant Eye");
 	left->setmap(Map);
 	left->setX(X);
@@ -1212,9 +1212,9 @@ item*cyclops::body(string Map) const
 	left->setCost(100);
 	return left;
 }
-item* cyclops::token(string Map)
+Item* cyclops::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1236,9 +1236,9 @@ bool giant::dropItem()
 	else
 		return false;
 }
-item*giant::body(string Map) const
+Item*giant::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Giant Nose");
 	left->setmap(Map);
 	left->setX(X);
@@ -1247,9 +1247,9 @@ item*giant::body(string Map) const
 	left->setCost(10);
 	return left;
 }
-item* giant::token(string Map)
+Item* giant::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1272,9 +1272,9 @@ bool frostgiant::dropItem()
 	else
 		return false;
 }
-item*frostgiant::body(string Map) const
+Item*frostgiant::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Frostbite Finger");
 	left->setmap(Map);
 	left->setX(X);
@@ -1283,9 +1283,9 @@ item*frostgiant::body(string Map) const
 	left->setCost(10);
 	return left;
 }
-item* frostgiant::token(string Map)
+Item* frostgiant::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1307,9 +1307,9 @@ bool stormgiant::dropItem()
 	else
 		return false;
 }
-item* stormgiant::body(string Map) const
+Item* stormgiant::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Giant Toe");
 	left->setmap(Map);
 	left->setX(X);
@@ -1318,10 +1318,10 @@ item* stormgiant::body(string Map) const
 	left->setCost(10);
 	return left;
 }
-item* stormgiant::token(string Map)
+Item* stormgiant::token(string Map)
 {
 	int R = rand()% 4 + 1;
-		item *token = new item;
+		Item *token = new Item;
 	if(R = 4)
 		token = loadArmor("Storm Shroud");
 	if(R < 4)
@@ -1346,9 +1346,9 @@ bool nymph::dropItem()
 	else
 		return false;
 }
-item*nymph::body(string Map) const
+Item*nymph::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Crown of Laurels");
 	left->setmap(Map);
 	left->setX(X);
@@ -1357,9 +1357,9 @@ item*nymph::body(string Map) const
 	left->setCost(175);
 	return left;
 }
-item* nymph::token(string Map)
+Item* nymph::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -1381,9 +1381,9 @@ bool icewizard::dropItem()
 	else
 		return false;
 }
-item*icewizard::body(string Map) const
+Item*icewizard::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Wizard's Beard");
 	left->setmap(Map);
 	left->setX(X);
@@ -1392,9 +1392,9 @@ item*icewizard::body(string Map) const
 	left->setCost(30);
 	return left;
 }
-item* icewizard::token(string Map)
+Item* icewizard::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -1416,10 +1416,10 @@ bool snowman::dropItem()
 	else
 		return false;
 }
-item* snowman::body(string Map) const
+Item* snowman::body(string Map) const
 {
 	int R = rand()% 3 + 1;
-	item *left = new item;
+	Item *left = new Item;
 	switch(R)
 	{
 	case 1:
@@ -1439,9 +1439,9 @@ item* snowman::body(string Map) const
 	left->setCost(30);
 	return left;
 }
-item* snowman::token(string Map)
+Item* snowman::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Refresh");
 	token->setX(X);
 	token->setY(Y);
@@ -1463,9 +1463,9 @@ bool shrineguard::dropItem()
 	else
 		return false;
 }
-item*shrineguard::body(string Map) const
+Item*shrineguard::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Ice Shrine Crest");
 	left->setmap(Map);
 	left->setX(X);
@@ -1474,9 +1474,9 @@ item*shrineguard::body(string Map) const
 	left->setCost(200);
 	return left;
 }
-item* shrineguard::token(string Map)
+Item* shrineguard::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("IceChain");
 	token->setX(X);
 	token->setY(Y);
@@ -1498,9 +1498,9 @@ bool rockgolem::dropItem()
 	else
 		return false;
 }
-item*rockgolem::body(string Map) const
+Item*rockgolem::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Chunk of Rock");
 	left->setmap(Map);
 	left->setX(X);
@@ -1509,9 +1509,9 @@ item*rockgolem::body(string Map) const
 	left->setCost(200);
 	return left;
 }
-item* rockgolem::token(string Map)
+Item* rockgolem::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1533,9 +1533,9 @@ bool irongolem::dropItem()
 	else
 		return false;
 }
-item*irongolem::body(string Map) const
+Item*irongolem::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Hunk of Iron");
 	left->setmap(Map);
 	left->setX(X);
@@ -1544,9 +1544,9 @@ item*irongolem::body(string Map) const
 	left->setCost(400);
 	return left;
 }
-item* irongolem::token(string Map)
+Item* irongolem::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1568,9 +1568,9 @@ bool steelgolem::dropItem()
 	else
 		return false;
 }
-item*steelgolem::body(string Map) const
+Item*steelgolem::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Lump of Steel");
 	left->setmap(Map);
 	left->setX(X);
@@ -1579,9 +1579,9 @@ item*steelgolem::body(string Map) const
 	left->setCost(800);
 	return left;
 }
-item* steelgolem::token(string Map)
+Item* steelgolem::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion3");
 	token->setX(X);
 	token->setY(Y);
@@ -1603,9 +1603,9 @@ bool treeman::dropItem()
 	else
 		return false;
 }
-item*treeman::body(string Map) const
+Item*treeman::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Lumber");
 	left->setmap(Map);
 	left->setX(X);
@@ -1614,9 +1614,9 @@ item*treeman::body(string Map) const
 	left->setCost(100);
 	return left;
 }
-item* treeman::token(string Map)
+Item* treeman::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion2");
 	token->setX(X);
 	token->setY(Y);
@@ -1638,9 +1638,9 @@ bool acolyte::dropItem()
 	else
 		return false;
 }
-item*acolyte::body(string Map) const
+Item*acolyte::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Acolyte's Soul");
 	left->setmap(Map);
 	left->setX(X);
@@ -1649,9 +1649,9 @@ item*acolyte::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-item* acolyte::token(string Map)
+Item* acolyte::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("SoulCatcher");
 	token->setX(X);
 	token->setY(Y);
@@ -1674,9 +1674,9 @@ bool firedemon::dropItem()
 	else
 		return false;
 }
-item*firedemon::body(string Map) const
+Item*firedemon::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Fire Horn");
 	left->setmap(Map);
 	left->setX(X);
@@ -1685,9 +1685,9 @@ item*firedemon::body(string Map) const
 	left->setCost(100);
 	return left;
 }
-item* firedemon::token(string Map)
+Item* firedemon::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion3");
 	token->setX(X);
 	token->setY(Y);
@@ -1707,9 +1707,9 @@ bool skel::dropItem()
 {	
 		return false;	
 }
- item* skel::body(string Map) const
+ Item* skel::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Rib Bone");
 	left->setmap(Map);
 	left->setX(X);
@@ -1732,9 +1732,9 @@ bool ghoul::dropItem()
 	else 
 		return false;	
 }
- item* ghoul::body(string Map) const
+ Item* ghoul::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Mangled Flesh");
 	left->setmap(Map);
 	left->setX(X);
@@ -1743,9 +1743,9 @@ bool ghoul::dropItem()
 	left->setCost(0);
 	return left;
 }
- item* ghoul::token(string Map)
+ Item* ghoul::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token->setname("Ghoul's Eye");
 	token->setmap(Map);
 	token->setX(X);
@@ -1760,9 +1760,9 @@ creature* ghoul::replenish() const
 }
 //====================================================== Ghost ================================================
 
- item* ghost::body(string Map) const
+ Item* ghost::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Disembodied Soul");
 	left->setmap(Map);
 	left->setX(X);
@@ -1785,9 +1785,9 @@ bool phantom::dropItem()
 	else 
 		return false;	
 }
-item* phantom::body(string Map) const
+Item* phantom::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Onyx Stone");
 	left->setmap(Map);
 	left->setX(X);
@@ -1797,9 +1797,9 @@ item* phantom::body(string Map) const
 	return left;
 }
 
-item* phantom::token(string Map)
+Item* phantom::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token->setname("Ruby Gem");
 	token->setmap(Map);
 	token->setX(X);
@@ -1821,9 +1821,9 @@ bool vampire::dropItem()
 	else 
 		return false;	
 }
-item* vampire::body(string Map) const
+Item* vampire::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Vampire Fang");
 	left->setmap(Map);
 	left->setX(X);
@@ -1833,9 +1833,9 @@ item* vampire::body(string Map) const
 	return left;
 }
 
-item* vampire::token(string Map)
+Item* vampire::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion4");
 	token->setX(X);
 	token->setY(Y);
@@ -1863,9 +1863,9 @@ bool woodpriest::dropItem()
 {
 	return true;	
 }
- item* woodpriest::token(string Map)
+ Item* woodpriest::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadWeapon("Slicer");
 	token->setmap(Map);
 	token->setX(X);
@@ -1873,9 +1873,9 @@ bool woodpriest::dropItem()
 	token->setkeep(true);
 	return token;
 }
-item* woodpriest::body(string Map) const
+Item* woodpriest::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -1916,9 +1916,9 @@ bool icepriest::dropItem()
 {
 	return true;	
 }
- item* icepriest::token(string Map)
+ Item* icepriest::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadWeapon("Ice Sword");
 	token->setmap(Map);
 	token->setX(X);
@@ -1926,9 +1926,9 @@ bool icepriest::dropItem()
 	token->setkeep(true);
 	return token;
 }
-item* icepriest::body(string Map) const
+Item* icepriest::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -1968,9 +1968,9 @@ bool firepriest::dropItem()
 {
 	return true;	
 }
- item* firepriest::token(string Map)
+ Item* firepriest::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadWeapon("Fire Sword");
 	token->setmap(Map);
 	token->setX(X);
@@ -1978,9 +1978,9 @@ bool firepriest::dropItem()
 	token->setkeep(true);
 	return token;
 }
-item* firepriest::body(string Map) const
+Item* firepriest::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -2019,9 +2019,9 @@ bool windpriest::dropItem()
 {
 	return true;	
 }
- item* windpriest::token(string Map)
+ Item* windpriest::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion4");
 	token->setmap(Map);
 	token->setX(X);
@@ -2029,9 +2029,9 @@ bool windpriest::dropItem()
 	token->setkeep(true);
 	return token;
 }
-item* windpriest::body(string Map) const
+Item* windpriest::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -2070,9 +2070,9 @@ bool godofwar::dropItem()
 {
 	return false;	
 }
-item* godofwar::body(string Map) const
+Item* godofwar::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Sword");
 	left->setmap(Map);
 	left->setX(X);
@@ -2108,9 +2108,9 @@ bool godoflife::dropItem()
 {
 	return false;	
 }
-item* godoflife::body(string Map) const
+Item* godoflife::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -2148,9 +2148,9 @@ bool godofchaos::dropItem()
 {
 	return false;	
 }
-item* godofchaos::body(string Map) const
+Item* godofchaos::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -2186,9 +2186,9 @@ bool godofdeath::dropItem()
 {
 	return false;	
 }
-item* godofdeath::body(string Map) const
+Item* godofdeath::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Robe");
 	left->setmap(Map);
 	left->setX(X);
@@ -2226,9 +2226,9 @@ bool greendragon::dropItem()
 {
 	return true;
 }
-item*greendragon::body(string Map) const
+Item*greendragon::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Green Scale");
 	left->setmap(Map);
 	left->setX(X);
@@ -2237,9 +2237,9 @@ item*greendragon::body(string Map) const
 	left->setCost(5000);
 	return left;
 }
-item* greendragon::token(string Map)
+Item* greendragon::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("GreenMail");
 	token->setX(X);
 	token->setY(Y);
@@ -2269,9 +2269,9 @@ bool bluedragon::dropItem()
 {
 	return true;
 }
-item*bluedragon::body(string Map) const
+Item*bluedragon::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Blue Scale");
 	left->setmap(Map);
 	left->setX(X);
@@ -2280,9 +2280,9 @@ item*bluedragon::body(string Map) const
 	left->setCost(5000);
 	return left;
 }
-item* bluedragon::token(string Map)
+Item* bluedragon::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("BlueMail");
 	token->setX(X);
 	token->setY(Y);
@@ -2310,9 +2310,9 @@ bool reddragon::dropItem()
 {
 	return true;
 }
-item*reddragon::body(string Map) const
+Item*reddragon::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Red Scale");
 	left->setmap(Map);
 	left->setX(X);
@@ -2321,9 +2321,9 @@ item*reddragon::body(string Map) const
 	left->setCost(5000);
 	return left;
 }
-item* reddragon::token(string Map)
+Item* reddragon::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loadArmor("RedMail");
 	token->setX(X);
 	token->setY(Y);
@@ -2351,9 +2351,9 @@ bool fly::dropItem()
 {
 	return false;
 }
-item*fly::body(string Map) const
+Item*fly::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Dead Fly");
 	left->setmap(Map);
 	left->setX(X);
@@ -2373,9 +2373,9 @@ bool monk::dropItem()
 {
 	return true;
 }
-item*monk::body(string Map) const
+Item*monk::body(string Map) const
 {
-	item *left = new item;
+	Item *left = new Item;
 	left->setname("Monk's Cowl");
 	left->setmap(Map);
 	left->setX(X);
@@ -2384,9 +2384,9 @@ item*monk::body(string Map) const
 	left->setCost(5000);
 	return left;
 }
-item* monk::token(string Map)
+Item* monk::token(string Map)
 {
-	item *token = new item;
+	Item *token = new Item;
 	token = loaditem("Potion");
 	token->setX(X);
 	token->setY(Y);

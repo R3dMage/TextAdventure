@@ -11,7 +11,7 @@
 
 using namespace std;
 
-item* loaditem(string name);
+Item* loaditem(string name);
 void text(string,int,int,WORD);
 void clear();
 void num(int num,int X, int Y,WORD color);
@@ -70,12 +70,12 @@ public:
 	void slowDisp(string);
 	void loadPos(int X, int Y);
 	virtual creature* replenish() const = 0;
-	virtual item* body(string) const = 0;
-	item* Loadtoken();
+	virtual Item* body(string) const = 0;
+	Item* Loadtoken();
 	virtual void win(Player *p2);
 	virtual bool dropItem();
-	virtual void attack(Player *p2, vector<item*> &pstuff,vector<item*> &stuff,string Map);
-	virtual item* token(string);
+	virtual void attack(Player *p2, vector<Item*> &pstuff,vector<Item*> &stuff,string Map);
+	virtual Item* token(string);
 	virtual bool talkto(Player *p2);
 	virtual void banter();
 

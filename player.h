@@ -18,7 +18,7 @@ void num(int num,int X, int Y,WORD color);
 void clear();
 armor* loadArmor(string);
 weapon* loadWeapon(string);
-void ground(vector<item> stuff,string Map,int X,int Y);
+void ground(vector<Item> stuff,string Map,int X,int Y);
 void cure(int D);
 void clrtop(int);
 

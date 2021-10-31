@@ -275,9 +275,9 @@ armor* loadArmor(string name)
 	return armorPtr;
 }
 
-item* loaditem(string name)
+Item* loaditem(string name)
 {
-	item *itemPtr = new item;
+	Item *itemPtr = new Item;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -307,7 +307,7 @@ item* loaditem(string name)
 	return itemPtr;
 }
 
-void ground(vector<item*> stuff,string Map,int X,int Y)
+void ground(vector<Item*> stuff,string Map,int X,int Y)
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;	
@@ -326,7 +326,7 @@ void ground(vector<item*> stuff,string Map,int X,int Y)
 	if(Offset < 10)
 		text("                       ",15,3+NumItems,yellow);
 }
-void items(vector<item*> &pstuff)
+void items(vector<Item*> &pstuff)
 {
 	unsigned int Offset = 0;
  	text(" [---Items---] ",13,11,brown);

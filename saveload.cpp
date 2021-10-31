@@ -4,7 +4,7 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void world::save(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string Savefile = p->GetName();
 	Savefile = Savefile + ".svg";
@@ -22,7 +22,7 @@ void world::save(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<
 }
 
 
-void world::load(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -52,7 +52,7 @@ void world::load(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<
 	system("pause");
 }
 
-void world::load1(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -82,7 +82,7 @@ void world::load1(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector
 	system("pause");
 }
 
-void world::InvenSave(vector<item*> &stuff, ofstream &fout)
+void world::InvenSave(vector<Item*> &stuff, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
@@ -100,7 +100,7 @@ void world::InvenSave(vector<item*> &stuff, ofstream &fout)
 		fout << "inv" << i+1 << ": " << stuff[i]->getarm() << endl;
 	}
 }
-void world::GroundSave(vector<item*> &stuff, ofstream &fout)
+void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
@@ -130,13 +130,13 @@ void world::MagikSave(vector<magik*> &M, ofstream &fout)
 }
 
 
-void world::loadGround(vector<item*> &stuff,ifstream &fin)
+void world::loadGround(vector<Item*> &stuff,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
 	int Xtemp;
 	bool Y;
-	item *holder;
+	Item *holder;
 	string temp;
 	string szHolder;
 
@@ -145,7 +145,7 @@ void world::loadGround(vector<item*> &stuff,ifstream &fin)
 
 	for(i=0; i < j; i++)
 	{
-		holder = new item;
+		holder = new Item;
 		fin >> szHolder;	getline(fin,temp);	holder->setname(rotate(temp));
 		fin >> szHolder >> temp;	holder->setmap(temp);
 		fin >> szHolder >> Xtemp;	holder->setX(Xtemp);
@@ -165,13 +165,13 @@ void world::loadGround(vector<item*> &stuff,ifstream &fin)
 	}
 }
 
-void world::loadInven(vector<item*> &pstuff,ifstream &fin)
+void world::loadInven(vector<Item*> &pstuff,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
 	int Xtemp;
 	bool Y;
-	item *holder;
+	Item *holder;
 	string temp;
 	string szHolder;
 
@@ -180,7 +180,7 @@ void world::loadInven(vector<item*> &pstuff,ifstream &fin)
 
 	for(i=0; i < j; i++)
 	{
-		holder = new item;
+		holder = new Item;
 		fin >> szHolder;	getline(fin,temp);	holder->setname(rotate(temp));
 		fin >> szHolder >> temp;	holder->setmap(temp);
 		fin >> szHolder >> Xtemp;	holder->setX(Xtemp);

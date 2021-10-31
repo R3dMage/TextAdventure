@@ -9,7 +9,7 @@ using namespace std;
 void text(string szText,int X,int Y,WORD color);
 void num(int num,int X,int Y,WORD color);
 
-class weapon : public item{
+class weapon : public Item{
 public:
 	weapon();
 	void set2hits(bool);
