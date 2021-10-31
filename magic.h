@@ -10,129 +10,124 @@
 class Magic{
 public:
 	Magic();
-	void slowDisp(string szText);
-	void tout(int,WORD);
-	void cast();
-	void Disp();
-	void setname(string);
-	void setincant(string);
-	void setdesc(string);
-	void setcost(int);
-	void setbInfight(bool);
-	int getcost();
-	bool getbInfight();
-	string getname();
-	virtual void use(Player *, creature *);
+	void SlowDisplay(string szText);
+	void DisplayName(int,WORD);
+	void DisplayIncantation();
+	void DisplayCastingCost();
+	int GetCost();
+	bool GetIsInFight();
+	string GetName();
+	virtual void Cast(Player *, creature *);
 
 
 protected:
-	string name;
-	string incantation;
-	string description;
-	string attribute;
-	int cost;
-	bool bInfight;
+	string Name;
+	string Incantation;
+	string Description;
+	string Attribute;
+	int Cost;
+	bool IsInFight;
 	
 };
-class minheal : public Magic{
+class MinorHeal : public Magic{
 public:
-	minheal();
-	virtual void use(Player *,creature*);
+	MinorHeal();
+	virtual void Cast(Player *,creature*);
 };
-class majheal : public Magic{
+class MajorHeal : public Magic{
 public:
-	majheal();
-	virtual void use(Player *,creature *);
+	MajorHeal();
+	virtual void Cast(Player *,creature *);
 };
-class briar : public Magic{
+class BriarBush : public Magic{
 public:
-	briar();
-	virtual void use(Player *,creature*);
+	BriarBush();
+	virtual void Cast(Player *,creature*);
 };
-class snow : public Magic{
+class Blizzard : public Magic{
 public:
-	snow();
-	virtual void use(Player *,creature*);
+	Blizzard();
+	virtual void Cast(Player *, creature*);
 };
-class pstorm : public Magic{
+class PerfectStorm : public Magic{
 public:
-	pstorm();
-	virtual void use(Player *,creature*);
+	PerfectStorm();
+	virtual void Cast(Player *, creature*);
 };
-class dlife : public Magic{
+class DrainLife : public Magic{
 public:
-	dlife();
-	virtual void use(Player *,creature*);
+	DrainLife();
+	virtual void Cast(Player *, creature*);
 };
-class stealka : public Magic{
+class StealKa : public Magic{
 public:
-	stealka();
-	virtual void use(Player *,creature*);
+	StealKa();
+	virtual void Cast(Player *, creature*);
 };
-class farrow : public Magic{
+class FireArrow : public Magic{
 public:
-	farrow();
-	virtual void use(Player *,creature*);
+	FireArrow();
+	virtual void Cast(Player *, creature*);
 };
-class fire : public Magic{
+class Fire : public Magic{
 public:
-	fire();
-	virtual void use(Player *,creature*);
+	Fire();
+	virtual void Cast(Player *, creature*);
 };
-class lava : public Magic{
+class Lava : public Magic{
 public:
-	lava();
-	virtual void use(Player *,creature*);
+	Lava();
+	virtual void Cast(Player *, creature*);
 };
-class strength : public Magic{
+class Might : public Magic{
 public:
-	strength();
-	virtual void use(Player *,creature *);
+	Might();
+	virtual void Cast(Player *,creature *);
 };
-class dispel : public Magic{
+class Dispel : public Magic{
 public:
-	dispel();
-	virtual void use(Player *,creature *);
+	Dispel();
+	virtual void Cast(Player *,creature *);
 };
-class shock : public Magic{
+class Shock : public Magic{
 public:
-	shock();
-	virtual void use(Player *,creature*);
+	Shock();
+	virtual void Cast(Player *, creature*);
 };
-class acidrain : public Magic{
+class AcidRain : public Magic{
 public:
-	acidrain();
-	virtual void use(Player *,creature*);
+	AcidRain();
+	virtual void Cast(Player *, creature*);
 };
-class lightning : public Magic{
+class LightningBolt : public Magic{
 public: 
-	lightning();
-	virtual void use(Player *,creature*);
+	LightningBolt();
+	virtual void Cast(Player *, creature*);
 };
-class poison : public Magic{
+class Poison : public Magic{
 public:
-	poison();
-	virtual void use(Player *,creature*);
+	Poison();
+	virtual void Cast(Player *, creature*);
 };
-class skeleton : public Magic{
+class Skeleton : public Magic{
 public:
-	skeleton();
-	virtual void use(Player *,creature*);
+	Skeleton();
+	virtual void Cast(Player *, creature*);
 };
-class dstrike : public Magic{
+class DarkStrike : public Magic{
 public:
-	dstrike();
-	virtual void use(Player *,creature*);
+	DarkStrike();
+	virtual void Cast(Player *, creature*);
 };
-class critical : public Magic{
+class Critical : public Magic{
 public:
-	critical();
-	virtual void use(Player *,creature*);
+	Critical();
+	virtual void Cast(Player *, creature*);
 };
-class control : public Magic{
+class Control : public Magic{
 public:
-	control();
-	virtual void use(Player *,creature *);
+	Control();
+	virtual void Cast(Player *,creature *);
 };
 
 #endif 

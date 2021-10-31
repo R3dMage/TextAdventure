@@ -125,7 +125,7 @@ void world::MagikSave(vector<Magic*> &M, ofstream &fout)
 	
 	for(i = 0;i < M.size(); i++)
 	{
-		fout << "Spell"<< i+1 << ": " << M[i]->getname() << endl;
+		fout << "Spell"<< i+1 << ": " << M[i]->GetName() << endl;
 	}
 }
 
@@ -231,45 +231,45 @@ Magic* world::getMagik(string N)
 {
  	Magic *M = new Magic;
 	if(N == "Minor Heal")
-		M = new minheal;
+		M = new MinorHeal;
 	if(N == "Major Heal")
-		M = new majheal;
+		M = new MajorHeal;
 	if(N == "Briar Bush")
-		M = new briar;
+		M = new BriarBush;
 	if(N == "Snow")
-		M = new snow;
+		M = new Blizzard;
 	if(N == "PerfectStorm")
-		M = new pstorm;
+		M = new PerfectStorm;
 	if(N == "Drain Life")
-		M = new dlife;
+		M = new DrainLife;
 	if(N == "Drain Ka")
-		M = new stealka;
+		M = new StealKa;
 	if(N == "Flame Arrow")
-		M = new farrow;
+		M = new FireArrow;
 	if(N == "Fire")
-		M = new fire;
+		M = new Fire;
 	if(N == "Lava")
-		M = new lava;
+		M = new Lava;
 	if(N == "Strength")
-		M = new strength;
+		M = new Might;
 	if(N == "Dispel")
-		M = new dispel;
+		M = new Dispel;
 	if(N == "Shock")
-		M = new shock;
+		M = new Shock;
 	if(N == "Acid Rain")
-		M = new acidrain;
+		M = new AcidRain;
 	if(N == "Lightning Bolt")
-		M = new lightning;
+		M = new LightningBolt;
 	if(N == "Poison")
-		M = new poison;
+		M = new Poison;
 	if(N == "Summon Skeleton")
-		M = new skeleton;
+		M = new Skeleton;
 	if(N == "Dark Strike")
-		M = new dstrike;
+		M = new DarkStrike;
 	if(N == "Critical")
-		M = new critical;
+		M = new Critical;
 	if(N == "Mind Control")
-		M = new control;
+		M = new Control;
 	return M;
 }
 

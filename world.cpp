@@ -141,11 +141,11 @@ void world::locations(string Map, Player *p2,bool load)
 	{
 		//p2->setInvis(true);
 		p2->SetHasSpells(true);
-		spells.push_back(new minheal);
-		spells.push_back(new majheal);
-		spells.push_back(new briar);
-		spells.push_back(new snow);
-		spells.push_back(new pstorm);
+		spells.push_back(new MinorHeal);
+		spells.push_back(new MajorHeal);
+		spells.push_back(new BriarBush);
+		spells.push_back(new Blizzard);
+		spells.push_back(new PerfectStorm);
 		Map = "island1";
 		p2->SetMaxKa(100);
 		p2->SetKa(100);
@@ -1365,7 +1365,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 			return;
 		//p2->setbspells(true);             Just there to test when to give ka
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new minheal);
+		M.push_back(new MinorHeal);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 10 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
@@ -1373,7 +1373,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Briar Bush"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new briar);
+		M.push_back(new BriarBush);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 20 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
@@ -1381,7 +1381,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Major Heal"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new majheal);
+		M.push_back(new MajorHeal);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 40 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
@@ -1389,7 +1389,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Snow"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new snow);
+		M.push_back(new Blizzard);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 5 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
@@ -1398,7 +1398,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 			return;
 		p2->SetHasSpells(true);
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new dlife);
+		M.push_back(new DrainLife);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 10 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
@@ -1406,7 +1406,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Flame Arrow"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new farrow);
+		M.push_back(new FireArrow);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 20 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
@@ -1414,7 +1414,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Steal Ka"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new stealka);
+		M.push_back(new StealKa);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 40 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
@@ -1422,7 +1422,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Fire"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new fire);
+		M.push_back(new Fire);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 4 && p2->RaceKillCounts.OrcKillCount > 4 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
@@ -1431,7 +1431,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 			return;
 		p2->SetHasSpells(true);
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new strength);
+		M.push_back(new Might);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 8 && p2->RaceKillCounts.OrcKillCount > 8 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
@@ -1439,7 +1439,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Dispel"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new dispel);
+		M.push_back(new Dispel);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 12 && p2->RaceKillCounts.OrcKillCount > 12 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
@@ -1447,7 +1447,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Shock"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new shock);
+		M.push_back(new Shock);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 15 && p2->RaceKillCounts.OrcKillCount > 15 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
@@ -1455,7 +1455,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Acid Rain"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new acidrain);
+		M.push_back(new AcidRain);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 3 && p2->RaceKillCounts.OrcKillCount > 3 &&  p2->RaceKillCounts.HumanKillCount > 3 && M.size() < 10)
@@ -1464,7 +1464,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 			return;
 		p2->SetHasSpells(true);
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new poison);
+		M.push_back(new Poison);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 10 && p2->RaceKillCounts.OrcKillCount > 10 &&  p2->RaceKillCounts.HumanKillCount > 10 && M.size() < 10)
@@ -1472,7 +1472,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Skeleton"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new skeleton);
+		M.push_back(new Skeleton);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 15 && p2->RaceKillCounts.OrcKillCount > 15 &&  p2->RaceKillCounts.HumanKillCount > 15 && M.size() < 10)
@@ -1480,7 +1480,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Dark Strike"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new dstrike);
+		M.push_back(new DarkStrike);
 		Sleep(p2->GetPauseDuration());
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 20 && p2->RaceKillCounts.OrcKillCount > 20 &&  p2->RaceKillCounts.HumanKillCount > 20 && M.size() < 10)
@@ -1488,7 +1488,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 		if(hasMagic(M,"Critical"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
-		M.push_back(new critical);
+		M.push_back(new Critical);
 		Sleep(p2->GetPauseDuration());
 	}
 
@@ -1500,7 +1500,7 @@ bool world::hasMagic(vector<Magic*> M,string name)
 	unsigned int i;
 	for(i=0;i<M.size();i++)
 	{
-		if(name == M[i]->getname())
+		if(name == M[i]->GetName())
 			return true;		
 	}
 	return false;

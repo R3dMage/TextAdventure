@@ -819,41 +819,41 @@ void world::magic(Player *p2,vector<Magic*> &spells)
 
 		for(i = 0;i < spells.size();i++)
 		{
-			if(spells[i]->getbInfight() || p2->GetCurrentKa() < spells[i]->getcost())
+			if(spells[i]->GetIsInFight() || p2->GetCurrentKa() < spells[i]->GetCost())
 			{
-				spells[i]->tout(i+13,dkgreen);
+				spells[i]->DisplayName(i+13,dkgreen);
 			}
 			else
-				spells[i]->tout(i+13,green);
+				spells[i]->DisplayName(i+13,green);
 		}
 		DrawCurs(CursPos,yellow,175);
 		offset = CursPos.Y - 13;
-		spells[offset]->Disp();
+		spells[offset]->DisplayCastingCost();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,13,12 + static_cast<int>(spells.size())))
 			{
 				DrawCurs(CursPos,yellow,175);
 				offset = CursPos.Y - 13;
-				spells[offset]->Disp();
+				spells[offset]->DisplayCastingCost();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
 		if(bEsc)
 			return;
 		offset = CursPos.Y - 13;
-		if(spells[offset]->getbInfight())
+		if(spells[offset]->GetIsInFight())
 		{
 			text("That spell can only be used in battle",13,9,white);
 			Sleep(p2->GetPauseDuration());
 		}
-		else if(p2->GetCurrentKa() < spells[offset]->getcost())
+		else if(p2->GetCurrentKa() < spells[offset]->GetCost())
 		{
 			text("Not enough Ka",13,9,white);
 			Sleep(p2->GetPauseDuration());
 		}
 		else
-			spells[offset]->use(p2,guy);
+			spells[offset]->Cast(p2,guy);
 	}//==================================End of While loop==================================
 }
 
@@ -888,14 +888,14 @@ void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 		
 		for(i = 0;i < spells.size();i++)
 		{
-			if(p2->GetCurrentKa() < spells[i]->getcost())
+			if(p2->GetCurrentKa() < spells[i]->GetCost())
 			{
-				spells[i]->tout(i+13,dkgreen);
+				spells[i]->DisplayName(i+13,dkgreen);
 			}
 			else
-				spells[i]->tout(i+13,green);
+				spells[i]->DisplayName(i+13,green);
 		}
-		spells[offset]->Disp();
+		spells[offset]->DisplayCastingCost();
 		DrawCurs(CursPos,yellow,175);
 		do
 		{
@@ -903,14 +903,14 @@ void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 			{
 				DrawCurs(CursPos,yellow,175);
 				offset = CursPos.Y - 13;
-				spells[offset]->Disp();
+				spells[offset]->DisplayCastingCost();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
 		if(bEsc)
 			return;
 		offset = CursPos.Y - 13;
-		if(p2->GetCurrentKa() < spells[offset]->getcost())
+		if(p2->GetCurrentKa() < spells[offset]->GetCost())
 		{
 			text("Not enough Ka",13,9,white);
 			Sleep(p2->GetPauseDuration());
@@ -918,7 +918,7 @@ void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 		else
 		{
 			clr(11);
-			spells[offset]->use(p2,enemy);
+			spells[offset]->Cast(p2,enemy);
 			return;
 		}
 	}//==================================End of While loop==================================
