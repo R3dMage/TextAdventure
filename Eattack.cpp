@@ -19,7 +19,7 @@ void elf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string M
 {
 	int Damage = 0;
 	int cure;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string heal = "Great god of the land, heal thy servant!";
 
@@ -41,7 +41,7 @@ void elf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string M
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -62,7 +62,7 @@ void mage::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string 
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
@@ -113,7 +113,7 @@ void mage::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string 
 			cout << " attacks you with his staff";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -129,7 +129,7 @@ void mage::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string 
 void warrior::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string Map)
 {
 	int Damage = 0;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string strike = "Spirits of the wood guide my blade. POWER STRIKE!!!";
 
@@ -150,7 +150,7 @@ void warrior::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -170,7 +170,7 @@ void iceelf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	int dodge  = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 6)
@@ -198,7 +198,7 @@ void iceelf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -218,7 +218,7 @@ void fireelf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	int dodge  = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 10)
@@ -245,7 +245,7 @@ void fireelf::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -269,7 +269,7 @@ void ranger::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string strike = "Spirits of the wood guide my blade. POWER STRIKE!!!";
 	string heal = "Great god of the land, heal thy servant!";
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 10 && hp > 35)
@@ -320,7 +320,7 @@ void ranger::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -339,7 +339,7 @@ void ranger::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 void Orc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string Map)
 {
 	int Damage = 0;
-	armor *arm;
+	Armor *arm;
 
 	if(hp < 10)
 		runAway = true;
@@ -347,7 +347,7 @@ void Orc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string M
 	{
 		arm = p2->GetArmor();
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -370,7 +370,7 @@ void sorceror::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string arrow = "Missle strike your mark with accuracy!";
 	string fire = "Infernal flames of hell consume my enemy!";
@@ -425,7 +425,7 @@ void sorceror::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 			cout << " attacks you with his staff";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -441,7 +441,7 @@ void sorceror::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 void osoldier::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string Map)
 {
 	int Damage = 0;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string strike = "Pathetic human feel the wrath of the orcs!!!";
 
@@ -462,7 +462,7 @@ void osoldier::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -482,7 +482,7 @@ void fireorc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string strike = "Fire falls from the sky!!!";
 
@@ -503,7 +503,7 @@ void fireorc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -523,7 +523,7 @@ void iceorc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string strike = "NOW! Deep freeze wind!";
 
@@ -544,7 +544,7 @@ void iceorc::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -566,7 +566,7 @@ void wanderer::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 	int cure;
 	int X;
 	//bool nodam;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string drain = "Everything is free for the taking!";
@@ -615,7 +615,7 @@ void wanderer::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 			cout << " strikes out at you!";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -633,7 +633,7 @@ void wizard::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 	int Damage = 0;
 	int X;
 	bool nodam = false;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string arain = "Tainted water, pour from the sky!";
 	string szshock = "Electricity flow forth and electrify my opponent!";
@@ -682,7 +682,7 @@ void wizard::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, strin
 		}
 		if(!nodam)
 		{
-			Damage -= arm->getdefMod();
+			Damage -= arm->GetDefenseModifier();
 			if(Damage < 0)
 			Damage = 1;
 			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -702,7 +702,7 @@ void adventure::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	int cure;
 	int X;
 	bool nodam;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string skel = "Bones which death hath taken, aid me in my struggle";
 	string str = "god of war grant me strength!";
@@ -764,7 +764,7 @@ void adventure::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 			cout << " attacks you!";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -780,7 +780,7 @@ void stargoyle::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	
 	if(choice > 85)
@@ -800,7 +800,7 @@ void stargoyle::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -820,11 +820,11 @@ void gspider::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
-	armor *arm;
+	Armor *arm;
 
 	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -855,7 +855,7 @@ void ghost::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	
 	if(choice > 75)
@@ -874,7 +874,7 @@ void ghost::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 			Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -893,7 +893,7 @@ void magmaman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
@@ -911,7 +911,7 @@ void magmaman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -932,7 +932,7 @@ void frostgiant::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
@@ -950,7 +950,7 @@ void frostgiant::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -970,7 +970,7 @@ void stormgiant::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 {
 int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
@@ -988,7 +988,7 @@ int Damage = 0;
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1009,7 +1009,7 @@ void nymph::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	int R = 0;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 50 && !p2->GetIsAsleep())
 	{
@@ -1028,7 +1028,7 @@ void nymph::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1060,7 +1060,7 @@ void icewizard::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string breeze = "Icy breeze refresh me!";
 	string chill = "Frigid wind sting my enemy!";
@@ -1110,7 +1110,7 @@ void icewizard::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 			cout << " attacks you with his staff";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1127,7 +1127,7 @@ void snowman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
@@ -1146,7 +1146,7 @@ void snowman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1167,7 +1167,7 @@ void treeman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string slam = "Now, face pain human!";
@@ -1217,7 +1217,7 @@ void treeman::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 			cout << " bashes you with heavy limbs!";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1235,7 +1235,7 @@ void firedemon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75)
 	{
@@ -1268,7 +1268,7 @@ void firedemon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1288,7 +1288,7 @@ void hydra::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
@@ -1306,7 +1306,7 @@ void hydra::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, string
 	else
 	{
 		Damage = rand()% damage + damMod;
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1326,11 +1326,11 @@ void centipede::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
-	armor *arm;
+	Armor *arm;
 
 	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1360,11 +1360,11 @@ void vampire::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
-	armor *arm;
+	Armor *arm;
 
 	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1396,7 +1396,7 @@ void acolyte::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string windstorm = "Wind! Strikedown my opponent!";
 	string cyclone = "Wind! Destroy my enemies!!!";
@@ -1446,7 +1446,7 @@ void acolyte::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, stri
 			cout << " attacks you";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1465,7 +1465,7 @@ void woodpriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
@@ -1515,7 +1515,7 @@ void woodpriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 			cout << " attacks you with his staff";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1533,7 +1533,7 @@ void icepriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string breeze = "Icy breeze refresh me!";
 	string chill = "Ice!! Deep freeze this fool!";
@@ -1581,7 +1581,7 @@ void icepriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 			cout << " attacks you";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1599,7 +1599,7 @@ void firepriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string potion = "Ah, a potion. These are great!";
 	string flame = "Fire!!! Show no mercy to this man!";
@@ -1646,7 +1646,7 @@ void firepriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 			cout << " attacks you";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1664,7 +1664,7 @@ void windpriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string heal = "Great god of the land, heal thy servant!";
 	string arain = "Tainted water, pour from the sky!";
@@ -1712,7 +1712,7 @@ void windpriest::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 			cout << " attacks you";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1730,7 +1730,7 @@ void godoflife::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 	int Damage = 0;
 	int cure;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
@@ -1791,7 +1791,7 @@ void godoflife::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 			cout << " attacks you with his staff";
 			Sleep(p2->GetPauseDuration());
 		}
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1807,7 +1807,7 @@ void godofchaos::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 {
 	int Damage = 0;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
@@ -1851,7 +1851,7 @@ void godofchaos::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 		cout << " attacks you with his staff";
 		Sleep(p2->GetPauseDuration());
 	}
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 	Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1866,7 +1866,7 @@ void godofwar::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 {
 	int Damage = 0;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
@@ -1907,7 +1907,7 @@ void godofwar::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, str
 		cout << " punches you!";
 		Sleep(p2->GetPauseDuration());
 	}
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 	Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1923,7 +1923,7 @@ void godofdeath::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 {
 	int Damage = 0;
 	int cure;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	string drain = "What was yours is now mine!";
 	
@@ -1953,7 +1953,7 @@ void godofdeath::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 		cout << " attacks you with his scythe";
 		Sleep(p2->GetPauseDuration());
 		
-		Damage -= arm->getdefMod();
+		Damage -= arm->GetDefenseModifier();
 		if(Damage < 0)
 		Damage = 1;
 		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -1976,7 +1976,7 @@ void greendragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, 
 {
 	int Damage = 0;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
@@ -2014,7 +2014,7 @@ void greendragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, 
 		cout << " slashes at you with his claws!";
 		Sleep(p2->GetPauseDuration());
 	}
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 	Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -2030,7 +2030,7 @@ void bluedragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 {
 	int Damage = 0;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
@@ -2068,7 +2068,7 @@ void bluedragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, s
 		cout << " slashes at you with his claws!";
 		Sleep(p2->GetPauseDuration());
 	}
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 	Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
@@ -2084,7 +2084,7 @@ void reddragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 {
 	int Damage = 0;
 	int X;
-	armor *arm;
+	Armor *arm;
 	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
@@ -2122,7 +2122,7 @@ void reddragon::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff, st
 		cout << " slashes at you with his claws!";
 		Sleep(p2->GetPauseDuration());
 	}
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 	Damage = 1;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);

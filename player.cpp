@@ -55,7 +55,7 @@ Player::Player()
 	MusicIsOn = true;
 }
 
-void Player::SetArmor(armor *newArmor)
+void Player::SetArmor(Armor *newArmor)
 {
 	EquippedArmor = newArmor;
 }
@@ -136,7 +136,7 @@ void Player::SetPauseDuration(int pauseDuration)
 	PauseDuration = pauseDuration;
 }
 
-armor* Player::GetArmor()
+Armor* Player::GetArmor()
 {
 	return EquippedArmor;
 }

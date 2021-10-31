@@ -13,7 +13,7 @@ void clear();
 void clrbottom();
 void clritems();
 void clrtop(int);
-armor* loadArmor(string);
+Armor* loadArmor(string);
 weapon* loadWeapon(string);
 string rotate(string pStr);
 Item* loaditem(string name);

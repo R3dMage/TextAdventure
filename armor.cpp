@@ -9,56 +9,52 @@
 using namespace std;
 
 
-armor::armor()
+Armor::Armor()
 {
 	IsArmor = true;
 	Keep = true;
 	Type = -1;
-	defmod = 0;
-	evadMod = 0;
+	DefenseModifier = 0;
+	EvadeModifier = 0;
 	Cost = 0;
 
 }
-void armor::setdefMod(int num)
+void Armor::SetDefenseModifier(int num)
 {
 	if(num < 0){num = 0;}
-	defmod = num;
+	DefenseModifier = num;
 }
-void armor::setevadMod(int num)
+void Armor::SetEvadeModifier(int num)
 {	
-	evadMod = num;
+	EvadeModifier = num;
 }
 
 
-int armor::getdefMod()
+int Armor::GetDefenseModifier()
 {
-	return defmod;
+	return DefenseModifier;
 }
-int armor::getevadMod()
+int Armor::GetEvadeModifier()
 {
-	return evadMod;
-}
-bool armor::getmod()
-{
-	return mod;
+	return EvadeModifier;
 }
 
-void armor::display()
+void Armor::Display()
 {
 	text("Absorbs ",30,11,white);
-	cout << defmod << " and adds " << evadMod << " to your evade   ";
+	cout << DefenseModifier << " and adds " << EvadeModifier << " to your evade   ";
 	DisplayCost();
 }
 
-void armor::unload(string file)
+void Armor::Save(string file)
 {
 	ofstream fout;
 	fout.open("ularmor.sav");
 
 	fout << Name;
 	fout << "name: " << Name;
-	fout << "Def : " << defmod;
-	fout << "abs : " << evadMod;
+	fout << "Def : " << DefenseModifier;
+	fout << "abs : " << EvadeModifier;
 	fout << endl;
 	fout.close();
 

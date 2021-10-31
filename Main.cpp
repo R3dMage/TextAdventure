@@ -231,9 +231,9 @@ weapon* loadWeapon(string name)
 	return weaponPtr;
 }
 
-armor* loadArmor(string name)
+Armor* loadArmor(string name)
 {
-	armor *armorPtr = new armor;
+	Armor *armorPtr = new Armor;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -260,9 +260,9 @@ armor* loadArmor(string name)
 		getline(fin,temp);
 		armorPtr->SetName(rotate(temp));
 		fin >> szWord >> num;
-		armorPtr->setdefMod(num);
+		armorPtr->SetDefenseModifier(num);
 		fin >> szWord >> num;
-		armorPtr->setevadMod(num);
+		armorPtr->SetEvadeModifier(num);
 		fin >> szWord >> num;
 		armorPtr->SetCost(num);
 		if(fin.eof())

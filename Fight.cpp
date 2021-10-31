@@ -26,7 +26,7 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 	int StrMod;						// Strength Modifier variable
 	int R = 0;						// R?
 	weapon *weap = p2->GetWeapon(); // Weapon Variable
-	armor *arm = p2->GetArmor();	// Armor Variable
+	Armor *arm = p2->GetArmor();	// Armor Variable
 	bool bEsc = false;				// Escape bool for menu
 	bool bSel = false;				// Select bool for menu
 	bool bLeave = false;			// Leave  bool for menu
@@ -281,7 +281,7 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 			guy->info();
 			p2->DisplayInfo();
 			Evd = rand()%100 + 1;
-			if(Evd <= p2->GetEvade() + arm->getevadMod() && !p2->GetIsAsleep())	// Elaborate equation for evasion
+			if(Evd <= p2->GetEvade() + arm->GetEvadeModifier() && !p2->GetIsAsleep())	// Elaborate equation for evasion
 			{
 				text("You dodged the enemy attack",13,11,white);
 				Sleep(p2->GetPauseDuration());

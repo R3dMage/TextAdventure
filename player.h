@@ -16,7 +16,7 @@ string rotate(string);
 void text(string,int,int,WORD);
 void num(int num,int X, int Y,WORD color);
 void clear();
-armor* loadArmor(string);
+Armor* loadArmor(string);
 weapon* loadWeapon(string);
 void ground(vector<Item> stuff,string Map,int X,int Y);
 void cure(int D);
@@ -53,8 +53,8 @@ public:
 	string GetName();
 	void SetWeapon(weapon*);
 	weapon* GetWeapon();
-	void SetArmor(armor*);
-	armor* GetArmor();
+	void SetArmor(Armor*);
+	Armor* GetArmor();
 	void SetPositionX(int);
 	int GetPositionX();
 	void SetPositionY(int);
@@ -131,7 +131,7 @@ private:
 	CFmod	MapMusic;						// Music controller
 	string	Name;							// Player's Name
 	weapon*	EquippedWeapon;					// Current Weapon
-	armor*	EquippedArmor;					// Current Armor
+	Armor*	EquippedArmor;					// Current Armor
 	int		PositionX;								// Players X coordinate on the current map
 	int		PositionY;								// Players Y coordinate on the current map
 	int		Strength;						// Strength

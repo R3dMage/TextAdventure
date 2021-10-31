@@ -645,9 +645,9 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 	weapon *wsell1;
 	weapon *wsell2;
 	weapon *wsell3;
-	armor *asell1;
-	armor *asell2;
-	armor *asell3;
+	Armor *asell1;
+	Armor *asell2;
+	Armor *asell3;
 
 	if(Map == "valesh")
 	{
@@ -725,13 +725,13 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 					wsell3->display();
 					break;
 				case 5:
-					asell1->display();
+					asell1->Display();
 					break;
 				case 6:
-					asell2->display();
+					asell2->Display();
 					break;
 				case 7:
-					asell3->display();
+					asell3->Display();
 					break;
 				}
 			}

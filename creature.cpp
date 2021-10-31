@@ -52,11 +52,11 @@ void creature::info()
 void creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,string Map)
 {
 	int Damage;
-	armor *arm;
+	Armor *arm;
 
 	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
-	Damage -= arm->getdefMod();
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 0;
 	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
