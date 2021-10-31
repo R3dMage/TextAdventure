@@ -1889,7 +1889,7 @@ void woodpriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Wood Priest you must travel north.",13,11,white);
 	text("Past the forests to the frozen tundra.",13,12,white);
-	p2->plot.priest1 = true;
+	p2->plot.Priest1 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -1942,7 +1942,7 @@ void icepriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Ice Priest you must travel west.",13,11,white);
 	text("Into the mountain and defeat the Fire Priest.",13,12,white);
-	p2->plot.priest2 = true;
+	p2->plot.Priest2 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -1994,7 +1994,7 @@ void firepriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
 	text("Beneath the cemetary lies the teleporter.",13,12,white);
-	p2->plot.priest3 = true;
+	p2->plot.Priest3 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -2045,7 +2045,7 @@ void windpriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the the 4 priests. You must find the truth.",13,11,white);
 	text("Go thee to the ancient water temple.",13,12,white);
-	p2->plot.priest4 = true;
+	p2->plot.Priest4 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }

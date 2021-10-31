@@ -9,7 +9,7 @@
 
 
 
-void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events plot,RaceReactionIndex godchoice,char*& MM,char* MapMusic)
+void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,GameEvents plot,RaceReactionIndex godchoice,char*& MM,char* MapMusic)
 {
 	string MapInfo = Map + ".ifo";
 	unsigned int T;
@@ -266,7 +266,7 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events
 		MM = "island.mp3";
 	}
 
-	if(Map == "treealter" && !plot.priest1)
+	if(Map == "treealter" && !plot.Priest1)
 	{
 		npc.push_back(new woodpriest); npc[npc.size()-1]->loadPos(2,1);
 		MM = "island.mp3";
@@ -309,11 +309,11 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events
 			i++;
 			npc.push_back(new icewizard);	npc[i]->loadPos(Xmax,Ymax);
 		}
-		if(!plot.priest2)
+		if(!plot.Priest2)
 			npc.push_back(new icepriest); npc[npc.size()-1]->loadPos(10,10);
 		MM = "icehall.mp3";
 	}
-	if(Map == "icehall2" && !plot.bd)
+	if(Map == "icehall2" && !plot.BlueDragon)
 	{
 		npc.push_back(new bluedragon); npc[npc.size()-1]->loadPos(1,10);
 		MM = "icehall.mp3";
@@ -341,13 +341,13 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events
 		}
 		MM = "mountain.mp3";
 	}
-	if(Map == "mtaltar" && !plot.priest3)
+	if(Map == "mtaltar" && !plot.Priest3)
 	{
 		npc.push_back(new firepriest); npc[npc.size()-1]->loadPos(1,3);
 		MM = "mountain.mp3";
 	}
 
-	if(Map == "cave2" && !plot.rd)
+	if(Map == "cave2" && !plot.RedDragon)
 	{
 		npc.push_back(new reddragon); npc[npc.size()-1]->loadPos(10,2);
 		MM = "mountain.mp3";
@@ -405,7 +405,7 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events
 			i++;
 			npc.push_back(new acolyte);	npc[i]->loadPos(Xmax,Ymax);
 			i++;
-			if(!plot.priest4){
+			if(!plot.Priest4){
 				npc.push_back(new windpriest); npc[i]->loadPos(Xmax,Ymax);}
 			else{
 				npc.push_back(new minator); npc[i]->loadPos(Xmax,Ymax);}

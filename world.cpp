@@ -188,7 +188,7 @@ void world::locations(string Map, Player *p2,bool load)
 		bSel   = false;
 		bEsc   = false; 
 
-		if(!p2->plot.monk)
+		if(!p2->plot.Monk)
 			mk.push_back(new monk);					//This puts in THE only monk in the game.
 		else
 			mk.push_back(new fly);

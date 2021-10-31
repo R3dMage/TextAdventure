@@ -34,16 +34,16 @@ struct PlayerKillCounts{
 	int HumanKillCount;
 	int OrcKillCount;
 };
-struct events{
-	bool start;
-	bool priest1;
-	bool priest2;
-	bool priest3;
-	bool priest4;
-	bool gd;
-	bool bd;
-	bool rd;
-	bool monk;
+struct GameEvents{
+	bool Start;
+	bool Priest1;
+	bool Priest2;
+	bool Priest3;
+	bool Priest4;
+	bool GreenDragon;
+	bool BlueDragon;
+	bool RedDragon;
+	bool Monk;
 };
 
 class Player {
@@ -124,7 +124,7 @@ public:
 	void plots(string);
 
 	PlayerKillCounts kill;
-	events plot;
+	GameEvents plot;
 	RaceReactionIndex RaceReactions;
 	
 
