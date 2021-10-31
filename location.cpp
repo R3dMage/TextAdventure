@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Location.h"
 
-;using namespace std;
+using namespace std;
 
 #define green FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 #define ltgreen FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY

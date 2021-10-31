@@ -6,8 +6,6 @@
 #include <string>			//For Strings
 #include <vector>
 
-
-
 using namespace std;
 
 void text(string,int,int,WORD);
