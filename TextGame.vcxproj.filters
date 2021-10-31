@@ -39,9 +39,6 @@
     <ClInclude Include="enemies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Fmod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Function Definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -98,7 +95,7 @@
     <ClCompile Include="Fight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Fmod.cpp">
+    <ClCompile Include="CFmod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="item.cpp">
