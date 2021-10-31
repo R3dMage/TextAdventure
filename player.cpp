@@ -39,9 +39,9 @@ Player::Player()
 	pause = 1500;
 	setweapon(loadWeapon("Dagger"));
 	setarmor(loadArmor("Clothes"));
-	react.elf =		2;
-	react.human =	3;
-	react.orc =		1;
+	RaceReactions.elf =		2;
+	RaceReactions.human =	3;
+	RaceReactions.orc =		1;
 	kill.ElfKillCount = 0;
 	kill.HumanKillCount = 0;
 	kill.OrcKillCount = 0;
@@ -213,27 +213,27 @@ int Player::getPause()
 }
 void Player::setelf(int N)
 {	
-	react.elf = N;	
+	RaceReactions.elf = N;	
 }
 int Player::getelf()
 {
-	return react.elf;
+	return RaceReactions.elf;
 }
 void Player::sethuman(int N)
 {	
-	react.human = N;	
+	RaceReactions.human = N;	
 }
 int Player::gethuman()
 {
-	return react.human;
+	return RaceReactions.human;
 }
 void Player::setorc(int N)
 {	
-	react.orc = N;	
+	RaceReactions.orc = N;	
 }
 int Player::getorc()
 {
-	return react.orc;
+	return RaceReactions.orc;
 }
 int Player::getstate()
 {
@@ -553,9 +553,9 @@ void Player::Save(ofstream &fout)
 	fout << "Invis: "   << Invisible << endl;
 	fout << "Weapon: "	<< weap->getname() << endl;
 	fout << "Armor: "   << arm->getname() << endl;
-	fout << "elf: "		<< react.elf << endl;
-	fout << "orc: "		<< react.orc << endl;
-	fout << "hum: "		<< react.human << endl;
+	fout << "elf: "		<< RaceReactions.elf << endl;
+	fout << "orc: "		<< RaceReactions.orc << endl;
+	fout << "hum: "		<< RaceReactions.human << endl;
 	fout << "elfk: "	<< kill.ElfKillCount << endl;
 	fout << "orck: "	<< kill.OrcKillCount << endl;
 	fout << "humk: "	<< kill.HumanKillCount << endl;
@@ -598,9 +598,9 @@ void Player::Load(ifstream &fin)
 	getline(fin,W);	W = rotate(W);
 	fin >> temp;
 	getline(fin,A);	A = rotate(A);
-	fin >> temp >> react.elf;
-	fin >> temp >> react.orc;
-	fin >> temp >> react.human;
+	fin >> temp >> RaceReactions.elf;
+	fin >> temp >> RaceReactions.orc;
+	fin >> temp >> RaceReactions.human;
 	fin >> temp >> kill.ElfKillCount;
 	fin >> temp >> kill.OrcKillCount;
 	fin >> temp >> kill.HumanKillCount;

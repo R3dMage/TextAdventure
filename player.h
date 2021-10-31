@@ -24,10 +24,10 @@ void ground(vector<item> stuff,string Map,int X,int Y);
 void cure(int D);
 void clrtop(int);
 
-struct robj{
-int elf;
-int human;
-int orc;
+struct RaceReactionIndex{
+	int elf;
+	int human;
+	int orc;
 };
 struct PlayerKillCounts{
 	int ElfKillCount;
@@ -125,7 +125,7 @@ public:
 
 	PlayerKillCounts kill;
 	events plot;
-	robj react;
+	RaceReactionIndex RaceReactions;
 	
 
 private:

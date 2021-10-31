@@ -174,7 +174,7 @@ void world::locations(string Map, Player *p2,bool load)
 	}
 	fin.close();
 	loadmap(Vmap,MapName,Xmax,Ymax,bTown);		//This function loads all the map places into the V(irtual)map in memory
-	npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->react,MM,MapMusic);	//This function sets up the enemies according to the map
+	npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->RaceReactions,MM,MapMusic);	//This function sets up the enemies according to the map
 	if(musicCmp(MM,MapMusic))
 		MapMusic = MM;
 	music(MapMusic,p2);
@@ -211,7 +211,7 @@ void world::locations(string Map, Player *p2,bool load)
 			Map = Vmap[T]->getszMC();
 			MapName = "./data/" + Map + ".tgm";
 			loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-			npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->react,MM,MapMusic);
+			npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->RaceReactions,MM,MapMusic);
 			if(musicCmp(MM,MapMusic))
 				MapMusic = MM;
 			music(MapMusic,p2);
@@ -399,7 +399,7 @@ void world::locations(string Map, Player *p2,bool load)
 				}
 				
 				loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-				npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->react,MM,MapMusic);
+				npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->RaceReactions,MM,MapMusic);
 				if(musicCmp(MM,MapMusic))
 					MapMusic = MM;
 				music(MapMusic,p2);
@@ -426,7 +426,7 @@ void world::locations(string Map, Player *p2,bool load)
 			p2->setY(1);
 			MapName = "./data/" + Map + ".tgm";
 			loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-			npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->react,MM,MapMusic);
+			npcSetup(encounter,Map,Xmax,Ymax,p2->plot,p2->RaceReactions,MM,MapMusic);
 			if(musicCmp(MM,MapMusic))
 				MapMusic = MM;
 			music(MapMusic,p2);

@@ -33,7 +33,7 @@ public:
 	void magicshop(vector<item*> &pstuff, Player *p2,string Map);
 	void inn(Player *p2, string Map);
 	void buyer(Player *, vector<item*> &,string Map);
-	void npcSetup(vector< creature* > &npc, string Map,int,int,events,robj,char*&,char*);
+	void npcSetup(vector< creature* > &npc, string Map,int,int,events,RaceReactionIndex,char*&,char*);
 	bool Overflow(int size);
 	void DescriptDisplay(string, string &, string &, string &);
 	void loadmap(vector< location* > &g, string &Map, int &Xmax, int &Ymax, bool &bTown);
