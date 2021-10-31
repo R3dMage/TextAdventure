@@ -160,7 +160,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="creature.h" />
     <ClInclude Include="enemies.h" />
     <ClInclude Include="Function Definition.h" />
-    <ClInclude Include="item.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="local.h" />
     <ClInclude Include="location.h" />
     <ClInclude Include="magic.h" />
@@ -181,7 +181,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Eother.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="CFmod.cpp" />
-    <ClCompile Include="item.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="local.cpp" />
     <ClCompile Include="location.cpp" />
     <ClCompile Include="magic.cpp" />
