@@ -172,7 +172,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="armor.cpp" />
+    <ClCompile Include="Armor.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Eattack.cpp" />
     <ClCompile Include="Econstruct.cpp" />
