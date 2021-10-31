@@ -53,12 +53,12 @@ void elf::win(Player *p2)
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
 	p2->setelf(1);
-	p2->kill.ElfKillCount += 1;
-	if(p2->kill.OrcKillCount == 0)
+	p2->RaceKillCounts.ElfKillCount += 1;
+	if(p2->RaceKillCounts.OrcKillCount == 0)
 		p2->setorc(3);
 	p2->info();
 	Sleep(3000);
-	if(p2->kill.ElfKillCount < 4)
+	if(p2->RaceKillCounts.ElfKillCount < 4)
 	{
 		text("                                                               ",13,9,white);
 		text("                                                               ",13,8,white);
@@ -298,12 +298,12 @@ void Orc::win(Player *p2)
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
 	p2->setorc(1);
-	p2->kill.OrcKillCount += 1;
-	if(p2->kill.ElfKillCount == 0)
+	p2->RaceKillCounts.OrcKillCount += 1;
+	if(p2->RaceKillCounts.ElfKillCount == 0)
 		p2->setelf(3);
 	p2->info();
 	Sleep(3000);
-	if(p2->kill.OrcKillCount < 4)
+	if(p2->RaceKillCounts.OrcKillCount < 4)
 	{
 		text("                                                                ",13,9,white);
 		text("                                                                ",13,8,white);
@@ -540,8 +540,8 @@ void human::win(Player *p2)
 	p2->setKills(p2->getKills() + 1);
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
-	p2->kill.HumanKillCount += 1;
-	if(p2->kill.HumanKillCount == 5)
+	p2->RaceKillCounts.HumanKillCount += 1;
+	if(p2->RaceKillCounts.HumanKillCount == 5)
 	{//                                       65
 		text("                                                           ",13,9,white);
 		text("A price has now been put on your head. You're a wanted man.",13,9,white);
@@ -552,7 +552,7 @@ void human::win(Player *p2)
 	p2->info();
 	Sleep(3000);
 	text("",79,23,white);
-	if(p2->kill.HumanKillCount < 5)
+	if(p2->RaceKillCounts.HumanKillCount < 5)
 	{
 		text("                                                                ",13,9,white);
 		text("                                                                ",13,8,white);
@@ -1889,7 +1889,7 @@ void woodpriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Wood Priest you must travel north.",13,11,white);
 	text("Past the forests to the frozen tundra.",13,12,white);
-	p2->plot.Priest1 = true;
+	p2->PlotEventStates.Priest1 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -1942,7 +1942,7 @@ void icepriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Ice Priest you must travel west.",13,11,white);
 	text("Into the mountain and defeat the Fire Priest.",13,12,white);
-	p2->plot.Priest2 = true;
+	p2->PlotEventStates.Priest2 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -1994,7 +1994,7 @@ void firepriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
 	text("Beneath the cemetary lies the teleporter.",13,12,white);
-	p2->plot.Priest3 = true;
+	p2->PlotEventStates.Priest3 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
@@ -2045,7 +2045,7 @@ void windpriest::win(Player *p2)
 	creature::win(p2);
 	text("After defeating the the 4 priests. You must find the truth.",13,11,white);
 	text("Go thee to the ancient water temple.",13,12,white);
-	p2->plot.Priest4 = true;
+	p2->PlotEventStates.Priest4 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }

@@ -12,8 +12,6 @@
 #include "weapon.h"
 #include "armor.h"
 
-
-
 string rotate(string);
 void text(string,int,int,WORD);
 void num(int num,int X, int Y,WORD color);
@@ -25,9 +23,9 @@ void cure(int D);
 void clrtop(int);
 
 struct RaceReactionIndex{
-	int elf;
-	int human;
-	int orc;
+	int Elf;
+	int Human;
+	int Orc;
 };
 struct PlayerKillCounts{
 	int ElfKillCount;
@@ -123,61 +121,50 @@ public:
 	void changeMusic();
 	void plots(string);
 
-	PlayerKillCounts kill;
-	GameEvents plot;
+	PlayerKillCounts RaceKillCounts;
+	GameEvents PlotEventStates;
 	RaceReactionIndex RaceReactions;
 	
 
 private:
-	//time_h	p_time;			// Time in game
-	CFmod	mapMusic;		// Music controller
-	string	name;			// Player's Name
-	weapon	*weap;			// Current Weapon
-	armor	*arm;			// Current Armor
-	int		X;				// Players X coordinate on the current map
-	int		Y;				// Players Y coordinate on the current map
-	int		str;			// Strength
-	int		mind;			// Mental Ability
-	int		gold;			// Um, Gold
-	int		evade;			// Chance to evade an attack
-	int		MHP;			// Max Hit Points
-	int		HP;				// Current Hit Points
-	int		exp;			// Experience
-	int		lev;			// Level	
-	int		ka;				// Current Magic Points
-	int		mka;			// Max Magic Points
-	int		NextLev;		// Experience for next level
-	int		kills;			// # of kills
-	int		pause;			// Pause duration in milliseconds
-	int		state;			// Current state
-	bool	fight;			// To determine if there is a fight
-	bool	poisoned;		// Poison status
-	bool	sleep;			// Sleep Status
-	bool	bspells;		// Whether or not player has spells
-	bool	bjoined;		// ???
-	bool	Loaded;			// Whether or not a character has been loaded
-	char *  musicFilename;  // Name of musicFile
+	//time_h	p_time;						// Time in game
+	CFmod	MapMusic;						// Music controller
+	string	Name;							// Player's Name
+	weapon*	EquippedWeapon;					// Current Weapon
+	armor*	EquippedArmor;					// Current Armor
+	int		X;								// Players X coordinate on the current map
+	int		Y;								// Players Y coordinate on the current map
+	int		Strength;						// Strength
+	int		Mind;							// Mental Ability
+	int		Gold;							// Um, Gold
+	int		Evade;							// Chance to evade an attack
+	int		MaxHP;							// Max Hit Points
+	int		HP;								// Current Hit Points
+	int		Experience;						// Experience
+	int		Level;							// Level	
+	int		Ka;								// Current Magic Points
+	int		MaxKa;							// Max Magic Points
+	int		ExperienceNeededForNextLevel;	// Experience for next level
+	int		TotalKills;						// # of kills
+	int		PauseDuration;					// Pause duration in milliseconds
+	int		HealthState;					// Current state
+	bool	IsInFight;						// To determine if there is a fight
+	bool	IsPoisoned;						// Poison status
+	bool	IsAsleep;						// Sleep Status
+	bool	HasSpells;						// Whether or not player has spells
+	bool	MemberHasJoined;				// ???
+	bool	IsLoaded;						// Whether or not a character has been loaded
+	char *  MusicFilename;					// Name of musicFile
 
 /* =========================================================
    These will be player specific options that can be changed
    in the option menu should the player so choose. 
    =========================================================*/
 
-	bool	music;			// Option to turn music on or off
+	bool	MusicIsOn;		// Option to turn music on or off
 	bool	Invisible;		// Sometimes you want to be invisible to enemies
-	
-	
 
-
-	bool MoveCurs(COORD &CursPos, bool &bSelect, bool &bEsc, int Ymin, int Ymax);
-	void DrawCurs(COORD pos, WORD color, char curs);
-
-
-
+	bool MoveCurs(COORD &cursorPosition, bool &hasSelection, bool &bEsc, int Ymin, int Ymax);
+	void DrawCurs(COORD position, WORD color, char cursorCharacter);
 };
-
-
-
-
-
 #endif

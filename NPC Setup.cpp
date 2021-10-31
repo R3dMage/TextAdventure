@@ -20,14 +20,14 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,GameEv
 	T = Xmax * Ymax;
 	T = T / 5;
 
-	if(Map == "elvencity" && godchoice.elf == 1)
+	if(Map == "elvencity" && godchoice.Elf == 1)
 	{
 		npc.push_back(new warrior);		npc[0]->setdontmove(true);		npc[0]->loadPos(3,2);
 		npc.push_back(new warrior);		npc[1]->setdontmove(true);		npc[1]->loadPos(3,2);
 		npc.push_back(new mage);		npc[2]->setdontmove(true);		npc[2]->loadPos(3,2);
 		MM = "woods.mp3";
 	}
-	if(Map == "orccamp" && godchoice.orc == 1)
+	if(Map == "orccamp" && godchoice.Orc == 1)
 	{
 		npc.push_back(new osoldier);		npc[0]->setdontmove(true);		npc[0]->loadPos(4,2);
 		npc.push_back(new osoldier);		npc[1]->setdontmove(true);		npc[1]->loadPos(4,2);
@@ -424,22 +424,22 @@ void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,GameEv
 
 	if(Map == "temple2")
 	{
-		if(godchoice.elf == 3 && godchoice.human == 3)
+		if(godchoice.Elf == 3 && godchoice.Human == 3)
 		{
 			npc.push_back(new godoflife);
 			npc[0]->loadPos(3,5);
 		}
-		if(godchoice.orc == 3 && godchoice.human == 3)
+		if(godchoice.Orc == 3 && godchoice.Human == 3)
 		{
 			npc.push_back(new godofchaos);
 			npc[0]->loadPos(3,5);
 		}
-		if(godchoice.elf == 3 && godchoice.human == 0 || godchoice.orc == 3 && godchoice.human == 0)
+		if(godchoice.Elf == 3 && godchoice.Human == 0 || godchoice.Orc == 3 && godchoice.Human == 0)
 		{
 			npc.push_back(new godoflife);
 			npc[0]->loadPos(3,5);
 		}
-		if(godchoice.elf == 0 && godchoice.orc == 0 && godchoice.human == 0)
+		if(godchoice.Elf == 0 && godchoice.Orc == 0 && godchoice.Human == 0)
 		{
 			npc.push_back(new godoflife);
 			npc[0]->loadPos(3,5);
