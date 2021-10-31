@@ -11,36 +11,36 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-magik::magik()
+Magic::Magic()
 {
 	attribute = "none";
 	cost = 0;
 }
-void magik::use(Player*,creature *)
+void Magic::use(Player*,creature *)
 {
 }
-int magik::getcost()
+int Magic::getcost()
 {
 	return cost;
 }
-string magik::getname()
+string Magic::getname()
 {
 	return name;
 }
-void magik::Disp()
+void Magic::Disp()
 {
 	text("       ",1,23,white);
 	num(cost,1,23,white);
 	text("ka",4,23,white);
 }
-void magik::cast()
+void Magic::cast()
 {
 	text("",13,9,white);
 	slowDisp(incantation);
 	text(description,13,11,white);
 	Sleep(1500);
 }
-void magik::slowDisp(string szText)
+void Magic::slowDisp(string szText)
 {
 	unsigned int i;
 
@@ -50,12 +50,12 @@ void magik::slowDisp(string szText)
 		Sleep(75);
 	}
 }
-void magik::tout(int Y, WORD color)
+void Magic::tout(int Y, WORD color)
 {
 	text(name,16,Y,color);
 }
 
-bool magik::getbInfight()
+bool Magic::getbInfight()
 {
 	return bInfight;
 }
@@ -540,11 +540,3 @@ control::control()
 void control::use(Player *p2, creature *enemy)
 {
 }
-
-
-
-
-
-
-
-

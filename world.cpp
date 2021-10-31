@@ -80,7 +80,7 @@ void world::locations(string Map, Player *p2,bool load)
 	vector< creature* > encounter(0);				//encounter holds all the enemies on a certain map
 	vector< Location* > Vmap(0);					//Vmap holds the Map in memory, so no running around
 													//taking up time looking in map files. Well we look once. Then keep it in memory
-	vector<magik*> spells(0);						//Magik will hold all the spells granted to the player
+	vector<Magic*> spells(0);						//Magik will hold all the spells granted to the player
 
 
 //===========================================================================================================
@@ -1357,7 +1357,7 @@ void world::move(vector<creature*> &encounter,int Xmax, int Ymax)
 //	This function checks to see if Player is eligable for any magics, and checks so not to give the same
 //  one twice. REM added 1/5/06
 //==========================================================================================================
-void world::magicCheck(Player *p2,vector<magik*> &M)
+void world::magicCheck(Player *p2,vector<Magic*> &M)
 {
 	if(p2->RaceKillCounts.OrcKillCount == 5 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
@@ -1495,7 +1495,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 	
 }
 
-bool world::hasMagic(vector<magik*> M,string name)
+bool world::hasMagic(vector<Magic*> M,string name)
 {
 	unsigned int i;
 	for(i=0;i<M.size();i++)

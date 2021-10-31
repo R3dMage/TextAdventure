@@ -4,7 +4,7 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
+void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string Savefile = p->GetName();
 	Savefile = Savefile + ".svg";
@@ -22,7 +22,7 @@ void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 }
 
 
-void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -52,7 +52,7 @@ void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 	system("pause");
 }
 
-void world::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -118,7 +118,7 @@ void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
 		fout << "item" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
 	}
 }
-void world::MagikSave(vector<magik*> &M, ofstream &fout)
+void world::MagikSave(vector<Magic*> &M, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#spells: "	<< static_cast<int>(M.size()) << endl;
@@ -200,7 +200,7 @@ void world::loadInven(vector<Item*> &pstuff,ifstream &fin)
 	}
 }
 
-void world::loadMagik(vector<magik*> &M,ifstream &fin)
+void world::loadMagik(vector<Magic*> &M,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -227,9 +227,9 @@ string world::GetFileName()
 	return X;
 }
 
-magik* world::getMagik(string N)
+Magic* world::getMagik(string N)
 {
- 	magik *M = new magik;
+ 	Magic *M = new Magic;
 	if(N == "Minor Heal")
 		M = new minheal;
 	if(N == "Major Heal")

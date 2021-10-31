@@ -19,7 +19,7 @@
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-void world::menu(Player *p2, vector<magik*> &spells,vector<Item*> &stuff, vector<Item*> &pstuff,string &Map)
+void world::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector<Item*> &pstuff,string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -434,7 +434,7 @@ void world::XXX(vector<Item*> &pstuff)
 	
 }
 
-void world::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<magik*> &M, string &Map)
+void world::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -494,7 +494,7 @@ void world::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vecto
 /*=====================================================================================
 	Input for the setup of the game. Music, speed, etc.
 =====================================================================================*/
-void world::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<magik*> &M, string &Map)
+void world::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -785,7 +785,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 	}// End While bEsc && pstuff.size() > 0
 	clrbottom();
 }
-void world::magic(Player *p2,vector<magik*> &spells)
+void world::magic(Player *p2,vector<Magic*> &spells)
 {
 	int choice = 0;
 	int offset = 0;
@@ -857,7 +857,7 @@ void world::magic(Player *p2,vector<magik*> &spells)
 	}//==================================End of While loop==================================
 }
 
-void world::fmagic(Player *p2,creature *enemy,vector<magik*> &spells,bool &bEsc)
+void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 {
 	int choice = 0;
 	int offset = 0;
