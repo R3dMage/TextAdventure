@@ -7,39 +7,39 @@
 ;
 using namespace std;
 
-local::local()
+Local::Local()
 {
 	X = 1;
 	Y = 1;
 	script = "Class Created";
 }
-void local::setscript(string sz1)
+void Local::setscript(string sz1)
 {
 	script = sz1;
 }
-void local::setX(int x)
+void Local::setX(int x)
 {
 	X = x;
 }
 
-void local::setY(int y)
+void Local::setY(int y)
 {
 	Y = y;
 }
-string local::getscript()
+string Local::getscript()
 {
 	return script;
 }
-int local::getX()
+int Local::getX()
 {
 	return X;
 }
-int local::getY()
+int Local::getY()
 {
 	return Y;
 }
 
-void local::setup(string map)
+void Local::setup(string map)
 {
 	ifstream fin;
 	bool Lfound = false;

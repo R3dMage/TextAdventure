@@ -9,9 +9,9 @@ using namespace std;
 //=====================================================================================================
 // A local object is designed to get the summary for the surrounding locations and display them
 //=====================================================================================================
-class local {
+class Local {
 public:
-	local();
+	Local();
 	void setX(int);
 	int getX();
 	void setY(int);
