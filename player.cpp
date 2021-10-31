@@ -18,8 +18,8 @@ Player::Player()
 	HP =	25;
 	TotalKills =	0;
 	Experience =	0;
-	X =		3;
-	Y =		2;
+	PositionX =		3;
+	PositionY =		2;
 	Level =	1;
 	ExperienceNeededForNextLevel = 50;
 	Evade = 5;
@@ -111,13 +111,13 @@ void Player::SetPositionX(int newX)
 {
 	if(newX == 0)
 		newX = 1;
-	X = newX;
+	PositionX = newX;
 }
 void Player::SetPositionY(int newY)
 {
 	if(newY == 0)
 		newY = 1;
-	Y = newY;
+	PositionY = newY;
 }
 void Player::SetExperienceNeeded(int experience)
 {
@@ -186,11 +186,11 @@ int Player::GetStrength()
 }
 int Player::GetPositionX()
 {
-	return X;
+	return PositionX;
 }
 int Player::GetPositionY()
 {
-	return Y;
+	return PositionY;
 }
 int Player::GetExperienceForNextLevel()
 {
@@ -543,8 +543,8 @@ void Player::Save(ofstream &fout)
 	fout << "Evade: "	<< Evade << endl;
 	fout << "Str: "		<< Strength << endl;
 	fout << "Mind: "	<< Mind << endl;
-	fout << "X: "		<< X << endl;
-	fout << "Y: "		<< Y << endl;
+	fout << "X: "		<< PositionX << endl;
+	fout << "Y: "		<< PositionY << endl;
 	fout << "Kills: "	<< TotalKills << endl;
 	fout << "bSpells: "	<< HasSpells << endl;
 	fout << "bjoined: "	<< MemberHasJoined << endl;
@@ -586,8 +586,8 @@ void Player::Load(ifstream &fin)
 	fin >> temp >> Evade;
 	fin >> temp >> Strength;
 	fin >> temp >> Mind;
-	fin >> temp >> X;
-	fin >> temp >> Y;
+	fin >> temp >> PositionX;
+	fin >> temp >> PositionY;
 	fin >> temp >> TotalKills;
 	fin >> temp >> HasSpells;
 	fin >> temp >> MemberHasJoined;
