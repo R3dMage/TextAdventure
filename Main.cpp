@@ -35,7 +35,7 @@ void main()
 	
 
 	//------------------------------------------------------->>>  Player Definition
-	player p;
+	Player p;
 
 	cout << "Enter your name: ";
 	cin.get(name,10);

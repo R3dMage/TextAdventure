@@ -15,7 +15,7 @@
 //============================================================================================
 // Elf
 //============================================================================================
-void elf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void elf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -57,7 +57,7 @@ void elf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 //============================================================================================
 // Elven Mage
 //============================================================================================
-void mage::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -126,7 +126,7 @@ void mage::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 //============================================================================================
 // Elven Warrior
 //============================================================================================
-void warrior::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void warrior::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	armor *arm;
@@ -165,7 +165,7 @@ void warrior::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Ice Elf
 //============================================================================================
-void iceelf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void iceelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -213,7 +213,7 @@ void iceelf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 //============================================================================================
 // Fire Elf
 //============================================================================================
-void fireelf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void fireelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -260,7 +260,7 @@ void fireelf::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Elven Ranger
 //============================================================================================
-void ranger::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -336,7 +336,7 @@ void ranger::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 //============================================================================================
 // Orc
 //============================================================================================
-void Orc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void Orc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	armor *arm;
@@ -365,7 +365,7 @@ void Orc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 //============================================================================================
 // Orc Sorceror
 //============================================================================================
-void sorceror::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -438,7 +438,7 @@ void sorceror::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 //============================================================================================
 // Orc Soldier
 //============================================================================================
-void osoldier::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void osoldier::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	armor *arm;
@@ -478,7 +478,7 @@ void osoldier::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 //============================================================================================
 // Fire Orc
 //============================================================================================
-void fireorc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void fireorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -519,7 +519,7 @@ void fireorc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Ice Orc
 //============================================================================================
-void iceorc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void iceorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -560,7 +560,7 @@ void iceorc::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 //============================================================================================
 // Orc Wanderer
 //============================================================================================
-void wanderer::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void wanderer::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -628,7 +628,7 @@ void wanderer::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 //============================================================================================
 // Human Wizard
 //============================================================================================
-void wizard::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void wizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;
@@ -696,7 +696,7 @@ void wizard::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 //============================================================================================
 // Human Adventurer
 //============================================================================================
-void adventure::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -776,7 +776,7 @@ void adventure::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Stargoyle
 //============================================================================================
-void stargoyle::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void stargoyle::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -816,7 +816,7 @@ void stargoyle::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Giant Spider
 //============================================================================================
-void gspider::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void gspider::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
@@ -851,7 +851,7 @@ void gspider::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Ghost
 //============================================================================================
-void ghost::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void ghost::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -889,7 +889,7 @@ void ghost::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 //============================================================================================
 // Magmaman
 //============================================================================================
-void magmaman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void magmaman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -928,7 +928,7 @@ void magmaman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 //============================================================================================
 // Frost Giant
 //============================================================================================
-void frostgiant::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void frostgiant::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -966,7 +966,7 @@ void frostgiant::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // Storm Giant
 //============================================================================================
-void stormgiant::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void stormgiant::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -1004,7 +1004,7 @@ int Damage = 0;
 //============================================================================================
 // Nymph
 //============================================================================================
-void nymph::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void nymph::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -1055,7 +1055,7 @@ void nymph::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 //============================================================================================
 // Ice Wizard
 //============================================================================================
-void icewizard::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1123,7 +1123,7 @@ void icewizard::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Snowman
 //============================================================================================
-void snowman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void snowman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -1162,7 +1162,7 @@ void snowman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Treeman
 //============================================================================================
-void treeman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1231,7 +1231,7 @@ void treeman::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Fire Demon
 //============================================================================================
-void firedemon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void firedemon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -1284,7 +1284,7 @@ void firedemon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Hydra
 //============================================================================================
-void hydra::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void hydra::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int choice = rand()% 100 +1;
@@ -1322,7 +1322,7 @@ void hydra::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 //============================================================================================
 // Centipede
 //============================================================================================
-void centipede::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void centipede::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
@@ -1356,7 +1356,7 @@ void centipede::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Vampire
 //============================================================================================
-void vampire::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void vampire::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int Poison = rand()% 100 + 1;
@@ -1391,7 +1391,7 @@ void vampire::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Acolyte
 //============================================================================================
-void acolyte::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1460,7 +1460,7 @@ void acolyte::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 //============================================================================================
 // Wood Priest
 //============================================================================================
-void woodpriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1528,7 +1528,7 @@ void woodpriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // Ice Priest
 //============================================================================================
-void icepriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1594,7 +1594,7 @@ void icepriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // Fire Priest
 //============================================================================================
-void firepriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1659,7 +1659,7 @@ void firepriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // Wind Priest
 //============================================================================================
-void windpriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1725,7 +1725,7 @@ void windpriest::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // God of Life
 //============================================================================================
-void godoflife::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1803,7 +1803,7 @@ void godoflife::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 //============================================================================================
 // God of Chaos
 //============================================================================================
-void godofchaos::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;
@@ -1862,7 +1862,7 @@ void godofchaos::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // God of War
 //============================================================================================
-void godofwar::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;
@@ -1919,7 +1919,7 @@ void godofwar::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 //============================================================================================
 // God of Death
 //============================================================================================
-void godofdeath::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void godofdeath::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int cure;
@@ -1972,7 +1972,7 @@ void godofdeath::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // Green Dragon
 //============================================================================================
-void greendragon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;
@@ -2026,7 +2026,7 @@ void greendragon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 //============================================================================================
 // Blue Dragon
 //============================================================================================
-void bluedragon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;
@@ -2080,7 +2080,7 @@ void bluedragon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 //============================================================================================
 // Red Dragon
 //============================================================================================
-void reddragon::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
+void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string Map)
 {
 	int Damage = 0;
 	int X;

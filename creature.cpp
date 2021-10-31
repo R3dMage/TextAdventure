@@ -49,7 +49,7 @@ void creature::info()
 
 }
 
-void creature::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff,string Map)
+void creature::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff,string Map)
 {
 	int Damage;
 	armor *arm;
@@ -70,7 +70,7 @@ void creature::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff,stri
 	clear();
 }
 
-void creature::win(player *p2)
+void creature::win(Player *p2)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -385,7 +385,7 @@ void creature::loadPos(int X, int Y)
 	}
 }
 
-bool creature::talkto(player *p2)
+bool creature::talkto(Player *p2)
 {
 	return false;
 }

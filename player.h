@@ -46,10 +46,10 @@ struct events{
 	bool monk;
 };
 
-class player {
+class Player {
 
 public:
-	player();
+	Player();
 
 	void setname(string);
 	string getname();

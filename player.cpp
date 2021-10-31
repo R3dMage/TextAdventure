@@ -15,7 +15,7 @@ using namespace std;
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-player::player()
+Player::Player()
 {
 	MHP =	25;
 	HP =	25;
@@ -58,196 +58,196 @@ player::player()
 	music = true;
 }
 
-void player::setarmor(armor *parm)
+void Player::setarmor(armor *parm)
 {
 	arm = parm;
 }
-void player::setweapon(weapon *pweap)
+void Player::setweapon(weapon *pweap)
 {
 	weap = pweap;
 }
-void player::setname(string pname)
+void Player::setname(string pname)
 {
 	name = pname;
 }
-void player::setexp(int pex)
+void Player::setexp(int pex)
 {
 	exp = pex;
 }
-void player::setgold(int pgold)
+void Player::setgold(int pgold)
 {
 	gold = pgold;
 }
-void player::setHP(int php)
+void Player::setHP(int php)
 {
 	if(php > MHP)
 		php = MHP;
 	HP = php;
 }
-void player::setMHP(int pmhp)
+void Player::setMHP(int pmhp)
 {
 	MHP = pmhp;
 }
-void player::setka(int pka)
+void Player::setka(int pka)
 {
 	if(pka > mka)
 		pka = mka;
 	ka = pka;
 }
-void player::setmka(int pmka)
+void Player::setmka(int pmka)
 {
 	mka = pmka;
 }
-void player::setlev(int plev)
+void Player::setlev(int plev)
 {
 	lev = plev;
 }
-void player::setmind(int pmind)
+void Player::setmind(int pmind)
 {
 	mind = pmind;
 }
-void player::setstr(int pstr)
+void Player::setstr(int pstr)
 {
 	str = pstr;
 }
-void player::setX(int pX)
+void Player::setX(int pX)
 {
 	if(pX == 0)
 		pX = 1;
 	X = pX;
 }
-void player::setY(int pY)
+void Player::setY(int pY)
 {
 	if(pY == 0)
 		pY = 1;
 	Y = pY;
 }
-void player::setNext(int next)
+void Player::setNext(int next)
 {
 	NextLev = next;
 }
-void player::setEvd(int evd)
+void Player::setEvd(int evd)
 {
 	evade = evd;
 }
-void player::setKills(int K)
+void Player::setKills(int K)
 {
 	kills = K;
 }
-void player::setPause(int P)
+void Player::setPause(int P)
 {
 	pause = P;
 }
 
-armor* player::getarmor()
+armor* Player::getarmor()
 {
 	return arm;
 }
-weapon* player::getweapon()
+weapon* Player::getweapon()
 {
 	return weap;
 }
-string player::getname()
+string Player::getname()
 {
 	return name;
 }
-int player::getexp()
+int Player::getexp()
 {
 	return exp;
 }
-int player::getgold()
+int Player::getgold()
 {
 	return gold;
 }
-int player::getHP()
+int Player::getHP()
 {
 	return HP;
 }
-int player::getMHP()
+int Player::getMHP()
 {
 	return MHP;
 }
-int player::getka()
+int Player::getka()
 {
 	return ka;
 }
-int player::getmka()
+int Player::getmka()
 {
 	return mka;
 }
-int player::getlev()
+int Player::getlev()
 {
 	return lev;
 }
-int player::getmind()
+int Player::getmind()
 {
 	return mind;
 }
-int player::getstr()
+int Player::getstr()
 {
 	return str;
 }
-int player::getX()
+int Player::getX()
 {
 	return X;
 }
-int player::getY()
+int Player::getY()
 {
 	return Y;
 }
-int player::getNext()
+int Player::getNext()
 {
 	return NextLev;
 }
-int player::getEvd()
+int Player::getEvd()
 {
 	return evade;
 }
-int player::getKills()
+int Player::getKills()
 {
 	return kills;
 }
-int player::getPause()
+int Player::getPause()
 {
 	return pause;
 }
-void player::setelf(int N)
+void Player::setelf(int N)
 {	
 	react.elf = N;	
 }
-int player::getelf()
+int Player::getelf()
 {
 	return react.elf;
 }
-void player::sethuman(int N)
+void Player::sethuman(int N)
 {	
 	react.human = N;	
 }
-int player::gethuman()
+int Player::gethuman()
 {
 	return react.human;
 }
-void player::setorc(int N)
+void Player::setorc(int N)
 {	
 	react.orc = N;	
 }
-int player::getorc()
+int Player::getorc()
 {
 	return react.orc;
 }
-int player::getstate()
+int Player::getstate()
 {
 	return state;
 }
-void player::setstate(int N)
+void Player::setstate(int N)
 {
 	state = N;
 }
-bool player::getbspells()
+bool Player::getbspells()
 {
 	return bspells;
 }
-void player::setbspells(bool M)
+void Player::setbspells(bool M)
 {
 	if(M)
 	{
@@ -258,61 +258,61 @@ void player::setbspells(bool M)
 	else
 		bspells = M;
 }
-void player::setbjoined(bool M)
+void Player::setbjoined(bool M)
 {
 	bjoined = M;
 }
-bool player::getbjoined()
+bool Player::getbjoined()
 {
 	return bjoined;
 }
-bool player::getpoisoned()
+bool Player::getpoisoned()
 {
 	return poisoned;
 }
-void player::setpoisoned(bool P)
+void Player::setpoisoned(bool P)
 {
 	poisoned = P;
 }
-void player::setLoaded(bool B)
+void Player::setLoaded(bool B)
 {
 	Loaded = B;
 }
-bool player:: getLoaded()
+bool Player:: getLoaded()
 {
 	return Loaded;
 }
-void player::setSleep(bool B)
+void Player::setSleep(bool B)
 {
 	sleep = B;
 }
-bool player::getSleep()
+bool Player::getSleep()
 {
 	return sleep;
 }
-void player::setInvis(bool B)
+void Player::setInvis(bool B)
 {
 	Invisible = B;
 }
-bool player::getInvis()
+bool Player::getInvis()
 {
 	return Invisible;
 }
-void player::setMusic(bool M)
+void Player::setMusic(bool M)
 {
 	music = M;
 }
-bool player::getMusic()
+bool Player::getMusic()
 { return music;		}
-void player::setMusicFilename(char * MF)
+void Player::setMusicFilename(char * MF)
 { musicFilename = MF;	}
-char * player::getMusicFilename()
+char * Player::getMusicFilename()
 { return musicFilename;	}
 
 /*==================================
 	Plays the game music
 ===================================*/
-void player::playMusic(char *M)
+void Player::playMusic(char *M)
 {
 	char* music = new char[strlen(M) + 7];
 	strcpy(music, "./data/");
@@ -331,7 +331,7 @@ void player::playMusic(char *M)
 		mapMusic.FreeSound();
 }
 
-void player::changeMusic()
+void Player::changeMusic()
 /* ==========================
 	Turns music on/off
 ============================*/
@@ -350,7 +350,7 @@ void player::changeMusic()
 }
 
 
-void player::status()
+void Player::status()
 {
 	text("Name:   ",13,11,white);
 	cout << name;
@@ -388,7 +388,7 @@ void player::status()
 
 
 
-void player::info()
+void Player::info()
 {
 	if(poisoned)
 		text(name,1,1,green);
@@ -415,7 +415,7 @@ void player::info()
 
 }
 
-void player::DrawCurs(COORD pos, WORD color, char curs)
+void Player::DrawCurs(COORD pos, WORD color, char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -425,7 +425,7 @@ void player::DrawCurs(COORD pos, WORD color, char curs)
 	cout << curs;
 }
 
-bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
+bool Player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursPos;
@@ -493,7 +493,7 @@ bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Yma
 return false;	
 }
 
-bool player::LevUp()
+bool Player::LevUp()
 {
 	if(exp >= NextLev)
 		return true;
@@ -501,7 +501,7 @@ bool player::LevUp()
 		return false;
 }
 
-void player::raiseLev()
+void Player::raiseLev()
 {
 	srand(GetTickCount());
 	double Num1;
@@ -531,7 +531,7 @@ void player::raiseLev()
 	Sleep(pause);
 }
 
-void player::Save(ofstream &fout)
+void Player::Save(ofstream &fout)
 {
 	fout << "Name: "	<< name << endl;
 	fout << "HP: "		<< HP << endl;
@@ -571,7 +571,7 @@ void player::Save(ofstream &fout)
 	fout << "Music: "   << music << endl;
 }
 
-void player::Load(ifstream &fin)
+void Player::Load(ifstream &fin)
 {
 	string temp;
 	string A;
@@ -619,7 +619,7 @@ void player::Load(ifstream &fin)
 	Loaded = true;
 }
 
-void player::stopMusic()
+void Player::stopMusic()
 {
 	mapMusic.FreeSound();
 }

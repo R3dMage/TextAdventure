@@ -28,7 +28,7 @@ world::~world()
 {
 }
 
-void world::locations(string Map, player *p2,bool load)
+void world::locations(string Map, Player *p2,bool load)
 {	
 	unsigned int i;
 	int Xmax = 0;
@@ -582,7 +582,7 @@ return false;
 //	to load up the description of the place you've moved to. Also it takes the bEsc variable to see if you
 //  hit Esc key to enter the menu.
 //==========================================================================================================
-bool world::walk(bool &bSel, bool &bEsc, player *p2,int Xmax, int Ymax, int &T)
+bool world::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 {
 	T++;
 	INPUT_RECORD InputRecord;
@@ -635,7 +635,7 @@ bool world::walk(bool &bSel, bool &bEsc, player *p2,int Xmax, int Ymax, int &T)
 return false;	
 }
 //				This is the shop where you buy weapons and armor
-void world::armory(vector<item*> &pstuff,player *p2,string Map)
+void world::armory(vector<item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -811,7 +811,7 @@ void world::armory(vector<item*> &pstuff,player *p2,string Map)
 //==========================================================================================================
 //	Function for what happens when you go to an inn.
 //==========================================================================================================
-void world::inn(player *p2,string Map)
+void world::inn(Player *p2,string Map)
 {
 	int choice = 0;
 	int price = 0;
@@ -898,7 +898,7 @@ void world::inn(player *p2,string Map)
 	clear();
 }
 
-void world::magicshop(vector<item*> &pstuff,player *p2,string Map)
+void world::magicshop(vector<item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -1071,7 +1071,7 @@ void world::magicshop(vector<item*> &pstuff,player *p2,string Map)
 	clear();
 }
 
-void world::buyer(player *p2, vector<item*> &pstuff,string Map)
+void world::buyer(Player *p2, vector<item*> &pstuff,string Map)
 {
 	//item *temp;
 	item *iUsed;
@@ -1357,7 +1357,7 @@ void world::move(vector<creature*> &encounter,int Xmax, int Ymax)
 //	This function checks to see if Player is eligable for any magics, and checks so not to give the same
 //  one twice. REM added 1/5/06
 //==========================================================================================================
-void world::magicCheck(player *p2,vector<magik*> &M)
+void world::magicCheck(Player *p2,vector<magik*> &M)
 {
 	if(p2->kill.Okills == 5 && p2->kill.Ekills == 0 && M.size() < 10)
 	{
@@ -1531,7 +1531,7 @@ bool world::musicCmp(char* string1,char* string2)
 /*===========================================
 This function will play music of the game
 =============================================*/
-void world::music(char * mapMusic, player *p2)
+void world::music(char * mapMusic, Player *p2)
 {
 /*================================================
     copy the map music into the player's music

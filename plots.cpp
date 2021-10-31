@@ -5,7 +5,7 @@
 /*================================================================================
 	This function is designed to handle all the plots in the game
 =================================================================================*/
-void player::plots(string map)
+void Player::plots(string map)
 {
 	if(map == "valesh" && X == 2 && Y == 1 && !plot.start)
 	{

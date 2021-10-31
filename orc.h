@@ -11,6 +11,6 @@
 class Orc : public creature{
 public:
 	Orc();
-	virtual void attack(player *p2,vector<item> &pstuff, vector<item> &stuff,string Map);
+	virtual void attack(Player *p2,vector<item> &pstuff, vector<item> &stuff,string Map);
 
 }

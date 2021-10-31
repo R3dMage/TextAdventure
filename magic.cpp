@@ -16,7 +16,7 @@ magik::magik()
 	attribute = "none";
 	cost = 0;
 }
-void magik::use(player*,creature *)
+void magik::use(Player*,creature *)
 {
 }
 int magik::getcost()
@@ -67,7 +67,7 @@ minheal::minheal()
 	cost		= 5;
 	bInfight	= false;
 }
-void minheal::use(player *p2,creature *enemy)
+void minheal::use(Player *p2,creature *enemy)
 {
 	int multi = p2->getmind()/7;
 	int cur = rand()% 30 + 10;
@@ -86,7 +86,7 @@ majheal::majheal()
 	cost		= 10;
 	bInfight = false;
 }
-void majheal::use(player *p2,creature *enemy)
+void majheal::use(Player *p2,creature *enemy)
 {
 	int multi = p2->getmind()/7;
 	int cur = rand()% 60 + 30;
@@ -107,7 +107,7 @@ briar::briar()
 	cost		= 10;
 	bInfight	= true;
 }
-void briar::use(player *p2,creature *enemy)
+void briar::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -136,7 +136,7 @@ snow::snow()
 	cost		= 20;
 	bInfight = true;
 }
-void snow::use(player *p2,creature *enemy)
+void snow::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -164,7 +164,7 @@ pstorm::pstorm()
 	cost		= 40;
 	bInfight = true;
 }
-void pstorm::use(player *p2,creature *enemy)
+void pstorm::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -192,7 +192,7 @@ dlife::dlife()
 	cost		= 10;
 	bInfight = true;
 }
-void dlife::use(player *p2, creature *enemy)
+void dlife::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -224,7 +224,7 @@ stealka::stealka()
 	cost		= 0;
 	bInfight = true;
 }
-void stealka::use(player *p2,creature *enemy)
+void stealka::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -251,7 +251,7 @@ farrow::farrow()
 	cost		= 10;
 	bInfight = true;
 }
-void farrow::use(player *p2,creature *enemy)
+void farrow::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -279,7 +279,7 @@ fire::fire()
 	cost		= 18;
 	bInfight = true;
 }
-void fire::use(player *p2,creature *enemy)
+void fire::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -307,7 +307,7 @@ lava::lava()
 	cost		= 25;
 	bInfight = true;
 }
-void lava::use(player *p2, creature *enemy)
+void lava::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -335,7 +335,7 @@ strength::strength()
 	cost		= 4;
 	bInfight = true;
 }
-void strength::use(player *p2,creature *)
+void strength::use(Player *p2,creature *)
 {
 	p2->setka(p2->getka() - cost);
 	cast();
@@ -350,7 +350,7 @@ dispel::dispel()
 	cost		= 4;
 	bInfight = true;
 }
-void dispel::use(player *p2,creature *enemy)
+void dispel::use(Player *p2,creature *enemy)
 {
 	p2->setka(p2->getka() - cost);
 	cast();
@@ -364,7 +364,7 @@ shock::shock()
 	cost		= 4;
 	bInfight = true;
 }
-void shock::use(player * p2, creature * enemy)
+void shock::use(Player * p2, creature * enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -390,7 +390,7 @@ acidrain::acidrain()
 	cost		= 10;
 	bInfight = true;
 }
-void acidrain::use(player *p2, creature *enemy)
+void acidrain::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -416,7 +416,7 @@ lightning::lightning()
 	cost		= 15;
 	bInfight = true;
 }
-void lightning::use(player *p2,creature *enemy)
+void lightning::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage;
@@ -442,7 +442,7 @@ poison::poison()
 	cost		= 10;
 	bInfight = true;
 }
-void poison::use(player *p2,creature *enemy)
+void poison::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -466,7 +466,7 @@ skeleton::skeleton()
 	cost		= 10;
 	bInfight = true;
 }
-void skeleton::use(player * p2,creature *enemy)
+void skeleton::use(Player * p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -491,7 +491,7 @@ dstrike::dstrike()
 	cost		= 15;
 	bInfight = true;
 }
-void dstrike::use(player *p2,creature *enemy)
+void dstrike::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->getmind()/7;
@@ -517,7 +517,7 @@ critical::critical()
 	cost		= 20;
 	bInfight = true;
 }
-void critical::use(player *p2,creature *enemy)
+void critical::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage = enemy->gethp() - enemy->gethp()/8;
@@ -537,7 +537,7 @@ control::control()
 	cost		= 30;
 	bInfight = false;
 }
-void control::use(player *p2, creature *enemy)
+void control::use(Player *p2, creature *enemy)
 {
 }
 

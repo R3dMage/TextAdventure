@@ -41,7 +41,7 @@ item* elf::token(string Map)
 	return token;
 }
 
-void elf::win(player *p2)
+void elf::win(Player *p2)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -286,7 +286,7 @@ item* Orc::token(string Map)
 	return token;
 }
 
-void Orc::win(player *p2)
+void Orc::win(Player *p2)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -529,7 +529,7 @@ item* human::body(string Map) const
 	return left;
 }
 
-void human::win(player *p2)
+void human::win(Player *p2)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -1884,7 +1884,7 @@ item* woodpriest::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void woodpriest::win(player *p2)
+void woodpriest::win(Player *p2)
 {
 	creature::win(p2);
 	text("After defeating the Wood Priest you must travel north.",13,11,white);
@@ -1937,7 +1937,7 @@ item* icepriest::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void icepriest::win(player *p2)
+void icepriest::win(Player *p2)
 {
 	creature::win(p2);
 	text("After defeating the Ice Priest you must travel west.",13,11,white);
@@ -1989,7 +1989,7 @@ item* firepriest::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void firepriest::win(player *p2)
+void firepriest::win(Player *p2)
 {
 	creature::win(p2);
 	text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
@@ -2040,7 +2040,7 @@ item* windpriest::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void windpriest::win(player *p2)
+void windpriest::win(Player *p2)
 {
 	creature::win(p2);
 	text("After defeating the the 4 priests. You must find the truth.",13,11,white);
@@ -2081,7 +2081,7 @@ item* godofwar::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void godofwar::win(player *p2)
+void godofwar::win(Player *p2)
 {
 	creature::win(p2);
 	Sleep(3000);	
@@ -2120,7 +2120,7 @@ item* godoflife::body(string Map) const
 	return left;
 }
 
-void godoflife::win(player *p2)
+void godoflife::win(Player *p2)
 {
 	creature::win(p2);
 	Sleep(3000);	
@@ -2159,7 +2159,7 @@ item* godofchaos::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void godofchaos::win(player *p2)
+void godofchaos::win(Player *p2)
 {
 	creature::win(p2);
 	Sleep(3000);	
@@ -2197,7 +2197,7 @@ item* godofdeath::body(string Map) const
 	left->setCost(0);
 	return left;
 }
-void godofdeath::win(player *p2)
+void godofdeath::win(Player *p2)
 {
 	creature::win(p2);
 	Sleep(3000);	
@@ -2246,7 +2246,7 @@ item* greendragon::token(string Map)
 	token->setmap(Map);
 	return token;
 }
-void greendragon::win(player *p2)
+void greendragon::win(Player *p2)
 {
 	creature::win(p2);
 	text("The Green Dragon lies vanquished. ",13,11,white);
@@ -2289,7 +2289,7 @@ item* bluedragon::token(string Map)
 	token->setmap(Map);
 	return token;
 }
-void bluedragon::win(player *p2)
+void bluedragon::win(Player *p2)
 {
 	creature::win(p2);
 	text("The Blue Dragon lies vanquished. ",13,11,white);
@@ -2330,7 +2330,7 @@ item* reddragon::token(string Map)
 	token->setmap(Map);
 	return token;
 }
-void reddragon::win(player *p2)
+void reddragon::win(Player *p2)
 {
 	creature::win(p2);
 	text("The Red Dragon lies vanquished. ",13,11,white);
@@ -2393,7 +2393,7 @@ item* monk::token(string Map)
 	token->setmap(Map);
 	return token;
 }
-void monk::win(player *p2)
+void monk::win(Player *p2)
 {
 	creature::win(p2);
 	text("The peaceful monk lies vanquished. ",13,11,white);

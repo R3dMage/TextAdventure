@@ -72,11 +72,11 @@ public:
 	virtual creature* replenish() const = 0;
 	virtual item* body(string) const = 0;
 	item* Loadtoken();
-	virtual void win(player *p2);
+	virtual void win(Player *p2);
 	virtual bool dropItem();
-	virtual void attack(player *p2, vector<item*> &pstuff,vector<item*> &stuff,string Map);
+	virtual void attack(Player *p2, vector<item*> &pstuff,vector<item*> &stuff,string Map);
 	virtual item* token(string);
-	virtual bool talkto(player *p2);
+	virtual bool talkto(Player *p2);
 	virtual void banter();
 
 protected:

@@ -4,7 +4,7 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void world::save(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::save(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string Savefile = p->getname();
 	Savefile = Savefile + ".svg";
@@ -22,7 +22,7 @@ void world::save(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<
 }
 
 
-void world::load(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -52,7 +52,7 @@ void world::load(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<
 	system("pause");
 }
 
-void world::load1(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
+void world::load1(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
 {
 	string fName;
 	string temp;
