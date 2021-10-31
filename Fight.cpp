@@ -15,7 +15,7 @@
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*> &stuff,vector<Magic*> &spells,string Map)
+void World::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*> &stuff,vector<Magic*> &spells,string Map)
 {
 	COORD CursPos;					// Mystical Cursor Position
 	string Ename = guy->getname();	// Name of the enemy

@@ -19,7 +19,7 @@
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-void world::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector<Item*> &pstuff,string &Map)
+void World::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector<Item*> &pstuff,string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -81,7 +81,7 @@ void world::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector
 
 
 }
-void world::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,string Map)
+void World::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,string Map)
 {
 	unsigned int Offset;
 	int choice = 0;
@@ -238,7 +238,7 @@ void world::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,str
 	}//--------------------End While bEsc
 }//------------------------End Inventory function
 
-void world::items(vector<Item*> &pstuff)
+void World::items(vector<Item*> &pstuff)
 {
 	//clr();
 	unsigned int Offset = 0;
@@ -252,7 +252,7 @@ void world::items(vector<Item*> &pstuff)
 	}
 }
 
-void world::equip(Player *p2,vector<Item*> &pstuff)
+void World::equip(Player *p2,vector<Item*> &pstuff)
 {
 	unsigned int Offset = 0;
 	int choice = 0;
@@ -320,7 +320,7 @@ void world::equip(Player *p2,vector<Item*> &pstuff)
 	text("           ",1,23,white);
 }
 
-void world::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Map)
+void World::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Map)
 {
 	unsigned int Offset = 0;
 	int choice = 0;
@@ -373,7 +373,7 @@ void world::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Ma
 			return;
 	}//end While bEsc
 }
-void world::XXX(vector<Item*> &pstuff)
+void World::XXX(vector<Item*> &pstuff)
 {
 	unsigned int Offset = 0;
 	int choice = 0;
@@ -434,7 +434,7 @@ void world::XXX(vector<Item*> &pstuff)
 	
 }
 
-void world::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
+void World::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -494,7 +494,7 @@ void world::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vecto
 /*=====================================================================================
 	Input for the setup of the game. Music, speed, etc.
 =====================================================================================*/
-void world::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
+void World::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -583,7 +583,7 @@ void world::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<
 		}
 	}// End of While(bEsc)
 }
-void world::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool &bFight,bool &bLeave,string Map)
+void World::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool &bFight,bool &bLeave,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -667,7 +667,7 @@ void world::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool 
 	}//------------End While bEsc
 	clr(12);
 }
-void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
+void World::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 {
 	Weapon W;
 	Armor  A;
@@ -785,7 +785,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 	}// End While bEsc && pstuff.size() > 0
 	clrbottom();
 }
-void world::magic(Player *p2,vector<Magic*> &spells)
+void World::magic(Player *p2,vector<Magic*> &spells)
 {
 	int choice = 0;
 	int offset = 0;
@@ -857,7 +857,7 @@ void world::magic(Player *p2,vector<Magic*> &spells)
 	}//==================================End of While loop==================================
 }
 
-void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
+void World::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 {
 	int choice = 0;
 	int offset = 0;
@@ -925,7 +925,7 @@ void world::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 }
 
 
-void world::clr(int Y)
+void World::clr(int Y)
 {
 	while(Y < 24)
 			{
@@ -938,7 +938,7 @@ void world::clr(int Y)
 //After taking element X and putting it aside. It then puts element X at the end.
 //Usually to pop the last element off.
 //=========================================================================================================
-void world::slidedown(vector<Item*> &pstuff,int X)
+void World::slidedown(vector<Item*> &pstuff,int X)
 {
 	int Y = X + 1;
 	Item *temp;

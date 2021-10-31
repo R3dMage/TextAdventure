@@ -30,7 +30,7 @@ void main()
 	string temp;
 	string filename;
 
-	world globe;
+	World globe;
 	BoxScreen();
 	
 

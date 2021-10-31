@@ -4,7 +4,7 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string Savefile = p->GetName();
 	Savefile = Savefile + ".svg";
@@ -22,7 +22,7 @@ void world::save(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 }
 
 
-void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -52,7 +52,7 @@ void world::load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 	system("pause");
 }
 
-void world::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -82,7 +82,7 @@ void world::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector
 	system("pause");
 }
 
-void world::InvenSave(vector<Item*> &stuff, ofstream &fout)
+void World::InvenSave(vector<Item*> &stuff, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
@@ -100,7 +100,7 @@ void world::InvenSave(vector<Item*> &stuff, ofstream &fout)
 		fout << "inv" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
 	}
 }
-void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
+void World::GroundSave(vector<Item*> &stuff, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
@@ -118,7 +118,7 @@ void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
 		fout << "item" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
 	}
 }
-void world::MagikSave(vector<Magic*> &M, ofstream &fout)
+void World::MagikSave(vector<Magic*> &M, ofstream &fout)
 {
 	unsigned int i;
 	fout << "#spells: "	<< static_cast<int>(M.size()) << endl;
@@ -130,7 +130,7 @@ void world::MagikSave(vector<Magic*> &M, ofstream &fout)
 }
 
 
-void world::loadGround(vector<Item*> &stuff,ifstream &fin)
+void World::loadGround(vector<Item*> &stuff,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -165,7 +165,7 @@ void world::loadGround(vector<Item*> &stuff,ifstream &fin)
 	}
 }
 
-void world::loadInven(vector<Item*> &pstuff,ifstream &fin)
+void World::loadInven(vector<Item*> &pstuff,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -200,7 +200,7 @@ void world::loadInven(vector<Item*> &pstuff,ifstream &fin)
 	}
 }
 
-void world::loadMagik(vector<Magic*> &M,ifstream &fin)
+void World::loadMagik(vector<Magic*> &M,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -217,7 +217,7 @@ void world::loadMagik(vector<Magic*> &M,ifstream &fin)
 	}
 }
 
-string world::GetFileName()
+string World::GetFileName()
 {
 	string X = "";
 	text("Enter name of character: ",13,11,yellow);
@@ -227,7 +227,7 @@ string world::GetFileName()
 	return X;
 }
 
-Magic* world::getMagik(string N)
+Magic* World::getMagik(string N)
 {
  	Magic *M = new Magic;
 	if(N == "Minor Heal")

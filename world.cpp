@@ -7,8 +7,6 @@
 #include "Enemies.h"
 #include "Location.h"
 
-
-
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -17,18 +15,15 @@
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-
-
-
-world::world()
+World::World()
 {
 }
 
-world::~world()
+World::~World()
 {
 }
 
-void world::locations(string Map, Player *p2,bool load)
+void World::locations(string Map, Player *p2,bool load)
 {	
 	unsigned int i;
 	int Xmax = 0;
@@ -38,7 +33,6 @@ void world::locations(string Map, Player *p2,bool load)
 	int total;
 	int T=0;
 	COORD CursPos;
-//	INPUT_RECORD InputRecord;
 
 	char *MM = "town.mp3";
     char *MapMusic = "town.mp3";
@@ -62,10 +56,6 @@ void world::locations(string Map, Player *p2,bool load)
 	bool bSel;
 	bool bEsc;
 	bool bTown = false;
-
-
-
-
 
 //==============================================================================================================
 //		These are the vectors that are used throughout the game to maintain inventory, items on the ground
@@ -499,7 +489,7 @@ void world::locations(string Map, Player *p2,bool load)
 
 
 //				Function to draw the cusor to the screen
-void world::DrawCurs(COORD pos, WORD color, char curs)
+void World::DrawCurs(COORD pos, WORD color, char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -509,7 +499,7 @@ void world::DrawCurs(COORD pos, WORD color, char curs)
 	cout << curs;
 }
 //				Function to move the cursor up and down
-bool world::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
+bool World::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursPos;
@@ -582,7 +572,7 @@ return false;
 //	to load up the description of the place you've moved to. Also it takes the bEsc variable to see if you
 //  hit Esc key to enter the menu.
 //==========================================================================================================
-bool world::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
+bool World::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 {
 	T++;
 	INPUT_RECORD InputRecord;
@@ -635,7 +625,7 @@ bool world::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 return false;	
 }
 //				This is the shop where you buy weapons and armor
-void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
+void World::armory(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -811,7 +801,7 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 //==========================================================================================================
 //	Function for what happens when you go to an inn.
 //==========================================================================================================
-void world::inn(Player *p2,string Map)
+void World::inn(Player *p2,string Map)
 {
 	int choice = 0;
 	int price = 0;
@@ -898,7 +888,7 @@ void world::inn(Player *p2,string Map)
 	clear();
 }
 
-void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
+void World::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -1071,7 +1061,7 @@ void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 	clear();
 }
 
-void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
+void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 {
 	//item *temp;
 	Item *iUsed;
@@ -1188,7 +1178,7 @@ void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 //==========================================================================================================
 //	Function for replenishing enemies
 //==========================================================================================================
-void world::Eplenish(vector<creature*> &enemies, int num)
+void World::Eplenish(vector<creature*> &enemies, int num)
 {
 	creature *temp;
 
@@ -1208,7 +1198,7 @@ void world::Eplenish(vector<creature*> &enemies, int num)
 //	This function was designed to check the number of items in inventory. If you were going to go over the 
 //	limit of 10 it would tell you you're out of room. Not yet implemented 5/11/05
 //==========================================================================================================
-bool world::Overflow(int size)
+bool World::Overflow(int size)
 {
 	if(size >= 10)
 	{
@@ -1224,7 +1214,7 @@ bool world::Overflow(int size)
 //==========================================================================================================
 //	This function splits up the description string, into 3 strings of text. Sort of text wrapping.
 //==========================================================================================================
-void world::DescriptDisplay(string disp, string &first, string &second, string &third)
+void World::DescriptDisplay(string disp, string &first, string &second, string &third)
 {
 	int i = 0;
 	int j = 0;
@@ -1242,7 +1232,7 @@ void world::DescriptDisplay(string disp, string &first, string &second, string &
 	}
 }
 
-void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
+void World::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
 {
 	ifstream fin;
 	string szHolder;
@@ -1321,7 +1311,7 @@ void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bo
 //	This function runs through the vector of creatures, moving them around the map in a random fashion
 //  5/10/05
 //==========================================================================================================
-void world::move(vector<creature*> &encounter,int Xmax, int Ymax)
+void World::move(vector<creature*> &encounter,int Xmax, int Ymax)
 {
 	int RND;
 	unsigned int i;
@@ -1357,7 +1347,7 @@ void world::move(vector<creature*> &encounter,int Xmax, int Ymax)
 //	This function checks to see if Player is eligable for any magics, and checks so not to give the same
 //  one twice. REM added 1/5/06
 //==========================================================================================================
-void world::magicCheck(Player *p2,vector<Magic*> &M)
+void World::magicCheck(Player *p2,vector<Magic*> &M)
 {
 	if(p2->RaceKillCounts.OrcKillCount == 5 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
@@ -1495,7 +1485,7 @@ void world::magicCheck(Player *p2,vector<Magic*> &M)
 	
 }
 
-bool world::hasMagic(vector<Magic*> M,string name)
+bool World::hasMagic(vector<Magic*> M,string name)
 {
 	unsigned int i;
 	for(i=0;i<M.size();i++)
@@ -1508,7 +1498,7 @@ bool world::hasMagic(vector<Magic*> M,string name)
 //==========================================================================================================
 //	Intro to the game!
 //==========================================================================================================
-void world::intro()
+void World::intro()
 {
 	text("In the past when gods could be bested by mortal men, ",13,2,white);
 	text("four priests are keeping the pantheon at bay and ruling",13,3,white);
@@ -1520,7 +1510,7 @@ void world::intro()
 /*==========================================================================================================
 	A string comparison function. Yeah I wrote my own, wanna fight about it?
 ============================================================================================================*/
-bool world::musicCmp(char* string1,char* string2)
+bool World::musicCmp(char* string1,char* string2)
 {
 	if(string1 == string2)
 		return false;
@@ -1531,7 +1521,7 @@ bool world::musicCmp(char* string1,char* string2)
 /*===========================================
 This function will play music of the game
 =============================================*/
-void world::music(char * mapMusic, Player *p2)
+void World::music(char * mapMusic, Player *p2)
 {
 /*================================================
     copy the map music into the player's music
@@ -1544,21 +1534,3 @@ void world::music(char * mapMusic, Player *p2)
 		p2->PlayMusic(mapMusic);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

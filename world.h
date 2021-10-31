@@ -1,7 +1,6 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-
 #include "Location.h"
 #include "Magic.h"
 #include "CFmod.h"
@@ -21,11 +20,11 @@ void ground(vector<Item*> stuff,string Map,int X, int Y);
 void items(vector<Item*> &pstuff);
 void plot(string Map, string ID);
 
-class world
+class World
 {
 public:
-	world();
-	~world();
+	World();
+	~World();
 	void move(vector<creature*> &encounter,int Xmax, int Ymax);
 	void fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*> &stuff,vector<Magic*> &spells,string Map);
 	void locations(string,Player*,bool);

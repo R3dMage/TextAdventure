@@ -9,7 +9,7 @@
 
 
 
-void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,GameEvents plot,RaceReactionIndex godchoice,char*& MM,char* MapMusic)
+void World::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,GameEvents plot,RaceReactionIndex godchoice,char*& MM,char* MapMusic)
 {
 	string MapInfo = Map + ".ifo";
 	unsigned int T;
