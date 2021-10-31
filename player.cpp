@@ -59,7 +59,7 @@ void Player::SetArmor(Armor *newArmor)
 {
 	EquippedArmor = newArmor;
 }
-void Player::SetWeapon(weapon *newWeapon)
+void Player::SetWeapon(Weapon *newWeapon)
 {
 	EquippedWeapon = newWeapon;
 }
@@ -140,7 +140,7 @@ Armor* Player::GetArmor()
 {
 	return EquippedArmor;
 }
-weapon* Player::GetWeapon()
+Weapon* Player::GetWeapon()
 {
 	return EquippedWeapon;
 }
@@ -363,9 +363,9 @@ void Player::DisplayStatus()
 	text("Kills:  ",13,16,white);
 	cout << TotalKills;
 	text("Weapon Damage: ",13,17,white);
-	cout << EquippedWeapon->getdamMod() << " to " << EquippedWeapon->getdamMod() + EquippedWeapon->getdamage() - 1;
+	cout << EquippedWeapon->GetDamageModifier() << " to " << EquippedWeapon->GetDamageModifier() + EquippedWeapon->GetDamage() - 1;
 	text("Total Damage:  ",13,18,white);
-	cout << EquippedWeapon->getdamMod() + 2 << " to " << EquippedWeapon->getdamage() + EquippedWeapon->getdamMod() + Strength/2 - 1; 
+	cout << EquippedWeapon->GetDamageModifier() + 2 << " to " << EquippedWeapon->GetDamage() + EquippedWeapon->GetDamageModifier() + Strength/2 - 1; 
 	text("Level:  ",31,12,white);
 	cout << Level;
 	text("Exp:    ",31,13,white);

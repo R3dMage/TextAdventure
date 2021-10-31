@@ -25,7 +25,7 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 	int D2;							// 2nd Damage Variable for Xtra damage
 	int StrMod;						// Strength Modifier variable
 	int R = 0;						// R?
-	weapon *weap = p2->GetWeapon(); // Weapon Variable
+	Weapon *weap = p2->GetWeapon(); // Weapon Variable
 	Armor *arm = p2->GetArmor();	// Armor Variable
 	bool bEsc = false;				// Escape bool for menu
 	bool bSel = false;				// Select bool for menu
@@ -152,12 +152,12 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 				}
 				else //--------------------------------------------------------->|Damage applications
 				{
-					Damage = rand()% weap->getdamage() + weap->getdamMod();//--->|Weapon's Damage
+					Damage = rand()% weap->GetDamage() + weap->GetDamageModifier();//--->|Weapon's Damage
 					StrMod = rand()% (p2->GetStrength()/2) + 2;//-------------------->|Strength modifier
 					Damage += StrMod;
-					if(weap->get2hits())//-------------------------------------->|Xtra hit check
+					if(weap->GetHitsTwice())//-------------------------------------->|Xtra hit check
 					{
-						D2 = rand()% weap->getdamage() + weap->getdamMod();
+						D2 = rand()% weap->GetDamage() + weap->GetDamageModifier();
 						StrMod = rand()% (p2->GetStrength()/2) + 2;
 						D2 += StrMod;
 						text("2 Hits!!",13,11,white);
@@ -165,10 +165,10 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 						Damage += D2;
 					}
 					//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
-					if(weap->getAttribute1() == guy->getweakness() || weap->getAttribute2() == guy->getweakness())
+					if(weap->GetAttribute1() == guy->getweakness() || weap->GetAttribute2() == guy->getweakness())
 						bWeak = true;
 					//---------------------------------------------------------->Checks if the weapon is magical
-					if(weap->getAttribute1() == "magical")
+					if(weap->GetAttribute1() == "magical")
 						bMagical = true;
 					//----------------->|If the creature is weak against the player's weapon, then double damage.
 					if(bWeak)
@@ -187,7 +187,7 @@ void world::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 					text("Your Damage: ",13,11,white);
 					cout << Damage;
 					guy->dam(Damage);
-					if(weap->getlsteal())
+					if(weap->HasLifeSteal())
 					{
 						p2->SetHitPoints(p2->GetCurrentHitPoints() + Damage / 2);
 						text("Life Gained:     ",13,11,white);

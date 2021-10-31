@@ -642,9 +642,9 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 	bool bSel = false;
 	bool funds = true;
 	COORD CursPos; 
-	weapon *wsell1;
-	weapon *wsell2;
-	weapon *wsell3;
+	Weapon *wsell1;
+	Weapon *wsell2;
+	Weapon *wsell3;
 	Armor *asell1;
 	Armor *asell2;
 	Armor *asell3;
@@ -706,7 +706,7 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 		text(asell3->GetName(),15,7,white);		num(asell3->GetCost(),28,7,white);
 
 		DrawCurs(CursPos,yellow,175);
-		wsell1->display();
+		wsell1->Display();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,2,7))
@@ -716,13 +716,13 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 				switch(choice)
 				{
 				case 2:
-					wsell1->display();
+					wsell1->Display();
 					break;
 				case 3:
-					wsell2->display();
+					wsell2->Display();
 					break;
 				case 4:
-					wsell3->display();
+					wsell3->Display();
 					break;
 				case 5:
 					asell1->Display();

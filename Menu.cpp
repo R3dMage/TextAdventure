@@ -669,7 +669,7 @@ void world::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool 
 }
 void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 {
-	weapon W;
+	Weapon W;
 	Armor  A;
 	//item *temp;
 	Item *iUsed;

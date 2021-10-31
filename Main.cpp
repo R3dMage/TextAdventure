@@ -176,10 +176,10 @@ string rotate(string pStr)
 }
 
 
-weapon* loadWeapon(string name)
+Weapon* loadWeapon(string name)
 {
-	weapon *weaponPtr;
-	weaponPtr = new weapon;
+	Weapon *weaponPtr;
+	weaponPtr = new Weapon;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -213,18 +213,18 @@ weapon* loadWeapon(string name)
 
 		fin >> szWord;
 		getline(fin,temp);
-		weaponPtr->setAttribute1(rotate(temp));
+		weaponPtr->SetAttribute1(rotate(temp));
 		fin >> szWord;
 		getline(fin,temp);
-		weaponPtr->setAttribute2(rotate(temp));
+		weaponPtr->SetAttribute2(rotate(temp));
 		fin >> szWord >> num;
-		weaponPtr->setdamage(num);
+		weaponPtr->SetDamage(num);
 		fin >> szWord >> num;
-		weaponPtr->setdamMod(num);
+		weaponPtr->SetDamageModifier(num);
 		fin >> szWord >> bVal; 
-		weaponPtr->set2hits(bVal);
+		weaponPtr->SetHitsTwice(bVal);
 		fin >> szWord >> bVal;
-		weaponPtr->setlsteal(bVal);
+		weaponPtr->SetStealsLife(bVal);
 		fin >> szWord >> num;
 		weaponPtr->SetCost(num);
 	}

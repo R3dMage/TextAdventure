@@ -14,7 +14,7 @@ void clrbottom();
 void clritems();
 void clrtop(int);
 Armor* loadArmor(string);
-weapon* loadWeapon(string);
+Weapon* loadWeapon(string);
 string rotate(string pStr);
 Item* loaditem(string name);
 void ground(vector<Item*> stuff,string Map,int X, int Y);
