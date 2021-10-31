@@ -1,9 +1,8 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-#include "Item.h"
+#include "Item.h";
 
-;
 using namespace std;
 
 void text(string szText,int X,int Y,WORD color);
@@ -20,8 +19,6 @@ public:
 	int GetDamage();
 	void SetDamageModifier(int);
 	int GetDamageModifier();
-	bool getmod();
-	void setmod(bool);
 	string GetAttribute1();
 	void SetAttribute1(string);
 	string GetAttribute2();
