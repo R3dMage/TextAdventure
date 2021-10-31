@@ -78,7 +78,7 @@ void world::locations(string Map, Player *p2,bool load)
 	vector< Item* > Globals(0);						//Globals will contain ALL the items in the world
 	vector< Item* > inv(0);							//inv is the players inventory
 	vector< creature* > encounter(0);				//encounter holds all the enemies on a certain map
-	vector< location* > Vmap(0);					//Vmap holds the Map in memory, so no running around
+	vector< Location* > Vmap(0);					//Vmap holds the Map in memory, so no running around
 													//taking up time looking in map files. Well we look once. Then keep it in memory
 	vector<magik*> spells(0);						//Magik will hold all the spells granted to the player
 
@@ -1242,7 +1242,7 @@ void world::DescriptDisplay(string disp, string &first, string &second, string &
 	}
 }
 
-void world::loadmap(vector< location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
+void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
 {
 	ifstream fin;
 	string szHolder;
@@ -1257,7 +1257,7 @@ void world::loadmap(vector< location* > &g, string &Map,int &Xmax, int &Ymax, bo
 	fin >> szHolder >> szHolder;
 	while(!fin.eof())
 	{		
-		g.push_back(new location);
+		g.push_back(new Location);
 		fin >> szHolder; 
 		if(szHolder == "P:")
 		{

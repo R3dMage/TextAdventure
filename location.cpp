@@ -11,7 +11,7 @@
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 #define black BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 
-location::location()
+Location::Location()
 {
 	bMC =	false;
 	bShop = false;
@@ -27,111 +27,111 @@ location::location()
 	szChng= "+";
 	D =		"-";
 }
-void location::setbMC(bool B)
+void Location::setbMC(bool B)
 {
 	bMC = B;
 	if(bMC)
 		D = 'M';
 }
-void location::setbPlot(bool B)
+void Location::setbPlot(bool B)
 {
 	bPlot = B;
 }
-void location::setbShop(bool B)
+void Location::setbShop(bool B)
 {
 	bShop = B;
 	if(bShop)
 		D = 'S';
 }
-void location::setX(int N)
+void Location::setX(int N)
 {
 	X = N;
 }
-void location::setY(int N)
+void Location::setY(int N)
 {
 	Y = N;
 }
-void location::setNeoX(int N)
+void Location::setNeoX(int N)
 {
 	NeoX = N;
 }
-void location::setNeoY(int N)
+void Location::setNeoY(int N)
 {
 	NeoY = N;
 }
-void location::setszMC(string S)
+void Location::setszMC(string S)
 {
 	szMC = S;
 }
-void location::setszShop(string S)
+void Location::setszShop(string S)
 {
 	szShop = S;	
 }
-void location::setszP(string S)
+void Location::setszP(string S)
 {
 	szP = S;
 }
-void location::setszLoc(string S)
+void Location::setszLoc(string S)
 {
 	szLoc = S;
 }
-void location::setszSum(string S)
+void Location::setszSum(string S)
 {
 	szSum = S;
 }
-void location::setszChng(string S)
+void Location::setszChng(string S)
 {
 	szChng = S;
 }
-bool location::getbMC()
+bool Location::getbMC()
 {
 	return bMC;
 }
-bool location::getbShop()
+bool Location::getbShop()
 {
 	return bShop;
 }
-bool location::getbPlot()
+bool Location::getbPlot()
 {
 	return bPlot;
 }
-int location::getX()
+int Location::getX()
 {
 	return X;
 }
-int location::getY()
+int Location::getY()
 {
 	return Y;
 }
-int location::getNeoX()
+int Location::getNeoX()
 {
 	return NeoX;
 }
-int location::getNeoY()
+int Location::getNeoY()
 {
 	return NeoY;
 }
-string location::getszMC()
+string Location::getszMC()
 {
 	return szMC;
 }
-string location::getszShop()
+string Location::getszShop()
 {
 	return szShop;
 }
-string location::getszLoc()
+string Location::getszLoc()
 {
 	return szLoc;
 }
-string location::getszSum()
+string Location::getszSum()
 {
 	return szSum;
 }
-string location::getszChng()
+string Location::getszChng()
 {
 	return szChng;
 }
-string location::getszP()
+string Location::getszP()
 {
 	return szP;
 }

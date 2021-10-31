@@ -15,9 +15,9 @@ void DrawCurs(COORD pos, WORD color, char curs);
 bool MoveCurs2(COORD &CursPos, bool &bSelect, bool &bEsc,COORD Min, COORD Max);
 
 
-class location{
+class Location{
 public:
-	location();
+	Location();
 	void setbMC(bool);
 	void setbShop(bool);
 	void setbPlot(bool);

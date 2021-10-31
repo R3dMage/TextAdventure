@@ -36,7 +36,7 @@ public:
 	void npcSetup(vector< creature* > &npc, string Map,int,int,GameEvents,RaceReactionIndex,char*&,char*);
 	bool Overflow(int size);
 	void DescriptDisplay(string, string &, string &, string &);
-	void loadmap(vector< location* > &g, string &Map, int &Xmax, int &Ymax, bool &bTown);
+	void loadmap(vector< Location* > &g, string &Map, int &Xmax, int &Ymax, bool &bTown);
 	void menu(Player *p2,vector<magik*> &spells,vector<Item*> &Stuff, vector<Item*> &pstuff,string &);
 	void inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,string);
 	void items(vector<Item*> &pstuff);
