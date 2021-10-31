@@ -49,14 +49,14 @@ void elf::win(Player *p2)
 	text("Exp : ",13,12,green);
 	num(gold,20,11,green);
 	num(exp,20,12,green);
-	p2->setKills(p2->getKills() + 1);
-	p2->setgold(p2->getgold() + gold);
-	p2->setexp(p2->getexp() + exp);
-	p2->setelf(1);
+	p2->SetTotalKills(p2->GetTotalKills() + 1);
+	p2->SetGold(p2->GetGold() + gold);
+	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetReactionElf(1);
 	p2->RaceKillCounts.ElfKillCount += 1;
 	if(p2->RaceKillCounts.OrcKillCount == 0)
-		p2->setorc(3);
-	p2->info();
+		p2->SetReactionOrc(3);
+	p2->DisplayInfo();
 	Sleep(3000);
 	if(p2->RaceKillCounts.ElfKillCount < 4)
 	{
@@ -294,14 +294,14 @@ void Orc::win(Player *p2)
 	text("Exp : ",13,12,green);
 	num(gold,20,11,green);
 	num(exp,20,12,green);
-	p2->setKills(p2->getKills() + 1);
-	p2->setgold(p2->getgold() + gold);
-	p2->setexp(p2->getexp() + exp);
-	p2->setorc(1);
+	p2->SetTotalKills(p2->GetTotalKills() + 1);
+	p2->SetGold(p2->GetGold() + gold);
+	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetReactionOrc(1);
 	p2->RaceKillCounts.OrcKillCount += 1;
 	if(p2->RaceKillCounts.ElfKillCount == 0)
-		p2->setelf(3);
-	p2->info();
+		p2->SetReactionElf(3);
+	p2->DisplayInfo();
 	Sleep(3000);
 	if(p2->RaceKillCounts.OrcKillCount < 4)
 	{
@@ -537,9 +537,9 @@ void human::win(Player *p2)
 	text("Exp : ",13,12,green);
 	num(gold,20,11,green);
 	num(exp,20,12,green);
-	p2->setKills(p2->getKills() + 1);
-	p2->setgold(p2->getgold() + gold);
-	p2->setexp(p2->getexp() + exp);
+	p2->SetTotalKills(p2->GetTotalKills() + 1);
+	p2->SetGold(p2->GetGold() + gold);
+	p2->SetExperience(p2->GetExperience() + exp);
 	p2->RaceKillCounts.HumanKillCount += 1;
 	if(p2->RaceKillCounts.HumanKillCount == 5)
 	{//                                       65
@@ -547,9 +547,9 @@ void human::win(Player *p2)
 		text("A price has now been put on your head. You're a wanted man.",13,9,white);
 		Sleep(3000);
 		
-		p2->sethuman(1);
+		p2->SetReactionHuman(1);
 	}
-	p2->info();
+	p2->DisplayInfo();
 	Sleep(3000);
 	text("",79,23,white);
 	if(p2->RaceKillCounts.HumanKillCount < 5)

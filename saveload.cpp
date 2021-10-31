@@ -6,7 +6,7 @@
 
 void world::save(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map)
 {
-	string Savefile = p->getname();
+	string Savefile = p->GetName();
 	Savefile = Savefile + ".svg";
 	ofstream fout;
 
@@ -57,7 +57,7 @@ void world::load1(Player *p, vector<item*> &stuff, vector<item*> &pstuff, vector
 	string fName;
 	string temp;
 
-	fName = p->getname();
+	fName = p->GetName();
 	fName = fName + ".svg";
 
 	ifstream fin;

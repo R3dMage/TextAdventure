@@ -20,7 +20,7 @@ void elf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 	int Damage = 0;
 	int cure;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string heal = "Great god of the land, heal thy servant!";
 
 	if(hp <= 10 && ka >= 4)
@@ -28,7 +28,7 @@ void elf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the elf in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 11;
 		text("                                                            ",13,9,white);
 		text("The Elf is healed: ",13,8,white);
@@ -44,10 +44,10 @@ void elf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "              ";
 		creature::dam(Damage);
@@ -63,7 +63,7 @@ void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
 	string heal = "Great god of the land, heal thy servant!";
@@ -73,7 +73,7 @@ void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the elf in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 11;
 		text("                                                            ",13,9,white);
 		text("The Elf is healed: ",13,8,white);
@@ -93,7 +93,7 @@ void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 			slowDisp(snow);
 			text(getname(),13,11,white);
 			cout << " cast Snow!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X < 50 && ka > 4)
@@ -103,7 +103,7 @@ void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 			slowDisp(briarbush);			
 			text(getname(),13,11,white);
 			cout << " cast briar-bush!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		else if(X > 50)
@@ -111,12 +111,12 @@ void mage::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string 
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -130,17 +130,17 @@ void warrior::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 {
 	int Damage = 0;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string strike = "Spirits of the wood guide my blade. POWER STRIKE!!!";
 
 	if(hp <= 10 && ka >= 4)
 	{
 		Damage = rand()% 20 + 10;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		slowDisp(strike);
 		text("The Elven Warrior strikes out with immense speed!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
@@ -153,10 +153,10 @@ void warrior::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -171,7 +171,7 @@ void iceelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 	int choice = rand()% 100 +1;
 	int dodge  = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 6)
 	{
@@ -179,17 +179,17 @@ void iceelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		setka(ka - 6);
 		text("",13,9,white);
 		text("The Ice Elf hurls a magical icicle at you!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
-		if(p2->getEvd() < dodge)
+		if(p2->GetEvade() < dodge)
 		{
 			text("You narrowly escape the frozen pointy thing!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 	
 		else
 		{
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("Enemies Damage: ",13,11,white);
 			cout << Damage << "                                 ";
 			creature::dam(Damage);
@@ -201,10 +201,10 @@ void iceelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -219,7 +219,7 @@ void fireelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int choice = rand()% 100 +1;
 	int dodge  = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 10)
 	{
@@ -227,16 +227,16 @@ void fireelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		setka(ka - 10);
 		text("",13,9,white);
 		text("The Fire Elf sprays fire from his hand!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
-		if(p2->getEvd() < dodge)
+		if(p2->GetEvade() < dodge)
 		{
 			text("You narrowly escape superheated doom!",13,11,white);
-			Sleep(p2->getPause());		
+			Sleep(p2->GetPauseDuration());		
 		}
 		else
 		{
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("Enemies Damage: ",13,11,white);
 			cout << Damage << "                                 ";
 			creature::dam(Damage);
@@ -248,10 +248,10 @@ void fireelf::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -270,7 +270,7 @@ void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 	string strike = "Spirits of the wood guide my blade. POWER STRIKE!!!";
 	string heal = "Great god of the land, heal thy servant!";
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	 
 	if(choice > 75 && ka >= 10 && hp > 35)
 	{
@@ -279,11 +279,11 @@ void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		case 6:
 		case 7:
 			Damage = rand()% 25 + 20;
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("",13,9,white);
 			slowDisp(strike);
 			text("The Elven Ranger strikes out with immense speed!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("                                                            ",13,9,white);
 			text("Enemies Damage: ",13,11,white);
 			cout << Damage << "                                             ";
@@ -297,7 +297,7 @@ void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 			slowDisp(briarbush);			
 			text(getname(),13,11,white);
 			cout << " cast briar-bush!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 			break;		  
 		}
@@ -307,7 +307,7 @@ void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the elf in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 11;
 		text("                                                            ",13,9,white);
 		text("The Elf is healed: ",13,8,white);
@@ -323,10 +323,10 @@ void ranger::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -345,19 +345,19 @@ void Orc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string M
 		runAway = true;
 	else
 	{
-		arm = p2->getarmor();
+		arm = p2->GetArmor();
 		Damage = rand()% damage + damMod;
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
-		p2->info();
+		p2->DisplayInfo();
 		clear();
 	}
 }
@@ -371,7 +371,7 @@ void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string arrow = "Missle strike your mark with accuracy!";
 	string fire = "Infernal flames of hell consume my enemy!";
 	string drain = "Everything is free for the taking!";
@@ -381,13 +381,13 @@ void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		text("",13,9,white);
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		Damage = rand()% 20 + 20;
 		cure = Damage;
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                       ";
 		creature::dam(Damage);
-		p2->setHP(p2->getHP() - Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints() - Damage);
 		text("                                                            ",13,9,white);
 		text("The Orc Sorceror is healed: ",13,8,white);
 		num(cure,41,8,green);
@@ -405,7 +405,7 @@ void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 			slowDisp(fire);
 			text(getname(),13,11,white);
 			cout << " cast Fire";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X < 50 && ka > 4)
@@ -415,7 +415,7 @@ void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 			slowDisp(arrow);			
 			text(getname(),13,11,white);
 			cout << " cast flame arrow";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		else if(X > 50)
@@ -423,12 +423,12 @@ void sorceror::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -442,17 +442,17 @@ void osoldier::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 {
 	int Damage = 0;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string strike = "Pathetic human feel the wrath of the orcs!!!";
 
 	if(hp <= 10 && ka >= 5)
 	{
 		Damage = rand()% 15 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		slowDisp(strike);
 		text("The Orc Soldier strikes out with immense power!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -465,10 +465,10 @@ void osoldier::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -483,17 +483,17 @@ void fireorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string strike = "Fire falls from the sky!!!";
 
 	if(choice > 75 && ka >= 10)
 	{
 		Damage = rand()% 35 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		slowDisp(strike);
 		text("You are pelted with scalding hot rocks from above",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -506,10 +506,10 @@ void fireorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -524,17 +524,17 @@ void iceorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string strike = "NOW! Deep freeze wind!";
 
 	if(choice > 75 && ka >= 10)
 	{
 		Damage = rand()% 25 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		slowDisp(strike);
 		text("Wind colder than what seems possible chills you to the bones",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -547,10 +547,10 @@ void iceorc::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -567,7 +567,7 @@ void wanderer::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 	int X;
 	//bool nodam;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string drain = "Everything is free for the taking!";
 
@@ -577,13 +577,13 @@ void wanderer::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		text("",13,9,white);
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		Damage = rand()% 35 + 20;
 		cure = Damage;
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                       ";
 		creature::dam(Damage);
-		p2->setHP(p2->getHP() - Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints() - Damage);
 		text("                                                            ",13,9,white);
 		text("The Adventurer is healed: ",13,8,white);
 		num(cure,41,8,green);
@@ -600,7 +600,7 @@ void wanderer::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 			text("",13,9,white);
 			slowDisp(fire);
 			text("The Orc Wanderer casts fire!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		else 
@@ -613,12 +613,12 @@ void wanderer::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 			Damage += X;
 			text(getname(),13,11,white);
 			cout << " strikes out at you!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -634,7 +634,7 @@ void wizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 	int X;
 	bool nodam = false;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string arain = "Tainted water, pour from the sky!";
 	string szshock = "Electricity flow forth and electrify my opponent!";
 	string D = "Universe, set yourself to rights, the way you should be.";
@@ -645,21 +645,21 @@ void wizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 		text("",13,9,white);
 		slowDisp(arain);
 		text("Acid rain falls from the sky!!!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		setka(ka - 10);
 	}
 	else
 	{
 		X = rand() % 100 + 1;
-		if(X > 50 && p2->getstate() == 1)
+		if(X > 50 && p2->GetMagicStatus() == 1)
 		{
 			Damage = 0;
 			text("",13,9,white);
 			slowDisp(D);	
-			p2->setstate(0);
+			p2->SetMagicStatus(0);
 			text(getname(),13,11,white);
 			cout << " cast Dispel";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 			nodam = true;
 		}
@@ -669,7 +669,7 @@ void wizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 			text("",13,9,white);
 			slowDisp(szshock);
 			text("Electricy flies toward you, and your muscles tense",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		
@@ -678,14 +678,14 @@ void wizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, strin
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		if(!nodam)
 		{
 			Damage -= arm->getdefMod();
 			if(Damage < 0)
 			Damage = 1;
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("Enemies Damage: ",13,11,white);
 			cout << Damage << "                                    ";
 			creature::dam(Damage);
@@ -703,7 +703,7 @@ void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int X;
 	bool nodam;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string skel = "Bones which death hath taken, aid me in my struggle";
 	string str = "god of war grant me strength!";
 	string drain = "Everything is free for the taking!";
@@ -714,13 +714,13 @@ void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		Damage = rand()% 20 + 20;
 		cure = Damage;
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                       ";
 		creature::dam(Damage);
-		p2->setHP(p2->getHP() - Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints() - Damage);
 		text("                                                            ",13,9,white);
 		text("The Adventurer is healed: ",13,8,white);
 		num(cure,41,8,green);
@@ -736,7 +736,7 @@ void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		state = 1;
 		text(getname(),13,11,white);
 		cout << " has become visably stronger!!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 		nodam = true;
 	}
@@ -749,7 +749,7 @@ void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			text("",13,9,white);
 			slowDisp(skel);
 			text("Skeletal hands strike from the soil!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		else 
@@ -762,12 +762,12 @@ void adventure::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			Damage += X;
 			text(getname(),13,11,white);
 			cout << " attacks you!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -781,15 +781,15 @@ void stargoyle::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	
 	if(choice > 85)
 	{
 		Damage = rand()% 100 + 100;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Stargoyle points at the heavens and laughs",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("You see a huge meteor tearing through the atmosphere, at you!",13,11,white);
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
@@ -803,10 +803,10 @@ void stargoyle::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -822,28 +822,28 @@ void gspider::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int Poison = rand()% 100 + 1;
 	armor *arm;
 
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 		Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text(getname(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->getPause());
+	Sleep(p2->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
 	creature::dam(Damage);
-	p2->info();
+	p2->DisplayInfo();
 	//clear();
 	if(Poison < 25)
 	{
-		if(!p2->getpoisoned())
+		if(!p2->GetIsPoisoned())
 		{
 			text("You have been poisoned.",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
-		p2->setpoisoned(true);
+		p2->SetIsPoisoned(true);
 	}	
 }
 
@@ -856,15 +856,15 @@ void ghost::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	
 	if(choice > 75)
 	{
 		Damage = rand()% 15 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The ghost reaches out and touches you, with hands like ice.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                            ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -877,10 +877,10 @@ void ghost::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 			Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -894,14 +894,14 @@ void magmaman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
 		Damage = rand()% 35 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Magmaman blasts searing hot wind at you from his mouth",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -914,10 +914,10 @@ void magmaman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -933,14 +933,14 @@ void frostgiant::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
 		Damage = rand()% 15 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Frost Giant blows bone-chilling wind at you from his mouth",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -953,10 +953,10 @@ void frostgiant::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -971,14 +971,14 @@ void stormgiant::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
 		Damage = rand()% 60 + 30;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Storm Giant strikes you with lightning!!!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -991,10 +991,10 @@ int Damage = 0;
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -1010,18 +1010,18 @@ void nymph::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 	int choice = rand()% 100 +1;
 	int R = 0;
 	armor *arm;
-	arm = p2->getarmor();
-	if(choice > 50 && !p2->getSleep())
+	arm = p2->GetArmor();
+	if(choice > 50 && !p2->GetIsAsleep())
 	{
 		text("The Nymph embraces you lovingly...",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		R = rand()% 100 + 1;
-		if(R > p2->getmind())
+		if(R > p2->GetMind())
 		{
-			p2->setSleep(true);
+			p2->SetIsAsleep(true);
 			text("",13,9,white);
 			text("The Nymph lulls you to sleep in her arms...",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("                                                           ",13,9,white);
 		}
 	}
@@ -1031,22 +1031,22 @@ void nymph::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " stabs you with her long dagger!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
 	}
-	if(p2->getSleep())
+	if(p2->GetIsAsleep())
 	{
 		R = rand()% 100 + 1;
-		if(R < p2->getmind())
+		if(R < p2->GetMind())
 		{
 			text("",13,9,white);
 			text("You shake yourself free of her loveliness!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("                                                           ",13,9,white);
 		}
 	}
@@ -1061,7 +1061,7 @@ void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string breeze = "Icy breeze refresh me!";
 	string chill = "Frigid wind sting my enemy!";
 	string avalanche = "Snow! Consume my foe!";
@@ -1071,7 +1071,7 @@ void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		slowDisp(breeze);
 		text("A slight breeze revitalizes the Ice Wizard.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 21;
 		text("                                                            ",13,9,white);
 		text("The Ice Wizard is healed: ",13,8,white);
@@ -1090,7 +1090,7 @@ void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			slowDisp(avalanche);
 			text(getname(),13,11,white);
 			cout << " Snow avalanches out of nowhere!!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X <= 80 && ka > 5)
@@ -1100,7 +1100,7 @@ void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			slowDisp(chill);			
 			text(getname(),13,11,white);
 			cout << " icy wind rips into you!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 5;
 		}
 		else if(X > 80)
@@ -1108,12 +1108,12 @@ void icewizard::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1128,14 +1128,14 @@ void snowman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
 		Damage = rand()% 20 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Snowman throws a big, icy snowball at you!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cout << "And laughs!";
 		text("                                                           ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
@@ -1149,10 +1149,10 @@ void snowman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -1168,7 +1168,7 @@ void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string slam = "Now, face pain human!";
 	string heal = "Great god of the land, heal thy servant!";
@@ -1178,7 +1178,7 @@ void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the Treeman in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 16;
 		text("                                                            ",13,9,white);
 		text("The Treeman is healed: ",13,8,white);
@@ -1197,7 +1197,7 @@ void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			slowDisp(slam);
 			text(getname(),13,11,white);
 			cout << "Branches reach down, pick you up and slam you hard into the ground";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		else if(X > 10 && X < 50 && ka > 5)
@@ -1207,7 +1207,7 @@ void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			slowDisp(briarbush);			
 			text(getname(),13,11,white);
 			cout << " cast briar-bush!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 5;
 		}
 		else
@@ -1215,12 +1215,12 @@ void treeman::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " bashes you with heavy limbs!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1236,17 +1236,17 @@ void firedemon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75)
 	{
 		choice = rand()% 100 + 1;
 		if(choice < 50)
 		{
 			Damage = rand()% 20 + 30;
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("",13,9,white);
 			text("The Fire Demon throws a big fireball at you!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			cout << "And laughs!";
 			text("                                                           ",13,9,white);
 			text("Enemies Damage: ",13,11,white);
@@ -1256,10 +1256,10 @@ void firedemon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		else
 		{
 			Damage = rand()% 20 + 40;
-			p2->setHP(p2->getHP()-Damage);
+			p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 			text("",13,9,white);
 			text("The Fire Demon grabs you, and engulfs you in flames!!!",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("Enemies Damage: ",13,11,white);
 			cout << Damage << "                                 ";
 			creature::dam(Damage);
@@ -1271,10 +1271,10 @@ void firedemon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " attacks you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -1289,14 +1289,14 @@ void hydra::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 	int Damage = 0;
 	int choice = rand()% 100 +1;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	if(choice > 75 && ka >= 4)
 	{
 		Damage = rand()% 20 + 20;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("",13,9,white);
 		text("The Hydra breathes noxious gas in your direction!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                           ",13,9,white);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                 ";
@@ -1309,10 +1309,10 @@ void hydra::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, string
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text(getname(),13,11,white);
 		cout << " bites you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                             ";
 		creature::dam(Damage);
@@ -1328,28 +1328,28 @@ void centipede::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int Poison = rand()% 100 + 1;
 	armor *arm;
 
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 		Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text(getname(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->getPause());
+	Sleep(p2->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
 	creature::dam(Damage);
-	p2->info();
+	p2->DisplayInfo();
 	//clear();
 	if(Poison < 25)
 	{
-		if(!p2->getpoisoned())
+		if(!p2->GetIsPoisoned())
 		{
 			text("You have been poisoned.",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
-		p2->setpoisoned(true);
+		p2->SetIsPoisoned(true);
 	}
 }
 
@@ -1362,29 +1362,29 @@ void vampire::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int Poison = rand()% 100 + 1;
 	armor *arm;
 
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 		Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text(getname(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->getPause());
+	Sleep(p2->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
 	creature::dam(Damage);
 	Damage = Damage / 4;
 	sethp(gethp()+Damage);
-	p2->info();
+	p2->DisplayInfo();
 	if(Poison < 15)
 	{
-		if(!p2->getpoisoned())
+		if(!p2->GetIsPoisoned())
 		{
 			text("You have been poisoned.",13,11,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
-		p2->setpoisoned(true);
+		p2->SetIsPoisoned(true);
 	}
 }
 
@@ -1397,7 +1397,7 @@ void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string windstorm = "Wind! Strikedown my opponent!";
 	string cyclone = "Wind! Destroy my enemies!!!";
 	string heal = "Gentle zephyr caress, and heal my wounds.";
@@ -1407,7 +1407,7 @@ void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 		text("",13,9,white);
 		slowDisp(heal);
 		text("A slight breeze wafts through the fight.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 50 + 21;
 		text("                                                            ",13,9,white);
 		text("The Acolyte is healed: ",13,8,white);
@@ -1426,7 +1426,7 @@ void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			slowDisp(cyclone);
 			text(getname(),13,11,white);
 			cout << " cast Cyclone!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X < 50 && ka > 4)
@@ -1436,7 +1436,7 @@ void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			slowDisp(windstorm);			
 			text(getname(),13,11,white);
 			cout << " cast Windstorm!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		else if(X > 50)
@@ -1444,12 +1444,12 @@ void acolyte::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, stri
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1466,7 +1466,7 @@ void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
 	string heal = "Great god of the land, heal thy servant!";
@@ -1476,7 +1476,7 @@ void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the priest in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 40 + 11;
 		text("                                                            ",13,9,white);
 		text("The priest is healed: ",13,8,white);
@@ -1495,7 +1495,7 @@ void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			slowDisp(snow);
 			text(getname(),13,11,white);
 			cout << " cast Snow!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X < 50 && ka > 4)
@@ -1505,7 +1505,7 @@ void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			slowDisp(briarbush);			
 			text(getname(),13,11,white);
 			cout << " cast briar-bush!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		else if(X > 50)
@@ -1513,12 +1513,12 @@ void woodpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1534,7 +1534,7 @@ void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string breeze = "Icy breeze refresh me!";
 	string chill = "Ice!! Deep freeze this fool!";
 	string avalanche = "Glacier, move at my command!";
@@ -1544,7 +1544,7 @@ void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		slowDisp(breeze);
 		text("A slight breeze revitalizes the priest.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 21;
 		text("                                                            ",13,9,white);
 		text("The priest is healed: ",13,8,white);
@@ -1562,7 +1562,7 @@ void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			text("",13,9,white);
 			slowDisp(avalanche);
 			cout << "A glacier falls on you out of nowhere!!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X <= 80 && ka > 5)
@@ -1571,7 +1571,7 @@ void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			text("",13,9,white);
 			slowDisp(chill);			
 			cout << "Ice punctures and tears at you!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 5;
 		}
 		else if(X > 80)
@@ -1579,12 +1579,12 @@ void icepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1600,7 +1600,7 @@ void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string potion = "Ah, a potion. These are great!";
 	string flame = "Fire!!! Show no mercy to this man!";
 	string landslide = "Stones fall from above!!!";
@@ -1610,7 +1610,7 @@ void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		slowDisp(potion);
 		text("The priest chugs a potion",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 21;
 		text("                                                            ",13,9,white);
 		text("The priest is healed: ",13,8,white);
@@ -1627,7 +1627,7 @@ void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			text("",13,9,white);
 			slowDisp(landslide);
 			cout << "Boulders fall on you from high above";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X <= 80 && ka > 5)
@@ -1636,7 +1636,7 @@ void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			text("",13,9,white);
 			slowDisp(flame);			
 			cout << "Flames fly from his fingers torching you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 5;
 		}
 		else if(X > 80)
@@ -1644,12 +1644,12 @@ void firepriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1665,7 +1665,7 @@ void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string heal = "Great god of the land, heal thy servant!";
 	string arain = "Tainted water, pour from the sky!";
 	string lightning = "Powers above smite my enemy!";
@@ -1675,7 +1675,7 @@ void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the priest in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 30 + 21;
 		text("                                                            ",13,9,white);
 		text("The priest is healed: ",13,8,white);
@@ -1693,7 +1693,7 @@ void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			text("",13,9,white);
 			slowDisp(lightning);
 			cout << "A bolt of lightning strikes you!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 10 && X <= 80 && ka > 5)
@@ -1702,7 +1702,7 @@ void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			text("",13,9,white);
 			slowDisp(arain);			
 			cout << "Acid rain falls upon you burning, and scalding you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 5;
 		}
 		else if(X > 80)
@@ -1710,12 +1710,12 @@ void windpriest::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1731,7 +1731,7 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int cure;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string briarbush = "I summon the plants of the forest, destroy my foe!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
 	string lifestop = "Great land put cast off your pain to this man!";
@@ -1742,7 +1742,7 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		slowDisp(heal);
 		text("Light shines down from above engulfing the god in brightness",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		cure = rand() % 100 + 101;
 		text("                                                            ",13,9,white);
 		text("The god is healed: ",13,8,white);
@@ -1761,7 +1761,7 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			slowDisp(lifestop);
 			text(getname(),13,11,white);
 			cout << " cast Pain!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 20;
 		}
 		if(X < 20 && ka > 10)
@@ -1771,7 +1771,7 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			slowDisp(snow);
 			text(getname(),13,11,white);
 			cout << " cast Snow!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 10;
 		}
 		if(X > 20 && X < 80 && ka > 4)
@@ -1781,7 +1781,7 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			slowDisp(briarbush);			
 			text(getname(),13,11,white);
 			cout << " cast briar-bush!";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			ka -= 4;
 		}
 		else if(X > 50)
@@ -1789,12 +1789,12 @@ void godoflife::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 			Damage = rand()% damage + damMod;
 			text(getname(),13,11,white);
 			cout << " attacks you with his staff";
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1808,7 +1808,7 @@ void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int Damage = 0;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
 	string magma = "Earth unleash your pure fury!";
@@ -1821,7 +1821,7 @@ void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		slowDisp(magma);
 		text(getname(),13,11,white);
 		cout << " cast Pain!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 20;
 	}
 	if(X < 20 && ka > 10)
@@ -1831,7 +1831,7 @@ void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		slowDisp(snow);
 		text(getname(),13,11,white);
 		cout << " cast Snow!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 10;
 	}
 	if(X > 20 && X < 80 && ka > 4)
@@ -1841,7 +1841,7 @@ void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		slowDisp(fire);			
 		text(getname(),13,11,white);
 		cout << " cast flame";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 	}
 	else if(X > 50)
@@ -1849,12 +1849,12 @@ void godofchaos::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " attacks you with his staff";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 	Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "                                    ";
 	creature::dam(Damage);
@@ -1867,7 +1867,7 @@ void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 	int Damage = 0;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string fire = "Infernal flames of hell consume my enemy!";
 	string snow = "Ice and snow freeze my enemy where he stands!";
 	string hammer = "Earth unleash your pure fury!";
@@ -1879,7 +1879,7 @@ void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " swings his massive hammer at you";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 20;
 	}
 	if(X < 20)
@@ -1888,7 +1888,7 @@ void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " attacks with his battle axe";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 10;
 	}
 	if(X > 20 && X < 80)
@@ -1897,7 +1897,7 @@ void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " swings his sword";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 	}
 	else if(X > 50)
@@ -1905,12 +1905,12 @@ void godofwar::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, str
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " punches you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 	Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "                                    ";
 	creature::dam(Damage);
@@ -1924,7 +1924,7 @@ void godofdeath::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int Damage = 0;
 	int cure;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	string drain = "What was yours is now mine!";
 	
 	if(hp <= 50 && ka >= 20)
@@ -1932,13 +1932,13 @@ void godofdeath::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		Damage = rand()% 100 + 90;
 		cure = Damage;
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                       ";
 		creature::dam(Damage);
-		p2->setHP(p2->getHP() - Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints() - Damage);
 		text("                                                            ",13,9,white);
 		text("The god of death is healed: ",13,8,white);
 		num(cure,41,8,green);
@@ -1951,12 +1951,12 @@ void godofdeath::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " attacks you with his scythe";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		
 		Damage -= arm->getdefMod();
 		if(Damage < 0)
 		Damage = 1;
-		p2->setHP(p2->getHP()-Damage);
+		p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 		text("Enemies Damage: ",13,11,white);
 		cout << Damage << "                                    ";
 		creature::dam(Damage);
@@ -1977,7 +1977,7 @@ void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 	int Damage = 0;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
 	if(X < 10)
@@ -1986,7 +1986,7 @@ void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes a superheated fire at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 20;
 	}
 	if(X < 20)
@@ -1995,7 +1995,7 @@ void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes fire at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 10;
 	}
 	if(X > 20 && X < 80)
@@ -2004,7 +2004,7 @@ void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " strikes you with his tail!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 	}
 	else if(X > 50)
@@ -2012,12 +2012,12 @@ void greendragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, 
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " slashes at you with his claws!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 	Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "                                    ";
 	creature::dam(Damage);
@@ -2031,7 +2031,7 @@ void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 	int Damage = 0;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
 	if(X < 10)
@@ -2040,7 +2040,7 @@ void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes a superchilled ice at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 20;
 	}
 	if(X < 20)
@@ -2049,7 +2049,7 @@ void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes icy wind at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 10;
 	}
 	if(X > 20 && X < 80)
@@ -2058,7 +2058,7 @@ void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " strikes you with his tail!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 	}
 	else if(X > 50)
@@ -2066,12 +2066,12 @@ void bluedragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, s
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " slashes at you with his claws!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 	Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "                                    ";
 	creature::dam(Damage);
@@ -2085,7 +2085,7 @@ void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 	int Damage = 0;
 	int X;
 	armor *arm;
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	
 	X = rand() % 100 + 1;
 	if(X < 10)
@@ -2094,7 +2094,7 @@ void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes liquified steel fire at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 20;
 	}
 	if(X < 20)
@@ -2103,7 +2103,7 @@ void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " breathes lava at you!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 10;
 	}
 	if(X > 20 && X < 80)
@@ -2112,7 +2112,7 @@ void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		text("",13,9,white);
 		text(getname(),13,11,white);
 		cout << " strikes you with his tail!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		ka -= 4;
 	}
 	else if(X > 50)
@@ -2120,12 +2120,12 @@ void reddragon::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff, st
 		Damage = rand()% damage + damMod;
 		text(getname(),13,11,white);
 		cout << " slashes at you with his claws!";
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 	Damage = 1;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "                                    ";
 	creature::dam(Damage);

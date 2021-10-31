@@ -34,8 +34,8 @@ Player::Player()
 	IsAsleep =		false;
 	Invisible = false;
 	PauseDuration = 1500;
-	setweapon(loadWeapon("Dagger"));
-	setarmor(loadArmor("Clothes"));
+	SetWeapon(loadWeapon("Dagger"));
+	SetArmor(loadArmor("Clothes"));
 	RaceReactions.Elf =		2;
 	RaceReactions.Human =	3;
 	RaceReactions.Orc =		1;
@@ -55,265 +55,266 @@ Player::Player()
 	MusicIsOn = true;
 }
 
-void Player::setarmor(armor *parm)
+void Player::SetArmor(armor *newArmor)
 {
-	EquippedArmor = parm;
+	EquippedArmor = newArmor;
 }
-void Player::setweapon(weapon *pweap)
+void Player::SetWeapon(weapon *newWeapon)
 {
-	EquippedWeapon = pweap;
+	EquippedWeapon = newWeapon;
 }
-void Player::setname(string pname)
+void Player::SetName(string name)
 {
-	Name = pname;
+	Name = name;
 }
-void Player::setexp(int pex)
+void Player::SetExperience(int experience)
 {
-	Experience = pex;
+	Experience = experience;
 }
-void Player::setgold(int pgold)
+void Player::SetGold(int gold)
 {
-	Gold = pgold;
+	Gold = gold;
 }
-void Player::setHP(int php)
+void Player::SetHitPoints(int hitPoints)
 {
-	if(php > MaxHP)
-		php = MaxHP;
-	HP = php;
+	if(hitPoints > MaxHP)
+		hitPoints = MaxHP;
+	HP = hitPoints;
 }
-void Player::setMHP(int pmhp)
+void Player::SetMaxHitPoints(int maxHitPoints)
 {
-	MaxHP = pmhp;
+	MaxHP = maxHitPoints;
 }
-void Player::setka(int pka)
+void Player::SetKa(int ka)
 {
-	if(pka > MaxKa)
-		pka = MaxKa;
-	Ka = pka;
+	if(ka > MaxKa)
+		ka = MaxKa;
+	Ka = ka;
 }
-void Player::setmka(int pmka)
+void Player::SetMaxKa(int maxKa)
 {
-	MaxKa = pmka;
+	MaxKa = maxKa;
 }
-void Player::setlev(int plev)
+void Player::SetLevel(int level)
 {
-	Level = plev;
+	Level = level;
 }
-void Player::setmind(int pmind)
+void Player::SetMind(int mind)
 {
-	Mind = pmind;
+	Mind = mind;
 }
-void Player::setstr(int pstr)
+void Player::SetStrength(int strength)
 {
-	Strength = pstr;
+	Strength = strength;
 }
-void Player::setX(int pX)
+void Player::SetPositionX(int newX)
 {
-	if(pX == 0)
-		pX = 1;
-	X = pX;
+	if(newX == 0)
+		newX = 1;
+	X = newX;
 }
-void Player::setY(int pY)
+void Player::SetPositionY(int newY)
 {
-	if(pY == 0)
-		pY = 1;
-	Y = pY;
+	if(newY == 0)
+		newY = 1;
+	Y = newY;
 }
-void Player::setNext(int next)
+void Player::SetExperienceNeeded(int experience)
 {
-	ExperienceNeededForNextLevel = next;
+	ExperienceNeededForNextLevel = experience;
 }
-void Player::setEvd(int evd)
+void Player::SetEvade(int evd)
 {
 	Evade = evd;
 }
-void Player::setKills(int K)
+void Player::SetTotalKills(int kills)
 {
-	TotalKills = K;
+	TotalKills = kills		;
 }
-void Player::setPause(int P)
+void Player::SetPauseDuration(int pauseDuration)
 {
-	PauseDuration = P;
+	PauseDuration = pauseDuration;
 }
 
-armor* Player::getarmor()
+armor* Player::GetArmor()
 {
 	return EquippedArmor;
 }
-weapon* Player::getweapon()
+weapon* Player::GetWeapon()
 {
 	return EquippedWeapon;
 }
-string Player::getname()
+string Player::GetName()
 {
 	return Name;
 }
-int Player::getexp()
+int Player::GetExperience()
 {
 	return Experience;
 }
-int Player::getgold()
+int Player::GetGold()
 {
 	return Gold;
 }
-int Player::getHP()
+int Player::GetCurrentHitPoints()
 {
 	return HP;
 }
-int Player::getMHP()
+int Player::GetMaxHitPoints()
 {
 	return MaxHP;
 }
-int Player::getka()
+int Player::GetCurrentKa()
 {
 	return Ka;
 }
-int Player::getmka()
+int Player::GetMaxKa()
 {
 	return MaxKa;
 }
-int Player::getlev()
+int Player::GetLevel()
 {
 	return Level;
 }
-int Player::getmind()
+int Player::GetMind()
 {
 	return Mind;
 }
-int Player::getstr()
+int Player::GetStrength()
 {
 	return Strength;
 }
-int Player::getX()
+int Player::GetPositionX()
 {
 	return X;
 }
-int Player::getY()
+int Player::GetPositionY()
 {
 	return Y;
 }
-int Player::getNext()
+int Player::GetExperienceForNextLevel()
 {
 	return ExperienceNeededForNextLevel;
 }
-int Player::getEvd()
+int Player::GetEvade()
 {
 	return Evade;
 }
-int Player::getKills()
+int Player::GetTotalKills()
 {
 	return TotalKills;
 }
-int Player::getPause()
+int Player::GetPauseDuration()
 {
 	return PauseDuration;
 }
-void Player::setelf(int N)
+void Player::SetReactionElf(int reaction)
 {	
-	RaceReactions.Elf = N;	
+	RaceReactions.Elf = reaction;	
 }
-int Player::getelf()
+int Player::GetReactionElf()
 {
 	return RaceReactions.Elf;
 }
-void Player::sethuman(int N)
+void Player::SetReactionHuman(int reaction)
 {	
-	RaceReactions.Human = N;	
+	RaceReactions.Human = reaction;
 }
-int Player::gethuman()
+int Player::GetReactionHuman()
 {
 	return RaceReactions.Human;
 }
-void Player::setorc(int N)
+void Player::SetReactionOrc(int reaction)
 {	
-	RaceReactions.Orc = N;	
+	RaceReactions.Orc = reaction;
 }
-int Player::getorc()
+int Player::GetReactionOrc()
 {
 	return RaceReactions.Orc;
 }
-int Player::getstate()
+int Player::GetMagicStatus()
 {
-	return HealthState;
+	return MagicStatus;
 }
-void Player::setstate(int N)
+void Player::SetMagicStatus(int magicStatus)
 {
-	HealthState = N;
+	MagicStatus = magicStatus;
 }
-bool Player::getbspells()
+bool Player::HasLearnedSpells()
 {
 	return HasSpells;
 }
-void Player::setbspells(bool M)
+void Player::SetHasSpells(bool hasSpells)
 {
-	if(M)
+	if(hasSpells)
 	{
-		HasSpells = M;		// When a player gets spells he gets to have magic
+		HasSpells = hasSpells;		// When a player gets spells he gets to have magic
 		MaxKa = Mind / 2;      // power, ka. Mind / 2 is that starting point for it.
 		Ka = MaxKa;
 	}
 	else
-		HasSpells = M;
+		HasSpells = hasSpells;
 }
-void Player::setbjoined(bool M)
+void Player::SetMemberHasJoined(bool memberHasJoined)
 {
-	MemberHasJoined = M;
+	MemberHasJoined = memberHasJoined;
 }
-bool Player::getbjoined()
+bool Player::GetMemberHasJoined()
 {
 	return MemberHasJoined;
 }
-bool Player::getpoisoned()
+bool Player::GetIsPoisoned()
 {
 	return IsPoisoned;
 }
-void Player::setpoisoned(bool P)
+void Player::SetIsPoisoned(bool poisoned)
 {
-	IsPoisoned = P;
+	IsPoisoned = poisoned;
 }
-void Player::setLoaded(bool B)
+void Player::SetIsLoaded(bool loaded)
 {
-	IsLoaded = B;
+	IsLoaded = loaded;
 }
-bool Player:: getLoaded()
+bool Player:: GetIsLoaded()
 {
 	return IsLoaded;
 }
-void Player::setSleep(bool B)
+void Player::SetIsAsleep(bool asleep)
 {
-	IsAsleep = B;
+	IsAsleep = asleep;
 }
-bool Player::getSleep()
+bool Player::GetIsAsleep()
 {
 	return IsAsleep;
 }
-void Player::setInvis(bool B)
+void Player::SetIsInvisible(bool invisible)
 {
-	Invisible = B;
+	Invisible = invisible;
 }
-bool Player::getInvis()
+bool Player::GetIsInvisible()
 {
 	return Invisible;
 }
-void Player::setMusic(bool M)
+void Player::SetMusicIsOn(bool musicOn)
 {
-	MusicIsOn = M;
+	MusicIsOn = musicOn;
 }
-bool Player::getMusic()
+bool Player::GetIsMusicOn()
 { return MusicIsOn;		}
-void Player::setMusicFilename(char * MF)
-{ MusicFilename = MF;	}
-char * Player::getMusicFilename()
+
+void Player::SetMusicFilename(char * filename)
+{ MusicFilename = filename;	}
+char * Player::GetMusicFilename()
 { return MusicFilename;	}
 
 /*==================================
 	Plays the game music
 ===================================*/
-void Player::playMusic(char *M)
+void Player::PlayMusic(char *filename)
 {
-	char* music = new char[strlen(M) + 7];
+	char* music = new char[strlen(filename) + 7];
 	strcpy(music, "./data/");
-	strcat(music, M);
+	strcat(music, filename);
 
 	if( music )
 	{
@@ -328,7 +329,7 @@ void Player::playMusic(char *M)
 		MapMusic.FreeSound();
 }
 
-void Player::changeMusic()
+void Player::ToggleMusic()
 /* ==========================
 	Turns music on/off
 ============================*/
@@ -342,12 +343,12 @@ void Player::changeMusic()
 	else
 	{
 		MusicIsOn = true;
-		playMusic(MusicFilename);
+		PlayMusic(MusicFilename);
 	}
 }
 
 
-void Player::status()
+void Player::DisplayStatus()
 {
 	text("Name:   ",13,11,white);
 	cout << Name;
@@ -385,7 +386,7 @@ void Player::status()
 
 
 
-void Player::info()
+void Player::DisplayInfo()
 {
 	if(IsPoisoned)
 		text(Name,1,1,green);
@@ -403,8 +404,8 @@ void Player::info()
 	num(Gold,5,4,white);
 	text("X:   ",1,6,white);
 	text("Y:   ",1,7,white);
-	num(getX(),3,6,white);
-	num(getY(),3,7,white);
+	num(GetPositionX(),3,6,white);
+	num(GetPositionY(),3,7,white);
 	text("           ",1,8,white);
 	text("           ",1,9,white);
 	text(EquippedWeapon->getname(),1,8,white);
@@ -412,7 +413,7 @@ void Player::info()
 
 }
 
-void Player::DrawCurs(COORD position, WORD color, char cursorCharacter)
+void Player::DrawCursor(COORD position, WORD color, char cursorCharacter)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -422,7 +423,7 @@ void Player::DrawCurs(COORD position, WORD color, char cursorCharacter)
 	cout << cursorCharacter;
 }
 
-bool Player::MoveCurs(COORD &cursorPosition,bool &hasSelection,bool &escapeWasPressed, int Ymin, int Ymax)
+bool Player::MoveCursor(COORD &cursorPosition,bool &hasSelection,bool &escapeWasPressed, int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = cursorPosition;
@@ -490,7 +491,7 @@ bool Player::MoveCurs(COORD &cursorPosition,bool &hasSelection,bool &escapeWasPr
 return false;	
 }
 
-bool Player::LevUp()
+bool Player::ReachedNextLevel()
 {
 	if(Experience >= ExperienceNeededForNextLevel)
 		return true;
@@ -498,30 +499,30 @@ bool Player::LevUp()
 		return false;
 }
 
-void Player::raiseLev()
+void Player::IncreaseLevel()
 {
 	srand(GetTickCount());
 	double Num1;
 	clear();
-	setlev(getlev() + 1);
-	if(getlev() < 5)
+	SetLevel(GetLevel() + 1);
+	if(GetLevel() < 5)
 	{
 		Num1 = rand()%10 + 11;
-		setMHP(getMHP() + static_cast<int>(Num1));
+		SetMaxHitPoints(GetMaxHitPoints() + static_cast<int>(Num1));
 	}
 	else
 	{
 		Num1 = rand()%10 + 20;
 		Num1 = Num1 / 100;
-		setMHP(getMHP() + (getMHP() * static_cast<int>(Num1)));
+		SetMaxHitPoints(GetMaxHitPoints() + (GetMaxHitPoints() * static_cast<int>(Num1)));
 	}
 	Evade += 1;
 	Num1 = rand()% 3 + 2;
-	setstr(getstr() + static_cast<int>(Num1));
+	SetStrength(GetStrength() + static_cast<int>(Num1));
 	Num1 = rand()% 4 + 1;
-	setmind(getmind() + static_cast<int>(Num1));
-	Num1 = rand()% (getmind()/2) + 1;
-	setmka(getmka() + static_cast<int>(Num1));
+	SetMind(GetMind() + static_cast<int>(Num1));
+	Num1 = rand()% (GetMind()/2) + 1;
+	SetMaxKa(GetMaxKa() + static_cast<int>(Num1));
 	ExperienceNeededForNextLevel = Level * Level * 50;
 	text("You have gone up in level!!",13,11,FOREGROUND_GREEN);
 	text("",79,23,white);
@@ -616,7 +617,7 @@ void Player::Load(ifstream &fin)
 	IsLoaded = true;
 }
 
-void Player::stopMusic()
+void Player::StopMusic()
 {
 	MapMusic.FreeSound();
 }

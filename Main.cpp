@@ -39,8 +39,8 @@ void main()
 
 	cout << "Enter your name: ";
 	cin.get(name,10);
-	p.setname(name);
-	filename = p.getname() + ".svg";
+	p.SetName(name);
+	filename = p.GetName() + ".svg";
 
 	fin.open(filename.c_str());
 	fin >> temp;
@@ -49,23 +49,23 @@ void main()
 	if(temp != "Name:")
 	{
 		load = false;
-		p.status();
+		p.DisplayStatus();
 		system("cls");
 	}
 	if(temp == "Name:")
 		load = true;
 
 	string cheat = "rex";
-	if(p.getname() == cheat.c_str())
+	if(p.GetName() == cheat.c_str())
 	{
 		map = "icefield1";
 		//p.setelf(1);
 		//p.setbspells(true);
-		p.setgold(5000);
+		p.SetGold(5000);
 		//p.setmka(50);
-		p.setMHP(500);
-		p.setHP(500);
-		p.setka(50);
+		p.SetMaxHitPoints(500);
+		p.SetHitPoints(500);
+		p.SetKa(50);
 		//p.setweapon(loadWeapon("DeathSword"));
 		//p.setarmor(loadArmor("Hvy.Chain"));
 	}

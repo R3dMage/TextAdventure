@@ -29,8 +29,8 @@ void world::menu(Player *p2, vector<magik*> &spells,vector<item*> &stuff, vector
 	while(!bEsc)
 	{
 		clr(11);
-		p2->info();	
-		ground(stuff,Map,p2->getX(),p2->getY());
+		p2->DisplayInfo();	
+		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
 		CursPos.X = 2;
 		CursPos.Y = 12;
 		bSel = false;
@@ -61,15 +61,15 @@ void world::menu(Player *p2, vector<magik*> &spells,vector<item*> &stuff, vector
 			inventory(p2,stuff,pstuff,Map);
 			break;
 		case 13:
-			p2->status();
+			p2->DisplayStatus();
 			break;
 		case 14:
-			if(p2->getbspells())
+			if(p2->HasLearnedSpells())
 				magic(p2,spells);
 			else
 			{
 				text("You have no magic",13,11,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 				text("                 ",13,11,white);
 			}
 			break;
@@ -95,7 +95,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 
 	while(!bEsc)
 	{		
-		ground(stuff,Map,p2->getX(),p2->getY());
+		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
 		items(pstuff);
 		CursPos.X = 2;
 		CursPos.Y = 12;
@@ -139,7 +139,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 			{
 				for(Offset = 0;Offset < stuff.size();Offset++)
 				{
-					if(stuff[Offset]->getY() == p2->getY() && stuff[Offset]->getX() == p2->getX() && stuff[Offset]->getmap() == Map)
+					if(stuff[Offset]->getY() == p2->GetPositionY() && stuff[Offset]->getX() == p2->GetPositionX() && stuff[Offset]->getmap() == Map)
 					{
 						pstuff.push_back(stuff[Offset]);
 						temp = stuff[stuff.size()-1];
@@ -170,7 +170,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 				//clr();
 				//clrtop();
 				items(pstuff);
-				ground(stuff,Map,p2->getX(),p2->getY());
+				ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
 				CursPos.X = 2;
 				CursPos.Y = 12;
 				bSel = false;
@@ -201,7 +201,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 					else
 					{
 						text("You have nothing to use",13,11,white);
-						Sleep(p2->getPause());
+						Sleep(p2->GetPauseDuration());
 					}
 					break;
 				case 13:
@@ -210,7 +210,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 					else
 					{
 						text("You have nothing to equip",13,12,white);
-						Sleep(p2->getPause());
+						Sleep(p2->GetPauseDuration());
 					}
 					break;
 				case 14:
@@ -219,7 +219,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 					else
 					{
 						text("You have nothing to drop",13,12,white);
-						Sleep(p2->getPause());
+						Sleep(p2->GetPauseDuration());
 					}
 					break;
 				case 15:
@@ -228,7 +228,7 @@ void world::inventory(Player *p2,vector<item*> &stuff, vector<item*> &pstuff,str
 					else
 					{
 						text("You have nothing to dispose of",13,12,white);
-						Sleep(p2->getPause());
+						Sleep(p2->GetPauseDuration());
 					}
 					break;
 				}//--------End Switch
@@ -294,26 +294,26 @@ void world::equip(Player *p2,vector<item*> &pstuff)
 	if(!temp->getarm() && !temp->getweap())
 	{
 		text("You cannot equip that.",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 	}
 	if(temp->getarm())
 	{
-		pstuff.push_back(p2->getarmor());
-		p2->setarmor(loadArmor(temp->getname()));
+		pstuff.push_back(p2->GetArmor());
+		p2->SetArmor(loadArmor(temp->getname()));
 		pstuff[Offset] = pstuff[pstuff.size()-1];
 		pstuff[pstuff.size()-1] = temp;
 		pstuff.pop_back();		
 	}
 	if(temp->getweap())
 	{
-		pstuff.push_back(p2->getweapon());
-		p2->setweapon(loadWeapon(temp->getname()));
+		pstuff.push_back(p2->GetWeapon());
+		p2->SetWeapon(loadWeapon(temp->getname()));
 		pstuff[Offset] = pstuff[pstuff.size()-1];
 		pstuff[pstuff.size()-1] = temp;
 		pstuff.pop_back();		
 	}
 	text("              ",CursPos.X,CursPos.Y,white);
-	p2->info();
+	p2->DisplayInfo();
 	items(pstuff);
 	text("                                           ",175,11,white);
 	text("           ",1,22,white);
@@ -332,7 +332,7 @@ void world::drop(Player *p2,vector<item*> &stuff,vector<item*> &pstuff,string Ma
 	
 	while(!bEsc)
 	{
-		ground(stuff,Map,p2->getX(),p2->getY());
+		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
 		items(pstuff);
 		bSel = false;
 		CursPos.X = 13;
@@ -361,8 +361,8 @@ void world::drop(Player *p2,vector<item*> &stuff,vector<item*> &pstuff,string Ma
 
 		Offset = CursPos.Y - 12;
 		pstuff[Offset]->setmap(Map);
-		pstuff[Offset]->setX(p2->getX());
-		pstuff[Offset]->setY(p2->getY());
+		pstuff[Offset]->setX(p2->GetPositionX());
+		pstuff[Offset]->setY(p2->GetPositionY());
 		stuff.push_back(pstuff[Offset]);
 		slidedown(pstuff,Offset);
 		pstuff.pop_back();	
@@ -444,7 +444,7 @@ void world::options(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vecto
 	while(!bEsc)
 	{
 		//clear();       For smooth look remarked out 2/15/06
-		p2->info();	
+		p2->DisplayInfo();	
 		CursPos.X = 2;
 		CursPos.Y = 12;
 		bSel = false;
@@ -473,7 +473,7 @@ void world::options(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vecto
 		case 12:
 			text("Saving game ",13,11,yellow);
 			save(p2,stuff,pstuff,M,Map);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("            ",13,11,yellow);
 			break;
 		case 13:
@@ -485,7 +485,7 @@ void world::options(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vecto
 		case 15:
 			system("cls");
 			text("See you next time.",13,11,yellow);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			exit(0);
 			break;		
 		}
@@ -503,7 +503,7 @@ void world::setup(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vector<
 
 	while(!bEsc)
 	{
-		p2->info();	
+		p2->DisplayInfo();	
 		CursPos.X = 2;
 		CursPos.Y = 12;
 		bSel = false;
@@ -517,9 +517,9 @@ void world::setup(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vector<
 		/*=======================================
 		Displays the current music status
 		========================================*/
-		if(CursPos.Y == 12 && p2->getMusic())
+		if(CursPos.Y == 12 && p2->GetIsMusicOn())
 			text("Music: On    ",13,12,yellow);
-		else if(CursPos.Y == 12 && !p2->getMusic())
+		else if(CursPos.Y == 12 && !p2->GetIsMusicOn())
 			text("Music: Off   ",13,12,yellow);
 		//========================================
 		DrawCurs(CursPos,yellow,175);
@@ -532,22 +532,22 @@ void world::setup(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vector<
 				/*=======================================
 				Displays the current music status
 				========================================*/
-				if(CursPos.Y == 12 && p2->getMusic())
+				if(CursPos.Y == 12 && p2->GetIsMusicOn())
 					text("Music: On     ",13,12,yellow);
-				else if(CursPos.Y == 12 && !p2->getMusic())
+				else if(CursPos.Y == 12 && !p2->GetIsMusicOn())
 					text("Music: Off    ",13,12,yellow);
 				/*========================================
 				Displays current player pause duration
 				========================================*/
 				if(CursPos.Y == 13){
 					text("Speed: ",13,12,yellow);
-					cout << p2->getPause();}
+					cout << p2->GetPauseDuration();}
 				/*========================================
 				Displays the current invisibility status
 				=========================================*/
-				if(CursPos.Y == 14 && p2->getInvis())
+				if(CursPos.Y == 14 && p2->GetIsInvisible())
 					text("Invis: On     ",13,12,yellow);
-				else if(CursPos.Y == 14 && !p2->getInvis())
+				else if(CursPos.Y == 14 && !p2->GetIsInvisible())
 					text("Invis: Off    ",13,12,yellow);
 				//========================================
 			}
@@ -561,23 +561,23 @@ void world::setup(Player *p2, vector<item*> &stuff,vector<item*> &pstuff,vector<
 		{
 		case 12:
 			text("Changing Music.",13,11,yellow);
-			p2->changeMusic();
-			Sleep(p2->getPause());
+			p2->ToggleMusic();
+			Sleep(p2->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 13:
 			text("Changing Speed?",13,11,yellow);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 14:
 			text("To be added later.",13,11,yellow);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 15:
 			text("To be added later.",13,11,yellow);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;		
 		}
@@ -596,10 +596,10 @@ void world::useItem(Player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 		clr(12);
 		if(bFight && Iused)
 			break;		
-		p2->info();
+		p2->DisplayInfo();
 		items(pstuff);
 		if(!bFight)
-			ground(stuff,Map,p2->getX(),p2->getY());
+			ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
 		CursPos.X = 2;
 		CursPos.Y = 15;
 		bSel = false;
@@ -633,7 +633,7 @@ void world::useItem(Player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 			else
 			{
 				text("You have no items.",13,11,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 			}
 			break;
 		case 16:
@@ -642,7 +642,7 @@ void world::useItem(Player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 			else
 			{
 				text("You have nothing to equip",13,12,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 			}
 			break;
 		case 17:
@@ -651,7 +651,7 @@ void world::useItem(Player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 			else
 			{
 				text("You have nothing to drop",13,12,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 			}
 			break;
 		case 18:
@@ -660,7 +660,7 @@ void world::useItem(Player *p2,vector<item*> &stuff,vector<item*> &pstuff, bool 
 			else
 			{
 				text("You have nothing to dispose of",13,12,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 			}
 			break;
 		}//--------End Switch
@@ -685,7 +685,7 @@ void world::use(Player *p2,vector<item*> &pstuff,bool &Iused,bool bFight)
 	{
 		clritems();
 		items(pstuff);
-		p2->info();
+		p2->DisplayInfo();
 
 		if(Iused && bFight)
 			break;
@@ -732,48 +732,48 @@ void world::use(Player *p2,vector<item*> &pstuff,bool &Iused,bool bFight)
 			{
 			case 0:
 				Num = 25; 
-				p2->setHP(p2->getHP()+Num);
+				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 1:
 				Num = 15;
-				p2->setka(p2->getka()+Num);
+				p2->SetKa(p2->GetCurrentKa()+Num);
 				text("Ka recovered: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 2:
 				Num = rand()%5 + 1;
-				p2->setstr(p2->getstr()+Num);
+				p2->SetStrength(p2->GetStrength()+Num);
 				text("Your strength has increased",13,8,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 				break;
 			case 3:
 				Num = rand()%5 + 1;
-				p2->setmind(p2->getmind()+Num);
+				p2->SetMind(p2->GetMind()+Num);
 				text("Your mind powers have increased",13,8,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 				break;
 			case 4:
 				Num = 75; 
-				p2->setHP(p2->getHP()+Num);
+				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 5:
 				Num = 150; 
-				p2->setHP(p2->getHP()+Num);
+				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 6:
-				Num = p2->getMHP() - p2->getHP();
-				p2->setHP(p2->getMHP());
+				Num = p2->GetMaxHitPoints() - p2->GetCurrentHitPoints();
+				p2->SetHitPoints(p2->GetMaxHitPoints());
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 			default:
 				text("This item does nothing",13,8,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 				break;
 			}
 			Iused = true;
@@ -799,7 +799,7 @@ void world::magic(Player *p2,vector<magik*> &spells)
 	while(!bEsc)
 	{
 		clear();
-		p2->info();	
+		p2->DisplayInfo();	
 		CursPos.X = 14;
 		CursPos.Y = 13;
 		bSel = false;
@@ -819,7 +819,7 @@ void world::magic(Player *p2,vector<magik*> &spells)
 
 		for(i = 0;i < spells.size();i++)
 		{
-			if(spells[i]->getbInfight() || p2->getka() < spells[i]->getcost())
+			if(spells[i]->getbInfight() || p2->GetCurrentKa() < spells[i]->getcost())
 			{
 				spells[i]->tout(i+13,dkgreen);
 			}
@@ -845,12 +845,12 @@ void world::magic(Player *p2,vector<magik*> &spells)
 		if(spells[offset]->getbInfight())
 		{
 			text("That spell can only be used in battle",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
-		else if(p2->getka() < spells[offset]->getcost())
+		else if(p2->GetCurrentKa() < spells[offset]->getcost())
 		{
 			text("Not enough Ka",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		else
 			spells[offset]->use(p2,guy);
@@ -888,7 +888,7 @@ void world::fmagic(Player *p2,creature *enemy,vector<magik*> &spells,bool &bEsc)
 		
 		for(i = 0;i < spells.size();i++)
 		{
-			if(p2->getka() < spells[i]->getcost())
+			if(p2->GetCurrentKa() < spells[i]->getcost())
 			{
 				spells[i]->tout(i+13,dkgreen);
 			}
@@ -910,10 +910,10 @@ void world::fmagic(Player *p2,creature *enemy,vector<magik*> &spells,bool &bEsc)
 		if(bEsc)
 			return;
 		offset = CursPos.Y - 13;
-		if(p2->getka() < spells[offset]->getcost())
+		if(p2->GetCurrentKa() < spells[offset]->getcost())
 		{
 			text("Not enough Ka",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 		}
 		else
 		{

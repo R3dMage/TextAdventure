@@ -49,76 +49,76 @@ class Player {
 public:
 	Player();
 
-	void setname(string);
-	string getname();
-	void setweapon(weapon*);
-	weapon* getweapon();
-	void setarmor(armor*);
-	armor* getarmor();
-	void setX(int);
-	int getX();
-	void setY(int);
-	int getY();
-	void setstr(int);
-	int getstr();
-	void setmind(int);
-	int getmind();
-	void setgold(int);
-	int getgold();
-	void setMHP(int);
-	int getMHP();
-	void setHP(int);
-	int getHP();
-	void setexp(int);
-	int getexp();
-	void setlev(int);
-	int getlev();
-	void setka(int);
-	int getka();
-	void setmka(int);
-	int getmka();
-	void setNext(int);
-	int getNext();
-	void setEvd(int);
-	int getEvd();
-	void setKills(int);
-	int getKills();
-	void setPause(int);
-	int getPause();
-	void setelf(int);
-	int getelf();
-	void sethuman(int);
-	int gethuman();
-	void setorc(int);
-	int getorc();
-	void setstate(int);
-	int getstate();
-	bool getbspells();
-	void setbspells(bool);
-	bool getbjoined();
-	void setbjoined(bool);
-	void setpoisoned(bool);
-	bool getpoisoned();
-	void setLoaded(bool);
-	bool getLoaded();
-	void setSleep(bool);
-	bool getSleep();
-	void setInvis(bool);
-	bool getInvis();
-	void setMusic(bool);
-	bool getMusic();
-	void setMusicFilename(char *);
-	char * getMusicFilename();
+	void SetName(string);
+	string GetName();
+	void SetWeapon(weapon*);
+	weapon* GetWeapon();
+	void SetArmor(armor*);
+	armor* GetArmor();
+	void SetPositionX(int);
+	int GetPositionX();
+	void SetPositionY(int);
+	int GetPositionY();
+	void SetStrength(int);
+	int GetStrength();
+	void SetMind(int);
+	int GetMind();
+	void SetGold(int);
+	int GetGold();
+	void SetMaxHitPoints(int);
+	int GetMaxHitPoints();
+	void SetHitPoints(int);
+	int GetCurrentHitPoints();
+	void SetExperience(int);
+	int GetExperience();
+	void SetLevel(int);
+	int GetLevel();
+	void SetKa(int);
+	int GetCurrentKa();
+	void SetMaxKa(int);
+	int GetMaxKa();
+	void SetExperienceNeeded(int);
+	int GetExperienceForNextLevel();
+	void SetEvade(int);
+	int GetEvade();
+	void SetTotalKills(int);
+	int GetTotalKills();
+	void SetPauseDuration(int);
+	int GetPauseDuration();
+	void SetReactionElf(int);
+	int GetReactionElf();
+	void SetReactionHuman(int);
+	int GetReactionHuman();
+	void SetReactionOrc(int);
+	int GetReactionOrc();
+	void SetMagicStatus(int);
+	int GetMagicStatus();
+	bool HasLearnedSpells();
+	void SetHasSpells(bool);
+	bool GetMemberHasJoined();
+	void SetMemberHasJoined(bool);
+	void SetIsPoisoned(bool);
+	bool GetIsPoisoned();
+	void SetIsLoaded(bool);
+	bool GetIsLoaded();
+	void SetIsAsleep(bool);
+	bool GetIsAsleep();
+	void SetIsInvisible(bool);
+	bool GetIsInvisible();
+	void SetMusicIsOn(bool);
+	bool GetIsMusicOn();
+	void SetMusicFilename(char *);
+	char * GetMusicFilename();
 
-	void status();
-	void info();
-	bool LevUp();
-	void raiseLev();
+	void DisplayStatus();
+	void DisplayInfo();
+	bool ReachedNextLevel();
+	void IncreaseLevel();
 	void Save(ofstream &fout);
 	void Load(ifstream &fin);
-	void playMusic(char *);
-	void stopMusic();
-	void changeMusic();
+	void PlayMusic(char *);
+	void StopMusic();
+	void ToggleMusic();
 	void plots(string);
 
 	PlayerKillCounts RaceKillCounts;
@@ -147,7 +147,7 @@ private:
 	int		ExperienceNeededForNextLevel;	// Experience for next level
 	int		TotalKills;						// # of kills
 	int		PauseDuration;					// Pause duration in milliseconds
-	int		HealthState;					// Current state
+	int		MagicStatus;					// Current state
 	bool	IsInFight;						// To determine if there is a fight
 	bool	IsPoisoned;						// Poison status
 	bool	IsAsleep;						// Sleep Status
@@ -164,7 +164,7 @@ private:
 	bool	MusicIsOn;		// Option to turn music on or off
 	bool	Invisible;		// Sometimes you want to be invisible to enemies
 
-	bool MoveCurs(COORD &cursorPosition, bool &hasSelection, bool &bEsc, int Ymin, int Ymax);
-	void DrawCurs(COORD position, WORD color, char cursorCharacter);
+	bool MoveCursor(COORD &cursorPosition, bool &hasSelection, bool &bEsc, int Ymin, int Ymax);
+	void DrawCursor(COORD position, WORD color, char cursorCharacter);
 };
 #endif

@@ -25,8 +25,8 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 	int D2;							// 2nd Damage Variable for Xtra damage
 	int StrMod;						// Strength Modifier variable
 	int R = 0;						// R?
-	weapon *weap = p2->getweapon(); // Weapon Variable
-	armor *arm = p2->getarmor();	// Armor Variable
+	weapon *weap = p2->GetWeapon(); // Weapon Variable
+	armor *arm = p2->GetArmor();	// Armor Variable
 	bool bEsc = false;				// Escape bool for menu
 	bool bSel = false;				// Select bool for menu
 	bool bLeave = false;			// Leave  bool for menu
@@ -44,7 +44,7 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 	This calls some music to play for the fights, dynamic according
 	to the different enemies. How awesome is that?
 ===================================================================*/
-	p2->playMusic(guy->getMusic());
+	p2->PlayMusic(guy->getMusic());
 
 
 	text("You have been attacked by a ",13,11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
@@ -56,7 +56,7 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 	if(guy->bant)					// Check if enemy will talk before the fight
 		guy->banter();				// Enemy's prefight speech
 
-	while(guy->gethp() > 0 && p2->getHP() > 0 && !run)
+	while(guy->gethp() > 0 && p2->GetCurrentHitPoints() > 0 && !run)
 	{
 	// Initiallize all these boolean variables ot false
 		bSel = false;
@@ -68,26 +68,26 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 		run  = false;
 		pass = false;
 		
-		p2->info();					// Display player info
+		p2->DisplayInfo();					// Display player info
 		guy->info();				// Display enemy info, this will probably be phased out, or tweaked
 
-		if(p2->getSleep())			// Checks if player is asleep
+		if(p2->GetIsAsleep())			// Checks if player is asleep
 		{
 			R = rand()% 100 + 1;	
 			if(R < 50)				// 50% chance of waking up. NOTE: Maybe make that enemy specific %
 			{
-				p2->setSleep(false);							
+				p2->SetIsAsleep(false);							
 				text("You awake from sleep!",13,11,white);
 				text("",79,23,white);
-				Sleep(p2->getSleep());
+				Sleep(p2->GetIsAsleep());
 				text("                     ",13,11,white);
 			}
 		}
-		if(p2->getSleep())			// Checks if you're still asleep after your chance to wake
+		if(p2->GetIsAsleep())			// Checks if you're still asleep after your chance to wake
 		{
 			text("You are asleep.",13,11,white);
 			text("",79,23,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			text("                                          ",13,11,white);
 		}			
 		else 
@@ -141,27 +141,27 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 
 			if(fight)
 			{
-				p2->info();						// Display player info
+				p2->DisplayInfo();						// Display player info
 				guy->info();					// Display enemy info NOTE: TEMPORARY or something anyway
 				//----------------------------------------------------------------->|Check for hit!
 				Evd = rand()%100 + 1;
 				if(Evd <= guy->getevade())
 				{
 					text("The enemy has dodged your attack!",13,11,white);
-					Sleep(p2->getPause());
+					Sleep(p2->GetPauseDuration());
 				}
 				else //--------------------------------------------------------->|Damage applications
 				{
 					Damage = rand()% weap->getdamage() + weap->getdamMod();//--->|Weapon's Damage
-					StrMod = rand()% (p2->getstr()/2) + 2;//-------------------->|Strength modifier
+					StrMod = rand()% (p2->GetStrength()/2) + 2;//-------------------->|Strength modifier
 					Damage += StrMod;
 					if(weap->get2hits())//-------------------------------------->|Xtra hit check
 					{
 						D2 = rand()% weap->getdamage() + weap->getdamMod();
-						StrMod = rand()% (p2->getstr()/2) + 2;
+						StrMod = rand()% (p2->GetStrength()/2) + 2;
 						D2 += StrMod;
 						text("2 Hits!!",13,11,white);
-						Sleep(p2->getPause());
+						Sleep(p2->GetPauseDuration());
 						Damage += D2;
 					}
 					//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
@@ -189,7 +189,7 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 					guy->dam(Damage);
 					if(weap->getlsteal())
 					{
-						p2->setHP(p2->getHP() + Damage / 2);
+						p2->SetHitPoints(p2->GetCurrentHitPoints() + Damage / 2);
 						text("Life Gained:     ",13,11,white);
 						cout << Damage / 2;
 						guy->dam(Damage / 2);
@@ -201,11 +201,11 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 	//===========================================================================================================
 			if(magic)
 			{
-				if(!p2->getbspells())
+				if(!p2->HasLearnedSpells())
 				{
 					pass = true;
 					text("You have no magic",13,11,white);
-					Sleep(p2->getPause());
+					Sleep(p2->GetPauseDuration());
 					text("                 ",13,11,white);
 				}
 				else
@@ -225,8 +225,8 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 				useItem(p2,stuff,pstuff,bFight,bLeave,Map);
 				if(bLeave)
 					pass = true;
-				arm = p2->getarmor();
-				weap = p2->getweapon();
+				arm = p2->GetArmor();
+				weap = p2->GetWeapon();
 			}
 	/*============================================================================================
 		Should the player try to run, we go here
@@ -239,14 +239,14 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 					run = true;
 					text("You ran away",13,11,red);
 					PlaySound("run.wav",NULL, SND_FILENAME | SND_ASYNC);
-					Sleep(p2->getPause());	
+					Sleep(p2->GetPauseDuration());	
 					clear();
 					break;
 				}
 				else
 				{
 					text("The enemy thought you should stay!",13,11,red);
-					Sleep(p2->getPause());
+					Sleep(p2->GetPauseDuration());
 					pass = false;
 					run  = false;				
 				}			
@@ -257,7 +257,7 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 			{
 				text("The enemy is stunned",13,11,white);
 				text("",79,23,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 				pass = true;
 				guy->setstate(0);
 			}
@@ -279,23 +279,23 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 		{			
 			clear();
 			guy->info();
-			p2->info();
+			p2->DisplayInfo();
 			Evd = rand()%100 + 1;
-			if(Evd <= p2->getEvd() + arm->getevadMod() && !p2->getSleep())	// Elaborate equation for evasion
+			if(Evd <= p2->GetEvade() + arm->getevadMod() && !p2->GetIsAsleep())	// Elaborate equation for evasion
 			{
 				text("You dodged the enemy attack",13,11,white);
-				Sleep(p2->getPause());
+				Sleep(p2->GetPauseDuration());
 			}
 			else
 			{
-				if(p2->getpoisoned())										// Check if player is poisoned
+				if(p2->GetIsPoisoned())										// Check if player is poisoned
 				{
 					Damage = rand()% 10 + 1;								// Conjure up some poison damage
-					p2->setHP(p2->getHP() - Damage);						// Incur that damage	
+					p2->SetHitPoints(p2->GetCurrentHitPoints() - Damage);						// Incur that damage	
 					text("You take poison damage: ",13,11,white);			// Display that damage	
 					num(Damage,45,11,red);			
-					Sleep(p2->getPause());
-					if(p2->getHP() < 1)
+					Sleep(p2->GetPauseDuration());
+					if(p2->GetCurrentHitPoints() < 1)
 						break;
 				}
 				guy->attack(p2,pstuff,stuff,Map);							// Enemy attack			
@@ -311,39 +311,39 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 //=============================================================================================================
 	if(guy->gethp() <= 0)
 	{
-		p2->setstate(0);						// After a fight state gets set to zero
-		p2->setpoisoned(false);					// After a fight you are no longer poisoned
+		p2->SetMagicStatus(0);						// After a fight state gets set to zero
+		p2->SetIsPoisoned(false);					// After a fight you are no longer poisoned
 		clear();
-		p2->stopMusic();
+		p2->StopMusic();
 		PlaySound("WinBattle.wav",NULL, SND_FILENAME | SND_ASYNC);	
 		text("The enemy has been slain",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		guy->win(p2);							// Dynamic enemy win function
 /*================================================================
 	Here I will put the you beat the bad guy music! which will
 	be static I think. Unless you get cooler music from a boss.
 ==================================================================*/
-		while(p2->LevUp())
+		while(p2->ReachedNextLevel())
 		{
-			p2->raiseLev();						// Player function to go up a level
+			p2->IncreaseLevel();						// Player function to go up a level
 			//p2->playMusic("Level Up Music");  Don't have level up music yet
 		}
 		if(guy->dropItem())						// Checks to see if the enemy dropped an item
 			stuff.push_back(guy->token(Map));	// Drops item on the ground
 		clear();
 	}
-	if(p2->getHP() <= 0)
+	if(p2->GetCurrentHitPoints() <= 0)
 	{
 		clear();
 		text("You have died",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		return;
 	}
 	if(guy->getrunAway())
 	{
 		clear();
 		text("The enemy has run off!!!",13,11,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		guy->setrunAway(false);
 		clear();
 	}
@@ -351,5 +351,5 @@ void world::fight(Player *p2, creature *guy, vector<item*> &pstuff,vector<item*>
 	Here, we put the map music back on. Providing of course
 	that we haven't changed musicFilename at all. I hope!
 =============================================================*/
-	p2->playMusic(p2->getMusicFilename());
+	p2->PlayMusic(p2->GetMusicFilename());
 }

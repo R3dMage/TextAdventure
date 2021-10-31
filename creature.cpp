@@ -54,19 +54,19 @@ void creature::attack(Player *p2,vector<item*> &pstuff,vector<item*> &stuff,stri
 	int Damage;
 	armor *arm;
 
-	arm = p2->getarmor();
+	arm = p2->GetArmor();
 	Damage = rand()% damage + damMod;
 	Damage -= arm->getdefMod();
 	if(Damage < 0)
 		Damage = 0;
-	p2->setHP(p2->getHP()-Damage);
+	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
 	text(getname(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->getPause());
+	Sleep(p2->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
 	creature::dam(Damage);
-	p2->info();
+	p2->DisplayInfo();
 	clear();
 }
 
@@ -78,10 +78,10 @@ void creature::win(Player *p2)
 	text("Exp : ",13,12,green);
 	num(gold,20,11,green);
 	num(exp,20,12,green);
-	p2->setKills(p2->getKills() + 1);
-	p2->setgold(p2->getgold() + gold);
-	p2->setexp(p2->getexp() + exp);
-	p2->info();
+	p2->SetTotalKills(p2->GetTotalKills() + 1);
+	p2->SetGold(p2->GetGold() + gold);
+	p2->SetExperience(p2->GetExperience() + exp);
+	p2->DisplayInfo();
 	text("",79,23,white);
 	Sleep(3000);
 

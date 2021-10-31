@@ -69,12 +69,12 @@ minheal::minheal()
 }
 void minheal::use(Player *p2,creature *enemy)
 {
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int cur = rand()% 30 + 10;
 	cur += multi;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
-	p2->setHP(p2->getHP() + cur);
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + cur);
 	text("You were healed: ",13,8,white); cout << cure;
 	cure(cur);
 }
@@ -88,12 +88,12 @@ majheal::majheal()
 }
 void majheal::use(Player *p2,creature *enemy)
 {
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int cur = rand()% 60 + 30;
 	cur *= multi;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
-	p2->setHP(p2->getHP() + cur);
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + cur);
 	text("You were healed: ",13,8,white); cout << cure;
 	cure(cur);
 }
@@ -110,13 +110,13 @@ briar::briar()
 void briar::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	Damage = rand()%20 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
 	Damage -= (enemy->getmka() / 4);
 	Damage -= enemy->getdef();
@@ -139,13 +139,13 @@ snow::snow()
 void snow::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	Damage = rand()%40 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
 	Damage -= (enemy->getmka() / 4);
 	Damage -= enemy->getdef();
@@ -167,13 +167,13 @@ pstorm::pstorm()
 void pstorm::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;	
 	Damage = rand()%100 + 50;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
 	Damage -= (enemy->getmka() / 4);
 	Damage -= enemy->getdef();
@@ -195,10 +195,10 @@ dlife::dlife()
 void dlife::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	text("                                                                ",13,9,white);
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -210,8 +210,8 @@ void dlife::use(Player *p2, creature *enemy)
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
 	enemy->dam(Damage);
-	Sleep(p2->getPause());
-	p2->setHP(p2->getHP() + Damage);
+	Sleep(p2->GetPauseDuration());
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + Damage);
 	text("You were healed: ",13,8,white); cout << Damage;
 	cure(Damage);
 }
@@ -227,10 +227,10 @@ stealka::stealka()
 void stealka::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	int KA = enemy->getka();
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%15 + 5;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -238,7 +238,7 @@ void stealka::use(Player *p2,creature *enemy)
 	cast();
 	enemy->setka(KA - Damage);
 	text("                                                                ",13,11,white);
-	p2->setka(p2->getka() + Damage);
+	p2->SetKa(p2->GetCurrentKa() + Damage);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
 	enemy->dam(Damage);
@@ -254,9 +254,9 @@ farrow::farrow()
 void farrow::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%30 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -282,9 +282,9 @@ fire::fire()
 void fire::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%50 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -310,9 +310,9 @@ lava::lava()
 void lava::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%150 + 50;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -337,10 +337,10 @@ strength::strength()
 }
 void strength::use(Player *p2,creature *)
 {
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
-	p2->setstate(1);
-	p2->setstr(p2->getstr() + 10);
+	p2->SetMagicStatus(1);
+	p2->SetStrength(p2->GetStrength() + 10);
 }
 dispel::dispel()
 {
@@ -352,7 +352,7 @@ dispel::dispel()
 }
 void dispel::use(Player *p2,creature *enemy)
 {
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
 	enemy->setstate(0);
 }
@@ -367,9 +367,9 @@ shock::shock()
 void shock::use(Player * p2, creature * enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%20 + 10;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -393,9 +393,9 @@ acidrain::acidrain()
 void acidrain::use(Player *p2, creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -420,8 +420,8 @@ void lightning::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage;
-	int multi = p2->getmind()/7;
-	p2->setka(p2->getka() - cost);
+	int multi = p2->GetMind()/7;
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
 	if(X < enemy->getmagdef())
@@ -445,9 +445,9 @@ poison::poison()
 void poison::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage = rand()% 10 + 10;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	cast();
 	if(X < enemy->getmagdef())
 		Damage = Damage - Damage/4;
@@ -469,9 +469,9 @@ skeleton::skeleton()
 void skeleton::use(Player * p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
 	cast();
@@ -494,9 +494,9 @@ dstrike::dstrike()
 void dstrike::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
 	cast();
@@ -521,7 +521,7 @@ void critical::use(Player *p2,creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage = enemy->gethp() - enemy->gethp()/8;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - cost);
 	enemy->sethp(enemy->gethp()/8);
 	text("Your Damage: ",13,11,white);
 	text("                                                                ",13,11,white);

@@ -56,31 +56,31 @@ bool elf::talkto(Player *p2)
 	}
 
 
-	if(p2->getelf() < 2)
+	if(p2->GetReactionElf() < 2)
 	{
 		text("You bastard, you've slaughtered my brethren!!!",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		return true;
 	}
-	if(p2->getelf() == 2)
+	if(p2->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Human, perhaps someday you will prove worthy...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
@@ -130,31 +130,31 @@ bool mage::talkto(Player *p2)
 	}
 
 
-	if(p2->getelf() < 2)
+	if(p2->GetReactionElf() < 2)
 	{
 		text("I will end your murderous ways, human!",13,9,white);
-		Sleep(p2->getPause());	
+		Sleep(p2->GetPauseDuration());	
 		return true;
 	}
-	if(p2->getelf() == 2)
+	if(p2->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Your ways are far inferior to ours, human.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("Your life is so fleeting human, you should treatsure it.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("From the earth came all living things.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
@@ -204,58 +204,58 @@ bool warrior::talkto(Player *p2)
 	}
 
 
-	if(p2->getelf() < 2)
+	if(p2->GetReactionElf() < 2)
 	{
 		switch(num)
 		{
 		case 1:
 			text("You bastard, you've slaughtered my brethren!!!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("Vile human, you are reputed to kill elves, I will slay you",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("Mere death is too good for you!!!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("Here you will die, human.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return true;
 	}
-	if(p2->getelf() == 2)
+	if(p2->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Human, your skills are dull.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("What seek ye here?",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("Elven Warrior:...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->getelf() > 2)
+	if(p2->GetReactionElf() > 2)
 	{
 		text("Friend to the elves how can I assist you?",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                             ",13,9,white);
 		return false;
 	}
@@ -314,40 +314,40 @@ bool Orc::talkto(Player *p2)
 	}
 
 
-	if(p2->getorc() < 2)
+	if(p2->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->getPause());	
+		Sleep(p2->GetPauseDuration());	
 		return true;
 	}
-	if(p2->getorc() == 2)
+	if(p2->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->getorc() > 2)
+	if(p2->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		text("                                                             ",13,9,white);
 		return false;
 	}
@@ -395,40 +395,40 @@ bool sorceror::talkto(Player *p2)
 	}
 
 
-	if(p2->getorc() < 2)
+	if(p2->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->getPause());	
+		Sleep(p2->GetPauseDuration());	
 		return true;
 	}
-	if(p2->getorc() == 2)
+	if(p2->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->getorc() > 2)
+	if(p2->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		return false;
 	}
 	else return false;
@@ -473,40 +473,40 @@ bool osoldier::talkto(Player *p2)
 		return true;
 		break;		
 	}
-	if(p2->getorc() < 2)
+	if(p2->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->getPause());	
+		Sleep(p2->GetPauseDuration());	
 		return true;
 	}
-	if(p2->getorc() == 2)
+	if(p2->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->getPause());
+			Sleep(p2->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->getorc() > 2)
+	if(p2->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->getPause());
+		Sleep(p2->GetPauseDuration());
 		return false;
 	}
 	else return false;
@@ -564,17 +564,17 @@ bool human::talkto(Player *p2)
 		return true;
 		break;		
 	}
-	if(p2->gethuman() < 2)
+	if(p2->GetReactionHuman() < 2)
 	{
 		text("Alright! Your head will bring me ",13,9,white); cout << Y << "Gold!!!";
-		Sleep(p2->getPause());	
+		Sleep(p2->GetPauseDuration());	
 		return true;
 	}
-	if(p2->gethuman() == 2)
+	if(p2->GetReactionHuman() == 2)
 	{
 		return false;
 	}
-	if(p2->gethuman() > 2)
+	if(p2->GetReactionHuman() > 2)
 	{
 		switch(num)
 		{	
