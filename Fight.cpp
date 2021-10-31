@@ -15,7 +15,7 @@
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void World::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*> &stuff,vector<Magic*> &spells,string Map)
+void World::Fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*> &stuff,vector<Magic*> &spells,string Map)
 {
 	COORD CursPos;					// Mystical Cursor Position
 	string Ename = guy->getname();	// Name of the enemy
@@ -108,12 +108,12 @@ void World::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 			CursPos.X = 2;
 			CursPos.Y = 15;
 
-			DrawCurs(CursPos,ftext,26);
+			DrawCursor(CursPos,ftext,26);
 			do
 			{
-				if(MoveCurs(CursPos,bSel,bEsc,15,18))
+				if(MoveCursor(CursPos,bSel,bEsc,15,18))
 				{
-					DrawCurs(CursPos,ftext,26);
+					DrawCursor(CursPos,ftext,26);
 				}
 				text("", 79, 23, ftext);
 			}while(!bSel);
@@ -210,7 +210,7 @@ void World::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 				}
 				else
 				{
-					fmagic(p2,guy,spells,bEsc);				
+					InFightMagicMenu(p2,guy,spells,bEsc);				
 					if(bEsc)
 						pass = true;
 				}
@@ -222,7 +222,7 @@ void World::fight(Player *p2, creature *guy, vector<Item*> &pstuff,vector<Item*>
 
 			if(item)
 			{			
-				useItem(p2,stuff,pstuff,bFight,bLeave,Map);
+				UseItem(p2,stuff,pstuff,bFight,bLeave,Map);
 				if(bLeave)
 					pass = true;
 				arm = p2->GetArmor();

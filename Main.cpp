@@ -69,7 +69,7 @@ void main()
 		//p.setweapon(loadWeapon("DeathSword"));
 		//p.setarmor(loadArmor("Hvy.Chain"));
 	}
-	globe.locations(map,&p,load);
+	globe.Locations(map,&p,load);
 	text("",13,23,white);
 	system("pause");
 

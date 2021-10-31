@@ -23,7 +23,7 @@ World::~World()
 {
 }
 
-void World::locations(string Map, Player *p2,bool load)
+void World::Locations(string Map, Player *p2,bool load)
 {	
 	unsigned int i;
 	int Xmax = 0;
@@ -109,7 +109,7 @@ void World::locations(string Map, Player *p2,bool load)
 
 		mk.push_back(new monk);						//This puts in THE only monk in the game.
 
-		intro();									//Calls the games intro
+		Intro();									//Calls the games intro
 	}
 
 
@@ -163,11 +163,11 @@ void World::locations(string Map, Player *p2,bool load)
 		exit(0);
 	}
 	fin.close();
-	loadmap(Vmap,MapName,Xmax,Ymax,bTown);		//This function loads all the map places into the V(irtual)map in memory
-	npcSetup(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);	//This function sets up the enemies according to the map
-	if(musicCmp(MM,MapMusic))
+	LoadMap(Vmap,MapName,Xmax,Ymax,bTown);		//This function loads all the map places into the V(irtual)map in memory
+	SetupNcps(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);	//This function sets up the enemies according to the map
+	if(MusicNameComparer(MM,MapMusic))
 		MapMusic = MM;
-	music(MapMusic,p2);
+	SetMusic(MapMusic,p2);
 	
 
 
@@ -200,11 +200,11 @@ void World::locations(string Map, Player *p2,bool load)
 			p2->SetPositionY(Vmap[T]->GetNeoY());
 			Map = Vmap[T]->GetMapChangeName();
 			MapName = "./data/" + Map + ".tgm";
-			loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-			npcSetup(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
-			if(musicCmp(MM,MapMusic))
+			LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
+			SetupNcps(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
+			if(MusicNameComparer(MM,MapMusic))
 				MapMusic = MM;
-			music(MapMusic,p2);
+			SetMusic(MapMusic,p2);
 
 			total = Xmax * Ymax;
 			T = (p2->GetPositionY()-1) * Xmax + p2->GetPositionX() - 1;
@@ -219,13 +219,13 @@ void World::locations(string Map, Player *p2,bool load)
 		{
 			ShopType = Vmap[T]->GetShopName();
 			if(ShopType == "armory")
-				armory(inv,p2,Map);
+				Armory(inv,p2,Map);
 			if(ShopType == "inn")
-				inn(p2,Map);
+				Inn(p2,Map);
 			if(ShopType == "magic")
-				magicshop(inv,p2,Map);
+				MagicShop(inv,p2,Map);
 			if(ShopType == "buy")
-				buyer(p2,inv,Map);
+				PawnShop(p2,inv,Map);
 		}		
 
 		mk[0]->loadPos(Xmax,Ymax);
@@ -254,7 +254,7 @@ void World::locations(string Map, Player *p2,bool load)
 //============================================================================================================= 
 //									Puts location descriptions on the screen!
 //=============================================================================================================
-		clr(11);
+		ClearTextBottomRight(11);
 		if(description.length() > 65)
 		{
 			DescriptDisplay(description,d1,d2,d3);
@@ -367,7 +367,7 @@ void World::locations(string Map, Player *p2,bool load)
 			if(load)
 				load = false;			
 			//num(time,15,5,ftext);
-			walk(bSel,bEsc,p2,Xmax,Ymax,time);
+			Walk(bSel,bEsc,p2,Xmax,Ymax,time);
 			//time++;
 		}
 		bSel = false;
@@ -376,7 +376,7 @@ void World::locations(string Map, Player *p2,bool load)
 				//   Basically, Press Esc for the menu
 		{
 			//clear();                    For smooth look remarked out on 2/15/06
-			menu(p2,spells,Globals,inv,Map);
+			HandleMainMenu(p2,spells,Globals,inv,Map);
 			if(p2->GetIsLoaded())
 			{
 				MapName = "./data/" + Map + ".tgm";						//This adds the extensions we need to access Map Files
@@ -388,11 +388,11 @@ void World::locations(string Map, Player *p2,bool load)
 					exit(0);
 				}
 				
-				loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-				npcSetup(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
-				if(musicCmp(MM,MapMusic))
+				LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
+				SetupNcps(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
+				if(MusicNameComparer(MM,MapMusic))
 					MapMusic = MM;
-				music(MapMusic,p2);
+				SetMusic(MapMusic,p2);
 				p2->SetIsLoaded(false);
 			}
 			choice = 0;
@@ -415,11 +415,11 @@ void World::locations(string Map, Player *p2,bool load)
 			p2->SetPositionX(17);
 			p2->SetPositionY(1);
 			MapName = "./data/" + Map + ".tgm";
-			loadmap(Vmap,MapName,Xmax,Ymax,bTown);
-			npcSetup(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
-			if(musicCmp(MM,MapMusic))
+			LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
+			SetupNcps(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
+			if(MusicNameComparer(MM,MapMusic))
 				MapMusic = MM;
-			music(MapMusic,p2);
+			SetMusic(MapMusic,p2);
 
 		}
 
@@ -435,19 +435,19 @@ void World::locations(string Map, Player *p2,bool load)
 				if(p2->GetPositionX() == encounter[i]->getX() && p2->GetPositionY() == encounter[i]->getY() && encounter[i]->gethp() != 0)
 				{			
 					if(!encounter[i]->getTalkTo())
-						fight(p2,encounter[i],inv,Globals,spells,Map);	
+						Fight(p2,encounter[i],inv,Globals,spells,Map);	
 					else
 					{
 						//clear();
 						p2->DisplayInfo();
 						if(encounter[i]->talkto(p2))
-							fight(p2,encounter[i],inv,Globals,spells,Map);
+							Fight(p2,encounter[i],inv,Globals,spells,Map);
 					}
 					if(encounter[i]->gethp() <= 0)							
 					{
 						Globals.push_back(encounter[i]->body(Map));		//Drops enemy unique item if the enemy is dead
 					}
-					magicCheck(p2,spells);
+					CheckMagic(p2,spells);
 //===========================================================================================================
 //					Replenishes the dead enemies, so we don't run out of them on a map
 //Moved to inside the for loop 6/14/05
@@ -456,13 +456,13 @@ void World::locations(string Map, Player *p2,bool load)
 					{
 						if(encounter[i]->gethp() <= 0 && !encounter[i]->getdontmove())
 						{				
-							Eplenish(encounter,i);							
+							ReplenishEnemy(encounter,i);							
 							encounter[encounter.size()-1]->loadPos(Xmax,Ymax);
 						}
 					}
 					if(mk[0]->gethp() <= 0)
 					{
-						Eplenish(mk,i);							
+						ReplenishEnemy(mk,i);							
 						mk[mk.size()-1]->loadPos(Xmax,Ymax);
 					}
 
@@ -473,14 +473,14 @@ void World::locations(string Map, Player *p2,bool load)
 			p2->SetIsLoaded(false);
 
 		if(mk[0]->getX() == p2->GetPositionX() && mk[0]->getY() == p2->GetPositionY() && Map == "field2")
-			fight(p2,mk[0],inv,Globals,spells,Map);
+			Fight(p2,mk[0],inv,Globals,spells,Map);
 
 
 //===============================================================================================
 //									Function for moving enemies around on the map
 //===============================================================================================
 
-		move(encounter,Xmax,Ymax);
+		Move(encounter,Xmax,Ymax);
 	}// -------------------------------->End Walking Loop
 }
 //===================================================================================================================
@@ -489,7 +489,7 @@ void World::locations(string Map, Player *p2,bool load)
 
 
 //				Function to draw the cusor to the screen
-void World::DrawCurs(COORD pos, WORD color, char curs)
+void World::DrawCursor(COORD pos, WORD color, char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -499,7 +499,7 @@ void World::DrawCurs(COORD pos, WORD color, char curs)
 	cout << curs;
 }
 //				Function to move the cursor up and down
-bool World::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
+bool World::MoveCursor(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursPos;
@@ -572,7 +572,7 @@ return false;
 //	to load up the description of the place you've moved to. Also it takes the bEsc variable to see if you
 //  hit Esc key to enter the menu.
 //==========================================================================================================
-bool World::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
+bool World::Walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 {
 	T++;
 	INPUT_RECORD InputRecord;
@@ -625,7 +625,7 @@ bool World::walk(bool &bSel, bool &bEsc, Player *p2,int Xmax, int Ymax, int &T)
 return false;	
 }
 //				This is the shop where you buy weapons and armor
-void World::armory(vector<Item*> &pstuff,Player *p2,string Map)
+void World::Armory(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -685,7 +685,7 @@ void World::armory(vector<Item*> &pstuff,Player *p2,string Map)
 		funds = true;
 		clear();
 		p2->DisplayInfo();
-		items(pstuff);
+		DisplayPlayerItems(pstuff);
 
 		text("[-----For Sale-----]",13,1,yellow);
 		text(wsell1->GetName(),15,2,white);		num(wsell1->GetCost(),28,2,white);
@@ -695,13 +695,13 @@ void World::armory(vector<Item*> &pstuff,Player *p2,string Map)
 		text(asell2->GetName(),15,6,white);		num(asell2->GetCost(),28,6,white);
 		text(asell3->GetName(),15,7,white);		num(asell3->GetCost(),28,7,white);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(CursPos,yellow,175);
 		wsell1->Display();
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,2,7))
+			if(MoveCursor(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -801,7 +801,7 @@ void World::armory(vector<Item*> &pstuff,Player *p2,string Map)
 //==========================================================================================================
 //	Function for what happens when you go to an inn.
 //==========================================================================================================
-void World::inn(Player *p2,string Map)
+void World::Inn(Player *p2,string Map)
 {
 	int choice = 0;
 	int price = 0;
@@ -847,12 +847,12 @@ void World::inn(Player *p2,string Map)
 		text("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(CursPos,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,12,13))
+			if(MoveCursor(CursPos,bSel,bEsc,12,13))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -888,7 +888,7 @@ void World::inn(Player *p2,string Map)
 	clear();
 }
 
-void World::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
+void World::MagicShop(vector<Item*> &pstuff,Player *p2,string Map)
 {
 	int choice = 0;
 	bool bEsc = false;
@@ -949,7 +949,7 @@ void World::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 		funds = true;
 		clear();
 		p2->DisplayInfo();
-		items(pstuff);
+		DisplayPlayerItems(pstuff);
 
 		text("[-----For Sale-----]",13,1,yellow);
 		text(isell1->GetName(),15,2,white);		num(isell1->GetCost(),28,2,white);
@@ -959,13 +959,13 @@ void World::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 		text(isell5->GetName(),15,6,white);		num(isell5->GetCost(),28,6,white);
 		text(isell6->GetName(),15,7,white);		num(isell6->GetCost(),28,7,white);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(CursPos,yellow,175);
 		isell1->Display();
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,2,7))
+			if(MoveCursor(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -1061,7 +1061,7 @@ void World::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 	clear();
 }
 
-void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
+void World::PawnShop(Player *p2, vector<Item*> &pstuff,string Map)
 {
 	//item *temp;
 	Item *iUsed;
@@ -1100,7 +1100,7 @@ void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 		else
 			text("What would you like to sell?",13,3,white);
 
-		items(pstuff);
+		DisplayPlayerItems(pstuff);
 		while(!bSel)
 		{
 			bEsc = false;
@@ -1108,15 +1108,15 @@ void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 			CursPos.X = 13;
 			CursPos.Y = 12;
 
-			DrawCurs(CursPos,yellow,175);			
+			DrawCursor(CursPos,yellow,175);			
 			Offset = CursPos.Y - 12;
 			pstuff[Offset]->Display();
 			do
 			{
 				choice = static_cast<int>(11+pstuff.size());
-				if(MoveCurs(CursPos,bSel,bEsc,12,choice))
+				if(MoveCursor(CursPos,bSel,bEsc,12,choice))
 				{
-					DrawCurs(CursPos,yellow,175);
+					DrawCursor(CursPos,yellow,175);
 					Offset = CursPos.Y - 12;
 					pstuff[Offset]->Display();
 				}
@@ -1141,9 +1141,9 @@ void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 		do
 		{
 			
-			if(MoveCurs(CursPos,bSel,bEsc,CursPos.Y,CursPos.Y))
+			if(MoveCursor(CursPos,bSel,bEsc,CursPos.Y,CursPos.Y))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -1161,7 +1161,7 @@ void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 //==================================================================================================
 
 //======================================NEW CODE TO REMOVE ITEM=====================================
-		slidedown(pstuff,Offset);
+		SlideDown(pstuff,Offset);
 		pstuff.pop_back();
 //==================================================================================================
 		clrbottom();
@@ -1178,7 +1178,7 @@ void World::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 //==========================================================================================================
 //	Function for replenishing enemies
 //==========================================================================================================
-void World::Eplenish(vector<creature*> &enemies, int num)
+void World::ReplenishEnemy(vector<creature*> &enemies, int num)
 {
 	creature *temp;
 
@@ -1232,7 +1232,7 @@ void World::DescriptDisplay(string disp, string &first, string &second, string &
 	}
 }
 
-void World::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
+void World::LoadMap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bool &bTown)
 {
 	ifstream fin;
 	string szHolder;
@@ -1311,7 +1311,7 @@ void World::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bo
 //	This function runs through the vector of creatures, moving them around the map in a random fashion
 //  5/10/05
 //==========================================================================================================
-void World::move(vector<creature*> &encounter,int Xmax, int Ymax)
+void World::Move(vector<creature*> &encounter,int Xmax, int Ymax)
 {
 	int RND;
 	unsigned int i;
@@ -1347,11 +1347,11 @@ void World::move(vector<creature*> &encounter,int Xmax, int Ymax)
 //	This function checks to see if Player is eligable for any magics, and checks so not to give the same
 //  one twice. REM added 1/5/06
 //==========================================================================================================
-void World::magicCheck(Player *p2,vector<Magic*> &M)
+void World::CheckMagic(Player *p2,vector<Magic*> &M)
 {
 	if(p2->RaceKillCounts.OrcKillCount == 5 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Minor Heal"))
+		if(HasMagic(M,"Minor Heal"))
 			return;
 		//p2->setbspells(true);             Just there to test when to give ka
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
@@ -1360,7 +1360,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 10 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Briar Bush"))
+		if(HasMagic(M,"Briar Bush"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new BriarBush);
@@ -1368,7 +1368,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 20 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Major Heal"))
+		if(HasMagic(M,"Major Heal"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new MajorHeal);
@@ -1376,7 +1376,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.OrcKillCount == 40 && p2->RaceKillCounts.ElfKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Snow"))
+		if(HasMagic(M,"Snow"))
 			return;
 		text("The god of life has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Blizzard);
@@ -1384,7 +1384,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 5 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Drain Life"))
+		if(HasMagic(M,"Drain Life"))
 			return;
 		p2->SetHasSpells(true);
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
@@ -1393,7 +1393,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 10 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Flame Arrow"))
+		if(HasMagic(M,"Flame Arrow"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new FireArrow);
@@ -1401,7 +1401,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 20 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Steal Ka"))
+		if(HasMagic(M,"Steal Ka"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new StealKa);
@@ -1409,7 +1409,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount == 40 && p2->RaceKillCounts.OrcKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Fire"))
+		if(HasMagic(M,"Fire"))
 			return;
 		text("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Fire);
@@ -1417,7 +1417,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 4 && p2->RaceKillCounts.OrcKillCount > 4 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Strength"))
+		if(HasMagic(M,"Strength"))
 			return;
 		p2->SetHasSpells(true);
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
@@ -1426,7 +1426,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 8 && p2->RaceKillCounts.OrcKillCount > 8 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Dispel"))
+		if(HasMagic(M,"Dispel"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Dispel);
@@ -1434,7 +1434,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 12 && p2->RaceKillCounts.OrcKillCount > 12 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Shock"))
+		if(HasMagic(M,"Shock"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Shock);
@@ -1442,7 +1442,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 15 && p2->RaceKillCounts.OrcKillCount > 15 &&  p2->RaceKillCounts.HumanKillCount == 0 && M.size() < 10)
 	{
-		if(hasMagic(M,"Acid Rain"))
+		if(HasMagic(M,"Acid Rain"))
 			return;
 		text("The god of war has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new AcidRain);
@@ -1450,7 +1450,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 3 && p2->RaceKillCounts.OrcKillCount > 3 &&  p2->RaceKillCounts.HumanKillCount > 3 && M.size() < 10)
 	{
-		if(hasMagic(M,"Poison"))
+		if(HasMagic(M,"Poison"))
 			return;
 		p2->SetHasSpells(true);
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
@@ -1459,7 +1459,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 10 && p2->RaceKillCounts.OrcKillCount > 10 &&  p2->RaceKillCounts.HumanKillCount > 10 && M.size() < 10)
 	{
-		if(hasMagic(M,"Skeleton"))
+		if(HasMagic(M,"Skeleton"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Skeleton);
@@ -1467,7 +1467,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 15 && p2->RaceKillCounts.OrcKillCount > 15 &&  p2->RaceKillCounts.HumanKillCount > 15 && M.size() < 10)
 	{
-		if(hasMagic(M,"Dark Strike"))
+		if(HasMagic(M,"Dark Strike"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new DarkStrike);
@@ -1475,7 +1475,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	}
 	if(p2->RaceKillCounts.ElfKillCount > 20 && p2->RaceKillCounts.OrcKillCount > 20 &&  p2->RaceKillCounts.HumanKillCount > 20 && M.size() < 10)
 	{
-		if(hasMagic(M,"Critical"))
+		if(HasMagic(M,"Critical"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
 		M.push_back(new Critical);
@@ -1485,7 +1485,7 @@ void World::magicCheck(Player *p2,vector<Magic*> &M)
 	
 }
 
-bool World::hasMagic(vector<Magic*> M,string name)
+bool World::HasMagic(vector<Magic*> M,string name)
 {
 	unsigned int i;
 	for(i=0;i<M.size();i++)
@@ -1498,7 +1498,7 @@ bool World::hasMagic(vector<Magic*> M,string name)
 //==========================================================================================================
 //	Intro to the game!
 //==========================================================================================================
-void World::intro()
+void World::Intro()
 {
 	text("In the past when gods could be bested by mortal men, ",13,2,white);
 	text("four priests are keeping the pantheon at bay and ruling",13,3,white);
@@ -1510,7 +1510,7 @@ void World::intro()
 /*==========================================================================================================
 	A string comparison function. Yeah I wrote my own, wanna fight about it?
 ============================================================================================================*/
-bool World::musicCmp(char* string1,char* string2)
+bool World::MusicNameComparer(char* string1,char* string2)
 {
 	if(string1 == string2)
 		return false;
@@ -1521,7 +1521,7 @@ bool World::musicCmp(char* string1,char* string2)
 /*===========================================
 This function will play music of the game
 =============================================*/
-void World::music(char * mapMusic, Player *p2)
+void World::SetMusic(char * mapMusic, Player *p2)
 {
 /*================================================
     copy the map music into the player's music

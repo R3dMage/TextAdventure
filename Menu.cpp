@@ -19,21 +19,21 @@
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-void World::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector<Item*> &pstuff,string &Map)
+void World::HandleMainMenu(Player *player, vector<Magic*> &spells,vector<Item*> &worldItems, vector<Item*> &playerInventory,string &map)
 {
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos; 
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD cursorPosition; 
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
-		clr(11);
-		p2->DisplayInfo();	
-		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
-		CursPos.X = 2;
-		CursPos.Y = 12;
-		bSel = false;
+		ClearTextBottomRight(11);
+		player->DisplayInfo();	
+		ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		cursorPosition.X = 2;
+		cursorPosition.Y = 12;
+		selectionWasMade = false;
 		text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Inv.   |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Status |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -42,66 +42,66 @@ void World::menu(Player *p2, vector<Magic*> &spells,vector<Item*> &stuff, vector
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("           ",1,17,blue);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,12,15))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,15))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			break;
 
-		choice = CursPos.Y;
+		choice = cursorPosition.Y;
 		switch(choice)
 		{
 		case 12:
-			inventory(p2,stuff,pstuff,Map);
+			HandleInventory(player,worldItems,playerInventory,map);
 			break;
 		case 13:
-			p2->DisplayStatus();
+			player->DisplayStatus();
 			break;
 		case 14:
-			if(p2->HasLearnedSpells())
-				magic(p2,spells);
+			if(player->HasLearnedSpells())
+				MagicMenu(player,spells);
 			else
 			{
 				text("You have no magic",13,11,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 				text("                 ",13,11,white);
 			}
 			break;
 		case 15:
-			options(p2,stuff,pstuff,spells,Map);
+			Options(player,worldItems,playerInventory,spells,map);
 			break;		
 		}
-	}// End of While(bEsc)
+	}// End of While(escapeWasPressed)
 
 
 }
-void World::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,string Map)
+void World::HandleInventory(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string map)
 {
-	unsigned int Offset;
+	unsigned int offset;
 	int choice = 0;
 	int Y = 11;
-	bool bEsc = false;
-	bool bSel = false;
-	bool Iused = false;
-	bool Pick;
-	bool Use;
-	COORD CursPos = {2,12};
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	bool wasUsed = false;
+	bool pickup;
+	bool selectedUse;
+	COORD cursorPosition = {2,12};
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{		
-		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
-		items(pstuff);
-		CursPos.X = 2;
-		CursPos.Y = 12;
-		bSel = false;
-		Pick = false;
-		Use = false;
+		ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		DisplayPlayerItems(playerInventory);
+		cursorPosition.X = 2;
+		cursorPosition.Y = 12;
+		selectionWasMade = false;
+		pickup = false;
+		selectedUse = false;
 		text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  PickUp |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Utilize|",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -109,43 +109,43 @@ void World::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,str
 		text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,12,13))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,13))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 			}
 			text("",79,23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			break;
 
-		choice = CursPos.Y;
+		choice = cursorPosition.Y;
 		switch(choice)
 		{
 		case 12:
-			Pick = true;
+			pickup = true;
 			break;
 		case 13:
-			Use = true;
+			selectedUse = true;
 			break;
 		}
 
-		if(Pick)
+		if(pickup)
 		{
 			Item *temp;
-			if(pstuff.size() < 12)
+			if(playerInventory.size() < 12)
 			{
-				for(Offset = 0;Offset < stuff.size();Offset++)
+				for(offset = 0;offset < worldItems.size();offset++)
 				{
-					if(stuff[Offset]->GetPositionY() == p2->GetPositionY() && stuff[Offset]->GetPositionX() == p2->GetPositionX() && stuff[Offset]->GetMapName() == Map)
+					if(worldItems[offset]->GetPositionY() == player->GetPositionY() && worldItems[offset]->GetPositionX() == player->GetPositionX() && worldItems[offset]->GetMapName() == map)
 					{
-						pstuff.push_back(stuff[Offset]);
-						temp = stuff[stuff.size()-1];
-						stuff[stuff.size()-1] = stuff[Offset];
-						stuff[Offset] = temp;
-						stuff.pop_back();
+						playerInventory.push_back(worldItems[offset]);
+						temp = worldItems[worldItems.size()-1];
+						worldItems[worldItems.size()-1] = worldItems[offset];
+						worldItems[offset] = temp;
+						worldItems.pop_back();
 						break;
 					}
 				}
@@ -158,22 +158,22 @@ void World::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,str
 				text("                            ",13,9,white);
 			}
 		}
-		if(Use)
+		if(selectedUse)
 		{
 			choice = 0;
-			bEsc = false;
-			bSel = false;
+			escapeWasPressed = false;
+			selectionWasMade = false;
 			bool bFight = false;
 			
-			while(!bEsc)
+			while(!escapeWasPressed)
 			{
 				//clr();
 				//clrtop();
-				items(pstuff);
-				ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
-				CursPos.X = 2;
-				CursPos.Y = 12;
-				bSel = false;
+				DisplayPlayerItems(playerInventory);
+				ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+				cursorPosition.X = 2;
+				cursorPosition.Y = 12;
+				selectionWasMade = false;
 				text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 				text("|  Use    |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 				text("|  Equip  |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -181,273 +181,273 @@ void World::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,str
 				text("|  XXXX   |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 				text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 				do
 				{
-					if(MoveCurs(CursPos,bSel,bEsc,12,15))
+					if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,15))
 					{
-						DrawCurs(CursPos,yellow,175);
+						DrawCursor(cursorPosition,yellow,175);
 					}
 					text(" ", 79, 23,white);
-				}while(!bSel);
-				if(bEsc)
+				}while(!selectionWasMade);
+				if(escapeWasPressed)
 					break;
-				choice = CursPos.Y;
+				choice = cursorPosition.Y;
 				switch(choice)
 				{
 				case 12:
-					if(pstuff.size() > 0)
-						use(p2,pstuff,Iused,bFight);
+					if(playerInventory.size() > 0)
+						Use(player,playerInventory,wasUsed,bFight);
 					else
 					{
 						text("You have nothing to use",13,11,white);
-						Sleep(p2->GetPauseDuration());
+						Sleep(player->GetPauseDuration());
 					}
 					break;
 				case 13:
-					if(pstuff.size() > 0)
-						equip(p2,pstuff);
+					if(playerInventory.size() > 0)
+						Equip(player,playerInventory);
 					else
 					{
 						text("You have nothing to equip",13,12,white);
-						Sleep(p2->GetPauseDuration());
+						Sleep(player->GetPauseDuration());
 					}
 					break;
 				case 14:
-					if(pstuff.size() > 0)
-						drop(p2,stuff,pstuff,Map);
+					if(playerInventory.size() > 0)
+						Drop(player,worldItems,playerInventory,map);
 					else
 					{
 						text("You have nothing to drop",13,12,white);
-						Sleep(p2->GetPauseDuration());
+						Sleep(player->GetPauseDuration());
 					}
 					break;
 				case 15:
-					if(pstuff.size() > 0)
-						XXX(pstuff);
+					if(playerInventory.size() > 0)
+						DeleteItem(playerInventory);
 					else
 					{
 						text("You have nothing to dispose of",13,12,white);
-						Sleep(p2->GetPauseDuration());
+						Sleep(player->GetPauseDuration());
 					}
 					break;
 				}//--------End Switch
-			}//------------End While bEsc
-			clr(12);
+			}//------------End While escapeWasPressed
+			ClearTextBottomRight(12);
 		}//----------------End if(Use)
-	}//--------------------End While bEsc
+	}//--------------------End While escapeWasPressed
 }//------------------------End Inventory function
 
-void World::items(vector<Item*> &pstuff)
+void World::DisplayPlayerItems(vector<Item*> &playerInventory)
 {
 	//clr();
-	unsigned int Offset = 0;
+	unsigned int offset = 0;
 	text(" [---Items---] ",13,11,brown);
-	while(Offset < pstuff.size())
+	while(offset < playerInventory.size())
 	{		
-		text(pstuff[Offset]->GetName(),15,12+Offset,yellow);
-		Offset++;
-		if(Offset >= 12)
+		text(playerInventory[offset]->GetName(),15,12+offset,yellow);
+		offset++;
+		if(offset >= 12)
 			break;
 	}
 }
 
-void World::equip(Player *p2,vector<Item*> &pstuff)
+void World::Equip(Player *player,vector<Item*> &playerInventory)
 {
 	unsigned int Offset = 0;
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
 	Item *temp;
-	COORD CursPos;
+	COORD cursorPosition;
 
-	while(!bSel)
+	while(!selectionWasMade)
 	{
-		bSel = false;
-		CursPos.X = 13;
-		CursPos.Y = 12;
-		Offset = CursPos.Y - 12;
-		DrawCurs(CursPos,yellow,175);
-		pstuff[Offset]->Display();
+		selectionWasMade = false;
+		cursorPosition.X = 13;
+		cursorPosition.Y = 12;
+		Offset = cursorPosition.Y - 12;
+		DrawCursor(cursorPosition,yellow,175);
+		playerInventory[Offset]->Display();
 		do
 		{
-			choice = static_cast<int>(11+pstuff.size());
-			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
+			choice = static_cast<int>(11+playerInventory.size());
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
 			{
-				DrawCurs(CursPos,yellow,175);
-				Offset = CursPos.Y - 12;
-				pstuff[Offset]->Display();
+				DrawCursor(cursorPosition,yellow,175);
+				Offset = cursorPosition.Y - 12;
+				playerInventory[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 		{
 			text("          ",1,22,white);
 			text("          ",1,23,white);
 			clrbottom();
-			items(pstuff);
+			DisplayPlayerItems(playerInventory);
 			return;
 		}
-	}// End While bSel
-	Offset = CursPos.Y - 12;
-	temp = pstuff[Offset];
+	}// End While selectionWasMade
+	Offset = cursorPosition.Y - 12;
+	temp = playerInventory[Offset];
 	if(!temp->GetIsArmor() && !temp->GetIsWeapon())
 	{
 		text("You cannot equip that.",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 	}
 	if(temp->GetIsArmor())
 	{
-		pstuff.push_back(p2->GetArmor());
-		p2->SetArmor(loadArmor(temp->GetName()));
-		pstuff[Offset] = pstuff[pstuff.size()-1];
-		pstuff[pstuff.size()-1] = temp;
-		pstuff.pop_back();		
+		playerInventory.push_back(player->GetArmor());
+		player->SetArmor(loadArmor(temp->GetName()));
+		playerInventory[Offset] = playerInventory[playerInventory.size()-1];
+		playerInventory[playerInventory.size()-1] = temp;
+		playerInventory.pop_back();		
 	}
 	if(temp->GetIsWeapon())
 	{
-		pstuff.push_back(p2->GetWeapon());
-		p2->SetWeapon(loadWeapon(temp->GetName()));
-		pstuff[Offset] = pstuff[pstuff.size()-1];
-		pstuff[pstuff.size()-1] = temp;
-		pstuff.pop_back();		
+		playerInventory.push_back(player->GetWeapon());
+		player->SetWeapon(loadWeapon(temp->GetName()));
+		playerInventory[Offset] = playerInventory[playerInventory.size()-1];
+		playerInventory[playerInventory.size()-1] = temp;
+		playerInventory.pop_back();		
 	}
-	text("              ",CursPos.X,CursPos.Y,white);
-	p2->DisplayInfo();
-	items(pstuff);
+	text("              ",cursorPosition.X,cursorPosition.Y,white);
+	player->DisplayInfo();
+	DisplayPlayerItems(playerInventory);
 	text("                                           ",175,11,white);
 	text("           ",1,22,white);
 	text("           ",1,23,white);
 }
 
-void World::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Map)
+void World::Drop(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory,string map)
 {
 	unsigned int Offset = 0;
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
 	//item *temp;
-	COORD CursPos;
+	COORD cursorPosition;
 
 	
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
-		ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
-		items(pstuff);
-		bSel = false;
-		CursPos.X = 13;
-		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,175);
+		ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		DisplayPlayerItems(playerInventory);
+		selectionWasMade = false;
+		cursorPosition.X = 13;
+		cursorPosition.Y = 12;
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			choice = static_cast<int>(11+pstuff.size());
-			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
+			choice = static_cast<int>(11+playerInventory.size());
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
 			{
-				DrawCurs(CursPos,yellow,175);
-				Offset = CursPos.Y - 12;
-				pstuff[Offset]->Display();
+				DrawCursor(cursorPosition,yellow,175);
+				Offset = cursorPosition.Y - 12;
+				playerInventory[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 		{
 			text("          ",1,22,white);
 			text("          ",1,23,white);
 			clrbottom();
-			items(pstuff);
+			DisplayPlayerItems(playerInventory);
 			return;
 		}
 	
 
-		Offset = CursPos.Y - 12;
-		pstuff[Offset]->SetMapName(Map);
-		pstuff[Offset]->SetPositionX(p2->GetPositionX());
-		pstuff[Offset]->SetPositionY(p2->GetPositionY());
-		stuff.push_back(pstuff[Offset]);
-		slidedown(pstuff,Offset);
-		pstuff.pop_back();	
+		Offset = cursorPosition.Y - 12;
+		playerInventory[Offset]->SetMapName(map);
+		playerInventory[Offset]->SetPositionX(player->GetPositionX());
+		playerInventory[Offset]->SetPositionY(player->GetPositionY());
+		worldItems.push_back(playerInventory[Offset]);
+		SlideDown(playerInventory,Offset);
+		playerInventory.pop_back();	
 		text("  ",13,12,white);
 		text("                    ",13,12+Offset,white);
-		text("                    ",13,static_cast<int>(12+pstuff.size()),white);
-		if(pstuff.size() < 1)
+		text("                    ",13,static_cast<int>(12+playerInventory.size()),white);
+		if(playerInventory.size() < 1)
 			return;
-	}//end While bEsc
+	}//end While escapeWasPressed
 }
-void World::XXX(vector<Item*> &pstuff)
+void World::DeleteItem(vector<Item*> &playerInventory)
 {
-	unsigned int Offset = 0;
+	unsigned int offset = 0;
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
 	//item *temp;
-	COORD CursPos;
+	COORD cursorPosition;
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
-		items(pstuff);
-		bSel = false;
-		CursPos.X = 13;
-		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,175);
+		DisplayPlayerItems(playerInventory);
+		selectionWasMade = false;
+		cursorPosition.X = 13;
+		cursorPosition.Y = 12;
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			choice = static_cast<int>(11+pstuff.size());
-			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
+			choice = static_cast<int>(11 + playerInventory.size());
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
 			{
-				DrawCurs(CursPos,yellow,175);
-				Offset = CursPos.Y - 12;
-				pstuff[Offset]->Display();
+				DrawCursor(cursorPosition,yellow,175);
+				offset = cursorPosition.Y - 12;
+				playerInventory[offset]->Display();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 		{
 			text("          ",1,22,white);
 			text("          ",1,23,white);
 			clrbottom();
-			items(pstuff);
+			DisplayPlayerItems(playerInventory);
 			return;
 		}
 			
-		Offset = CursPos.Y - 12;
-		bSel = false;
-		text(pstuff[Offset]->GetName(),15,CursPos.Y,FOREGROUND_RED | FOREGROUND_INTENSITY);
+		offset = cursorPosition.Y - 12;
+		selectionWasMade = false;
+		text(playerInventory[offset]->GetName(),15,cursorPosition.Y,FOREGROUND_RED | FOREGROUND_INTENSITY);
 		do
 		{
 			
-			if(MoveCurs(CursPos,bSel,bEsc,CursPos.Y,CursPos.Y))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,cursorPosition.Y,cursorPosition.Y))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			return;
-		slidedown(pstuff,Offset);
-		pstuff.pop_back();
-		clr(12);
-		text("                    ",13,static_cast<int>(12+pstuff.size()),white);
-		if(pstuff.size() < 1)
+		SlideDown(playerInventory,offset);
+		playerInventory.pop_back();
+		ClearTextBottomRight(12);
+		text("                    ",13,static_cast<int>(12+playerInventory.size()),white);
+		if(playerInventory.size() < 1)
 			return;
 
-	}// End While bEsc
+	}// End While escapeWasPressed
 	
 }
 
-void World::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
+void World::Options(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &M, string &Map)
 {
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos; 
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD cursorPosition; 
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
 		//clear();       For smooth look remarked out 2/15/06
-		p2->DisplayInfo();	
-		CursPos.X = 2;
-		CursPos.Y = 12;
-		bSel = false;
+		player->DisplayInfo();	
+		cursorPosition.X = 2;
+		cursorPosition.Y = 12;
+		selectionWasMade = false;
 		text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Save   |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Load   |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -455,58 +455,58 @@ void World::options(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vecto
 		text("|  Quit   |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,12,15))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,15))
 			{
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			break;
 
-		choice = CursPos.Y;
+		choice = cursorPosition.Y;
 		switch(choice)
 		{
 		case 12:
 			text("Saving game ",13,11,yellow);
-			save(p2,stuff,pstuff,M,Map);
-			Sleep(p2->GetPauseDuration());
+			SaveGame(player,worldItems,playerInventory,M,Map);
+			Sleep(player->GetPauseDuration());
 			text("            ",13,11,yellow);
 			break;
 		case 13:
-			load(p2,stuff,pstuff,M,Map);
+			Load(player,worldItems,playerInventory,M,Map);
 			break;
 		case 14:
-			setup(p2,stuff,pstuff,M,Map);		
+			OptionsMenu(player,worldItems,playerInventory,M,Map);		
 			break;
 		case 15:
 			system("cls");
 			text("See you next time.",13,11,yellow);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			exit(0);
 			break;		
 		}
-	}// End of While(bEsc)
+	}// End of While(escapeWasPressed)
 }
 /*=====================================================================================
 	Input for the setup of the game. Music, speed, etc.
 =====================================================================================*/
-void World::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<Magic*> &M, string &Map)
+void World::OptionsMenu(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &availableMagic, string &Map)
 {
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos; 
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD cursorPosition; 
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
-		p2->DisplayInfo();	
-		CursPos.X = 2;
-		CursPos.Y = 12;
-		bSel = false;
+		player->DisplayInfo();	
+		cursorPosition.X = 2;
+		cursorPosition.Y = 12;
+		selectionWasMade = false;
 		text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Music  |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("|  Speed  |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -517,92 +517,92 @@ void World::setup(Player *p2, vector<Item*> &stuff,vector<Item*> &pstuff,vector<
 		/*=======================================
 		Displays the current music status
 		========================================*/
-		if(CursPos.Y == 12 && p2->GetIsMusicOn())
+		if(cursorPosition.Y == 12 && player->GetIsMusicOn())
 			text("Music: On    ",13,12,yellow);
-		else if(CursPos.Y == 12 && !p2->GetIsMusicOn())
+		else if(cursorPosition.Y == 12 && !player->GetIsMusicOn())
 			text("Music: Off   ",13,12,yellow);
 		//========================================
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,12,15))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,15))
 			{
 				//clr(11);
-				DrawCurs(CursPos,yellow,175);
+				DrawCursor(cursorPosition,yellow,175);
 				/*=======================================
 				Displays the current music status
 				========================================*/
-				if(CursPos.Y == 12 && p2->GetIsMusicOn())
+				if(cursorPosition.Y == 12 && player->GetIsMusicOn())
 					text("Music: On     ",13,12,yellow);
-				else if(CursPos.Y == 12 && !p2->GetIsMusicOn())
+				else if(cursorPosition.Y == 12 && !player->GetIsMusicOn())
 					text("Music: Off    ",13,12,yellow);
 				/*========================================
 				Displays current player pause duration
 				========================================*/
-				if(CursPos.Y == 13){
+				if(cursorPosition.Y == 13){
 					text("Speed: ",13,12,yellow);
-					cout << p2->GetPauseDuration();}
+					cout << player->GetPauseDuration();}
 				/*========================================
 				Displays the current invisibility status
 				=========================================*/
-				if(CursPos.Y == 14 && p2->GetIsInvisible())
+				if(cursorPosition.Y == 14 && player->GetIsInvisible())
 					text("Invis: On     ",13,12,yellow);
-				else if(CursPos.Y == 14 && !p2->GetIsInvisible())
+				else if(cursorPosition.Y == 14 && !player->GetIsInvisible())
 					text("Invis: Off    ",13,12,yellow);
 				//========================================
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			break;
 
-		choice = CursPos.Y;
+		choice = cursorPosition.Y;
 		switch(choice)
 		{
 		case 12:
 			text("Changing Music.",13,11,yellow);
-			p2->ToggleMusic();
-			Sleep(p2->GetPauseDuration());
+			player->ToggleMusic();
+			Sleep(player->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 13:
 			text("Changing Speed?",13,11,yellow);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 14:
 			text("To be added later.",13,11,yellow);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;
 		case 15:
 			text("To be added later.",13,11,yellow);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			text("               ",13,11,yellow);
 			break;		
 		}
-	}// End of While(bEsc)
+	}// End of While(escapeWasPressed)
 }
-void World::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool &bFight,bool &bLeave,string Map)
+void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory, bool &bFight,bool &bLeave,string map)
 {
 	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
 	bool Iused = false;
-	COORD CursPos;
+	COORD cursorPosition;
 	
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{		
-		clr(12);
+		ClearTextBottomRight(12);
 		if(bFight && Iused)
 			break;		
-		p2->DisplayInfo();
-		items(pstuff);
+		player->DisplayInfo();
+		DisplayPlayerItems(playerInventory);
 		if(!bFight)
-			ground(stuff,Map,p2->GetPositionX(),p2->GetPositionY());
-		CursPos.X = 2;
-		CursPos.Y = 15;
-		bSel = false;
+			ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		cursorPosition.X = 2;
+		cursorPosition.Y = 15;
+		selectionWasMade = false;
 		text("/---------\\",1,14,ftext);
 		text("|  Use    |",1,15,ftext);
 		text("|  Equip  |",1,16,ftext);
@@ -610,199 +610,198 @@ void World::useItem(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff, bool 
 		text("|  XXXX   |",1,18,ftext);
 		text("\\---------/",1,19,ftext);
 
-		DrawCurs(CursPos,ftext,175);
+		DrawCursor(cursorPosition,ftext,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,15,18))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,15,18))
 			{
-				DrawCurs(CursPos,ftext,175);
+				DrawCursor(cursorPosition,ftext,175);
 			}
 			text("", 79, 23,ftext);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 		{
 			bLeave = true;
 			break;
 		}
-		choice = CursPos.Y;
+		choice = cursorPosition.Y;
 		switch(choice)
 		{
 		case 15:
-			if(pstuff.size() > 0)
-				use(p2,pstuff,Iused,bFight);			
+			if(playerInventory.size() > 0)
+				Use(player,playerInventory,Iused,bFight);			
 			else
 			{
 				text("You have no items.",13,11,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 			}
 			break;
 		case 16:
-			if(pstuff.size() > 0)
-				equip(p2,pstuff);
+			if(playerInventory.size() > 0)
+				Equip(player,playerInventory);
 			else
 			{
 				text("You have nothing to equip",13,12,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 			}
 			break;
 		case 17:
-			if(pstuff.size() > 0)
-				drop(p2,stuff,pstuff,Map);
+			if(playerInventory.size() > 0)
+				Drop(player,worldItems,playerInventory,map);
 			else
 			{
 				text("You have nothing to drop",13,12,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 			}
 			break;
 		case 18:
-			if(pstuff.size() > 0)
-				XXX(pstuff);
+			if(playerInventory.size() > 0)
+				DeleteItem(playerInventory);
 			else
 			{
 				text("You have nothing to dispose of",13,12,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 			}
 			break;
 		}//--------End Switch
-	}//------------End While bEsc
-	clr(12);
+	}//------------End While escapeWasPressed
+	ClearTextBottomRight(12);
 }
-void World::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
+void World::Use(Player *player,vector<Item*> &playerInventory,bool &itemWasUsed,bool isFighting)
 {
-	Weapon W;
-	Armor  A;
-	//item *temp;
-	Item *iUsed;
-	unsigned int Offset = 0;
+	Weapon weapon;
+	Armor  armor;
+	Item* itemUsed;
+	unsigned int offset = 0;
 	int choice = 0;
 	int Num;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD cursorPosition;
 
 	
-	while(!bEsc && pstuff.size() > 0)
+	while(!escapeWasPressed && playerInventory.size() > 0)
 	{
 		clritems();
-		items(pstuff);
-		p2->DisplayInfo();
+		DisplayPlayerItems(playerInventory);
+		player->DisplayInfo();
 
-		if(Iused && bFight)
+		if(itemWasUsed && isFighting)
 			break;
-		bEsc = false;
-		bSel = false;
-		CursPos.X = 13;
-		CursPos.Y = 12;
-		DrawCurs(CursPos,yellow,175);
+		escapeWasPressed = false;
+		selectionWasMade = false;
+		cursorPosition.X = 13;
+		cursorPosition.Y = 12;
+		DrawCursor(cursorPosition,yellow,175);
 		
-		pstuff[Offset]->Display();
+		playerInventory[offset]->Display();
 		do
 		{
-			choice = static_cast<int>(11+pstuff.size());
-			if(MoveCurs(CursPos,bSel,bEsc,12,choice))
+			choice = static_cast<int>(11+playerInventory.size());
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
 			{
-				DrawCurs(CursPos,yellow,175);				
-				Offset = CursPos.Y - 12;
-				pstuff[Offset]->Display();
+				DrawCursor(cursorPosition,yellow,175);				
+				offset = cursorPosition.Y - 12;
+				playerInventory[offset]->Display();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
+		}while(!selectionWasMade);
 	
-		if(bEsc)
+		if(escapeWasPressed)
 		{
 			text("          ",1,22,white);
 			text("          ",1,23,white);
 			clrbottom();
-			items(pstuff);
+			DisplayPlayerItems(playerInventory);
 			return;
 		}
-		Offset = CursPos.Y - 12;
-		iUsed = pstuff[Offset];
-		if(!bEsc)
+		offset = cursorPosition.Y - 12;
+		itemUsed = playerInventory[offset];
+		if(!escapeWasPressed)
 		{	
-			if(!iUsed->GetKeep())
+			if(!itemUsed->GetKeep())
 			{
-				slidedown(pstuff,Offset);
-				pstuff.pop_back();
-				text("                   ",13,static_cast<int>(12+pstuff.size()),white);
+				SlideDown(playerInventory,offset);
+				playerInventory.pop_back();
+				text("                   ",13,static_cast<int>(12+playerInventory.size()),white);
 			}
 
 
-			switch(iUsed->GetType())
+			switch(itemUsed->GetType())
 			{
 			case 0:
 				Num = 25; 
-				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
+				player->SetHitPoints(player->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 1:
 				Num = 15;
-				p2->SetKa(p2->GetCurrentKa()+Num);
+				player->SetKa(player->GetCurrentKa()+Num);
 				text("Ka recovered: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 2:
 				Num = rand()%5 + 1;
-				p2->SetStrength(p2->GetStrength()+Num);
+				player->SetStrength(player->GetStrength()+Num);
 				text("Your strength has increased",13,8,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 				break;
 			case 3:
 				Num = rand()%5 + 1;
-				p2->SetMind(p2->GetMind()+Num);
+				player->SetMind(player->GetMind()+Num);
 				text("Your mind powers have increased",13,8,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 				break;
 			case 4:
 				Num = 75; 
-				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
+				player->SetHitPoints(player->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 5:
 				Num = 150; 
-				p2->SetHitPoints(p2->GetCurrentHitPoints()+Num);
+				player->SetHitPoints(player->GetCurrentHitPoints()+Num);
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 				break;
 			case 6:
-				Num = p2->GetMaxHitPoints() - p2->GetCurrentHitPoints();
-				p2->SetHitPoints(p2->GetMaxHitPoints());
+				Num = player->GetMaxHitPoints() - player->GetCurrentHitPoints();
+				player->SetHitPoints(player->GetMaxHitPoints());
 				text("You were healed: ",13,8,white); cout << Num;
 				cure(Num);
 			default:
 				text("This item does nothing",13,8,white);
-				Sleep(p2->GetPauseDuration());
+				Sleep(player->GetPauseDuration());
 				break;
 			}
-			Iused = true;
+			itemWasUsed = true;
 			clrtop(2);
-			if(bFight)
-				bEsc = true;
+			if(isFighting)
+				escapeWasPressed = true;
 		}	
 		
-	}// End While bEsc && pstuff.size() > 0
+	}// End While escapeWasPressed && playerInventory.size() > 0
 	clrbottom();
 }
-void World::magic(Player *p2,vector<Magic*> &spells)
+void World::MagicMenu(Player *player,vector<Magic*> &spells)
 {
 	int choice = 0;
 	int offset = 0;
 	unsigned int i;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos; 
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD cursorPosition; 
 	goblin A;
 	creature *guy = &A;
 
-	while(!bEsc)
+	while(!escapeWasPressed)
 	{
 		clear();
-		p2->DisplayInfo();	
-		CursPos.X = 14;
-		CursPos.Y = 13;
-		bSel = false;
+		player->DisplayInfo();	
+		cursorPosition.X = 14;
+		cursorPosition.Y = 13;
+		selectionWasMade = false;
 		text("/----------------\\",13,12,green);
 		text("|                |",13,13,green);
 		text("|                |",13,14,green);
@@ -819,60 +818,60 @@ void World::magic(Player *p2,vector<Magic*> &spells)
 
 		for(i = 0;i < spells.size();i++)
 		{
-			if(spells[i]->GetIsInFight() || p2->GetCurrentKa() < spells[i]->GetCost())
+			if(spells[i]->GetIsInFight() || player->GetCurrentKa() < spells[i]->GetCost())
 			{
 				spells[i]->DisplayName(i+13,dkgreen);
 			}
 			else
 				spells[i]->DisplayName(i+13,green);
 		}
-		DrawCurs(CursPos,yellow,175);
-		offset = CursPos.Y - 13;
+		DrawCursor(cursorPosition,yellow,175);
+		offset = cursorPosition.Y - 13;
 		spells[offset]->DisplayCastingCost();
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,13,12 + static_cast<int>(spells.size())))
+			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,13,12 + static_cast<int>(spells.size())))
 			{
-				DrawCurs(CursPos,yellow,175);
-				offset = CursPos.Y - 13;
+				DrawCursor(cursorPosition,yellow,175);
+				offset = cursorPosition.Y - 13;
 				spells[offset]->DisplayCastingCost();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(escapeWasPressed)
 			return;
-		offset = CursPos.Y - 13;
+		offset = cursorPosition.Y - 13;
 		if(spells[offset]->GetIsInFight())
 		{
 			text("That spell can only be used in battle",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 		}
-		else if(p2->GetCurrentKa() < spells[offset]->GetCost())
+		else if(player->GetCurrentKa() < spells[offset]->GetCost())
 		{
 			text("Not enough Ka",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 		}
 		else
-			spells[offset]->Cast(p2,guy);
+			spells[offset]->Cast(player,guy);
 	}//==================================End of While loop==================================
 }
 
-void World::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
+void World::InFightMagicMenu(Player *player,creature *enemy,vector<Magic*> &spells,bool &pressedEscape)
 {
 	int choice = 0;
 	int offset = 0;
 	unsigned int i;
-	bool bSel = false;
-	COORD CursPos; 
+	bool selectionWasMade = false;
+	COORD cursorPosition; 
 	goblin A;
 	creature *guy = &A;
 
-	bEsc = false;
-	while(!bEsc)
+	pressedEscape = false;
+	while(!pressedEscape)
 	{
-		CursPos.X = 14;
-		CursPos.Y = 13;
-		bSel = false;
+		cursorPosition.X = 14;
+		cursorPosition.Y = 13;
+		selectionWasMade = false;
 		text("/----------------\\",13,12,green);
 		text("|                |",13,13,green);
 		text("|                |",13,14,green);
@@ -888,7 +887,7 @@ void World::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 		
 		for(i = 0;i < spells.size();i++)
 		{
-			if(p2->GetCurrentKa() < spells[i]->GetCost())
+			if(player->GetCurrentKa() < spells[i]->GetCost())
 			{
 				spells[i]->DisplayName(i+13,dkgreen);
 			}
@@ -896,36 +895,36 @@ void World::fmagic(Player *p2,creature *enemy,vector<Magic*> &spells,bool &bEsc)
 				spells[i]->DisplayName(i+13,green);
 		}
 		spells[offset]->DisplayCastingCost();
-		DrawCurs(CursPos,yellow,175);
+		DrawCursor(cursorPosition,yellow,175);
 		do
 		{
-			if(MoveCurs(CursPos,bSel,bEsc,13,12 + static_cast<int>(spells.size())))
+			if(MoveCursor(cursorPosition,selectionWasMade,pressedEscape,13,12 + static_cast<int>(spells.size())))
 			{
-				DrawCurs(CursPos,yellow,175);
-				offset = CursPos.Y - 13;
+				DrawCursor(cursorPosition,yellow,175);
+				offset = cursorPosition.Y - 13;
 				spells[offset]->DisplayCastingCost();
 			}
 			text(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
+		}while(!selectionWasMade);
+		if(pressedEscape)
 			return;
-		offset = CursPos.Y - 13;
-		if(p2->GetCurrentKa() < spells[offset]->GetCost())
+		offset = cursorPosition.Y - 13;
+		if(player->GetCurrentKa() < spells[offset]->GetCost())
 		{
 			text("Not enough Ka",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 		}
 		else
 		{
-			clr(11);
-			spells[offset]->Cast(p2,enemy);
+			ClearTextBottomRight(11);
+			spells[offset]->Cast(player,enemy);
 			return;
 		}
 	}//==================================End of While loop==================================
 }
 
 
-void World::clr(int Y)
+void World::ClearTextBottomRight(int Y)
 {
 	while(Y < 24)
 			{
@@ -934,39 +933,21 @@ void World::clr(int Y)
 			}
 }
 //=========================================================================================================
-//	This function moves all the elements of the pstuff DOWN by one.
+//	This function moves all the elements of the playerInventory DOWN by one.
 //After taking element X and putting it aside. It then puts element X at the end.
 //Usually to pop the last element off.
 //=========================================================================================================
-void World::slidedown(vector<Item*> &pstuff,int X)
+void World::SlideDown(vector<Item*> &playerInventory,int X)
 {
 	int Y = X + 1;
 	Item *temp;
 
-	temp = pstuff[X];
-	while(Y <= static_cast<int>(pstuff.size()-1))
+	temp = playerInventory[X];
+	while(Y <= static_cast<int>(playerInventory.size()-1))
 	{
-		pstuff[X] = pstuff[Y];
+		playerInventory[X] = playerInventory[Y];
 		X++;
 		Y++;
 	}
-	pstuff[pstuff.size()-1] = temp;
+	playerInventory[playerInventory.size()-1] = temp;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
