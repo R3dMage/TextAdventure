@@ -1359,7 +1359,7 @@ void world::move(vector<creature*> &encounter,int Xmax, int Ymax)
 //==========================================================================================================
 void world::magicCheck(Player *p2,vector<magik*> &M)
 {
-	if(p2->kill.Okills == 5 && p2->kill.Ekills == 0 && M.size() < 10)
+	if(p2->kill.OrcKillCount == 5 && p2->kill.ElfKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Minor Heal"))
 			return;
@@ -1368,7 +1368,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new minheal);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Okills == 10 && p2->kill.Ekills == 0 && M.size() < 10)
+	if(p2->kill.OrcKillCount == 10 && p2->kill.ElfKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Briar Bush"))
 			return;
@@ -1376,7 +1376,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new briar);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Okills == 20 && p2->kill.Ekills == 0 && M.size() < 10)
+	if(p2->kill.OrcKillCount == 20 && p2->kill.ElfKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Major Heal"))
 			return;
@@ -1384,7 +1384,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new majheal);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Okills == 40 && p2->kill.Ekills == 0 && M.size() < 10)
+	if(p2->kill.OrcKillCount == 40 && p2->kill.ElfKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Snow"))
 			return;
@@ -1392,7 +1392,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new snow);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills == 5 && p2->kill.Okills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount == 5 && p2->kill.OrcKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Drain Life"))
 			return;
@@ -1401,7 +1401,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new dlife);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills == 10 && p2->kill.Okills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount == 10 && p2->kill.OrcKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Flame Arrow"))
 			return;
@@ -1409,7 +1409,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new farrow);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills == 20 && p2->kill.Okills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount == 20 && p2->kill.OrcKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Steal Ka"))
 			return;
@@ -1417,7 +1417,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new stealka);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills == 40 && p2->kill.Okills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount == 40 && p2->kill.OrcKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Fire"))
 			return;
@@ -1425,7 +1425,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new fire);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 4 && p2->kill.Okills > 4 &&  p2->kill.Hkills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 4 && p2->kill.OrcKillCount > 4 &&  p2->kill.HumanKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Strength"))
 			return;
@@ -1434,7 +1434,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new strength);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 8 && p2->kill.Okills > 8 &&  p2->kill.Hkills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 8 && p2->kill.OrcKillCount > 8 &&  p2->kill.HumanKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Dispel"))
 			return;
@@ -1442,7 +1442,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new dispel);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 12 && p2->kill.Okills > 12 &&  p2->kill.Hkills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 12 && p2->kill.OrcKillCount > 12 &&  p2->kill.HumanKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Shock"))
 			return;
@@ -1450,7 +1450,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new shock);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 15 && p2->kill.Okills > 15 &&  p2->kill.Hkills == 0 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 15 && p2->kill.OrcKillCount > 15 &&  p2->kill.HumanKillCount == 0 && M.size() < 10)
 	{
 		if(hasMagic(M,"Acid Rain"))
 			return;
@@ -1458,7 +1458,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new acidrain);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 3 && p2->kill.Okills > 3 &&  p2->kill.Hkills > 3 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 3 && p2->kill.OrcKillCount > 3 &&  p2->kill.HumanKillCount > 3 && M.size() < 10)
 	{
 		if(hasMagic(M,"Poison"))
 			return;
@@ -1467,7 +1467,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new poison);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 10 && p2->kill.Okills > 10 &&  p2->kill.Hkills > 10 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 10 && p2->kill.OrcKillCount > 10 &&  p2->kill.HumanKillCount > 10 && M.size() < 10)
 	{
 		if(hasMagic(M,"Skeleton"))
 			return;
@@ -1475,7 +1475,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new skeleton);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 15 && p2->kill.Okills > 15 &&  p2->kill.Hkills > 15 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 15 && p2->kill.OrcKillCount > 15 &&  p2->kill.HumanKillCount > 15 && M.size() < 10)
 	{
 		if(hasMagic(M,"Dark Strike"))
 			return;
@@ -1483,7 +1483,7 @@ void world::magicCheck(Player *p2,vector<magik*> &M)
 		M.push_back(new dstrike);
 		Sleep(p2->getPause());
 	}
-	if(p2->kill.Ekills > 20 && p2->kill.Okills > 20 &&  p2->kill.Hkills > 20 && M.size() < 10)
+	if(p2->kill.ElfKillCount > 20 && p2->kill.OrcKillCount > 20 &&  p2->kill.HumanKillCount > 20 && M.size() < 10)
 	{
 		if(hasMagic(M,"Critical"))
 			return;

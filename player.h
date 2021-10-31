@@ -29,10 +29,10 @@ int elf;
 int human;
 int orc;
 };
-struct rkills{
-	int Ekills;
-	int Hkills;
-	int Okills;
+struct PlayerKillCounts{
+	int ElfKillCount;
+	int HumanKillCount;
+	int OrcKillCount;
 };
 struct events{
 	bool start;
@@ -123,7 +123,7 @@ public:
 	void changeMusic();
 	void plots(string);
 
-	rkills kill;
+	PlayerKillCounts kill;
 	events plot;
 	robj react;
 	

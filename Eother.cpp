@@ -53,12 +53,12 @@ void elf::win(Player *p2)
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
 	p2->setelf(1);
-	p2->kill.Ekills += 1;
-	if(p2->kill.Okills == 0)
+	p2->kill.ElfKillCount += 1;
+	if(p2->kill.OrcKillCount == 0)
 		p2->setorc(3);
 	p2->info();
 	Sleep(3000);
-	if(p2->kill.Ekills < 4)
+	if(p2->kill.ElfKillCount < 4)
 	{
 		text("                                                               ",13,9,white);
 		text("                                                               ",13,8,white);
@@ -298,12 +298,12 @@ void Orc::win(Player *p2)
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
 	p2->setorc(1);
-	p2->kill.Okills += 1;
-	if(p2->kill.Ekills == 0)
+	p2->kill.OrcKillCount += 1;
+	if(p2->kill.ElfKillCount == 0)
 		p2->setelf(3);
 	p2->info();
 	Sleep(3000);
-	if(p2->kill.Okills < 4)
+	if(p2->kill.OrcKillCount < 4)
 	{
 		text("                                                                ",13,9,white);
 		text("                                                                ",13,8,white);
@@ -540,8 +540,8 @@ void human::win(Player *p2)
 	p2->setKills(p2->getKills() + 1);
 	p2->setgold(p2->getgold() + gold);
 	p2->setexp(p2->getexp() + exp);
-	p2->kill.Hkills += 1;
-	if(p2->kill.Hkills == 5)
+	p2->kill.HumanKillCount += 1;
+	if(p2->kill.HumanKillCount == 5)
 	{//                                       65
 		text("                                                           ",13,9,white);
 		text("A price has now been put on your head. You're a wanted man.",13,9,white);
@@ -552,7 +552,7 @@ void human::win(Player *p2)
 	p2->info();
 	Sleep(3000);
 	text("",79,23,white);
-	if(p2->kill.Hkills < 5)
+	if(p2->kill.HumanKillCount < 5)
 	{
 		text("                                                                ",13,9,white);
 		text("                                                                ",13,8,white);

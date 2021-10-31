@@ -528,7 +528,7 @@ bool human::talkto(Player *p2)
 	int choice;
 	int num = rand() % 8 + 1;
 	int X = 13;
-	int Y = p2->kill.Hkills * 100;
+	int Y = p2->kill.HumanKillCount * 100;
 	bool bSel;
 	COORD CursPos;
 

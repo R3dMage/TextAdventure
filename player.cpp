@@ -42,9 +42,9 @@ Player::Player()
 	react.elf =		2;
 	react.human =	3;
 	react.orc =		1;
-	kill.Ekills = 0;
-	kill.Hkills = 0;
-	kill.Okills = 0;
+	kill.ElfKillCount = 0;
+	kill.HumanKillCount = 0;
+	kill.OrcKillCount = 0;
 	plot.priest1 = false;
 	plot.priest2 = false;
 	plot.priest3 = false;
@@ -377,11 +377,11 @@ void Player::status()
 	text("Gold:   ",31,15,white);
 	cout << gold;
 	text("Orc Kills: ",45,12,white);
-	cout << kill.Okills;
+	cout << kill.OrcKillCount;
 	text("Elf Kills: ",45,13,white);
-	cout << kill.Ekills;
+	cout << kill.ElfKillCount;
 	text("Hmn Kills: ",45,14,white);
-	cout << kill.Hkills;
+	cout << kill.HumanKillCount;
 	text("",13,23,white);
 	system("pause");
 }
@@ -556,9 +556,9 @@ void Player::Save(ofstream &fout)
 	fout << "elf: "		<< react.elf << endl;
 	fout << "orc: "		<< react.orc << endl;
 	fout << "hum: "		<< react.human << endl;
-	fout << "elfk: "	<< kill.Ekills << endl;
-	fout << "orck: "	<< kill.Okills << endl;
-	fout << "humk: "	<< kill.Hkills << endl;
+	fout << "elfk: "	<< kill.ElfKillCount << endl;
+	fout << "orck: "	<< kill.OrcKillCount << endl;
+	fout << "humk: "	<< kill.HumanKillCount << endl;
 	fout << "start: "	<< plot.start << endl;
 	fout << "P1: "		<< plot.priest1 << endl;
 	fout << "P2: "		<< plot.priest2 << endl;
@@ -601,9 +601,9 @@ void Player::Load(ifstream &fin)
 	fin >> temp >> react.elf;
 	fin >> temp >> react.orc;
 	fin >> temp >> react.human;
-	fin >> temp >> kill.Ekills;
-	fin >> temp >> kill.Okills;
-	fin >> temp >> kill.Hkills;
+	fin >> temp >> kill.ElfKillCount;
+	fin >> temp >> kill.OrcKillCount;
+	fin >> temp >> kill.HumanKillCount;
 	fin >> temp >> plot.start;
 	fin >> temp >> plot.priest1;
 	fin >> temp >> plot.priest2;
