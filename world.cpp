@@ -204,11 +204,11 @@ void world::locations(string Map, Player *p2,bool load)
 		total = Xmax * Ymax;
 		T = (p2->GetPositionY()-1) * Xmax + p2->GetPositionX() - 1;
 		
-		if(Vmap[T]->getbMC())
+		if(Vmap[T]->GetIsMapChange())
 		{
-			p2->SetPositionX(Vmap[T]->getNeoX());
-			p2->SetPositionY(Vmap[T]->getNeoY());
-			Map = Vmap[T]->getszMC();
+			p2->SetPositionX(Vmap[T]->GetNeoX());
+			p2->SetPositionY(Vmap[T]->GetNeoY());
+			Map = Vmap[T]->GetMapChangeName();
 			MapName = "./data/" + Map + ".tgm";
 			loadmap(Vmap,MapName,Xmax,Ymax,bTown);
 			npcSetup(encounter,Map,Xmax,Ymax,p2->PlotEventStates,p2->RaceReactions,MM,MapMusic);
@@ -219,15 +219,15 @@ void world::locations(string Map, Player *p2,bool load)
 			total = Xmax * Ymax;
 			T = (p2->GetPositionY()-1) * Xmax + p2->GetPositionX() - 1;
 		}
-		if(Vmap[T]->getbPlot())
+		if(Vmap[T]->GetHasPlot())
 		{
 			clear();
 			p2->DisplayInfo();
-			plot(Map,Vmap[T]->getszP());
+			plot(Map,Vmap[T]->GetPlotText());
 		}
-		if(Vmap[T]->getbShop())
+		if(Vmap[T]->GetIsShop())
 		{
-			ShopType = Vmap[T]->getszShop();
+			ShopType = Vmap[T]->GetShopName();
 			if(ShopType == "armory")
 				armory(inv,p2,Map);
 			if(ShopType == "inn")
@@ -246,20 +246,20 @@ void world::locations(string Map, Player *p2,bool load)
 		if(T + Xmax >= total)
 			north = "There is no path to follow";
 		else
-			north = Vmap[T + Xmax]->getszSum();
+			north = Vmap[T + Xmax]->GetSummary();
 		if(T - Xmax < 0)
 			south = "There is no path to follow";
 		else
-			south = Vmap[T - Xmax]->getszSum();
+			south = Vmap[T - Xmax]->GetSummary();
 		if(T % Xmax == Xmax-1)
 			east = "There is no path to follow";
 		else
-			east = Vmap[T + 1]->getszSum();
+			east = Vmap[T + 1]->GetSummary();
 		if(T % Xmax == 0)
 			west = "There is no path to follow";
 		else
-			west = Vmap[T - 1]->getszSum();
-		description = Vmap[T]->getszLoc();
+			west = Vmap[T - 1]->GetSummary();
+		description = Vmap[T]->GetDescription();
 
 //============================================================================================================= 
 //									Puts location descriptions on the screen!
@@ -283,13 +283,13 @@ void world::locations(string Map, Player *p2,bool load)
 		text("East",13,17,yellow);		text(east,18,17,white);
 		text("West",13,18,yellow);		text(west,18,18,white);	
 //=============================================================================================================
-		if((T+Xmax) < static_cast<int>(Vmap.size()) && Vmap[T + Xmax]->getbMC())
+		if((T+Xmax) < static_cast<int>(Vmap.size()) && Vmap[T + Xmax]->GetIsMapChange())
 			text("North",13,15,green);
-		if((T-Xmax) > 0 && Vmap[T - Xmax]->getbMC())
+		if((T-Xmax) > 0 && Vmap[T - Xmax]->GetIsMapChange())
 			text("South",13,16,green);
-		if((T % Xmax != Xmax-1) && (T + 1 < total) && (Vmap[T+1]->getbMC()))
+		if((T % Xmax != Xmax-1) && (T + 1 < total) && (Vmap[T+1]->GetIsMapChange()))
 			text("East ",13,17,green);
-		if((T % Xmax != 0) && (T - 1 >= 0) && (Vmap[T-1]->getbMC()))
+		if((T % Xmax != 0) && (T - 1 >= 0) && (Vmap[T-1]->GetIsMapChange()))
 			text("West",13,18,green);
 
 		p2->DisplayInfo();
@@ -1261,28 +1261,28 @@ void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bo
 		fin >> szHolder; 
 		if(szHolder == "P:")
 		{
-			g[i]->setbPlot(true);
-			fin >> szHolder;	g[i]->setszP(szHolder);
+			g[i]->SetHasPlot(true);
+			fin >> szHolder;	g[i]->SetPlotText(szHolder);
 			fin >> szHolder;
 		}
 		if(szHolder == "MC:")
 		{
-			g[i]->setbMC(true);
+			g[i]->SetIsMapChange(true);
 			getline(fin,szHolder);
-			g[i]->setszMC(rotate(szHolder));
+			g[i]->SetMapChangeName(rotate(szHolder));
 			fin >> szHolder;
 			fin >> t;
-			g[i]->setNeoX(t);
+			g[i]->SetNeoX(t);
 			fin >> szHolder;
 			fin >> t;
-			g[i]->setNeoY(t);
+			g[i]->SetNeoY(t);
 			fin >> szHolder;
 		}
 		if(szHolder == "Shop:")
 		{
-			g[i]->setbShop(true);
+			g[i]->SetIsShop(true);
 			getline(fin,szHolder);
-			g[i]->setszShop(rotate(szHolder));
+			g[i]->SetShopName(rotate(szHolder));
 			fin >> szHolder;
 		}
 		if(szHolder == "X:")
@@ -1290,7 +1290,7 @@ void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bo
 			fin >> t;
 			if(t > max.X)
 				max.X = t;
-			g[i]->setX(t);
+			g[i]->SetPositionX(t);
 			fin >> szHolder;
 		}
 		if(szHolder == "Y:")
@@ -1298,19 +1298,19 @@ void world::loadmap(vector< Location* > &g, string &Map,int &Xmax, int &Ymax, bo
 			fin >> t;
 			if(t > max.Y)
 				max.Y = t;
-			g[i]->setY(t);
+			g[i]->SetPositionY(t);
 			fin >> szHolder;
 		}
 		if(szHolder == "L:")
 		{
 			getline(fin,szHolder);
-			g[i]->setszLoc(rotate(szHolder));
+			g[i]->SetDescription(rotate(szHolder));
 			fin >> szHolder;
 		}
 		if(szHolder == "S:")
 		{
 			getline(fin,szHolder);
-			g[i]->setszSum(rotate(szHolder));
+			g[i]->SetSummary(rotate(szHolder));
 		}
 		i++;
 	}

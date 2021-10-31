@@ -1,7 +1,7 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-#include "Item.h";
+#include "Item.h"
 
 using namespace std;
 

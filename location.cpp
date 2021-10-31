@@ -13,127 +13,118 @@
 
 Location::Location()
 {
-	bMC =	false;
-	bShop = false;
-	bPlot = false;
-	X =		0;
-	Y =		0;
+	IsMapChange =	false;
+	IsShop = false;
+	HasPlot = false;
+	PositionX =		0;
+	PositionY =		0;
 	NeoX =	0;
 	NeoY =	0;
-	szMC =  "+";
-	szShop ="+";
-	szLoc = "+";
-	szSum = "+";
-	szChng= "+";
-	D =		"-";
+	MapChangeName =  "+";
+	ShopName ="+";
+	Description = "+";
+	Summary = "+";
+	DisplayValue =		"-";
 }
-void Location::setbMC(bool B)
+void Location::SetIsMapChange(bool B)
 {
-	bMC = B;
-	if(bMC)
-		D = 'M';
+	IsMapChange = B;
+	if(IsMapChange)
+		DisplayValue = 'M';
 }
-void Location::setbPlot(bool B)
+void Location::SetHasPlot(bool B)
 {
-	bPlot = B;
+	HasPlot = B;
 }
-void Location::setbShop(bool B)
+void Location::SetIsShop(bool B)
 {
-	bShop = B;
-	if(bShop)
-		D = 'S';
+	IsShop = B;
+	if(IsShop)
+		DisplayValue = 'S';
 }
-void Location::setX(int N)
+void Location::SetPositionX(int N)
 {
-	X = N;
+	PositionX = N;
 }
-void Location::setY(int N)
+void Location::SetPositionY(int N)
 {
-	Y = N;
+	PositionY = N;
 }
-void Location::setNeoX(int N)
+void Location::SetNeoX(int N)
 {
 	NeoX = N;
 }
-void Location::setNeoY(int N)
+void Location::SetNeoY(int N)
 {
 	NeoY = N;
 }
-void Location::setszMC(string S)
+void Location::SetMapChangeName(string S)
 {
-	szMC = S;
+	MapChangeName = S;
 }
-void Location::setszShop(string S)
+void Location::SetShopName(string S)
 {
-	szShop = S;	
+	ShopName = S;	
 }
-void Location::setszP(string S)
+void Location::SetPlotText(string S)
 {
-	szP = S;
+	PlotText = S;
 }
-void Location::setszLoc(string S)
+void Location::SetDescription(string S)
 {
-	szLoc = S;
+	Description = S;
 }
-void Location::setszSum(string S)
+void Location::SetSummary(string S)
 {
-	szSum = S;
+	Summary = S;
 }
-void Location::setszChng(string S)
+bool Location::GetIsMapChange()
 {
-	szChng = S;
+	return IsMapChange;
 }
-bool Location::getbMC()
+bool Location::GetIsShop()
 {
-	return bMC;
+	return IsShop;
 }
-bool Location::getbShop()
+bool Location::GetHasPlot()
 {
-	return bShop;
+	return HasPlot;
 }
-bool Location::getbPlot()
+int Location::GetPositionX()
 {
-	return bPlot;
+	return PositionX;
 }
-int Location::getX()
+int Location::GetPositionY()
 {
-	return X;
+	return PositionY;
 }
-int Location::getY()
-{
-	return Y;
-}
-int Location::getNeoX()
+int Location::GetNeoX()
 {
 	return NeoX;
 }
-int Location::getNeoY()
+int Location::GetNeoY()
 {
 	return NeoY;
 }
-string Location::getszMC()
+string Location::GetMapChangeName()
 {
-	return szMC;
+	return MapChangeName;
 }
-string Location::getszShop()
+string Location::GetShopName()
 {
-	return szShop;
+	return ShopName;
 }
-string Location::getszLoc()
+string Location::GetDescription()
 {
-	return szLoc;
+	return Description;
 }
-string Location::getszSum()
+string Location::GetSummary()
 {
-	return szSum;
+	return Summary;
 }
-string Location::getszChng()
+string Location::GetPlotText()
 {
-	return szChng;
-}
-string Location::getszP()
-{
-	return szP;
+	return PlotText;
 }
 
 
