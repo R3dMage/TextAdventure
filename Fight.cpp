@@ -4,11 +4,11 @@
 //
 //============================================================================================================
 
-#include "world.h"
-#include "creature.h"
-#include "enemies.h"
-#include "item.h"
-#include "location.h"
+#include "World.h"
+#include "Creature.h"
+#include "Enemies.h"
+#include "Item.h"
+#include "Location.h"
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY

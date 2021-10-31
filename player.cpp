@@ -2,7 +2,7 @@
 #include <iostream>			//Always needed
 #include <string>			//For Strings
 #include <fstream>			//For loading/saving
-#include "player.h"
+#include "Player.h"
 
 using namespace std;
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY

@@ -1,8 +1,8 @@
 #ifndef ENEMIES_H
 #define ENEMIES_H
 
-#include "creature.h"			
-#include "player.h"
+#include "Creature.h"			
+#include "Player.h"
 
 void clr();
 

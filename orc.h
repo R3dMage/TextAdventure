@@ -1,6 +1,6 @@
 #include <string>			//For Strings
-#include "creature.h"			//For base class
-#include "player.h"
+#include "Creature.h"			//For base class
+#include "Player.h"
 
 
 ;using namespace std;

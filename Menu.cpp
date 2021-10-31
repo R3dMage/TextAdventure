@@ -3,12 +3,12 @@
 #include <windows.h>
 #include <vector>
 
-#include "world.h"
-#include "creature.h"
-#include "enemies.h"
-#include "item.h"
-#include "location.h"
-#include "player.h"
+#include "World.h"
+#include "Creature.h"
+#include "Enemies.h"
+#include "Item.h"
+#include "Location.h"
+#include "Player.h"
 
 #define box FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY

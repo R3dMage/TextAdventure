@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <vector>
 
-#include "world.h"
-#include "enemies.h"
-#include "location.h"
+#include "World.h"
+#include "Enemies.h"
+#include "Location.h"
 
 
 

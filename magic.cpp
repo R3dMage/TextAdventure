@@ -5,7 +5,7 @@
 //====================================================================================================
 
 
-#include "magic.h"
+#include "Magic.h"
 
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY

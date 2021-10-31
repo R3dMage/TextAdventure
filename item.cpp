@@ -5,7 +5,7 @@
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-#include "item.h"
+#include "Item.h"
 
 ;
 using namespace std;

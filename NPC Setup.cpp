@@ -3,9 +3,9 @@
 //it's own file. 2/21/05
 //=============================================================================================================
 
-#include "world.h"
-#include "creature.h"
-#include "enemies.h"
+#include "World.h"
+#include "Creature.h"
+#include "Enemies.h"
 
 
 

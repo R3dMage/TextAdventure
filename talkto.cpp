@@ -1,5 +1,5 @@
 #include <iostream>
-#include "enemies.h"
+#include "Enemies.h"
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY 

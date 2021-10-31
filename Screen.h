@@ -1,8 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include "player.h"
-#include "creature.h"
+#include "Player.h"
+#include "Creature.h"
 
 
 

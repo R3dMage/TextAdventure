@@ -8,9 +8,9 @@
 #include <vector>
 #include "CFmod.h"
 #include "Fmod.h"
-#include "item.h"
-#include "weapon.h"
-#include "armor.h"
+#include "Item.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 string rotate(string);
 void text(string,int,int,WORD);

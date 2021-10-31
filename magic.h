@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-#include "creature.h"
+#include "Creature.h"
 
 class magik{
 public:

@@ -3,7 +3,7 @@
 #include <string>			//For Strings
 #include <fstream>
 
-#include "weapon.h"
+#include "Weapon.h"
 using namespace std;
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY

@@ -2,7 +2,7 @@
 #include <string>
 #include <windows.h>
 #include <iostream>
-#include "location.h"
+#include "Location.h"
 
 ;using namespace std;
 

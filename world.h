@@ -2,8 +2,8 @@
 #define WORLD_H
 
 
-#include "location.h"
-#include "magic.h"
+#include "Location.h"
+#include "Magic.h"
 #include "CFmod.h"
 #include "Fmod.h"
 

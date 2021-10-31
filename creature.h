@@ -6,8 +6,8 @@
 #include <iostream>			//Always needed
 #include <string>			//For Strings
 
-#include "player.h"
-#include "item.h"
+#include "Player.h"
+#include "Item.h"
 
 using namespace std;
 

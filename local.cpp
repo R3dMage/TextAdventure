@@ -3,7 +3,7 @@
 #include <fstream>			//For file accessing
 #include <string>			//For Strings
 
-#include "local.h"
+#include "Local.h"
 ;
 using namespace std;
 

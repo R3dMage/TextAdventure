@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 
-#include "creature.h"
+#include "Creature.h"
 #include "Screen.h"
-#include "weapon.h"
-#include "armor.h"
-#include "enemies.h"
-#include "player.h"
-#include "world.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Enemies.h"
+#include "Player.h"
+#include "World.h"
 
 #define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define brown FOREGROUND_RED | FOREGROUND_GREEN

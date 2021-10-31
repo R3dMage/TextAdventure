@@ -1,7 +1,7 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
-#include "creature.h"
+#include "Creature.h"
 
 
 

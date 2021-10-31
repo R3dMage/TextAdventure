@@ -3,7 +3,7 @@
 #include <string>			//For Strings
 #include <fstream>
 
-#include "armor.h"
+#include "Armor.h"
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 using namespace std;

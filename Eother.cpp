@@ -3,8 +3,8 @@
 #include <string>			//For Strings
 #include <fstream>			//For reading/writing files
 
-#include "enemies.h"
-#include "world.h"
+#include "Enemies.h"
+#include "World.h"
 
 
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
