@@ -16,45 +16,41 @@ void num(int,int,int,WORD);
 class Item {
 public:
 	Item();
-	void setname(string N);
-	string getname();
-	void setmap(string M);
-	string getmap();
-	void setX(int neoX);
-	int getX();
-	void setY(int neoY);
-	int getY();
-	void setCost(int);
-	int getCost();
-	void setarm(bool);
-	bool getarm();
-	void setweap(bool);
-	bool getweap();
-	void setkeep(bool);
-	bool getkeep();
-	int getType();
-	void setType(int);
+	void SetName(string N);
+	string GetName();
+	void SetMapName(string M);
+	string GetMapName();
+	void SetPositionX(int neoX);
+	int GetPositionX();
+	void SetPositionY(int neoY);
+	int GetPositionY();
+	void SetCost(int);
+	int GetCost();
+	void SetIsArmor(bool);
+	bool GetIsArmor();
+	void SetIsWeapon(bool);
+	bool GetIsWeapon();
+	void SetKeep(bool);
+	bool GetKeep();
+	int GetType();
+	void SetType(int);
 
-	virtual void display();
+	virtual void Display();
 
 protected:
-	string name;
-	string map;
+	string Name;
+	string MapName;
 	int duration;
-	int X;
-	int Y;
-	int cost;
-	int type;
-	int time;
-	int lifetime;
-	bool keep;
-	bool weap;
-	bool arm;
+	int PositionX;
+	int PositionY;
+	int Cost;
+	int Type;
+	int Time;
+	int LifeTime;
+	bool Keep;
+	bool IsWeapon;
+	bool IsArmor;
 
-	void showcost();
-
+	void DisplayCost();
 };
-
-
-
 #endif 

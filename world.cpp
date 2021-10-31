@@ -95,19 +95,19 @@ void world::locations(string Map, Player *p2,bool load)
 
 		Item *vial;
 		vial = new Item;
-		vial->setname("Empty Vial");
-		vial->setmap("forest1");
-		vial->setX(5);
-		vial->setY(5);
-		vial->setkeep(true);	
+		vial->SetName("Empty Vial");
+		vial->SetMapName("forest1");
+		vial->SetPositionX(5);
+		vial->SetPositionY(5);
+		vial->SetKeep(true);	
 
 		Item *horseshoe;
 		horseshoe = new Item;
-		horseshoe->setname("Horseshoe");
-		horseshoe->setmap("field");
-		horseshoe->setX(5);
-		horseshoe->setY(5);
-		horseshoe->setkeep(true);
+		horseshoe->SetName("Horseshoe");
+		horseshoe->SetMapName("field");
+		horseshoe->SetPositionX(5);
+		horseshoe->SetPositionY(5);
+		horseshoe->SetKeep(true);
 //==============================================================================================================
 //			This section of code pushes them into their proper vectors =)
 //==============================================================================================================
@@ -698,12 +698,12 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 		items(pstuff);
 
 		text("[-----For Sale-----]",13,1,yellow);
-		text(wsell1->getname(),15,2,white);		num(wsell1->getCost(),28,2,white);
-		text(wsell2->getname(),15,3,white);		num(wsell2->getCost(),28,3,white);
-		text(wsell3->getname(),15,4,white);		num(wsell3->getCost(),28,4,white);
-		text(asell1->getname(),15,5,white);		num(asell1->getCost(),28,5,white);
-		text(asell2->getname(),15,6,white);		num(asell2->getCost(),28,6,white);
-		text(asell3->getname(),15,7,white);		num(asell3->getCost(),28,7,white);
+		text(wsell1->GetName(),15,2,white);		num(wsell1->GetCost(),28,2,white);
+		text(wsell2->GetName(),15,3,white);		num(wsell2->GetCost(),28,3,white);
+		text(wsell3->GetName(),15,4,white);		num(wsell3->GetCost(),28,4,white);
+		text(asell1->GetName(),15,5,white);		num(asell1->GetCost(),28,5,white);
+		text(asell2->GetName(),15,6,white);		num(asell2->GetCost(),28,6,white);
+		text(asell3->GetName(),15,7,white);		num(asell3->GetCost(),28,7,white);
 
 		DrawCurs(CursPos,yellow,175);
 		wsell1->display();
@@ -744,57 +744,57 @@ void world::armory(vector<Item*> &pstuff,Player *p2,string Map)
 		switch(choice)
 		{
 		case 2:
-			if(p2->GetGold() < wsell1->getCost())
+			if(p2->GetGold() < wsell1->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(wsell1);
-				p2->SetGold(p2->GetGold()-wsell1->getCost());
+				p2->SetGold(p2->GetGold()-wsell1->GetCost());
 			}
 			break;
 		case 3:
-			if(p2->GetGold() < wsell2->getCost())
+			if(p2->GetGold() < wsell2->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(wsell2);
-				p2->SetGold(p2->GetGold()-wsell2->getCost());
+				p2->SetGold(p2->GetGold()-wsell2->GetCost());
 			}
 			break;
 		case 4:
-			if(p2->GetGold() < wsell3->getCost())
+			if(p2->GetGold() < wsell3->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(wsell3);
-				p2->SetGold(p2->GetGold()-wsell3->getCost());
+				p2->SetGold(p2->GetGold()-wsell3->GetCost());
 			}
 			break;
 		case 5:
-			if(p2->GetGold() < asell1->getCost())
+			if(p2->GetGold() < asell1->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(asell1);
-				p2->SetGold(p2->GetGold()-asell1->getCost());
+				p2->SetGold(p2->GetGold()-asell1->GetCost());
 			}
 			break;
 		case 6:
-			if(p2->GetGold() < asell2->getCost())
+			if(p2->GetGold() < asell2->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(asell2);
-				p2->SetGold(p2->GetGold()-asell2->getCost());
+				p2->SetGold(p2->GetGold()-asell2->GetCost());
 			}
 			break;
 		case 7:
-			if(p2->GetGold() < asell3->getCost())
+			if(p2->GetGold() < asell3->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(asell3);
-				p2->SetGold(p2->GetGold()-asell3->getCost());
+				p2->SetGold(p2->GetGold()-asell3->GetCost());
 			}
 			break;
 		}
@@ -962,15 +962,15 @@ void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 		items(pstuff);
 
 		text("[-----For Sale-----]",13,1,yellow);
-		text(isell1->getname(),15,2,white);		num(isell1->getCost(),28,2,white);
-		text(isell2->getname(),15,3,white);		num(isell2->getCost(),28,3,white);
-		text(isell3->getname(),15,4,white);		num(isell3->getCost(),28,4,white);
-		text(isell4->getname(),15,5,white);		num(isell4->getCost(),28,5,white);
-		text(isell5->getname(),15,6,white);		num(isell5->getCost(),28,6,white);
-		text(isell6->getname(),15,7,white);		num(isell6->getCost(),28,7,white);
+		text(isell1->GetName(),15,2,white);		num(isell1->GetCost(),28,2,white);
+		text(isell2->GetName(),15,3,white);		num(isell2->GetCost(),28,3,white);
+		text(isell3->GetName(),15,4,white);		num(isell3->GetCost(),28,4,white);
+		text(isell4->GetName(),15,5,white);		num(isell4->GetCost(),28,5,white);
+		text(isell5->GetName(),15,6,white);		num(isell5->GetCost(),28,6,white);
+		text(isell6->GetName(),15,7,white);		num(isell6->GetCost(),28,7,white);
 
 		DrawCurs(CursPos,yellow,175);
-		isell1->display();
+		isell1->Display();
 		do
 		{
 			if(MoveCurs(CursPos,bSel,bEsc,2,7))
@@ -980,22 +980,22 @@ void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 				switch(choice)
 				{
 				case 2:
-					isell1->display();
+					isell1->Display();
 					break;
 				case 3:
-					isell2->display();
+					isell2->Display();
 					break;
 				case 4:
-					isell3->display();
+					isell3->Display();
 					break;
 				case 5:
-					isell4->display();
+					isell4->Display();
 					break;
 				case 6:
-					isell5->display();
+					isell5->Display();
 					break;
 				case 7:
-					isell6->display();
+					isell6->Display();
 					break;
 				}
 			}
@@ -1008,57 +1008,57 @@ void world::magicshop(vector<Item*> &pstuff,Player *p2,string Map)
 		switch(choice)
 		{
 		case 2:
-			if(p2->GetGold() < isell1->getCost())
+			if(p2->GetGold() < isell1->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell1);
-				p2->SetGold(p2->GetGold()-isell1->getCost());
+				p2->SetGold(p2->GetGold()-isell1->GetCost());
 			}
 			break;
 		case 3:
-			if(p2->GetGold() < isell2->getCost())
+			if(p2->GetGold() < isell2->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell2);
-				p2->SetGold(p2->GetGold()-isell2->getCost());
+				p2->SetGold(p2->GetGold()-isell2->GetCost());
 			}
 			break;
 		case 4:
-			if(p2->GetGold() < isell3->getCost())
+			if(p2->GetGold() < isell3->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell3);
-				p2->SetGold(p2->GetGold()-isell3->getCost());
+				p2->SetGold(p2->GetGold()-isell3->GetCost());
 			}
 			break;
 		case 5:
-			if(p2->GetGold() < isell4->getCost())
+			if(p2->GetGold() < isell4->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell4);
-				p2->SetGold(p2->GetGold()-isell4->getCost());
+				p2->SetGold(p2->GetGold()-isell4->GetCost());
 			}
 			break;
 		case 6:
-			if(p2->GetGold() < isell5->getCost())
+			if(p2->GetGold() < isell5->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell5);
-				p2->SetGold(p2->GetGold()-isell5->getCost());
+				p2->SetGold(p2->GetGold()-isell5->GetCost());
 			}
 			break;
 		case 7:
-			if(p2->GetGold() < isell6->getCost())
+			if(p2->GetGold() < isell6->GetCost())
 				funds = false;
 			if(funds)
 			{
 				pstuff.push_back(isell6);
-				p2->SetGold(p2->GetGold()-isell6->getCost());
+				p2->SetGold(p2->GetGold()-isell6->GetCost());
 			}
 			break;
 		}
@@ -1120,7 +1120,7 @@ void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 
 			DrawCurs(CursPos,yellow,175);			
 			Offset = CursPos.Y - 12;
-			pstuff[Offset]->display();
+			pstuff[Offset]->Display();
 			do
 			{
 				choice = static_cast<int>(11+pstuff.size());
@@ -1128,7 +1128,7 @@ void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 				{
 					DrawCurs(CursPos,yellow,175);
 					Offset = CursPos.Y - 12;
-					pstuff[Offset]->display();
+					pstuff[Offset]->Display();
 				}
 				text(" ", 79, 23,white);
 			}while(!bSel);
@@ -1143,10 +1143,10 @@ void world::buyer(Player *p2, vector<Item*> &pstuff,string Map)
 		iUsed = pstuff[Offset];
 		bSel = false;
 		
-		num = static_cast<int>(iUsed->getCost() * X);
-		text(pstuff[Offset]->getname(),15,CursPos.Y,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		num = static_cast<int>(iUsed->GetCost() * X);
+		text(pstuff[Offset]->GetName(),15,CursPos.Y,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("This Item?                  ",13,3,white);
-		text(iUsed->getname(),13,5,white);
+		text(iUsed->GetName(),13,5,white);
 		cout << "   " << num << "GP";
 		do
 		{

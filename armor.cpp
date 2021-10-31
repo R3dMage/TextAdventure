@@ -11,12 +11,12 @@ using namespace std;
 
 armor::armor()
 {
-	arm = true;
-	keep = true;
-	type = -1;
+	IsArmor = true;
+	Keep = true;
+	Type = -1;
 	defmod = 0;
 	evadMod = 0;
-	cost = 0;
+	Cost = 0;
 
 }
 void armor::setdefMod(int num)
@@ -47,7 +47,7 @@ void armor::display()
 {
 	text("Absorbs ",30,11,white);
 	cout << defmod << " and adds " << evadMod << " to your evade   ";
-	showcost();
+	DisplayCost();
 }
 
 void armor::unload(string file)
@@ -55,8 +55,8 @@ void armor::unload(string file)
 	ofstream fout;
 	fout.open("ularmor.sav");
 
-	fout << name;
-	fout << "name: " << name;
+	fout << Name;
+	fout << "name: " << Name;
 	fout << "Def : " << defmod;
 	fout << "abs : " << evadMod;
 	fout << endl;

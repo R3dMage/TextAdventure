@@ -89,15 +89,15 @@ void world::InvenSave(vector<Item*> &stuff, ofstream &fout)
 
 	for(i = 0;i < stuff.size(); i++)
 	{
-		fout << "inv" << i+1 << ": " << stuff[i]->getname() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getmap() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getX() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getY() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getCost() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getType() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getkeep() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getweap() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->getarm() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetName() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetMapName() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetPositionX() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetPositionY() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetCost() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetType() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetKeep() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetIsWeapon() << endl;
+		fout << "inv" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
 	}
 }
 void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
@@ -107,15 +107,15 @@ void world::GroundSave(vector<Item*> &stuff, ofstream &fout)
 
 	for(i = 0;i < stuff.size(); i++)
 	{
-		fout << "item" << i+1 << ": " << stuff[i]->getname() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getmap() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getX() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getY() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getCost() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getType() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getkeep() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getweap() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->getarm() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetName() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetMapName() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetPositionX() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetPositionY() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetCost() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetType() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetKeep() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetIsWeapon() << endl;
+		fout << "item" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
 	}
 }
 void world::MagikSave(vector<magik*> &M, ofstream &fout)
@@ -146,20 +146,20 @@ void world::loadGround(vector<Item*> &stuff,ifstream &fin)
 	for(i=0; i < j; i++)
 	{
 		holder = new Item;
-		fin >> szHolder;	getline(fin,temp);	holder->setname(rotate(temp));
-		fin >> szHolder >> temp;	holder->setmap(temp);
-		fin >> szHolder >> Xtemp;	holder->setX(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setY(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setCost(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setType(Xtemp);
-		fin >> szHolder >> Y;	holder->setkeep(Y);
-		fin >> szHolder >> Y;	holder->setweap(Y);
-		fin >> szHolder >> Y;	holder->setarm(Y);
+		fin >> szHolder;	getline(fin,temp);	holder->SetName(rotate(temp));
+		fin >> szHolder >> temp;	holder->SetMapName(temp);
+		fin >> szHolder >> Xtemp;	holder->SetPositionX(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetPositionY(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetCost(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetType(Xtemp);
+		fin >> szHolder >> Y;	holder->SetKeep(Y);
+		fin >> szHolder >> Y;	holder->SetIsWeapon(Y);
+		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
-		if(holder->getweap())
-			stuff.push_back(loadWeapon(holder->getname()));
-		else if(holder->getarm())
-			stuff.push_back(loadArmor(holder->getname()));
+		if(holder->GetIsWeapon())
+			stuff.push_back(loadWeapon(holder->GetName()));
+		else if(holder->GetIsArmor())
+			stuff.push_back(loadArmor(holder->GetName()));
 		else
 			stuff.push_back(holder);
 	}
@@ -181,20 +181,20 @@ void world::loadInven(vector<Item*> &pstuff,ifstream &fin)
 	for(i=0; i < j; i++)
 	{
 		holder = new Item;
-		fin >> szHolder;	getline(fin,temp);	holder->setname(rotate(temp));
-		fin >> szHolder >> temp;	holder->setmap(temp);
-		fin >> szHolder >> Xtemp;	holder->setX(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setY(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setCost(Xtemp);
-		fin >> szHolder >> Xtemp;	holder->setType(Xtemp);
-		fin >> szHolder >> Y;	holder->setkeep(Y);
-		fin >> szHolder >> Y;	holder->setweap(Y);
-		fin >> szHolder >> Y;	holder->setarm(Y);
+		fin >> szHolder;	getline(fin,temp);	holder->SetName(rotate(temp));
+		fin >> szHolder >> temp;	holder->SetMapName(temp);
+		fin >> szHolder >> Xtemp;	holder->SetPositionX(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetPositionY(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetCost(Xtemp);
+		fin >> szHolder >> Xtemp;	holder->SetType(Xtemp);
+		fin >> szHolder >> Y;	holder->SetKeep(Y);
+		fin >> szHolder >> Y;	holder->SetIsWeapon(Y);
+		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
-		if(holder->getweap())
-			pstuff.push_back(loadWeapon(holder->getname()));
-		else if(holder->getarm())
-			pstuff.push_back(loadArmor(holder->getname()));
+		if(holder->GetIsWeapon())
+			pstuff.push_back(loadWeapon(holder->GetName()));
+		else if(holder->GetIsArmor())
+			pstuff.push_back(loadArmor(holder->GetName()));
 		else
 			pstuff.push_back(holder);
 	}

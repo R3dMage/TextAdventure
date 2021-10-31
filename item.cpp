@@ -12,92 +12,92 @@ using namespace std;
  
 Item::Item()
 {
-	X = 0;
-	Y = 0;
-	name = "Ghost";
-	map = "field";
-	weap = false;
-	arm = false;
-	keep = false;
-	cost = 0;
-	type = -1;
+	PositionX = 0;
+	PositionY = 0;
+	Name = "Ghost";
+	MapName = "field";
+	IsWeapon = false;
+	IsArmor = false;
+	Keep = false;
+	Cost = 0;
+	Type = -1;
 }
-int Item::getType()
+int Item::GetType()
 {
-	return type;
+	return Type;
 }
-void Item::setType(int T)
+void Item::SetType(int type)
 {
-	type = T;
+	Type = type;
 }
-void Item::setarm(bool A)
+void Item::SetIsArmor(bool isArmor)
 {
-	arm = A;
+	IsArmor = isArmor;
 }
-bool Item::getarm()
+bool Item::GetIsArmor()
 {
-	return arm;
+	return IsArmor;
 }
-void Item::setweap(bool A)
+void Item::SetIsWeapon(bool isWeapon)
 {
-	weap = A;
+	IsWeapon = isWeapon;
 }
-bool Item::getweap()
+bool Item::GetIsWeapon()
 {
-	return weap;
+	return IsWeapon;
 }
-void Item::setCost(int C)
+void Item::SetCost(int cost)
 {
-	cost = C;
+	Cost = cost;
 }
-int Item::getCost()
+int Item::GetCost()
 {
-	return cost;
+	return Cost;
 }
-void Item::setname(string N)
+void Item::SetName(string name)
 {
-	name = N;
+	Name = name;
 }
-string Item::getname()
+string Item::GetName()
 {
-	return name;
+	return Name;
 }
-void Item::setmap(string M)
+void Item::SetMapName(string mapName)
 {
-	map = M;
+	MapName = mapName;
 }
-string Item::getmap()
+string Item::GetMapName()
 {
-	return map;
+	return MapName;
 }
-void Item::setX(int neoX)
+void Item::SetPositionX(int neoX)
 {
-	X = neoX;
+	PositionX = neoX;
 }
-int Item::getX()
+int Item::GetPositionX()
 {
-	return X;
+	return PositionX;
 }
-void Item::setY(int neoY)
+void Item::SetPositionY(int neoY)
 {
-	Y = neoY;
+	PositionY = neoY;
 }
-int Item::getY()
+int Item::GetPositionY()
 {
-	return Y;
+	return PositionY;
 }
-void Item::setkeep(bool K)
+void Item::SetKeep(bool keep)
 {
-	keep = K;
+	Keep = keep;
 }
-bool Item::getkeep()
+bool Item::GetKeep()
 {
-	return keep;
+	return Keep;
 }
 
-void Item::display()
+void Item::Display()
 {
-	switch(type)
+	switch(Type)
 	{
 	case -1:
 		text("                                           ",30,11,white);
@@ -124,13 +124,13 @@ void Item::display()
 		text("Heals all of your life              ",30,11,white);
 		break;
 	}
-	showcost();
+	DisplayCost();
 }
 
-void Item::showcost()
+void Item::DisplayCost()
 {
 	text("Value: ",1,22,white);
-	num(cost,2,23,white);
+	num(Cost,2,23,white);
 	cout << " GP  ";
 }
 

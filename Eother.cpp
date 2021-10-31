@@ -23,21 +23,21 @@ bool elf::dropItem()
 Item* elf::body(string Map) const 
 {
 	Item *left = new Item;
-	left->setname("Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(50);
+	left->SetName("Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(50);
 	return left;
 }
 Item* elf::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 
@@ -88,21 +88,21 @@ bool mage::dropItem()
 Item* mage::body(string Map) const 
 {
 	Item *left = new Item;
-	left->setname("Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 Item* mage::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* mage::replenish() const
@@ -121,21 +121,21 @@ bool warrior::dropItem()
 Item* warrior::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 Item* warrior::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("Elvenchain");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* warrior::replenish() const
@@ -154,21 +154,21 @@ bool fireelf::dropItem()
 Item* fireelf::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Red Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Red Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 Item* fireelf::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* fireelf::replenish() const
@@ -187,21 +187,21 @@ bool iceelf::dropItem()
 Item* iceelf::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Bluewhite Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Bluewhite Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 Item* iceelf::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* iceelf::replenish() const
@@ -220,12 +220,12 @@ bool ranger::dropItem()
 Item* ranger::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Elven Lock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(50 * level);
+	left->SetName("Elven Lock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(50 * level);
 	return left;
 }
 Item* ranger::token(string Map)
@@ -246,9 +246,9 @@ Item* ranger::token(string Map)
 		break;
 	}
 
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* ranger::replenish() const
@@ -268,21 +268,21 @@ bool Orc::dropItem()
 Item* Orc::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Orc Ear");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(75);
+	left->SetName("Orc Ear");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(75);
 	return left;
 }
 Item* Orc::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 
@@ -331,21 +331,21 @@ bool sorceror::dropItem()
 Item* sorceror::body(string Map) const 
 {
 	Item *left = new Item;
-	left->setname("Orc Ear");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(300);
+	left->SetName("Orc Ear");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(300);
 	return left;
 }
 Item* sorceror::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* sorceror::replenish() const
@@ -364,21 +364,21 @@ bool osoldier::dropItem()
 Item* osoldier::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Orc Ear");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(150);
+	left->SetName("Orc Ear");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(150);
 	return left;
 }
 Item* osoldier::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("Orc_Mail");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* osoldier::replenish() const
@@ -398,21 +398,21 @@ bool fireorc::dropItem()
 Item* fireorc::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Red Orc Ear");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(200);
+ left->SetName("Red Orc Ear");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(200);
  return left;
 }
 Item* fireorc::token(string Map)
 {
  Item *token = new Item;
  token = loaditem("Potion2");
- token->setX(X);
- token->setY(Y);
- token->setmap(Map);
+ token->SetPositionX(X);
+ token->SetPositionY(Y);
+ token->SetMapName(Map);
  return token;
 }
 creature* fireorc::replenish() const
@@ -431,21 +431,21 @@ bool iceorc::dropItem()
 Item* iceorc::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Blue Orc Ear");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(200);
+ left->SetName("Blue Orc Ear");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(200);
  return left;
 }
 Item* iceorc::token(string Map)
 {
  Item *token = new Item;
  token = loaditem("Potion2");
- token->setX(X);
- token->setY(Y);
- token->setmap(Map);
+ token->SetPositionX(X);
+ token->SetPositionY(Y);
+ token->SetMapName(Map);
  return token;
 }
 creature* iceorc::replenish() const
@@ -464,12 +464,12 @@ bool wanderer::dropItem()
 Item* wanderer::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Orc Ear");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(250);
+ left->SetName("Orc Ear");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(250);
  return left;
 }
 Item* wanderer::token(string Map)
@@ -490,9 +490,9 @@ Item* wanderer::token(string Map)
 		break;
 	}
 
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* wanderer::replenish() const
@@ -512,20 +512,20 @@ Item* human::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 Item* human::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Last Will");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost((rand()% 100 + 1) * level);
+	left->SetName("Last Will");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost((rand()% 100 + 1) * level);
 	return left;
 }
 
@@ -593,9 +593,9 @@ Item* knight::token(string Map)
 		token = loaditem("Potion2");
 		break;
 	}
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* knight::replenish() const
@@ -623,9 +623,9 @@ Item* adventure::token(string Map)
 		token = loaditem("Potion2");
 		break;
 	}
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* adventure::replenish() const
@@ -767,9 +767,9 @@ Item* wizard::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* wizard::replenish() const
@@ -790,21 +790,21 @@ bool goblin::dropItem()
 Item*goblin::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Goblin Claw");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(10);
+	left->SetName("Goblin Claw");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(10);
 	return left;
 }
 Item* goblin::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* goblin::replenish() const
@@ -816,12 +816,12 @@ creature* goblin::replenish() const
 Item* gspider::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Spider Silk");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(50);
+	left->SetName("Spider Silk");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(50);
 	return left;
 }
 creature* gspider::replenish() const
@@ -833,12 +833,12 @@ creature* gspider::replenish() const
 Item* wolf::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Wolf pelt");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(15);
+	left->SetName("Wolf pelt");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(15);
 	return left;
 }
 creature* wolf::replenish() const
@@ -849,12 +849,12 @@ creature* wolf::replenish() const
 Item*raven::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Black Feather");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(10);
+	left->SetName("Black Feather");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(10);
 	return left;
 }
 creature* raven::replenish() const
@@ -865,12 +865,12 @@ creature* raven::replenish() const
 Item* snake::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Snake Skin");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(20);
+	left->SetName("Snake Skin");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(20);
 	return left;
 }
 creature* snake::replenish() const
@@ -881,12 +881,12 @@ creature* snake::replenish() const
 Item* eagle::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Talon");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(50);
+ left->SetName("Talon");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(50);
  return left;
 }
 creature* eagle::replenish() const
@@ -897,12 +897,12 @@ creature* eagle::replenish() const
 Item* pbear::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Polar Paw");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(100);
+ left->SetName("Polar Paw");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(100);
  return left;
 }
 creature* pbear::replenish() const
@@ -913,12 +913,12 @@ creature* pbear::replenish() const
 Item* salamander::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Salamander Tongue");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(200);
+ left->SetName("Salamander Tongue");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(200);
  return left;
 }
 creature* salamander::replenish() const
@@ -929,12 +929,12 @@ creature* salamander::replenish() const
 Item* centipede::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Insectoid Leg");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(150);
+ left->SetName("Insectoid Leg");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(150);
  return left;
 }
 creature* centipede::replenish() const
@@ -945,12 +945,12 @@ creature* centipede::replenish() const
 Item* wyvern::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Wyvern Wing");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(250);
+ left->SetName("Wyvern Wing");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(250);
  return left;
 }
 creature* wyvern::replenish() const
@@ -961,12 +961,12 @@ creature* wyvern::replenish() const
 Item* hydra::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Hydra Scale");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(300);
+ left->SetName("Hydra Scale");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(300);
  return left;
 }
 creature* hydra::replenish() const
@@ -977,12 +977,12 @@ creature* hydra::replenish() const
 Item* minator::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Minotaur Horn");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(250);
+ left->SetName("Minotaur Horn");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(250);
  return left;
 }
 creature* minator::replenish() const
@@ -1001,21 +1001,21 @@ bool gargoyle::dropItem()
 Item* gargoyle::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Rock Hand");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(10);
+ left->SetName("Rock Hand");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(10);
  return left;
 }
 Item* gargoyle::token(string Map)
 {
  Item *token = new Item;
  token = loaditem("Potion");
- token->setX(X);
- token->setY(Y);
- token->setmap(Map);
+ token->SetPositionX(X);
+ token->SetPositionY(Y);
+ token->SetMapName(Map);
  return token;
 }
 creature* gargoyle::replenish() const
@@ -1037,21 +1037,21 @@ bool margoyle::dropItem()
 Item* margoyle::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Rock Foot");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(100);
+ left->SetName("Rock Foot");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(100);
  return left;
 }
 Item* margoyle::token(string Map)
 {
  Item *token = new Item;
  token = loaditem("Potion3");
- token->setX(X);
- token->setY(Y);
- token->setmap(Map);
+ token->SetPositionX(X);
+ token->SetPositionY(Y);
+ token->SetMapName(Map);
  return token;
 }
 creature* margoyle::replenish() const
@@ -1069,21 +1069,21 @@ bool stargoyle::dropItem()
 Item* stargoyle::body(string Map) const
 {
  Item *left = new Item;
- left->setname("Rock Horn");
- left->setmap(Map);
- left->setX(X);
- left->setY(Y);
- left->setkeep(true);
- left->setCost(10);
+ left->SetName("Rock Horn");
+ left->SetMapName(Map);
+ left->SetPositionX(X);
+ left->SetPositionY(Y);
+ left->SetKeep(true);
+ left->SetCost(10);
  return left;
 }
 Item* stargoyle::token(string Map)
 {
  Item *token = new Item;
  token = loaditem("Potion4");
- token->setX(X);
- token->setY(Y);
- token->setmap(Map);
+ token->SetPositionX(X);
+ token->SetPositionY(Y);
+ token->SetMapName(Map);
  return token;
 }
 creature* stargoyle::replenish() const
@@ -1102,21 +1102,21 @@ bool ogre::dropItem()
 Item* ogre::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Ogre Skull");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(30);
+	left->SetName("Ogre Skull");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(30);
 	return left;
 }
  Item* ogre::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* ogre::replenish() const
@@ -1136,20 +1136,20 @@ bool troll::dropItem()
 {
 	Item *token = new Item;
 	token = loadWeapon("TrollSword");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
  Item* troll::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Troll Heart");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Troll Heart");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 creature* troll::replenish() const
@@ -1169,20 +1169,20 @@ bool magmaman::dropItem()
 {
 	Item *token = new Item;
 	token = loaditem("Potion3");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
  Item* magmaman::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Red Rock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(150);
+	left->SetName("Red Rock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(150);
 	return left;
 }
 creature* magmaman::replenish() const
@@ -1204,21 +1204,21 @@ bool cyclops::dropItem()
 Item*cyclops::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Giant Eye");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Giant Eye");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 Item* cyclops::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* cyclops::replenish() const
@@ -1239,21 +1239,21 @@ bool giant::dropItem()
 Item*giant::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Giant Nose");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(10);
+	left->SetName("Giant Nose");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(10);
 	return left;
 }
 Item* giant::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* giant::replenish() const
@@ -1275,21 +1275,21 @@ bool frostgiant::dropItem()
 Item*frostgiant::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Frostbite Finger");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(10);
+	left->SetName("Frostbite Finger");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(10);
 	return left;
 }
 Item* frostgiant::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* frostgiant::replenish() const
@@ -1310,12 +1310,12 @@ bool stormgiant::dropItem()
 Item* stormgiant::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Giant Toe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(false);
-	left->setCost(10);
+	left->SetName("Giant Toe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(false);
+	left->SetCost(10);
 	return left;
 }
 Item* stormgiant::token(string Map)
@@ -1326,9 +1326,9 @@ Item* stormgiant::token(string Map)
 		token = loadArmor("Storm Shroud");
 	if(R < 4)
 		token = loadWeapon("StormSword");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* stormgiant::replenish() const
@@ -1349,21 +1349,21 @@ bool nymph::dropItem()
 Item*nymph::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Crown of Laurels");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(175);
+	left->SetName("Crown of Laurels");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(175);
 	return left;
 }
 Item* nymph::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* nymph::replenish() const
@@ -1384,21 +1384,21 @@ bool icewizard::dropItem()
 Item*icewizard::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Wizard's Beard");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(30);
+	left->SetName("Wizard's Beard");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(30);
 	return left;
 }
 Item* icewizard::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* icewizard::replenish() const
@@ -1423,29 +1423,29 @@ Item* snowman::body(string Map) const
 	switch(R)
 	{
 	case 1:
-		left->setname("Carrot");
+		left->SetName("Carrot");
 		break;
 	case 2:
-		left->setname("Corncob Pipe");
+		left->SetName("Corncob Pipe");
 		break;
 	case 3:
-		left->setname("Piece of Coal");
+		left->SetName("Piece of Coal");
 		break;
 	}
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(30);
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(30);
 	return left;
 }
 Item* snowman::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Refresh");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* snowman::replenish() const
@@ -1466,21 +1466,21 @@ bool shrineguard::dropItem()
 Item*shrineguard::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Ice Shrine Crest");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Ice Shrine Crest");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 Item* shrineguard::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("IceChain");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* shrineguard::replenish() const
@@ -1501,21 +1501,21 @@ bool rockgolem::dropItem()
 Item*rockgolem::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Chunk of Rock");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Chunk of Rock");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 Item* rockgolem::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* rockgolem::replenish() const
@@ -1536,21 +1536,21 @@ bool irongolem::dropItem()
 Item*irongolem::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Hunk of Iron");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(400);
+	left->SetName("Hunk of Iron");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(400);
 	return left;
 }
 Item* irongolem::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* irongolem::replenish() const
@@ -1571,21 +1571,21 @@ bool steelgolem::dropItem()
 Item*steelgolem::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Lump of Steel");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(800);
+	left->SetName("Lump of Steel");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(800);
 	return left;
 }
 Item* steelgolem::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion3");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* steelgolem::replenish() const
@@ -1606,21 +1606,21 @@ bool treeman::dropItem()
 Item*treeman::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Lumber");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Lumber");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 Item* treeman::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion2");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* treeman::replenish() const
@@ -1641,21 +1641,21 @@ bool acolyte::dropItem()
 Item*acolyte::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Acolyte's Soul");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Acolyte's Soul");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 Item* acolyte::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("SoulCatcher");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* acolyte::replenish() const
@@ -1677,21 +1677,21 @@ bool firedemon::dropItem()
 Item*firedemon::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Fire Horn");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(100);
+	left->SetName("Fire Horn");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
 	return left;
 }
 Item* firedemon::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion3");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* firedemon::replenish() const
@@ -1710,12 +1710,12 @@ bool skel::dropItem()
  Item* skel::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Rib Bone");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Rib Bone");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 creature* skel::replenish() const
@@ -1735,23 +1735,23 @@ bool ghoul::dropItem()
  Item* ghoul::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Mangled Flesh");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Mangled Flesh");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
  Item* ghoul::token(string Map)
 {
 	Item *token = new Item;
-	token->setname("Ghoul's Eye");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
-	token->setCost(1000);
+	token->SetName("Ghoul's Eye");
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
+	token->SetCost(1000);
 	return token;
 }
 creature* ghoul::replenish() const
@@ -1763,12 +1763,12 @@ creature* ghoul::replenish() const
  Item* ghost::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Disembodied Soul");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Disembodied Soul");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 creature* ghost::replenish() const
@@ -1788,24 +1788,24 @@ bool phantom::dropItem()
 Item* phantom::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Onyx Stone");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Onyx Stone");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 
 Item* phantom::token(string Map)
 {
 	Item *token = new Item;
-	token->setname("Ruby Gem");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
-	token->setCost(1000);
+	token->SetName("Ruby Gem");
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
+	token->SetCost(1000);
 	return token;
 }
 creature* phantom::replenish() const
@@ -1824,12 +1824,12 @@ bool vampire::dropItem()
 Item* vampire::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Vampire Fang");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(200);
+	left->SetName("Vampire Fang");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
 	return left;
 }
 
@@ -1837,9 +1837,9 @@ Item* vampire::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion4");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 creature* vampire::replenish() const
@@ -1867,21 +1867,21 @@ bool woodpriest::dropItem()
 {
 	Item *token = new Item;
 	token = loadWeapon("Slicer");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
 	return token;
 }
 Item* woodpriest::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void woodpriest::win(Player *p2)
@@ -1920,21 +1920,21 @@ bool icepriest::dropItem()
 {
 	Item *token = new Item;
 	token = loadWeapon("Ice Sword");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
 	return token;
 }
 Item* icepriest::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void icepriest::win(Player *p2)
@@ -1972,21 +1972,21 @@ bool firepriest::dropItem()
 {
 	Item *token = new Item;
 	token = loadWeapon("Fire Sword");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
 	return token;
 }
 Item* firepriest::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void firepriest::win(Player *p2)
@@ -2023,21 +2023,21 @@ bool windpriest::dropItem()
 {
 	Item *token = new Item;
 	token = loaditem("Potion4");
-	token->setmap(Map);
-	token->setX(X);
-	token->setY(Y);
-	token->setkeep(true);
+	token->SetMapName(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetKeep(true);
 	return token;
 }
 Item* windpriest::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void windpriest::win(Player *p2)
@@ -2073,12 +2073,12 @@ bool godofwar::dropItem()
 Item* godofwar::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Sword");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Sword");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void godofwar::win(Player *p2)
@@ -2111,12 +2111,12 @@ bool godoflife::dropItem()
 Item* godoflife::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 
@@ -2151,12 +2151,12 @@ bool godofchaos::dropItem()
 Item* godofchaos::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void godofchaos::win(Player *p2)
@@ -2189,12 +2189,12 @@ bool godofdeath::dropItem()
 Item* godofdeath::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Robe");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Robe");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 void godofdeath::win(Player *p2)
@@ -2229,21 +2229,21 @@ bool greendragon::dropItem()
 Item*greendragon::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Green Scale");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(5000);
+	left->SetName("Green Scale");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(5000);
 	return left;
 }
 Item* greendragon::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("GreenMail");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 void greendragon::win(Player *p2)
@@ -2272,21 +2272,21 @@ bool bluedragon::dropItem()
 Item*bluedragon::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Blue Scale");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(5000);
+	left->SetName("Blue Scale");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(5000);
 	return left;
 }
 Item* bluedragon::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("BlueMail");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 void bluedragon::win(Player *p2)
@@ -2313,21 +2313,21 @@ bool reddragon::dropItem()
 Item*reddragon::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Red Scale");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(5000);
+	left->SetName("Red Scale");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(5000);
 	return left;
 }
 Item* reddragon::token(string Map)
 {
 	Item *token = new Item;
 	token = loadArmor("RedMail");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 void reddragon::win(Player *p2)
@@ -2354,12 +2354,12 @@ bool fly::dropItem()
 Item*fly::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Dead Fly");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(0);
+	left->SetName("Dead Fly");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(0);
 	return left;
 }
 creature* fly::replenish() const
@@ -2376,21 +2376,21 @@ bool monk::dropItem()
 Item*monk::body(string Map) const
 {
 	Item *left = new Item;
-	left->setname("Monk's Cowl");
-	left->setmap(Map);
-	left->setX(X);
-	left->setY(Y);
-	left->setkeep(true);
-	left->setCost(5000);
+	left->SetName("Monk's Cowl");
+	left->SetMapName(Map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(5000);
 	return left;
 }
 Item* monk::token(string Map)
 {
 	Item *token = new Item;
 	token = loaditem("Potion");
-	token->setX(X);
-	token->setY(Y);
-	token->setmap(Map);
+	token->SetPositionX(X);
+	token->SetPositionY(Y);
+	token->SetMapName(Map);
 	return token;
 }
 void monk::win(Player *p2)

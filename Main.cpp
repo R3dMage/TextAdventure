@@ -209,7 +209,7 @@ weapon* loadWeapon(string name)
 		if(name == szName)
 			nameFound = true;	
 
-		weaponPtr->setname(rotate(temp));
+		weaponPtr->SetName(rotate(temp));
 
 		fin >> szWord;
 		getline(fin,temp);
@@ -226,7 +226,7 @@ weapon* loadWeapon(string name)
 		fin >> szWord >> bVal;
 		weaponPtr->setlsteal(bVal);
 		fin >> szWord >> num;
-		weaponPtr->setCost(num);
+		weaponPtr->SetCost(num);
 	}
 	return weaponPtr;
 }
@@ -258,13 +258,13 @@ armor* loadArmor(string name)
 		
 		fin >> szWord;
 		getline(fin,temp);
-		armorPtr->setname(rotate(temp));
+		armorPtr->SetName(rotate(temp));
 		fin >> szWord >> num;
 		armorPtr->setdefMod(num);
 		fin >> szWord >> num;
 		armorPtr->setevadMod(num);
 		fin >> szWord >> num;
-		armorPtr->setCost(num);
+		armorPtr->SetCost(num);
 		if(fin.eof())
 		{
 			text("END of Armor File reached.   ",13,11,FOREGROUND_RED); 
@@ -299,10 +299,10 @@ Item* loaditem(string name)
 		fin >> szName;
 		if(name == szName)
 			nameFound = true;
-		itemPtr->setname(szName);
-		fin >> num; itemPtr->setType(num);
+		itemPtr->SetName(szName);
+		fin >> num; itemPtr->SetType(num);
 		fin >> szWord >> num;
-		itemPtr->setCost(num);
+		itemPtr->SetCost(num);
 	}
 	return itemPtr;
 }
@@ -314,9 +314,9 @@ void ground(vector<Item*> stuff,string Map,int X,int Y)
 	text("[---Ground---]",13,1,brown);
 	while(Offset < stuff.size())
 	{		
-		if(stuff[Offset]->getY() == Y && stuff[Offset]->getX() == X && stuff[Offset]->getmap() == Map)
+		if(stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
 		{
-			text(stuff[Offset]->getname(),15,2+NumItems,yellow);
+			text(stuff[Offset]->GetName(),15,2+NumItems,yellow);
 			NumItems++;
 		}
 		Offset++;		
@@ -332,7 +332,7 @@ void items(vector<Item*> &pstuff)
  	text(" [---Items---] ",13,11,brown);
 	while(Offset < pstuff.size())
 	{		
-		text(pstuff[Offset]->getname(),15,12+Offset,yellow);
+		text(pstuff[Offset]->GetName(),15,12+Offset,yellow);
 		Offset++;
 		if(Offset >= 12)
 			break;

@@ -408,8 +408,8 @@ void Player::DisplayInfo()
 	num(GetPositionY(),3,7,white);
 	text("           ",1,8,white);
 	text("           ",1,9,white);
-	text(EquippedWeapon->getname(),1,8,white);
-	text(EquippedArmor->getname(),1,9,white);
+	text(EquippedWeapon->GetName(),1,8,white);
+	text(EquippedArmor->GetName(),1,9,white);
 
 }
 
@@ -549,8 +549,8 @@ void Player::Save(ofstream &fout)
 	fout << "bSpells: "	<< HasSpells << endl;
 	fout << "bjoined: "	<< MemberHasJoined << endl;
 	fout << "Invis: "   << Invisible << endl;
-	fout << "Weapon: "	<< EquippedWeapon->getname() << endl;
-	fout << "Armor: "   << EquippedArmor->getname() << endl;
+	fout << "Weapon: "	<< EquippedWeapon->GetName() << endl;
+	fout << "Armor: "   << EquippedArmor->GetName() << endl;
 	fout << "elf: "		<< RaceReactions.Elf << endl;
 	fout << "orc: "		<< RaceReactions.Orc << endl;
 	fout << "hum: "		<< RaceReactions.Human << endl;

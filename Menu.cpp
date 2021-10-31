@@ -139,7 +139,7 @@ void world::inventory(Player *p2,vector<Item*> &stuff, vector<Item*> &pstuff,str
 			{
 				for(Offset = 0;Offset < stuff.size();Offset++)
 				{
-					if(stuff[Offset]->getY() == p2->GetPositionY() && stuff[Offset]->getX() == p2->GetPositionX() && stuff[Offset]->getmap() == Map)
+					if(stuff[Offset]->GetPositionY() == p2->GetPositionY() && stuff[Offset]->GetPositionX() == p2->GetPositionX() && stuff[Offset]->GetMapName() == Map)
 					{
 						pstuff.push_back(stuff[Offset]);
 						temp = stuff[stuff.size()-1];
@@ -245,7 +245,7 @@ void world::items(vector<Item*> &pstuff)
 	text(" [---Items---] ",13,11,brown);
 	while(Offset < pstuff.size())
 	{		
-		text(pstuff[Offset]->getname(),15,12+Offset,yellow);
+		text(pstuff[Offset]->GetName(),15,12+Offset,yellow);
 		Offset++;
 		if(Offset >= 12)
 			break;
@@ -268,7 +268,7 @@ void world::equip(Player *p2,vector<Item*> &pstuff)
 		CursPos.Y = 12;
 		Offset = CursPos.Y - 12;
 		DrawCurs(CursPos,yellow,175);
-		pstuff[Offset]->display();
+		pstuff[Offset]->Display();
 		do
 		{
 			choice = static_cast<int>(11+pstuff.size());
@@ -276,7 +276,7 @@ void world::equip(Player *p2,vector<Item*> &pstuff)
 			{
 				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
-				pstuff[Offset]->display();
+				pstuff[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -291,23 +291,23 @@ void world::equip(Player *p2,vector<Item*> &pstuff)
 	}// End While bSel
 	Offset = CursPos.Y - 12;
 	temp = pstuff[Offset];
-	if(!temp->getarm() && !temp->getweap())
+	if(!temp->GetIsArmor() && !temp->GetIsWeapon())
 	{
 		text("You cannot equip that.",13,9,white);
 		Sleep(p2->GetPauseDuration());
 	}
-	if(temp->getarm())
+	if(temp->GetIsArmor())
 	{
 		pstuff.push_back(p2->GetArmor());
-		p2->SetArmor(loadArmor(temp->getname()));
+		p2->SetArmor(loadArmor(temp->GetName()));
 		pstuff[Offset] = pstuff[pstuff.size()-1];
 		pstuff[pstuff.size()-1] = temp;
 		pstuff.pop_back();		
 	}
-	if(temp->getweap())
+	if(temp->GetIsWeapon())
 	{
 		pstuff.push_back(p2->GetWeapon());
-		p2->SetWeapon(loadWeapon(temp->getname()));
+		p2->SetWeapon(loadWeapon(temp->GetName()));
 		pstuff[Offset] = pstuff[pstuff.size()-1];
 		pstuff[pstuff.size()-1] = temp;
 		pstuff.pop_back();		
@@ -345,7 +345,7 @@ void world::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Ma
 			{
 				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
-				pstuff[Offset]->display();
+				pstuff[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -360,9 +360,9 @@ void world::drop(Player *p2,vector<Item*> &stuff,vector<Item*> &pstuff,string Ma
 	
 
 		Offset = CursPos.Y - 12;
-		pstuff[Offset]->setmap(Map);
-		pstuff[Offset]->setX(p2->GetPositionX());
-		pstuff[Offset]->setY(p2->GetPositionY());
+		pstuff[Offset]->SetMapName(Map);
+		pstuff[Offset]->SetPositionX(p2->GetPositionX());
+		pstuff[Offset]->SetPositionY(p2->GetPositionY());
 		stuff.push_back(pstuff[Offset]);
 		slidedown(pstuff,Offset);
 		pstuff.pop_back();	
@@ -396,7 +396,7 @@ void world::XXX(vector<Item*> &pstuff)
 			{
 				DrawCurs(CursPos,yellow,175);
 				Offset = CursPos.Y - 12;
-				pstuff[Offset]->display();
+				pstuff[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -411,7 +411,7 @@ void world::XXX(vector<Item*> &pstuff)
 			
 		Offset = CursPos.Y - 12;
 		bSel = false;
-		text(pstuff[Offset]->getname(),15,CursPos.Y,FOREGROUND_RED | FOREGROUND_INTENSITY);
+		text(pstuff[Offset]->GetName(),15,CursPos.Y,FOREGROUND_RED | FOREGROUND_INTENSITY);
 		do
 		{
 			
@@ -695,7 +695,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 		CursPos.Y = 12;
 		DrawCurs(CursPos,yellow,175);
 		
-		pstuff[Offset]->display();
+		pstuff[Offset]->Display();
 		do
 		{
 			choice = static_cast<int>(11+pstuff.size());
@@ -703,7 +703,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 			{
 				DrawCurs(CursPos,yellow,175);				
 				Offset = CursPos.Y - 12;
-				pstuff[Offset]->display();
+				pstuff[Offset]->Display();
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -720,7 +720,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 		iUsed = pstuff[Offset];
 		if(!bEsc)
 		{	
-			if(!iUsed->getkeep())
+			if(!iUsed->GetKeep())
 			{
 				slidedown(pstuff,Offset);
 				pstuff.pop_back();
@@ -728,7 +728,7 @@ void world::use(Player *p2,vector<Item*> &pstuff,bool &Iused,bool bFight)
 			}
 
 
-			switch(iUsed->getType())
+			switch(iUsed->GetType())
 			{
 			case 0:
 				Num = 25; 

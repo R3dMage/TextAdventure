@@ -10,14 +10,14 @@ using namespace std;
 
 weapon::weapon()
 {
-	weap = true;
+	IsWeapon = true;
 	twohits = false;
 	lifesteal = false;
-	keep = true;
-	type = -2;
+	Keep = true;
+	Type = -2;
 	damage = 5;
 	damMod = 1;
-	cost = 0;
+	Cost = 0;
 	attribute1 = "none";
 	attribute2 = "none";
 }
@@ -86,7 +86,7 @@ void weapon::display()
 {
 	text("Deals ",30,11,white);
 	cout << damMod << " to " << damage + damMod - 1 << " points of damage          ";
-	showcost();
+	DisplayCost();
 }
 
 void weapon::unload(string file)
@@ -94,15 +94,15 @@ void weapon::unload(string file)
 	ofstream fout;
 	fout.open("ulweapons.sav");
 
-	fout << name << endl;
-	fout << "name: " << name << endl;
+	fout << Name << endl;
+	fout << "name: " << Name << endl;
 	fout << "att1: " << attribute1 << endl;
 	fout << "att2: " << attribute2 << endl;
 	fout << "dam : " << damage << endl;
 	fout << "damM: " << damMod << endl;
 	fout << "2hit: " << twohits << endl;
 	fout << "life: " << lifesteal << endl;
-	fout << "cost: " << cost << endl;
+	fout << "cost: " << Cost << endl;
 	fout << endl;
 
 	fout.close();	
