@@ -47,11 +47,11 @@ void Elf::win(Player *p2)
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
-	num(gold,20,11,green);
-	num(exp,20,12,green);
+	num(Gold,20,11,green);
+	num(Experience,20,12,green);
 	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + gold);
-	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetGold(p2->GetGold() + Gold);
+	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->SetReactionElf(1);
 	p2->RaceKillCounts.ElfKillCount += 1;
 	if(p2->RaceKillCounts.OrcKillCount == 0)
@@ -225,7 +225,7 @@ Item* ranger::body(string Map) const
 	left->SetPositionX(X);
 	left->SetPositionY(Y);
 	left->SetKeep(true);
-	left->SetCost(50 * level);
+	left->SetCost(50 * Level);
 	return left;
 }
 Item* ranger::token(string Map)
@@ -292,11 +292,11 @@ void Orc::win(Player *p2)
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
-	num(gold,20,11,green);
-	num(exp,20,12,green);
+	num(Gold,20,11,green);
+	num(Experience,20,12,green);
 	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + gold);
-	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetGold(p2->GetGold() + Gold);
+	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->SetReactionOrc(1);
 	p2->RaceKillCounts.OrcKillCount += 1;
 	if(p2->RaceKillCounts.ElfKillCount == 0)
@@ -525,7 +525,7 @@ Item* Human::body(string Map) const
 	left->SetPositionX(X);
 	left->SetPositionY(Y);
 	left->SetKeep(true);
-	left->SetCost((rand()% 100 + 1) * level);
+	left->SetCost((rand()% 100 + 1) * Level);
 	return left;
 }
 
@@ -535,11 +535,11 @@ void Human::win(Player *p2)
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
-	num(gold,20,11,green);
-	num(exp,20,12,green);
+	num(Gold,20,11,green);
+	num(Experience,20,12,green);
 	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + gold);
-	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetGold(p2->GetGold() + Gold);
+	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->RaceKillCounts.HumanKillCount += 1;
 	if(p2->RaceKillCounts.HumanKillCount == 5)
 	{//                                       65
@@ -634,123 +634,123 @@ Creature* Adventurer::replenish() const
 }
 void Adventurer::setmap(string M)
 {
-	map = M;
+	Map = M;
 	int L = 1;
 	int Lmod = 1;
-	name = "Human Adventurer";
+	Name = "Human Adventurer";
 	
-	if(map == "field1" || map == "road1")
+	if(Map == "field1" || Map == "road1")
 	{
 		L		= 3;
 		Lmod	= 3;
 	}
-	if(map == "field2" || map == "road2")
+	if(Map == "field2" || Map == "road2")
 	{
 		L		= 6;
 		Lmod	= 3;
 	}
-	if(map == "island2")
+	if(Map == "island2")
 	{
 		L		= 4;
 		Lmod	= 9;
 	}
 
-	level =		rand()% L + Lmod;
-	switch(level)
+	Level =		rand()% L + Lmod;
+	switch(Level)
 	{
 	case 1:
-		damage = 5;
-		damMod = 5;
-		hp = mhp = 25;
-		evade = 3;
-		gold = 25;
-		exp = 15;
+		Damage = 5;
+		DamageModifier = 5;
+		HitPoints = MaxHP = 25;
+		Evade = 3;
+		Gold = 25;
+		Experience = 15;
 		break;
 	case 2:
-		damage = 6;
-		damMod = 6;
-		hp = mhp = 40;
-		evade = 5;
-		gold = 50;
-		exp = 30;
+		Damage = 6;
+		DamageModifier = 6;
+		HitPoints = MaxHP = 40;
+		Evade = 5;
+		Gold = 50;
+		Experience = 30;
 		break;
 	case 3:
-		damage = 8;
-		damMod = 8;
-		hp = mhp = 65;
-		ka = mka = 10;
-		evade = 7;
-		gold = 75;
-		exp = 50;
+		Damage = 8;
+		DamageModifier = 8;
+		HitPoints = MaxHP = 65;
+		Ka = MaxKa = 10;
+		Evade = 7;
+		Gold = 75;
+		Experience = 50;
 		break;
 	case 4:
-		damage = 10;
-		damMod = 10;
-		hp = mhp = 90;
-		ka = mka = 12;
-		def		= 5;
-		evade = 9;
-		gold = 100;
-		exp = 85;
+		Damage = 10;
+		DamageModifier = 10;
+		HitPoints = MaxHP = 90;
+		Ka = MaxKa = 12;
+		Defense		= 5;
+		Evade = 9;
+		Gold = 100;
+		Experience = 85;
 		break;
 	case 5:
-		damage = 12;
-		damMod = 12;
-		hp = mhp = 120;
-		ka = mka = 15;
-		def		= 7;
-		evade = 10;
-		gold = 150;
-		exp = 100;
+		Damage = 12;
+		DamageModifier = 12;
+		HitPoints = MaxHP = 120;
+		Ka = MaxKa = 15;
+		Defense		= 7;
+		Evade = 10;
+		Gold = 150;
+		Experience = 100;
 		break;
 	case 6:
-		damage = 15;
-		damMod = 15;
-		hp = mhp = 150;
-		ka = mka = 20;
-		def		= 9;
-		evade = 10;
-		gold = 175;
-		exp = 125;
+		Damage = 15;
+		DamageModifier = 15;
+		HitPoints = MaxHP = 150;
+		Ka = MaxKa = 20;
+		Defense		= 9;
+		Evade = 10;
+		Gold = 175;
+		Experience = 125;
 		break;
 	case 7:
-		damage = 18;
-		damMod = 18;
-		hp = mhp = 160;
-		ka = mka = 25;
-		def		= 10;
-		evade = 10;
-		gold = 200;
-		exp = 150;
+		Damage = 18;
+		DamageModifier = 18;
+		HitPoints = MaxHP = 160;
+		Ka = MaxKa = 25;
+		Defense		= 10;
+		Evade = 10;
+		Gold = 200;
+		Experience = 150;
 	case 8:
-		damage = 20;
-		damMod = 20;
-		hp = mhp = 170;
-		ka = mka = 30;
-		def		= 12;
-		evade = 10;
-		gold = 225;
-		exp = 175;
+		Damage = 20;
+		DamageModifier = 20;
+		HitPoints = MaxHP = 170;
+		Ka = MaxKa = 30;
+		Defense		= 12;
+		Evade = 10;
+		Gold = 225;
+		Experience = 175;
 		break;
 	case 9:
-		damage = 22;
-		damMod = 22;
-		hp = mhp = 200;
-		ka = mka = 35;
-		def		= 14;
-		evade = 10;
-		gold = 250;
-		exp = 200;
+		Damage = 22;
+		DamageModifier = 22;
+		HitPoints = MaxHP = 200;
+		Ka = MaxKa = 35;
+		Defense		= 14;
+		Evade = 10;
+		Gold = 250;
+		Experience = 200;
 		break;
 	case 10:
-		damage = 25;
-		damMod = 25;
-		hp = mhp = 220;
-		ka = mka = 40;
-		def		= 15;
-		evade = 10;
-		gold = 275;
-		exp = 250;
+		Damage = 25;
+		DamageModifier = 25;
+		HitPoints = MaxHP = 220;
+		Ka = MaxKa = 40;
+		Defense		= 15;
+		Evade = 10;
+		Gold = 275;
+		Experience = 250;
 		break;
 	}
 }

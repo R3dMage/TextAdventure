@@ -17,677 +17,677 @@
 
 Elf::Elf()
 {
-	name = "Elf";
-	level =		2;
-	damage =	6;
-	damMod =	5;
-	hp = mhp =  40;
-	ka = mka =  10;
-	evade =		8;
-	gold =		30; 
-	exp =		25;
-	talkTo =	true; 
+	Name = "Elf";
+	Level =		2;
+	Damage =	6;
+	DamageModifier =	5;
+	HitPoints = MaxHP =  40;
+	Ka = MaxKa =  10;
+	Evade =		8;
+	Gold =		30; 
+	Experience =		25;
+	CanTalkTo =	true; 
 }
 
 ElvenMage::ElvenMage()
 {
-	name = "Elven Mage";
-	level =		4;
-	damage =	10;
-	damMod =	10;
-	hp = mhp =  58;
-	ka = mka =	20;
-	magdef =	20;
-	evade =		10;
-	gold =		100;
-	exp =		100;
-	talkTo =	true;
+	Name = "Elven Mage";
+	Level =		4;
+	Damage =	10;
+	DamageModifier =	10;
+	HitPoints = MaxHP =  58;
+	Ka = MaxKa =	20;
+	MagicDefense =	20;
+	Evade =		10;
+	Gold =		100;
+	Experience =		100;
+	CanTalkTo =	true;
 }
 
 ElvenWarrior::ElvenWarrior()
 {
-	name = "Elven Warrior";
-	level =		4;
-	damage =	20;
-	damMod =	10;
-	hp = mhp =  65;
-	ka = mka =  10;
-	def =		3;
-	magdef =	5;
-	evade =		10;
-	gold =		100;
-	exp =		100;
-	talkTo =	true;
+	Name = "Elven Warrior";
+	Level =		4;
+	Damage =	20;
+	DamageModifier =	10;
+	HitPoints = MaxHP =  65;
+	Ka = MaxKa =  10;
+	Defense =		3;
+	MagicDefense =	5;
+	Evade =		10;
+	Gold =		100;
+	Experience =		100;
+	CanTalkTo =	true;
 }
 FireElf::FireElf()
 {
-	name = "Fire Elf";
-	level =		8;
-	damage =	35;
-	damMod =	20;
-	def =		10;
-	hp = mhp =  100;
-	ka = mka =  25;
-	def =		10;
-	magdef =	15;
-	evade =		10;
-	gold =		400;
-	exp =		400;
-	talkTo =	true;
-	weakness =	"ice";
+	Name = "Fire Elf";
+	Level =		8;
+	Damage =	35;
+	DamageModifier =	20;
+	Defense =		10;
+	HitPoints = MaxHP =  100;
+	Ka = MaxKa =  25;
+	Defense =		10;
+	MagicDefense =	15;
+	Evade =		10;
+	Gold =		400;
+	Experience =		400;
+	CanTalkTo =	true;
+	Weakness =	"ice";
 }
 IceElf::IceElf()
 {
-	name = "Ice Elf";
-	level =		6;
-	damage =	20;
-	damMod =	20;
-	def =		8;
-	magdef =	15;
-	hp = mhp =  85;
-	ka = mka =  20;
-	def =		6;
-	evade =		12;
-	gold =		300;
-	exp =		300;
-	talkTo =	true;
-	weakness =	"fire";
+	Name = "Ice Elf";
+	Level =		6;
+	Damage =	20;
+	DamageModifier =	20;
+	Defense =		8;
+	MagicDefense =	15;
+	HitPoints = MaxHP =  85;
+	Ka = MaxKa =  20;
+	Defense =		6;
+	Evade =		12;
+	Gold =		300;
+	Experience =		300;
+	CanTalkTo =	true;
+	Weakness =	"fire";
 }
 ranger::ranger()
 {
-	name = "Elven Ranger";
-	level =		rand()% 3 + 6;
-	switch(level)
+	Name = "Elven Ranger";
+	Level =		rand()% 3 + 6;
+	switch(Level)
 	{
 	case 6:
 	case 7:
-		damage = 15;	damMod = 15;	def = 7; magdef =	15;
-		hp = mhp = 110;	gold = 190;	exp = 225;
+		Damage = 15;	DamageModifier = 15;	Defense = 7; MagicDefense =	15;
+		HitPoints = MaxHP = 110;	Gold = 190;	Experience = 225;
 		break;
 	case 8:
-		damage = 15; damMod = 20;	def = 9; magdef =	15;
-		hp = mhp = 180;	gold = 260;	exp = 350;
+		Damage = 15; DamageModifier = 20;	Defense = 9; MagicDefense =	15;
+		HitPoints = MaxHP = 180;	Gold = 260;	Experience = 350;
 		break;
 	case 9:
-		damage = 20; damMod = 20;	def = 12; magdef =	20;
-		hp = mhp = 200;	gold = 400;	exp = 400;
+		Damage = 20; DamageModifier = 20;	Defense = 12; MagicDefense =	20;
+		HitPoints = MaxHP = 200;	Gold = 400;	Experience = 400;
 		break;
 	}
-	ka = mka =  20;
-	evade =		8;
-	talkTo =	true;
+	Ka = MaxKa =  20;
+	Evade =		8;
+	CanTalkTo =	true;
 }
 //=============================================================================================================
 //												Orcs
 //=============================================================================================================
 Orc::Orc()
 {
-	name = "Orc";
-	level =		2;
-	damage =	7;
-	damMod =	8;
-	hp = mhp =	40;
-	evade =		4;
-	gold =		60;
-	exp =		25;
-	talkTo =	true;
+	Name = "Orc";
+	Level =		2;
+	Damage =	7;
+	DamageModifier =	8;
+	HitPoints = MaxHP =	40;
+	Evade =		4;
+	Gold =		60;
+	Experience =		25;
+	CanTalkTo =	true;
 }
 
 OrcSorceror::OrcSorceror()
 {
-	name = "Orc Sorceror";
-	level =		4;
-	damage =	10;
-	damMod =	10;
-	hp = mhp =	58;
-	ka = mka =	20;
-	magdef =	20;
-	evade =		4;
-	gold =		250;
-	exp =		100;
-	talkTo =	true;
+	Name = "Orc Sorceror";
+	Level =		4;
+	Damage =	10;
+	DamageModifier =	10;
+	HitPoints = MaxHP =	58;
+	Ka = MaxKa =	20;
+	MagicDefense =	20;
+	Evade =		4;
+	Gold =		250;
+	Experience =		100;
+	CanTalkTo =	true;
 }
 
 OrcSoldier::OrcSoldier()
 {
-	name = "Orc Soldier";
-	level =		4;
-	damage =	30;
-	damMod =	10;
-	hp = mhp =	65;
-	ka = mka =  10;
-	evade =		4;
-	gold =		250;
-	exp =		100;
-	def =		5;
-	talkTo =	true;
+	Name = "Orc Soldier";
+	Level =		4;
+	Damage =	30;
+	DamageModifier =	10;
+	HitPoints = MaxHP =	65;
+	Ka = MaxKa =  10;
+	Evade =		4;
+	Gold =		250;
+	Experience =		100;
+	Defense =		5;
+	CanTalkTo =	true;
 }
 FireOrc::FireOrc()
 {
-	name = "Fire Orc";
-	level = 8;
-	damage = 30;
-	damMod = 20;
-	hp = mhp = 200;
-	ka = mka = 30;
-	magdef =	10;
-	evade = 10;
-	gold = 250;
-	exp = 185;
-	weakness = "ice";
+	Name = "Fire Orc";
+	Level = 8;
+	Damage = 30;
+	DamageModifier = 20;
+	HitPoints = MaxHP = 200;
+	Ka = MaxKa = 30;
+	MagicDefense =	10;
+	Evade = 10;
+	Gold = 250;
+	Experience = 185;
+	Weakness = "ice";
 }
 IceOrc::IceOrc()
 {
-	name = "Ice Orc";
-	level = 6;
-	damage = 20;
-	damMod = 20;
-	hp = mhp = 150;
-	ka = mka = 20;
-	magdef =	10;
-	evade = 8;
-	gold = 100;
-	exp = 105;
-	weakness = "fire";
+	Name = "Ice Orc";
+	Level = 6;
+	Damage = 20;
+	DamageModifier = 20;
+	HitPoints = MaxHP = 150;
+	Ka = MaxKa = 20;
+	MagicDefense =	10;
+	Evade = 8;
+	Gold = 100;
+	Experience = 105;
+	Weakness = "fire";
 }
 OrcWanderer::OrcWanderer()
 {
-	name = "Orc Wanderer";
-	level =		rand()% 3 + 6;
-	switch(level)
+	Name = "Orc Wanderer";
+	Level =		rand()% 3 + 6;
+	switch(Level)
 	{
 	case 6:
-		damage = 11;	damMod = 10;	def = 7;
-		hp = mhp = 100;	gold = 220;	exp = 225;
+		Damage = 11;	DamageModifier = 10;	Defense = 7;
+		HitPoints = MaxHP = 100;	Gold = 220;	Experience = 225;
 		break;
 	case 7:
 	case 8:
-		damage = 15; damMod = 15;	def = 9; magdef =	5;
-		hp = mhp = 120;	gold = 260;	exp = 250;
+		Damage = 15; DamageModifier = 15;	Defense = 9; MagicDefense =	5;
+		HitPoints = MaxHP = 120;	Gold = 260;	Experience = 250;
 		break;
 	case 9:
-		damage = 20; damMod = 20;	def = 11; magdef =	10;
-		hp = mhp = 180;	gold = 400;	exp = 400;
+		Damage = 20; DamageModifier = 20;	Defense = 11; MagicDefense =	10;
+		HitPoints = MaxHP = 180;	Gold = 400;	Experience = 400;
 		break;
 	}
-	ka = mka =  20;
-	evade =		4;
-	talkTo =	true;
+	Ka = MaxKa =  20;
+	Evade =		4;
+	CanTalkTo =	true;
 }
 //=============================================================================================================
 //												Humans
 //=============================================================================================================
 Human::Human()
 {
-	name = "Human Peasant";
-	level =		2;
-	damage =	8;
-	damMod =	3;
-	hp = mhp =	30;
-	ka = mka =  0;
-	evade =		6;
-	gold =		20;
-	exp =		10;
-	def =		0;
-	talkTo =	true;
+	Name = "Human Peasant";
+	Level =		2;
+	Damage =	8;
+	DamageModifier =	3;
+	HitPoints = MaxHP =	30;
+	Ka = MaxKa =  0;
+	Evade =		6;
+	Gold =		20;
+	Experience =		10;
+	Defense =		0;
+	CanTalkTo =	true;
 }
 
 Knight::Knight()
 {
-	name = "Human Knight";
-	level =		rand()% 5 + 5;
-	switch(level)
+	Name = "Human Knight";
+	Level =		rand()% 5 + 5;
+	switch(Level)
 	{
 	case 5:
 	case 6:
-		damage = 11;	damMod = 6;	def = 7; magdef =	10;
-		hp = mhp = 70;	gold = 120;	exp = 125;
+		Damage = 11;	DamageModifier = 6;	Defense = 7; MagicDefense =	10;
+		HitPoints = MaxHP = 70;	Gold = 120;	Experience = 125;
 		break;
 	case 7:
 	case 8:
-		damage = 15; damMod = 8;	def = 9; magdef =	15;
-		hp = mhp = 120;	gold = 160;	exp = 150;
+		Damage = 15; DamageModifier = 8;	Defense = 9; MagicDefense =	15;
+		HitPoints = MaxHP = 120;	Gold = 160;	Experience = 150;
 		break;
 	case 9:
 	case 10:
-		damage = 20; damMod = 10;	def = 11; magdef =	20;
-		hp = mhp = 160;	gold = 200;	exp = 200;
+		Damage = 20; DamageModifier = 10;	Defense = 11; MagicDefense =	20;
+		HitPoints = MaxHP = 160;	Gold = 200;	Experience = 200;
 		break;
 	}
-	ka = mka =  0;
-	evade =		4;
-	talkTo =	true;
+	Ka = MaxKa =  0;
+	Evade =		4;
+	CanTalkTo =	true;
 }
 
 Adventurer::Adventurer()
 {	
-	talkTo =	true;
+	CanTalkTo =	true;
 }
 
 Wizard::Wizard()
 {
-	name = "Human Wizard";
-	level =		6;
-	damage =	20;
-	damMod =	20;
-	hp = mhp =	90;
-	ka = mka =  30;
-	evade =		6;
-	gold =		20;
-	exp =		10;
-	def =		0;
-	magdef =	20;
-	talkTo =	true;
+	Name = "Human Wizard";
+	Level =		6;
+	Damage =	20;
+	DamageModifier =	20;
+	HitPoints = MaxHP =	90;
+	Ka = MaxKa =  30;
+	Evade =		6;
+	Gold =		20;
+	Experience =		10;
+	Defense =		0;
+	MagicDefense =	20;
+	CanTalkTo =	true;
 }
 //=============================================================================================================
 //											Semi-intelligent races
 //=============================================================================================================
 Goblin::Goblin()
 {
-	name = "Goblin";
-	level =		1;
-	damage =	6;
-	damMod =	4;
-	hp = mhp = 10;
-	def = 2;
-	evade =		4;
-	gold =		20;
-	exp =		5;
+	Name = "Goblin";
+	Level =		1;
+	Damage =	6;
+	DamageModifier =	4;
+	HitPoints = MaxHP = 10;
+	Defense = 2;
+	Evade =		4;
+	Gold =		20;
+	Experience =		5;
 }
 Ogre::Ogre()
 {
-	name =		"Ogre";
-	level =		3;
-	damage =	10;
-	damMod =	10;
-	hp = mhp =	60;
-	def = 10;
-	magdef = 5;
-	evade =		3;
-	gold =		45;
-	exp =		35;
+	Name =		"Ogre";
+	Level =		3;
+	Damage =	10;
+	DamageModifier =	10;
+	HitPoints = MaxHP =	60;
+	Defense = 10;
+	MagicDefense = 5;
+	Evade =		3;
+	Gold =		45;
+	Experience =		35;
 }
 Troll::Troll()
 {
-	name =		"Troll";
-	level =		3;
-	damage =	10;
-	damMod =	5;
-	hp = mhp =	55;
-	def = 5;
-	magdef = 10;
-	evade =		6;
-	gold =		40;
-	exp =		35;
+	Name =		"Troll";
+	Level =		3;
+	Damage =	10;
+	DamageModifier =	5;
+	HitPoints = MaxHP =	55;
+	Defense = 5;
+	MagicDefense = 10;
+	Evade =		6;
+	Gold =		40;
+	Experience =		35;
 }
 Magmaman::Magmaman()
 {
-	name = "Magma Man";
-	level = 8;
-	damage = 30;
-	damMod = 30;
-	hp = mhp = 350;
-	def = 30;
-	magdef = 5;
-	evade = 3;
-	gold = 245;
-	exp = 300;
-	weakness = "ice";
+	Name = "Magma Man";
+	Level = 8;
+	Damage = 30;
+	DamageModifier = 30;
+	HitPoints = MaxHP = 350;
+	Defense = 30;
+	MagicDefense = 5;
+	Evade = 3;
+	Gold = 245;
+	Experience = 300;
+	Weakness = "ice";
 }
 Cyclops::Cyclops()
 {
-	name = "Cyclops";
-	level = 9;
-	damage = 30;
-	damMod = 20;
-	hp = mhp = 200;
-	def = 20;
-	magdef = 10;
-	evade = 5;
-	gold = 250;
-	exp = 350;
+	Name = "Cyclops";
+	Level = 9;
+	Damage = 30;
+	DamageModifier = 20;
+	HitPoints = MaxHP = 200;
+	Defense = 20;
+	MagicDefense = 10;
+	Evade = 5;
+	Gold = 250;
+	Experience = 350;
 }
 Giant::Giant()
 {
-	name = "Giant";
-	level = 7;
-	damage = 20;
-	damMod = 10;
-	hp = mhp = 95;
-	def = 15;
-	evade = 4;
-	gold = 200;
-	exp = 100;
+	Name = "Giant";
+	Level = 7;
+	Damage = 20;
+	DamageModifier = 10;
+	HitPoints = MaxHP = 95;
+	Defense = 15;
+	Evade = 4;
+	Gold = 200;
+	Experience = 100;
 }
 FrostGiant::FrostGiant()
 {
-	name = "Frost Giant";
-	level = 8;
-	damage = 27;
-	damMod = 13;
-	hp = mhp = 125;
-	def = 25;
-	magdef = 35;
-	evade = 3;
-	gold = 225;
-	exp = 135;
-	weakness = "fire";
+	Name = "Frost Giant";
+	Level = 8;
+	Damage = 27;
+	DamageModifier = 13;
+	HitPoints = MaxHP = 125;
+	Defense = 25;
+	MagicDefense = 35;
+	Evade = 3;
+	Gold = 225;
+	Experience = 135;
+	Weakness = "fire";
 }
 StormGiant::StormGiant()
 {
-	name = "Storm Giant";
-	level = 12;
-	damage = 40;
-	damMod = 20;
-	hp = mhp = 400;
-	def = 35;
-	magdef = 35;
-	evade = 3;
-	gold = 400;
-	exp = 500;
+	Name = "Storm Giant";
+	Level = 12;
+	Damage = 40;
+	DamageModifier = 20;
+	HitPoints = MaxHP = 400;
+	Defense = 35;
+	MagicDefense = 35;
+	Evade = 3;
+	Gold = 400;
+	Experience = 500;
 }
 Nymph::Nymph()
 {
-	name = "Forest Nymph";
-	level = 4;
-	damage = 10;
-	damMod = 10;
-	hp = mhp = 40;
-	magdef = 50;
-	evade = 10;
-	gold = 40;
-	exp = 60;
+	Name = "Forest Nymph";
+	Level = 4;
+	Damage = 10;
+	DamageModifier = 10;
+	HitPoints = MaxHP = 40;
+	MagicDefense = 50;
+	Evade = 10;
+	Gold = 40;
+	Experience = 60;
 }
 IceWizard::IceWizard()
 {
-	name = "Ice Wizard";
-	level = 6;
-	damage = 10;
-	damMod = 1;
-	hp = mhp = 75;
-	magdef = 60;
-	evade = 8;
-	gold = 200;
-	exp = 75;
+	Name = "Ice Wizard";
+	Level = 6;
+	Damage = 10;
+	DamageModifier = 1;
+	HitPoints = MaxHP = 75;
+	MagicDefense = 60;
+	Evade = 8;
+	Gold = 200;
+	Experience = 75;
 }
 Snowman::Snowman()
 {
-	name = "Snowman";
-	level = 5;
-	damage = 15;
-	damMod = 15;
-	hp = mhp = 100;
-	def = 15;
-	magdef = 50;
-	evade = 5;
-	gold = 13;
-	exp = 65;
-	weakness = "fire";
+	Name = "Snowman";
+	Level = 5;
+	Damage = 15;
+	DamageModifier = 15;
+	HitPoints = MaxHP = 100;
+	Defense = 15;
+	MagicDefense = 50;
+	Evade = 5;
+	Gold = 13;
+	Experience = 65;
+	Weakness = "fire";
 }
 ShrineGuard::ShrineGuard()
 {
-	name = "Shrine Guardian";
-	level = 8;
-	damage = 25;
-	damMod = 20;
-	def = 15;
-	hp = mhp = 125;
-	def = 40;
-	evade = 15;
-	gold = 200;
-	exp = 175;
+	Name = "Shrine Guardian";
+	Level = 8;
+	Damage = 25;
+	DamageModifier = 20;
+	Defense = 15;
+	HitPoints = MaxHP = 125;
+	Defense = 40;
+	Evade = 15;
+	Gold = 200;
+	Experience = 175;
 }
 RockGolem::RockGolem()
 {
-	name = "Rock Golem";
-	level = 7;
-	damage = 25;
-	damMod = 22;
-	def = 10;
-	hp = mhp = 200;
-	magdef = 10;
-	evade = 1;
-	gold = 200;
-	exp = 165;
+	Name = "Rock Golem";
+	Level = 7;
+	Damage = 25;
+	DamageModifier = 22;
+	Defense = 10;
+	HitPoints = MaxHP = 200;
+	MagicDefense = 10;
+	Evade = 1;
+	Gold = 200;
+	Experience = 165;
 }
 IronGolem::IronGolem()
 {
-	name = "Iron Golem";
-	level = 9;
-	damage = 40;
-	damMod = 33;
-	def = 30;
-	hp = mhp = 500;
-	magdef = 10;
-	evade = 1;
-	gold = 500;
-	exp = 450;
+	Name = "Iron Golem";
+	Level = 9;
+	Damage = 40;
+	DamageModifier = 33;
+	Defense = 30;
+	HitPoints = MaxHP = 500;
+	MagicDefense = 10;
+	Evade = 1;
+	Gold = 500;
+	Experience = 450;
 }
 SteelGolem::SteelGolem()
 {
-	name = "Steel Golem";
-	level = 16;
-	damage = 100;
-	damMod = 10;
-	def = 50;
-	hp = mhp = 800;
-	magdef = 15;
-	evade = 1;
-	gold = 1000;
-	exp = 1000;
+	Name = "Steel Golem";
+	Level = 16;
+	Damage = 100;
+	DamageModifier = 10;
+	Defense = 50;
+	HitPoints = MaxHP = 800;
+	MagicDefense = 15;
+	Evade = 1;
+	Gold = 1000;
+	Experience = 1000;
 }
 Treeman::Treeman()
 {
-	name = "Treeman";
-	level = 6;
-	damage = 30;
-	damMod = 10;
-	hp = mhp = 75;
-	def = 10;
-	magdef = 10;
-	evade = 3;
-	gold = 30;
-	exp = 80;
-	weakness = "fire";
+	Name = "Treeman";
+	Level = 6;
+	Damage = 30;
+	DamageModifier = 10;
+	HitPoints = MaxHP = 75;
+	Defense = 10;
+	MagicDefense = 10;
+	Evade = 3;
+	Gold = 30;
+	Experience = 80;
+	Weakness = "fire";
 }
 Acolyte::Acolyte()
 {
-	name = "Acolyte";
-	level = 1;
-	damage = 1;
-	damMod = 1;
-	hp = mhp = 1;
-	evade = 1;
-	gold = 1;
-	exp = 1;
+	Name = "Acolyte";
+	Level = 1;
+	Damage = 1;
+	DamageModifier = 1;
+	HitPoints = MaxHP = 1;
+	Evade = 1;
+	Gold = 1;
+	Experience = 1;
 }
 //=============================================================================================================
 //												Wild Life
 //=============================================================================================================
 GiantSpider::GiantSpider()
 {
-	name = "Giant Spider";
-	level =		2;
-	damage =	7;
-	damMod =	4;
-	hp = mhp =  20;
-	evade =		5;
-	gold =		0;
-	exp =		10;
-	def =		1;
+	Name = "Giant Spider";
+	Level =		2;
+	Damage =	7;
+	DamageModifier =	4;
+	HitPoints = MaxHP =  20;
+	Evade =		5;
+	Gold =		0;
+	Experience =		10;
+	Defense =		1;
 }
 
 Wolf::Wolf()
 {
-	name = "Rabid Wolf";
-	level =		1;
-	damage =	6;
-	damMod =	3;
-	hp = mhp =	8;
-	evade =		5;
-	gold =		0;
-	exp =		5;
+	Name = "Rabid Wolf";
+	Level =		1;
+	Damage =	6;
+	DamageModifier =	3;
+	HitPoints = MaxHP =	8;
+	Evade =		5;
+	Gold =		0;
+	Experience =		5;
 }
 
 Raven::Raven()
 {
-	name = "Wild Raven";
-	level =		1;
-	damage =	6;
-	damMod =	3;
-	hp = mhp =	8;
-	evade =		5;
-	gold =		0;
-	exp =		5;
+	Name = "Wild Raven";
+	Level =		1;
+	Damage =	6;
+	DamageModifier =	3;
+	HitPoints = MaxHP =	8;
+	Evade =		5;
+	Gold =		0;
+	Experience =		5;
 }
 Snake::Snake()
 {
-	name = "Big Snake";
-	level =		1;
-	damage =	4;
-	damMod =	3;
-	hp = mhp =	10;
-	evade =		5;
-	gold =		0;
-	exp =		5;
+	Name = "Big Snake";
+	Level =		1;
+	Damage =	4;
+	DamageModifier =	3;
+	HitPoints = MaxHP =	10;
+	Evade =		5;
+	Gold =		0;
+	Experience =		5;
 }
 Eagle::Eagle()
 {
-	name = "Giant Eagle";
-	level =		4;
-	damage =	15;
-	damMod =	8;
-	hp = mhp =	45;
-	evade =		10;
-	gold =		0;
-	exp =		50;
+	Name = "Giant Eagle";
+	Level =		4;
+	Damage =	15;
+	DamageModifier =	8;
+	HitPoints = MaxHP =	45;
+	Evade =		10;
+	Gold =		0;
+	Experience =		50;
 }
 PolarBear::PolarBear()
 {
-	name = "Polar Bear";
-	level =		5;
-	damage =	23;
-	damMod =	13;
-	hp = mhp =	75;
-	evade =		5;
-	gold =		0;
-	exp =		100;
-	weakness = "fire";
+	Name = "Polar Bear";
+	Level =		5;
+	Damage =	23;
+	DamageModifier =	13;
+	HitPoints = MaxHP =	75;
+	Evade =		5;
+	Gold =		0;
+	Experience =		100;
+	Weakness = "fire";
 }
 Salamander::Salamander()
 {
-	name = "Salamander";
-	level =		6;
-	damage =	20;
-	damMod =	25;
-	hp = mhp =	200;
-	magdef =	15;
-	evade =		5;
-	gold =		0;
-	exp =		250;
-	weakness =  "ice";
+	Name = "Salamander";
+	Level =		6;
+	Damage =	20;
+	DamageModifier =	25;
+	HitPoints = MaxHP =	200;
+	MagicDefense =	15;
+	Evade =		5;
+	Gold =		0;
+	Experience =		250;
+	Weakness =  "ice";
 }
 FireDemon::FireDemon()
 {
-	name = "Fire Demon";
-	level =		10;
-	damage =	30;
-	damMod =	25;
-	hp = mhp =	250;
-	def		=	20;
-	magdef	=	20;
-	evade =		5;
-	gold =		100;
-	exp =		300;
-	weakness =  "ice";
+	Name = "Fire Demon";
+	Level =		10;
+	Damage =	30;
+	DamageModifier =	25;
+	HitPoints = MaxHP =	250;
+	Defense		=	20;
+	MagicDefense	=	20;
+	Evade =		5;
+	Gold =		100;
+	Experience =		300;
+	Weakness =  "ice";
 }
 Centipede::Centipede()
 {
-	name = "Giant Centipede";
-	level =		10;
-	damage =	40;
-	damMod =	40;
-	hp = mhp =	450;
-	evade =		5;
-	gold =		0;
-	exp =		500;
+	Name = "Giant Centipede";
+	Level =		10;
+	Damage =	40;
+	DamageModifier =	40;
+	HitPoints = MaxHP =	450;
+	Evade =		5;
+	Gold =		0;
+	Experience =		500;
 }
 Wyvern::Wyvern()
 {
-	name = "Wyvern";
-	level =		11;
-	damage =	40;
-	damMod =	40;
-	hp = mhp =	400;
-	def =		20;
-	magdef =	20;
-	evade =		20;
-	gold =		0;
-	exp =		400;
+	Name = "Wyvern";
+	Level =		11;
+	Damage =	40;
+	DamageModifier =	40;
+	HitPoints = MaxHP =	400;
+	Defense =		20;
+	MagicDefense =	20;
+	Evade =		20;
+	Gold =		0;
+	Experience =		400;
 }
 Hydra::Hydra()
 {
-	name = "Hydra";
-	level =		11;
-	damage =	60;
-	damMod =	40;
-	hp = mhp =	450;
-	def =		35;
-	magdef =	35;
-	evade =		10;
-	gold =		0;
-	exp =		500;
+	Name = "Hydra";
+	Level =		11;
+	Damage =	60;
+	DamageModifier =	40;
+	HitPoints = MaxHP =	450;
+	Defense =		35;
+	MagicDefense =	35;
+	Evade =		10;
+	Gold =		0;
+	Experience =		500;
 }
 Minotaur::Minotaur()
 {
-	name = "Minotaur";
-	level =		14;
-	damage =	70;
-	damMod =	50;
-	hp = mhp =	565;
-	def =		45;
-	magdef =	45;
-	evade =		5;
-	gold =		400;
-	exp =		560;
+	Name = "Minotaur";
+	Level =		14;
+	Damage =	70;
+	DamageModifier =	50;
+	HitPoints = MaxHP =	565;
+	Defense =		45;
+	MagicDefense =	45;
+	Evade =		5;
+	Gold =		400;
+	Experience =		560;
 }
 Gargoyle::Gargoyle()
 {
-	name = "Gargoyle";
-	level =		6;
-	damage =	20;
-	damMod =	10;
-	hp = mhp =	100;
-	evade =		50;
-	gold =		28;
-	exp =		97;
+	Name = "Gargoyle";
+	Level =		6;
+	Damage =	20;
+	DamageModifier =	10;
+	HitPoints = MaxHP =	100;
+	Evade =		50;
+	Gold =		28;
+	Experience =		97;
 }
 Margoyle::Margoyle()
 {
-	name = "Margoyle";
-	level = 12;
-	damage = 40;
-	damMod = 20;
-	hp = mhp = 200;
-	def = 15;
-	magdef = 15;
-	evade = 25;
-	gold = 56;
-	exp = 250;
+	Name = "Margoyle";
+	Level = 12;
+	Damage = 40;
+	DamageModifier = 20;
+	HitPoints = MaxHP = 200;
+	Defense = 15;
+	MagicDefense = 15;
+	Evade = 25;
+	Gold = 56;
+	Experience = 250;
 }
 Stargoyle::Stargoyle()
 {
-	name = "Stargoyle";
-	level = 24;
-	damage = 80;
-	damMod = 40;
-	hp = mhp = 400;
-	def = 20;
-	magdef = 20;
-	evade = 12;
-	gold = 102;
-	exp = 1000;
-	weakness = "lightning";
+	Name = "Stargoyle";
+	Level = 24;
+	Damage = 80;
+	DamageModifier = 40;
+	HitPoints = MaxHP = 400;
+	Defense = 20;
+	MagicDefense = 20;
+	Evade = 12;
+	Gold = 102;
+	Experience = 1000;
+	Weakness = "lightning";
 }
 
 //=============================================================================================================
@@ -695,68 +695,68 @@ Stargoyle::Stargoyle()
 //=============================================================================================================
 Skeleton::Skeleton()
 {
-	name = "Skeleton";
-	level =		2;
-	damage =	7;
-	damMod =	3;
-	hp = mhp =	20;
-	evade =		9;
-	gold =		0;
-	exp =		25;
-	type =		"undead";
+	Name = "Skeleton";
+	Level =		2;
+	Damage =	7;
+	DamageModifier =	3;
+	HitPoints = MaxHP =	20;
+	Evade =		9;
+	Gold =		0;
+	Experience =		25;
+	Type =		"undead";
 }
 
 Ghoul::Ghoul()
 {
-	name = "Ghoul";
-	level =		2;
-	damage =	10;
-	damMod =	5;
-	hp = mhp = 25;
-	evade =		4;
-	gold =		0;
-	exp =		35;
-	type =		"undead";
+	Name = "Ghoul";
+	Level =		2;
+	Damage =	10;
+	DamageModifier =	5;
+	HitPoints = MaxHP = 25;
+	Evade =		4;
+	Gold =		0;
+	Experience =		35;
+	Type =		"undead";
 }
 
 Ghost::Ghost()
 {
-	name = "Ghost";
-	level =		6;
-	damage =	10;
-	damMod =	10;
-	hp = mhp =	35;
-	evade =		40;
-	gold =		0;
-	exp =		150;
-	type =		"undead";
+	Name = "Ghost";
+	Level =		6;
+	Damage =	10;
+	DamageModifier =	10;
+	HitPoints = MaxHP =	35;
+	Evade =		40;
+	Gold =		0;
+	Experience =		150;
+	Type =		"undead";
 }
 
 Phantom::Phantom()
 {
-	name = "Phantom";
-	level = 4;
-	damage = 20;
-	damMod = 10;
-	hp = mhp = 70;
-	evade = 5;
-	gold = 0;
-	exp = 100;
-	type = "undead";
+	Name = "Phantom";
+	Level = 4;
+	Damage = 20;
+	DamageModifier = 10;
+	HitPoints = MaxHP = 70;
+	Evade = 5;
+	Gold = 0;
+	Experience = 100;
+	Type = "undead";
 }
 
 Vampire::Vampire()
 {
-	name = "Vampire";
-	level = 12;
-	damage = 50;
-	damMod = 50;
-	hp = mhp = 275;
-	magdef = 75;
-	evade = 15;
-	gold = 500;
-	exp = 500;
-	type = "undead";
+	Name = "Vampire";
+	Level = 12;
+	Damage = 50;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 275;
+	MagicDefense = 75;
+	Evade = 15;
+	Gold = 500;
+	Experience = 500;
+	Type = "undead";
 }
 
 //=============================================================================================================
@@ -764,138 +764,138 @@ Vampire::Vampire()
 //=============================================================================================================
 WoodPriest::WoodPriest()
 {
-	name = "Wood Priest";
-	level = 15;
-	damage = 25;
-	damMod = 25;
-	hp = mhp = 200;
-	ka = mka = 35;
-	def = 20;
-	magdef = 15;
-	evade = 15;
-	gold = 350;
-	exp = 400;
-	dontmove = true;
+	Name = "Wood Priest";
+	Level = 15;
+	Damage = 25;
+	DamageModifier = 25;
+	HitPoints = MaxHP = 200;
+	Ka = MaxKa = 35;
+	Defense = 20;
+	MagicDefense = 15;
+	Evade = 15;
+	Gold = 350;
+	Experience = 400;
+	DontMove = true;
 	bant = true;
 }
 
 IcePriest::IcePriest()
 {
-	name = "Ice Priest";
-	level = 20;
-	damage = 30;
-	damMod = 30;
-	hp = mhp = 400;
-	ka = mka = 175;
-	def = 25;
-	magdef = 20;
-	evade = 15;
-	gold = 500;
-	exp = 750;
-	dontmove = true;
+	Name = "Ice Priest";
+	Level = 20;
+	Damage = 30;
+	DamageModifier = 30;
+	HitPoints = MaxHP = 400;
+	Ka = MaxKa = 175;
+	Defense = 25;
+	MagicDefense = 20;
+	Evade = 15;
+	Gold = 500;
+	Experience = 750;
+	DontMove = true;
 	bant = true;
 }
 
 FirePriest::FirePriest()
 {
-	name = "Fire Priest";
-	level = 25;
-	damage = 50;
-	damMod = 50;
-	hp = mhp = 600;
-	ka = mka = 225;
-	def = 30;
-	magdef = 35;
-	evade = 15;
-	gold = 1000;
-	exp = 1500;
-	dontmove = true;
+	Name = "Fire Priest";
+	Level = 25;
+	Damage = 50;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 600;
+	Ka = MaxKa = 225;
+	Defense = 30;
+	MagicDefense = 35;
+	Evade = 15;
+	Gold = 1000;
+	Experience = 1500;
+	DontMove = true;
 	bant = true;
 }
 
 WindPriest::WindPriest()
 {
-	name = "Wind Priest";
-	level = 30;
-	damage = 75;
-	damMod = 50;
-	hp = mhp = 800;
-	ka = mka = 300;
-	def = 35;
-	magdef = 40;
-	evade = 15;
-	gold = 2000;
-	exp = 2500;
+	Name = "Wind Priest";
+	Level = 30;
+	Damage = 75;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 800;
+	Ka = MaxKa = 300;
+	Defense = 35;
+	MagicDefense = 40;
+	Evade = 15;
+	Gold = 2000;
+	Experience = 2500;
 	bant = true;
 }
 
 GodOfWar::GodOfWar()
 {
-	name = "God of War";
-	level = 99;
-	damage = 200;
-	damMod = 50;
-	def = 75;
-	hp = mhp = 4000;
-	ka = mka = 300;
-	def = 55;
-	evade = 15;
-	gold = 0;
-	exp = 0;
-	dontmove = true;
+	Name = "God of War";
+	Level = 99;
+	Damage = 200;
+	DamageModifier = 50;
+	Defense = 75;
+	HitPoints = MaxHP = 4000;
+	Ka = MaxKa = 300;
+	Defense = 55;
+	Evade = 15;
+	Gold = 0;
+	Experience = 0;
+	DontMove = true;
 	bant = true;
 }
 
 GodOfLife::GodOfLife()
 {
-	name = "God of Life";
-	level = 99;
-	damage = 100;
-	damMod = 50;
-	hp = mhp = 3000;
-	ka = mka = 300;
-	def = 10;
-	magdef = 50;
-	ka = 200;
-	evade = 25;
-	gold = 0;
-	exp = 0;
-	dontmove = true;
+	Name = "God of Life";
+	Level = 99;
+	Damage = 100;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 3000;
+	Ka = MaxKa = 300;
+	Defense = 10;
+	MagicDefense = 50;
+	Ka = 200;
+	Evade = 25;
+	Gold = 0;
+	Experience = 0;
+	DontMove = true;
 	bant = true;
 }
 
 GodOfChaos::GodOfChaos()
 {
-	name = "God of Chaos";
-	level = 99;
-	damage = 100;
-	damMod = 50;
-	hp = mhp = 3500;
-	ka = mka = 300;
-	ka = 100;
-	def = 60;
-	magdef = 20;
-	evade = 15;
-	gold = 0;
-	exp = 0;
-	dontmove = true;
+	Name = "God of Chaos";
+	Level = 99;
+	Damage = 100;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 3500;
+	Ka = MaxKa = 300;
+	Ka = 100;
+	Defense = 60;
+	MagicDefense = 20;
+	Evade = 15;
+	Gold = 0;
+	Experience = 0;
+	DontMove = true;
 	bant = true;
 }
 
 GodOfDeath::GodOfDeath()
 {
-	name = "God of Death";
-	level = 99;
-	damage = 200;
-	damMod = 100;
-	hp = mhp = 5000;
-	ka = mka = 200;
-	def = 60;
-	magdef = 60;
-	evade = 15;
-	gold = 0;
-	exp = 0;
-	dontmove = true;
+	Name = "God of Death";
+	Level = 99;
+	Damage = 200;
+	DamageModifier = 100;
+	HitPoints = MaxHP = 5000;
+	Ka = MaxKa = 200;
+	Defense = 60;
+	MagicDefense = 60;
+	Evade = 15;
+	Gold = 0;
+	Experience = 0;
+	DontMove = true;
 	bant = true;
 }
 
@@ -906,75 +906,75 @@ GodOfDeath::GodOfDeath()
 
 Monk::Monk()
 {
-	name = "Peaceful Monk";
-	level = 69;
-	damage = 10;
-	damMod = 10;
-	def = 75;
-	hp = mhp = 125;
-	magdef = 95;
-	evade = 95;
-	gold = 0;
-	exp = 9999;
-	map = "field2";
+	Name = "Peaceful Monk";
+	Level = 69;
+	Damage = 10;
+	DamageModifier = 10;
+	Defense = 75;
+	HitPoints = MaxHP = 125;
+	MagicDefense = 95;
+	Evade = 95;
+	Gold = 0;
+	Experience = 9999;
+	Map = "field2";
 	bant = true;
 }
 Fly::Fly()
 {
-	name = "Fly";
-	level = 0;
-	damage = 2;
-	damMod = 2;
-	hp = mhp = 10;
-	evade = 0;
-	gold = 0;
-	exp = 0;
+	Name = "Fly";
+	Level = 0;
+	Damage = 2;
+	DamageModifier = 2;
+	HitPoints = MaxHP = 10;
+	Evade = 0;
+	Gold = 0;
+	Experience = 0;
 }
 GreenDragon::GreenDragon()
 {
-	name = "Green Dragon";
-	level = 80;
-	damage = 50;
-	damMod = 50;
-	hp = mhp = 2000;
-	evade = 15;
-	def = 50;
-	magdef = 50;
-	gold = 6000;
-	exp = 2000;
-	dontmove = true;
+	Name = "Green Dragon";
+	Level = 80;
+	Damage = 50;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 2000;
+	Evade = 15;
+	Defense = 50;
+	MagicDefense = 50;
+	Gold = 6000;
+	Experience = 2000;
+	DontMove = true;
 	bant = true;
 }
 
 BlueDragon::BlueDragon()
 {
-	name = "Blue Dragon";
-	level = 80;
-	damage = 50;
-	damMod = 50;
-	hp = mhp = 2000;
-	def = 50;
-	magdef = 50;
-	evade = 15;
-	gold = 6000;
-	exp = 2000;
-	dontmove = true;
+	Name = "Blue Dragon";
+	Level = 80;
+	Damage = 50;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 2000;
+	Defense = 50;
+	MagicDefense = 50;
+	Evade = 15;
+	Gold = 6000;
+	Experience = 2000;
+	DontMove = true;
 	bant = true;
 }
 
 RedDragon::RedDragon()
 {
-	name = "Red Dragon";
-	level = 80;
-	damage = 50;
-	damMod = 50;
-	hp = mhp = 2000;
-	def = 50;
-	magdef = 50;
-	evade = 15;
-	gold = 6000;
-	exp = 2000;
-	dontmove = true;
+	Name = "Red Dragon";
+	Level = 80;
+	Damage = 50;
+	DamageModifier = 50;
+	HitPoints = MaxHP = 2000;
+	Defense = 50;
+	MagicDefense = 50;
+	Evade = 15;
+	Gold = 6000;
+	Experience = 2000;
+	DontMove = true;
 	bant = true;
 }
 

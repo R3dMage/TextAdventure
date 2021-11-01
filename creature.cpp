@@ -18,17 +18,17 @@ Creature::Creature()
 	setexp(1);
 	setgold(0);
 	setname("ProblemLoading");
-	def = 0;
-	ka=mka=  0;
-	state = 0;
-	talkTo = false;
-	runAway = false;
-	dontmove = false;
+	Defense = 0;
+	Ka=MaxKa=  0;
+	State = 0;
+	CanTalkTo = false;
+	RunAway = false;
+	DontMove = false;
 	bant = false;
-	type = "normal";
-	weakness = "neutral";
-	map = "none";
-	music = "battle.mp3";
+	Type = "normal";
+	Weakness = "neutral";
+	Map = "none";
+	Music = "battle.mp3";
 }
 
 void Creature::banter()
@@ -38,13 +38,13 @@ void Creature::banter()
 void Creature::info()
 {
 	#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-	text(name,13,1,white);
+	text(Name,13,1,white);
 	text("Level: ",13,2,white);
 	text("HP:    ",13,3,white);
 	text("Ka:    ",13,4,white);
-	num(level,20,2,white);
-	num(hp,17,3,white);
-	num(ka,17,4,white);
+	num(Level,20,2,white);
+	num(HitPoints,17,3,white);
+	num(Ka,17,4,white);
 
 
 }
@@ -55,7 +55,7 @@ void Creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,stri
 	Armor *arm;
 
 	arm = p2->GetArmor();
-	Damage = rand()% damage + damMod;
+	Damage = rand()% Damage + DamageModifier;
 	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 0;
@@ -76,11 +76,11 @@ void Creature::win(Player *p2)
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
-	num(gold,20,11,green);
-	num(exp,20,12,green);
+	num(Gold,20,11,green);
+	num(Experience,20,12,green);
 	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + gold);
-	p2->SetExperience(p2->GetExperience() + exp);
+	p2->SetGold(p2->GetGold() + Gold);
+	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->DisplayInfo();
 	text("",79,23,white);
 	Sleep(3000);
@@ -88,53 +88,53 @@ void Creature::win(Player *p2)
 }
 string Creature::getweakness()
 {
-	return weakness;
+	return Weakness;
 }
 string Creature::gettype()
 {
-	return type;
+	return Type;
 }
 void Creature::setdamage(int num)
 {
 	if(num < 0){num = 0;}
-	damage = num;
+	Damage = num;
 }
 void Creature::setdamMod(int num)
 {
 	if(num < 0){num = 0;}
-	damMod = num;
+	DamageModifier = num;
 }
 void Creature::setevade(int num)
 {
 	if(num < 0){num = 0;}
-	evade = num;
+	Evade = num;
 }
 void Creature::setexp(int num)
 {
 	if(num < 0){num = 0;}
-	exp = num;
+	Experience = num;
 }
 void Creature::setgold(int num)
 {
 	if(num < 0){num = 0;}
-	gold = num;
+	Gold = num;
 }
 void Creature::sethp(int num)
 {
 	if(num < 0){num = 0;}
-	if(num > mhp){num = mhp;}
-	hp = num;
+	if(num > MaxHP){num = MaxHP;}
+	HitPoints = num;
 }
 void Creature::setlevel(int num)
 {
 	if(num < 0){num = 0;}
-	level = num;
+	Level = num;
 }
 void Creature::setmhp(int num)
 {
 	if(num < 0){num = 0;}
-	mhp = num;
-	hp = mhp;
+	MaxHP = num;
+	HitPoints = MaxHP;
 }
 void Creature::setX(int num)
 {
@@ -150,49 +150,49 @@ void Creature::setY(int num)
 }
 void Creature::setname(string szName)
 {
-	name = szName;
+	Name = szName;
 }
 void Creature::setka(int N)
 {
-	ka = N;
-	if(ka > mka)
-		ka = mka;
+	Ka = N;
+	if(Ka > MaxKa)
+		Ka = MaxKa;
 }
 int Creature::getdamage()
 {
-	return damage;
+	return Damage;
 }
 int Creature::getdamMod()
 {
-	return damMod;
+	return DamageModifier;
 }
 int Creature::getdef()
 {
-	return def;
+	return Defense;
 }
 int Creature::getevade()
 {
-	return evade;
+	return Evade;
 }
 int Creature::getexp()
 {
-	return exp;
+	return Experience;
 }
 int Creature::getgold()
 {
-	return gold;
+	return Gold;
 }
 int Creature::gethp()
 {
-	return hp;
+	return HitPoints;
 }
 int Creature::getmhp()
 {
-	return mhp;
+	return MaxHP;
 }
 int Creature::getlevel()
 {
-	return level;
+	return Level;
 }
 int Creature::getX()
 {
@@ -204,62 +204,62 @@ int Creature::getY()
 }
 string Creature::getname()
 {
-	return name;
+	return Name;
 }
 void Creature::setTalkTo(bool T)
 {
-	talkTo = T;
+	CanTalkTo = T;
 }
 bool Creature::getTalkTo()
 {
-	return talkTo;
+	return CanTalkTo;
 }
 void Creature::setrunAway(bool R)
 {
-	runAway = R;
+	RunAway = R;
 }
 bool Creature::getrunAway()
 {
-	return runAway;
+	return RunAway;
 }
 bool Creature::getdontmove()
 {
-	return dontmove;
+	return DontMove;
 }
 void Creature::setstate(int N)
 {
-	state = N;
+	State = N;
 }
 int Creature::getstate()
 {
-	return state;
+	return State;
 }
 int Creature::getmka()
 {
-	return mka;
+	return MaxKa;
 }
 int Creature::getka()
 {
-	return ka;
+	return Ka;
 }
 int Creature::getmagdef()
 {
-	return magdef;
+	return MagicDefense;
 }
 void Creature::setmagdef(int M)
 {
 }
 void Creature::setmap(string M)
 {
-	map = M;
+	Map = M;
 }
 string Creature::getmap()
 {
-	return map;
+	return Map;
 }
 void Creature::setdontmove(bool B)
 {
-	dontmove = B;
+	DontMove = B;
 }
 void Creature::DrawCurs(COORD pos, WORD color, char curs)
 {
@@ -371,7 +371,7 @@ Item* Creature::token(string Map)
 
 void Creature::loadPos(int X, int Y)
 {
-	if(!dontmove)
+	if(!DontMove)
 	{
 		int Rx = rand()%X + 1;
 		int Ry = rand()%Y + 1;
@@ -391,7 +391,7 @@ bool Creature::talkto(Player *p2)
 }
 char * Creature::getMusic()
 {
-	return music;
+	return Music;
 }
 void Creature::slowDisp(string szText)
 {
