@@ -263,7 +263,7 @@ Magic* World::GetMagic(string spellName)
 	if(spellName == "Poison")
 		M = new Poison;
 	if(spellName == "Summon Skeleton")
-		M = new Skeleton;
+		M = new RaiseSkeleton;
 	if(spellName == "Dark Strike")
 		M = new DarkStrike;
 	if(spellName == "Critical")

@@ -792,7 +792,7 @@ void World::MagicMenu(Player *player,vector<Magic*> &spells)
 	bool escapeWasPressed = false;
 	bool selectionWasMade = false;
 	COORD cursorPosition; 
-	goblin A;
+	Goblin A;
 	Creature *guy = &A;
 
 	while(!escapeWasPressed)
@@ -863,7 +863,7 @@ void World::InFightMagicMenu(Player *player,Creature *enemy,vector<Magic*> &spel
 	unsigned int i;
 	bool selectionWasMade = false;
 	COORD cursorPosition; 
-	goblin A;
+	Goblin A;
 	Creature *guy = &A;
 
 	pressedEscape = false;

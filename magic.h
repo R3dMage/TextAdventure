@@ -109,9 +109,9 @@ public:
 	Poison();
 	virtual void Cast(Player *, Creature*);
 };
-class Skeleton : public Magic{
+class RaiseSkeleton : public Magic{
 public:
-	Skeleton();
+	RaiseSkeleton();
 	virtual void Cast(Player *, Creature*);
 };
 class DarkStrike : public Magic{

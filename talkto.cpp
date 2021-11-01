@@ -13,7 +13,7 @@
 
      
 
-bool elf::talkto(Player *p2)
+bool Elf::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -89,7 +89,7 @@ bool elf::talkto(Player *p2)
 	else return false;
 }
 
-bool mage::talkto(Player *p2)
+bool ElvenMage::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -163,7 +163,7 @@ bool mage::talkto(Player *p2)
 	else return false;
 }
 
-bool warrior::talkto(Player *p2)
+bool ElvenWarrior::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -354,7 +354,7 @@ bool Orc::talkto(Player *p2)
 	else return false;	
 }
 
-bool sorceror::talkto(Player *p2)
+bool OrcSorceror::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -434,7 +434,7 @@ bool sorceror::talkto(Player *p2)
 	else return false;
 }
 
-bool osoldier::talkto(Player *p2)
+bool OrcSoldier::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -523,7 +523,7 @@ bool osoldier::talkto(Player *p2)
 //{
 //	return true;
 //}
-bool human::talkto(Player *p2)
+bool Human::talkto(Player *p2)
 {
 	int choice;
 	int num = rand() % 8 + 1;

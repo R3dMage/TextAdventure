@@ -458,7 +458,7 @@ void Poison::Cast(Player *p2,Creature *enemy)
 	enemy->dam(Damage);
 	enemy->setstate(3);
 }
-Skeleton::Skeleton()
+RaiseSkeleton::RaiseSkeleton()
 {
 	Name =		  "Summon Skeleton";
 	Incantation = "Bones which death hath taken, aid me in my struggle";
@@ -466,7 +466,7 @@ Skeleton::Skeleton()
 	Cost		= 10;
 	IsInFight = true;
 }
-void Skeleton::Cast(Player * p2,Creature *enemy)
+void RaiseSkeleton::Cast(Player * p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;

@@ -15,7 +15,7 @@
 //												Elves
 //=============================================================================================================
 
-elf::elf()
+Elf::Elf()
 {
 	name = "Elf";
 	level =		2;
@@ -29,7 +29,7 @@ elf::elf()
 	talkTo =	true; 
 }
 
-mage::mage()
+ElvenMage::ElvenMage()
 {
 	name = "Elven Mage";
 	level =		4;
@@ -44,7 +44,7 @@ mage::mage()
 	talkTo =	true;
 }
 
-warrior::warrior()
+ElvenWarrior::ElvenWarrior()
 {
 	name = "Elven Warrior";
 	level =		4;
@@ -59,7 +59,7 @@ warrior::warrior()
 	exp =		100;
 	talkTo =	true;
 }
-fireelf::fireelf()
+FireElf::FireElf()
 {
 	name = "Fire Elf";
 	level =		8;
@@ -76,7 +76,7 @@ fireelf::fireelf()
 	talkTo =	true;
 	weakness =	"ice";
 }
-iceelf::iceelf()
+IceElf::IceElf()
 {
 	name = "Ice Elf";
 	level =		6;
@@ -133,7 +133,7 @@ Orc::Orc()
 	talkTo =	true;
 }
 
-sorceror::sorceror()
+OrcSorceror::OrcSorceror()
 {
 	name = "Orc Sorceror";
 	level =		4;
@@ -148,7 +148,7 @@ sorceror::sorceror()
 	talkTo =	true;
 }
 
-osoldier::osoldier()
+OrcSoldier::OrcSoldier()
 {
 	name = "Orc Soldier";
 	level =		4;
@@ -162,7 +162,7 @@ osoldier::osoldier()
 	def =		5;
 	talkTo =	true;
 }
-fireorc::fireorc()
+FireOrc::FireOrc()
 {
 	name = "Fire Orc";
 	level = 8;
@@ -176,7 +176,7 @@ fireorc::fireorc()
 	exp = 185;
 	weakness = "ice";
 }
-iceorc::iceorc()
+IceOrc::IceOrc()
 {
 	name = "Ice Orc";
 	level = 6;
@@ -190,7 +190,7 @@ iceorc::iceorc()
 	exp = 105;
 	weakness = "fire";
 }
-wanderer::wanderer()
+OrcWanderer::OrcWanderer()
 {
 	name = "Orc Wanderer";
 	level =		rand()% 3 + 6;
@@ -217,7 +217,7 @@ wanderer::wanderer()
 //=============================================================================================================
 //												Humans
 //=============================================================================================================
-human::human()
+Human::Human()
 {
 	name = "Human Peasant";
 	level =		2;
@@ -232,7 +232,7 @@ human::human()
 	talkTo =	true;
 }
 
-knight::knight()
+Knight::Knight()
 {
 	name = "Human Knight";
 	level =		rand()% 5 + 5;
@@ -259,12 +259,12 @@ knight::knight()
 	talkTo =	true;
 }
 
-adventure::adventure()
+Adventurer::Adventurer()
 {	
 	talkTo =	true;
 }
 
-wizard::wizard()
+Wizard::Wizard()
 {
 	name = "Human Wizard";
 	level =		6;
@@ -282,7 +282,7 @@ wizard::wizard()
 //=============================================================================================================
 //											Semi-intelligent races
 //=============================================================================================================
-goblin::goblin()
+Goblin::Goblin()
 {
 	name = "Goblin";
 	level =		1;
@@ -294,7 +294,7 @@ goblin::goblin()
 	gold =		20;
 	exp =		5;
 }
-ogre::ogre()
+Ogre::Ogre()
 {
 	name =		"Ogre";
 	level =		3;
@@ -307,7 +307,7 @@ ogre::ogre()
 	gold =		45;
 	exp =		35;
 }
-troll::troll()
+Troll::Troll()
 {
 	name =		"Troll";
 	level =		3;
@@ -320,7 +320,7 @@ troll::troll()
 	gold =		40;
 	exp =		35;
 }
-magmaman::magmaman()
+Magmaman::Magmaman()
 {
 	name = "Magma Man";
 	level = 8;
@@ -334,7 +334,7 @@ magmaman::magmaman()
 	exp = 300;
 	weakness = "ice";
 }
-cyclops::cyclops()
+Cyclops::Cyclops()
 {
 	name = "Cyclops";
 	level = 9;
@@ -347,7 +347,7 @@ cyclops::cyclops()
 	gold = 250;
 	exp = 350;
 }
-giant::giant()
+Giant::Giant()
 {
 	name = "Giant";
 	level = 7;
@@ -359,7 +359,7 @@ giant::giant()
 	gold = 200;
 	exp = 100;
 }
-frostgiant::frostgiant()
+FrostGiant::FrostGiant()
 {
 	name = "Frost Giant";
 	level = 8;
@@ -373,7 +373,7 @@ frostgiant::frostgiant()
 	exp = 135;
 	weakness = "fire";
 }
-stormgiant::stormgiant()
+StormGiant::StormGiant()
 {
 	name = "Storm Giant";
 	level = 12;
@@ -386,7 +386,7 @@ stormgiant::stormgiant()
 	gold = 400;
 	exp = 500;
 }
-nymph::nymph()
+Nymph::Nymph()
 {
 	name = "Forest Nymph";
 	level = 4;
@@ -398,7 +398,7 @@ nymph::nymph()
 	gold = 40;
 	exp = 60;
 }
-icewizard::icewizard()
+IceWizard::IceWizard()
 {
 	name = "Ice Wizard";
 	level = 6;
@@ -410,7 +410,7 @@ icewizard::icewizard()
 	gold = 200;
 	exp = 75;
 }
-snowman::snowman()
+Snowman::Snowman()
 {
 	name = "Snowman";
 	level = 5;
@@ -424,7 +424,7 @@ snowman::snowman()
 	exp = 65;
 	weakness = "fire";
 }
-shrineguard::shrineguard()
+ShrineGuard::ShrineGuard()
 {
 	name = "Shrine Guardian";
 	level = 8;
@@ -437,7 +437,7 @@ shrineguard::shrineguard()
 	gold = 200;
 	exp = 175;
 }
-rockgolem::rockgolem()
+RockGolem::RockGolem()
 {
 	name = "Rock Golem";
 	level = 7;
@@ -450,7 +450,7 @@ rockgolem::rockgolem()
 	gold = 200;
 	exp = 165;
 }
-irongolem::irongolem()
+IronGolem::IronGolem()
 {
 	name = "Iron Golem";
 	level = 9;
@@ -463,7 +463,7 @@ irongolem::irongolem()
 	gold = 500;
 	exp = 450;
 }
-steelgolem::steelgolem()
+SteelGolem::SteelGolem()
 {
 	name = "Steel Golem";
 	level = 16;
@@ -476,7 +476,7 @@ steelgolem::steelgolem()
 	gold = 1000;
 	exp = 1000;
 }
-treeman::treeman()
+Treeman::Treeman()
 {
 	name = "Treeman";
 	level = 6;
@@ -490,7 +490,7 @@ treeman::treeman()
 	exp = 80;
 	weakness = "fire";
 }
-acolyte::acolyte()
+Acolyte::Acolyte()
 {
 	name = "Acolyte";
 	level = 1;
@@ -504,7 +504,7 @@ acolyte::acolyte()
 //=============================================================================================================
 //												Wild Life
 //=============================================================================================================
-gspider::gspider()
+GiantSpider::GiantSpider()
 {
 	name = "Giant Spider";
 	level =		2;
@@ -517,7 +517,7 @@ gspider::gspider()
 	def =		1;
 }
 
-wolf::wolf()
+Wolf::Wolf()
 {
 	name = "Rabid Wolf";
 	level =		1;
@@ -529,7 +529,7 @@ wolf::wolf()
 	exp =		5;
 }
 
-raven::raven()
+Raven::Raven()
 {
 	name = "Wild Raven";
 	level =		1;
@@ -540,7 +540,7 @@ raven::raven()
 	gold =		0;
 	exp =		5;
 }
-snake::snake()
+Snake::Snake()
 {
 	name = "Big Snake";
 	level =		1;
@@ -551,7 +551,7 @@ snake::snake()
 	gold =		0;
 	exp =		5;
 }
-eagle::eagle()
+Eagle::Eagle()
 {
 	name = "Giant Eagle";
 	level =		4;
@@ -562,7 +562,7 @@ eagle::eagle()
 	gold =		0;
 	exp =		50;
 }
-pbear::pbear()
+PolarBear::PolarBear()
 {
 	name = "Polar Bear";
 	level =		5;
@@ -574,7 +574,7 @@ pbear::pbear()
 	exp =		100;
 	weakness = "fire";
 }
-salamander::salamander()
+Salamander::Salamander()
 {
 	name = "Salamander";
 	level =		6;
@@ -587,7 +587,7 @@ salamander::salamander()
 	exp =		250;
 	weakness =  "ice";
 }
-firedemon::firedemon()
+FireDemon::FireDemon()
 {
 	name = "Fire Demon";
 	level =		10;
@@ -601,7 +601,7 @@ firedemon::firedemon()
 	exp =		300;
 	weakness =  "ice";
 }
-centipede::centipede()
+Centipede::Centipede()
 {
 	name = "Giant Centipede";
 	level =		10;
@@ -612,7 +612,7 @@ centipede::centipede()
 	gold =		0;
 	exp =		500;
 }
-wyvern::wyvern()
+Wyvern::Wyvern()
 {
 	name = "Wyvern";
 	level =		11;
@@ -625,7 +625,7 @@ wyvern::wyvern()
 	gold =		0;
 	exp =		400;
 }
-hydra::hydra()
+Hydra::Hydra()
 {
 	name = "Hydra";
 	level =		11;
@@ -638,7 +638,7 @@ hydra::hydra()
 	gold =		0;
 	exp =		500;
 }
-minator::minator()
+Minotaur::Minotaur()
 {
 	name = "Minotaur";
 	level =		14;
@@ -651,7 +651,7 @@ minator::minator()
 	gold =		400;
 	exp =		560;
 }
-gargoyle::gargoyle()
+Gargoyle::Gargoyle()
 {
 	name = "Gargoyle";
 	level =		6;
@@ -662,7 +662,7 @@ gargoyle::gargoyle()
 	gold =		28;
 	exp =		97;
 }
-margoyle::margoyle()
+Margoyle::Margoyle()
 {
 	name = "Margoyle";
 	level = 12;
@@ -675,7 +675,7 @@ margoyle::margoyle()
 	gold = 56;
 	exp = 250;
 }
-stargoyle::stargoyle()
+Stargoyle::Stargoyle()
 {
 	name = "Stargoyle";
 	level = 24;
@@ -693,7 +693,7 @@ stargoyle::stargoyle()
 //=============================================================================================================
 //												Undead
 //=============================================================================================================
-skel::skel()
+Skeleton::Skeleton()
 {
 	name = "Skeleton";
 	level =		2;
@@ -706,7 +706,7 @@ skel::skel()
 	type =		"undead";
 }
 
-ghoul::ghoul()
+Ghoul::Ghoul()
 {
 	name = "Ghoul";
 	level =		2;
@@ -719,7 +719,7 @@ ghoul::ghoul()
 	type =		"undead";
 }
 
-ghost::ghost()
+Ghost::Ghost()
 {
 	name = "Ghost";
 	level =		6;
@@ -732,7 +732,7 @@ ghost::ghost()
 	type =		"undead";
 }
 
-phantom::phantom()
+Phantom::Phantom()
 {
 	name = "Phantom";
 	level = 4;
@@ -745,7 +745,7 @@ phantom::phantom()
 	type = "undead";
 }
 
-vampire::vampire()
+Vampire::Vampire()
 {
 	name = "Vampire";
 	level = 12;
@@ -762,7 +762,7 @@ vampire::vampire()
 //=============================================================================================================
 //												Bosses
 //=============================================================================================================
-woodpriest::woodpriest()
+WoodPriest::WoodPriest()
 {
 	name = "Wood Priest";
 	level = 15;
@@ -779,7 +779,7 @@ woodpriest::woodpriest()
 	bant = true;
 }
 
-icepriest::icepriest()
+IcePriest::IcePriest()
 {
 	name = "Ice Priest";
 	level = 20;
@@ -796,7 +796,7 @@ icepriest::icepriest()
 	bant = true;
 }
 
-firepriest::firepriest()
+FirePriest::FirePriest()
 {
 	name = "Fire Priest";
 	level = 25;
@@ -813,7 +813,7 @@ firepriest::firepriest()
 	bant = true;
 }
 
-windpriest::windpriest()
+WindPriest::WindPriest()
 {
 	name = "Wind Priest";
 	level = 30;
@@ -829,7 +829,7 @@ windpriest::windpriest()
 	bant = true;
 }
 
-godofwar::godofwar()
+GodOfWar::GodOfWar()
 {
 	name = "God of War";
 	level = 99;
@@ -846,7 +846,7 @@ godofwar::godofwar()
 	bant = true;
 }
 
-godoflife::godoflife()
+GodOfLife::GodOfLife()
 {
 	name = "God of Life";
 	level = 99;
@@ -864,7 +864,7 @@ godoflife::godoflife()
 	bant = true;
 }
 
-godofchaos::godofchaos()
+GodOfChaos::GodOfChaos()
 {
 	name = "God of Chaos";
 	level = 99;
@@ -882,7 +882,7 @@ godofchaos::godofchaos()
 	bant = true;
 }
 
-godofdeath::godofdeath()
+GodOfDeath::GodOfDeath()
 {
 	name = "God of Death";
 	level = 99;
@@ -904,7 +904,7 @@ godofdeath::godofdeath()
 //										Optional High Level Encounters
 //=============================================================================================================
 
-monk::monk()
+Monk::Monk()
 {
 	name = "Peaceful Monk";
 	level = 69;
@@ -919,7 +919,7 @@ monk::monk()
 	map = "field2";
 	bant = true;
 }
-fly::fly()
+Fly::Fly()
 {
 	name = "Fly";
 	level = 0;
@@ -930,7 +930,7 @@ fly::fly()
 	gold = 0;
 	exp = 0;
 }
-greendragon::greendragon()
+GreenDragon::GreenDragon()
 {
 	name = "Green Dragon";
 	level = 80;
@@ -946,7 +946,7 @@ greendragon::greendragon()
 	bant = true;
 }
 
-bluedragon::bluedragon()
+BlueDragon::BlueDragon()
 {
 	name = "Blue Dragon";
 	level = 80;
@@ -962,7 +962,7 @@ bluedragon::bluedragon()
 	bant = true;
 }
 
-reddragon::reddragon()
+RedDragon::RedDragon()
 {
 	name = "Red Dragon";
 	level = 80;

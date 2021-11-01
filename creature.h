@@ -108,11 +108,5 @@ protected:
 
 	bool MoveCurs(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
 	void DrawCurs(COORD pos, WORD color, char curs);
-
-
-
-	
 };
-
-
 #endif 

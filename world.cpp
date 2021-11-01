@@ -107,7 +107,7 @@ void World::Locations(string Map, Player *player,bool load)
 		Globals.push_back(vial);
 		Globals.push_back(horseshoe);	
 
-		mk.push_back(new monk);						//This puts in THE only monk in the game.
+		mk.push_back(new Monk);						//This puts in THE only monk in the game.
 
 		Intro();									//Calls the games intro
 	}
@@ -179,9 +179,9 @@ void World::Locations(string Map, Player *player,bool load)
 		bEsc   = false; 
 
 		if(!player->PlotEventStates.Monk)
-			mk.push_back(new monk);					//This puts in THE only monk in the game.
+			mk.push_back(new Monk);					//This puts in THE only monk in the game.
 		else
-			mk.push_back(new fly);
+			mk.push_back(new Fly);
 
 		
 
@@ -1462,7 +1462,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 		if(HasMagic(magic,"Skeleton"))
 			return;
 		text("The god of death has rewarded you with a magic spell!",13,9,white);
-		magic.push_back(new Skeleton);
+		magic.push_back(new RaiseSkeleton);
 		Sleep(player->GetPauseDuration());
 	}
 	if(player->RaceKillCounts.ElfKillCount > 15 && player->RaceKillCounts.OrcKillCount > 15 &&  player->RaceKillCounts.HumanKillCount > 15 && magic.size() < 10)

@@ -10,9 +10,9 @@ void clr();
 //												Elves
 //=============================================================================================================
 
-class elf : public Creature{
+class Elf : public Creature{
 public:
-	elf();
+	Elf();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -23,9 +23,9 @@ public:
 
 };
 
-class mage : public elf{
+class ElvenMage : public Elf{
 public:
-	mage();
+	ElvenMage();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -34,9 +34,9 @@ public:
 	virtual bool talkto(Player *p2);
 };
 
-class warrior : public elf{
+class ElvenWarrior : public Elf{
 public:
-	warrior();
+	ElvenWarrior();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -45,9 +45,9 @@ public:
 	virtual bool talkto(Player *p2);
 };
 
-class fireelf : public elf{
+class FireElf : public Elf{
 public:
-	fireelf();
+	FireElf();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -55,9 +55,9 @@ public:
 	virtual Item* token(string Map);
 };
 
-class iceelf : public elf{
+class IceElf : public Elf{
 public:
-	iceelf();
+	IceElf();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -65,7 +65,7 @@ public:
 	virtual Item* token(string Map);
 };
 
-class ranger : public elf{
+class ranger : public Elf{
 public:
 	ranger();
 	virtual Creature* replenish() const;
@@ -91,9 +91,9 @@ public:
 	
 };
 
-class sorceror : public Orc{
+class OrcSorceror : public Orc{
 public:
-	sorceror();
+	OrcSorceror();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -102,9 +102,9 @@ public:
 	virtual bool talkto(Player *p2);
 };
 
-class osoldier : public Orc{
+class OrcSoldier : public Orc{
 public:
-	osoldier();
+	OrcSoldier();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -113,9 +113,9 @@ public:
 	virtual bool talkto(Player *p2);
 };
 
-class fireorc : public Orc{
+class FireOrc : public Orc{
 public:
-	fireorc();
+	FireOrc();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -123,9 +123,9 @@ public:
 	virtual Item* token(string Map);
 };
 
-class iceorc : public Orc{
+class IceOrc : public Orc{
 public:
-	iceorc();
+	IceOrc();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -133,9 +133,9 @@ public:
 	virtual Item* token(string Map);
 };
 
-class wanderer : public Orc{
+class OrcWanderer : public Orc{
 public:
-	wanderer();
+	OrcWanderer();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -146,9 +146,9 @@ public:
 //												Humans
 //=============================================================================================================
 
-class human : public Creature{
+class Human : public Creature{
 public:
-	human();
+	Human();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
@@ -156,18 +156,18 @@ public:
 	virtual void win(Player *p2);
 	virtual bool talkto(Player *p2);
 };
-class knight : public human{
+class Knight : public Human{
 public:
-	knight();
+	Knight();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 	//virtual bool talkto(player *p2);
 };
 
-class wizard : public human{
+class Wizard : public Human{
 public:
-	wizard();
+	Wizard();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -175,9 +175,9 @@ public:
 	//virtual bool talkto(player *p2);
 };
 
-class adventure : public human{
+class Adventurer : public Human{
 public:
-	adventure();
+	Adventurer();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual bool dropItem();
@@ -188,54 +188,54 @@ public:
 //												Wildlife
 //=============================================================================================================
 
-class gspider : public Creature{
+class GiantSpider : public Creature{
 public:
-	gspider();
+	GiantSpider();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 };
 
-class wolf : public Creature{
+class Wolf : public Creature{
 public:
-	wolf();
+	Wolf();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 };
 
-class raven : public Creature{
+class Raven : public Creature{
 public:
-	raven();
+	Raven();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 };
-class snake : public Creature{
+class Snake : public Creature{
 public:
-	snake();
+	Snake();
 	virtual Creature* replenish() const;
 	virtual Item* body(string) const;
 };
-class eagle : public Creature{
+class Eagle : public Creature{
 public:
-	eagle();
+	Eagle();
 	virtual Creature* replenish() const;
 	virtual Item* body(string) const;
 };
-class pbear : public Creature{
+class PolarBear : public Creature{
 public:
-	pbear();
+	PolarBear();
 	virtual Creature* replenish() const;
 	virtual Item* body(string) const;
 };
-class salamander : public Creature{
+class Salamander : public Creature{
 public:
-	salamander();
+	Salamander();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 };
-class firedemon : public Creature{
+class FireDemon : public Creature{
 public:
-	firedemon();
+	FireDemon();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
@@ -243,53 +243,53 @@ public:
 	virtual Item* token(string Map);
 };
 
-class centipede : public Creature{
+class Centipede : public Creature{
 public:
-	centipede();
+	Centipede();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 };
-class wyvern : public Creature{
+class Wyvern : public Creature{
 public:
-	wyvern();
+	Wyvern();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 };
-class hydra : public Creature{
+class Hydra : public Creature{
 public:
-	hydra();
+	Hydra();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 };
-class minator : public Creature{
+class Minotaur : public Creature{
 public:
-	minator();
+	Minotaur();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 };
-class gargoyle : public Creature{
+class Gargoyle : public Creature{
 public:
-	gargoyle();
+	Gargoyle();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class margoyle : public Creature{
+class Margoyle : public Creature{
 public:
-	margoyle();
+	Margoyle();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class stargoyle : public Creature{
+class Stargoyle : public Creature{
 public:
-	stargoyle();
+	Stargoyle();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
@@ -301,145 +301,145 @@ public:
 //										Semi Intelligent Races
 //=============================================================================================================
 
-class goblin : public Creature{
+class Goblin : public Creature{
 public:
-	goblin();
+	Goblin();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class ogre : public Creature{
+class Ogre : public Creature{
 public:
-	ogre();
+	Ogre();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class troll : public Creature{
+class Troll : public Creature{
 public:
-	troll();
+	Troll();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
-class magmaman : public Creature{
+class Magmaman : public Creature{
 public:
-	magmaman();
-	virtual Creature* replenish() const;
-	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
-	virtual Item* body(string Map) const;
-	virtual bool dropItem();
-	virtual Item* token(string Map);
-};
-class cyclops : public Creature{
-public:
-	cyclops();
-	virtual Creature* replenish() const;
-	virtual Item* body(string Map) const;
-	virtual bool dropItem();
-	virtual Item* token(string Map);
-};
-class giant : public Creature{
-public:
-	giant();
-	virtual Creature* replenish() const;
-	virtual Item* body(string Map) const;
-	virtual bool dropItem();
-	virtual Item* token(string Map);
-};
-class frostgiant : public Creature{
-public:
-	frostgiant();
+	Magmaman();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class stormgiant : public Creature{
+class Cyclops : public Creature{
 public:
-	stormgiant();
+	Cyclops();
+	virtual Creature* replenish() const;
+	virtual Item* body(string Map) const;
+	virtual bool dropItem();
+	virtual Item* token(string Map);
+};
+class Giant : public Creature{
+public:
+	Giant();
+	virtual Creature* replenish() const;
+	virtual Item* body(string Map) const;
+	virtual bool dropItem();
+	virtual Item* token(string Map);
+};
+class FrostGiant : public Creature{
+public:
+	FrostGiant();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class nymph : public Creature{
+class StormGiant : public Creature{
 public:
-	nymph();
+	StormGiant();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class icewizard : public Creature{
+class Nymph : public Creature{
 public:
-	icewizard();
+	Nymph();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class snowman : public Creature{
+class IceWizard : public Creature{
 public:
-	snowman();
+	IceWizard();
+	virtual Creature* replenish() const;
+	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
+	virtual Item* body(string Map) const;
+	virtual bool dropItem();
+	virtual Item* token(string Map);
+};
+class Snowman : public Creature{
+public:
+	Snowman();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class shrineguard : public Creature{
+class ShrineGuard : public Creature{
 public:
-	shrineguard();
+	ShrineGuard();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class rockgolem : public Creature{
+class RockGolem : public Creature{
 public:
-	rockgolem();
+	RockGolem();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class irongolem : public Creature{
+class IronGolem : public Creature{
 public:
-	irongolem();
+	IronGolem();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class steelgolem : public Creature{
+class SteelGolem : public Creature{
 public:
-	steelgolem();
+	SteelGolem();
 	virtual Creature* replenish() const;
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class treeman : public Creature{
+class Treeman : public Creature{
 public:
-	treeman();
+	Treeman();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 	virtual bool dropItem();
 	virtual Item* token(string Map);
 };
-class acolyte : public Creature{
+class Acolyte : public Creature{
 public:
-	acolyte();
+	Acolyte();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
@@ -450,43 +450,43 @@ public:
 //												Undead
 //=============================================================================================================
 
-class ghoul : public Creature{
+class Ghoul : public Creature{
 public:
-	ghoul();
+	Ghoul();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class skel : public Creature{
+class Skeleton : public Creature{
 public:
-	skel();
+	Skeleton();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 };
 
-class ghost : public Creature{
+class Ghost : public Creature{
 public:
-	ghost();
+	Ghost();
 	virtual Creature* replenish() const;
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Item* body(string Map) const;
 };
 
-class phantom : public Creature{
+class Phantom : public Creature{
 public:
-	phantom();
+	Phantom();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
 	virtual Item* token(string Map);
 };
 
-class vampire : public Creature{
+class Vampire : public Creature{
 public:
-	vampire();
+	Vampire();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
@@ -498,9 +498,9 @@ public:
 //												Bosses
 //=============================================================================================================
 
-class woodpriest : public Creature{
+class WoodPriest : public Creature{
 public:
-	woodpriest();
+	WoodPriest();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -510,9 +510,9 @@ public:
 	void banter();
 };
 
-class icepriest : public Creature{
+class IcePriest : public Creature{
 public:
-	icepriest();
+	IcePriest();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -522,9 +522,9 @@ public:
 	void banter();
 };
 
-class firepriest : public Creature{
+class FirePriest : public Creature{
 public:
-	firepriest();
+	FirePriest();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -534,9 +534,9 @@ public:
 	void banter();
 };
 
-class windpriest : public Creature{
+class WindPriest : public Creature{
 public:
-	windpriest();
+	WindPriest();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -546,9 +546,9 @@ public:
 	void banter();
 };
 
-class godofwar : public Creature{
+class GodOfWar : public Creature{
 public:
-	godofwar();
+	GodOfWar();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -557,9 +557,9 @@ public:
 	void banter();
 };
 
-class godoflife : public Creature{
+class GodOfLife : public Creature{
 public:
-	godoflife();
+	GodOfLife();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -568,9 +568,9 @@ public:
 	void banter();
 };
 
-class godofchaos : public Creature{
+class GodOfChaos : public Creature{
 public:
-	godofchaos();
+	GodOfChaos();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -579,9 +579,9 @@ public:
 	void banter();
 };
 
-class godofdeath : public Creature{
+class GodOfDeath : public Creature{
 public:
-	godofdeath();
+	GodOfDeath();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -595,9 +595,9 @@ public:
 //										Optional High Level Encounters
 //=============================================================================================================
 
-class greendragon : public Creature{
+class GreenDragon : public Creature{
 public:
-	greendragon();
+	GreenDragon();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -607,9 +607,9 @@ public:
 	void banter();
 };
 
-class bluedragon : public Creature{
+class BlueDragon : public Creature{
 public:
-	bluedragon();
+	BlueDragon();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -619,9 +619,9 @@ public:
 	void banter();
 };
 
-class reddragon : public Creature{
+class RedDragon : public Creature{
 public:
-	reddragon();
+	RedDragon();
 	virtual void attack(Player *p2,vector<Item*> &pstuff, vector<Item*> &stuff,string Map);
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
@@ -631,9 +631,9 @@ public:
 	void banter();
 };
 	
-class monk : public Creature{
+class Monk : public Creature{
 public:
-	monk();
+	Monk();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
@@ -642,9 +642,9 @@ public:
 	void banter();
 };
 
-class fly : public Creature{
+class Fly : public Creature{
 public: 
-	fly();
+	Fly();
 	virtual Creature* replenish() const;
 	virtual bool dropItem();
 	virtual Item* body(string Map) const;
