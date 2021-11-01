@@ -434,7 +434,7 @@ void World::DeleteItem(vector<Item*> &playerInventory)
 	
 }
 
-void World::Options(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &M, string &Map)
+void World::Options(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &spells, string &map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;
@@ -472,15 +472,15 @@ void World::Options(Player *player, vector<Item*> &worldItems,vector<Item*> &pla
 		{
 		case 12:
 			text("Saving game ",13,11,yellow);
-			SaveGame(player,worldItems,playerInventory,M,Map);
+			SaveGame(player,worldItems,playerInventory,spells,map);
 			Sleep(player->GetPauseDuration());
 			text("            ",13,11,yellow);
 			break;
 		case 13:
-			Load(player,worldItems,playerInventory,M,Map);
+			Load(player,worldItems,playerInventory,spells,map);
 			break;
 		case 14:
-			OptionsMenu(player,worldItems,playerInventory,M,Map);		
+			OptionsMenu(player,worldItems,playerInventory,spells,map);		
 			break;
 		case 15:
 			system("cls");
@@ -494,7 +494,7 @@ void World::Options(Player *player, vector<Item*> &worldItems,vector<Item*> &pla
 /*=====================================================================================
 	Input for the setup of the game. Music, speed, etc.
 =====================================================================================*/
-void World::OptionsMenu(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &availableMagic, string &Map)
+void World::OptionsMenu(Player *player, vector<Item*> &worldItems,vector<Item*> &playerInventory,vector<Magic*> &spells, string &map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;
@@ -583,7 +583,7 @@ void World::OptionsMenu(Player *player, vector<Item*> &worldItems,vector<Item*> 
 		}
 	}// End of While(escapeWasPressed)
 }
-void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory, bool &bFight,bool &bLeave,string map)
+void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory, bool &isFighting,bool &didLeave,string map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;
@@ -594,11 +594,11 @@ void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &play
 	while(!escapeWasPressed)
 	{		
 		ClearTextBottomRight(12);
-		if(bFight && Iused)
+		if(isFighting && Iused)
 			break;		
 		player->DisplayInfo();
 		DisplayPlayerItems(playerInventory);
-		if(!bFight)
+		if(!isFighting)
 			ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 15;
@@ -621,7 +621,7 @@ void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &play
 		}while(!selectionWasMade);
 		if(escapeWasPressed)
 		{
-			bLeave = true;
+			didLeave = true;
 			break;
 		}
 		choice = cursorPosition.Y;
@@ -629,7 +629,7 @@ void World::UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &play
 		{
 		case 15:
 			if(playerInventory.size() > 0)
-				Use(player,playerInventory,Iused,bFight);			
+				Use(player,playerInventory,Iused,isFighting);			
 			else
 			{
 				text("You have no items.",13,11,white);

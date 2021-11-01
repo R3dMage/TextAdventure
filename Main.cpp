@@ -22,7 +22,7 @@ using namespace std;
 
 void main()
 {
-	srand(GetTickCount());
+	srand(GetTickCount64());
 	char name[10]; 
 	bool load = false;
 	ifstream fin;
@@ -35,12 +35,12 @@ void main()
 	
 
 	//------------------------------------------------------->>>  Player Definition
-	Player p;
+	Player player;
 
 	cout << "Enter your name: ";
 	cin.get(name,10);
-	p.SetName(name);
-	filename = p.GetName() + ".svg";
+	player.SetName(name);
+	filename = player.GetName() + ".svg";
 
 	fin.open(filename.c_str());
 	fin >> temp;
@@ -49,27 +49,27 @@ void main()
 	if(temp != "Name:")
 	{
 		load = false;
-		p.DisplayStatus();
+		player.DisplayStatus();
 		system("cls");
 	}
 	if(temp == "Name:")
 		load = true;
 
 	string cheat = "rex";
-	if(p.GetName() == cheat.c_str())
+	if(player.GetName() == cheat.c_str())
 	{
 		map = "icefield1";
 		//p.setelf(1);
 		//p.setbspells(true);
-		p.SetGold(5000);
+		player.SetGold(5000);
 		//p.setmka(50);
-		p.SetMaxHitPoints(500);
-		p.SetHitPoints(500);
-		p.SetKa(50);
+		player.SetMaxHitPoints(500);
+		player.SetHitPoints(500);
+		player.SetKa(50);
 		//p.setweapon(loadWeapon("DeathSword"));
 		//p.setarmor(loadArmor("Hvy.Chain"));
 	}
-	globe.Locations(map,&p,load);
+	globe.Locations(map,&player,load);
 	text("",13,23,white);
 	system("pause");
 

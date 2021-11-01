@@ -32,10 +32,10 @@ public:
 	void MagicShop(vector<Item*> &playerInventory, Player *player,string map);
 	void Inn(Player *player, string map);
 	void PawnShop(Player *, vector<Item*> &,string map);
-	void SetupNcps(vector< creature* > &npc, string maplayer,int,int,GameEvents,RaceReactionIndex,char*&,char*);
+	void SetupNcps(vector<creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
-	void DescriptDisplay(string, string &, string &, string &);
-	void LoadMap(vector< Location* > &g, string &maplayer, int &Xmax, int &Ymax, bool &bTown);
+	void DescriptionDisplay(string, string &, string &, string &);
+	void LoadMap(vector< Location* > &g, string &mapName, int &Xmax, int &Ymax, bool &bTown);
 	void HandleMainMenu(Player *player,vector<Magic*> &spells,vector<Item*> &Stuff, vector<Item*> &playerInventory,string &);
 	void HandleInventory(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
 	void DisplayPlayerItems(vector<Item*> &playerInventory);
