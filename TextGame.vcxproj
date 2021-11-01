@@ -187,7 +187,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NPC Setup.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="plots.cpp" />
+    <ClCompile Include="Plots.cpp" />
     <ClCompile Include="Saveload.cpp" />
     <ClCompile Include="Talkto.cpp" />
     <ClCompile Include="Weapon.cpp" />

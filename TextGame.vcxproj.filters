@@ -116,7 +116,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="plots.cpp">
+    <ClCompile Include="Plots.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Saveload.cpp">
