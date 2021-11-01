@@ -119,7 +119,7 @@ public:
 	void PlayMusic(char *);
 	void StopMusic();
 	void ToggleMusic();
-	void plots(string);
+	void Plots(string);
 
 	PlayerKillCounts RaceKillCounts;
 	GameEvents PlotEventStates;

@@ -5,7 +5,7 @@
 /*================================================================================
 	This function is designed to handle all the plots in the game
 =================================================================================*/
-void Player::plots(string map)
+void Player::Plots(string map)
 {
 	if(map == "valesh" && PositionX == 2 && PositionY == 1 && !PlotEventStates.Start)
 	{
