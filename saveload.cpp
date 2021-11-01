@@ -4,25 +4,25 @@
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-void World::SaveGame(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::SaveGame(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map)
 {
-	string Savefile = p->GetName();
+	string Savefile = player->GetName();
 	Savefile = Savefile + ".svg";
 	ofstream fout;
 
 	fout.open(Savefile.c_str());
 
-	p->Save(fout);
+	player->Save(fout);
 	SaveMagic(spells,fout);
-	SaveInventory(pstuff,fout);
-	SaveGround(stuff,fout);
+	SaveInventory(playerInventory,fout);
+	SaveGround(worldItems,fout);
 	fout << "Map: " << map;
 
 	fout.close();	
 }
 
 
-void World::Load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::Load(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
@@ -38,10 +38,10 @@ void World::Load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 		system("pause");
 		exit(0);
 	}
-	p->Load(fin);
+	player->Load(fin);
 	LoadMagic(spells,fin);
-	LoadInventory(pstuff,fin);
-	LoadGround(stuff,fin);
+	LoadInventory(playerInventory,fin);
+	LoadGround(worldItems,fin);
 	fin >> temp >> map;
 
 	fin.close();
@@ -52,12 +52,12 @@ void World::Load(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<
 	system("pause");
 }
 
-void World::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector<Magic*> &spells,string &map)
+void World::load1(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map)
 {
 	string fName;
 	string temp;
 
-	fName = p->GetName();
+	fName = player->GetName();
 	fName = fName + ".svg";
 
 	ifstream fin;
@@ -68,10 +68,10 @@ void World::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector
 		system("pause");
 		exit(0);
 	}
-	p->Load(fin);
+	player->Load(fin);
 	LoadMagic(spells,fin);
-	LoadInventory(pstuff,fin);
-	LoadGround(stuff,fin);
+	LoadInventory(playerInventory,fin);
+	LoadGround(worldItems,fin);
 	fin >> temp >> map;
 
 	fin.close();	
@@ -82,55 +82,55 @@ void World::load1(Player *p, vector<Item*> &stuff, vector<Item*> &pstuff, vector
 	system("pause");
 }
 
-void World::SaveInventory(vector<Item*> &stuff, ofstream &fout)
+void World::SaveInventory(vector<Item*> &inventory, ofstream &fout)
 {
 	unsigned int i;
-	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
+	fout << "#items: "	<< static_cast<int>(inventory.size()) << endl;
 
-	for(i = 0;i < stuff.size(); i++)
+	for(i = 0;i < inventory.size(); i++)
 	{
-		fout << "inv" << i+1 << ": " << stuff[i]->GetName() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetMapName() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetPositionX() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetPositionY() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetCost() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetType() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetKeep() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetIsWeapon() << endl;
-		fout << "inv" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetName() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetMapName() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetPositionX() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetPositionY() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetCost() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetType() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetKeep() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetIsWeapon() << endl;
+		fout << "inv" << i+1 << ": " << inventory[i]->GetIsArmor() << endl;
 	}
 }
-void World::SaveGround(vector<Item*> &stuff, ofstream &fout)
+void World::SaveGround(vector<Item*> &worldItems, ofstream &fout)
 {
 	unsigned int i;
-	fout << "#items: "	<< static_cast<int>(stuff.size()) << endl;
+	fout << "#items: "	<< static_cast<int>(worldItems.size()) << endl;
 
-	for(i = 0;i < stuff.size(); i++)
+	for(i = 0;i < worldItems.size(); i++)
 	{
-		fout << "item" << i+1 << ": " << stuff[i]->GetName() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetMapName() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetPositionX() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetPositionY() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetCost() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetType() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetKeep() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetIsWeapon() << endl;
-		fout << "item" << i+1 << ": " << stuff[i]->GetIsArmor() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetName() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetMapName() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetPositionX() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetPositionY() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetCost() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetType() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetKeep() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetIsWeapon() << endl;
+		fout << "item" << i+1 << ": " << worldItems[i]->GetIsArmor() << endl;
 	}
 }
-void World::SaveMagic(vector<Magic*> &M, ofstream &fout)
+void World::SaveMagic(vector<Magic*> &spells, ofstream &fout)
 {
 	unsigned int i;
-	fout << "#spells: "	<< static_cast<int>(M.size()) << endl;
+	fout << "#spells: "	<< static_cast<int>(spells.size()) << endl;
 	
-	for(i = 0;i < M.size(); i++)
+	for(i = 0;i < spells.size(); i++)
 	{
-		fout << "Spell"<< i+1 << ": " << M[i]->GetName() << endl;
+		fout << "Spell"<< i+1 << ": " << spells[i]->GetName() << endl;
 	}
 }
 
 
-void World::LoadGround(vector<Item*> &stuff,ifstream &fin)
+void World::LoadGround(vector<Item*> &worldInventory,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -140,7 +140,7 @@ void World::LoadGround(vector<Item*> &stuff,ifstream &fin)
 	string temp;
 	string szHolder;
 
-	stuff.clear();
+	worldInventory.clear();
 	fin >> temp >> j;
 
 	for(i=0; i < j; i++)
@@ -157,15 +157,15 @@ void World::LoadGround(vector<Item*> &stuff,ifstream &fin)
 		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
 		if(holder->GetIsWeapon())
-			stuff.push_back(loadWeapon(holder->GetName()));
+			worldInventory.push_back(loadWeapon(holder->GetName()));
 		else if(holder->GetIsArmor())
-			stuff.push_back(loadArmor(holder->GetName()));
+			worldInventory.push_back(loadArmor(holder->GetName()));
 		else
-			stuff.push_back(holder);
+			worldInventory.push_back(holder);
 	}
 }
 
-void World::LoadInventory(vector<Item*> &pstuff,ifstream &fin)
+void World::LoadInventory(vector<Item*> &playerInventory,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -175,7 +175,7 @@ void World::LoadInventory(vector<Item*> &pstuff,ifstream &fin)
 	string temp;
 	string szHolder;
 
-	pstuff.clear();
+	playerInventory.clear();
 	fin >> temp >> j;
 
 	for(i=0; i < j; i++)
@@ -192,15 +192,15 @@ void World::LoadInventory(vector<Item*> &pstuff,ifstream &fin)
 		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
 		if(holder->GetIsWeapon())
-			pstuff.push_back(loadWeapon(holder->GetName()));
+			playerInventory.push_back(loadWeapon(holder->GetName()));
 		else if(holder->GetIsArmor())
-			pstuff.push_back(loadArmor(holder->GetName()));
+			playerInventory.push_back(loadArmor(holder->GetName()));
 		else
-			pstuff.push_back(holder);
+			playerInventory.push_back(holder);
 	}
 }
 
-void World::LoadMagic(vector<Magic*> &M,ifstream &fin)
+void World::LoadMagic(vector<Magic*> &spells,ifstream &fin)
 {
 	unsigned int i;
 	unsigned int j;
@@ -213,7 +213,7 @@ void World::LoadMagic(vector<Magic*> &M,ifstream &fin)
 	{
 		fin >> temp;
 		getline(fin,N);
-		M.push_back(GetMagic(rotate(N)));
+		spells.push_back(GetMagic(rotate(N)));
 	}
 }
 
@@ -227,48 +227,48 @@ string World::GetFileName()
 	return X;
 }
 
-Magic* World::GetMagic(string N)
+Magic* World::GetMagic(string spellName)
 {
  	Magic *M = new Magic;
-	if(N == "Minor Heal")
+	if(spellName == "Minor Heal")
 		M = new MinorHeal;
-	if(N == "Major Heal")
+	if(spellName == "Major Heal")
 		M = new MajorHeal;
-	if(N == "Briar Bush")
+	if(spellName == "Briar Bush")
 		M = new BriarBush;
-	if(N == "Snow")
+	if(spellName == "Snow")
 		M = new Blizzard;
-	if(N == "PerfectStorm")
+	if(spellName == "PerfectStorm")
 		M = new PerfectStorm;
-	if(N == "Drain Life")
+	if(spellName == "Drain Life")
 		M = new DrainLife;
-	if(N == "Drain Ka")
+	if(spellName == "Drain Ka")
 		M = new StealKa;
-	if(N == "Flame Arrow")
+	if(spellName == "Flame Arrow")
 		M = new FireArrow;
-	if(N == "Fire")
+	if(spellName == "Fire")
 		M = new Fire;
-	if(N == "Lava")
+	if(spellName == "Lava")
 		M = new Lava;
-	if(N == "Strength")
+	if(spellName == "Strength")
 		M = new Might;
-	if(N == "Dispel")
+	if(spellName == "Dispel")
 		M = new Dispel;
-	if(N == "Shock")
+	if(spellName == "Shock")
 		M = new Shock;
-	if(N == "Acid Rain")
+	if(spellName == "Acid Rain")
 		M = new AcidRain;
-	if(N == "Lightning Bolt")
+	if(spellName == "Lightning Bolt")
 		M = new LightningBolt;
-	if(N == "Poison")
+	if(spellName == "Poison")
 		M = new Poison;
-	if(N == "Summon Skeleton")
+	if(spellName == "Summon Skeleton")
 		M = new Skeleton;
-	if(N == "Dark Strike")
+	if(spellName == "Dark Strike")
 		M = new DarkStrike;
-	if(N == "Critical")
+	if(spellName == "Critical")
 		M = new Critical;
-	if(N == "Mind Control")
+	if(spellName == "Mind Control")
 		M = new Control;
 	return M;
 }
