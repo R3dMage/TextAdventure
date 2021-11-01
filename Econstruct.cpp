@@ -1,15 +1,9 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
-#include <fstream>			//For reading/writing files
 
 #include "Enemies.h"
 #include "World.h"
-
-
-#define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define blue FOREGROUND_BLUE
 
 //=============================================================================================================
 //												Elves
@@ -990,18 +984,3 @@ RedDragon::RedDragon()
 	exp = ;
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
