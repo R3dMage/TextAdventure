@@ -9,7 +9,7 @@
 
 
 
-void World::SetupNcps(vector<creature*> &npc,string mapName,int xMax, int yMax,GameEvents plot,RaceReactionIndex raceReaction,char*& musicFile)
+void World::SetupNcps(vector<Creature*> &npc,string mapName,int xMax, int yMax,GameEvents plot,RaceReactionIndex raceReaction,char*& musicFile)
 {
 	string MapInfo = mapName + ".ifo";
 	unsigned int T;

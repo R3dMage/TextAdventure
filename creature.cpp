@@ -8,7 +8,7 @@
 
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-creature::creature()
+Creature::Creature()
 {
 	setdamage(1);
 	setdamMod(1);
@@ -31,11 +31,11 @@ creature::creature()
 	music = "battle.mp3";
 }
 
-void creature::banter()
+void Creature::banter()
 {
 }
 
-void creature::info()
+void Creature::info()
 {
 	#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 	text(name,13,1,white);
@@ -49,7 +49,7 @@ void creature::info()
 
 }
 
-void creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,string Map)
+void Creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,string Map)
 {
 	int Damage;
 	Armor *arm;
@@ -65,12 +65,12 @@ void creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,stri
 	Sleep(p2->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
-	creature::dam(Damage);
+	Creature::dam(Damage);
 	p2->DisplayInfo();
 	clear();
 }
 
-void creature::win(Player *p2)
+void Creature::win(Player *p2)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -86,182 +86,182 @@ void creature::win(Player *p2)
 	Sleep(3000);
 
 }
-string creature::getweakness()
+string Creature::getweakness()
 {
 	return weakness;
 }
-string creature::gettype()
+string Creature::gettype()
 {
 	return type;
 }
-void creature::setdamage(int num)
+void Creature::setdamage(int num)
 {
 	if(num < 0){num = 0;}
 	damage = num;
 }
-void creature::setdamMod(int num)
+void Creature::setdamMod(int num)
 {
 	if(num < 0){num = 0;}
 	damMod = num;
 }
-void creature::setevade(int num)
+void Creature::setevade(int num)
 {
 	if(num < 0){num = 0;}
 	evade = num;
 }
-void creature::setexp(int num)
+void Creature::setexp(int num)
 {
 	if(num < 0){num = 0;}
 	exp = num;
 }
-void creature::setgold(int num)
+void Creature::setgold(int num)
 {
 	if(num < 0){num = 0;}
 	gold = num;
 }
-void creature::sethp(int num)
+void Creature::sethp(int num)
 {
 	if(num < 0){num = 0;}
 	if(num > mhp){num = mhp;}
 	hp = num;
 }
-void creature::setlevel(int num)
+void Creature::setlevel(int num)
 {
 	if(num < 0){num = 0;}
 	level = num;
 }
-void creature::setmhp(int num)
+void Creature::setmhp(int num)
 {
 	if(num < 0){num = 0;}
 	mhp = num;
 	hp = mhp;
 }
-void creature::setX(int num)
+void Creature::setX(int num)
 {
 	if(num < 1)
 		num = 1;
 	X = num;
 }
-void creature::setY(int num)
+void Creature::setY(int num)
 {
 	if(num < 1)
 		num = 1;
 	Y = num;
 }
-void creature::setname(string szName)
+void Creature::setname(string szName)
 {
 	name = szName;
 }
-void creature::setka(int N)
+void Creature::setka(int N)
 {
 	ka = N;
 	if(ka > mka)
 		ka = mka;
 }
-int creature::getdamage()
+int Creature::getdamage()
 {
 	return damage;
 }
-int creature::getdamMod()
+int Creature::getdamMod()
 {
 	return damMod;
 }
-int creature::getdef()
+int Creature::getdef()
 {
 	return def;
 }
-int creature::getevade()
+int Creature::getevade()
 {
 	return evade;
 }
-int creature::getexp()
+int Creature::getexp()
 {
 	return exp;
 }
-int creature::getgold()
+int Creature::getgold()
 {
 	return gold;
 }
-int creature::gethp()
+int Creature::gethp()
 {
 	return hp;
 }
-int creature::getmhp()
+int Creature::getmhp()
 {
 	return mhp;
 }
-int creature::getlevel()
+int Creature::getlevel()
 {
 	return level;
 }
-int creature::getX()
+int Creature::getX()
 {
 	return X;
 }
-int creature::getY()
+int Creature::getY()
 {
 	return Y;
 }
-string creature::getname()
+string Creature::getname()
 {
 	return name;
 }
-void creature::setTalkTo(bool T)
+void Creature::setTalkTo(bool T)
 {
 	talkTo = T;
 }
-bool creature::getTalkTo()
+bool Creature::getTalkTo()
 {
 	return talkTo;
 }
-void creature::setrunAway(bool R)
+void Creature::setrunAway(bool R)
 {
 	runAway = R;
 }
-bool creature::getrunAway()
+bool Creature::getrunAway()
 {
 	return runAway;
 }
-bool creature::getdontmove()
+bool Creature::getdontmove()
 {
 	return dontmove;
 }
-void creature::setstate(int N)
+void Creature::setstate(int N)
 {
 	state = N;
 }
-int creature::getstate()
+int Creature::getstate()
 {
 	return state;
 }
-int creature::getmka()
+int Creature::getmka()
 {
 	return mka;
 }
-int creature::getka()
+int Creature::getka()
 {
 	return ka;
 }
-int creature::getmagdef()
+int Creature::getmagdef()
 {
 	return magdef;
 }
-void creature::setmagdef(int M)
+void Creature::setmagdef(int M)
 {
 }
-void creature::setmap(string M)
+void Creature::setmap(string M)
 {
 	map = M;
 }
-string creature::getmap()
+string Creature::getmap()
 {
 	return map;
 }
-void creature::setdontmove(bool B)
+void Creature::setdontmove(bool B)
 {
 	dontmove = B;
 }
-void creature::DrawCurs(COORD pos, WORD color, char curs)
+void Creature::DrawCurs(COORD pos, WORD color, char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -271,7 +271,7 @@ void creature::DrawCurs(COORD pos, WORD color, char curs)
 	cout << curs;
 }
 
-bool creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
+bool Creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursPos;
@@ -338,7 +338,7 @@ return false;
 
 
 
-void creature::dam(int D)
+void Creature::dam(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -350,7 +350,7 @@ void creature::dam(int D)
 		text("   ",X-1,9,FOREGROUND_RED);
 	}
 }
-void creature::cure(int D)
+void Creature::cure(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -362,14 +362,14 @@ void creature::cure(int D)
 	}
 }
 
-bool creature::dropItem()
+bool Creature::dropItem()
 { return false; }
 
 
-Item* creature::token(string Map)
+Item* Creature::token(string Map)
 { Item *flag = new Item; return flag;}
 
-void creature::loadPos(int X, int Y)
+void Creature::loadPos(int X, int Y)
 {
 	if(!dontmove)
 	{
@@ -385,15 +385,15 @@ void creature::loadPos(int X, int Y)
 	}
 }
 
-bool creature::talkto(Player *p2)
+bool Creature::talkto(Player *p2)
 {
 	return false;
 }
-char * creature::getMusic()
+char * Creature::getMusic()
 {
 	return music;
 }
-void creature::slowDisp(string szText)
+void Creature::slowDisp(string szText)
 {
 	unsigned int i;
 

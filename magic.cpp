@@ -16,7 +16,7 @@ Magic::Magic()
 	Attribute = "none";
 	Cost = 0;
 }
-void Magic::Cast(Player*,creature *)
+void Magic::Cast(Player*,Creature *)
 {
 }
 int Magic::GetCost()
@@ -67,7 +67,7 @@ MinorHeal::MinorHeal()
 	Cost		= 5;
 	IsInFight	= false;
 }
-void MinorHeal::Cast(Player *p2,creature *enemy)
+void MinorHeal::Cast(Player *p2,Creature *enemy)
 {
 	int multi = p2->GetMind()/7;
 	int cur = rand()% 30 + 10;
@@ -86,7 +86,7 @@ MajorHeal::MajorHeal()
 	Cost		= 10;
 	IsInFight = false;
 }
-void MajorHeal::Cast(Player *p2,creature *enemy)
+void MajorHeal::Cast(Player *p2,Creature *enemy)
 {
 	int multi = p2->GetMind()/7;
 	int cur = rand()% 60 + 30;
@@ -107,7 +107,7 @@ BriarBush::BriarBush()
 	Cost		= 10;
 	IsInFight	= true;
 }
-void BriarBush::Cast(Player *p2,creature *enemy)
+void BriarBush::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -136,7 +136,7 @@ Blizzard::Blizzard()
 	Cost		= 20;
 	IsInFight = true;
 }
-void Blizzard::Cast(Player *p2,creature *enemy)
+void Blizzard::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -164,7 +164,7 @@ PerfectStorm::PerfectStorm()
 	Cost		= 40;
 	IsInFight = true;
 }
-void PerfectStorm::Cast(Player *p2,creature *enemy)
+void PerfectStorm::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -192,7 +192,7 @@ DrainLife::DrainLife()
 	Cost		= 10;
 	IsInFight = true;
 }
-void DrainLife::Cast(Player *p2, creature *enemy)
+void DrainLife::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -224,7 +224,7 @@ StealKa::StealKa()
 	Cost		= 0;
 	IsInFight = true;
 }
-void StealKa::Cast(Player *p2,creature *enemy)
+void StealKa::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -251,7 +251,7 @@ FireArrow::FireArrow()
 	Cost		= 10;
 	IsInFight = true;
 }
-void FireArrow::Cast(Player *p2,creature *enemy)
+void FireArrow::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -279,7 +279,7 @@ Fire::Fire()
 	Cost		= 18;
 	IsInFight = true;
 }
-void Fire::Cast(Player *p2,creature *enemy)
+void Fire::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -307,7 +307,7 @@ Lava::Lava()
 	Cost		= 25;
 	IsInFight = true;
 }
-void Lava::Cast(Player *p2, creature *enemy)
+void Lava::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -335,7 +335,7 @@ Might::Might()
 	Cost		= 4;
 	IsInFight = true;
 }
-void Might::Cast(Player *p2,creature *)
+void Might::Cast(Player *p2,Creature *)
 {
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
@@ -350,7 +350,7 @@ Dispel::Dispel()
 	Cost		= 4;
 	IsInFight = true;
 }
-void Dispel::Cast(Player *p2,creature *enemy)
+void Dispel::Cast(Player *p2,Creature *enemy)
 {
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
@@ -364,7 +364,7 @@ Shock::Shock()
 	Cost		= 4;
 	IsInFight = true;
 }
-void Shock::Cast(Player * p2, creature * enemy)
+void Shock::Cast(Player * p2, Creature * enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -390,7 +390,7 @@ AcidRain::AcidRain()
 	Cost		= 10;
 	IsInFight = true;
 }
-void AcidRain::Cast(Player *p2, creature *enemy)
+void AcidRain::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -416,7 +416,7 @@ LightningBolt::LightningBolt()
 	Cost		= 15;
 	IsInFight = true;
 }
-void LightningBolt::Cast(Player *p2,creature *enemy)
+void LightningBolt::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage;
@@ -442,7 +442,7 @@ Poison::Poison()
 	Cost		= 10;
 	IsInFight = true;
 }
-void Poison::Cast(Player *p2,creature *enemy)
+void Poison::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -466,7 +466,7 @@ Skeleton::Skeleton()
 	Cost		= 10;
 	IsInFight = true;
 }
-void Skeleton::Cast(Player * p2,creature *enemy)
+void Skeleton::Cast(Player * p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -491,7 +491,7 @@ DarkStrike::DarkStrike()
 	Cost		= 15;
 	IsInFight = true;
 }
-void DarkStrike::Cast(Player *p2,creature *enemy)
+void DarkStrike::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
@@ -517,7 +517,7 @@ Critical::Critical()
 	Cost		= 20;
 	IsInFight = true;
 }
-void Critical::Cast(Player *p2,creature *enemy)
+void Critical::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage = enemy->gethp() - enemy->gethp()/8;
@@ -537,6 +537,6 @@ Control::Control()
 	Cost		= 30;
 	IsInFight = false;
 }
-void Control::Cast(Player *p2, creature *enemy)
+void Control::Cast(Player *p2, Creature *enemy)
 {
 }

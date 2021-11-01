@@ -72,7 +72,7 @@ void elf::win(Player *p2)
 	
 	
 }
-creature* elf::replenish() const
+Creature* elf::replenish() const
 {
 	return new elf;
 }
@@ -105,7 +105,7 @@ Item* mage::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* mage::replenish() const
+Creature* mage::replenish() const
 {
 	return new mage;
 }
@@ -138,7 +138,7 @@ Item* warrior::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* warrior::replenish() const
+Creature* warrior::replenish() const
 {
 	return new warrior;
 }
@@ -171,7 +171,7 @@ Item* fireelf::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* fireelf::replenish() const
+Creature* fireelf::replenish() const
 {
 	return new fireelf;
 }
@@ -204,7 +204,7 @@ Item* iceelf::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* iceelf::replenish() const
+Creature* iceelf::replenish() const
 {
 	return new iceelf;
 }
@@ -251,7 +251,7 @@ Item* ranger::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* ranger::replenish() const
+Creature* ranger::replenish() const
 {
 	return new ranger;
 }
@@ -315,7 +315,7 @@ void Orc::win(Player *p2)
 		Sleep(3000);
 	}
 }
-creature* Orc::replenish() const
+Creature* Orc::replenish() const
 {
 	return new Orc;
 }
@@ -348,7 +348,7 @@ Item* sorceror::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* sorceror::replenish() const
+Creature* sorceror::replenish() const
 {
 	return new sorceror;
 }
@@ -381,7 +381,7 @@ Item* osoldier::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* osoldier::replenish() const
+Creature* osoldier::replenish() const
 {
 	return new osoldier;
 }
@@ -415,7 +415,7 @@ Item* fireorc::token(string Map)
  token->SetMapName(Map);
  return token;
 }
-creature* fireorc::replenish() const
+Creature* fireorc::replenish() const
 {
  return new fireorc;
 }
@@ -448,7 +448,7 @@ Item* iceorc::token(string Map)
  token->SetMapName(Map);
  return token;
 }
-creature* iceorc::replenish() const
+Creature* iceorc::replenish() const
 {
  return new iceorc;
 }
@@ -495,7 +495,7 @@ Item* wanderer::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* wanderer::replenish() const
+Creature* wanderer::replenish() const
 {
 	return new wanderer;
 }
@@ -564,7 +564,7 @@ void human::win(Player *p2)
 		Sleep(3000);		
 	}
 }
-creature* human::replenish() const
+Creature* human::replenish() const
 {
 	return new human;
 }
@@ -598,7 +598,7 @@ Item* knight::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* knight::replenish() const
+Creature* knight::replenish() const
 {
 	return new knight;
 }
@@ -628,7 +628,7 @@ Item* adventure::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* adventure::replenish() const
+Creature* adventure::replenish() const
 {
 	return new adventure;
 }
@@ -772,7 +772,7 @@ Item* wizard::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* wizard::replenish() const
+Creature* wizard::replenish() const
 {
 	return new wizard;
 }
@@ -807,7 +807,7 @@ Item* goblin::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* goblin::replenish() const
+Creature* goblin::replenish() const
 {
 	return new goblin;
 }
@@ -824,7 +824,7 @@ Item* gspider::body(string Map) const
 	left->SetCost(50);
 	return left;
 }
-creature* gspider::replenish() const
+Creature* gspider::replenish() const
 {
 	return new gspider;
 }
@@ -841,7 +841,7 @@ Item* wolf::body(string Map) const
 	left->SetCost(15);
 	return left;
 }
-creature* wolf::replenish() const
+Creature* wolf::replenish() const
 {
 	return new wolf;
 }
@@ -857,7 +857,7 @@ Item*raven::body(string Map) const
 	left->SetCost(10);
 	return left;
 }
-creature* raven::replenish() const
+Creature* raven::replenish() const
 {
 	return new raven;
 }
@@ -873,7 +873,7 @@ Item* snake::body(string Map) const
 	left->SetCost(20);
 	return left;
 }
-creature* snake::replenish() const
+Creature* snake::replenish() const
 {
 	return new snake;
 }
@@ -889,7 +889,7 @@ Item* eagle::body(string Map) const
  left->SetCost(50);
  return left;
 }
-creature* eagle::replenish() const
+Creature* eagle::replenish() const
 {
  return new eagle;
 }
@@ -905,7 +905,7 @@ Item* pbear::body(string Map) const
  left->SetCost(100);
  return left;
 }
-creature* pbear::replenish() const
+Creature* pbear::replenish() const
 {
  return new pbear;
 }
@@ -921,7 +921,7 @@ Item* salamander::body(string Map) const
  left->SetCost(200);
  return left;
 }
-creature* salamander::replenish() const
+Creature* salamander::replenish() const
 {
  return new salamander;
 }
@@ -937,7 +937,7 @@ Item* centipede::body(string Map) const
  left->SetCost(150);
  return left;
 }
-creature* centipede::replenish() const
+Creature* centipede::replenish() const
 {
  return new centipede;
 }
@@ -953,7 +953,7 @@ Item* wyvern::body(string Map) const
  left->SetCost(250);
  return left;
 }
-creature* wyvern::replenish() const
+Creature* wyvern::replenish() const
 {
  return new wyvern;
 }
@@ -969,7 +969,7 @@ Item* hydra::body(string Map) const
  left->SetCost(300);
  return left;
 }
-creature* hydra::replenish() const
+Creature* hydra::replenish() const
 {
  return new hydra;
 }
@@ -985,7 +985,7 @@ Item* minator::body(string Map) const
  left->SetCost(250);
  return left;
 }
-creature* minator::replenish() const
+Creature* minator::replenish() const
 {
  return new minator;
 }
@@ -1018,7 +1018,7 @@ Item* gargoyle::token(string Map)
  token->SetMapName(Map);
  return token;
 }
-creature* gargoyle::replenish() const
+Creature* gargoyle::replenish() const
 {
  return new margoyle;
 }
@@ -1054,7 +1054,7 @@ Item* margoyle::token(string Map)
  token->SetMapName(Map);
  return token;
 }
-creature* margoyle::replenish() const
+Creature* margoyle::replenish() const
 {
  return new stargoyle;
 }
@@ -1086,7 +1086,7 @@ Item* stargoyle::token(string Map)
  token->SetMapName(Map);
  return token;
 }
-creature* stargoyle::replenish() const
+Creature* stargoyle::replenish() const
 {
  return new gargoyle;
 }
@@ -1119,7 +1119,7 @@ Item* ogre::body(string Map) const
 	token->SetMapName(Map);
 	return token;
 }
-creature* ogre::replenish() const
+Creature* ogre::replenish() const
 {
 	return new ogre;
 }
@@ -1152,7 +1152,7 @@ bool troll::dropItem()
 	left->SetCost(100);
 	return left;
 }
-creature* troll::replenish() const
+Creature* troll::replenish() const
 {
 	return new troll;
 }
@@ -1185,7 +1185,7 @@ bool magmaman::dropItem()
 	left->SetCost(150);
 	return left;
 }
-creature* magmaman::replenish() const
+Creature* magmaman::replenish() const
 {
 	return new troll;
 }
@@ -1221,7 +1221,7 @@ Item* cyclops::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* cyclops::replenish() const
+Creature* cyclops::replenish() const
 {
 	return new cyclops;
 }
@@ -1256,7 +1256,7 @@ Item* giant::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* giant::replenish() const
+Creature* giant::replenish() const
 {
 	return new giant;
 }
@@ -1292,7 +1292,7 @@ Item* frostgiant::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* frostgiant::replenish() const
+Creature* frostgiant::replenish() const
 {
 	return new frostgiant;
 }
@@ -1331,7 +1331,7 @@ Item* stormgiant::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* stormgiant::replenish() const
+Creature* stormgiant::replenish() const
 {
 	 return new stormgiant;
 }
@@ -1366,7 +1366,7 @@ Item* nymph::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* nymph::replenish() const
+Creature* nymph::replenish() const
 {
 	return new nymph;
 }
@@ -1401,7 +1401,7 @@ Item* icewizard::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* icewizard::replenish() const
+Creature* icewizard::replenish() const
 {
 	 return new icewizard;
 }
@@ -1448,7 +1448,7 @@ Item* snowman::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* snowman::replenish() const
+Creature* snowman::replenish() const
 {
 	return new snowman;
 }
@@ -1483,7 +1483,7 @@ Item* shrineguard::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* shrineguard::replenish() const
+Creature* shrineguard::replenish() const
 {
 	return new shrineguard;
 }
@@ -1518,7 +1518,7 @@ Item* rockgolem::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* rockgolem::replenish() const
+Creature* rockgolem::replenish() const
 {
 	return new rockgolem;
 }
@@ -1553,7 +1553,7 @@ Item* irongolem::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* irongolem::replenish() const
+Creature* irongolem::replenish() const
 {
 	return new irongolem;
 }
@@ -1588,7 +1588,7 @@ Item* steelgolem::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* steelgolem::replenish() const
+Creature* steelgolem::replenish() const
 {
 	return new steelgolem;
 }
@@ -1623,7 +1623,7 @@ Item* treeman::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* treeman::replenish() const
+Creature* treeman::replenish() const
 {
 	return new treeman;
 }
@@ -1658,7 +1658,7 @@ Item* acolyte::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* acolyte::replenish() const
+Creature* acolyte::replenish() const
 {
 	return new acolyte;
 }
@@ -1694,7 +1694,7 @@ Item* firedemon::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* firedemon::replenish() const
+Creature* firedemon::replenish() const
 {
 	return new firedemon;
 }
@@ -1718,7 +1718,7 @@ bool skel::dropItem()
 	left->SetCost(0);
 	return left;
 }
-creature* skel::replenish() const
+Creature* skel::replenish() const
 {
 	return new skel;
 }
@@ -1754,7 +1754,7 @@ bool ghoul::dropItem()
 	token->SetCost(1000);
 	return token;
 }
-creature* ghoul::replenish() const
+Creature* ghoul::replenish() const
 {
 	return new ghoul;
 }
@@ -1771,7 +1771,7 @@ creature* ghoul::replenish() const
 	left->SetCost(0);
 	return left;
 }
-creature* ghost::replenish() const
+Creature* ghost::replenish() const
 {
 	return new ghost;
 }
@@ -1808,7 +1808,7 @@ Item* phantom::token(string Map)
 	token->SetCost(1000);
 	return token;
 }
-creature* phantom::replenish() const
+Creature* phantom::replenish() const
 {
 	return new phantom;
 }
@@ -1842,7 +1842,7 @@ Item* vampire::token(string Map)
 	token->SetMapName(Map);
 	return token;
 }
-creature* vampire::replenish() const
+Creature* vampire::replenish() const
 {
 	return new vampire;
 }
@@ -1886,14 +1886,14 @@ Item* woodpriest::body(string Map) const
 }
 void woodpriest::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("After defeating the Wood Priest you must travel north.",13,11,white);
 	text("Past the forests to the frozen tundra.",13,12,white);
 	p2->PlotEventStates.Priest1 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
-creature* woodpriest::replenish() const
+Creature* woodpriest::replenish() const
 {
 	return new wolf;
 }
@@ -1939,14 +1939,14 @@ Item* icepriest::body(string Map) const
 }
 void icepriest::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("After defeating the Ice Priest you must travel west.",13,11,white);
 	text("Into the mountain and defeat the Fire Priest.",13,12,white);
 	p2->PlotEventStates.Priest2 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
-creature* icepriest::replenish() const
+Creature* icepriest::replenish() const
 {
 	return new pbear;
 }
@@ -1991,14 +1991,14 @@ Item* firepriest::body(string Map) const
 }
 void firepriest::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
 	text("Beneath the cemetary lies the teleporter.",13,12,white);
 	p2->PlotEventStates.Priest3 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
-creature* firepriest::replenish() const
+Creature* firepriest::replenish() const
 {
 	return new salamander;
 }
@@ -2042,14 +2042,14 @@ Item* windpriest::body(string Map) const
 }
 void windpriest::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("After defeating the the 4 priests. You must find the truth.",13,11,white);
 	text("Go thee to the ancient water temple.",13,12,white);
 	p2->PlotEventStates.Priest4 = true;
 	text("",79,23,white);
 	Sleep(5000);	
 }
-creature* windpriest::replenish() const
+Creature* windpriest::replenish() const
 {
 	return new wyvern;
 }
@@ -2083,11 +2083,11 @@ Item* godofwar::body(string Map) const
 }
 void godofwar::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	Sleep(3000);	
 }
 
-creature* godofwar::replenish() const
+Creature* godofwar::replenish() const
 {
 	return new goblin;
 }
@@ -2122,11 +2122,11 @@ Item* godoflife::body(string Map) const
 
 void godoflife::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	Sleep(3000);	
 }
 
-creature* godoflife::replenish() const
+Creature* godoflife::replenish() const
 {
 	return new goblin;
 }
@@ -2161,11 +2161,11 @@ Item* godofchaos::body(string Map) const
 }
 void godofchaos::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	Sleep(3000);	
 }
 
-creature* godofchaos::replenish() const
+Creature* godofchaos::replenish() const
 {
 	return new goblin;
 }
@@ -2199,11 +2199,11 @@ Item* godofdeath::body(string Map) const
 }
 void godofdeath::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	Sleep(3000);	
 }
 
-creature* godofdeath::replenish() const
+Creature* godofdeath::replenish() const
 {
 	return new goblin;
 }
@@ -2248,13 +2248,13 @@ Item* greendragon::token(string Map)
 }
 void greendragon::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("The Green Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the island.",13,12,white);
 	Sleep(3000);	
 }
 
-creature* greendragon::replenish() const
+Creature* greendragon::replenish() const
 {
 	return new goblin;
 }
@@ -2291,12 +2291,12 @@ Item* bluedragon::token(string Map)
 }
 void bluedragon::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("The Blue Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the tundra.",13,12,white);
 	Sleep(3000);	
 }
-creature* bluedragon::replenish() const
+Creature* bluedragon::replenish() const
 {
 	return new goblin;
 }
@@ -2332,12 +2332,12 @@ Item* reddragon::token(string Map)
 }
 void reddragon::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("The Red Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the mountains.",13,12,white);
 	Sleep(3000);	
 }
-creature* reddragon::replenish() const
+Creature* reddragon::replenish() const
 {
 	return new goblin;
 }
@@ -2362,7 +2362,7 @@ Item*fly::body(string Map) const
 	left->SetCost(0);
 	return left;
 }
-creature* fly::replenish() const
+Creature* fly::replenish() const
 {
 	return new fly;
 }
@@ -2395,12 +2395,12 @@ Item* monk::token(string Map)
 }
 void monk::win(Player *p2)
 {
-	creature::win(p2);
+	Creature::win(p2);
 	text("The peaceful monk lies vanquished. ",13,11,white);
 	text("Don't you feel better about yourself now?",13,11,white);
 	Sleep(3000);	
 }
-creature* monk::replenish() const
+Creature* monk::replenish() const
 {
 	return new fly;
 }

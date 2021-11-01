@@ -8,7 +8,7 @@
 
 
 
-class Orc : public creature{
+class Orc : public Creature{
 public:
 	Orc();
 	virtual void attack(Player *p2,vector<Item> &pstuff, vector<Item> &stuff,string Map);

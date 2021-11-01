@@ -25,14 +25,14 @@ class World
 public:
 	World();
 	~World();
-	void Move(vector<creature*> &encounter,int Xmax, int Ymax);
-	void Fight(Player *player, creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
+	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);
+	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
 	void Locations(string,Player*,bool);
 	void Armory(vector<Item*> &playerInventory,Player *player,string map);
 	void MagicShop(vector<Item*> &playerInventory, Player *player,string map);
 	void Inn(Player *player, string map);
 	void PawnShop(Player *, vector<Item*> &,string map);
-	void SetupNcps(vector<creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
+	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
 	void DescriptionDisplay(string, string &, string &, string &);
 	void LoadMap(vector< Location* > &locations, string &mapName, int &Xmax, int &Ymax, bool &bTown);
@@ -46,7 +46,7 @@ public:
 	void UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory,bool &bFight, bool &bLeave,string map);
 	void Use(Player *player,vector<Item*> &playerInventory,bool &Iused,bool bFight);
 	void MagicMenu(Player *player,vector<Magic*> &spells);
-	void InFightMagicMenu(Player *player, creature *enemy,vector<Magic*> &spells,bool &bEsc);
+	void InFightMagicMenu(Player *player, Creature *enemy,vector<Magic*> &spells,bool &bEsc);
 	
 	
 
@@ -60,8 +60,8 @@ private:
 	void DrawCursor(COORD pos, WORD color, char curs);
 	void CheckMagic(Player *,vector<Magic*> &);
 	bool HasMagic(vector<Magic*>,string);
-	Item Ebody(creature *guy, string map);
-	void ReplenishEnemy(vector<creature*> &enemies,int num);
+	Item Ebody(Creature *guy, string map);
+	void ReplenishEnemy(vector<Creature*> &enemies,int num);
 	void ClearTextBottomRight(int);
 	void SlideDown(vector<Item*> &,int);
 	void SaveGame(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);

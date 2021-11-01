@@ -16,9 +16,9 @@ void text(string,int,int,WORD);
 void clear();
 void num(int num,int X, int Y,WORD color);
 
-class creature{
+class Creature{
 public:
-	creature();
+	Creature();
 	bool bant;
 
 	void setlevel(int);
@@ -69,7 +69,7 @@ public:
 	void cure(int);
 	void slowDisp(string);
 	void loadPos(int X, int Y);
-	virtual creature* replenish() const = 0;
+	virtual Creature* replenish() const = 0;
 	virtual Item* body(string) const = 0;
 	Item* Loadtoken();
 	virtual void win(Player *p2);

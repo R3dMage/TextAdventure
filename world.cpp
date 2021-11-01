@@ -62,12 +62,12 @@ void World::Locations(string Map, Player *player,bool load)
 // locations on the virtual maps in memory, AND what magic spells the character has.
 //===============================================================================================================
 
-	vector< creature* > mk(0);					//This is a seperate vector for THE monk.
+	vector< Creature* > mk(0);					//This is a seperate vector for THE monk.
 
 
 	vector< Item* > Globals(0);						//Globals will contain ALL the items in the world
 	vector< Item* > inv(0);							//inv is the players inventory
-	vector< creature* > encounter(0);				//encounter holds all the enemies on a certain map
+	vector< Creature* > encounter(0);				//encounter holds all the enemies on a certain map
 	vector< Location* > Vmap(0);					//Vmap holds the Map in memory, so no running around
 													//taking up time looking in map files. Well we look once. Then keep it in memory
 	vector<Magic*> spells(0);						//Magik will hold all the spells granted to the player
@@ -1178,9 +1178,9 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 //==========================================================================================================
 //	Function for replenishing enemies
 //==========================================================================================================
-void World::ReplenishEnemy(vector<creature*> &enemies, int index)
+void World::ReplenishEnemy(vector<Creature*> &enemies, int index)
 {
-	creature *temp;
+	Creature *temp;
 
 	temp = enemies[enemies.size()-1];				//Saves off the last in the vector
 	enemies[enemies.size()-1] = enemies[index];		//Moves the killed enemy to the last slot
@@ -1311,7 +1311,7 @@ void World::LoadMap(vector< Location* > &mapLocations, string &mapFileName,int &
 //	This function runs through the vector of creatures, moving them around the map in a random fashion
 //  5/10/05
 //==========================================================================================================
-void World::Move(vector<creature*> &encounter,int Xmax, int Ymax)
+void World::Move(vector<Creature*> &encounter,int Xmax, int Ymax)
 {
 	int RND;
 	unsigned int i;
