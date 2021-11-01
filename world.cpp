@@ -398,7 +398,7 @@ void World::Locations(string Map, Player *player,bool load)
 			choice = 0;
 		}
 //=======[Function to check, and change plots]======================
-		player->plots(Map);
+		player->Plots(Map);
 //===============================================================================================
 //							This section will be checking player location
 //	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
