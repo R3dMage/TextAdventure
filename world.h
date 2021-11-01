@@ -35,7 +35,7 @@ public:
 	void SetupNcps(vector<creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
 	void DescriptionDisplay(string, string &, string &, string &);
-	void LoadMap(vector< Location* > &g, string &mapName, int &Xmax, int &Ymax, bool &bTown);
+	void LoadMap(vector< Location* > &locations, string &mapName, int &Xmax, int &Ymax, bool &bTown);
 	void HandleMainMenu(Player *player,vector<Magic*> &spells,vector<Item*> &Stuff, vector<Item*> &playerInventory,string &);
 	void HandleInventory(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
 	void DisplayPlayerItems(vector<Item*> &playerInventory);
