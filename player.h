@@ -13,7 +13,7 @@
 #include "Armor.h"
 
 string rotate(string);
-void text(string,int,int,WORD);
+void text(string,short,short,WORD);
 void num(int num,int X, int Y,WORD color);
 void clear();
 Armor* loadArmor(string);

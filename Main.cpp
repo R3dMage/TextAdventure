@@ -75,7 +75,7 @@ void main()
 
 }
 
-void text(string szText,int X,int Y,WORD color)
+void text(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
 	COORD pos = {X, Y};

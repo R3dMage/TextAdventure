@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void text(string szText,int X,int Y,WORD color);
+void text(string szText,short X,short Y,WORD color);
 void num(int num,int X,int Y,WORD color);
 
 class Weapon : public Item{

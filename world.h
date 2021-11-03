@@ -7,7 +7,7 @@
 #include "Fmod.h"
 
 void num(int num,int X, int Y,WORD color);
-void text(string,int,int,WORD);
+void text(string, short, short, WORD);
 void clear();
 void clrbottom();
 void clritems();

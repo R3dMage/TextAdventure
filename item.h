@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void text(string,int,int,WORD);
+void text(string,short,short,WORD);
 void num(int,int,int,WORD);
 
 class Item {
