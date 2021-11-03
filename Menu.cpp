@@ -366,9 +366,9 @@ void World::Drop(Player *player,vector<Item*> &worldItems,vector<Item*> &playerI
 		worldItems.push_back(playerInventory[Offset]);
 		SlideDown(playerInventory,Offset);
 		playerInventory.pop_back();	
-		text("  ",13,12,white);
-		text("                    ",13,12+Offset,white);
-		text("                    ",13,static_cast<int>(12+playerInventory.size()),white);
+		text("  ", 13, 12, white);
+		text("                    ", 13, 12 + Offset, white);
+		text("                    ", 13, static_cast<short>(12 + playerInventory.size()), white);
 		if(playerInventory.size() < 1)
 			return;
 	}//end While escapeWasPressed
@@ -426,7 +426,7 @@ void World::DeleteItem(vector<Item*> &playerInventory)
 		SlideDown(playerInventory,offset);
 		playerInventory.pop_back();
 		ClearTextBottomRight(12);
-		text("                    ",13,static_cast<int>(12+playerInventory.size()),white);
+		text("                    ",13,static_cast<short>(12 + playerInventory.size()),white);
 		if(playerInventory.size() < 1)
 			return;
 
@@ -723,7 +723,7 @@ void World::Use(Player *player,vector<Item*> &playerInventory,bool &itemWasUsed,
 			{
 				SlideDown(playerInventory,offset);
 				playerInventory.pop_back();
-				text("                   ",13,static_cast<int>(12+playerInventory.size()),white);
+				text("                   ", 13, static_cast<short>(12 + playerInventory.size()), white);
 			}
 
 

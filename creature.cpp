@@ -48,21 +48,21 @@ void Creature::DisplayInfo()
 
 void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
 {
-	int Damage;
+	int damage = 0;
 	Armor *arm;
 
 	arm = player->GetArmor();
-	Damage = rand()% Damage + DamageModifier;
-	Damage -= arm->GetDefenseModifier();
-	if(Damage < 0)
-		Damage = 0;
-	player->SetHitPoints(player->GetCurrentHitPoints()-Damage);
+	damage = rand()% damage + DamageModifier;
+	damage -= arm->GetDefenseModifier();
+	if(damage < 0)
+		damage = 0;
+	player->SetHitPoints(player->GetCurrentHitPoints()-damage);
 	text(GetName(),13,11,white);
 	cout << " attacks you!";
 	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
-	cout << Damage << "              ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "              ";
+	Creature::DisplayDamage(damage);
 	player->DisplayInfo();
 	clear();
 }
@@ -258,7 +258,7 @@ void Creature::SetDontMove(bool B)
 {
 	DontMove = B;
 }
-void Creature::DrawCursor(COORD position, WORD color, char cursor)
+void Creature::DrawCursor(COORD position, WORD color, unsigned char cursor)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
