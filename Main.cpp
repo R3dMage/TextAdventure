@@ -193,8 +193,12 @@ Weapon* loadWeapon(string name)
 	{
 		char full[256];
 		char errorMessage[256];
-		_fullpath(full, ".", 256);
+
 		text("ERROR loading weapon file.   ",13,11,FOREGROUND_RED);
+		if(_fullpath(full, ".", 256) == NULL)
+		{
+			strcpy_s(full, "Invalid Path");
+		}
 		strerror_s(errorMessage, 256, errno);
 		text(errorMessage, 13, 12, FOREGROUND_RED);
 		text(full, 13, 13, FOREGROUND_RED);
