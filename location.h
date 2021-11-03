@@ -1,7 +1,6 @@
 #ifndef LOCATION_H
 #define LOCATION_H
 
-
 #include <fstream>
 #include <string>
 #include <windows.h>
@@ -15,51 +14,48 @@ void DrawCurs(COORD pos, WORD color, char curs);
 bool MoveCurs2(COORD &CursPos, bool &bSelect, bool &bEsc,COORD Min, COORD Max);
 
 
-class location{
+class Location{
 public:
-	location();
-	void setbMC(bool);
-	void setbShop(bool);
-	void setbPlot(bool);
-	void setX(int);
-	void setY(int);
-	void setNeoX(int);
-	void setNeoY(int);
-	void setszMC(string);
-	void setszShop(string);
-	void setszLoc(string);
-	void setszSum(string);
-	void setszChng(string);
-	void setszP(string);
-	bool getbMC();
-	bool getbShop();
-	bool getbPlot();
-	int getX();
-	int getY();
-	int getNeoX();
-	int getNeoY();
-	int getPlot();
-	string getszMC();
-	string getszShop();
-	string getszLoc();
-	string getszSum();
-	string getszChng();	
-	string getszP();
+	Location();
+	void SetIsMapChange(bool);
+	void SetIsShop(bool);
+	void SetHasPlot(bool);
+	void SetPositionX(int);
+	void SetPositionY(int);
+	void SetNeoX(int);
+	void SetNeoY(int);
+	void SetMapChangeName(string);
+	void SetShopName(string);
+	void SetDescription(string);
+	void SetSummary(string);
+	void SetPlotText(string);
+	bool GetIsMapChange();
+	bool GetIsShop();
+	bool GetHasPlot();
+	int GetPositionX();
+	int GetPositionY();
+	int GetNeoX();
+	int GetNeoY();
+	string GetMapChangeName();
+	string GetShopName();
+	string GetDescription();
+	string GetSummary();
+	string GetPlotText();
 
 private:
-	bool bMC;
-	bool bShop;
-	bool bPlot;
-	int X;
-	int Y;
+	bool IsMapChange;
+	bool IsShop;
+	bool HasPlot;
+	int PositionX;
+	int PositionY;
 	int NeoX;
 	int NeoY;
-	string szMC;
-	string szShop;
-	string szLoc;
-	string szSum;
+	string MapChangeName;
+	string ShopName;
+	string Description;
+	string Summary;
+	string PlotText;
 	string szChng;
-	string szP;
-	string D;
+	string DisplayValue;
 };
 #endif

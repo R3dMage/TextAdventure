@@ -1,280 +1,277 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
-#include "creature.h"
-
-
-
+#include "Creature.h"
 
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-creature::creature()
+Creature::Creature()
 {
-	setdamage(1);
-	setdamMod(1);
-	setmhp(10);
-	sethp(10);
-	setevade(5);
-	setexp(1);
-	setgold(0);
-	setname("ProblemLoading");
-	def = 0;
-	ka=mka=  0;
-	state = 0;
-	talkTo = false;
-	runAway = false;
-	dontmove = false;
+	SetDamage(1);
+	SetDamageModifier(1);
+	SetMaxHitPoints(10);
+	SetHitPoints(10);
+	SetEvade(5);
+	SetExperience(1);
+	SetGold(0);
+	SetName("ProblemLoading");
+	Defense = 0;
+	Ka=MaxKa=  0;
+	State = 0;
+	CanTalkTo = false;
+	RunAway = false;
+	DontMove = false;
 	bant = false;
-	type = "normal";
-	weakness = "neutral";
-	map = "none";
-	music = "battle.mp3";
+	Type = "normal";
+	Weakness = "neutral";
+	Map = "none";
+	Music = "battle.mp3";
 }
 
-void creature::banter()
+void Creature::Banter()
 {
 }
 
-void creature::info()
+void Creature::DisplayInfo()
 {
 	#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-	text(name,13,1,white);
+	text(Name,13,1,white);
 	text("Level: ",13,2,white);
 	text("HP:    ",13,3,white);
 	text("Ka:    ",13,4,white);
-	num(level,20,2,white);
-	num(hp,17,3,white);
-	num(ka,17,4,white);
+	num(Level,20,2,white);
+	num(HitPoints,17,3,white);
+	num(Ka,17,4,white);
 
 
 }
 
-void creature::attack(player *p2,vector<item*> &pstuff,vector<item*> &stuff,string Map)
+void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
 {
 	int Damage;
-	armor *arm;
+	Armor *arm;
 
-	arm = p2->getarmor();
-	Damage = rand()% damage + damMod;
-	Damage -= arm->getdefMod();
+	arm = player->GetArmor();
+	Damage = rand()% Damage + DamageModifier;
+	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 0;
-	p2->setHP(p2->getHP()-Damage);
-	text(getname(),13,11,white);
+	player->SetHitPoints(player->GetCurrentHitPoints()-Damage);
+	text(GetName(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->getPause());
+	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
-	creature::dam(Damage);
-	p2->info();
+	Creature::DisplayDamage(Damage);
+	player->DisplayInfo();
 	clear();
 }
 
-void creature::win(player *p2)
+void Creature::Win(Player *player)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
-	num(gold,20,11,green);
-	num(exp,20,12,green);
-	p2->setKills(p2->getKills() + 1);
-	p2->setgold(p2->getgold() + gold);
-	p2->setexp(p2->getexp() + exp);
-	p2->info();
+	num(Gold,20,11,green);
+	num(Experience,20,12,green);
+	player->SetTotalKills(player->GetTotalKills() + 1);
+	player->SetGold(player->GetGold() + Gold);
+	player->SetExperience(player->GetExperience() + Experience);
+	player->DisplayInfo();
 	text("",79,23,white);
 	Sleep(3000);
 
 }
-string creature::getweakness()
+string Creature::GetWeakness()
 {
-	return weakness;
+	return Weakness;
 }
-string creature::gettype()
+string Creature::GetType()
 {
-	return type;
+	return Type;
 }
-void creature::setdamage(int num)
-{
-	if(num < 0){num = 0;}
-	damage = num;
-}
-void creature::setdamMod(int num)
+void Creature::SetDamage(int num)
 {
 	if(num < 0){num = 0;}
-	damMod = num;
+	Damage = num;
 }
-void creature::setevade(int num)
+void Creature::SetDamageModifier(int num)
 {
 	if(num < 0){num = 0;}
-	evade = num;
+	DamageModifier = num;
 }
-void creature::setexp(int num)
+void Creature::SetEvade(int num)
 {
 	if(num < 0){num = 0;}
-	exp = num;
+	Evade = num;
 }
-void creature::setgold(int num)
+void Creature::SetExperience(int num)
 {
 	if(num < 0){num = 0;}
-	gold = num;
+	Experience = num;
 }
-void creature::sethp(int num)
+void Creature::SetGold(int num)
 {
 	if(num < 0){num = 0;}
-	if(num > mhp){num = mhp;}
-	hp = num;
+	Gold = num;
 }
-void creature::setlevel(int num)
+void Creature::SetHitPoints(int num)
 {
 	if(num < 0){num = 0;}
-	level = num;
+	if(num > MaxHP){num = MaxHP;}
+	HitPoints = num;
 }
-void creature::setmhp(int num)
+void Creature::SetLevel(int num)
 {
 	if(num < 0){num = 0;}
-	mhp = num;
-	hp = mhp;
+	Level = num;
 }
-void creature::setX(int num)
+void Creature::SetMaxHitPoints(int num)
+{
+	if(num < 0){num = 0;}
+	MaxHP = num;
+	HitPoints = MaxHP;
+}
+void Creature::SetX(int num)
 {
 	if(num < 1)
 		num = 1;
 	X = num;
 }
-void creature::setY(int num)
+void Creature::SetY(int num)
 {
 	if(num < 1)
 		num = 1;
 	Y = num;
 }
-void creature::setname(string szName)
+void Creature::SetName(string szName)
 {
-	name = szName;
+	Name = szName;
 }
-void creature::setka(int N)
+void Creature::SetKa(int N)
 {
-	ka = N;
-	if(ka > mka)
-		ka = mka;
+	Ka = N;
+	if(Ka > MaxKa)
+		Ka = MaxKa;
 }
-int creature::getdamage()
+int Creature::GetDamage()
 {
-	return damage;
+	return Damage;
 }
-int creature::getdamMod()
+int Creature::GetDamageModifier()
 {
-	return damMod;
+	return DamageModifier;
 }
-int creature::getdef()
+int Creature::GetDefense()
 {
-	return def;
+	return Defense;
 }
-int creature::getevade()
+int Creature::GetEvade()
 {
-	return evade;
+	return Evade;
 }
-int creature::getexp()
+int Creature::GetExperience()
 {
-	return exp;
+	return Experience;
 }
-int creature::getgold()
+int Creature::GetGold()
 {
-	return gold;
+	return Gold;
 }
-int creature::gethp()
+int Creature::GetHitPoints()
 {
-	return hp;
+	return HitPoints;
 }
-int creature::getmhp()
+int Creature::GetMaxHitPoints()
 {
-	return mhp;
+	return MaxHP;
 }
-int creature::getlevel()
+int Creature::GetLevel()
 {
-	return level;
+	return Level;
 }
-int creature::getX()
+int Creature::GetX()
 {
 	return X;
 }
-int creature::getY()
+int Creature::GetY()
 {
 	return Y;
 }
-string creature::getname()
+string Creature::GetName()
 {
-	return name;
+	return Name;
 }
-void creature::setTalkTo(bool T)
+void Creature::SetTalkTo(bool T)
 {
-	talkTo = T;
+	CanTalkTo = T;
 }
-bool creature::getTalkTo()
+bool Creature::GetTalkTo()
 {
-	return talkTo;
+	return CanTalkTo;
 }
-void creature::setrunAway(bool R)
+void Creature::SetRunAway(bool R)
 {
-	runAway = R;
+	RunAway = R;
 }
-bool creature::getrunAway()
+bool Creature::GetRunAway()
 {
-	return runAway;
+	return RunAway;
 }
-bool creature::getdontmove()
+bool Creature::GetDontMove()
 {
-	return dontmove;
+	return DontMove;
 }
-void creature::setstate(int N)
+void Creature::SetState(int N)
 {
-	state = N;
+	State = N;
 }
-int creature::getstate()
+int Creature::GetState()
 {
-	return state;
+	return State;
 }
-int creature::getmka()
+int Creature::GetMaxKa()
 {
-	return mka;
+	return MaxKa;
 }
-int creature::getka()
+int Creature::GetKa()
 {
-	return ka;
+	return Ka;
 }
-int creature::getmagdef()
+int Creature::GetMagicDefense()
 {
-	return magdef;
+	return MagicDefense;
 }
-void creature::setmagdef(int M)
+void Creature::SetMagicDefense(int M)
 {
 }
-void creature::setmap(string M)
+void Creature::SetMap(string M)
 {
-	map = M;
+	Map = M;
 }
-string creature::getmap()
+string Creature::GetMap()
 {
-	return map;
+	return Map;
 }
-void creature::setdontmove(bool B)
+void Creature::SetDontMove(bool B)
 {
-	dontmove = B;
+	DontMove = B;
 }
-void creature::DrawCurs(COORD pos, WORD color, char curs)
+void Creature::DrawCursor(COORD position, WORD color, char cursor)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(OutputH,color);
-	SetConsoleCursorPosition(OutputH,pos);
+	SetConsoleCursorPosition(OutputH,position);
 
-	cout << curs;
+	cout << cursor;
 }
 
-bool creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
+bool Creature::MoveCursor(COORD &cursorPosition,bool &wasSelected,int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
-	COORD OldCursPos = CursPos;
+	COORD OldCursPos = cursorPosition;
 	DWORD Events = 0;
 	HANDLE hInput;
 	bool bCursMov = false;
@@ -286,27 +283,27 @@ bool creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
 	{
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
 		{
-			if(CursPos.Y < Ymax)
+			if(cursorPosition.Y < Ymax)
 			{
-				CursPos.Y++;
+				cursorPosition.Y++;
                 bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymin;
+				cursorPosition.Y = Ymin;
 				bCursMov = true;
 			}
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
 		{
-			if(CursPos.Y > Ymin)
+			if(cursorPosition.Y > Ymin)
 			{
-				CursPos.Y--;
+				cursorPosition.Y--;
 				bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymax;
+				cursorPosition.Y = Ymax;
 				bCursMov = true;
 			}
 		}
@@ -314,12 +311,12 @@ bool creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
 		{
 			bCursMov = false;
 			//cout << "-";
-			bSelect = true;
+			wasSelected = true;
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
 		{
 			bCursMov = false;
-			bSelect = true;
+			wasSelected = true;
 		}
 	}	
 	if(bCursMov)
@@ -338,7 +335,7 @@ return false;
 
 
 
-void creature::dam(int D)
+void Creature::DisplayDamage(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -350,7 +347,7 @@ void creature::dam(int D)
 		text("   ",X-1,9,FOREGROUND_RED);
 	}
 }
-void creature::cure(int D)
+void Creature::DisplayCure(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -362,38 +359,38 @@ void creature::cure(int D)
 	}
 }
 
-bool creature::dropItem()
+bool Creature::DroppedItem()
 { return false; }
 
 
-item* creature::token(string Map)
-{ item *flag = new item; return flag;}
+Item* Creature::Token(string Map)
+{ Item *flag = new Item; return flag;}
 
-void creature::loadPos(int X, int Y)
+void Creature::LoadPosition(int X, int Y)
 {
-	if(!dontmove)
+	if(!DontMove)
 	{
 		int Rx = rand()%X + 1;
 		int Ry = rand()%Y + 1;
-		setX(Rx);
-		setY(Ry); 
+		SetX(Rx);
+		SetY(Ry); 
 	}
 	else
 	{
-		setX(X);
-		setY(Y);
+		SetX(X);
+		SetY(Y);
 	}
 }
 
-bool creature::talkto(player *p2)
+bool Creature::TalkTo(Player *player)
 {
 	return false;
 }
-char * creature::getMusic()
+char * Creature::GetMusic()
 {
-	return music;
+	return Music;
 }
-void creature::slowDisp(string szText)
+void Creature::slowDisp(string szText)
 {
 	unsigned int i;
 
@@ -403,25 +400,3 @@ void creature::slowDisp(string szText)
 		Sleep(75);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

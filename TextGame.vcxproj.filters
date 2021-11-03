@@ -24,49 +24,46 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="armor.h">
+    <ClInclude Include="Armor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CFmod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="class.h">
+    <ClInclude Include="Creature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="creature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="enemies.h">
+    <ClInclude Include="Enemies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Function Definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
+    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="local.h">
+    <ClInclude Include="Local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="location.h">
+    <ClInclude Include="Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="magic.h">
+    <ClInclude Include="Magic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="orc.h">
+    <ClInclude Include="Orc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="weapon.h">
+    <ClInclude Include="Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="world.h">
+    <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,13 +71,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="armor.cpp">
+    <ClCompile Include="Armor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="creature.cpp">
+    <ClCompile Include="Creature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Eattack.cpp">
@@ -98,16 +92,16 @@
     <ClCompile Include="CFmod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="item.cpp">
+    <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="local.cpp">
+    <ClCompile Include="Local.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="location.cpp">
+    <ClCompile Include="Location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="magic.cpp">
+    <ClCompile Include="Magic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -119,22 +113,22 @@
     <ClCompile Include="NPC Setup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="plots.cpp">
+    <ClCompile Include="Plots.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="saveload.cpp">
+    <ClCompile Include="Saveload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="talkto.cpp">
+    <ClCompile Include="Talkto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="weapon.cpp">
+    <ClCompile Include="Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="world.cpp">
+    <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

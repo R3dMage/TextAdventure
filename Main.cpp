@@ -4,25 +4,25 @@
 #include <string>
 #include <vector>
 
-#include "creature.h"
+#include "Creature.h"
 #include "Screen.h"
-#include "weapon.h"
-#include "armor.h"
-#include "enemies.h"
-#include "player.h"
-#include "world.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Enemies.h"
+#include "Player.h"
+#include "World.h"
 
 #define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define brown FOREGROUND_RED | FOREGROUND_GREEN
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-;
+
 using namespace std;
 
 
 
 void main()
 {
-	srand(GetTickCount());
+	srand(GetTickCount64());
 	char name[10]; 
 	bool load = false;
 	ifstream fin;
@@ -30,17 +30,17 @@ void main()
 	string temp;
 	string filename;
 
-	world globe;
+	World globe;
 	BoxScreen();
 	
 
 	//------------------------------------------------------->>>  Player Definition
-	player p;
+	Player player;
 
 	cout << "Enter your name: ";
 	cin.get(name,10);
-	p.setname(name);
-	filename = p.getname() + ".svg";
+	player.SetName(name);
+	filename = player.GetName() + ".svg";
 
 	fin.open(filename.c_str());
 	fin >> temp;
@@ -49,27 +49,27 @@ void main()
 	if(temp != "Name:")
 	{
 		load = false;
-		p.status();
+		player.DisplayStatus();
 		system("cls");
 	}
 	if(temp == "Name:")
 		load = true;
 
 	string cheat = "rex";
-	if(p.getname() == cheat.c_str())
+	if(player.GetName() == cheat.c_str())
 	{
 		map = "icefield1";
 		//p.setelf(1);
 		//p.setbspells(true);
-		p.setgold(5000);
+		player.SetGold(5000);
 		//p.setmka(50);
-		p.setMHP(500);
-		p.setHP(500);
-		p.setka(50);
+		player.SetMaxHitPoints(500);
+		player.SetHitPoints(500);
+		player.SetKa(50);
 		//p.setweapon(loadWeapon("DeathSword"));
 		//p.setarmor(loadArmor("Hvy.Chain"));
 	}
-	globe.locations(map,&p,load);
+	globe.Locations(map,&player,load);
 	text("",13,23,white);
 	system("pause");
 
@@ -176,10 +176,10 @@ string rotate(string pStr)
 }
 
 
-weapon* loadWeapon(string name)
+Weapon* loadWeapon(string name)
 {
-	weapon *weaponPtr;
-	weaponPtr = new weapon;
+	Weapon *weaponPtr;
+	weaponPtr = new Weapon;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -209,31 +209,31 @@ weapon* loadWeapon(string name)
 		if(name == szName)
 			nameFound = true;	
 
-		weaponPtr->setname(rotate(temp));
+		weaponPtr->SetName(rotate(temp));
 
 		fin >> szWord;
 		getline(fin,temp);
-		weaponPtr->setAttribute1(rotate(temp));
+		weaponPtr->SetAttribute1(rotate(temp));
 		fin >> szWord;
 		getline(fin,temp);
-		weaponPtr->setAttribute2(rotate(temp));
+		weaponPtr->SetAttribute2(rotate(temp));
 		fin >> szWord >> num;
-		weaponPtr->setdamage(num);
+		weaponPtr->SetDamage(num);
 		fin >> szWord >> num;
-		weaponPtr->setdamMod(num);
+		weaponPtr->SetDamageModifier(num);
 		fin >> szWord >> bVal; 
-		weaponPtr->set2hits(bVal);
+		weaponPtr->SetHitsTwice(bVal);
 		fin >> szWord >> bVal;
-		weaponPtr->setlsteal(bVal);
+		weaponPtr->SetStealsLife(bVal);
 		fin >> szWord >> num;
-		weaponPtr->setCost(num);
+		weaponPtr->SetCost(num);
 	}
 	return weaponPtr;
 }
 
-armor* loadArmor(string name)
+Armor* loadArmor(string name)
 {
-	armor *armorPtr = new armor;
+	Armor *armorPtr = new Armor;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -258,13 +258,13 @@ armor* loadArmor(string name)
 		
 		fin >> szWord;
 		getline(fin,temp);
-		armorPtr->setname(rotate(temp));
+		armorPtr->SetName(rotate(temp));
 		fin >> szWord >> num;
-		armorPtr->setdefMod(num);
+		armorPtr->SetDefenseModifier(num);
 		fin >> szWord >> num;
-		armorPtr->setevadMod(num);
+		armorPtr->SetEvadeModifier(num);
 		fin >> szWord >> num;
-		armorPtr->setCost(num);
+		armorPtr->SetCost(num);
 		if(fin.eof())
 		{
 			text("END of Armor File reached.   ",13,11,FOREGROUND_RED); 
@@ -275,9 +275,9 @@ armor* loadArmor(string name)
 	return armorPtr;
 }
 
-item* loaditem(string name)
+Item* loaditem(string name)
 {
-	item *itemPtr = new item;
+	Item *itemPtr = new Item;
 	string szName;
 	string szWord;
 	string szWord2;
@@ -299,24 +299,24 @@ item* loaditem(string name)
 		fin >> szName;
 		if(name == szName)
 			nameFound = true;
-		itemPtr->setname(szName);
-		fin >> num; itemPtr->setType(num);
+		itemPtr->SetName(szName);
+		fin >> num; itemPtr->SetType(num);
 		fin >> szWord >> num;
-		itemPtr->setCost(num);
+		itemPtr->SetCost(num);
 	}
 	return itemPtr;
 }
 
-void ground(vector<item*> stuff,string Map,int X,int Y)
+void ground(vector<Item*> stuff,string Map,int X,int Y)
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;	
 	text("[---Ground---]",13,1,brown);
 	while(Offset < stuff.size())
 	{		
-		if(stuff[Offset]->getY() == Y && stuff[Offset]->getX() == X && stuff[Offset]->getmap() == Map)
+		if(stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
 		{
-			text(stuff[Offset]->getname(),15,2+NumItems,yellow);
+			text(stuff[Offset]->GetName(),15,2+NumItems,yellow);
 			NumItems++;
 		}
 		Offset++;		
@@ -326,13 +326,13 @@ void ground(vector<item*> stuff,string Map,int X,int Y)
 	if(Offset < 10)
 		text("                       ",15,3+NumItems,yellow);
 }
-void items(vector<item*> &pstuff)
+void items(vector<Item*> &pstuff)
 {
 	unsigned int Offset = 0;
  	text(" [---Items---] ",13,11,brown);
 	while(Offset < pstuff.size())
 	{		
-		text(pstuff[Offset]->getname(),15,12+Offset,yellow);
+		text(pstuff[Offset]->GetName(),15,12+Offset,yellow);
 		Offset++;
 		if(Offset >= 12)
 			break;
@@ -383,10 +383,3 @@ void plot(string Map, string ID)
 	text("",13,23,white);
 	system("pause");
 }
-
-
-
-
-
-
-

@@ -1,53 +1,50 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <fstream>			//For file accessing
-#include <string>			//For Strings
 
-#include "local.h"
-;
-using namespace std;
+#include "Local.h"
 
-local::local()
+Surroundings::Surroundings()
 {
-	X = 1;
-	Y = 1;
-	script = "Class Created";
+	PositionX = 1;
+	PositionY = 1;
+	Script = "Class Created";
 }
-void local::setscript(string sz1)
+void Surroundings::SetScript(string sz1)
 {
-	script = sz1;
+	Script = sz1;
 }
-void local::setX(int x)
+void Surroundings::SetPositionX(int x)
 {
-	X = x;
+	PositionX = x;
 }
 
-void local::setY(int y)
+void Surroundings::SetPositionY(int y)
 {
-	Y = y;
+	PositionY = y;
 }
-string local::getscript()
+string Surroundings::GetScript()
 {
-	return script;
+	return Script;
 }
-int local::getX()
+int Surroundings::GetPositionX()
 {
-	return X;
+	return PositionX;
 }
-int local::getY()
+int Surroundings::GetPositionY()
 {
-	return Y;
+	return PositionY;
 }
 
-void local::setup(string map)
+void Surroundings::Setup(string map)
 {
 	ifstream fin;
-	bool Lfound = false;
+	bool foundLocation = false;
 	int X2 = 0;
 	int Y2 = 0;
 	
 	string szL;
-	string szS;
+	string displayText;
 	string szHolder;
 
 	fin.open(map.c_str());
@@ -59,7 +56,7 @@ void local::setup(string map)
 	}
 	fin.seekg(0);	
 
-	while(!Lfound)
+	while(!foundLocation)
 	{
 		fin >> szHolder;
 		if(szHolder != "X:")
@@ -79,16 +76,16 @@ void local::setup(string map)
 			fin >> szHolder;
 			getline(fin,szL);
 			fin >> szHolder;
-			getline(fin,szS);
+			getline(fin,displayText);
 		}
 
-		if(X2 == X && Y2 == Y)
-			Lfound = true;
-		if(fin.eof() && !Lfound)
+		if(X2 == PositionX && Y2 == PositionY)
+			foundLocation = true;
+		if(fin.eof() && !foundLocation)
 		{
-			szS = " there is no path to follow.";
-			Lfound = true;
+			displayText = " there is no path to follow.";
+			foundLocation = true;
 		}
 	}
-	script = szS;
+	Script = displayText;
 }

@@ -1,29 +1,27 @@
 #ifndef ARMOR_H
 #define ARMOR_H
 
-#include "item.h"
-;
+#include "Item.h"
+
 using namespace std;
 
 void text(string szText,int X,int Y,WORD color);
 void num(int num,int X,int Y,WORD color);
 
-class armor : public item{
+class Armor : public Item{
 public:
-	armor();
-	void setdefMod(int);
-	int getdefMod();
-	void setevadMod(int);
-	int getevadMod();
-	bool getmod();
+	Armor();
+	void SetDefenseModifier(int);
+	int GetDefenseModifier();
+	void SetEvadeModifier(int);
+	int GetEvadeModifier();
 
-	virtual void display();
-	void unload(string name);
+	virtual void Display();
+	void Save(string name);
 
 private:
-	int		defmod;
-	int		evadMod;
-	bool	mod;
+	int		DefenseModifier;
+	int		EvadeModifier;
 };
 
 

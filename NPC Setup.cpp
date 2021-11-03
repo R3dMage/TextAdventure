@@ -3,452 +3,447 @@
 //it's own file. 2/21/05
 //=============================================================================================================
 
-#include "world.h"
-#include "creature.h"
-#include "enemies.h"
+#include "World.h"
+#include "Creature.h"
+#include "Enemies.h"
 
 
 
-void world::npcSetup(vector<creature*> &npc,string Map,int Xmax, int Ymax,events plot,robj godchoice,char*& MM,char* MapMusic)
+void World::SetupNcps(vector<Creature*> &npc,string mapName,int xMax, int yMax,GameEvents plot,RaceReactionIndex raceReaction,char*& musicFile)
 {
-	string MapInfo = Map + ".ifo";
+	string MapInfo = mapName + ".ifo";
 	unsigned int T;
 	unsigned int i;
 	
 
 	npc.clear();
-	T = Xmax * Ymax;
+	T = xMax * yMax;
 	T = T / 5;
 
-	if(Map == "elvencity" && godchoice.elf == 1)
+	if(mapName == "elvencity" && raceReaction.Elf == 1)
 	{
-		npc.push_back(new warrior);		npc[0]->setdontmove(true);		npc[0]->loadPos(3,2);
-		npc.push_back(new warrior);		npc[1]->setdontmove(true);		npc[1]->loadPos(3,2);
-		npc.push_back(new mage);		npc[2]->setdontmove(true);		npc[2]->loadPos(3,2);
-		MM = "woods.mp3";
+		npc.push_back(new ElvenWarrior);		npc[0]->SetDontMove(true);		npc[0]->LoadPosition(3,2);
+		npc.push_back(new ElvenWarrior);		npc[1]->SetDontMove(true);		npc[1]->LoadPosition(3,2);
+		npc.push_back(new ElvenMage);		npc[2]->SetDontMove(true);		npc[2]->LoadPosition(3,2);
+		musicFile = "woods.mp3";
 	}
-	if(Map == "orccamp" && godchoice.orc == 1)
+	if(mapName == "orccamp" && raceReaction.Orc == 1)
 	{
-		npc.push_back(new osoldier);		npc[0]->setdontmove(true);		npc[0]->loadPos(4,2);
-		npc.push_back(new osoldier);		npc[1]->setdontmove(true);		npc[1]->loadPos(4,2);
-		npc.push_back(new sorceror);		npc[2]->setdontmove(true);		npc[2]->loadPos(4,2);
-		MM = "woods.mp3";
+		npc.push_back(new OrcSoldier);		npc[0]->SetDontMove(true);		npc[0]->LoadPosition(4,2);
+		npc.push_back(new OrcSoldier);		npc[1]->SetDontMove(true);		npc[1]->LoadPosition(4,2);
+		npc.push_back(new OrcSorceror);		npc[2]->SetDontMove(true);		npc[2]->LoadPosition(4,2);
+		musicFile = "woods.mp3";
 	}
-	if(Map == "field")
+	if(mapName == "field")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new goblin);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Goblin);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wolf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Wolf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new snake);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Snake);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "field.mp3";
+		musicFile = "field.mp3";
 	}
-	if(Map == "field1")
+	if(mapName == "field1")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new adventure);	npc[i]->loadPos(Xmax,Ymax);	npc[i]->setmap(Map);
+			npc.push_back(new Adventurer);	npc[i]->LoadPosition(xMax,yMax);	npc[i]->SetMap(mapName);
 			i++;
-			npc.push_back(new warrior);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ElvenWarrior);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new osoldier);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new OrcSoldier);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new ogre);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ogre);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new troll);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Troll);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new eagle);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Eagle);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "field.mp3";
+		musicFile = "field.mp3";
 	}
-	if(Map == "field2")
+	if(mapName == "field2")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new knight);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Knight);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new mage);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ElvenMage);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new sorceror);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new OrcSorceror);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wanderer);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new OrcWanderer);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new ranger);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ranger);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new adventure);	npc[i]->loadPos(Xmax,Ymax);	npc[i]->setmap(Map); 
+			npc.push_back(new Adventurer);	npc[i]->LoadPosition(xMax,yMax);	npc[i]->SetMap(mapName); 
 			i++;
-			npc.push_back(new wizard);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Wizard);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "field.mp3";
+		musicFile = "field.mp3";
 	}
-	if(Map == "road1")
+	if(mapName == "road1")
 	{
-		npc.push_back(new human);				npc[0]->loadPos(Xmax,Ymax);
-		npc.push_back(new adventure);			npc[1]->loadPos(Xmax,Ymax);	npc[1]->setmap(Map);
-		MM = "town.mp3";
+		npc.push_back(new Human);				npc[0]->LoadPosition(xMax,yMax);
+		npc.push_back(new Adventurer);			npc[1]->LoadPosition(xMax,yMax);	npc[1]->SetMap(mapName);
+		musicFile = "town.mp3";
 	}
-	if(Map == "road2")
+	if(mapName == "road2")
 	{
-		npc.push_back(new giant);				npc[0]->loadPos(Xmax,Ymax);
-		npc.push_back(new adventure);			npc[1]->loadPos(Xmax,Ymax);	npc[1]->setmap(Map);
-		MM = "town.mp3";
+		npc.push_back(new Giant);				npc[0]->LoadPosition(xMax,yMax);
+		npc.push_back(new Adventurer);			npc[1]->LoadPosition(xMax,yMax);	npc[1]->SetMap(mapName);
+		musicFile = "town.mp3";
 	}
-	if(Map == "dwoods1")
+	if(mapName == "dwoods1")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new elf);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Elf);		npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wolf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Wolf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new raven);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Raven);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "woods.mp3";
+		musicFile = "woods.mp3";
 	}
-	if (Map == "dwoods2")
+	if (mapName == "dwoods2")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new Orc);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Orc);		npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wolf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Wolf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new raven);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Raven);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "woods.mp3";
+		musicFile = "woods.mp3";
 	}
-	if (Map == "dwoods3")
+	if (mapName == "dwoods3")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new elf);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Elf);		npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new warrior);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ElvenWarrior);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
 			if(i % 5 == 1)
-			{	npc.push_back(new mage);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new ElvenMage);		npc[i]->LoadPosition(xMax,yMax);}
 			else
-			{	npc.push_back(new raven);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Raven);		npc[i]->LoadPosition(xMax,yMax);}
 		}
-		MM = "woods.mp3";
+		musicFile = "woods.mp3";
 	}
-	if (Map == "dwoods4")
+	if (mapName == "dwoods4")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new Orc);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Orc);		npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new osoldier);npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new OrcSoldier);npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
 			if(i % 5 == 1)
-			{	npc.push_back(new sorceror);	npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new OrcSorceror);	npc[i]->LoadPosition(xMax,yMax);}
 			else
-			{	npc.push_back(new raven);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Raven);		npc[i]->LoadPosition(xMax,yMax);}
 		}
-		MM = "woods.mp3";
+		musicFile = "woods.mp3";
 	}
-	if (Map == "dwoods5" || Map == "dwoods6")
+	if (mapName == "dwoods5" || mapName == "dwoods6")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new ogre);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ogre);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new troll);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Troll);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new gspider);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new GiantSpider);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
 			if(i % 5 == 1)
-			{	npc.push_back(new ghost);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Ghost);		npc[i]->LoadPosition(xMax,yMax);}
 			else
-			{	npc.push_back(new raven);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Raven);		npc[i]->LoadPosition(xMax,yMax);}
 		}
-		MM = "woods.mp3";
+		musicFile = "woods.mp3";
 	}
-	if(Map == "cemetary")
+	if(mapName == "cemetary")
 	{
-		npc.push_back(new skel);	npc[0]->loadPos(Xmax,Ymax);
-		npc.push_back(new ghoul);		npc[1]->loadPos(Xmax,Ymax);
-		MM = "cemetary.mp3";
+		npc.push_back(new Skeleton);	npc[0]->LoadPosition(xMax,yMax);
+		npc.push_back(new Ghoul);		npc[1]->LoadPosition(xMax,yMax);
+		musicFile = "cemetary.mp3";
 	}
 
-	if (Map == "catacombs1")
+	if (mapName == "catacombs1")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new ghoul);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ghoul);		npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new skel);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Skeleton);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new phantom);		npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Phantom);		npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "cemetary.mp3";
+		musicFile = "cemetary.mp3";
 	}
-	if (Map == "catacombs2")
+	if (mapName == "catacombs2")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new phantom);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Phantom);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new ghost);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ghost);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new ghoul);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ghoul);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "cemetary.mp3";
+		musicFile = "cemetary.mp3";
 	}
-	if (Map == "catacombs3")
+	if (mapName == "catacombs3")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new ghost);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Ghost);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new phantom);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Phantom);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new skel);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Skeleton);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "cemetary.mp3";
+		musicFile = "cemetary.mp3";
 	}
-	if (Map == "catacombs4")
+	if (mapName == "catacombs4")
 	{
 		for(i=0; i<T; i++)
 		{
 			if(i == 0)
-			{	npc.push_back(new vampire);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Vampire);		npc[i]->LoadPosition(xMax,yMax);}
 			else
-			{	npc.push_back(new ghost);		npc[i]->loadPos(Xmax,Ymax);}
+			{	npc.push_back(new Ghost);		npc[i]->LoadPosition(xMax,yMax);}
 			i++;
-			npc.push_back(new phantom);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Phantom);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "cemetary.mp3";
+		musicFile = "cemetary.mp3";
 	}
-	if (Map == "catacombs5")
+	if (mapName == "catacombs5")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new vampire);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Vampire);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new vampire);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Vampire);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "cemetary.mp3";
+		musicFile = "cemetary.mp3";
 	}
 
 
-	if(Map == "island1")
+	if(mapName == "island1")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new giant);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Giant);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new treeman);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Treeman);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new nymph);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Nymph);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new eagle);	npc[i]->loadPos(Xmax,Ymax);			
+			npc.push_back(new Eagle);	npc[i]->LoadPosition(xMax,yMax);			
 		}		
-		MM = "island.mp3";
+		musicFile = "island.mp3";
 	}
 
-	if(Map == "treealter" && !plot.priest1)
+	if(mapName == "treealter" && !plot.Priest1)
 	{
-		npc.push_back(new woodpriest); npc[npc.size()-1]->loadPos(2,1);
-		MM = "island.mp3";
+		npc.push_back(new WoodPriest); npc[npc.size()-1]->LoadPosition(2,1);
+		musicFile = "island.mp3";
 	}
 
-	if(Map == "icefield1" || Map == "icefield2")
+	if(mapName == "icefield1" || mapName == "icefield2")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new pbear);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new PolarBear);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new frostgiant);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FrostGiant);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new icewizard);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new IceWizard);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new snowman);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Snowman);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new iceelf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new IceElf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new iceorc);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new IceOrc);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "icefield.mp3";
+		musicFile = "icefield.mp3";
 	}
-	if(Map == "icehall")
+	if(mapName == "icehall")
 	{
-			npc.push_back(new shrineguard);	npc[0]->loadPos(Xmax,Ymax);
-			npc.push_back(new rockgolem);	npc[1]->loadPos(Xmax,Ymax);
-			MM = "icehall.mp3";
+			npc.push_back(new ShrineGuard);	npc[0]->LoadPosition(xMax,yMax);
+			npc.push_back(new RockGolem);	npc[1]->LoadPosition(xMax,yMax);
+			musicFile = "icehall.mp3";
 	}
 
-	if(Map == "iceshrine")
+	if(mapName == "iceshrine")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new rockgolem);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new RockGolem);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new shrineguard);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ShrineGuard);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new icewizard);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new IceWizard);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		if(!plot.priest2)
-			npc.push_back(new icepriest); npc[npc.size()-1]->loadPos(10,10);
-		MM = "icehall.mp3";
+		if(!plot.Priest2)
+			npc.push_back(new IcePriest); npc[npc.size()-1]->LoadPosition(10,10);
+		musicFile = "icehall.mp3";
 	}
-	if(Map == "icehall2" && !plot.bd)
+	if(mapName == "icehall2" && !plot.BlueDragon)
 	{
-		npc.push_back(new bluedragon); npc[npc.size()-1]->loadPos(1,10);
-		MM = "icehall.mp3";
+		npc.push_back(new BlueDragon); npc[npc.size()-1]->LoadPosition(1,10);
+		musicFile = "icehall.mp3";
 	}
 
-	if(Map == "mountainpath")
+	if(mapName == "mountainpath")
 	{		
-		npc.push_back(new fireorc);	npc[0]->loadPos(Xmax,Ymax);
-		npc.push_back(new fireelf);	npc[1]->loadPos(Xmax,Ymax);
-		npc.push_back(new cyclops);	npc[2]->loadPos(Xmax,Ymax);
-		MM = "mountain.mp3";
+		npc.push_back(new FireOrc);	npc[0]->LoadPosition(xMax,yMax);
+		npc.push_back(new FireElf);	npc[1]->LoadPosition(xMax,yMax);
+		npc.push_back(new Cyclops);	npc[2]->LoadPosition(xMax,yMax);
+		musicFile = "mountain.mp3";
 	}
-	if(Map == "cave1")
+	if(mapName == "cave1")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new firedemon);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireDemon);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new fireorc);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireOrc);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new fireelf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireElf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new magmaman);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Magmaman);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "mountain.mp3";
+		musicFile = "mountain.mp3";
 	}
-	if(Map == "mtaltar" && !plot.priest3)
+	if(mapName == "mtaltar" && !plot.Priest3)
 	{
-		npc.push_back(new firepriest); npc[npc.size()-1]->loadPos(1,3);
-		MM = "mountain.mp3";
+		npc.push_back(new FirePriest); npc[npc.size()-1]->LoadPosition(1,3);
+		musicFile = "mountain.mp3";
 	}
 
-	if(Map == "cave2" && !plot.rd)
+	if(mapName == "cave2" && !plot.RedDragon)
 	{
-		npc.push_back(new reddragon); npc[npc.size()-1]->loadPos(10,2);
-		MM = "mountain.mp3";
+		npc.push_back(new RedDragon); npc[npc.size()-1]->LoadPosition(10,2);
+		musicFile = "mountain.mp3";
 	}
 
-	if(Map == "tunnel")
+	if(mapName == "tunnel")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new fireorc);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireOrc);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new magmaman);npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Magmaman);npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new fireelf);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireElf);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new cyclops);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Cyclops);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new firedemon); npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new FireDemon); npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "mountain.mp3";
+		musicFile = "mountain.mp3";
 	}
-	if(Map == "island2")
+	if(mapName == "island2")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new centipede);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Centipede);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wyvern);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Wyvern);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new hydra);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Hydra);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new irongolem);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new IronGolem);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new wanderer);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new OrcWanderer);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new ranger);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new ranger);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new adventure); npc[i]->loadPos(Xmax,Ymax);	npc[i]->setmap(Map);
+			npc.push_back(new Adventurer); npc[i]->LoadPosition(xMax,yMax);	npc[i]->SetMap(mapName);
 		}
-		MM = "island.mp3";
+		musicFile = "island.mp3";
 	}
 
-    if(Map == "island3")
+    if(mapName == "island3")
 	{
 		T = T / 2;
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new stormgiant);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new StormGiant);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new steelgolem);npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new SteelGolem);npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new minator);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Minotaur);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			npc.push_back(new acolyte);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Acolyte);	npc[i]->LoadPosition(xMax,yMax);
 			i++;
-			if(!plot.priest4){
-				npc.push_back(new windpriest); npc[i]->loadPos(Xmax,Ymax);}
+			if(!plot.Priest4){
+				npc.push_back(new WindPriest); npc[i]->LoadPosition(xMax,yMax);}
 			else{
-				npc.push_back(new minator); npc[i]->loadPos(Xmax,Ymax);}
+				npc.push_back(new Minotaur); npc[i]->LoadPosition(xMax,yMax);}
 		}
-		MM = "island.mp3";
+		musicFile = "island.mp3";
 	}
 
-	if(Map == "temple")
+	if(mapName == "temple")
 	{
 		for(i=0; i<T; i++)
 		{
-			npc.push_back(new gargoyle);	npc[i]->loadPos(Xmax,Ymax);
+			npc.push_back(new Gargoyle);	npc[i]->LoadPosition(xMax,yMax);
 		}
-		MM = "temple.mp3";
+		musicFile = "temple.mp3";
 	}
 
-	if(Map == "temple2")
+	if(mapName == "temple2")
 	{
-		if(godchoice.elf == 3 && godchoice.human == 3)
+		if(raceReaction.Elf == 3 && raceReaction.Human == 3)
 		{
-			npc.push_back(new godoflife);
-			npc[0]->loadPos(3,5);
+			npc.push_back(new GodOfLife);
+			npc[0]->LoadPosition(3,5);
 		}
-		if(godchoice.orc == 3 && godchoice.human == 3)
+		if(raceReaction.Orc == 3 && raceReaction.Human == 3)
 		{
-			npc.push_back(new godofchaos);
-			npc[0]->loadPos(3,5);
+			npc.push_back(new GodOfChaos);
+			npc[0]->LoadPosition(3,5);
 		}
-		if(godchoice.elf == 3 && godchoice.human == 0 || godchoice.orc == 3 && godchoice.human == 0)
+		if(raceReaction.Elf == 3 && raceReaction.Human == 0 || raceReaction.Orc == 3 && raceReaction.Human == 0)
 		{
-			npc.push_back(new godoflife);
-			npc[0]->loadPos(3,5);
+			npc.push_back(new GodOfLife);
+			npc[0]->LoadPosition(3,5);
 		}
-		if(godchoice.elf == 0 && godchoice.orc == 0 && godchoice.human == 0)
+		if(raceReaction.Elf == 0 && raceReaction.Orc == 0 && raceReaction.Human == 0)
 		{
-			npc.push_back(new godoflife);
-			npc[0]->loadPos(3,5);
+			npc.push_back(new GodOfLife);
+			npc[0]->LoadPosition(3,5);
 		}
-		MM = "temple.mp3";
+		musicFile = "temple.mp3";
 	}
 }
-
-
-
-
-

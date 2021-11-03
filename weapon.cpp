@@ -3,106 +3,98 @@
 #include <string>			//For Strings
 #include <fstream>
 
-#include "weapon.h"
+#include "Weapon.h"
 using namespace std;
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-weapon::weapon()
+Weapon::Weapon()
 {
-	weap = true;
-	twohits = false;
-	lifesteal = false;
-	keep = true;
-	type = -2;
-	damage = 5;
-	damMod = 1;
-	cost = 0;
-	attribute1 = "none";
-	attribute2 = "none";
+	IsWeapon = true;
+	HitsTwice = false;
+	StealsLife = false;
+	Keep = true;
+	Type = -2;
+	Damage = 5;
+	DamageModifier = 1;
+	Cost = 0;
+	Attribute1 = "none";
+	Attribute2 = "none";
 }
-bool weapon::getmod()
+void Weapon::SetAttribute1(string A)
 {
-	return mod;
+	Attribute1 = A;
 }
-void weapon::setmod(bool M)
+string Weapon::GetAttribute1()
 {
-	mod = M;
+	return Attribute1;
 }
-void weapon::setAttribute1(string A)
+void Weapon::SetAttribute2(string A)
 {
-	attribute1 = A;
+	Attribute2 = A;
 }
-string weapon::getAttribute1()
+string Weapon::GetAttribute2()
 {
-	return attribute1;
+	return Attribute2;
 }
-void weapon::setAttribute2(string A)
+void Weapon::SetHitsTwice(bool value)
 {
-	attribute2 = A;
+	HitsTwice = value;
 }
-string weapon::getAttribute2()
-{
-	return attribute2;
-}
-void weapon::set2hits(bool bValue)
-{
-	twohits = bValue;
-}
-void weapon::setdamage(int num)
+void Weapon::SetDamage(int num)
 {
 	if(num < 0){num = 0;}
-	damage = num;
+	Damage = num;
 }
-void weapon::setdamMod(int num)
+void Weapon::SetDamageModifier(int num)
 {
 	if(num < 0){num = 0;}
-	damMod = num;
+	DamageModifier = num;
 }
 
-void weapon::setlsteal(bool bValue)
+void Weapon::SetStealsLife(bool bValue)
 {
-	lifesteal = bValue;
+	StealsLife = bValue;
 }
-bool weapon::get2hits()
+bool Weapon::GetHitsTwice()
 {
-	return twohits;
+	return HitsTwice;
 }
-int weapon::getdamage()
+int Weapon::GetDamage()
 {
-	return damage;
+	return Damage;
 }
-int weapon::getdamMod()
+int Weapon::GetDamageModifier()
 {
-	return damMod;
-}
-
-bool weapon::getlsteal()
-{
-	return lifesteal;
+	return DamageModifier;
 }
 
-void weapon::display()
+bool Weapon::HasLifeSteal()
+{
+	return StealsLife;
+}
+
+void Weapon::Display()
 {
 	text("Deals ",30,11,white);
-	cout << damMod << " to " << damage + damMod - 1 << " points of damage          ";
-	showcost();
+	cout << DamageModifier << " to " << Damage + DamageModifier - 1 << " points of damage          ";
+	DisplayCost();
 }
 
-void weapon::unload(string file)
+void Weapon::Save(string file)
 {
 	ofstream fout;
 	fout.open("ulweapons.sav");
 
-	fout << name << endl;
-	fout << "name: " << name << endl;
-	fout << "att1: " << attribute1 << endl;
-	fout << "att2: " << attribute2 << endl;
-	fout << "dam : " << damage << endl;
-	fout << "damM: " << damMod << endl;
-	fout << "2hit: " << twohits << endl;
-	fout << "life: " << lifesteal << endl;
-	fout << "cost: " << cost << endl;
+	fout << Name << endl;
+	fout << "name: " << Name << endl;
+	fout << "att1: " << Attribute1 << endl;
+	fout << "att2: " << Attribute2 << endl;
+	fout << "dam : " << Damage << endl;
+	fout << "damM: " << DamageModifier << endl;
+	fout << "2hit: " << HitsTwice << endl;
+	fout << "life: " << StealsLife << endl;
+	fout << "cost: " << Cost << endl;
 	fout << endl;
 
 	fout.close();	

@@ -5,137 +5,129 @@
 #include <iostream>
 #include <string>
 
-#include "creature.h"
+#include "Creature.h"
 
-class magik{
+class Magic{
 public:
-	magik();
-	void slowDisp(string szText);
-	void tout(int,WORD);
-	void cast();
-	void Disp();
-	void setname(string);
-	void setincant(string);
-	void setdesc(string);
-	void setcost(int);
-	void setbInfight(bool);
-	int getcost();
-	bool getbInfight();
-	string getname();
-	virtual void use(player *, creature *);
+	Magic();
+	void SlowDisplay(string szText);
+	void DisplayName(int,WORD);
+	void DisplayIncantation();
+	void DisplayCastingCost();
+	int GetCost();
+	bool GetIsInFight();
+	string GetName();
+	virtual void Cast(Player *, Creature *);
 
 
 protected:
-	string name;
-	string incantation;
-	string description;
-	string attribute;
-	int cost;
-	bool bInfight;
+	string Name;
+	string Incantation;
+	string Description;
+	string Attribute;
+	int Cost;
+	bool IsInFight;
 	
 };
-class minheal : public magik{
+class MinorHeal : public Magic{
 public:
-	minheal();
-	virtual void use(player *,creature*);
+	MinorHeal();
+	virtual void Cast(Player *,Creature*);
 };
-class majheal : public magik{
+class MajorHeal : public Magic{
 public:
-	majheal();
-	virtual void use(player *,creature *);
+	MajorHeal();
+	virtual void Cast(Player *,Creature *);
 };
-class briar : public magik{
+class BriarBush : public Magic{
 public:
-	briar();
-	virtual void use(player *,creature*);
+	BriarBush();
+	virtual void Cast(Player *,Creature*);
 };
-class snow : public magik{
+class Blizzard : public Magic{
 public:
-	snow();
-	virtual void use(player *,creature*);
+	Blizzard();
+	virtual void Cast(Player *, Creature*);
 };
-class pstorm : public magik{
+class PerfectStorm : public Magic{
 public:
-	pstorm();
-	virtual void use(player *,creature*);
+	PerfectStorm();
+	virtual void Cast(Player *, Creature*);
 };
-class dlife : public magik{
+class DrainLife : public Magic{
 public:
-	dlife();
-	virtual void use(player *,creature*);
+	DrainLife();
+	virtual void Cast(Player *, Creature*);
 };
-class stealka : public magik{
+class StealKa : public Magic{
 public:
-	stealka();
-	virtual void use(player *,creature*);
+	StealKa();
+	virtual void Cast(Player *, Creature*);
 };
-class farrow : public magik{
+class FireArrow : public Magic{
 public:
-	farrow();
-	virtual void use(player *,creature*);
+	FireArrow();
+	virtual void Cast(Player *, Creature*);
 };
-class fire : public magik{
+class Fire : public Magic{
 public:
-	fire();
-	virtual void use(player *,creature*);
+	Fire();
+	virtual void Cast(Player *, Creature*);
 };
-class lava : public magik{
+class Lava : public Magic{
 public:
-	lava();
-	virtual void use(player *,creature*);
+	Lava();
+	virtual void Cast(Player *, Creature*);
 };
-class strength : public magik{
+class Might : public Magic{
 public:
-	strength();
-	virtual void use(player *,creature *);
+	Might();
+	virtual void Cast(Player *,Creature *);
 };
-class dispel : public magik{
+class Dispel : public Magic{
 public:
-	dispel();
-	virtual void use(player *,creature *);
+	Dispel();
+	virtual void Cast(Player *,Creature *);
 };
-class shock : public magik{
+class Shock : public Magic{
 public:
-	shock();
-	virtual void use(player *,creature*);
+	Shock();
+	virtual void Cast(Player *, Creature*);
 };
-class acidrain : public magik{
+class AcidRain : public Magic{
 public:
-	acidrain();
-	virtual void use(player *,creature*);
+	AcidRain();
+	virtual void Cast(Player *, Creature*);
 };
-class lightning : public magik{
+class LightningBolt : public Magic{
 public: 
-	lightning();
-	virtual void use(player *,creature*);
+	LightningBolt();
+	virtual void Cast(Player *, Creature*);
 };
-class poison : public magik{
+class Poison : public Magic{
 public:
-	poison();
-	virtual void use(player *,creature*);
+	Poison();
+	virtual void Cast(Player *, Creature*);
 };
-class skeleton : public magik{
+class RaiseSkeleton : public Magic{
 public:
-	skeleton();
-	virtual void use(player *,creature*);
+	RaiseSkeleton();
+	virtual void Cast(Player *, Creature*);
 };
-class dstrike : public magik{
+class DarkStrike : public Magic{
 public:
-	dstrike();
-	virtual void use(player *,creature*);
+	DarkStrike();
+	virtual void Cast(Player *, Creature*);
 };
-class critical : public magik{
+class Critical : public Magic{
 public:
-	critical();
-	virtual void use(player *,creature*);
+	Critical();
+	virtual void Cast(Player *, Creature*);
 };
-class control : public magik{
+class Control : public Magic{
 public:
-	control();
-	virtual void use(player *,creature *);
+	Control();
+	virtual void Cast(Player *,Creature *);
 };
-
-
 
 #endif 
-

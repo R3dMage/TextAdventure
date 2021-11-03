@@ -2,206 +2,127 @@
 #include <string>
 #include <windows.h>
 #include <iostream>
-#include "location.h"
+#include "Location.h"
 
-;using namespace std;
+using namespace std;
 
 #define green FOREGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 #define ltgreen FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 #define black BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 
-location::location()
+Location::Location()
 {
-	bMC =	false;
-	bShop = false;
-	bPlot = false;
-	X =		0;
-	Y =		0;
+	IsMapChange =	false;
+	IsShop = false;
+	HasPlot = false;
+	PositionX =		0;
+	PositionY =		0;
 	NeoX =	0;
 	NeoY =	0;
-	szMC =  "+";
-	szShop ="+";
-	szLoc = "+";
-	szSum = "+";
-	szChng= "+";
-	D =		"-";
+	MapChangeName =  "+";
+	ShopName ="+";
+	Description = "+";
+	Summary = "+";
+	DisplayValue =		"-";
 }
-void location::setbMC(bool B)
+void Location::SetIsMapChange(bool B)
 {
-	bMC = B;
-	if(bMC)
-		D = 'M';
+	IsMapChange = B;
+	if(IsMapChange)
+		DisplayValue = 'M';
 }
-void location::setbPlot(bool B)
+void Location::SetHasPlot(bool B)
 {
-	bPlot = B;
+	HasPlot = B;
 }
-void location::setbShop(bool B)
+void Location::SetIsShop(bool B)
 {
-	bShop = B;
-	if(bShop)
-		D = 'S';
+	IsShop = B;
+	if(IsShop)
+		DisplayValue = 'S';
 }
-void location::setX(int N)
+void Location::SetPositionX(int N)
 {
-	X = N;
+	PositionX = N;
 }
-void location::setY(int N)
+void Location::SetPositionY(int N)
 {
-	Y = N;
+	PositionY = N;
 }
-void location::setNeoX(int N)
+void Location::SetNeoX(int N)
 {
 	NeoX = N;
 }
-void location::setNeoY(int N)
+void Location::SetNeoY(int N)
 {
 	NeoY = N;
 }
-void location::setszMC(string S)
+void Location::SetMapChangeName(string S)
 {
-	szMC = S;
+	MapChangeName = S;
 }
-void location::setszShop(string S)
+void Location::SetShopName(string S)
 {
-	szShop = S;	
+	ShopName = S;	
 }
-void location::setszP(string S)
+void Location::SetPlotText(string S)
 {
-	szP = S;
+	PlotText = S;
 }
-void location::setszLoc(string S)
+void Location::SetDescription(string S)
 {
-	szLoc = S;
+	Description = S;
 }
-void location::setszSum(string S)
+void Location::SetSummary(string S)
 {
-	szSum = S;
+	Summary = S;
 }
-void location::setszChng(string S)
+bool Location::GetIsMapChange()
 {
-	szChng = S;
+	return IsMapChange;
 }
-bool location::getbMC()
+bool Location::GetIsShop()
 {
-	return bMC;
+	return IsShop;
 }
-bool location::getbShop()
+bool Location::GetHasPlot()
 {
-	return bShop;
+	return HasPlot;
 }
-bool location::getbPlot()
+int Location::GetPositionX()
 {
-	return bPlot;
+	return PositionX;
 }
-int location::getX()
+int Location::GetPositionY()
 {
-	return X;
+	return PositionY;
 }
-int location::getY()
-{
-	return Y;
-}
-int location::getNeoX()
+int Location::GetNeoX()
 {
 	return NeoX;
 }
-int location::getNeoY()
+int Location::GetNeoY()
 {
 	return NeoY;
 }
-string location::getszMC()
+string Location::GetMapChangeName()
 {
-	return szMC;
+	return MapChangeName;
 }
-string location::getszShop()
+string Location::GetShopName()
 {
-	return szShop;
+	return ShopName;
 }
-string location::getszLoc()
+string Location::GetDescription()
 {
-	return szLoc;
+	return Description;
 }
-string location::getszSum()
+string Location::GetSummary()
 {
-	return szSum;
+	return Summary;
 }
-string location::getszChng()
+string Location::GetPlotText()
 {
-	return szChng;
+	return PlotText;
 }
-string location::getszP()
-{
-	return szP;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

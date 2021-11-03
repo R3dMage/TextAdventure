@@ -1,16 +1,17 @@
+#ifndef ORC_H
+#define ORC_H
+
 #include <string>			//For Strings
-#include "creature.h"			//For base class
-#include "player.h"
+#include "Creature.h"			//For base class
+#include "Player.h"
 
+using namespace std;
 
-;using namespace std;
-
-
-
-
-class Orc : public creature{
+class Orc : public Creature {
 public:
 	Orc();
-	virtual void attack(player *p2,vector<item> &pstuff, vector<item> &stuff,string Map);
+	virtual void attack(Player* p2, vector<Item>& pstuff, vector<Item>& stuff, string Map);
 
-}
+};
+
+#endif

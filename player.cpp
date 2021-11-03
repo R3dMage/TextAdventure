@@ -2,9 +2,7 @@
 #include <iostream>			//Always needed
 #include <string>			//For Strings
 #include <fstream>			//For loading/saving
-#include "player.h"
-
-
+#include "Player.h"
 
 using namespace std;
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -14,421 +12,421 @@ using namespace std;
 #define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-
-player::player()
+Player::Player()
 {
-	MHP =	25;
+	MaxHP =	25;
 	HP =	25;
-	kills =	0;
-	exp =	0;
-	X =		3;
-	Y =		2;
-	lev =	1;
-	NextLev = 50;
-	evade = 5;
-	gold =  (rand()%25 + 25) * 8;
-	str =	rand()%5 + 5;
-	mind =	rand()%5 + 5;
-	ka =	0;
-	mka =	ka;
-	bspells =	false;
-	bjoined =	false;
-	poisoned =	false;
-	sleep =		false;
+	TotalKills =	0;
+	Experience =	0;
+	PositionX =		3;
+	PositionY =		2;
+	Level =	1;
+	ExperienceNeededForNextLevel = 50;
+	Evade = 5;
+	Gold =  (rand()%25 + 25) * 8;
+	Strength =	rand()%5 + 5;
+	Mind =	rand()%5 + 5;
+	Ka =	0;
+	MaxKa =	Ka;
+	HasSpells =	false;
+	MemberHasJoined =	false;
+	IsPoisoned =	false;
+	IsAsleep =		false;
 	Invisible = false;
-	pause = 1500;
-	setweapon(loadWeapon("Dagger"));
-	setarmor(loadArmor("Clothes"));
-	react.elf =		2;
-	react.human =	3;
-	react.orc =		1;
-	kill.Ekills = 0;
-	kill.Hkills = 0;
-	kill.Okills = 0;
-	plot.priest1 = false;
-	plot.priest2 = false;
-	plot.priest3 = false;
-	plot.priest4 = false;
-	plot.monk = false;
-	plot.gd = false;
-	plot.bd = false;
-	plot.rd = false;
-	plot.start = false;
-	Loaded = false;
-	music = true;
+	PauseDuration = 1500;
+	SetWeapon(loadWeapon("Dagger"));
+	SetArmor(loadArmor("Clothes"));
+	RaceReactions.Elf =		2;
+	RaceReactions.Human =	3;
+	RaceReactions.Orc =		1;
+	RaceKillCounts.ElfKillCount = 0;
+	RaceKillCounts.HumanKillCount = 0;
+	RaceKillCounts.OrcKillCount = 0;
+	PlotEventStates.Priest1 = false;
+	PlotEventStates.Priest2 = false;
+	PlotEventStates.Priest3 = false;
+	PlotEventStates.Priest4 = false;
+	PlotEventStates.Monk = false;
+	PlotEventStates.GreenDragon = false;
+	PlotEventStates.BlueDragon = false;
+	PlotEventStates.RedDragon = false;
+	PlotEventStates.Start = false;
+	IsLoaded = false;
+	MusicIsOn = true;
 }
 
-void player::setarmor(armor *parm)
+void Player::SetArmor(Armor *newArmor)
 {
-	arm = parm;
+	EquippedArmor = newArmor;
 }
-void player::setweapon(weapon *pweap)
+void Player::SetWeapon(Weapon *newWeapon)
 {
-	weap = pweap;
+	EquippedWeapon = newWeapon;
 }
-void player::setname(string pname)
+void Player::SetName(string name)
 {
-	name = pname;
+	Name = name;
 }
-void player::setexp(int pex)
+void Player::SetExperience(int experience)
 {
-	exp = pex;
+	Experience = experience;
 }
-void player::setgold(int pgold)
+void Player::SetGold(int gold)
 {
-	gold = pgold;
+	Gold = gold;
 }
-void player::setHP(int php)
+void Player::SetHitPoints(int hitPoints)
 {
-	if(php > MHP)
-		php = MHP;
-	HP = php;
+	if(hitPoints > MaxHP)
+		hitPoints = MaxHP;
+	HP = hitPoints;
 }
-void player::setMHP(int pmhp)
+void Player::SetMaxHitPoints(int maxHitPoints)
 {
-	MHP = pmhp;
+	MaxHP = maxHitPoints;
 }
-void player::setka(int pka)
+void Player::SetKa(int ka)
 {
-	if(pka > mka)
-		pka = mka;
-	ka = pka;
+	if(ka > MaxKa)
+		ka = MaxKa;
+	Ka = ka;
 }
-void player::setmka(int pmka)
+void Player::SetMaxKa(int maxKa)
 {
-	mka = pmka;
+	MaxKa = maxKa;
 }
-void player::setlev(int plev)
+void Player::SetLevel(int level)
 {
-	lev = plev;
+	Level = level;
 }
-void player::setmind(int pmind)
+void Player::SetMind(int mind)
 {
-	mind = pmind;
+	Mind = mind;
 }
-void player::setstr(int pstr)
+void Player::SetStrength(int strength)
 {
-	str = pstr;
+	Strength = strength;
 }
-void player::setX(int pX)
+void Player::SetPositionX(int newX)
 {
-	if(pX == 0)
-		pX = 1;
-	X = pX;
+	if(newX == 0)
+		newX = 1;
+	PositionX = newX;
 }
-void player::setY(int pY)
+void Player::SetPositionY(int newY)
 {
-	if(pY == 0)
-		pY = 1;
-	Y = pY;
+	if(newY == 0)
+		newY = 1;
+	PositionY = newY;
 }
-void player::setNext(int next)
+void Player::SetExperienceNeeded(int experience)
 {
-	NextLev = next;
+	ExperienceNeededForNextLevel = experience;
 }
-void player::setEvd(int evd)
+void Player::SetEvade(int evd)
 {
-	evade = evd;
+	Evade = evd;
 }
-void player::setKills(int K)
+void Player::SetTotalKills(int kills)
 {
-	kills = K;
+	TotalKills = kills		;
 }
-void player::setPause(int P)
+void Player::SetPauseDuration(int pauseDuration)
 {
-	pause = P;
+	PauseDuration = pauseDuration;
 }
 
-armor* player::getarmor()
+Armor* Player::GetArmor()
 {
-	return arm;
+	return EquippedArmor;
 }
-weapon* player::getweapon()
+Weapon* Player::GetWeapon()
 {
-	return weap;
+	return EquippedWeapon;
 }
-string player::getname()
+string Player::GetName()
 {
-	return name;
+	return Name;
 }
-int player::getexp()
+int Player::GetExperience()
 {
-	return exp;
+	return Experience;
 }
-int player::getgold()
+int Player::GetGold()
 {
-	return gold;
+	return Gold;
 }
-int player::getHP()
+int Player::GetCurrentHitPoints()
 {
 	return HP;
 }
-int player::getMHP()
+int Player::GetMaxHitPoints()
 {
-	return MHP;
+	return MaxHP;
 }
-int player::getka()
+int Player::GetCurrentKa()
 {
-	return ka;
+	return Ka;
 }
-int player::getmka()
+int Player::GetMaxKa()
 {
-	return mka;
+	return MaxKa;
 }
-int player::getlev()
+int Player::GetLevel()
 {
-	return lev;
+	return Level;
 }
-int player::getmind()
+int Player::GetMind()
 {
-	return mind;
+	return Mind;
 }
-int player::getstr()
+int Player::GetStrength()
 {
-	return str;
+	return Strength;
 }
-int player::getX()
+int Player::GetPositionX()
 {
-	return X;
+	return PositionX;
 }
-int player::getY()
+int Player::GetPositionY()
 {
-	return Y;
+	return PositionY;
 }
-int player::getNext()
+int Player::GetExperienceForNextLevel()
 {
-	return NextLev;
+	return ExperienceNeededForNextLevel;
 }
-int player::getEvd()
+int Player::GetEvade()
 {
-	return evade;
+	return Evade;
 }
-int player::getKills()
+int Player::GetTotalKills()
 {
-	return kills;
+	return TotalKills;
 }
-int player::getPause()
+int Player::GetPauseDuration()
 {
-	return pause;
+	return PauseDuration;
 }
-void player::setelf(int N)
+void Player::SetReactionElf(int reaction)
 {	
-	react.elf = N;	
+	RaceReactions.Elf = reaction;	
 }
-int player::getelf()
+int Player::GetReactionElf()
 {
-	return react.elf;
+	return RaceReactions.Elf;
 }
-void player::sethuman(int N)
+void Player::SetReactionHuman(int reaction)
 {	
-	react.human = N;	
+	RaceReactions.Human = reaction;
 }
-int player::gethuman()
+int Player::GetReactionHuman()
 {
-	return react.human;
+	return RaceReactions.Human;
 }
-void player::setorc(int N)
+void Player::SetReactionOrc(int reaction)
 {	
-	react.orc = N;	
+	RaceReactions.Orc = reaction;
 }
-int player::getorc()
+int Player::GetReactionOrc()
 {
-	return react.orc;
+	return RaceReactions.Orc;
 }
-int player::getstate()
+int Player::GetMagicStatus()
 {
-	return state;
+	return MagicStatus;
 }
-void player::setstate(int N)
+void Player::SetMagicStatus(int magicStatus)
 {
-	state = N;
+	MagicStatus = magicStatus;
 }
-bool player::getbspells()
+bool Player::HasLearnedSpells()
 {
-	return bspells;
+	return HasSpells;
 }
-void player::setbspells(bool M)
+void Player::SetHasSpells(bool hasSpells)
 {
-	if(M)
+	if(hasSpells)
 	{
-		bspells = M;		// When a player gets spells he gets to have magic
-		mka = mind / 2;      // power, ka. Mind / 2 is that starting point for it.
-		ka = mka;
+		HasSpells = hasSpells;		// When a player gets spells he gets to have magic
+		MaxKa = Mind / 2;      // power, ka. Mind / 2 is that starting point for it.
+		Ka = MaxKa;
 	}
 	else
-		bspells = M;
+		HasSpells = hasSpells;
 }
-void player::setbjoined(bool M)
+void Player::SetMemberHasJoined(bool memberHasJoined)
 {
-	bjoined = M;
+	MemberHasJoined = memberHasJoined;
 }
-bool player::getbjoined()
+bool Player::GetMemberHasJoined()
 {
-	return bjoined;
+	return MemberHasJoined;
 }
-bool player::getpoisoned()
+bool Player::GetIsPoisoned()
 {
-	return poisoned;
+	return IsPoisoned;
 }
-void player::setpoisoned(bool P)
+void Player::SetIsPoisoned(bool poisoned)
 {
-	poisoned = P;
+	IsPoisoned = poisoned;
 }
-void player::setLoaded(bool B)
+void Player::SetIsLoaded(bool loaded)
 {
-	Loaded = B;
+	IsLoaded = loaded;
 }
-bool player:: getLoaded()
+bool Player:: GetIsLoaded()
 {
-	return Loaded;
+	return IsLoaded;
 }
-void player::setSleep(bool B)
+void Player::SetIsAsleep(bool asleep)
 {
-	sleep = B;
+	IsAsleep = asleep;
 }
-bool player::getSleep()
+bool Player::GetIsAsleep()
 {
-	return sleep;
+	return IsAsleep;
 }
-void player::setInvis(bool B)
+void Player::SetIsInvisible(bool invisible)
 {
-	Invisible = B;
+	Invisible = invisible;
 }
-bool player::getInvis()
+bool Player::GetIsInvisible()
 {
 	return Invisible;
 }
-void player::setMusic(bool M)
+void Player::SetMusicIsOn(bool musicOn)
 {
-	music = M;
+	MusicIsOn = musicOn;
 }
-bool player::getMusic()
-{ return music;		}
-void player::setMusicFilename(char * MF)
-{ musicFilename = MF;	}
-char * player::getMusicFilename()
-{ return musicFilename;	}
+bool Player::GetIsMusicOn()
+{ return MusicIsOn;		}
+
+void Player::SetMusicFilename(char * filename)
+{ MusicFilename = filename;	}
+char * Player::GetMusicFilename()
+{ return MusicFilename;	}
 
 /*==================================
 	Plays the game music
 ===================================*/
-void player::playMusic(char *M)
+void Player::PlayMusic(char *filename)
 {
-	char* music = new char[strlen(M) + 7];
+	char* music = new char[strlen(filename) + 7];
 	strcpy(music, "./data/");
-	strcat(music, M);
+	strcat(music, filename);
 
 	if( music )
 	{
-		if( !mapMusic.Init(music) )
+		if( !MapMusic.Init(music) )
 		{
 			text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
 			exit(1);
 		}
-		mapMusic.PlaySong();
+		MapMusic.PlaySong();
 	}
 	else
-		mapMusic.FreeSound();
+		MapMusic.FreeSound();
 }
 
-void player::changeMusic()
+void Player::ToggleMusic()
 /* ==========================
 	Turns music on/off
 ============================*/
 { 
-	if(music)
+	if(MusicIsOn)
 	{
-		music = false;
-		mapMusic.FreeSound();
-		mapMusic.FreeSoundSystem();
+		MusicIsOn = false;
+		MapMusic.FreeSound();
+		MapMusic.FreeSoundSystem();
 	}
 	else
 	{
-		music = true;
-		playMusic(musicFilename);
+		MusicIsOn = true;
+		PlayMusic(MusicFilename);
 	}
 }
 
 
-void player::status()
+void Player::DisplayStatus()
 {
 	text("Name:   ",13,11,white);
-	cout << name;
+	cout << Name;
 	text("HP:     ",13,12,white); 
-	cout << HP << "/" << MHP;
+	cout << HP << "/" << MaxHP;
 	text("Str:    ",13,13,white);
-	cout << str;
+	cout << Strength;
 	text("Mind:   ",13,14,white);
-	cout << mind;
+	cout << Mind;
 	text("%Evade: ",13,15,white);
-	cout << evade;
+	cout << Evade;
 	text("Kills:  ",13,16,white);
-	cout << kills;
+	cout << TotalKills;
 	text("Weapon Damage: ",13,17,white);
-	cout << weap->getdamMod() << " to " << weap->getdamMod() + weap->getdamage() - 1;
+	cout << EquippedWeapon->GetDamageModifier() << " to " << EquippedWeapon->GetDamageModifier() + EquippedWeapon->GetDamage() - 1;
 	text("Total Damage:  ",13,18,white);
-	cout << weap->getdamMod() + 2 << " to " << weap->getdamage() + weap->getdamMod() + str/2 - 1; 
+	cout << EquippedWeapon->GetDamageModifier() + 2 << " to " << EquippedWeapon->GetDamage() + EquippedWeapon->GetDamageModifier() + Strength/2 - 1; 
 	text("Level:  ",31,12,white);
-	cout << lev;
+	cout << Level;
 	text("Exp:    ",31,13,white);
-	cout << exp;
+	cout << Experience;
 	text("NxtLev: ",31,14,white);
-	cout << NextLev;
+	cout << ExperienceNeededForNextLevel;
 	text("Gold:   ",31,15,white);
-	cout << gold;
+	cout << Gold;
 	text("Orc Kills: ",45,12,white);
-	cout << kill.Okills;
+	cout << RaceKillCounts.OrcKillCount;
 	text("Elf Kills: ",45,13,white);
-	cout << kill.Ekills;
+	cout << RaceKillCounts.ElfKillCount;
 	text("Hmn Kills: ",45,14,white);
-	cout << kill.Hkills;
+	cout << RaceKillCounts.HumanKillCount;
 	text("",13,23,white);
 	system("pause");
 }
 
 
 
-void player::info()
+void Player::DisplayInfo()
 {
-	if(poisoned)
-		text(name,1,1,green);
+	if(IsPoisoned)
+		text(Name,1,1,green);
 	else
-		text(name,1,1,white);
+		text(Name,1,1,white);
 	text("HP:    ",1,2,white);
 	text("Ka:    ",1,3,white);
 	text("GP:    ",1,4,white);
 	num(HP,5,2,white);
 	text("/",8,2,white);
-	num(MHP,9,2,white);
-	num(ka,5,3,white);
+	num(MaxHP,9,2,white);
+	num(Ka,5,3,white);
 	text("/",8,3,white);
-	num(mka,9,3,white);
-	num(gold,5,4,white);
+	num(MaxKa,9,3,white);
+	num(Gold,5,4,white);
 	text("X:   ",1,6,white);
 	text("Y:   ",1,7,white);
-	num(getX(),3,6,white);
-	num(getY(),3,7,white);
+	num(GetPositionX(),3,6,white);
+	num(GetPositionY(),3,7,white);
 	text("           ",1,8,white);
 	text("           ",1,9,white);
-	text(weap->getname(),1,8,white);
-	text(arm->getname(),1,9,white);
+	text(EquippedWeapon->GetName(),1,8,white);
+	text(EquippedArmor->GetName(),1,9,white);
 
 }
 
-void player::DrawCurs(COORD pos, WORD color, char curs)
+void Player::DrawCursor(COORD position, WORD color, char cursorCharacter)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(OutputH,color);
-	SetConsoleCursorPosition(OutputH,pos);
+	SetConsoleCursorPosition(OutputH,position);
 
-	cout << curs;
+	cout << cursorCharacter;
 }
 
-bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
+bool Player::MoveCursor(COORD &cursorPosition,bool &hasSelection,bool &escapeWasPressed, int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
-	COORD OldCursPos = CursPos;
+	COORD OldCursPos = cursorPosition;
 	DWORD Events = 0;
 	HANDLE hInput;
 	bool bCursMov = false;
@@ -440,27 +438,27 @@ bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Yma
 	{
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
 		{
-			if(CursPos.Y < Ymax)
+			if(cursorPosition.Y < Ymax)
 			{
-				CursPos.Y++;
+				cursorPosition.Y++;
                 bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymin;
+				cursorPosition.Y = Ymin;
 				bCursMov = true;
 			}
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
 		{
-			if(CursPos.Y > Ymin)
+			if(cursorPosition.Y > Ymin)
 			{
-				CursPos.Y--;
+				cursorPosition.Y--;
 				bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymax;
+				cursorPosition.Y = Ymax;
 				bCursMov = true;
 			}
 		}
@@ -468,18 +466,18 @@ bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Yma
 		{
 			bCursMov = false;
 			//cout << "-";
-			bSelect = true;
+			hasSelection = true;
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
 		{
 			bCursMov = false;
-			bSelect = true;
+			hasSelection = true;
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
 		{
 			bCursMov = false;
-			bSelect = true;
-			bEsc = true;
+			hasSelection = true;
+			escapeWasPressed = true;
 		}
 	}	
 	if(bCursMov)
@@ -493,182 +491,133 @@ bool player::MoveCurs(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Yma
 return false;	
 }
 
-bool player::LevUp()
+bool Player::ReachedNextLevel()
 {
-	if(exp >= NextLev)
+	if(Experience >= ExperienceNeededForNextLevel)
 		return true;
 	else
 		return false;
 }
 
-void player::raiseLev()
+void Player::IncreaseLevel()
 {
-	srand(GetTickCount());
+	srand(GetTickCount64());
 	double Num1;
 	clear();
-	setlev(getlev() + 1);
-	if(getlev() < 5)
+	SetLevel(GetLevel() + 1);
+	if(GetLevel() < 5)
 	{
 		Num1 = rand()%10 + 11;
-		setMHP(getMHP() + static_cast<int>(Num1));
+		SetMaxHitPoints(GetMaxHitPoints() + static_cast<int>(Num1));
 	}
 	else
 	{
 		Num1 = rand()%10 + 20;
 		Num1 = Num1 / 100;
-		setMHP(getMHP() + (getMHP() * static_cast<int>(Num1)));
+		SetMaxHitPoints(GetMaxHitPoints() + (GetMaxHitPoints() * static_cast<int>(Num1)));
 	}
-	evade += 1;
+	Evade += 1;
 	Num1 = rand()% 3 + 2;
-	setstr(getstr() + static_cast<int>(Num1));
+	SetStrength(GetStrength() + static_cast<int>(Num1));
 	Num1 = rand()% 4 + 1;
-	setmind(getmind() + static_cast<int>(Num1));
-	Num1 = rand()% (getmind()/2) + 1;
-	setmka(getmka() + static_cast<int>(Num1));
-	NextLev = lev * lev * 50;
+	SetMind(GetMind() + static_cast<int>(Num1));
+	Num1 = rand()% (GetMind()/2) + 1;
+	SetMaxKa(GetMaxKa() + static_cast<int>(Num1));
+	ExperienceNeededForNextLevel = Level * Level * 50;
 	text("You have gone up in level!!",13,11,FOREGROUND_GREEN);
 	text("",79,23,white);
-	Sleep(pause);
+	Sleep(PauseDuration);
 }
 
-void player::Save(ofstream &fout)
+void Player::Save(ofstream &fout)
 {
-	fout << "Name: "	<< name << endl;
+	fout << "Name: "	<< Name << endl;
 	fout << "HP: "		<< HP << endl;
-	fout << "MHP: "		<< MHP << endl;
-	fout << "Ka: "		<< ka << endl;
-	fout << "MKa: "		<< mka << endl;
-	fout << "Gold: "	<< gold << endl;
-	fout << "Exp: "		<< exp << endl;
-	fout << "Next: "	<< NextLev << endl;
-	fout << "Lvl: "		<< lev << endl;
-	fout << "Evade: "	<< evade << endl;
-	fout << "Str: "		<< str << endl;
-	fout << "Mind: "	<< mind << endl;
-	fout << "X: "		<< X << endl;
-	fout << "Y: "		<< Y << endl;
-	fout << "Kills: "	<< kills << endl;
-	fout << "bSpells: "	<< bspells << endl;
-	fout << "bjoined: "	<< bjoined << endl;
+	fout << "MHP: "		<< MaxHP << endl;
+	fout << "Ka: "		<< Ka << endl;
+	fout << "MKa: "		<< MaxKa << endl;
+	fout << "Gold: "	<< Gold << endl;
+	fout << "Exp: "		<< Experience << endl;
+	fout << "Next: "	<< ExperienceNeededForNextLevel << endl;
+	fout << "Lvl: "		<< Level << endl;
+	fout << "Evade: "	<< Evade << endl;
+	fout << "Str: "		<< Strength << endl;
+	fout << "Mind: "	<< Mind << endl;
+	fout << "X: "		<< PositionX << endl;
+	fout << "Y: "		<< PositionY << endl;
+	fout << "Kills: "	<< TotalKills << endl;
+	fout << "bSpells: "	<< HasSpells << endl;
+	fout << "bjoined: "	<< MemberHasJoined << endl;
 	fout << "Invis: "   << Invisible << endl;
-	fout << "Weapon: "	<< weap->getname() << endl;
-	fout << "Armor: "   << arm->getname() << endl;
-	fout << "elf: "		<< react.elf << endl;
-	fout << "orc: "		<< react.orc << endl;
-	fout << "hum: "		<< react.human << endl;
-	fout << "elfk: "	<< kill.Ekills << endl;
-	fout << "orck: "	<< kill.Okills << endl;
-	fout << "humk: "	<< kill.Hkills << endl;
-	fout << "start: "	<< plot.start << endl;
-	fout << "P1: "		<< plot.priest1 << endl;
-	fout << "P2: "		<< plot.priest2 << endl;
-	fout << "P3: "		<< plot.priest3 << endl;
-	fout << "P4: "		<< plot.priest4 << endl;
-	fout << "Grn: "		<< plot.gd << endl;
-	fout << "Blu: "		<< plot.bd << endl;
-	fout << "Red: "		<< plot.rd << endl;
-	fout << "Mnk: "		<< plot.monk << endl;
-	fout << "Music: "   << music << endl;
+	fout << "Weapon: "	<< EquippedWeapon->GetName() << endl;
+	fout << "Armor: "   << EquippedArmor->GetName() << endl;
+	fout << "elf: "		<< RaceReactions.Elf << endl;
+	fout << "orc: "		<< RaceReactions.Orc << endl;
+	fout << "hum: "		<< RaceReactions.Human << endl;
+	fout << "elfk: "	<< RaceKillCounts.ElfKillCount << endl;
+	fout << "orck: "	<< RaceKillCounts.OrcKillCount << endl;
+	fout << "humk: "	<< RaceKillCounts.HumanKillCount << endl;
+	fout << "start: "	<< PlotEventStates.Start << endl;
+	fout << "P1: "		<< PlotEventStates.Priest1 << endl;
+	fout << "P2: "		<< PlotEventStates.Priest2 << endl;
+	fout << "P3: "		<< PlotEventStates.Priest3 << endl;
+	fout << "P4: "		<< PlotEventStates.Priest4 << endl;
+	fout << "Grn: "		<< PlotEventStates.GreenDragon << endl;
+	fout << "Blu: "		<< PlotEventStates.BlueDragon << endl;
+	fout << "Red: "		<< PlotEventStates.RedDragon << endl;
+	fout << "Mnk: "		<< PlotEventStates.Monk << endl;
+	fout << "Music: "   << MusicIsOn << endl;
 }
 
-void player::Load(ifstream &fin)
+void Player::Load(ifstream &fin)
 {
 	string temp;
 	string A;
 	string W;
-	fin >> temp >> name;
+	fin >> temp >> Name;
 	fin >> temp >> HP;
-	fin >> temp >> MHP;
-	fin >> temp >> ka;
-	fin >> temp >> mka;
-	fin >> temp >> gold;
-	fin >> temp >> exp;
-	fin >> temp >> NextLev;
-	fin >> temp >> lev;
-	fin >> temp >> evade;
-	fin >> temp >> str;
-	fin >> temp >> mind;
-	fin >> temp >> X;
-	fin >> temp >> Y;
-	fin >> temp >> kills;
-	fin >> temp >> bspells;
-	fin >> temp >> bjoined;
+	fin >> temp >> MaxHP;
+	fin >> temp >> Ka;
+	fin >> temp >> MaxKa;
+	fin >> temp >> Gold;
+	fin >> temp >> Experience;
+	fin >> temp >> ExperienceNeededForNextLevel;
+	fin >> temp >> Level;
+	fin >> temp >> Evade;
+	fin >> temp >> Strength;
+	fin >> temp >> Mind;
+	fin >> temp >> PositionX;
+	fin >> temp >> PositionY;
+	fin >> temp >> TotalKills;
+	fin >> temp >> HasSpells;
+	fin >> temp >> MemberHasJoined;
 	fin >> temp >> Invisible;
 	fin >> temp;
 	getline(fin,W);	W = rotate(W);
 	fin >> temp;
 	getline(fin,A);	A = rotate(A);
-	fin >> temp >> react.elf;
-	fin >> temp >> react.orc;
-	fin >> temp >> react.human;
-	fin >> temp >> kill.Ekills;
-	fin >> temp >> kill.Okills;
-	fin >> temp >> kill.Hkills;
-	fin >> temp >> plot.start;
-	fin >> temp >> plot.priest1;
-	fin >> temp >> plot.priest2;
-	fin >> temp >> plot.priest3;
-	fin >> temp >> plot.priest4;
-	fin >> temp >> plot.gd;
-	fin >> temp >> plot.bd;
-	fin >> temp >> plot.rd;
-	fin >> temp >> plot.monk;
-	fin >> temp >> music;
-	weap = loadWeapon(W);
-	arm = loadArmor(A);
-	Loaded = true;
+	fin >> temp >> RaceReactions.Elf;
+	fin >> temp >> RaceReactions.Orc;
+	fin >> temp >> RaceReactions.Human;
+	fin >> temp >> RaceKillCounts.ElfKillCount;
+	fin >> temp >> RaceKillCounts.OrcKillCount;
+	fin >> temp >> RaceKillCounts.HumanKillCount;
+	fin >> temp >> PlotEventStates.Start;
+	fin >> temp >> PlotEventStates.Priest1;
+	fin >> temp >> PlotEventStates.Priest2;
+	fin >> temp >> PlotEventStates.Priest3;
+	fin >> temp >> PlotEventStates.Priest4;
+	fin >> temp >> PlotEventStates.GreenDragon;
+	fin >> temp >> PlotEventStates.BlueDragon;
+	fin >> temp >> PlotEventStates.RedDragon;
+	fin >> temp >> PlotEventStates.Monk;
+	fin >> temp >> MusicIsOn;
+	EquippedWeapon = loadWeapon(W);
+	EquippedArmor = loadArmor(A);
+	IsLoaded = true;
 }
 
-void player::stopMusic()
+void Player::StopMusic()
 {
-	mapMusic.FreeSound();
+	MapMusic.FreeSound();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

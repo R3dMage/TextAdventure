@@ -5,99 +5,98 @@
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-#include "item.h"
+#include "Item.h"
 
-;
 using namespace std;
  
-item::item()
+Item::Item()
 {
-	X = 0;
-	Y = 0;
-	name = "Ghost";
-	map = "field";
-	weap = false;
-	arm = false;
-	keep = false;
-	cost = 0;
-	type = -1;
+	PositionX = 0;
+	PositionY = 0;
+	Name = "Ghost";
+	MapName = "field";
+	IsWeapon = false;
+	IsArmor = false;
+	Keep = false;
+	Cost = 0;
+	Type = -1;
 }
-int item::getType()
+int Item::GetType()
 {
-	return type;
+	return Type;
 }
-void item::setType(int T)
+void Item::SetType(int type)
 {
-	type = T;
+	Type = type;
 }
-void item::setarm(bool A)
+void Item::SetIsArmor(bool isArmor)
 {
-	arm = A;
+	IsArmor = isArmor;
 }
-bool item::getarm()
+bool Item::GetIsArmor()
 {
-	return arm;
+	return IsArmor;
 }
-void item::setweap(bool A)
+void Item::SetIsWeapon(bool isWeapon)
 {
-	weap = A;
+	IsWeapon = isWeapon;
 }
-bool item::getweap()
+bool Item::GetIsWeapon()
 {
-	return weap;
+	return IsWeapon;
 }
-void item::setCost(int C)
+void Item::SetCost(int cost)
 {
-	cost = C;
+	Cost = cost;
 }
-int item::getCost()
+int Item::GetCost()
 {
-	return cost;
+	return Cost;
 }
-void item::setname(string N)
+void Item::SetName(string name)
 {
-	name = N;
+	Name = name;
 }
-string item::getname()
+string Item::GetName()
 {
-	return name;
+	return Name;
 }
-void item::setmap(string M)
+void Item::SetMapName(string mapName)
 {
-	map = M;
+	MapName = mapName;
 }
-string item::getmap()
+string Item::GetMapName()
 {
-	return map;
+	return MapName;
 }
-void item::setX(int neoX)
+void Item::SetPositionX(int neoX)
 {
-	X = neoX;
+	PositionX = neoX;
 }
-int item::getX()
+int Item::GetPositionX()
 {
-	return X;
+	return PositionX;
 }
-void item::setY(int neoY)
+void Item::SetPositionY(int neoY)
 {
-	Y = neoY;
+	PositionY = neoY;
 }
-int item::getY()
+int Item::GetPositionY()
 {
-	return Y;
+	return PositionY;
 }
-void item::setkeep(bool K)
+void Item::SetKeep(bool keep)
 {
-	keep = K;
+	Keep = keep;
 }
-bool item::getkeep()
+bool Item::GetKeep()
 {
-	return keep;
+	return Keep;
 }
 
-void item::display()
+void Item::Display()
 {
-	switch(type)
+	switch(Type)
 	{
 	case -1:
 		text("                                           ",30,11,white);
@@ -124,18 +123,12 @@ void item::display()
 		text("Heals all of your life              ",30,11,white);
 		break;
 	}
-	showcost();
+	DisplayCost();
 }
 
-void item::showcost()
+void Item::DisplayCost()
 {
 	text("Value: ",1,22,white);
-	num(cost,2,23,white);
+	num(Cost,2,23,white);
 	cout << " GP  ";
 }
-
-
-
-		
-
-		

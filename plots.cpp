@@ -1,13 +1,13 @@
-#include "player.h"
+#include "Player.h"
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 /*================================================================================
 	This function is designed to handle all the plots in the game
 =================================================================================*/
-void player::plots(string map)
+void Player::Plots(string map)
 {
-	if(map == "valesh" && X == 2 && Y == 1 && !plot.start)
+	if(map == "valesh" && PositionX == 2 && PositionY == 1 && !PlotEventStates.Start)
 	{
 		clrtop(1);
 		text("The town elder approaches you. He tells you of a priest who",13,2,white);
@@ -17,6 +17,6 @@ void player::plots(string map)
 		text("", 13, 23,white);
 		system("pause");
 		clrtop(1);
-		plot.start=true;
+		PlotEventStates.Start=true;
 	}
 }

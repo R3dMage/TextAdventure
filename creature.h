@@ -1,118 +1,111 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
 
-#include "player.h"
-#include "item.h"
+#include "Player.h"
+#include "Item.h"
 
 using namespace std;
 
-item* loaditem(string name);
+Item* loaditem(string name);
 void text(string,int,int,WORD);
 void clear();
 void num(int num,int X, int Y,WORD color);
 
-class creature{
+class Creature{
 public:
-	creature();
+	Creature();
 	bool bant;
 
-	void setlevel(int);
-	int getlevel();
-	void sethp(int);
-	int gethp();
-	void setmhp(int);
-	int getmhp();
-	void setexp(int);
-	int getexp();
-	void setdamage(int);
-	int getdamage();
-	void setdamMod(int);
-	int getdamMod();
-	int getdef();
-	void setevade(int);
-	int getevade();
-	void setgold(int);
-	int getgold();
-	void setX(int);
-	int getX();
-	void setY(int);
-	int getY();
-	void setmagdef(int);
-	int getmagdef();
-	void setname(string);
-	void setTalkTo(bool);
-	bool getTalkTo();
-	void setrunAway(bool);
-	void setka(int);
-	int getka();
-	int getmka();
-	void setstate(int);
-	int getstate();
-	bool getrunAway();
-	void setdontmove(bool);
-	bool getdontmove();
-	string gettype();
-	string getname();
-	string getweakness();
+	void SetLevel(int);
+	int GetLevel();
+	void SetHitPoints(int);
+	int GetHitPoints();
+	void SetMaxHitPoints(int);
+	int GetMaxHitPoints();
+	void SetExperience(int);
+	int GetExperience();
+	void SetDamage(int);
+	int GetDamage();
+	void SetDamageModifier(int);
+	int GetDamageModifier();
+	int GetDefense();
+	void SetEvade(int);
+	int GetEvade();
+	void SetGold(int);
+	int GetGold();
+	void SetX(int);
+	int GetX();
+	void SetY(int);
+	int GetY();
+	void SetMagicDefense(int);
+	int GetMagicDefense();
+	void SetName(string);
+	void SetTalkTo(bool);
+	bool GetTalkTo();
+	void SetRunAway(bool);
+	void SetKa(int);
+	int GetKa();
+	int GetMaxKa();
+	void SetState(int);
+	int GetState();
+	bool GetRunAway();
+	void SetDontMove(bool);
+	bool GetDontMove();
+	string GetType();
+	string GetName();
+	string GetWeakness();
 	string gettoken();
-	string getmap();
-	char* getMusic();
-	virtual void setmap(string);
+	string GetMap();
+	char* GetMusic();
+	virtual void SetMap(string);
 
-	void info();
-	void dam(int);
-	void cure(int);
+	void DisplayInfo();
+	void DisplayDamage(int);
+	void DisplayCure(int);
 	void slowDisp(string);
-	void loadPos(int X, int Y);
-	virtual creature* replenish() const = 0;
-	virtual item* body(string) const = 0;
-	item* Loadtoken();
-	virtual void win(player *p2);
-	virtual bool dropItem();
-	virtual void attack(player *p2, vector<item*> &pstuff,vector<item*> &stuff,string Map);
-	virtual item* token(string);
-	virtual bool talkto(player *p2);
-	virtual void banter();
+	void LoadPosition(int X, int Y);
+	virtual Creature* Replenish() const = 0;
+	virtual Item* Body(string) const = 0;
+	Item* Loadtoken();
+	virtual void Win(Player *player);
+	virtual bool DroppedItem();
+	virtual void Attack(Player *player, vector<Item*> &playerInventory,vector<Item*> &worldItems,string map);
+	virtual Item* Token(string);
+	virtual bool TalkTo(Player *player);
+	virtual void Banter();
 
 protected:
-	int 	level;
-	int		hp;
-	int		mhp;
-	int		exp;
-	int		damage;
-	int		damMod;
-	int		def;
-	int		magdef;
-	int		evade;
-	int		gold;
+	int 	Level;
+	int		HitPoints;
+	int		MaxHP;
+	int		Experience;
+	int		Damage;
+	int		DamageModifier;
+	int		Defense;
+	int		MagicDefense;
+	int		Evade;
+	int		Gold;
 	int		X;
 	int		Y;
-	int		ka;
-	int		mka;
-	int		state;
-	bool	talkTo;
-	bool	runAway;
-	bool	dontmove;
-	bool	bSleep;
-	bool	bPoison;
-	string  type;
-	string	name;
-	string  map;
-	string  weakness;
-	char *  music;
+	int		Ka;
+	int		MaxKa;
+	int		State;
+	bool	CanTalkTo;
+	bool	RunAway;
+	bool	DontMove;
+	bool	IsAsleep;
+	bool	IsPoisoned;
+	string  Type;
+	string	Name;
+	string  Map;
+	string  Weakness;
+	char *  Music;
 
-	bool MoveCurs(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
-	void DrawCurs(COORD pos, WORD color, char curs);
-
-
-
-	
+	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
+	void DrawCursor(COORD pos, WORD color, char curs);
 };
-
-
 #endif 

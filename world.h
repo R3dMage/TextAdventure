@@ -1,9 +1,8 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-
-#include "location.h"
-#include "magic.h"
+#include "Location.h"
+#include "Magic.h"
 #include "CFmod.h"
 #include "Fmod.h"
 
@@ -13,69 +12,68 @@ void clear();
 void clrbottom();
 void clritems();
 void clrtop(int);
-armor* loadArmor(string);
-weapon* loadWeapon(string);
+Armor* loadArmor(string);
+Weapon* loadWeapon(string);
 string rotate(string pStr);
-item* loaditem(string name);
-void ground(vector<item*> stuff,string Map,int X, int Y);
-void items(vector<item*> &pstuff);
-void plot(string Map, string ID);
+Item* loaditem(string name);
+void ground(vector<Item*> worldItems,string Maplayer,int X, int Y);
+void items(vector<Item*> &playerInventory);
+void plot(string Maplayer, string ID);
 
-class world
+class World
 {
 public:
-	world();
-	~world();
-	void move(vector<creature*> &encounter,int Xmax, int Ymax);
-	void fight(player *p2, creature *guy, vector<item*> &pstuff,vector<item*> &stuff,vector<magik*> &spells,string Map);
-	void locations(string,player*,bool);
-	void armory(vector<item*> &pstuff,player *p2,string Map);
-	void magicshop(vector<item*> &pstuff, player *p2,string Map);
-	void inn(player *p2, string Map);
-	void buyer(player *, vector<item*> &,string Map);
-	void npcSetup(vector< creature* > &npc, string Map,int,int,events,robj,char*&,char*);
+	World();
+	~World();
+	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);
+	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
+	void Locations(string,Player*,bool);
+	void Armory(vector<Item*> &playerInventory,Player *player,string map);
+	void MagicShop(vector<Item*> &playerInventory, Player *player,string map);
+	void Inn(Player *player, string map);
+	void PawnShop(Player *, vector<Item*> &,string map);
+	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
-	void DescriptDisplay(string, string &, string &, string &);
-	void loadmap(vector< location* > &g, string &Map, int &Xmax, int &Ymax, bool &bTown);
-	void menu(player *p2,vector<magik*> &spells,vector<item*> &Stuff, vector<item*> &pstuff,string &);
-	void inventory(player *p2,vector<item*> &stuff, vector<item*> &pstuff,string);
-	void items(vector<item*> &pstuff);
-	void equip(player *p2,vector<item*> &pstuff);
-	void drop(player *p2,vector<item*> &stuff, vector<item*> &pstuff,string);
-	void XXX(vector<item*> &pstuff);
-	void options(player *p2,vector<item*> &stuff, vector<item*> &pstuff,vector<magik*> &M,string &Map);	
-	void useItem(player *p2,vector<item*> &stuff,vector<item*> &pstuff,bool &bFight, bool &bLeave,string Map);
-	void use(player *p2,vector<item*> &pstuff,bool &Iused,bool bFight);
-	void magic(player *p2,vector<magik*> &spells);
-	void fmagic(player *p2, creature *enemy,vector<magik*> &spells,bool &bEsc);
+	void DescriptionDisplay(string, string &, string &, string &);
+	void LoadMap(vector< Location* > &locations, string &mapName, int &Xmax, int &Ymax, bool &bTown);
+	void HandleMainMenu(Player *player,vector<Magic*> &spells,vector<Item*> &Stuff, vector<Item*> &playerInventory,string &);
+	void HandleInventory(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
+	void DisplayPlayerItems(vector<Item*> &playerInventory);
+	void Equip(Player *player,vector<Item*> &playerInventory);
+	void Drop(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
+	void DeleteItem(vector<Item*> &playerInventory);
+	void Options(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,vector<Magic*> &M,string &map);	
+	void UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory,bool &bFight, bool &bLeave,string map);
+	void Use(Player *player,vector<Item*> &playerInventory,bool &Iused,bool bFight);
+	void MagicMenu(Player *player,vector<Magic*> &spells);
+	void InFightMagicMenu(Player *player, Creature *enemy,vector<Magic*> &spells,bool &bEsc);
 	
 	
 
 private:
-	void intro();
-	void start();
-	bool musicCmp(char *,char *);
-	void music(char*, player *);
-	void setup(player *, vector<item*> &,vector<item*> &,vector<magik*> &, string &);
-	bool MoveCurs(COORD &CursPos, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
-	bool walk(bool &bSelect,bool &bEsc, player *p,int Xmax, int Ymax, int &T);
-	void DrawCurs(COORD pos, WORD color, char curs);
-	void magicCheck(player *,vector<magik*> &);
-	bool hasMagic(vector<magik*>,string);
-	item Ebody(creature *guy, string Map);
-	void Eplenish(vector<creature*> &enemies,int num);
-	void clr(int);
-	void slidedown(vector<item*> &,int);
-	void save(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map);
-	void load(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map);
-	void load1(player *p, vector<item*> &stuff, vector<item*> &pstuff, vector<magik*> &spells,string &map);
-	void MagikSave(vector<magik*> &M,ofstream &);
-	void GroundSave(vector<item*> &stuff,ofstream &);
-	void InvenSave(vector<item*> &stuff,ofstream &);	
-	void loadInven(vector<item*> &,ifstream &);
-	void loadGround(vector<item*> &,ifstream &);
-	void loadMagik(vector<magik*> &M,ifstream &);
-	magik* getMagik(string);
+	void Intro();
+	bool MusicNameComparer(char *,char *);
+	void SetMusic(char*, Player *);
+	void OptionsMenu(Player *, vector<Item*> &,vector<Item*> &,vector<Magic*> &, string &);
+	bool MoveCursor(COORD &cursorPosition, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
+	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
+	void DrawCursor(COORD pos, WORD color, char curs);
+	void CheckMagic(Player *,vector<Magic*> &);
+	bool HasMagic(vector<Magic*>,string);
+	Item Ebody(Creature *guy, string map);
+	void ReplenishEnemy(vector<Creature*> &enemies,int num);
+	void ClearTextBottomRight(int);
+	void SlideDown(vector<Item*> &,int);
+	void SaveGame(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
+	void Load(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
+	void load1(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
+	void SaveMagic(vector<Magic*> &M,ofstream &);
+	void SaveGround(vector<Item*> &worldItems,ofstream &);
+	void SaveInventory(vector<Item*> &worldItems,ofstream &);	
+	void LoadInventory(vector<Item*> &,ifstream &);
+	void LoadGround(vector<Item*> &,ifstream &);
+	void LoadMagic(vector<Magic*> &M,ifstream &);
+	Magic* GetMagic(string);
 	string GetFileName();
 };
 

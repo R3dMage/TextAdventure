@@ -1,46 +1,46 @@
 //====================================================================================================
-//	This file houses all the functions for the magic, and how it works. The class magik exists as a 
+//	This file houses all the functions for the magic, and how it works. The class Magic exists as a 
 //vector within the game, much like the ground, and inventory, it gets pulled to where it needs to be
 //it contains all the spells that the player may learn.
 //====================================================================================================
 
 
-#include "magic.h"
+#include "Magic.h"
 
 
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 
-magik::magik()
+Magic::Magic()
 {
-	attribute = "none";
-	cost = 0;
+	Attribute = "none";
+	Cost = 0;
 }
-void magik::use(player*,creature *)
+void Magic::Cast(Player*,Creature *)
 {
 }
-int magik::getcost()
+int Magic::GetCost()
 {
-	return cost;
+	return Cost;
 }
-string magik::getname()
+string Magic::GetName()
 {
-	return name;
+	return Name;
 }
-void magik::Disp()
+void Magic::DisplayCastingCost()
 {
 	text("       ",1,23,white);
-	num(cost,1,23,white);
+	num(Cost,1,23,white);
 	text("ka",4,23,white);
 }
-void magik::cast()
+void Magic::DisplayIncantation()
 {
 	text("",13,9,white);
-	slowDisp(incantation);
-	text(description,13,11,white);
+	SlowDisplay(Incantation);
+	text(Description,13,11,white);
 	Sleep(1500);
 }
-void magik::slowDisp(string szText)
+void Magic::SlowDisplay(string szText)
 {
 	unsigned int i;
 
@@ -50,501 +50,493 @@ void magik::slowDisp(string szText)
 		Sleep(75);
 	}
 }
-void magik::tout(int Y, WORD color)
+void Magic::DisplayName(int Y, WORD color)
 {
-	text(name,16,Y,color);
+	text(Name,16,Y,color);
 }
 
-bool magik::getbInfight()
+bool Magic::GetIsInFight()
 {
-	return bInfight;
+	return IsInFight;
 }
-minheal::minheal()
+MinorHeal::MinorHeal()
 {
-	name		= "Minor Heal";
-	incantation = "Great god of the land, heal thy servant!";
-	description = "You feel warmed and nourished!";
-	cost		= 5;
-	bInfight	= false;
+	Name		= "Minor Heal";
+	Incantation = "Great god of the land, heal thy servant!";
+	Description = "You feel warmed and nourished!";
+	Cost		= 5;
+	IsInFight	= false;
 }
-void minheal::use(player *p2,creature *enemy)
+void MinorHeal::Cast(Player *p2,Creature *enemy)
 {
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int cur = rand()% 30 + 10;
 	cur += multi;
-	p2->setka(p2->getka() - cost);
-	cast();
-	p2->setHP(p2->getHP() + cur);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + cur);
 	text("You were healed: ",13,8,white); cout << cure;
 	cure(cur);
 }
-majheal::majheal()
+MajorHeal::MajorHeal()
 {
-	name =		  "Major Heal";
-	incantation = "Great god of the land, heal thy servant!";
-	description = "You feel warmed and nourished!";
-	cost		= 10;
-	bInfight = false;
+	Name =		  "Major Heal";
+	Incantation = "Great god of the land, heal thy servant!";
+	Description = "You feel warmed and nourished!";
+	Cost		= 10;
+	IsInFight = false;
 }
-void majheal::use(player *p2,creature *enemy)
+void MajorHeal::Cast(Player *p2,Creature *enemy)
 {
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int cur = rand()% 60 + 30;
 	cur *= multi;
-	p2->setka(p2->getka() - cost);
-	cast();
-	p2->setHP(p2->getHP() + cur);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + cur);
 	text("You were healed: ",13,8,white); cout << cure;
 	cure(cur);
 }
 
-briar::briar()
+BriarBush::BriarBush()
 {
-	name =		  "Briar Bush";
-	incantation = "I summon the plants of the forest, destroy my foe!";
-	description = "From the earth fly spikey plants raking open your opponents skin";
+	Name =		  "Briar Bush";
+	Incantation = "I summon the plants of the forest, destroy my foe!";
+	Description = "From the earth fly spikey plants raking open your opponents skin";
 	//			  text("                                                                ",13,11,white);	
-	cost		= 10;
-	bInfight	= true;
+	Cost		= 10;
+	IsInFight	= true;
 }
-void briar::use(player *p2,creature *enemy)
+void BriarBush::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-snow::snow()
+Blizzard::Blizzard()
 {
-	name =		  "Snow";
-	incantation = "Ice and snow freeze my enemy where he stands!";
-	description = "Ice,wind, and snow bring the enemy briefly to his knees";
-	attribute   = "ice";
-	cost		= 20;
-	bInfight = true;
+	Name =		  "Snow";
+	Incantation = "Ice and snow freeze my enemy where he stands!";
+	Description = "Ice,wind, and snow bring the enemy briefly to his knees";
+	Attribute   = "ice";
+	Cost		= 20;
+	IsInFight = true;
 }
-void snow::use(player *p2,creature *enemy)
+void Blizzard::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	Damage = rand()%40 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-pstorm::pstorm()
+PerfectStorm::PerfectStorm()
 {
-	name =		  "PerfectStorm";
-	incantation = "Powers of nature heed me, and strike down my foe!!!";
-	description = "Lightning,hail,ice,snow,all you see before you avert your eyes";
-	cost		= 40;
-	bInfight = true;
+	Name =		  "PerfectStorm";
+	Incantation = "Powers of nature heed me, and strike down my foe!!!";
+	Description = "Lightning,hail,ice,snow,all you see before you avert your eyes";
+	Cost		= 40;
+	IsInFight = true;
 }
-void pstorm::use(player *p2,creature *enemy)
+void PerfectStorm::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;	
 	Damage = rand()%100 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	p2->setka(p2->getka() - cost);
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);	
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-dlife::dlife()
+DrainLife::DrainLife()
 {
-	name =		  "Drain Life";
-	incantation = "What once was yours is now mine!";
-	description = "Your enemy winces in pain as his life is sucked away.";
-	cost		= 10;
-	bInfight = true;
+	Name =		  "Drain Life";
+	Incantation = "What once was yours is now mine!";
+	Description = "Your enemy winces in pain as his life is sucked away.";
+	Cost		= 10;
+	IsInFight = true;
 }
-void dlife::use(player *p2, creature *enemy)
+void DrainLife::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
 	text("                                                                ",13,9,white);
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);	
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
-	Sleep(p2->getPause());
-	p2->setHP(p2->getHP() + Damage);
+	enemy->DisplayDamage(Damage);
+	Sleep(p2->GetPauseDuration());
+	p2->SetHitPoints(p2->GetCurrentHitPoints() + Damage);
 	text("You were healed: ",13,8,white); cout << Damage;
 	cure(Damage);
 }
 
-stealka::stealka()
+StealKa::StealKa()
 {
-	name =		  "Drain Ka";
-	incantation = "";
-	description = "";
-	cost		= 0;
-	bInfight = true;
+	Name =		  "Drain Ka";
+	Incantation = "";
+	Description = "";
+	Cost		= 0;
+	IsInFight = true;
 }
-void stealka::use(player *p2,creature *enemy)
+void StealKa::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	int KA = enemy->getka();
-	p2->setka(p2->getka() - cost);
+	int KA = enemy->GetKa();
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%15 + 5;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	enemy->setka(KA - Damage);
+	DisplayIncantation();
+	enemy->SetKa(KA - Damage);
 	text("                                                                ",13,11,white);
-	p2->setka(p2->getka() + Damage);
+	p2->SetKa(p2->GetCurrentKa() + Damage);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
-farrow::farrow()
+FireArrow::FireArrow()
 {
-	name =		  "Flame Arrow";
-	incantation = "Underworld flames burn my enemy to ashes!";
-	description = "An arrow of fire strikes your enemy engulfing him in flames";
-	cost		= 10;
-	bInfight = true;
+	Name =		  "Flame Arrow";
+	Incantation = "Underworld flames burn my enemy to ashes!";
+	Description = "An arrow of fire strikes your enemy engulfing him in flames";
+	Cost		= 10;
+	IsInFight = true;
 }
-void farrow::use(player *p2,creature *enemy)
+void FireArrow::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%30 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);	
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-fire::fire()
+Fire::Fire()
 {
-	name =		  "Fire";
-	incantation = "Unholy fire, BURN! CONSUME! DESTROY!!!";
-	description = "Ungodly flames streak forward consuming your enemy.";
-	cost		= 18;
-	bInfight = true;
+	Name =		  "Fire";
+	Incantation = "Unholy fire, BURN! CONSUME! DESTROY!!!";
+	Description = "Ungodly flames streak forward consuming your enemy.";
+	Cost		= 18;
+	IsInFight = true;
 }
-void fire::use(player *p2,creature *enemy)
+void Fire::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-lava::lava()
+Lava::Lava()
 {
-	name =		  "Lava";
-	incantation = "Demons lend me your liquid fire!";
-	description = "Lava bursts forth from the ground,smothering your foe.";
-	cost		= 25;
-	bInfight = true;
+	Name =		  "Lava";
+	Incantation = "Demons lend me your liquid fire!";
+	Description = "Lava bursts forth from the ground,smothering your foe.";
+	Cost		= 25;
+	IsInFight = true;
 }
-void lava::use(player *p2, creature *enemy)
+void Lava::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%150 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-strength::strength()
+Might::Might()
 {
-	name =		  "Strength";
-	incantation = "god of war grant me strength!!";
-	description = "You become stronger";
-	cost		= 4;
-	bInfight = true;
+	Name =		  "Strength";
+	Incantation = "god of war grant me strength!!";
+	Description = "You become stronger";
+	Cost		= 4;
+	IsInFight = true;
 }
-void strength::use(player *p2,creature *)
+void Might::Cast(Player *p2,Creature *)
 {
-	p2->setka(p2->getka() - cost);
-	cast();
-	p2->setstate(1);
-	p2->setstr(p2->getstr() + 10);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	p2->SetMagicStatus(1);
+	p2->SetStrength(p2->GetStrength() + 10);
 }
-dispel::dispel()
+Dispel::Dispel()
 {
-	name =		  "Dispel";
-	incantation = "Universe, set yourself to rights, the way you should be.";
-	description = "Your enemy's magical enhancements are gone.";
-	cost		= 4;
-	bInfight = true;
+	Name =		  "Dispel";
+	Incantation = "Universe, set yourself to rights, the way you should be.";
+	Description = "Your enemy's magical enhancements are gone.";
+	Cost		= 4;
+	IsInFight = true;
 }
-void dispel::use(player *p2,creature *enemy)
+void Dispel::Cast(Player *p2,Creature *enemy)
 {
-	p2->setka(p2->getka() - cost);
-	cast();
-	enemy->setstate(0);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	enemy->SetState(0);
 }
-shock::shock()
+Shock::Shock()
 {
-	name =		  "Shock";
-	incantation = "";
-	description = "";
-	cost		= 4;
-	bInfight = true;
+	Name =		  "Shock";
+	Incantation = "";
+	Description = "";
+	Cost		= 4;
+	IsInFight = true;
 }
-void shock::use(player * p2, creature * enemy)
+void Shock::Cast(Player * p2, Creature * enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 10;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);			
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);			
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
-acidrain::acidrain()
+AcidRain::AcidRain()
 {
-	name =		  "Acid Rain";
-	incantation = "";
-	description = "";
-	cost		= 10;
-	bInfight = true;
+	Name =		  "Acid Rain";
+	Incantation = "";
+	Description = "";
+	Cost		= 10;
+	IsInFight = true;
 }
-void acidrain::use(player *p2, creature *enemy)
+void AcidRain::Cast(Player *p2, Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
-lightning::lightning()
+LightningBolt::LightningBolt()
 {
-	name =		  "Lightning Bolt";
-	incantation = "";
-	description = "";
-	cost		= 15;
-	bInfight = true;
+	Name =		  "Lightning Bolt";
+	Incantation = "";
+	Description = "";
+	Cost		= 15;
+	IsInFight = true;
 }
-void lightning::use(player *p2,creature *enemy)
+void LightningBolt::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
 	int Damage;
-	int multi = p2->getmind()/7;
-	p2->setka(p2->getka() - cost);
+	int multi = p2->GetMind()/7;
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	cast();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);	
+	DisplayIncantation();
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
-poison::poison()
+Poison::Poison()
 {
-	name =		  "Poison";
-	incantation = "Plagues of the past eat my foe from within!";
-	description = "Your enemy looks sickly now.";
-	cost		= 10;
-	bInfight = true;
+	Name =		  "Poison";
+	Incantation = "Plagues of the past eat my foe from within!";
+	Description = "Your enemy looks sickly now.";
+	Cost		= 10;
+	IsInFight = true;
 }
-void poison::use(player *p2,creature *enemy)
+void Poison::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage = rand()% 10 + 10;
-	p2->setka(p2->getka() - cost);
-	cast();
-	if(X < enemy->getmagdef())
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	DisplayIncantation();
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	enemy->sethp(enemy->gethp() - Damage);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
-	enemy->setstate(3);
+	enemy->DisplayDamage(Damage);
+	enemy->SetState(3);
 }
-skeleton::skeleton()
+RaiseSkeleton::RaiseSkeleton()
 {
-	name =		  "Summon Skeleton";
-	incantation = "Bones which death hath taken, aid me in my struggle";
-	description = "From the soil skeletal hands strike your opponent";
-	cost		= 10;
-	bInfight = true;
+	Name =		  "Summon Skeleton";
+	Incantation = "Bones which death hath taken, aid me in my struggle";
+	Description = "From the soil skeletal hands strike your opponent";
+	Cost		= 10;
+	IsInFight = true;
 }
-void skeleton::use(player * p2,creature *enemy)
+void RaiseSkeleton::Cast(Player * p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
-	cast();
-	Damage -= (enemy->getdef());
-	enemy->sethp(enemy->gethp() - Damage);
+	DisplayIncantation();
+	Damage -= (enemy->GetDefense());
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
-	enemy->setstate(2);
+	enemy->DisplayDamage(Damage);
+	enemy->SetState(2);
 }
-dstrike::dstrike()
+DarkStrike::DarkStrike()
 {
-	name =		  "Dark Strike";
-	incantation = "Lord of the Abyss join your sword with mine";
-	description = "An aura of darkness surrounds your sword as you drive it home.";
-	cost		= 15;
-	bInfight = true;
+	Name =		  "Dark Strike";
+	Incantation = "Lord of the Abyss join your sword with mine";
+	Description = "An aura of darkness surrounds your sword as you drive it home.";
+	Cost		= 15;
+	IsInFight = true;
 }
-void dstrike::use(player *p2,creature *enemy)
+void DarkStrike::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int multi = p2->getmind()/7;
+	int multi = p2->GetMind()/7;
 	int Damage;
-	p2->setka(p2->getka() - cost);
+	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
-	cast();
-	if(X < enemy->getmagdef())
+	DisplayIncantation();
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	enemy->sethp(enemy->gethp() - Damage);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-critical::critical()
+Critical::Critical()
 {
-	name =		  "Critical";
-	incantation = "All hopes, all dreams, will die tonight";
-	description = "Your blow slices to the heart.";
-	cost		= 20;
-	bInfight = true;
+	Name =		  "Critical";
+	Incantation = "All hopes, all dreams, will die tonight";
+	Description = "Your blow slices to the heart.";
+	Cost		= 20;
+	IsInFight = true;
 }
-void critical::use(player *p2,creature *enemy)
+void Critical::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int Damage = enemy->gethp() - enemy->gethp()/8;
-	p2->setka(p2->getka() - cost);
-	enemy->sethp(enemy->gethp()/8);
+	int Damage = enemy->GetHitPoints() - enemy->GetHitPoints()/8;
+	p2->SetKa(p2->GetCurrentKa() - Cost);
+	enemy->SetHitPoints(enemy->GetHitPoints()/8);
 	text("Your Damage: ",13,11,white);
 	text("                                                                ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
-control::control()
+Control::Control()
 {
-	name =		  "Mind Control";
-	incantation = "Lord of the abyss give his mind to ME!";
-	description = "Your opponent has opted to join you.";
-	cost		= 30;
-	bInfight = false;
+	Name =		  "Mind Control";
+	Incantation = "Lord of the abyss give his mind to ME!";
+	Description = "Your opponent has opted to join you.";
+	Cost		= 30;
+	IsInFight = false;
 }
-void control::use(player *p2, creature *enemy)
+void Control::Cast(Player *p2, Creature *enemy)
 {
 }
-
-
-
-
-
-
-
-

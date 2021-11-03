@@ -1,11 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include "player.h"
-#include "creature.h"
-
-
-
+#include "Player.h"
+#include "Creature.h"
 
 void ShopBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin)
 {
@@ -24,8 +21,6 @@ void ShopBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, c
 	}while(pos.X < Xmax);
 
 }
-
-
 
 void PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin)
 {
@@ -67,8 +62,6 @@ void PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char
 	cout << CTR;
 
 }
-
-
 
 void DrawScreen(COORD pos,char ULC,char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin)
 {
@@ -180,10 +173,6 @@ void DSScreen()
 	DrawScreen(CursPos,num5,num2,num3,num4,num1,num6,78,0,24,0);
 	ShopBox(CursPos,num7,num8,num11,num10,num9,num6,num1,78,0,24,0);
 }
-
-
-
-
 
 void DSScreen();
 void DScreen();

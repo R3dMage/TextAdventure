@@ -43,5 +43,4 @@ private:
 	signed char m_loop;
 };
 
-
 #endif
