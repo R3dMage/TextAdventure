@@ -313,8 +313,8 @@ char * Player::GetMusicFilename()
 void Player::PlayMusic(char *filename)
 {
 	char* music = new char[strlen(filename) + 7];
-	strcpy(music, "./data/");
-	strcat(music, filename);
+	strcpy_s(music, strlen("./data/"), "./data/" );
+	strcat_s(music, strlen(filename), filename);
 
 	if( music )
 	{
