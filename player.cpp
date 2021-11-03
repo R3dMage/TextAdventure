@@ -501,7 +501,7 @@ bool Player::ReachedNextLevel()
 
 void Player::IncreaseLevel()
 {
-	srand(GetTickCount64());
+	srand(static_cast<unsigned int>(GetTickCount64()));
 	double Num1;
 	clear();
 	SetLevel(GetLevel() + 1);

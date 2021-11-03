@@ -22,7 +22,7 @@ using namespace std;
 
 void main()
 {
-	srand(GetTickCount64());
+	srand(static_cast<unsigned int>(GetTickCount64()));
 	char name[10]; 
 	bool load = false;
 	ifstream fin;
