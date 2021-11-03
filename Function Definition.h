@@ -6,10 +6,6 @@
 
 using namespace std;
 
-
-
-
-
 /*void inv(item& a,item& emty, item& cur1,item& cur2,item& cur3,item& str,item& Vgem)
 {
 
@@ -22,8 +18,6 @@ using namespace std;
 }
 */
 
-
-
 void pause()
 {
 	system("pause");
@@ -33,8 +27,6 @@ void cls()
 {
 	system("cls");
 }
-
-
 
 void DrawEnemyDies(int gold, int Exp, int X, int Y, WORD color)
 {
@@ -65,8 +57,6 @@ void DrawPlayerDamage(string name, int damage, int X, int Y, WORD color, WORD co
 	SetConsoleCursorPosition(OutputH, pos2);
 
 	cout << damage;
-
-
 }
 
 void MagicDamage(string name, int damage, int X, int Y, WORD color, WORD color2)
@@ -106,9 +96,6 @@ void PlayerCure(int cure, int X, int Y, WORD color, WORD color2)
 	cout << cure;
 }
 
-
-
-
 void DrawEnemyDamage(int damage, int X, int Y, WORD color, WORD color2)
 {
 	HANDLE OutputH;
@@ -127,8 +114,6 @@ void DrawEnemyDamage(int damage, int X, int Y, WORD color, WORD color2)
 	SetConsoleCursorPosition(OutputH, pos2);
 	cout <<damage;
 }
-
-
 
 void DrawStats(string name, string weapon, string armor,int KA, int MKA, int MHP, int HP, int gold, int str, int exp, int level, int X, int Y, WORD color)
 {
@@ -191,7 +176,6 @@ void DrawStats(string name, string weapon, string armor,int KA, int MKA, int MHP
 	cout << "Xp: " << exp;
 }
 
-
 void DrawEStats(string name, int level, int MHP, int HP, int X, int Y, WORD color)
 {
 	HANDLE OutputH;
@@ -210,7 +194,6 @@ void DrawEStats(string name, int level, int MHP, int HP, int X, int Y, WORD colo
 	cout << HP << "/" << MHP;
 }
 
-
 void DrawStat2(string weapon, string armor, int level, int X, int Y, WORD color)
 {
 	HANDLE OutputH;
@@ -228,11 +211,6 @@ void DrawStat2(string weapon, string armor, int level, int X, int Y, WORD color)
 	SetConsoleCursorPosition(OutputH, pos3);
 	cout << "Level: "<< level;
 }
-
-
-
-
-
 
 void Number(int num, int X, int Y, WORD color)
 {
@@ -255,8 +233,6 @@ void DrawCurs(COORD pos, WORD color, char curs)
 
 	cout << curs;
 }
-
-
 
 bool MoveCurs(COORD &CursPos, bool &bSelect, int Ymin, int Ymax)
 {
@@ -826,5 +802,3 @@ bool MoveCurs(COORD &CursPos, bool &bSelect,int Ymin, int Ymax);
 void Number(int num, int X, int Y, WORD color);
 void DrawCurs(COORD pos, WORD color);
 void cls2();
-
-

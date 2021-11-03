@@ -2408,6 +2408,3 @@ Creature* Monk::Replenish() const
 void Monk::banter()
 {
 }
-
-
-

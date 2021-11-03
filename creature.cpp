@@ -3,9 +3,6 @@
 #include <string>			//For Strings
 #include "Creature.h"
 
-
-
-
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 Creature::Creature()
@@ -403,25 +400,3 @@ void Creature::slowDisp(string szText)
 		Sleep(75);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

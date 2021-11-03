@@ -383,10 +383,3 @@ void plot(string Map, string ID)
 	text("",13,23,white);
 	system("pause");
 }
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@
 #define ARMOR_H
 
 #include "Item.h"
-;
+
 using namespace std;
 
 void text(string szText,int X,int Y,WORD color);

@@ -272,15 +272,3 @@ Magic* World::GetMagic(string spellName)
 		M = new Control;
 	return M;
 }
-
-
-
-
-
-
-
-
-
-
-
-

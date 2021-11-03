@@ -133,9 +133,3 @@ void Item::DisplayCost()
 	num(Cost,2,23,white);
 	cout << " GP  ";
 }
-
-
-
-		
-
-		

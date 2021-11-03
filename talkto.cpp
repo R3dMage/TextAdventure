@@ -11,7 +11,7 @@
 // advancing, but who knows I might change that notion too. 2/21/05
 //================================================================================================================
 
-     
+void clr();
 
 bool Elf::TalkTo(Player *player)
 {
@@ -616,28 +616,3 @@ bool Human::TalkTo(Player *player)
 	}
 	else return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
