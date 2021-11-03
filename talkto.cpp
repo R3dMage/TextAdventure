@@ -13,7 +13,7 @@
 
      
 
-bool Elf::talkto(Player *p2)
+bool Elf::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -25,7 +25,7 @@ bool Elf::talkto(Player *p2)
 	CursPos.X = 2;
 	CursPos.Y = 12;
 	bSel = false;
-	string intro = "An " + this->getname() + " stands before you.";
+	string intro = "An " + this->GetName() + " stands before you.";
 
 	text(intro,13,11,white);
 	text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -35,12 +35,12 @@ bool Elf::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -56,31 +56,31 @@ bool Elf::talkto(Player *p2)
 	}
 
 
-	if(p2->GetReactionElf() < 2)
+	if(player->GetReactionElf() < 2)
 	{
 		text("You bastard, you've slaughtered my brethren!!!",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 		return true;
 	}
-	if(p2->GetReactionElf() == 2)
+	if(player->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Human, perhaps someday you will prove worthy...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
@@ -89,7 +89,7 @@ bool Elf::talkto(Player *p2)
 	else return false;
 }
 
-bool ElvenMage::talkto(Player *p2)
+bool ElvenMage::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -109,12 +109,12 @@ bool ElvenMage::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -130,31 +130,31 @@ bool ElvenMage::talkto(Player *p2)
 	}
 
 
-	if(p2->GetReactionElf() < 2)
+	if(player->GetReactionElf() < 2)
 	{
 		text("I will end your murderous ways, human!",13,9,white);
-		Sleep(p2->GetPauseDuration());	
+		Sleep(player->GetPauseDuration());	
 		return true;
 	}
-	if(p2->GetReactionElf() == 2)
+	if(player->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Your ways are far inferior to ours, human.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("Your life is so fleeting human, you should treatsure it.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("From the earth came all living things.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
@@ -163,7 +163,7 @@ bool ElvenMage::talkto(Player *p2)
 	else return false;
 }
 
-bool ElvenWarrior::talkto(Player *p2)
+bool ElvenWarrior::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -183,12 +183,12 @@ bool ElvenWarrior::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -204,76 +204,76 @@ bool ElvenWarrior::talkto(Player *p2)
 	}
 
 
-	if(p2->GetReactionElf() < 2)
+	if(player->GetReactionElf() < 2)
 	{
 		switch(num)
 		{
 		case 1:
 			text("You bastard, you've slaughtered my brethren!!!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("Vile human, you are reputed to kill elves, I will slay you",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("Mere death is too good for you!!!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("Here you will die, human.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return true;
 	}
-	if(p2->GetReactionElf() == 2)
+	if(player->GetReactionElf() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Human, your skills are dull.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("What seek ye here?",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("Elven Warrior:...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("The trees can teach you much about life...",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->GetReactionElf() > 2)
+	if(player->GetReactionElf() > 2)
 	{
 		text("Friend to the elves how can I assist you?",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 		text("                                                             ",13,9,white);
 		return false;
 	}
 	else return false;
 }
-//bool fireelf::talkto(player *p2)
+//bool fireelf::TalkTo(player *player)
 //{
 //	return true;
 //}
-//bool iceelf::talkto(player *p2)
+//bool iceelf::TalkTo(player *player)
 //{
 //	return true;
 //}
-//bool ranger::talkto(player *p2)
+//bool ranger::TalkTo(player *player)
 //{
 //	return true;
 //}
-bool Orc::talkto(Player *p2)
+bool Orc::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -293,12 +293,12 @@ bool Orc::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -314,47 +314,47 @@ bool Orc::talkto(Player *p2)
 	}
 
 
-	if(p2->GetReactionOrc() < 2)
+	if(player->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->GetPauseDuration());	
+		Sleep(player->GetPauseDuration());	
 		return true;
 	}
-	if(p2->GetReactionOrc() == 2)
+	if(player->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->GetReactionOrc() > 2)
+	if(player->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 		text("                                                             ",13,9,white);
 		return false;
 	}
 	else return false;	
 }
 
-bool OrcSorceror::talkto(Player *p2)
+bool OrcSorceror::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -374,12 +374,12 @@ bool OrcSorceror::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -395,46 +395,46 @@ bool OrcSorceror::talkto(Player *p2)
 	}
 
 
-	if(p2->GetReactionOrc() < 2)
+	if(player->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->GetPauseDuration());	
+		Sleep(player->GetPauseDuration());	
 		return true;
 	}
-	if(p2->GetReactionOrc() == 2)
+	if(player->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->GetReactionOrc() > 2)
+	if(player->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 		return false;
 	}
 	else return false;
 }
 
-bool OrcSoldier::talkto(Player *p2)
+bool OrcSoldier::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 4 + 1;
@@ -455,12 +455,12 @@ bool OrcSoldier::talkto(Player *p2)
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -473,62 +473,62 @@ bool OrcSoldier::talkto(Player *p2)
 		return true;
 		break;		
 	}
-	if(p2->GetReactionOrc() < 2)
+	if(player->GetReactionOrc() < 2)
 	{
 		text("Miserable wretch, today you die!",13,9,white);
-		Sleep(p2->GetPauseDuration());	
+		Sleep(player->GetPauseDuration());	
 		return true;
 	}
-	if(p2->GetReactionOrc() == 2)
+	if(player->GetReactionOrc() == 2)
 	{
 		switch(num)
 		{	
 		case 1:
 			text("Normally, I'd cut you human.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 2:
 			text("Never forget the power of the ORCS!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 3:
 			text("I once killed 3 elves in 1 day!",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		case 4:
 			text("Death... is glorious.",13,9,white);
-			Sleep(p2->GetPauseDuration());
+			Sleep(player->GetPauseDuration());
 			break;
 		}
 		text("                                                             ",13,9,white);
 		return false;
 	}
-	if(p2->GetReactionOrc() > 2)
+	if(player->GetReactionOrc() > 2)
 	{
 		text("Fare thee well elfslayer.",13,9,white);
-		Sleep(p2->GetPauseDuration());
+		Sleep(player->GetPauseDuration());
 		return false;
 	}
 	else return false;
 }
-//bool fireorc::talkto(player *p2)
+//bool fireorc::TalkTo(player *player)
 //{
 //	return true;
 //}
-//bool iceorc::talkto(player *p2)
+//bool iceorc::TalkTo(player *player)
 //{
 //	return true;
 //}
-//bool wanderer::talkto(player *p2)
+//bool wanderer::TalkTo(player *player)
 //{
 //	return true;
 //}
-bool Human::talkto(Player *p2)
+bool Human::TalkTo(Player *player)
 {
 	int choice;
 	int num = rand() % 8 + 1;
 	int X = 13;
-	int Y = p2->RaceKillCounts.HumanKillCount * 100;
+	int Y = player->RaceKillCounts.HumanKillCount * 100;
 	bool bSel;
 	COORD CursPos;
 
@@ -536,7 +536,7 @@ bool Human::talkto(Player *p2)
 	CursPos.X = 2;
 	CursPos.Y = 12;
 	bSel = false;
-	string intro = "A " + this->getname() + " stands before you.";
+	string intro = "A " + this->GetName() + " stands before you.";
 
 	text(intro,13,11,white);
 	text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -546,12 +546,12 @@ bool Human::talkto(Player *p2)
 	text("|         |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("\\---------/",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	text("           ",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DrawCurs(CursPos,yellow,175);
+	DrawCursor(CursPos,yellow,175);
 	do
 	{
-		if(MoveCurs(CursPos,bSel,12,X))
+		if(MoveCursor(CursPos,bSel,12,X))
 		{
-			DrawCurs(CursPos,yellow,175);
+			DrawCursor(CursPos,yellow,175);
 		}
 		text(" ", 79, 23,white);
 	}while(!bSel);
@@ -564,17 +564,17 @@ bool Human::talkto(Player *p2)
 		return true;
 		break;		
 	}
-	if(p2->GetReactionHuman() < 2)
+	if(player->GetReactionHuman() < 2)
 	{
 		text("Alright! Your head will bring me ",13,9,white); cout << Y << "Gold!!!";
-		Sleep(p2->GetPauseDuration());	
+		Sleep(player->GetPauseDuration());	
 		return true;
 	}
-	if(p2->GetReactionHuman() == 2)
+	if(player->GetReactionHuman() == 2)
 	{
 		return false;
 	}
-	if(p2->GetReactionHuman() > 2)
+	if(player->GetReactionHuman() > 2)
 	{
 		switch(num)
 		{	

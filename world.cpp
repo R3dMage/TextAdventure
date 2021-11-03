@@ -23,7 +23,7 @@ World::~World()
 {
 }
 
-void World::Locations(string Map, Player *player,bool load)
+void World::Locations(string map, Player *player,bool load)
 {	
 	unsigned int i;
 	int Xmax = 0;
@@ -43,7 +43,7 @@ void World::Locations(string Map, Player *player,bool load)
 	string d3;
 	string summary;
 	string szHolder;
-	string oldMap = Map;
+	string oldMap = map;
 	string MapName;
 	string ShopType;
 	string szPlot;
@@ -115,7 +115,7 @@ void World::Locations(string Map, Player *player,bool load)
 
 	if(load)
 	{
-		load1(player,Globals,inv,spells,Map);
+		load1(player,Globals,inv,spells,map);
 	}
 
 
@@ -136,7 +136,7 @@ void World::Locations(string Map, Player *player,bool load)
 		spells.push_back(new BriarBush);
 		spells.push_back(new Blizzard);
 		spells.push_back(new PerfectStorm);
-		Map = "island1";
+		map = "island1";
 		player->SetMaxKa(100);
 		player->SetKa(100);
 		player->SetPositionX(5);
@@ -154,7 +154,7 @@ void World::Locations(string Map, Player *player,bool load)
 	
 
 	ifstream fin;									//fin is what I use as an ifstream operator
-	MapName = "./data/" + Map + ".tgm";				//This adds the extensions we need to access Map Files
+	MapName = "./data/" + map + ".tgm";				//This adds the extensions we need to access Map Files
 	fin.open(MapName.c_str());
 	if(fin.fail())
 	{
@@ -164,7 +164,7 @@ void World::Locations(string Map, Player *player,bool load)
 	}
 	fin.close();
 	LoadMap(Vmap,MapName,Xmax,Ymax,bTown);		//This function loads all the map places into the V(irtual)map in memory
-	SetupNcps(encounter,Map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);	//This function sets up the enemies according to the map
+	SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);	//This function sets up the enemies according to the map
 	if(MusicNameComparer(musicFileName,mapMusic))
 		mapMusic = musicFileName;
 	SetMusic(mapMusic,player);
@@ -198,10 +198,10 @@ void World::Locations(string Map, Player *player,bool load)
 		{
 			player->SetPositionX(Vmap[T]->GetNeoX());
 			player->SetPositionY(Vmap[T]->GetNeoY());
-			Map = Vmap[T]->GetMapChangeName();
-			MapName = "./data/" + Map + ".tgm";
+			map = Vmap[T]->GetMapChangeName();
+			MapName = "./data/" + map + ".tgm";
 			LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
-			SetupNcps(encounter,Map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
+			SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
 			if(MusicNameComparer(musicFileName,mapMusic))
 				mapMusic = musicFileName;
 			SetMusic(mapMusic,player);
@@ -213,22 +213,22 @@ void World::Locations(string Map, Player *player,bool load)
 		{
 			clear();
 			player->DisplayInfo();
-			plot(Map,Vmap[T]->GetPlotText());
+			plot(map,Vmap[T]->GetPlotText());
 		}
 		if(Vmap[T]->GetIsShop())
 		{
 			ShopType = Vmap[T]->GetShopName();
 			if(ShopType == "armory")
-				Armory(inv,player,Map);
+				Armory(inv,player,map);
 			if(ShopType == "inn")
-				Inn(player,Map);
+				Inn(player,map);
 			if(ShopType == "magic")
-				MagicShop(inv,player,Map);
+				MagicShop(inv,player,map);
 			if(ShopType == "buy")
-				PawnShop(player,inv,Map);
+				PawnShop(player,inv,map);
 		}		
 
-		mk[0]->loadPos(Xmax,Ymax);
+		mk[0]->LoadPosition(Xmax,Ymax);
 
 //=============================================================================================================
 //										loads up the proper summaries
@@ -294,7 +294,7 @@ void World::Locations(string Map, Player *player,bool load)
 		text("x",4,22,white);
 		num(Ymax,5,22,white);
 		text("          ",2,19,white);
-		text(Map,2,19,yellow);			
+		text(map,2,19,yellow);			
 //		num(T,2,20,yellow);			T = 0;
 //		num(static_cast<int>(encounter.size()),2,21,blue);
 //=============================================================================================================
@@ -359,7 +359,7 @@ void World::Locations(string Map, Player *player,bool load)
 //		This function clears the items that WERE on the ground		
 		clrtop(2);
 //		Function that displays what's on the ground =)
-		ground(Globals,Map,player->GetPositionX(),player->GetPositionY());
+		ground(Globals,map,player->GetPositionX(),player->GetPositionY());
 
 
 		while(!bSel)
@@ -376,10 +376,10 @@ void World::Locations(string Map, Player *player,bool load)
 				//   Basically, Press Esc for the menu
 		{
 			//clear();                    For smooth look remarked out on 2/15/06
-			HandleMainMenu(player,spells,Globals,inv,Map);
+			HandleMainMenu(player,spells,Globals,inv,map);
 			if(player->GetIsLoaded())
 			{
-				MapName = "./data/" + Map + ".tgm";						//This adds the extensions we need to access Map Files
+				MapName = "./data/" + map + ".tgm";						//This adds the extensions we need to access Map Files
 				fin.open(MapName.c_str());
 				if(fin.fail())
 				{
@@ -389,7 +389,7 @@ void World::Locations(string Map, Player *player,bool load)
 				}
 				
 				LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
-				SetupNcps(encounter,Map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
+				SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
 				if(MusicNameComparer(musicFileName,mapMusic))
 					mapMusic = musicFileName;
 				SetMusic(mapMusic,player);
@@ -398,7 +398,7 @@ void World::Locations(string Map, Player *player,bool load)
 			choice = 0;
 		}
 //=======[Function to check, and change plots]======================
-		player->Plots(Map);
+		player->Plots(map);
 //===============================================================================================
 //							This section will be checking player location
 //	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
@@ -407,16 +407,16 @@ void World::Locations(string Map, Player *player,bool load)
 //===============================================================================================
 
 		
-		if(Map == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
+		if(map == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
 		{
 			text("You are not yet powerful enough to enter here.",13,11,white);
 			Sleep(3000);
-			Map = "field";
+			map = "field";
 			player->SetPositionX(17);
 			player->SetPositionY(1);
-			MapName = "./data/" + Map + ".tgm";
+			MapName = "./data/" + map + ".tgm";
 			LoadMap(Vmap,MapName,Xmax,Ymax,bTown);
-			SetupNcps(encounter,Map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
+			SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
 			if(MusicNameComparer(musicFileName,mapMusic))
 				mapMusic = musicFileName;
 			SetMusic(mapMusic,player);
@@ -432,20 +432,20 @@ void World::Locations(string Map, Player *player,bool load)
 		{
 			for(i = 0; i < encounter.size();i++)
 			{
-				if(player->GetPositionX() == encounter[i]->getX() && player->GetPositionY() == encounter[i]->getY() && encounter[i]->gethp() != 0)
+				if(player->GetPositionX() == encounter[i]->GetX() && player->GetPositionY() == encounter[i]->GetY() && encounter[i]->GetHitPoints() != 0)
 				{			
-					if(!encounter[i]->getTalkTo())
-						Fight(player,encounter[i],inv,Globals,spells,Map);	
+					if(!encounter[i]->GetTalkTo())
+						Fight(player,encounter[i],inv,Globals,spells,map);	
 					else
 					{
 						//clear();
 						player->DisplayInfo();
-						if(encounter[i]->talkto(player))
-							Fight(player,encounter[i],inv,Globals,spells,Map);
+						if(encounter[i]->TalkTo(player))
+							Fight(player,encounter[i],inv,Globals,spells,map);
 					}
-					if(encounter[i]->gethp() <= 0)							
+					if(encounter[i]->GetHitPoints() <= 0)							
 					{
-						Globals.push_back(encounter[i]->body(Map));		//Drops enemy unique item if the enemy is dead
+						Globals.push_back(encounter[i]->Body(map));		//Drops enemy unique item if the enemy is dead
 					}
 					CheckMagic(player,spells);
 //===========================================================================================================
@@ -454,16 +454,16 @@ void World::Locations(string Map, Player *player,bool load)
 //===========================================================================================================
 					for(i = 0; i < encounter.size();i++)
 					{
-						if(encounter[i]->gethp() <= 0 && !encounter[i]->getdontmove())
+						if(encounter[i]->GetHitPoints() <= 0 && !encounter[i]->GetDontMove())
 						{				
 							ReplenishEnemy(encounter,i);							
-							encounter[encounter.size()-1]->loadPos(Xmax,Ymax);
+							encounter[encounter.size()-1]->LoadPosition(Xmax,Ymax);
 						}
 					}
-					if(mk[0]->gethp() <= 0)
+					if(mk[0]->GetHitPoints() <= 0)
 					{
 						ReplenishEnemy(mk,i);							
-						mk[mk.size()-1]->loadPos(Xmax,Ymax);
+						mk[mk.size()-1]->LoadPosition(Xmax,Ymax);
 					}
 
 				}
@@ -472,8 +472,8 @@ void World::Locations(string Map, Player *player,bool load)
 		if(player->GetIsLoaded())
 			player->SetIsLoaded(false);
 
-		if(mk[0]->getX() == player->GetPositionX() && mk[0]->getY() == player->GetPositionY() && Map == "field2")
-			Fight(player,mk[0],inv,Globals,spells,Map);
+		if(mk[0]->GetX() == player->GetPositionX() && mk[0]->GetY() == player->GetPositionY() && map == "field2")
+			Fight(player,mk[0],inv,Globals,spells,map);
 
 
 //===============================================================================================
@@ -1187,7 +1187,7 @@ void World::ReplenishEnemy(vector<Creature*> &enemies, int index)
 	enemies[index] = temp;							//Moves saved last into the slot of slain enemy
 	temp = enemies[enemies.size()-1];				//Saves off slain enemy to use its replenish function
 	enemies.pop_back();
-	enemies.push_back(temp->replenish());			//Dynamically replenishes the enemy with a new one!
+	enemies.push_back(temp->Replenish());			//Dynamically replenishes the enemy with a new one!
 
 //  Well not too dynamically. It's all taken care of by the classes replenish funcion which just returns a new
 //  Member of its own class. What fun.
@@ -1318,25 +1318,25 @@ void World::Move(vector<Creature*> &encounter,int Xmax, int Ymax)
 	for(i=0;i < encounter.size();i++)
 		{
 			RND = rand()%4+1;
-			if(encounter[i]->getdontmove())
+			if(encounter[i]->GetDontMove())
 				RND = 5;
 			switch(RND)
 			{
 			case 1:
-				encounter[i]->setX(encounter[i]->getX()+1);
-				if(encounter[i]->getX() > Xmax)
-					encounter[i]->setX(Xmax);
+				encounter[i]->SetX(encounter[i]->GetX()+1);
+				if(encounter[i]->GetX() > Xmax)
+					encounter[i]->SetX(Xmax);
 				break;
 			case 2:
-				encounter[i]->setX(encounter[i]->getX()-1);
+				encounter[i]->SetX(encounter[i]->GetX()-1);
 				break;
 			case 3:
-				encounter[i]->setY(encounter[i]->getY()+1);
-				if(encounter[i]->getY() > Ymax)
-					encounter[i]->setY(Ymax);
+				encounter[i]->SetY(encounter[i]->GetY()+1);
+				if(encounter[i]->GetY() > Ymax)
+					encounter[i]->SetY(Ymax);
 				break;
 			case 4:
-				encounter[i]->setY(encounter[i]->getY()-1);
+				encounter[i]->SetY(encounter[i]->GetY()-1);
 				break;
 			default:
 				break;

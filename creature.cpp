@@ -10,14 +10,14 @@
 
 Creature::Creature()
 {
-	setdamage(1);
-	setdamMod(1);
-	setmhp(10);
-	sethp(10);
-	setevade(5);
-	setexp(1);
-	setgold(0);
-	setname("ProblemLoading");
+	SetDamage(1);
+	SetDamageModifier(1);
+	SetMaxHitPoints(10);
+	SetHitPoints(10);
+	SetEvade(5);
+	SetExperience(1);
+	SetGold(0);
+	SetName("ProblemLoading");
 	Defense = 0;
 	Ka=MaxKa=  0;
 	State = 0;
@@ -31,11 +31,11 @@ Creature::Creature()
 	Music = "battle.mp3";
 }
 
-void Creature::banter()
+void Creature::Banter()
 {
 }
 
-void Creature::info()
+void Creature::DisplayInfo()
 {
 	#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 	text(Name,13,1,white);
@@ -49,28 +49,28 @@ void Creature::info()
 
 }
 
-void Creature::attack(Player *p2,vector<Item*> &pstuff,vector<Item*> &stuff,string Map)
+void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
 {
 	int Damage;
 	Armor *arm;
 
-	arm = p2->GetArmor();
+	arm = player->GetArmor();
 	Damage = rand()% Damage + DamageModifier;
 	Damage -= arm->GetDefenseModifier();
 	if(Damage < 0)
 		Damage = 0;
-	p2->SetHitPoints(p2->GetCurrentHitPoints()-Damage);
-	text(getname(),13,11,white);
+	player->SetHitPoints(player->GetCurrentHitPoints()-Damage);
+	text(GetName(),13,11,white);
 	cout << " attacks you!";
-	Sleep(p2->GetPauseDuration());
+	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << Damage << "              ";
-	Creature::dam(Damage);
-	p2->DisplayInfo();
+	Creature::DisplayDamage(Damage);
+	player->DisplayInfo();
 	clear();
 }
 
-void Creature::win(Player *p2)
+void Creature::Win(Player *player)
 {
 	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
@@ -78,203 +78,203 @@ void Creature::win(Player *p2)
 	text("Exp : ",13,12,green);
 	num(Gold,20,11,green);
 	num(Experience,20,12,green);
-	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + Gold);
-	p2->SetExperience(p2->GetExperience() + Experience);
-	p2->DisplayInfo();
+	player->SetTotalKills(player->GetTotalKills() + 1);
+	player->SetGold(player->GetGold() + Gold);
+	player->SetExperience(player->GetExperience() + Experience);
+	player->DisplayInfo();
 	text("",79,23,white);
 	Sleep(3000);
 
 }
-string Creature::getweakness()
+string Creature::GetWeakness()
 {
 	return Weakness;
 }
-string Creature::gettype()
+string Creature::GetType()
 {
 	return Type;
 }
-void Creature::setdamage(int num)
+void Creature::SetDamage(int num)
 {
 	if(num < 0){num = 0;}
 	Damage = num;
 }
-void Creature::setdamMod(int num)
+void Creature::SetDamageModifier(int num)
 {
 	if(num < 0){num = 0;}
 	DamageModifier = num;
 }
-void Creature::setevade(int num)
+void Creature::SetEvade(int num)
 {
 	if(num < 0){num = 0;}
 	Evade = num;
 }
-void Creature::setexp(int num)
+void Creature::SetExperience(int num)
 {
 	if(num < 0){num = 0;}
 	Experience = num;
 }
-void Creature::setgold(int num)
+void Creature::SetGold(int num)
 {
 	if(num < 0){num = 0;}
 	Gold = num;
 }
-void Creature::sethp(int num)
+void Creature::SetHitPoints(int num)
 {
 	if(num < 0){num = 0;}
 	if(num > MaxHP){num = MaxHP;}
 	HitPoints = num;
 }
-void Creature::setlevel(int num)
+void Creature::SetLevel(int num)
 {
 	if(num < 0){num = 0;}
 	Level = num;
 }
-void Creature::setmhp(int num)
+void Creature::SetMaxHitPoints(int num)
 {
 	if(num < 0){num = 0;}
 	MaxHP = num;
 	HitPoints = MaxHP;
 }
-void Creature::setX(int num)
+void Creature::SetX(int num)
 {
 	if(num < 1)
 		num = 1;
 	X = num;
 }
-void Creature::setY(int num)
+void Creature::SetY(int num)
 {
 	if(num < 1)
 		num = 1;
 	Y = num;
 }
-void Creature::setname(string szName)
+void Creature::SetName(string szName)
 {
 	Name = szName;
 }
-void Creature::setka(int N)
+void Creature::SetKa(int N)
 {
 	Ka = N;
 	if(Ka > MaxKa)
 		Ka = MaxKa;
 }
-int Creature::getdamage()
+int Creature::GetDamage()
 {
 	return Damage;
 }
-int Creature::getdamMod()
+int Creature::GetDamageModifier()
 {
 	return DamageModifier;
 }
-int Creature::getdef()
+int Creature::GetDefense()
 {
 	return Defense;
 }
-int Creature::getevade()
+int Creature::GetEvade()
 {
 	return Evade;
 }
-int Creature::getexp()
+int Creature::GetExperience()
 {
 	return Experience;
 }
-int Creature::getgold()
+int Creature::GetGold()
 {
 	return Gold;
 }
-int Creature::gethp()
+int Creature::GetHitPoints()
 {
 	return HitPoints;
 }
-int Creature::getmhp()
+int Creature::GetMaxHitPoints()
 {
 	return MaxHP;
 }
-int Creature::getlevel()
+int Creature::GetLevel()
 {
 	return Level;
 }
-int Creature::getX()
+int Creature::GetX()
 {
 	return X;
 }
-int Creature::getY()
+int Creature::GetY()
 {
 	return Y;
 }
-string Creature::getname()
+string Creature::GetName()
 {
 	return Name;
 }
-void Creature::setTalkTo(bool T)
+void Creature::SetTalkTo(bool T)
 {
 	CanTalkTo = T;
 }
-bool Creature::getTalkTo()
+bool Creature::GetTalkTo()
 {
 	return CanTalkTo;
 }
-void Creature::setrunAway(bool R)
+void Creature::SetRunAway(bool R)
 {
 	RunAway = R;
 }
-bool Creature::getrunAway()
+bool Creature::GetRunAway()
 {
 	return RunAway;
 }
-bool Creature::getdontmove()
+bool Creature::GetDontMove()
 {
 	return DontMove;
 }
-void Creature::setstate(int N)
+void Creature::SetState(int N)
 {
 	State = N;
 }
-int Creature::getstate()
+int Creature::GetState()
 {
 	return State;
 }
-int Creature::getmka()
+int Creature::GetMaxKa()
 {
 	return MaxKa;
 }
-int Creature::getka()
+int Creature::GetKa()
 {
 	return Ka;
 }
-int Creature::getmagdef()
+int Creature::GetMagicDefense()
 {
 	return MagicDefense;
 }
-void Creature::setmagdef(int M)
+void Creature::SetMagicDefense(int M)
 {
 }
-void Creature::setmap(string M)
+void Creature::SetMap(string M)
 {
 	Map = M;
 }
-string Creature::getmap()
+string Creature::GetMap()
 {
 	return Map;
 }
-void Creature::setdontmove(bool B)
+void Creature::SetDontMove(bool B)
 {
 	DontMove = B;
 }
-void Creature::DrawCurs(COORD pos, WORD color, char curs)
+void Creature::DrawCursor(COORD position, WORD color, char cursor)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(OutputH,color);
-	SetConsoleCursorPosition(OutputH,pos);
+	SetConsoleCursorPosition(OutputH,position);
 
-	cout << curs;
+	cout << cursor;
 }
 
-bool Creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
+bool Creature::MoveCursor(COORD &cursorPosition,bool &wasSelected,int Ymin, int Ymax)
 {
 	INPUT_RECORD InputRecord;
-	COORD OldCursPos = CursPos;
+	COORD OldCursPos = cursorPosition;
 	DWORD Events = 0;
 	HANDLE hInput;
 	bool bCursMov = false;
@@ -286,27 +286,27 @@ bool Creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
 	{
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
 		{
-			if(CursPos.Y < Ymax)
+			if(cursorPosition.Y < Ymax)
 			{
-				CursPos.Y++;
+				cursorPosition.Y++;
                 bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymin;
+				cursorPosition.Y = Ymin;
 				bCursMov = true;
 			}
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
 		{
-			if(CursPos.Y > Ymin)
+			if(cursorPosition.Y > Ymin)
 			{
-				CursPos.Y--;
+				cursorPosition.Y--;
 				bCursMov = true;
 			}
 			else
 			{
-				CursPos.Y = Ymax;
+				cursorPosition.Y = Ymax;
 				bCursMov = true;
 			}
 		}
@@ -314,12 +314,12 @@ bool Creature::MoveCurs(COORD &CursPos,bool &bSelect,int Ymin, int Ymax)
 		{
 			bCursMov = false;
 			//cout << "-";
-			bSelect = true;
+			wasSelected = true;
 		}
 		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
 		{
 			bCursMov = false;
-			bSelect = true;
+			wasSelected = true;
 		}
 	}	
 	if(bCursMov)
@@ -338,7 +338,7 @@ return false;
 
 
 
-void Creature::dam(int D)
+void Creature::DisplayDamage(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -350,7 +350,7 @@ void Creature::dam(int D)
 		text("   ",X-1,9,FOREGROUND_RED);
 	}
 }
-void Creature::cure(int D)
+void Creature::DisplayCure(int D)
 {
 	int X = 13;
 	while(X < 50)
@@ -362,34 +362,34 @@ void Creature::cure(int D)
 	}
 }
 
-bool Creature::dropItem()
+bool Creature::DroppedItem()
 { return false; }
 
 
-Item* Creature::token(string Map)
+Item* Creature::Token(string Map)
 { Item *flag = new Item; return flag;}
 
-void Creature::loadPos(int X, int Y)
+void Creature::LoadPosition(int X, int Y)
 {
 	if(!DontMove)
 	{
 		int Rx = rand()%X + 1;
 		int Ry = rand()%Y + 1;
-		setX(Rx);
-		setY(Ry); 
+		SetX(Rx);
+		SetY(Ry); 
 	}
 	else
 	{
-		setX(X);
-		setY(Y);
+		SetX(X);
+		SetY(Y);
 	}
 }
 
-bool Creature::talkto(Player *p2)
+bool Creature::TalkTo(Player *player)
 {
 	return false;
 }
-char * Creature::getMusic()
+char * Creature::GetMusic()
 {
 	return Music;
 }

@@ -114,17 +114,17 @@ void BriarBush::Cast(Player *p2,Creature *enemy)
 	int Damage;
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Blizzard::Blizzard()
@@ -143,17 +143,17 @@ void Blizzard::Cast(Player *p2,Creature *enemy)
 	int Damage;
 	Damage = rand()%40 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 PerfectStorm::PerfectStorm()
@@ -171,17 +171,17 @@ void PerfectStorm::Cast(Player *p2,Creature *enemy)
 	int Damage;	
 	Damage = rand()%100 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);	
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 DrainLife::DrainLife()
@@ -201,15 +201,15 @@ void DrainLife::Cast(Player *p2, Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);	
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 	Sleep(p2->GetPauseDuration());
 	p2->SetHitPoints(p2->GetCurrentHitPoints() + Damage);
 	text("You were healed: ",13,8,white); cout << Damage;
@@ -229,19 +229,19 @@ void StealKa::Cast(Player *p2,Creature *enemy)
 	int X = rand()%100 + 1;
 	int multi = p2->GetMind()/7;
 	int Damage;
-	int KA = enemy->getka();
+	int KA = enemy->GetKa();
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%15 + 5;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	enemy->setka(KA - Damage);
+	enemy->SetKa(KA - Damage);
 	text("                                                                ",13,11,white);
 	p2->SetKa(p2->GetCurrentKa() + Damage);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 FireArrow::FireArrow()
 {
@@ -259,16 +259,16 @@ void FireArrow::Cast(Player *p2,Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%30 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);	
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Fire::Fire()
@@ -287,16 +287,16 @@ void Fire::Cast(Player *p2,Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Lava::Lava()
@@ -315,16 +315,16 @@ void Lava::Cast(Player *p2, Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%150 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	Damage -= enemy->getdef();
-	enemy->sethp(enemy->gethp() - Damage);		
+	Damage -= (enemy->GetMaxKa() / 4);
+	Damage -= enemy->GetDefense();
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Might::Might()
@@ -354,7 +354,7 @@ void Dispel::Cast(Player *p2,Creature *enemy)
 {
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
-	enemy->setstate(0);
+	enemy->SetState(0);
 }
 Shock::Shock()
 {
@@ -372,15 +372,15 @@ void Shock::Cast(Player * p2, Creature * enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 10;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);			
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);			
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 AcidRain::AcidRain()
 {
@@ -398,15 +398,15 @@ void AcidRain::Cast(Player *p2, Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%20 + 20;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 LightningBolt::LightningBolt()
 {
@@ -424,15 +424,15 @@ void LightningBolt::Cast(Player *p2,Creature *enemy)
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	Damage = rand()%50 + 50;
 	Damage *= multi;
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	DisplayIncantation();
-	Damage -= (enemy->getmka() / 4);
-	enemy->sethp(enemy->gethp() - Damage);	
+	Damage -= (enemy->GetMaxKa() / 4);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 Poison::Poison()
 {
@@ -449,14 +449,14 @@ void Poison::Cast(Player *p2,Creature *enemy)
 	int Damage = rand()% 10 + 10;
 	p2->SetKa(p2->GetCurrentKa() - Cost);
 	DisplayIncantation();
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	enemy->sethp(enemy->gethp() - Damage);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
-	enemy->setstate(3);
+	enemy->DisplayDamage(Damage);
+	enemy->SetState(3);
 }
 RaiseSkeleton::RaiseSkeleton()
 {
@@ -475,13 +475,13 @@ void RaiseSkeleton::Cast(Player * p2,Creature *enemy)
 	Damage = rand()%50 + 50;
 	Damage *= multi;
 	DisplayIncantation();
-	Damage -= (enemy->getdef());
-	enemy->sethp(enemy->gethp() - Damage);
+	Damage -= (enemy->GetDefense());
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
-	enemy->setstate(2);
+	enemy->DisplayDamage(Damage);
+	enemy->SetState(2);
 }
 DarkStrike::DarkStrike()
 {
@@ -500,13 +500,13 @@ void DarkStrike::Cast(Player *p2,Creature *enemy)
 	Damage = rand()%50 + 50;
 	Damage *= multi;
 	DisplayIncantation();
-	if(X < enemy->getmagdef())
+	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
-	enemy->sethp(enemy->gethp() - Damage);
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
 	text("                                                                ",13,11,white);
 	text("Your Damage: ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Critical::Critical()
@@ -520,13 +520,13 @@ Critical::Critical()
 void Critical::Cast(Player *p2,Creature *enemy)
 {
 	int X = rand()%100 + 1;
-	int Damage = enemy->gethp() - enemy->gethp()/8;
+	int Damage = enemy->GetHitPoints() - enemy->GetHitPoints()/8;
 	p2->SetKa(p2->GetCurrentKa() - Cost);
-	enemy->sethp(enemy->gethp()/8);
+	enemy->SetHitPoints(enemy->GetHitPoints()/8);
 	text("Your Damage: ",13,11,white);
 	text("                                                                ",13,11,white);
 	cout << Damage;
-	enemy->dam(Damage);
+	enemy->DisplayDamage(Damage);
 }
 
 Control::Control()
