@@ -57,7 +57,7 @@ private:
 	void OptionsMenu(Player *, vector<Item*> &,vector<Item*> &,vector<Magic*> &, string &);
 	bool MoveCursor(COORD &cursorPosition, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void DrawCursor(COORD pos, WORD color, char curs);
+	void DrawCursor(COORD pos, WORD color, unsigned char curs);
 	void CheckMagic(Player *,vector<Magic*> &);
 	bool HasMagic(vector<Magic*>,string);
 	Item Ebody(Creature *guy, string map);

@@ -489,7 +489,7 @@ void World::Locations(string map, Player *player,bool load)
 
 
 //				Function to draw the cusor to the screen
-void World::DrawCursor(COORD pos, WORD color, char curs)
+void World::DrawCursor(COORD pos, WORD color, unsigned char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
