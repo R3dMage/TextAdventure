@@ -1322,7 +1322,7 @@ Item* StormGiant::Token(string map)
 {
 	int R = rand()% 4 + 1;
 		Item *token = new Item;
-	if(R = 4)
+	if(R == 4)
 		token = loadArmor("Storm Shroud");
 	if(R < 4)
 		token = loadWeapon("StormSword");
