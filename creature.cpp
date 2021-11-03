@@ -258,7 +258,7 @@ void Creature::SetDontMove(bool B)
 {
 	DontMove = B;
 }
-void Creature::DrawCursor(COORD position, WORD color, char cursor)
+void Creature::DrawCursor(COORD position, WORD color, unsigned char cursor)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);

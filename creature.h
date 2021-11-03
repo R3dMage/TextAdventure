@@ -106,6 +106,6 @@ protected:
 	char *  Music;
 
 	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
-	void DrawCursor(COORD pos, WORD color, char curs);
+	void DrawCursor(COORD pos, WORD color, unsigned char curs);
 };
 #endif 
