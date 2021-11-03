@@ -156,7 +156,7 @@ void clritems()
 		Y++;
 	}
 }
-void num(int num,int X,int Y,WORD color)
+void num(int num, short X, short Y,WORD color)
 {
 	HANDLE OutputH;
 	COORD pos = {X, Y};

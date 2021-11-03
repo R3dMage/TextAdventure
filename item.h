@@ -9,7 +9,7 @@
 using namespace std;
 
 void text(string,short,short,WORD);
-void num(int,int,int,WORD);
+void num(int, short X, short Y,WORD);
 
 class Item {
 public:

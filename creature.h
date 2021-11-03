@@ -13,7 +13,7 @@ using namespace std;
 Item* loaditem(string name);
 void text(string,short,short,WORD);
 void clear();
-void num(int num,int X, int Y,WORD color);
+void num(int num, short X, short Y,WORD color);
 
 class Creature{
 public:
