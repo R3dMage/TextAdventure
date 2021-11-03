@@ -13,8 +13,8 @@
 #include "Armor.h"
 
 string rotate(string);
-void text(string,int,int,WORD);
-void num(int num,int X, int Y,WORD color);
+void text(string,short,short,WORD);
+void num(int num, short X, short Y,WORD color);
 void clear();
 Armor* loadArmor(string);
 Weapon* loadWeapon(string);

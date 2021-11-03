@@ -6,8 +6,8 @@
 #include "CFmod.h"
 #include "Fmod.h"
 
-void num(int num,int X, int Y,WORD color);
-void text(string,int,int,WORD);
+void num(int num, short X, short Y,WORD color);
+void text(string, short, short, WORD);
 void clear();
 void clrbottom();
 void clritems();
@@ -57,7 +57,7 @@ private:
 	void OptionsMenu(Player *, vector<Item*> &,vector<Item*> &,vector<Magic*> &, string &);
 	bool MoveCursor(COORD &cursorPosition, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void DrawCursor(COORD pos, WORD color, char curs);
+	void DrawCursor(COORD pos, WORD color, unsigned char curs);
 	void CheckMagic(Player *,vector<Magic*> &);
 	bool HasMagic(vector<Magic*>,string);
 	Item Ebody(Creature *guy, string map);

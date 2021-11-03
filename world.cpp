@@ -489,7 +489,7 @@ void World::Locations(string map, Player *player,bool load)
 
 
 //				Function to draw the cusor to the screen
-void World::DrawCursor(COORD pos, WORD color, char curs)
+void World::DrawCursor(COORD pos, WORD color, unsigned char curs)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -648,7 +648,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		asell2 = loadArmor("Leather");
 		asell3 = loadArmor("Lt.Chain");
 	}
-	if(map == "elvencity")
+	else if(map == "elvencity")
 	{
 		wsell1 = loadWeapon("+1 Rapier");
 		wsell2 = loadWeapon("+1Longsword");
@@ -657,7 +657,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		asell2 = loadArmor("Leather");
 		asell3 = loadArmor("Elvenchain");
 	}
-	if(map == "marintown")
+	else if(map == "marintown")
 	{
 		wsell1 = loadWeapon("Scimitar");
 		wsell2 = loadWeapon("Claymore");
@@ -666,7 +666,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		asell2 = loadArmor("Lt.Chain");
 		asell3 = loadArmor("SteelMail");
 	}
-	if(map == "yamashi")
+	else if(map == "yamashi")
 	{
 		wsell1 = loadWeapon("Spitfire");
 		wsell2 = loadWeapon("Hammer");
@@ -674,6 +674,15 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		asell1 = loadArmor("Leather");
 		asell2 = loadArmor("Lt.Chain");
 		asell3 = loadArmor("SteelMail");
+	}
+	else
+	{
+		wsell1 = loadWeapon("Rapier");
+		wsell2 = loadWeapon("Longsword");
+		wsell3 = loadWeapon("Scimitar");
+		asell1 = loadArmor("Padded");
+		asell2 = loadArmor("Leather");
+		asell3 = loadArmor("Lt.Chain");
 	}
 
 	while(!bEsc)
@@ -911,7 +920,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		isell5 = loaditem("Potion");
 		isell6 = loaditem("Potion");
 	}
-	if(map == "elvencity")
+	else if(map == "elvencity")
 	{
 		isell1 = loaditem("Potion");
 		isell2 = loaditem("Potion");
@@ -921,7 +930,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		isell6 = loaditem("Refresh");
 	}
 
-	if(map == "marintown")
+	else if(map == "marintown")
 	{
 		isell1 = loaditem("Potion");
 		isell2 = loaditem("Potion2");
@@ -931,7 +940,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		isell6 = loaditem("RedVial");
 	}
 
-	if(map == "yamashi")
+	else if(map == "yamashi")
 	{
 		isell1 = loaditem("Potion2");
 		isell2 = loaditem("Potion3");
@@ -940,6 +949,16 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		isell5 = loaditem("Refresh");
 		isell6 = loaditem("BlueVial");
 	}
+	else
+	{
+		isell1 = loaditem("Potion");
+		isell2 = loaditem("Potion");
+		isell3 = loaditem("Potion");
+		isell4 = loaditem("Potion");
+		isell5 = loaditem("Potion");
+		isell6 = loaditem("Potion");
+	}
+
 	while(!bEsc)
 	{		
 		
