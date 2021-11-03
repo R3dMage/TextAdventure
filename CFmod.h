@@ -1,7 +1,9 @@
 #ifndef _CFMOD_H
 #define _CFMOD_H
 
+#pragma warning( disable : 26812)
 #include "fmod.hpp"
+#pragma warning( default : 26812)
 
 // This class allows you to initialize, load and play a MP3 or WAV sound
 class CFmod {
