@@ -14,7 +14,9 @@ public:
 
 	~CFmod();
 
-	bool Init(const char*);
+	void Init();
+
+	bool LoadSong(const char *strName);
 
 	void PlaySong();
 
@@ -39,8 +41,6 @@ private:
 	FMOD::Channel *m_soundChannel;
 
 	void CheckError(FMOD_RESULT result);
-
-	bool LoadSong(const char *strName);
 
 	signed char m_loop;
 };
