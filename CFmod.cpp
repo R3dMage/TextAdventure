@@ -38,7 +38,7 @@ CFmod::~CFmod()
 	FreeSoundSystem();
 }
 
-bool CFmod::Init(const char *strName)
+void CFmod::Init()
 {
 
 	// ==========================================================================================
@@ -51,16 +51,15 @@ bool CFmod::Init(const char *strName)
 	
 	// Initialize our FMod Sound System with good quality sound and a global focus
 	FMOD_RESULT result = m_pFmodSystem->init(32, FMOD_INIT_NORMAL, nullptr);
-	CheckError(result);
-
-	// Return the result from when we attempt to load the song
-	return LoadSong(strName);
+	CheckError(result);	
 }
 
 bool CFmod::LoadSong(const char *strName)
 {
 	if(!strName)
 		return false;
+
+	m_pSound->release();
 
 	FMOD_RESULT result = m_pFmodSystem->createSound(strName, FMOD_DEFAULT, 0, &m_pSound);
 	CheckError(result);
