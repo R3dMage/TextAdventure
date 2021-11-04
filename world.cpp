@@ -6,6 +6,7 @@
 #include "World.h"
 #include "Enemies.h"
 #include "Location.h"
+#include "SaveLoadGame.h"
 
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -18,6 +19,8 @@
 World::World(GameDisplay* gameDisplay)
 {
 	Display = gameDisplay;
+	GameSaver = new SaveLoadGame();
+	Menu = new MainMenuSystem(Display, GameSaver);
 }
 
 World::~World()
@@ -116,8 +119,8 @@ void World::Locations(string map, Player *player,bool load)
 
 
 	if(load)
-	{
-		load1(player,Globals,inv,spells,map);
+	{		
+		GameSaver->LoadGame(player,Globals,inv,spells,map, player->GetName());
 	}
 
 
@@ -256,7 +259,7 @@ void World::Locations(string map, Player *player,bool load)
 //============================================================================================================= 
 //									Puts location descriptions on the screen!
 //=============================================================================================================
-		ClearTextBottomRight(11);
+		Menu->ClearTextBottomRight(11);
 		if(description.length() > 65)
 		{
 			DescriptionDisplay(description,d1,d2,d3);
@@ -361,7 +364,7 @@ void World::Locations(string map, Player *player,bool load)
 //		This function clears the items that WERE on the ground		
 		clrtop(2);
 //		Function that displays what's on the ground =)
-		ground(Globals,map,player->GetPositionX(),player->GetPositionY());
+		Display->ground(Globals,map,player->GetPositionX(),player->GetPositionY());
 
 
 		while(!bSel)
@@ -378,7 +381,7 @@ void World::Locations(string map, Player *player,bool load)
 				//   Basically, Press Esc for the menu
 		{
 			//clear();                    For smooth look remarked out on 2/15/06
-			HandleMainMenu(player,spells,Globals,inv,map);
+			Menu->HandleMainMenu(player,spells,Globals,inv,map);
 			if(player->GetIsLoaded())
 			{
 				MapName = "./data/" + map + ".tgm";						//This adds the extensions we need to access Map Files
@@ -489,85 +492,6 @@ void World::Locations(string map, Player *player,bool load)
 //                                              End Function
 //===================================================================================================================
 
-
-//				Function to draw the cusor to the screen
-void World::DrawCursor(COORD pos, WORD color, unsigned char curs)
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH,color);
-	SetConsoleCursorPosition(OutputH,pos);
-
-	cout << curs;
-}
-//				Function to move the cursor up and down
-bool World::MoveCursor(COORD &CursPos,bool &bSelect,bool &bEsc, int Ymin, int Ymax)
-{
-	INPUT_RECORD InputRecord;
-	COORD OldCursPos = CursPos;
-	DWORD Events = 0;
-	HANDLE hInput;
-	bool bCursMov = false;
-	int bKeyDown = 0;
-	hInput = GetStdHandle(STD_INPUT_HANDLE);
-	ReadConsoleInput(hInput, &InputRecord,1,&Events);
-	bKeyDown = InputRecord.Event.KeyEvent.bKeyDown;
-	if(InputRecord.EventType == KEY_EVENT && bKeyDown)
-	{
-		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
-		{
-			if(CursPos.Y < Ymax)
-			{
-				CursPos.Y++;
-                bCursMov = true;
-			}
-			else
-			{
-				CursPos.Y = Ymin;
-				bCursMov = true;
-			}
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
-		{
-			if(CursPos.Y > Ymin)
-			{
-				CursPos.Y--;
-				bCursMov = true;
-			}
-			else
-			{
-				CursPos.Y = Ymax;
-				bCursMov = true;
-			}
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
-		{
-			bCursMov = false;
-			//cout << "-";
-			bSelect = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
-		{
-			bCursMov = false;
-			bSelect = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
-		{
-			bCursMov = false;
-			bSelect = true;
-			bEsc = true;
-		}
-	}	
-	if(bCursMov)
-	{
-		HANDLE	OutputH;
-		OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleCursorPosition(OutputH,OldCursPos);
-		cout << "  ";
-		return true;
-	}
-return false;	
-}
 
 //==========================================================================================================
 //	Function for walking around the map. It returns true if you've moved (that is pressed a movement key)
@@ -696,7 +620,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		funds = true;
 		Display->clear();
 		player->DisplayInfo();
-		DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 
 		text("[-----For Sale-----]",13,1,yellow);
 		text(wsell1->GetName(),15,2,white);		num(wsell1->GetCost(),28,2,white);
@@ -706,13 +630,13 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		text(asell2->GetName(),15,6,white);		num(asell2->GetCost(),28,6,white);
 		text(asell3->GetName(),15,7,white);		num(asell3->GetCost(),28,7,white);
 
-		DrawCursor(CursPos,yellow,175);
+		Menu->DrawCursor(CursPos,yellow,175);
 		wsell1->Display();
 		do
 		{
-			if(MoveCursor(CursPos,bSel,bEsc,2,7))
+			if(Menu->MoveCursor(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCursor(CursPos,yellow,175);
+				Menu->DrawCursor(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -858,12 +782,12 @@ void World::Inn(Player *player,string map)
 		text("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		text("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		DrawCursor(CursPos,yellow,175);
+		Menu->DrawCursor(CursPos,yellow,175);
 		do
 		{
-			if(MoveCursor(CursPos,bSel,bEsc,12,13))
+			if(Menu->MoveCursor(CursPos,bSel,bEsc,12,13))
 			{
-				DrawCursor(CursPos,yellow,175);
+				Menu->DrawCursor(CursPos,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!bSel);
@@ -970,7 +894,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		funds = true;
 		Display->clear();
 		player->DisplayInfo();
-		DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 
 		text("[-----For Sale-----]",13,1,yellow);
 		text(isell1->GetName(),15,2,white);		num(isell1->GetCost(),28,2,white);
@@ -980,13 +904,13 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		text(isell5->GetName(),15,6,white);		num(isell5->GetCost(),28,6,white);
 		text(isell6->GetName(),15,7,white);		num(isell6->GetCost(),28,7,white);
 
-		DrawCursor(CursPos,yellow,175);
+		Menu->DrawCursor(CursPos,yellow,175);
 		isell1->Display();
 		do
 		{
-			if(MoveCursor(CursPos,bSel,bEsc,2,7))
+			if(Menu->MoveCursor(CursPos,bSel,bEsc,2,7))
 			{
-				DrawCursor(CursPos,yellow,175);
+				Menu->DrawCursor(CursPos,yellow,175);
 				choice = CursPos.Y;
 				switch(choice)
 				{
@@ -1121,7 +1045,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		else
 			text("What would you like to sell?",13,3,white);
 
-		DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 		while(!selectionWasMade)
 		{
 			escapeWasPressed = false;
@@ -1129,15 +1053,15 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 			cursorPosition.X = 13;
 			cursorPosition.Y = 12;
 
-			DrawCursor(cursorPosition,yellow,175);			
+			Menu->DrawCursor(cursorPosition,yellow,175);
 			offset = cursorPosition.Y - 12;
 			playerInventory[offset]->Display();
 			do
 			{
 				choice = static_cast<int>(11+playerInventory.size());
-				if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
+				if(Menu->MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
 				{
-					DrawCursor(cursorPosition,yellow,175);
+					Menu->DrawCursor(cursorPosition,yellow,175);
 					offset = cursorPosition.Y - 12;
 					playerInventory[offset]->Display();
 				}
@@ -1162,9 +1086,9 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		do
 		{
 			
-			if(MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,cursorPosition.Y,cursorPosition.Y))
+			if(Menu->MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,cursorPosition.Y,cursorPosition.Y))
 			{
-				DrawCursor(cursorPosition,yellow,175);
+				Menu->DrawCursor(cursorPosition,yellow,175);
 			}
 			text(" ", 79, 23,white);
 		}while(!selectionWasMade);
@@ -1182,7 +1106,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 //==================================================================================================
 
 //======================================NEW CODE TO REMOVE ITEM=====================================
-		SlideDown(playerInventory,offset);
+		Menu->SlideDown(playerInventory,offset);
 		playerInventory.pop_back();
 //==================================================================================================
 		clrbottom();

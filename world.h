@@ -6,6 +6,7 @@
 #include "CFmod.h"
 #include "Fmod.h"
 #include "GameDisplay.h"
+#include "MainMenuSystem.h"
 
 void num(int num, short X, short Y,WORD color);
 void text(string, short, short, WORD);
@@ -16,7 +17,6 @@ Armor* loadArmor(string);
 Weapon* loadWeapon(string);
 string rotate(string pStr);
 Item* loaditem(string name);
-void ground(vector<Item*> worldItems,string Maplayer,int X, int Y);
 void items(vector<Item*> &playerInventory);
 void plot(string Maplayer, string ID);
 
@@ -36,45 +36,25 @@ public:
 	bool Overflow(int size);
 	void DescriptionDisplay(string, string &, string &, string &);
 	void LoadMap(vector< Location* > &locations, string &mapName, int &Xmax, int &Ymax, bool &bTown);
-	void HandleMainMenu(Player *player,vector<Magic*> &spells,vector<Item*> &Stuff, vector<Item*> &playerInventory,string &);
-	void HandleInventory(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
-	void DisplayPlayerItems(vector<Item*> &playerInventory);
-	void Equip(Player *player,vector<Item*> &playerInventory);
-	void Drop(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,string);
-	void DeleteItem(vector<Item*> &playerInventory);
-	void Options(Player *player,vector<Item*> &worldItems, vector<Item*> &playerInventory,vector<Magic*> &M,string &map);	
-	void UseItem(Player *player,vector<Item*> &worldItems,vector<Item*> &playerInventory,bool &bFight, bool &bLeave,string map);
-	void Use(Player *player,vector<Item*> &playerInventory,bool &Iused,bool bFight);
-	void MagicMenu(Player *player,vector<Magic*> &spells);
-	void InFightMagicMenu(Player *player, Creature *enemy,vector<Magic*> &spells,bool &bEsc);
 	
 	
 
 private:
 	GameDisplay* Display;
+	MainMenuSystem* Menu;
+	ISaveLoadGame* GameSaver;
 	void Intro();
 	bool MusicNameComparer(char *,char *);
 	void SetMusic(char*, Player *);
 	void OptionsMenu(Player *, vector<Item*> &,vector<Item*> &,vector<Magic*> &, string &);
-	bool MoveCursor(COORD &cursorPosition, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
+	// bool MoveCursor(COORD &cursorPosition, bool &bSelect,bool &bEsc,int Ymin, int Ymax);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void DrawCursor(COORD pos, WORD color, unsigned char curs);
+	// void DrawCursor(COORD pos, WORD color, unsigned char curs);
 	void CheckMagic(Player *,vector<Magic*> &);
 	bool HasMagic(vector<Magic*>,string);
 	Item Ebody(Creature *guy, string map);
 	void ReplenishEnemy(vector<Creature*> &enemies,int num);
-	void ClearTextBottomRight(int);
-	void SlideDown(vector<Item*> &,int);
-	void SaveGame(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
-	void Load(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
-	void load1(Player *player, vector<Item*> &worldItems, vector<Item*> &playerInventory, vector<Magic*> &spells,string &map);
-	void SaveMagic(vector<Magic*> &M,ofstream &);
-	void SaveGround(vector<Item*> &worldItems,ofstream &);
-	void SaveInventory(vector<Item*> &worldItems,ofstream &);	
-	void LoadInventory(vector<Item*> &,ifstream &);
-	void LoadGround(vector<Item*> &,ifstream &);
-	void LoadMagic(vector<Magic*> &M,ifstream &);
-	Magic* GetMagic(string);
+
 	string GetFileName();
 };
 

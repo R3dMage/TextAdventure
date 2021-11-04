@@ -1,6 +1,9 @@
 #include <iostream>
 #include "GameDisplay.h"
 
+#define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+
 using namespace std;
 
 void GameDisplay::BoxScreen()
@@ -190,6 +193,53 @@ void GameDisplay::clear()
 	DScreen();
 }
 
+//=====================================================================================
+//	This function clears above the midline
+//=====================================================================================
+void GameDisplay::clrtop(int Y)
+{
+	while (Y < 10)
+	{
+		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Y++;
+	}
+}
+//=====================================================================================
+//	This function clears below the midline
+//=====================================================================================
+void GameDisplay::clrbottom()
+{
+	int Y = 11;
+	while (Y < 24)
+	{
+		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		text("           ", 1, Y, FOREGROUND_BLUE);
+		Y++;
+	}
+}
+//====================================================================================
+// This function is the same as clr, WTF is with that?
+//====================================================================================
+void GameDisplay::clritems()
+{
+	int Y = 11;
+	while (Y < 24)
+	{
+		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Y++;
+	}
+}
+
+string GameDisplay::GetFileName()
+{
+	string filename = "";
+	text("Enter name of character: ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	text("", 38, 11, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cin >> filename;
+
+	return filename;
+}
+
 void GameDisplay::text(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
@@ -200,4 +250,37 @@ void GameDisplay::text(string szText, short X, short Y, WORD color)
 	SetConsoleCursorPosition(OutputH, pos);
 
 	cout << szText;
+}
+
+void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
+{
+	unsigned int offset = 0;
+	text(" [---Items---] ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN);
+	while (offset < playerInventory.size())
+	{
+		text(playerInventory[offset]->GetName(), 15, 12 + offset, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		offset++;
+		if (offset >= 12)
+			break;
+	}
+}
+
+void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
+{
+	unsigned int Offset = 0;
+	int NumItems = 0;
+	text("[---Ground---]", 13, 1, FOREGROUND_RED | FOREGROUND_GREEN);
+	while (Offset < stuff.size())
+	{
+		if (stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
+		{
+			text(stuff[Offset]->GetName(), 15, 2 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			NumItems++;
+		}
+		Offset++;
+		if (NumItems > 10)
+			break;
+	}
+	if (Offset < 10)
+		text("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 }
