@@ -108,12 +108,12 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 			CursPos.X = 2;
 			CursPos.Y = 15;
 
-			DrawCursor(CursPos,ftext,26);
+			Menu->DrawCursor(CursPos,ftext,26);
 			do
 			{
-				if(MoveCursor(CursPos,bSel,bEsc,15,18))
+				if(Menu->MoveCursor(CursPos,bSel,bEsc,15,18))
 				{
-					DrawCursor(CursPos,ftext,26);
+					Menu->DrawCursor(CursPos,ftext,26);
 				}
 				text("", 79, 23, ftext);
 			}while(!bSel);
@@ -210,7 +210,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 				}
 				else
 				{
-					InFightMagicMenu(player,enemy,spells,bEsc);				
+					Menu->InFightMagicMenu(player,enemy,spells,bEsc);
 					if(bEsc)
 						pass = true;
 				}
@@ -222,7 +222,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 			if(item)
 			{			
-				UseItem(player,worldItems,playerInventory,bFight,bLeave,map);
+				Menu->UseItem(player,worldItems,playerInventory,bFight,bLeave,map);
 				if(bLeave)
 					pass = true;
 				arm = player->GetArmor();

@@ -315,25 +315,7 @@ Item* loaditem(string name)
 	return itemPtr;
 }
 
-void ground(vector<Item*> stuff,string Map,int X,int Y)
-{
-	unsigned int Offset = 0;
-	int NumItems = 0;	
-	text("[---Ground---]",13,1,brown);
-	while(Offset < stuff.size())
-	{		
-		if(stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
-		{
-			text(stuff[Offset]->GetName(),15,2+NumItems,yellow);
-			NumItems++;
-		}
-		Offset++;		
-		if(NumItems > 10)
-			break;
-	}
-	if(Offset < 10)
-		text("                       ",15,3+NumItems,yellow);
-}
+
 void items(vector<Item*> &pstuff)
 {
 	unsigned int Offset = 0;

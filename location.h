@@ -8,12 +8,6 @@
 
 using namespace std;
 
-void text(string szText, short X, short Y, WORD color);
-void Number(int num,int X,int Y,WORD color);
-void DrawCurs(COORD pos, WORD color, char curs);
-bool MoveCurs2(COORD &CursPos, bool &bSelect, bool &bEsc,COORD Min, COORD Max);
-
-
 class Location{
 public:
 	Location();

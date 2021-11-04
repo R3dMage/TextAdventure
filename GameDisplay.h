@@ -1,10 +1,13 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include <vector>
+
+#include "item.h"
 
 class GameDisplay
 {
-public:
+public:	
 	void BoxScreen();
 	void DScreen();
 	void DSScreen();
@@ -13,5 +16,13 @@ public:
 	void PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
 
 	void clear();
+	void clrtop(int Y);
+	void clrbottom();
+	void clritems();
+
+	string GetFileName();
+	void DisplayPlayerItems(vector<Item*>& playerInventory);
+	void ground(vector<Item*> worldItems, string map, int x, int y);
+
 	void text(std::string szText, short X, short Y, WORD color);
 };

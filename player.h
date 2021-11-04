@@ -17,7 +17,7 @@ void text(string,short,short,WORD);
 void num(int num, short X, short Y,WORD color);
 Armor* loadArmor(string);
 Weapon* loadWeapon(string);
-void ground(vector<Item> stuff,string Map,int X,int Y);
+//void ground(vector<Item> stuff,string Map,int X,int Y);
 void cure(int D);
 void clrtop(int);
 
