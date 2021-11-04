@@ -39,7 +39,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 	bool run = false;				// To check if player will run
 	bool bFight = true;				// To check if player is in a fight
 
-	clear();
+	Display->clear();
 /*==================================================================
 	This calls some music to play for the fights, dynamic according
 	to the different enemies. How awesome is that?
@@ -51,7 +51,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 	text(enemy->GetName(),41,11,FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	text("",13,12,FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	system("pause");
-	clear();
+	Display->clear();
 
 	if(enemy->bant)					// Check if enemy will talk before the fight
 		enemy->Banter();				// Enemy's prefight speech
@@ -240,7 +240,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 					text("You ran away",13,11,red);
 					PlaySound("run.wav",NULL, SND_FILENAME | SND_ASYNC);
 					Sleep(player->GetPauseDuration());	
-					clear();
+					Display->clear();
 					break;
 				}
 				else
@@ -277,7 +277,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 		if(!pass)
 		{			
-			clear();
+			Display->clear();
 			enemy->DisplayInfo();
 			player->DisplayInfo();
 			Evd = rand()%100 + 1;
@@ -298,7 +298,8 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 					if(player->GetCurrentHitPoints() < 1)
 						break;
 				}
-				enemy->Attack(player,playerInventory,worldItems,map);							// Enemy attack			
+				enemy->Attack(player,playerInventory,worldItems,map);							// Enemy attack
+				Display->clear();
 			}
 		}
 		if(enemy->GetRunAway())											// Check to see if the enemy will run away
@@ -313,11 +314,12 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 	{
 		player->SetMagicStatus(0);						// After a fight state gets set to zero
 		player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
-		clear();
+		Display->clear();
 		player->StopMusic();
 		PlaySound("WinBattle.wav",NULL, SND_FILENAME | SND_ASYNC);	
 		text("The enemy has been slain",13,11,white);
 		Sleep(player->GetPauseDuration());
+		Display->clear();
 		enemy->Win(player);							// Dynamic enemy win function
 /*================================================================
 	Here I will put the you beat the bad guy music! which will
@@ -327,25 +329,30 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 		{
 			player->IncreaseLevel();						// Player function to go up a level
 			//p2->playMusic("Level Up Music");  Don't have level up music yet
+
+			Display->clear();
+			text("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
+			text("", 79, 23, white);
+			Sleep(player->GetPauseDuration());
 		}
 		if(enemy->DroppedItem())						// Checks to see if the enemy dropped an item
 			worldItems.push_back(enemy->Token(map));	// Drops item on the ground
-		clear();
+		Display->clear();
 	}
 	if(player->GetCurrentHitPoints() <= 0)
 	{
-		clear();
+		Display->clear();
 		text("You have died",13,11,white);
 		Sleep(player->GetPauseDuration());
 		return;
 	}
 	if(enemy->GetRunAway())
 	{
-		clear();
+		Display->clear();
 		text("The enemy has run off!!!",13,11,white);
 		Sleep(player->GetPauseDuration());
 		enemy->SetRunAway(false);
-		clear();
+		Display->clear();
 	}
 /*============================================================
 	Here, we put the map music back on. Providing of course

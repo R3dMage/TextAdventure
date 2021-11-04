@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "GameDisplay.h"
 #include "Creature.h"
-#include "Screen.h"
 #include "Weapon.h"
 #include "Armor.h"
 #include "Enemies.h"
@@ -22,6 +22,8 @@ using namespace std;
 
 void main()
 {
+	GameDisplay* gameDisplay = new GameDisplay();
+
 	srand(static_cast<unsigned int>(GetTickCount64()));
 	char name[10]; 
 	bool load = false;
@@ -30,9 +32,9 @@ void main()
 	string temp;
 	string filename;
 
-	World globe;
-	BoxScreen();
+	World globe(gameDisplay);	
 	
+	gameDisplay->BoxScreen();
 
 	//------------------------------------------------------->>>  Player Definition
 	Player player;
@@ -89,7 +91,7 @@ void text(string szText, short X, short Y, WORD color)
 //=====================================================================================
 //	This function clear, erases the screen except for the lines.
 //=====================================================================================
-void clear()
+void clearScreen()
 {
 	int Y = 1;
 	while(Y < 10)
@@ -105,7 +107,7 @@ void clear()
 		text("           ",1,Y,FOREGROUND_BLUE);
 		Y++;
 	}
-	DScreen();
+	//DScreen();
 }
 
 //=====================================================================================

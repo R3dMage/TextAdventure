@@ -159,13 +159,13 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="Function Definition.h" />
+    <ClInclude Include="GameDisplay.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Local.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Screen.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="stdafx.h" />
@@ -179,6 +179,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Eother.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="CFmod.cpp" />
+    <ClCompile Include="GameDisplay.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Local.cpp" />
     <ClCompile Include="Location.cpp" />

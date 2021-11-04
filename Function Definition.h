@@ -2,7 +2,6 @@
 #include <iostream>			//Always needed
 #include <string>			//For Strings
 #include <fstream>			//For reading/writing files
-#include "Screen.h"
 
 using namespace std;
 

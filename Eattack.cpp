@@ -358,7 +358,6 @@ void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 		cout << Damage << "                                             ";
 		Creature::DisplayDamage(Damage);
 		player->DisplayInfo();
-		clear();
 	}
 }
 

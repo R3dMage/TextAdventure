@@ -15,7 +15,6 @@
 string rotate(string);
 void text(string,short,short,WORD);
 void num(int num, short X, short Y,WORD color);
-void clear();
 Armor* loadArmor(string);
 Weapon* loadWeapon(string);
 void ground(vector<Item> stuff,string Map,int X,int Y);

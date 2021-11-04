@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Enemies">
+      <UniqueIdentifier>{7c28cc78-467b-45b4-a8b0-bbbe8f6614b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{ce6398f2-6ba2-4080-80bd-d30e4831f166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Magic">
+      <UniqueIdentifier>{4ded5d3b-57b4-4139-9c68-9091240235d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,22 +33,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Armor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CFmod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Creature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemies.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Function Definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Local.h">
@@ -48,42 +45,39 @@
     <ClInclude Include="Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Magic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Orc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Enemies.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic.h">
+      <Filter>Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Armor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Creature.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Eattack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Econstruct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Eother.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fight.cpp">
@@ -92,25 +86,16 @@
     <ClCompile Include="CFmod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Local.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Magic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NPC Setup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -122,13 +107,40 @@
     <ClCompile Include="Saveload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Talkto.cpp">
+    <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Eattack.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Econstruct.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Eother.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
+    <ClCompile Include="NPC Setup.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic.cpp">
+      <Filter>Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Talkto.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDisplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

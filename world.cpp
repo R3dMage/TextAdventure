@@ -15,12 +15,14 @@
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-World::World()
+World::World(GameDisplay* gameDisplay)
 {
+	Display = gameDisplay;
 }
 
 World::~World()
 {
+	free(Display);
 }
 
 void World::Locations(string map, Player *player,bool load)
@@ -146,7 +148,7 @@ void World::Locations(string map, Player *player,bool load)
 		inv.push_back(loadArmor("RedMail"));
 	}
 
-    clear();
+    Display->clear();
 
 
 	
@@ -211,7 +213,7 @@ void World::Locations(string map, Player *player,bool load)
 		}
 		if(Vmap[T]->GetHasPlot())
 		{
-			clear();
+			Display->clear();
 			player->DisplayInfo();
 			plot(map,Vmap[T]->GetPlotText());
 		}
@@ -692,7 +694,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		CursPos.Y = 2;
 		bSel = false;
 		funds = true;
-		clear();
+		Display->clear();
 		player->DisplayInfo();
 		DisplayPlayerItems(playerInventory);
 
@@ -804,7 +806,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		}
 		
 	}
-	clear();
+	Display->clear();
 }
 
 //==========================================================================================================
@@ -843,7 +845,7 @@ void World::Inn(Player *player,string map)
 	}
 	while(!bEsc)
 	{
-		clear();
+		Display->clear();
 		player->DisplayInfo();	
 		CursPos.X = 2;
 		CursPos.Y = 12;
@@ -894,7 +896,7 @@ void World::Inn(Player *player,string map)
 			break;
 		}
 	}//--------End while bEsc
-	clear();
+	Display->clear();
 }
 
 void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
@@ -966,7 +968,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		CursPos.Y = 2;
 		bSel = false;
 		funds = true;
-		clear();
+		Display->clear();
 		player->DisplayInfo();
 		DisplayPlayerItems(playerInventory);
 
@@ -1077,7 +1079,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 			Sleep(1500);
 		}		
 	}// End while bEsc
-	clear();
+	Display->clear();
 }
 
 void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
