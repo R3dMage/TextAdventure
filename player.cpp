@@ -53,6 +53,7 @@ Player::Player()
 	PlotEventStates.Start = false;
 	IsLoaded = false;
 	MusicIsOn = true;
+	MapMusic.Init();
 }
 
 void Player::SetArmor(Armor *newArmor)
@@ -319,7 +320,7 @@ void Player::PlayMusic(char *filename)
 		
 	if(fullPath.c_str())
 	{
-		if( !MapMusic.Init(fullPath.c_str()) )
+		if( !MapMusic.LoadSong(fullPath.c_str()) )
 		{
 			text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
 			exit(1);
