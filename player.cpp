@@ -312,13 +312,14 @@ char * Player::GetMusicFilename()
 ===================================*/
 void Player::PlayMusic(char *filename)
 {
-	char* music = new char[strlen(filename) + 7];
-	strcpy_s(music, strlen("./data/"), "./data/" );
-	strcat_s(music, strlen(filename), filename);
-
-	if( music )
+	const char* dataPath = "./data/";
+	
+	string fullPath = dataPath;
+	fullPath.append(filename);
+		
+	if(fullPath.c_str())
 	{
-		if( !MapMusic.Init(music) )
+		if( !MapMusic.Init(fullPath.c_str()) )
 		{
 			text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
 			exit(1);
@@ -503,7 +504,6 @@ void Player::IncreaseLevel()
 {
 	srand(static_cast<unsigned int>(GetTickCount64()));
 	double Num1;
-	clear();
 	SetLevel(GetLevel() + 1);
 	if(GetLevel() < 5)
 	{
@@ -524,9 +524,6 @@ void Player::IncreaseLevel()
 	Num1 = rand()% (GetMind()/2) + 1;
 	SetMaxKa(GetMaxKa() + static_cast<int>(Num1));
 	ExperienceNeededForNextLevel = Level * Level * 50;
-	text("You have gone up in level!!",13,11,FOREGROUND_GREEN);
-	text("",79,23,white);
-	Sleep(PauseDuration);
 }
 
 void Player::Save(ofstream &fout)

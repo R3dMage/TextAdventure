@@ -38,7 +38,7 @@ CFmod::~CFmod()
 	FreeSoundSystem();
 }
 
-bool CFmod::Init(char *strName)
+bool CFmod::Init(const char *strName)
 {
 
 	// ==========================================================================================
@@ -57,7 +57,7 @@ bool CFmod::Init(char *strName)
 	return LoadSong(strName);
 }
 
-bool CFmod::LoadSong(char *strName)
+bool CFmod::LoadSong(const char *strName)
 {
 	if(!strName)
 		return false;

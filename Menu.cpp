@@ -797,7 +797,7 @@ void World::MagicMenu(Player *player,vector<Magic*> &spells)
 
 	while(!escapeWasPressed)
 	{
-		clear();
+		Display->clear();
 		player->DisplayInfo();	
 		cursorPosition.X = 14;
 		cursorPosition.Y = 13;

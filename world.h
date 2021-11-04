@@ -5,10 +5,10 @@
 #include "Magic.h"
 #include "CFmod.h"
 #include "Fmod.h"
+#include "GameDisplay.h"
 
 void num(int num, short X, short Y,WORD color);
 void text(string, short, short, WORD);
-void clear();
 void clrbottom();
 void clritems();
 void clrtop(int);
@@ -23,7 +23,7 @@ void plot(string Maplayer, string ID);
 class World
 {
 public:
-	World();
+	World(GameDisplay* gameDisplay);
 	~World();
 	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);
 	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
@@ -51,6 +51,7 @@ public:
 	
 
 private:
+	GameDisplay* Display;
 	void Intro();
 	bool MusicNameComparer(char *,char *);
 	void SetMusic(char*, Player *);

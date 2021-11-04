@@ -14,7 +14,7 @@ public:
 
 	~CFmod();
 
-	bool Init(char*);
+	bool Init(const char*);
 
 	void PlaySong();
 
@@ -40,7 +40,7 @@ private:
 
 	void CheckError(FMOD_RESULT result);
 
-	bool LoadSong(char *strName);
+	bool LoadSong(const char *strName);
 
 	signed char m_loop;
 };

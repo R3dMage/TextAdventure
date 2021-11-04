@@ -43,7 +43,6 @@ Item* Elf::Token(string map)
 
 void Elf::Win(Player *p2)
 {
-	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
@@ -288,7 +287,6 @@ Item* Orc::Token(string map)
 
 void Orc::Win(Player *p2)
 {
-	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
@@ -531,7 +529,6 @@ Item* Human::Body(string map) const
 
 void Human::Win(Player *p2)
 {
-	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);

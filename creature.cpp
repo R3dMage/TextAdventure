@@ -64,12 +64,10 @@ void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*
 	cout << damage << "              ";
 	Creature::DisplayDamage(damage);
 	player->DisplayInfo();
-	clear();
 }
 
 void Creature::Win(Player *player)
 {
-	clear();
 	text("After every enemy dies you get stuff!!!",13,9,green);
 	text("Gold: ",13,11,green);
 	text("Exp : ",13,12,green);
