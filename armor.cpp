@@ -1,13 +1,12 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
+#include <format>
 #include <fstream>
 
 #include "Armor.h"
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 using namespace std;
-
 
 Armor::Armor()
 {
@@ -39,11 +38,11 @@ int Armor::GetEvadeModifier()
 	return EvadeModifier;
 }
 
-void Armor::Display()
+string Armor::Display()
 {
-	text("Absorbs ",30,11,white);
-	cout << DefenseModifier << " and adds " << EvadeModifier << " to your evade   ";
-	DisplayCost();
+	char message[50];
+	sprintf(message, "Absorbs %d and adds %d to your evade  ", DefenseModifier, EvadeModifier);
+	return string(message);
 }
 
 void Armor::Save(string file)

@@ -3,11 +3,6 @@
 
 #include "Item.h"
 
-using namespace std;
-
-void text(string szText,short X,short Y,WORD color);
-void num(int num, short X, short Y,WORD color);
-
 class Armor : public Item{
 public:
 	Armor();
@@ -16,13 +11,12 @@ public:
 	void SetEvadeModifier(int);
 	int GetEvadeModifier();
 
-	virtual void Display();
-	void Save(string name);
+	virtual std::string Display();
+	void Save(std::string name);
 
 private:
 	int		DefenseModifier;
 	int		EvadeModifier;
 };
-
 
 #endif

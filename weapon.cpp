@@ -74,11 +74,11 @@ bool Weapon::HasLifeSteal()
 	return StealsLife;
 }
 
-void Weapon::Display()
+string Weapon::Display()
 {
-	text("Deals ",30,11,white);
-	cout << DamageModifier << " to " << Damage + DamageModifier - 1 << " points of damage          ";
-	DisplayCost();
+	char message[50];
+	sprintf(message, "Deals %d to %d points of damage     ", DamageModifier, Damage + DamageModifier - 1);
+	return string(message);
 }
 
 void Weapon::Save(string file)
