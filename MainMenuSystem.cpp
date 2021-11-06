@@ -11,7 +11,7 @@
 
 MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver)
 {
-	MainDisplay = gameDisplay;
+	Display = gameDisplay;
 	GameSaver = gameSaver;
 }
 
@@ -26,17 +26,17 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 	{
 		ClearTextBottomRight(11);
 		player->DisplayInfo();
-		MainDisplay->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+		Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Inv.   |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Status |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Magic  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Options|", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("           ", 1, 17, blue);
+		Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Inv.   |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Status |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Magic  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Options|", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("           ", 1, 17, blue);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -45,7 +45,7 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			break;
@@ -64,9 +64,9 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 				MagicMenu(player, spells);
 			else
 			{
-				text("You have no magic", 13, 11, white);
+				Display->text("You have no magic", 13, 11, white);
 				Sleep(player->GetPauseDuration());
-				text("                 ", 13, 11, white);
+				Display->text("                 ", 13, 11, white);
 			}
 			break;
 		case 15:
@@ -91,18 +91,18 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 
 	while (!escapeWasPressed)
 	{
-		MainDisplay->DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
 		pickup = false;
 		selectedUse = false;
-		text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  PickUp |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Utilize|", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|         |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  PickUp |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Utilize|", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|         |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -111,7 +111,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 			}
-			text("", 79, 23, white);
+			Display->text("", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			break;
@@ -148,9 +148,9 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 			}
 			else
 			{
-				text("You do not have enough room!", 13, 9, white);
+				Display->text("You do not have enough room!", 13, 9, white);
 				Sleep(3000);
-				text("                            ", 13, 9, white);
+				Display->text("                            ", 13, 9, white);
 			}
 		}
 		if (selectedUse)
@@ -162,17 +162,17 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 
 			while (!escapeWasPressed)
 			{
-				MainDisplay->DisplayPlayerItems(playerInventory);
-				MainDisplay->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+				Display->DisplayPlayerItems(playerInventory);
+				Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
 				cursorPosition.X = 2;
 				cursorPosition.Y = 12;
 				selectionWasMade = false;
-				text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				text("|  Use    |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				text("|  Equip  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				text("|  Drop   |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				text("|  XXXX   |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("|  Use    |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("|  Equip  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("|  Drop   |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("|  XXXX   |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+				Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 				DrawCursor(cursorPosition, yellow, 175);
 				do
@@ -181,7 +181,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 					{
 						DrawCursor(cursorPosition, yellow, 175);
 					}
-					text(" ", 79, 23, white);
+					Display->text(" ", 79, 23, white);
 				} while (!selectionWasMade);
 				if (escapeWasPressed)
 					break;
@@ -193,7 +193,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						Use(player, playerInventory, wasUsed, bFight);
 					else
 					{
-						text("You have nothing to use", 13, 11, white);
+						Display->text("You have nothing to use", 13, 11, white);
 						Sleep(player->GetPauseDuration());
 					}
 					break;
@@ -202,7 +202,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						Equip(player, playerInventory);
 					else
 					{
-						text("You have nothing to equip", 13, 12, white);
+						Display->text("You have nothing to equip", 13, 12, white);
 						Sleep(player->GetPauseDuration());
 					}
 					break;
@@ -211,7 +211,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						Drop(player, worldItems, playerInventory, map);
 					else
 					{
-						text("You have nothing to drop", 13, 12, white);
+						Display->text("You have nothing to drop", 13, 12, white);
 						Sleep(player->GetPauseDuration());
 					}
 					break;
@@ -220,7 +220,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						DeleteItem(playerInventory);
 					else
 					{
-						text("You have nothing to dispose of", 13, 12, white);
+						Display->text("You have nothing to dispose of", 13, 12, white);
 						Sleep(player->GetPauseDuration());
 					}
 					break;
@@ -257,14 +257,14 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 				Offset = cursorPosition.Y - 12;
 				playerInventory[Offset]->Display();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 		{
-			text("          ", 1, 22, white);
-			text("          ", 1, 23, white);
-			MainDisplay->clrbottom();
-			MainDisplay->DisplayPlayerItems(playerInventory);
+			Display->text("          ", 1, 22, white);
+			Display->text("          ", 1, 23, white);
+			Display->clrbottom();
+			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
 	}// End While selectionWasMade
@@ -272,7 +272,7 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 	temp = playerInventory[Offset];
 	if (!temp->GetIsArmor() && !temp->GetIsWeapon())
 	{
-		text("You cannot equip that.", 13, 9, white);
+		Display->text("You cannot equip that.", 13, 9, white);
 		Sleep(player->GetPauseDuration());
 	}
 	if (temp->GetIsArmor())
@@ -291,12 +291,12 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 		playerInventory[playerInventory.size() - 1] = temp;
 		playerInventory.pop_back();
 	}
-	text("              ", cursorPosition.X, cursorPosition.Y, white);
+	Display->text("              ", cursorPosition.X, cursorPosition.Y, white);
 	player->DisplayInfo();
-	MainDisplay->DisplayPlayerItems(playerInventory);
-	text("                                           ", 175, 11, white);
-	text("           ", 1, 22, white);
-	text("           ", 1, 23, white);
+	Display->DisplayPlayerItems(playerInventory);
+	Display->text("                                           ", 175, 11, white);
+	Display->text("           ", 1, 22, white);
+	Display->text("           ", 1, 23, white);
 }
 
 void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string map)
@@ -311,8 +311,8 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 
 	while (!escapeWasPressed)
 	{
-		MainDisplay->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
-		MainDisplay->DisplayPlayerItems(playerInventory);
+		Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+		Display->DisplayPlayerItems(playerInventory);
 		selectionWasMade = false;
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
@@ -326,14 +326,14 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 				Offset = cursorPosition.Y - 12;
 				playerInventory[Offset]->Display();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 		{
-			text("          ", 1, 22, white);
-			text("          ", 1, 23, white);
-			MainDisplay->clrbottom();
-			MainDisplay->DisplayPlayerItems(playerInventory);
+			Display->text("          ", 1, 22, white);
+			Display->text("          ", 1, 23, white);
+			Display->clrbottom();
+			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
 
@@ -345,9 +345,9 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 		worldItems.push_back(playerInventory[Offset]);
 		SlideDown(playerInventory, Offset);
 		playerInventory.pop_back();
-		text("  ", 13, 12, white);
-		text("                    ", 13, 12 + Offset, white);
-		text("                    ", 13, static_cast<short>(12 + playerInventory.size()), white);
+		Display->text("  ", 13, 12, white);
+		Display->text("                    ", 13, 12 + Offset, white);
+		Display->text("                    ", 13, static_cast<short>(12 + playerInventory.size()), white);
 		if (playerInventory.size() < 1)
 			return;
 	}//end While escapeWasPressed
@@ -363,7 +363,7 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 
 	while (!escapeWasPressed)
 	{
-		MainDisplay->DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 		selectionWasMade = false;
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
@@ -377,20 +377,20 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 				offset = cursorPosition.Y - 12;
 				playerInventory[offset]->Display();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 		{
-			text("          ", 1, 22, white);
-			text("          ", 1, 23, white);
-			MainDisplay->clrbottom();
-			MainDisplay->DisplayPlayerItems(playerInventory);
+			Display->text("          ", 1, 22, white);
+			Display->text("          ", 1, 23, white);
+			Display->clrbottom();
+			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
 
 		offset = cursorPosition.Y - 12;
 		selectionWasMade = false;
-		text(playerInventory[offset]->GetName(), 15, cursorPosition.Y, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		Display->text(playerInventory[offset]->GetName(), 15, cursorPosition.Y, FOREGROUND_RED | FOREGROUND_INTENSITY);
 		do
 		{
 
@@ -398,14 +398,14 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			return;
 		SlideDown(playerInventory, offset);
 		playerInventory.pop_back();
 		ClearTextBottomRight(12);
-		text("                    ", 13, static_cast<short>(12 + playerInventory.size()), white);
+		Display->text("                    ", 13, static_cast<short>(12 + playerInventory.size()), white);
 		if (playerInventory.size() < 1)
 			return;
 
@@ -427,12 +427,12 @@ void MainMenuSystem::Options(Player* player, vector<Item*>& worldItems, vector<I
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Save   |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Load   |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Setup  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Quit   |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Save   |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Load   |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Setup  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Quit   |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -441,7 +441,7 @@ void MainMenuSystem::Options(Player* player, vector<Item*>& worldItems, vector<I
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			break;
@@ -451,20 +451,20 @@ void MainMenuSystem::Options(Player* player, vector<Item*>& worldItems, vector<I
 		switch (choice)
 		{
 		case 12:
-			text("Saving game ", 13, 11, yellow);
+			Display->text("Saving game ", 13, 11, yellow);
 			GameSaver->SaveGame(player, worldItems, playerInventory, spells, map);
 			Sleep(player->GetPauseDuration());
-			text("            ", 13, 11, yellow);
+			Display->text("            ", 13, 11, yellow);
 			break;
 		case 13:
-			GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, MainDisplay->GetFileName());			
+			GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, Display->GetFileName());			
 			break;
 		case 14:
 			OptionsMenu(player, worldItems, playerInventory, spells, map);
 			break;
 		case 15:
 			system("cls");
-			text("See you next time.", 13, 11, yellow);
+			Display->text("See you next time.", 13, 11, yellow);
 			Sleep(player->GetPauseDuration());
 			exit(0);
 			break;
@@ -488,20 +488,20 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Speed  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Invis  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("|  Drive  |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Speed  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Invis  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("|  Drive  |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 		/*=======================================
 		Displays the current music status
 		========================================*/
 		if (cursorPosition.Y == 12 && player->GetIsMusicOn())
-			text("Music: On    ", 13, 12, yellow);
+			Display->text("Music: On    ", 13, 12, yellow);
 		else if (cursorPosition.Y == 12 && !player->GetIsMusicOn())
-			text("Music: Off   ", 13, 12, yellow);
+			Display->text("Music: Off   ", 13, 12, yellow);
 		//========================================
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -514,26 +514,26 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 				Displays the current music status
 				========================================*/
 				if (cursorPosition.Y == 12 && player->GetIsMusicOn())
-					text("Music: On     ", 13, 12, yellow);
+					Display->text("Music: On     ", 13, 12, yellow);
 				else if (cursorPosition.Y == 12 && !player->GetIsMusicOn())
-					text("Music: Off    ", 13, 12, yellow);
+					Display->text("Music: Off    ", 13, 12, yellow);
 				/*========================================
 				Displays current player pause duration
 				========================================*/
 				if (cursorPosition.Y == 13) {
-					text("Speed: ", 13, 12, yellow);
+					Display->text("Speed: ", 13, 12, yellow);
 					cout << player->GetPauseDuration();
 				}
 				/*========================================
 				Displays the current invisibility status
 				=========================================*/
 				if (cursorPosition.Y == 14 && player->GetIsInvisible())
-					text("Invis: On     ", 13, 12, yellow);
+					Display->text("Invis: On     ", 13, 12, yellow);
 				else if (cursorPosition.Y == 14 && !player->GetIsInvisible())
-					text("Invis: Off    ", 13, 12, yellow);
+					Display->text("Invis: Off    ", 13, 12, yellow);
 				//========================================
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			break;
@@ -542,25 +542,25 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 		switch (choice)
 		{
 		case 12:
-			text("Changing Music.", 13, 11, yellow);
+			Display->text("Changing Music.", 13, 11, yellow);
 			player->ToggleMusic();
 			Sleep(player->GetPauseDuration());
-			text("               ", 13, 11, yellow);
+			Display->text("               ", 13, 11, yellow);
 			break;
 		case 13:
-			text("Changing Speed?", 13, 11, yellow);
+			Display->text("Changing Speed?", 13, 11, yellow);
 			Sleep(player->GetPauseDuration());
-			text("               ", 13, 11, yellow);
+			Display->text("               ", 13, 11, yellow);
 			break;
 		case 14:
-			text("To be added later.", 13, 11, yellow);
+			Display->text("To be added later.", 13, 11, yellow);
 			Sleep(player->GetPauseDuration());
-			text("               ", 13, 11, yellow);
+			Display->text("               ", 13, 11, yellow);
 			break;
 		case 15:
-			text("To be added later.", 13, 11, yellow);
+			Display->text("To be added later.", 13, 11, yellow);
 			Sleep(player->GetPauseDuration());
-			text("               ", 13, 11, yellow);
+			Display->text("               ", 13, 11, yellow);
 			break;
 		}
 	}// End of While(escapeWasPressed)
@@ -579,18 +579,18 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 		if (isFighting && Iused)
 			break;
 		player->DisplayInfo();
-		MainDisplay->DisplayPlayerItems(playerInventory);
+		Display->DisplayPlayerItems(playerInventory);
 		if (!isFighting)
-			MainDisplay->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+			Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 15;
 		selectionWasMade = false;
-		text("/---------\\", 1, 14, ftext);
-		text("|  Use    |", 1, 15, ftext);
-		text("|  Equip  |", 1, 16, ftext);
-		text("|  Drop   |", 1, 17, ftext);
-		text("|  XXXX   |", 1, 18, ftext);
-		text("\\---------/", 1, 19, ftext);
+		Display->text("/---------\\", 1, 14, ftext);
+		Display->text("|  Use    |", 1, 15, ftext);
+		Display->text("|  Equip  |", 1, 16, ftext);
+		Display->text("|  Drop   |", 1, 17, ftext);
+		Display->text("|  XXXX   |", 1, 18, ftext);
+		Display->text("\\---------/", 1, 19, ftext);
 
 		DrawCursor(cursorPosition, ftext, 175);
 		do
@@ -599,7 +599,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 			{
 				DrawCursor(cursorPosition, ftext, 175);
 			}
-			text("", 79, 23, ftext);
+			Display->text("", 79, 23, ftext);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 		{
@@ -614,7 +614,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 				Use(player, playerInventory, Iused, isFighting);
 			else
 			{
-				text("You have no items.", 13, 11, white);
+				Display->text("You have no items.", 13, 11, white);
 				Sleep(player->GetPauseDuration());
 			}
 			break;
@@ -623,7 +623,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 				Equip(player, playerInventory);
 			else
 			{
-				text("You have nothing to equip", 13, 12, white);
+				Display->text("You have nothing to equip", 13, 12, white);
 				Sleep(player->GetPauseDuration());
 			}
 			break;
@@ -632,7 +632,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 				Drop(player, worldItems, playerInventory, map);
 			else
 			{
-				text("You have nothing to drop", 13, 12, white);
+				Display->text("You have nothing to drop", 13, 12, white);
 				Sleep(player->GetPauseDuration());
 			}
 			break;
@@ -641,7 +641,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 				DeleteItem(playerInventory);
 			else
 			{
-				text("You have nothing to dispose of", 13, 12, white);
+				Display->text("You have nothing to dispose of", 13, 12, white);
 				Sleep(player->GetPauseDuration());
 			}
 			break;
@@ -664,8 +664,8 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 
 	while (!escapeWasPressed && playerInventory.size() > 0)
 	{
-		MainDisplay->clritems();
-		MainDisplay->DisplayPlayerItems(playerInventory);
+		Display->clritems();
+		Display->DisplayPlayerItems(playerInventory);
 		player->DisplayInfo();
 
 		if (itemWasUsed && isFighting)
@@ -686,15 +686,15 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 				offset = cursorPosition.Y - 12;
 				playerInventory[offset]->Display();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 
 		if (escapeWasPressed)
 		{
-			text("          ", 1, 22, white);
-			text("          ", 1, 23, white);
-			MainDisplay->clrbottom();
-			MainDisplay->DisplayPlayerItems(playerInventory);
+			Display->text("          ", 1, 22, white);
+			Display->text("          ", 1, 23, white);
+			Display->clrbottom();
+			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
 		offset = cursorPosition.Y - 12;
@@ -705,7 +705,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 			{
 				SlideDown(playerInventory, offset);
 				playerInventory.pop_back();
-				text("                   ", 13, static_cast<short>(12 + playerInventory.size()), white);
+				Display->text("                   ", 13, static_cast<short>(12 + playerInventory.size()), white);
 			}
 
 
@@ -714,46 +714,46 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 			case 0:
 				Num = 25;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				text("You were healed: ", 13, 8, white); cout << Num;
+				Display->text("You were healed: ", 13, 8, white); cout << Num;
 				cure(Num);
 				break;
 			case 1:
 				Num = 15;
 				player->SetKa(player->GetCurrentKa() + Num);
-				text("Ka recovered: ", 13, 8, white); cout << Num;
+				Display->text("Ka recovered: ", 13, 8, white); cout << Num;
 				cure(Num);
 				break;
 			case 2:
 				Num = rand() % 5 + 1;
 				player->SetStrength(player->GetStrength() + Num);
-				text("Your strength has increased", 13, 8, white);
+				Display->text("Your strength has increased", 13, 8, white);
 				Sleep(player->GetPauseDuration());
 				break;
 			case 3:
 				Num = rand() % 5 + 1;
 				player->SetMind(player->GetMind() + Num);
-				text("Your mind powers have increased", 13, 8, white);
+				Display->text("Your mind powers have increased", 13, 8, white);
 				Sleep(player->GetPauseDuration());
 				break;
 			case 4:
 				Num = 75;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				text("You were healed: ", 13, 8, white); cout << Num;
+				Display->text("You were healed: ", 13, 8, white); cout << Num;
 				cure(Num);
 				break;
 			case 5:
 				Num = 150;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				text("You were healed: ", 13, 8, white); cout << Num;
+				Display->text("You were healed: ", 13, 8, white); cout << Num;
 				cure(Num);
 				break;
 			case 6:
 				Num = player->GetMaxHitPoints() - player->GetCurrentHitPoints();
 				player->SetHitPoints(player->GetMaxHitPoints());
-				text("You were healed: ", 13, 8, white); cout << Num;
+				Display->text("You were healed: ", 13, 8, white); cout << Num;
 				cure(Num);
 			default:
-				text("This item does nothing", 13, 8, white);
+				Display->text("This item does nothing", 13, 8, white);
 				Sleep(player->GetPauseDuration());
 				break;
 			}
@@ -764,7 +764,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 		}
 
 	}// End While escapeWasPressed && playerInventory.size() > 0
-	MainDisplay->clrbottom();
+	Display->clrbottom();
 }
 void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 {
@@ -777,23 +777,23 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 
 	while (!escapeWasPressed)
 	{
-		MainDisplay->clear();
+		Display->clear();
 		player->DisplayInfo();
 		cursorPosition.X = 14;
 		cursorPosition.Y = 13;
 		selectionWasMade = false;
-		text("/----------------\\", 13, 12, green);
-		text("|                |", 13, 13, green);
-		text("|                |", 13, 14, green);
-		text("|                |", 13, 15, green);
-		text("|                |", 13, 16, green);
-		text("|                |", 13, 17, green);
-		text("|                |", 13, 18, green);
-		text("|                |", 13, 19, green);
-		text("|                |", 13, 20, green);
-		text("|                |", 13, 21, green);
-		text("|                |", 13, 22, green);
-		text("\\----------------/", 13, 23, green);
+		Display->text("/----------------\\", 13, 12, green);
+		Display->text("|                |", 13, 13, green);
+		Display->text("|                |", 13, 14, green);
+		Display->text("|                |", 13, 15, green);
+		Display->text("|                |", 13, 16, green);
+		Display->text("|                |", 13, 17, green);
+		Display->text("|                |", 13, 18, green);
+		Display->text("|                |", 13, 19, green);
+		Display->text("|                |", 13, 20, green);
+		Display->text("|                |", 13, 21, green);
+		Display->text("|                |", 13, 22, green);
+		Display->text("\\----------------/", 13, 23, green);
 
 
 		for (i = 0; i < spells.size(); i++)
@@ -816,19 +816,19 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 				offset = cursorPosition.Y - 13;
 				spells[offset]->DisplayCastingCost();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
 			return;
 		offset = cursorPosition.Y - 13;
 		if (spells[offset]->GetIsInFight())
 		{
-			text("That spell can only be used in battle", 13, 9, white);
+			Display->text("That spell can only be used in battle", 13, 9, white);
 			Sleep(player->GetPauseDuration());
 		}
 		else if (player->GetCurrentKa() < spells[offset]->GetCost())
 		{
-			text("Not enough Ka", 13, 9, white);
+			Display->text("Not enough Ka", 13, 9, white);
 			Sleep(player->GetPauseDuration());
 		}
 		else
@@ -850,18 +850,18 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 		cursorPosition.X = 14;
 		cursorPosition.Y = 13;
 		selectionWasMade = false;
-		text("/----------------\\", 13, 12, green);
-		text("|                |", 13, 13, green);
-		text("|                |", 13, 14, green);
-		text("|                |", 13, 15, green);
-		text("|                |", 13, 16, green);
-		text("|                |", 13, 17, green);
-		text("|                |", 13, 18, green);
-		text("|                |", 13, 19, green);
-		text("|                |", 13, 20, green);
-		text("|                |", 13, 21, green);
-		text("|                |", 13, 22, green);
-		text("\\----------------/", 13, 23, green);
+		Display->text("/----------------\\", 13, 12, green);
+		Display->text("|                |", 13, 13, green);
+		Display->text("|                |", 13, 14, green);
+		Display->text("|                |", 13, 15, green);
+		Display->text("|                |", 13, 16, green);
+		Display->text("|                |", 13, 17, green);
+		Display->text("|                |", 13, 18, green);
+		Display->text("|                |", 13, 19, green);
+		Display->text("|                |", 13, 20, green);
+		Display->text("|                |", 13, 21, green);
+		Display->text("|                |", 13, 22, green);
+		Display->text("\\----------------/", 13, 23, green);
 
 		for (i = 0; i < spells.size(); i++)
 		{
@@ -882,14 +882,14 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 				offset = cursorPosition.Y - 13;
 				spells[offset]->DisplayCastingCost();
 			}
-			text(" ", 79, 23, white);
+			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
 		if (pressedEscape)
 			return;
 		offset = cursorPosition.Y - 13;
 		if (player->GetCurrentKa() < spells[offset]->GetCost())
 		{
-			text("Not enough Ka", 13, 9, white);
+			Display->text("Not enough Ka", 13, 9, white);
 			Sleep(player->GetPauseDuration());
 		}
 		else
@@ -905,7 +905,7 @@ void MainMenuSystem::ClearTextBottomRight(int Y)
 {
 	while (Y < 24)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Display->text("                                                                 ", 13, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 }
