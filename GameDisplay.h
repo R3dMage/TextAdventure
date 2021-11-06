@@ -5,6 +5,8 @@
 
 #include "item.h"
 
+#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+
 class GameDisplay
 {
 public:	
@@ -20,9 +22,14 @@ public:
 	void clrbottom();
 	void clritems();
 
-	string GetFileName();
-	void DisplayPlayerItems(vector<Item*>& playerInventory);
-	void ground(vector<Item*> worldItems, string map, int x, int y);
+	std::string GetFileName();
+	void DisplayPlayerItems(std::vector<Item*>& playerInventory);
+	void DisplayItem(Item* item);
+	void ground(std::vector<Item*> worldItems, std::string map, int x, int y);
 
 	void text(std::string szText, short X, short Y, WORD color);
+	void num(int num, short X, short Y, WORD color);
+
+private:
+	void DisplayCost(int cost);
 };

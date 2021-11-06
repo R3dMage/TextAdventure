@@ -252,6 +252,18 @@ void GameDisplay::text(string szText, short X, short Y, WORD color)
 	cout << szText;
 }
 
+void GameDisplay::num(int num, short X, short Y, WORD color)
+{
+	HANDLE OutputH;
+	COORD pos = { X, Y };
+
+	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(OutputH, color);
+	SetConsoleCursorPosition(OutputH, pos);
+
+	cout << num;
+}
+
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 {
 	unsigned int offset = 0;
@@ -263,6 +275,45 @@ void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 		if (offset >= 12)
 			break;
 	}
+}
+
+void GameDisplay::DisplayItem(Item* item)
+{
+	switch (item->GetType())
+	{
+	case -1:
+		text("                                           ", 30, 11, white);
+		break;
+	case 0:
+		text("Heals 25 points of life                    ", 30, 11, white);
+		break;
+	case 1:
+		text("Restores 5 to 10 point of ka", 30, 11, white);
+		break;
+	case 2:
+		text("Increases Strength 1-5 points              ", 30, 11, white);
+		break;
+	case 3:
+		text("Increases Mind 1-5 points                  ", 30, 11, white);
+		break;
+	case 4:
+		text("Heals 75 points of life              ", 30, 11, white);
+		break;
+	case 5:
+		("Heals 150 points of life              ", 30, 11, white);
+		break;
+	case 6:
+		text("Heals all of your life              ", 30, 11, white);
+		break;
+	}
+	DisplayCost(item->GetCost());
+}
+
+void GameDisplay::DisplayCost(int cost)
+{
+	text("Value: ", 1, 22, white);
+	num(cost, 2, 23, white);
+	cout << " GP  ";
 }
 
 void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
