@@ -12,15 +12,6 @@
 #include "Weapon.h"
 #include "Armor.h"
 
-string rotate(string);
-void text(string,short,short,WORD);
-void num(int num, short X, short Y,WORD color);
-Armor* loadArmor(string);
-Weapon* loadWeapon(string);
-//void ground(vector<Item> stuff,string Map,int X,int Y);
-void cure(int D);
-void clrtop(int);
-
 struct RaceReactionIndex{
 	int Elf;
 	int Human;
@@ -109,16 +100,11 @@ public:
 	void SetMusicFilename(char *);
 	char * GetMusicFilename();
 
-	void DisplayStatus();
-	void DisplayInfo();
 	bool ReachedNextLevel();
 	void IncreaseLevel();
-	void Save(ofstream &fout);
-	void Load(ifstream &fin);
-	void PlayMusic(char *);
+	void PlayMusic(const char *);
 	void StopMusic();
 	void ToggleMusic();
-	void Plots(string);
 
 	PlayerKillCounts RaceKillCounts;
 	GameEvents PlotEventStates;
@@ -162,8 +148,5 @@ private:
 
 	bool	MusicIsOn;		// Option to turn music on or off
 	bool	Invisible;		// Sometimes you want to be invisible to enemies
-
-	bool MoveCursor(COORD &cursorPosition, bool &hasSelection, bool &bEsc, int Ymin, int Ymax);
-	void DrawCursor(COORD position, WORD color, char cursorCharacter);
 };
 #endif

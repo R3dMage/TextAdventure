@@ -5,28 +5,20 @@
 #include "Magic.h"
 #include "CFmod.h"
 #include "Fmod.h"
-#include "GameDisplay.h"
+#include "FightDisplay.h"
 #include "MainMenuSystem.h"
-
-void num(int num, short X, short Y,WORD color);
-void text(string, short, short, WORD);
-void clrbottom();
-void clritems();
-void clrtop(int);
-Armor* loadArmor(string);
-Weapon* loadWeapon(string);
-string rotate(string pStr);
-Item* loaditem(string name);
-void items(vector<Item*> &playerInventory);
-void plot(string Maplayer, string ID);
+#include "ItemRepository.h"
+#include "Plots.h"
 
 class World
 {
 public:
-	World(GameDisplay* gameDisplay);
+	World(GameDisplay* gameDisplay, ItemRepository* items);
 	~World();
+	void StartGame();
 	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);
 	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
+	void PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy);
 	void Locations(string,Player*,bool);
 	void Armory(vector<Item*> &playerInventory,Player *player,string map);
 	void MagicShop(vector<Item*> &playerInventory, Player *player,string map);
@@ -43,6 +35,9 @@ private:
 	GameDisplay* Display;
 	MainMenuSystem* Menu;
 	ISaveLoadGame* GameSaver;
+	ItemRepository* Items;
+	Plots* GamePlots;
+
 	void Intro();
 	bool MusicNameComparer(char *,char *);
 	void SetMusic(char*, Player *);
@@ -54,8 +49,12 @@ private:
 	bool HasMagic(vector<Magic*>,string);
 	Item Ebody(Creature *guy, string map);
 	void ReplenishEnemy(vector<Creature*> &enemies,int num);
+	void Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, vector<Item*>& worldItems, string map);
 
-	string GetFileName();
+	std::string GetFileName();
+
+	void plot(string map, string ID);
+	string rotate(string pStr);
 };
 
 #endif

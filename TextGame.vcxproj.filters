@@ -22,6 +22,9 @@
     <Filter Include="Magic">
       <UniqueIdentifier>{4ded5d3b-57b4-4139-9c68-9091240235d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Display">
+      <UniqueIdentifier>{b82eca0b-dfc2-41d3-ba2c-47c1fa1313dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -69,16 +72,25 @@
     <ClInclude Include="Magic.h">
       <Filter>Magic</Filter>
     </ClInclude>
-    <ClInclude Include="GameDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ISaveLoadGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SaveLoadGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuSystem.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDisplay.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="FightDisplay.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemRepository.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Plots.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,17 +152,23 @@
     <ClCompile Include="Talkto.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="GameDisplay.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ISaveLoadGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SaveLoadGame.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDisplay.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuSystem.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="FightDisplay.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemRepository.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

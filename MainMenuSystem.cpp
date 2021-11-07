@@ -1,18 +1,10 @@
 #include "MainMenuSystem.h"
 
-#define box FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define brown FOREGROUND_RED | FOREGROUND_GREEN
-#define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define dkgreen FOREGROUND_GREEN
-#define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
-#define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
-MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver)
+MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository)
 {
 	Display = gameDisplay;
 	GameSaver = gameSaver;
+	Items = itemRepository;
 }
 
 void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string& map)
@@ -25,7 +17,7 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 	while (!escapeWasPressed)
 	{
 		ClearTextBottomRight(11);
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 		Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
@@ -57,7 +49,7 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 			HandleInventory(player, worldItems, playerInventory, map);
 			break;
 		case 13:
-			player->DisplayStatus();
+			Display->DisplayPlayerStatus(player);
 			break;
 		case 14:
 			if (player->HasLearnedSpells())
@@ -144,7 +136,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						break;
 					}
 				}
-				clrtop(2);
+				Display->clrtop(2);
 			}
 			else
 			{
@@ -278,7 +270,7 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 	if (temp->GetIsArmor())
 	{
 		playerInventory.push_back(player->GetArmor());
-		player->SetArmor(loadArmor(temp->GetName()));
+		player->SetArmor(Items->GetArmor(temp->GetName()));
 		playerInventory[Offset] = playerInventory[playerInventory.size() - 1];
 		playerInventory[playerInventory.size() - 1] = temp;
 		playerInventory.pop_back();
@@ -286,13 +278,13 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 	if (temp->GetIsWeapon())
 	{
 		playerInventory.push_back(player->GetWeapon());
-		player->SetWeapon(loadWeapon(temp->GetName()));
+		player->SetWeapon(Items->GetWeapon(temp->GetName()));
 		playerInventory[Offset] = playerInventory[playerInventory.size() - 1];
 		playerInventory[playerInventory.size() - 1] = temp;
 		playerInventory.pop_back();
 	}
 	Display->text("              ", cursorPosition.X, cursorPosition.Y, white);
-	player->DisplayInfo();
+	Display->DisplayPlayerInfo(player);
 	Display->DisplayPlayerItems(playerInventory);
 	Display->text("                                           ", 175, 11, white);
 	Display->text("           ", 1, 22, white);
@@ -423,7 +415,7 @@ void MainMenuSystem::Options(Player* player, vector<Item*>& worldItems, vector<I
 	while (!escapeWasPressed)
 	{
 		//clear();       For smooth look remarked out 2/15/06
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
@@ -484,7 +476,7 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 
 	while (!escapeWasPressed)
 	{
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
@@ -578,7 +570,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 		ClearTextBottomRight(12);
 		if (isFighting && Iused)
 			break;
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 		Display->DisplayPlayerItems(playerInventory);
 		if (!isFighting)
 			Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
@@ -666,7 +658,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 	{
 		Display->clritems();
 		Display->DisplayPlayerItems(playerInventory);
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 
 		if (itemWasUsed && isFighting)
 			break;
@@ -715,13 +707,13 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 				Num = 25;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
 				Display->text("You were healed: ", 13, 8, white); cout << Num;
-				cure(Num);
+				Display->DisplayCure(Num);
 				break;
 			case 1:
 				Num = 15;
 				player->SetKa(player->GetCurrentKa() + Num);
 				Display->text("Ka recovered: ", 13, 8, white); cout << Num;
-				cure(Num);
+				Display->DisplayCure(Num);
 				break;
 			case 2:
 				Num = rand() % 5 + 1;
@@ -739,26 +731,26 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 				Num = 75;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
 				Display->text("You were healed: ", 13, 8, white); cout << Num;
-				cure(Num);
+				Display->DisplayCure(Num);
 				break;
 			case 5:
 				Num = 150;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
 				Display->text("You were healed: ", 13, 8, white); cout << Num;
-				cure(Num);
+				Display->DisplayCure(Num);
 				break;
 			case 6:
 				Num = player->GetMaxHitPoints() - player->GetCurrentHitPoints();
 				player->SetHitPoints(player->GetMaxHitPoints());
 				Display->text("You were healed: ", 13, 8, white); cout << Num;
-				cure(Num);
+				Display->DisplayCure(Num);
 			default:
 				Display->text("This item does nothing", 13, 8, white);
 				Sleep(player->GetPauseDuration());
 				break;
 			}
 			itemWasUsed = true;
-			clrtop(2);
+			Display->clrtop(2);
 			if (isFighting)
 				escapeWasPressed = true;
 		}
@@ -778,7 +770,7 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 	while (!escapeWasPressed)
 	{
 		Display->clear();
-		player->DisplayInfo();
+		Display->DisplayPlayerInfo(player);
 		cursorPosition.X = 14;
 		cursorPosition.Y = 13;
 		selectionWasMade = false;
@@ -800,21 +792,21 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 		{
 			if (spells[i]->GetIsInFight() || player->GetCurrentKa() < spells[i]->GetCost())
 			{
-				spells[i]->DisplayName(i + 13, dkgreen);
+				Display->DisplaySpellName(spells[i]->GetName(), i + 13, dkgreen);
 			}
 			else
-				spells[i]->DisplayName(i + 13, green);
+				Display->DisplaySpellName(spells[i]->GetName(), i + 13, green);			
 		}
 		DrawCursor(cursorPosition, yellow, 175);
 		offset = cursorPosition.Y - 13;
-		spells[offset]->DisplayCastingCost();
+		Display->DisplayCastingCost(spells[offset]->GetCost());
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 13, 12 + static_cast<int>(spells.size())))
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 13;
-				spells[offset]->DisplayCastingCost();
+				Display->DisplayCastingCost(spells[offset]->GetCost());
 			}
 			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
@@ -832,7 +824,7 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 			Sleep(player->GetPauseDuration());
 		}
 		else
-			spells[offset]->Cast(player, NULL);
+			spells[offset]->Cast(player, NULL, Display);
 	}//==================================End of While loop==================================
 }
 
@@ -865,14 +857,14 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 
 		for (i = 0; i < spells.size(); i++)
 		{
-			if (player->GetCurrentKa() < spells[i]->GetCost())
+			if (spells[i]->GetIsInFight() || player->GetCurrentKa() < spells[i]->GetCost())
 			{
-				spells[i]->DisplayName(i + 13, dkgreen);
+				Display->DisplaySpellName(spells[i]->GetName(), i + 13, dkgreen);
 			}
 			else
-				spells[i]->DisplayName(i + 13, green);
+				Display->DisplaySpellName(spells[i]->GetName(), i + 13, green);
 		}
-		spells[offset]->DisplayCastingCost();
+		Display->DisplayCastingCost(spells[offset]->GetCost());
 		DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
@@ -880,7 +872,7 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 13;
-				spells[offset]->DisplayCastingCost();
+				Display->DisplayCastingCost(spells[offset]->GetCost());
 			}
 			Display->text(" ", 79, 23, white);
 		} while (!selectionWasMade);
@@ -895,7 +887,9 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 		else
 		{
 			ClearTextBottomRight(11);
-			spells[offset]->Cast(player, enemy);
+			Magic* castedSpell = spells[offset];
+			Display->DisplayIncantation(castedSpell->GetDescription(), castedSpell->GetIncantation());
+			castedSpell->Cast(player, enemy, Display);
 			return;
 		}
 	}//==================================End of While loop==================================

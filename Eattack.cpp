@@ -8,9 +8,6 @@
 
 
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define green FOREGROUND_GREEN
-#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define blue FOREGROUND_BLUE
 
 //============================================================================================
 // Elf
@@ -357,7 +354,6 @@ void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 		text("Enemies Damage: ", 13, 11, white);
 		cout << Damage << "                                             ";
 		Creature::DisplayDamage(Damage);
-		player->DisplayInfo();
 	}
 }
 
@@ -833,8 +829,8 @@ void GiantSpider::Attack(Player* player, vector<Item*>& playerInventory, vector<
 	text("Enemies Damage: ", 13, 11, white);
 	cout << Damage << "              ";
 	Creature::DisplayDamage(Damage);
-	player->DisplayInfo();
-	//clear();
+	//player->DisplayInfo();
+	
 	if (Poison < 25)
 	{
 		if (!player->GetIsPoisoned())
@@ -1339,8 +1335,8 @@ void Centipede::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 	text("Enemies Damage: ", 13, 11, white);
 	cout << Damage << "              ";
 	Creature::DisplayDamage(Damage);
-	player->DisplayInfo();
-	//clear();
+	// player->DisplayInfo();
+	
 	if (Poison < 25)
 	{
 		if (!player->GetIsPoisoned())
@@ -1375,7 +1371,7 @@ void Vampire::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 	Creature::DisplayDamage(Damage);
 	Damage = Damage / 4;
 	SetHitPoints(GetHitPoints() + Damage);
-	player->DisplayInfo();
+	//player->DisplayInfo();
 	if (Poison < 15)
 	{
 		if (!player->GetIsPoisoned())

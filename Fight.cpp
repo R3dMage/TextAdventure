@@ -4,26 +4,23 @@
 //
 //============================================================================================================
 
+#include <sstream>
 #include "World.h"
 #include "Creature.h"
 #include "Enemies.h"
 #include "Item.h"
 #include "Location.h"
-
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+#include "FightDisplay.h"
 
 
 void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map)
 {
+	FightDisplay* fightDisplay = new FightDisplay();
 	COORD CursPos;					// Mystical Cursor Position
 	string Ename = enemy->GetName();	// Name of the enemy
 	int choice;						// Um, choice?
 	int Evd;						// An Evade variable
 	int Damage;						// A Damage Variable
-	int D2;							// 2nd Damage Variable for Xtra damage
-	int StrMod;						// Strength Modifier variable
 	int R = 0;						// R?
 	Weapon *weap = player->GetWeapon(); // Weapon Variable
 	Armor *arm = player->GetArmor();	// Armor Variable
@@ -39,26 +36,20 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 	bool run = false;				// To check if player will run
 	bool bFight = true;				// To check if player is in a fight
 
-	Display->clear();
+	fightDisplay->clear();
 /*==================================================================
 	This calls some music to play for the fights, dynamic according
 	to the different enemies. How awesome is that?
 ===================================================================*/
-	player->PlayMusic(enemy->GetMusic());
+	player->PlayMusic(enemy->GetMusic().c_str());
 
+	fightDisplay->DisplayAttackAnnouncement(enemy);
 
-	text("You have been attacked by a ",13,11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	text(enemy->GetName(),41,11,FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	text("",13,12,FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	system("pause");
-	Display->clear();
-
-	if(enemy->bant)					// Check if enemy will talk before the fight
-		enemy->Banter();				// Enemy's prefight speech
+	if(enemy->bant)									// Check if enemy will talk before the fight
+		enemy->Banter();							// Enemy's prefight speech
 
 	while(enemy->GetHitPoints() > 0 && player->GetCurrentHitPoints() > 0 && !run)
 	{
-	// Initiallize all these boolean variables ot false
 		bSel = false;
 		bEsc = false;
 		bLeave = false;
@@ -68,54 +59,37 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 		run  = false;
 		pass = false;
 		
-		player->DisplayInfo();					// Display player info
-		enemy->DisplayInfo();				// Display enemy info, this will probably be phased out, or tweaked
+		fightDisplay->DisplayPlayerInfo(player);	// Display player info
+		fightDisplay->DisplayCreatureStatus(enemy); // Display enemy info, this will probably be phased out, or tweaked
 
-		if(player->GetIsAsleep())			// Checks if player is asleep
+		if(player->GetIsAsleep())					// Checks if player is asleep
 		{
 			R = rand()% 100 + 1;	
-			if(R < 50)				// 50% chance of waking up. NOTE: Maybe make that enemy specific %
+			if(R < 50)								// 50% chance of waking up. NOTE: Maybe make that enemy specific %
 			{
 				player->SetIsAsleep(false);							
-				text("You awake from sleep!",13,11,white);
-				text("",79,23,white);
-				Sleep(player->GetIsAsleep());
-				text("                     ",13,11,white);
+				fightDisplay->DisplayMessage("You awake from sleep!", player->GetPauseDuration());
 			}
 		}
-		if(player->GetIsAsleep())			// Checks if you're still asleep after your chance to wake
+		if(player->GetIsAsleep())					// Checks if you're still asleep after your chance to wake
 		{
-			text("You are asleep.",13,11,white);
-			text("",79,23,white);
-			Sleep(player->GetPauseDuration());
-			text("                                          ",13,11,white);
+			fightDisplay->DisplayMessage("You are asleep", player->GetPauseDuration());
 		}			
 		else 
 		{
-			text("           ",1,11,white);
-			text("           ",1,12,white);
-			text("           ",1,13,white);
-			text("                                                                 ",13,11,FOREGROUND_BLUE);
-			text("/---------\\",1,14,ftext);
-			text("|  Attack |",1,15,ftext);
-			text("|  Magic  |",1,16,ftext);
-			text("|  Item   |",1,17,ftext);
-			text("|  Run    |",1,18,ftext);
-			text("\\---------/",1,19,ftext);
-
-			
-
 			CursPos.X = 2;
 			CursPos.Y = 15;
 
-			Menu->DrawCursor(CursPos,ftext,26);
+			fightDisplay->DisplayFightMenu();
+
+			Menu->DrawCursor(CursPos, ftext, 26);
 			do
 			{
-				if(Menu->MoveCursor(CursPos,bSel,bEsc,15,18))
+				if(Menu->MoveCursor(CursPos, bSel, bEsc, 15, 18))
 				{
-					Menu->DrawCursor(CursPos,ftext,26);
+					Menu->DrawCursor(CursPos, ftext, 26);
 				}
-				text("", 79, 23, ftext);
+				// text("", 79, 23, ftext);
 			}while(!bSel);
 
 			choice = CursPos.Y;
@@ -141,60 +115,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 			if(fight)
 			{
-				player->DisplayInfo();						// Display player info
-				enemy->DisplayInfo();					// Display enemy info NOTE: TEMPORARY or something anyway
-				//----------------------------------------------------------------->|Check for hit!
-				Evd = rand()%100 + 1;
-				if(Evd <= enemy->GetEvade())
-				{
-					text("The enemy has dodged your attack!",13,11,white);
-					Sleep(player->GetPauseDuration());
-				}
-				else //--------------------------------------------------------->|Damage applications
-				{
-					Damage = rand()% weap->GetDamage() + weap->GetDamageModifier();//--->|Weapon's Damage
-					StrMod = rand()% (player->GetStrength()/2) + 2;//-------------------->|Strength modifier
-					Damage += StrMod;
-					if(weap->GetHitsTwice())//-------------------------------------->|Xtra hit check
-					{
-						D2 = rand()% weap->GetDamage() + weap->GetDamageModifier();
-						StrMod = rand()% (player->GetStrength()/2) + 2;
-						D2 += StrMod;
-						text("2 Hits!!",13,11,white);
-						Sleep(player->GetPauseDuration());
-						Damage += D2;
-					}
-					//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
-					if(weap->GetAttribute1() == enemy->GetWeakness() || weap->GetAttribute2() == enemy->GetWeakness())
-						bWeak = true;
-					//---------------------------------------------------------->Checks if the weapon is magical
-					if(weap->GetAttribute1() == "magical")
-						bMagical = true;
-					//----------------->|If the creature is weak against the player's weapon, then double damage.
-					if(bWeak)
-						Damage *= 2;
-					//----------------------------------------------------->|Damage to the undead is cut in half. 
-					if(!bWeak && !bMagical && enemy->GetType()== "undead")
-						Damage /= 2;
-					//PlaySound("sword1.wav",NULL,SND_FILENAME | SND_ASYNC);
-
-
-					//----------------------------------------------------->|Some enemies have good defenses				
-					Damage = Damage - enemy->GetDefense();
-					if(Damage < 1)
-						Damage = 1;//-------------------------------------->|But damage is always at least 1.
-					enemy->SetHitPoints(enemy->GetHitPoints() - Damage);				
-					text("Your Damage: ",13,11,white);
-					cout << Damage;
-					enemy->DisplayDamage(Damage);
-					if(weap->HasLifeSteal())
-					{
-						player->SetHitPoints(player->GetCurrentHitPoints() + Damage / 2);
-						text("Life Gained:     ",13,11,white);
-						cout << Damage / 2;
-						enemy->DisplayDamage(Damage / 2);
-					}				
-				}
+				PlayerAttack(player, fightDisplay, enemy);
 			}
 	//===========================================================================================================
 	//	This is the code if the player wants to use magic.
@@ -204,13 +125,11 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 				if(!player->HasLearnedSpells())
 				{
 					pass = true;
-					text("You have no magic",13,11,white);
-					Sleep(player->GetPauseDuration());
-					text("                 ",13,11,white);
+					fightDisplay->DisplayMessage("You have no magic", player->GetPauseDuration());
 				}
 				else
 				{
-					Menu->InFightMagicMenu(player,enemy,spells,bEsc);
+					Menu->InFightMagicMenu(player, enemy, spells, bEsc);
 					if(bEsc)
 						pass = true;
 				}
@@ -222,7 +141,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 			if(item)
 			{			
-				Menu->UseItem(player,worldItems,playerInventory,bFight,bLeave,map);
+				Menu->UseItem(player, worldItems, playerInventory, bFight, bLeave, map);
 				if(bLeave)
 					pass = true;
 				arm = player->GetArmor();
@@ -233,20 +152,18 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 	============================================================================================*/
 			if(run)
 			{
-				Evd = rand()%100+1;
+				Evd = rand()% 100 + 1;
 				if(Evd > enemy->GetEvade())
 				{
-					run = true;
-					text("You ran away",13,11,red);
-					PlaySound("run.wav",NULL, SND_FILENAME | SND_ASYNC);
-					Sleep(player->GetPauseDuration());	
-					Display->clear();
+					run = true;					
+					PlaySound("run.wav",NULL, SND_FILENAME | SND_ASYNC);					
+					fightDisplay->DisplayMessage("You ran away", player->GetPauseDuration());
+					fightDisplay->clear();
 					break;
 				}
 				else
 				{
-					text("The enemy thought you should stay!",13,11,red);
-					Sleep(player->GetPauseDuration());
+					fightDisplay->DisplayMessage("The enemy thought you should stay", player->GetPauseDuration());
 					pass = false;
 					run  = false;				
 				}			
@@ -255,9 +172,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 				pass = true;
 			if(enemy->GetState() == 2)
 			{
-				text("The enemy is stunned",13,11,white);
-				text("",79,23,white);
-				Sleep(player->GetPauseDuration());
+				fightDisplay->DisplayMessage("The enemy is stunned", player->GetPauseDuration());
 				pass = true;
 				enemy->SetState(0);
 			}
@@ -265,8 +180,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 			{
 				Damage = rand()% 10 + 10;
 				enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-				text("The enemy takes poison damage: ",13,11,white);
-				num(Damage,45,11,red);
+				fightDisplay->DisplayMessageWithRedNumber("The enemy takes poison damage: ", Damage, player->GetPauseDuration());
 				if(enemy->GetHitPoints() <= 0)
 					pass = true;
 			}
@@ -277,14 +191,13 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 		if(!pass)
 		{			
-			Display->clear();
-			enemy->DisplayInfo();
-			player->DisplayInfo();
+			fightDisplay->clear();
+			fightDisplay->DisplayCreatureStatus(enemy);
+			fightDisplay->DisplayPlayerInfo(player);
 			Evd = rand()%100 + 1;
 			if(Evd <= player->GetEvade() + arm->GetEvadeModifier() && !player->GetIsAsleep())	// Elaborate equation for evasion
 			{
-				text("You dodged the enemy attack",13,11,white);
-				Sleep(player->GetPauseDuration());
+				fightDisplay->DisplayMessage("You dodged the enemy attack", player->GetPauseDuration());
 			}
 			else
 			{
@@ -292,14 +205,13 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 				{
 					Damage = rand()% 10 + 1;								// Conjure up some poison damage
 					player->SetHitPoints(player->GetCurrentHitPoints() - Damage);						// Incur that damage	
-					text("You take poison damage: ",13,11,white);			// Display that damage	
-					num(Damage,45,11,red);			
-					Sleep(player->GetPauseDuration());
+					fightDisplay->DisplayMessageWithRedNumber("You take poison damage: ", Damage, player->GetPauseDuration());
 					if(player->GetCurrentHitPoints() < 1)
 						break;
 				}
 				enemy->Attack(player,playerInventory,worldItems,map);							// Enemy attack
-				Display->clear();
+				fightDisplay->DisplayPlayerInfo(player);
+				fightDisplay->clear();
 			}
 		}
 		if(enemy->GetRunAway())											// Check to see if the enemy will run away
@@ -312,51 +224,121 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 //=============================================================================================================
 	if(enemy->GetHitPoints() <= 0)
 	{
-		player->SetMagicStatus(0);						// After a fight state gets set to zero
-		player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
-		Display->clear();
-		player->StopMusic();
-		PlaySound("WinBattle.wav",NULL, SND_FILENAME | SND_ASYNC);	
-		text("The enemy has been slain",13,11,white);
-		Sleep(player->GetPauseDuration());
-		Display->clear();
-		enemy->Win(player);							// Dynamic enemy win function
-/*================================================================
-	Here I will put the you beat the bad guy music! which will
-	be static I think. Unless you get cooler music from a boss.
-==================================================================*/
-		while(player->ReachedNextLevel())
-		{
-			player->IncreaseLevel();						// Player function to go up a level
-			//p2->playMusic("Level Up Music");  Don't have level up music yet
-
-			Display->clear();
-			text("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
-			text("", 79, 23, white);
-			Sleep(player->GetPauseDuration());
-		}
-		if(enemy->DroppedItem())						// Checks to see if the enemy dropped an item
-			worldItems.push_back(enemy->Token(map));	// Drops item on the ground
-		Display->clear();
+		Win(fightDisplay, player, enemy, worldItems, map);
 	}
+
 	if(player->GetCurrentHitPoints() <= 0)
 	{
-		Display->clear();
-		text("You have died",13,11,white);
-		Sleep(player->GetPauseDuration());
+		fightDisplay->clear();
+		fightDisplay->DisplayMessage("You have died", player->GetPauseDuration());
 		return;
 	}
+
 	if(enemy->GetRunAway())
 	{
-		Display->clear();
-		text("The enemy has run off!!!",13,11,white);
-		Sleep(player->GetPauseDuration());
+		fightDisplay->clear();
+		fightDisplay->DisplayMessage("The enemy has run off!!!", player->GetPauseDuration());
 		enemy->SetRunAway(false);
-		Display->clear();
+		fightDisplay->clear();
 	}
 /*============================================================
 	Here, we put the map music back on. Providing of course
 	that we haven't changed musicFilename at all. I hope!
 =============================================================*/
 	player->PlayMusic(player->GetMusicFilename());
+}
+
+void World::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy)
+{
+	fightDisplay->DisplayPlayerInfo(player);						// Display player info
+	fightDisplay->DisplayCreatureStatus(enemy);	// Display enemy info NOTE: TEMPORARY or something anyway
+												//----------------------------------------------------------------->|Check for hit!
+	int Evd = rand() % 100 + 1;
+	if (Evd <= enemy->GetEvade())
+	{
+		fightDisplay->DisplayMessage("The enemy has dodged your attack!", player->GetPauseDuration());
+		return;
+	}
+	
+	bool bWeak = false;
+	bool bMagical = false;
+	Weapon* weap = player->GetWeapon();
+	int Damage = rand() % weap->GetDamage() + weap->GetDamageModifier();//--->|Weapon's Damage
+	int StrMod = rand() % (player->GetStrength() / 2) + 2;//-------------------->|Strength modifier
+	Damage += StrMod;
+	if (weap->GetHitsTwice())//-------------------------------------->|Xtra hit check
+	{
+		int D2 = rand() % weap->GetDamage() + weap->GetDamageModifier();
+		StrMod = rand() % (player->GetStrength() / 2) + 2;
+		D2 += StrMod;
+		fightDisplay->DisplayMessage("2 Hits!!", player->GetPauseDuration());
+		Damage += D2;
+	}
+	//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
+	if (weap->GetAttribute1() == enemy->GetWeakness() || weap->GetAttribute2() == enemy->GetWeakness())
+		bWeak = true;
+	//---------------------------------------------------------->Checks if the weapon is magical
+	if (weap->GetAttribute1() == "magical")
+		bMagical = true;
+	//----------------->|If the creature is weak against the player's weapon, then double damage.
+	if (bWeak)
+		Damage *= 2;
+	//----------------------------------------------------->|Damage to the undead is cut in half. 
+	if (!bWeak && !bMagical && enemy->GetType() == "undead")
+		Damage /= 2;
+	//PlaySound("sword1.wav",NULL,SND_FILENAME | SND_ASYNC);
+
+
+	//----------------------------------------------------->|Some enemies have good defenses				
+	Damage = Damage - enemy->GetDefense();
+	if (Damage < 1)
+		Damage = 1;//-------------------------------------->|But damage is always at least 1.
+	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
+
+	stringstream messageStream;
+	messageStream << "Your Damage :" << Damage;
+	fightDisplay->DisplayMessage(messageStream.str(), 0);
+	fightDisplay->DisplayDamage(Damage);
+	if (weap->HasLifeSteal())
+	{
+		player->SetHitPoints(player->GetCurrentHitPoints() + Damage / 2);
+		messageStream.str(string());
+		messageStream << "Life Gained:    " << Damage / 2;
+		fightDisplay->DisplayMessage(messageStream.str(), 0);
+		fightDisplay->DisplayDamage(Damage / 2);
+	}
+	
+}
+
+void World::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, vector<Item*>& worldItems, string map)
+{
+	player->SetMagicStatus(0);						// After a fight state gets set to zero
+	player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
+	fightDisplay->clear();
+	player->StopMusic();
+	PlaySound("WinBattle.wav", NULL, SND_FILENAME | SND_ASYNC);
+	
+	fightDisplay->DisplayWinContent(player, enemy);	
+	player->SetTotalKills(player->GetTotalKills() + 1);
+	player->SetGold(player->GetGold() + enemy->GetGold());
+	player->SetExperience(player->GetExperience() + enemy->GetExperience());
+	fightDisplay->DisplayPlayerInfo(player);
+	
+/*================================================================
+	Here I will put the you beat the bad guy music! which will
+	be static I think. Unless you get cooler music from a boss.
+==================================================================*/
+	while (player->ReachedNextLevel())
+	{
+		player->IncreaseLevel();						// Player function to go up a level
+		//p2->playMusic("Level Up Music");  Don't have level up music yet
+		fightDisplay->DisplayLevelUp(player);
+	}
+	if (enemy->DroppedItem())						// Checks to see if the enemy dropped an item
+	{
+		Item* item = Items->GetItem(enemy->Token());
+		worldItems.push_back(item);
+	}
+		
+	fightDisplay->clear();
 }

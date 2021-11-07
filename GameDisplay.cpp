@@ -174,6 +174,16 @@ void GameDisplay::PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, 
 	cout << CTR;
 }
 
+void GameDisplay::clr()
+{
+	int Y = 11;
+	while (Y < 24)
+	{
+		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Y++;
+	}
+}
+
 void GameDisplay::clear()
 {
 	int Y = 1;
@@ -240,6 +250,90 @@ string GameDisplay::GetFileName()
 	return filename;
 }
 
+void GameDisplay::DisplayPlayerInfo(Player* player)
+{
+	if (player->GetIsPoisoned())
+		text(player->GetName() , 1, 1, green);
+	else
+		text(player->GetName(), 1, 1, white);
+	text("HP:    ", 1, 2, white);
+	text("Ka:    ", 1, 3, white);
+	text("GP:    ", 1, 4, white);
+	num(player->GetCurrentHitPoints(), 5, 2, white);
+	text("/", 8, 2, white);
+	num(player->GetMaxHitPoints(), 9, 2, white);
+	num(player->GetCurrentKa(), 5, 3, white);
+	text("/", 8, 3, white);
+	num(player->GetMaxKa(), 9, 3, white);
+	num(player->GetGold(), 5, 4, white);
+	text("X:   ", 1, 6, white);
+	text("Y:   ", 1, 7, white);
+	num(player->GetPositionX(), 3, 6, white);
+	num(player->GetPositionY(), 3, 7, white);
+	text("           ", 1, 8, white);
+	text("           ", 1, 9, white);
+	text(player->GetWeapon()->GetName(), 1, 8, white);
+	text(player->GetArmor()->GetName(), 1, 9, white);
+}
+
+void GameDisplay::DisplayPlayerStatus(Player* player)
+{
+	Weapon* weapon = player->GetWeapon();
+
+	text("Name:   ", 13, 11, white);
+	cout << player->GetName();
+	text("HP:     ", 13, 12, white);
+	cout << player->GetCurrentHitPoints() << "/" << player->GetMaxHitPoints();
+	text("Str:    ", 13, 13, white);
+	cout << player->GetStrength();
+	text("Mind:   ", 13, 14, white);
+	cout << player->GetMind();
+	text("%Evade: ", 13, 15, white);
+	cout << player->GetEvade();
+	text("Kills:  ", 13, 16, white);
+	cout << player->GetTotalKills();
+	text("Weapon Damage: ", 13, 17, white);
+	cout << weapon->GetDamageModifier() << " to " << weapon->GetDamageModifier() + weapon->GetDamage() - 1;
+	text("Total Damage:  ", 13, 18, white);
+	cout << weapon->GetDamageModifier() + 2 << " to " << weapon->GetDamage() + weapon->GetDamageModifier() + player->GetStrength() / 2 - 1;
+	text("Level:  ", 31, 12, white);
+	cout << player->GetLevel();
+	text("Exp:    ", 31, 13, white);
+	cout << player->GetExperience();
+	text("NxtLev: ", 31, 14, white);
+	cout << player->GetExperienceForNextLevel();
+	text("Gold:   ", 31, 15, white);
+	cout << player->GetGold();
+	text("Orc Kills: ", 45, 12, white);
+	cout << player->RaceKillCounts.OrcKillCount;
+	text("Elf Kills: ", 45, 13, white);
+	cout << player->RaceKillCounts.ElfKillCount;
+	text("Hmn Kills: ", 45, 14, white);
+	cout << player->RaceKillCounts.HumanKillCount;
+	text("", 13, 23, white);
+	system("pause");
+}
+
+void GameDisplay::DisplayCastingCost(int amount)
+{
+	text("       ", 1, 23, white);
+	num(amount, 1, 23, white);
+	text("ka", 4, 23, white);
+}
+
+void GameDisplay::DisplayIncantation(string description, string incantation)
+{
+	text("", 13, 9, white);
+	SlowDisplay(incantation);
+	text(description, 13, 11, white);
+	Sleep(1500);
+}
+
+void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
+{
+	text(name, 16, yPosition, color);
+}
+
 void GameDisplay::text(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
@@ -262,6 +356,12 @@ void GameDisplay::num(int num, short X, short Y, WORD color)
 	SetConsoleCursorPosition(OutputH, pos);
 
 	cout << num;
+}
+
+void GameDisplay::DisplayError(string errorText)
+{
+	text(errorText, 13, 11, FOREGROUND_RED);
+	system("pause");
 }
 
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
@@ -316,6 +416,15 @@ void GameDisplay::DisplayCost(int cost)
 	cout << " GP  ";
 }
 
+void GameDisplay::SlowDisplay(string szText)
+{
+	for (unsigned int i = 0; i < szText.size(); i++)
+	{
+		cout << szText[i];
+		Sleep(75);
+	}
+}
+
 void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 {
 	unsigned int Offset = 0;
@@ -334,4 +443,26 @@ void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 	}
 	if (Offset < 10)
 		text("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+}
+
+void GameDisplay::DisplayDamage(int amount)
+{
+	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
+}
+
+void GameDisplay::DisplayCure(int amount)
+{
+	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+}
+
+void GameDisplay::DisplayHitPointUpdate(int amount, WORD color)
+{
+	int X = 13;
+	while (X < 50)
+	{
+		num(amount, X, 9, color);
+		Sleep(50);
+		X++;
+		text("   ", X - 1, 9, color);
+	}
 }

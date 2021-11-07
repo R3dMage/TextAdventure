@@ -8,9 +8,7 @@
 
 
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define blue FOREGROUND_BLUE
 //======================================================  ELF  ==========================================
 bool Elf::DroppedItem()
 {
@@ -31,31 +29,18 @@ Item* Elf::Body(string map) const
 	left->SetCost(50);
 	return left;
 }
-Item* Elf::Token(string map)
+string Elf::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion";
 }
 
 void Elf::Win(Player *p2)
-{
-	text("After every enemy dies you get stuff!!!",13,9,green);
-	text("Gold: ",13,11,green);
-	text("Exp : ",13,12,green);
-	num(Gold,20,11,green);
-	num(Experience,20,12,green);
-	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + Gold);
-	p2->SetExperience(p2->GetExperience() + Experience);
+{	
 	p2->SetReactionElf(1);
 	p2->RaceKillCounts.ElfKillCount += 1;
 	if(p2->RaceKillCounts.OrcKillCount == 0)
 		p2->SetReactionOrc(3);
-	p2->DisplayInfo();
+	
 	Sleep(3000);
 	if(p2->RaceKillCounts.ElfKillCount < 4)
 	{
@@ -95,14 +80,9 @@ Item* ElvenMage::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Item* ElvenMage::Token(string map)
+string ElvenMage::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* ElvenMage::Replenish() const
 {
@@ -128,14 +108,9 @@ Item* ElvenWarrior::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Item* ElvenWarrior::Token(string map)
+string ElvenWarrior::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("Elvenchain");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Elvenchain";
 }
 Creature* ElvenWarrior::Replenish() const
 {
@@ -161,14 +136,9 @@ Item* FireElf::Body(string map) const
 	left->SetCost(200);
 	return left;
 }
-Item* FireElf::Token(string map)
+string FireElf::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* FireElf::Replenish() const
 {
@@ -194,14 +164,9 @@ Item* IceElf::Body(string map) const
 	left->SetCost(200);
 	return left;
 }
-Item* IceElf::Token(string map)
+string IceElf::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* IceElf::Replenish() const
 {
@@ -227,27 +192,24 @@ Item* ranger::Body(string map) const
 	left->SetCost(50 * Level);
 	return left;
 }
-Item* ranger::Token(string map)
+string ranger::Token()
 {
 	int num = rand()% 6 + 1;
-	Item *token = new Item;
+	string token;
 	switch(num)
 	{
 	case 1:
-		token = loadArmor("elvenchain");
+		token = "elvenchain";
 		break;
 	case 2:
-		token = loadWeapon("ElfBlade");
+		token = "ElfBlade";
 		break;
 	case 3:
 	default:
-		token = loaditem("Potion2");
+		token = "Potion2";
 		break;
 	}
 
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
 	return token;
 }
 Creature* ranger::Replenish() const
@@ -275,31 +237,18 @@ Item* Orc::Body(string map) const
 	left->SetCost(75);
 	return left;
 }
-Item* Orc::Token(string map)
+string Orc::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion";
 }
 
 void Orc::Win(Player *p2)
 {
-	text("After every enemy dies you get stuff!!!",13,9,green);
-	text("Gold: ",13,11,green);
-	text("Exp : ",13,12,green);
-	num(Gold,20,11,green);
-	num(Experience,20,12,green);
-	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + Gold);
-	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->SetReactionOrc(1);
 	p2->RaceKillCounts.OrcKillCount += 1;
 	if(p2->RaceKillCounts.ElfKillCount == 0)
 		p2->SetReactionElf(3);
-	p2->DisplayInfo();
+	
 	Sleep(3000);
 	if(p2->RaceKillCounts.OrcKillCount < 4)
 	{
@@ -337,14 +286,9 @@ Item* OrcSorceror::Body(string map) const
 	left->SetCost(300);
 	return left;
 }
-Item* OrcSorceror::Token(string map)
+string OrcSorceror::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* OrcSorceror::Replenish() const
 {
@@ -370,14 +314,9 @@ Item* OrcSoldier::Body(string map) const
 	left->SetCost(150);
 	return left;
 }
-Item* OrcSoldier::Token(string map)
+string OrcSoldier::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("Orc_Mail");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Orc_Mail";
 }
 Creature* OrcSoldier::Replenish() const
 {
@@ -387,64 +326,54 @@ Creature* OrcSoldier::Replenish() const
 
 bool FireOrc::DroppedItem()
 {
- int num = rand()% 100 + 1;
- if(num < 85)
-  return true;
- else
-  return false;
+	int num = rand()% 100 + 1;
+	if(num < 85)
+	return true;
+	else
+	return false;
 }
 Item* FireOrc::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Red Orc Ear");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(200);
- return left;
+	Item *left = new Item;
+	left->SetName("Red Orc Ear");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
+	return left;
 }
-Item* FireOrc::Token(string map)
+string FireOrc::Token()
 {
- Item *token = new Item;
- token = loaditem("Potion2");
- token->SetPositionX(X);
- token->SetPositionY(Y);
- token->SetMapName(map);
- return token;
+	return "Potion2";
 }
 Creature* FireOrc::Replenish() const
 {
- return new FireOrc;
+	return new FireOrc;
 }
 //====================================================== Ice Orc ==================================================
 bool IceOrc::DroppedItem()
 {
- int num = rand()% 100 + 1;
- if(num < 85)
-  return true;
- else
-  return false;
+	int num = rand()% 100 + 1;
+	if(num < 85)
+	return true;
+	else
+	return false;
 }
 Item* IceOrc::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Blue Orc Ear");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(200);
- return left;
+	Item *left = new Item;
+	left->SetName("Blue Orc Ear");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
+	return left;
 }
-Item* IceOrc::Token(string map)
+string IceOrc::Token()
 {
- Item *token = new Item;
- token = loaditem("Potion2");
- token->SetPositionX(X);
- token->SetPositionY(Y);
- token->SetMapName(map);
- return token;
+	return "Potion2";
 }
 Creature* IceOrc::Replenish() const
 {
@@ -470,27 +399,23 @@ Item* OrcWanderer::Body(string map) const
  left->SetCost(250);
  return left;
 }
-Item* OrcWanderer::Token(string map)
+string OrcWanderer::Token()
 {
 	int num = rand()% 6 + 1;
-	Item *token = new Item;
+	string token;
 	switch(num)
 	{
 	case 1:
-		token = loadArmor("OrcMail");
+		token = "OrcMail";
 		break;
 	case 2:
-		token = loadWeapon("OrcBlade");
+		token = "OrcBlade";
 		break;
 	case 3:
 	default:
-		token = loaditem("Potion2");
+		token = "Potion2";
 		break;
 	}
-
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
 	return token;
 }
 Creature* OrcWanderer::Replenish() const
@@ -506,14 +431,9 @@ bool Human::DroppedItem()
 	else 
 		return false;	
 }
-Item* Human::Token(string map)
+string Human::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion";
 }
 Item* Human::Body(string map) const
 {
@@ -529,14 +449,6 @@ Item* Human::Body(string map) const
 
 void Human::Win(Player *p2)
 {
-	text("After every enemy dies you get stuff!!!",13,9,green);
-	text("Gold: ",13,11,green);
-	text("Exp : ",13,12,green);
-	num(Gold,20,11,green);
-	num(Experience,20,12,green);
-	p2->SetTotalKills(p2->GetTotalKills() + 1);
-	p2->SetGold(p2->GetGold() + Gold);
-	p2->SetExperience(p2->GetExperience() + Experience);
 	p2->RaceKillCounts.HumanKillCount += 1;
 	if(p2->RaceKillCounts.HumanKillCount == 5)
 	{//                                       65
@@ -546,7 +458,7 @@ void Human::Win(Player *p2)
 		
 		p2->SetReactionHuman(1);
 	}
-	p2->DisplayInfo();
+	
 	Sleep(3000);
 	text("",79,23,white);
 	if(p2->RaceKillCounts.HumanKillCount < 5)
@@ -574,25 +486,22 @@ bool Knight::DroppedItem()
 	else 
 		return false;	
 }
-Item* Knight::Token(string map)
+string Knight::Token()
 {
 	int num = rand()% 3 + 1;
-	Item *token = new Item;
-	switch(num)
+	string token;
+	switch (num)
 	{
 	case 1:
-		token = loadArmor("Hvy.Chain");
+		token = "Hvy.Chain";
 		break;
 	case 2:
-		token = loadWeapon("Claymore");
+		token = "Claymore";
 		break;
 	case 3:
-		token = loaditem("Potion2");
+		token = "Potion2";
 		break;
 	}
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
 	return token;
 }
 Creature* Knight::Replenish() const
@@ -604,25 +513,22 @@ bool Adventurer::DroppedItem()
 {
 	return true;
 }
-Item* Adventurer::Token(string map)
+string Adventurer::Token()
 {
 	int num = rand()% 3 + 1;
-	Item *token = new Item;
+	string token;
 	switch(num)
 	{
 	case 1:
-		token = loadArmor("Hvy.Chain");
+		token = "Hvy.Chain";
 		break;
 	case 2:
-		token = loadWeapon("+1 Claymore");
+		token = "+1 Claymore";
 		break;
 	case 3:
-		token = loaditem("Potion2");
+		token = "Potion2";
 		break;
 	}
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
 	return token;
 }
 Creature* Adventurer::Replenish() const
@@ -760,14 +666,9 @@ bool Wizard::DroppedItem()
 	else 
 		return false;	
 }
-Item* Wizard::Token(string map)
+string Wizard::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* Wizard::Replenish() const
 {
@@ -795,14 +696,9 @@ Item*Goblin::Body(string map) const
 	left->SetCost(10);
 	return left;
 }
-Item* Goblin::Token(string map)
+string Goblin::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion";
 }
 Creature* Goblin::Replenish() const
 {
@@ -877,14 +773,14 @@ Creature* Snake::Replenish() const
 //====================================================== Eagle ============================================
 Item* Eagle::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Talon");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(50);
- return left;
+	Item *left = new Item;
+	left->SetName("Talon");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(50);
+	return left;
 }
 Creature* Eagle::Replenish() const
 {
@@ -893,14 +789,14 @@ Creature* Eagle::Replenish() const
 //====================================================== Polar Bear ============================================
 Item* PolarBear::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Polar Paw");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(100);
- return left;
+	Item *left = new Item;
+	left->SetName("Polar Paw");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(100);
+	return left;
 }
 Creature* PolarBear::Replenish() const
 {
@@ -909,14 +805,14 @@ Creature* PolarBear::Replenish() const
 //====================================================== Salamander ============================================
 Item* Salamander::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Salamander Tongue");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(200);
- return left;
+	Item *left = new Item;
+	left->SetName("Salamander Tongue");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(200);
+	return left;
 }
 Creature* Salamander::Replenish() const
 {
@@ -925,14 +821,14 @@ Creature* Salamander::Replenish() const
 //====================================================== Centipede ============================================
 Item* Centipede::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Insectoid Leg");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(150);
- return left;
+	Item *left = new Item;
+	left->SetName("Insectoid Leg");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(150);
+	return left;
 }
 Creature* Centipede::Replenish() const
 {
@@ -941,14 +837,14 @@ Creature* Centipede::Replenish() const
 //====================================================== Wyvern ============================================
 Item* Wyvern::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Wyvern Wing");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(250);
- return left;
+	Item *left = new Item;
+	left->SetName("Wyvern Wing");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(250);
+	return left;
 }
 Creature* Wyvern::Replenish() const
 {
@@ -957,14 +853,14 @@ Creature* Wyvern::Replenish() const
 //====================================================== Hydra ============================================
 Item* Hydra::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Hydra Scale");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(300);
- return left;
+	Item *left = new Item;
+	left->SetName("Hydra Scale");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(300);
+	return left;
 }
 Creature* Hydra::Replenish() const
 {
@@ -973,14 +869,14 @@ Creature* Hydra::Replenish() const
 //====================================================== Minotaur ============================================
 Item* Minotaur::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Minotaur Horn");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(250);
- return left;
+	Item *left = new Item;
+	left->SetName("Minotaur Horn");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(250);
+	return left;
 }
 Creature* Minotaur::Replenish() const
 {
@@ -989,31 +885,26 @@ Creature* Minotaur::Replenish() const
 //====================================================== Gargoyle ============================================
 bool Gargoyle::DroppedItem()
 {
- int num = rand()% 100 + 1;
- if(num < 25)
-  return true;
- else
-  return false;
+	int num = rand()% 100 + 1;
+	if(num < 25)
+	return true;
+	else
+	return false;
 }
 Item* Gargoyle::Body(string map) const
 {
- Item *left = new Item;
- left->SetName("Rock Hand");
- left->SetMapName(map);
- left->SetPositionX(X);
- left->SetPositionY(Y);
- left->SetKeep(true);
- left->SetCost(10);
- return left;
+	Item *left = new Item;
+	left->SetName("Rock Hand");
+	left->SetMapName(map);
+	left->SetPositionX(X);
+	left->SetPositionY(Y);
+	left->SetKeep(true);
+	left->SetCost(10);
+	return left;
 }
-Item* Gargoyle::Token(string map)
+string Gargoyle::Token()
 {
- Item *token = new Item;
- token = loaditem("Potion");
- token->SetPositionX(X);
- token->SetPositionY(Y);
- token->SetMapName(map);
- return token;
+	return "Potion";
 }
 Creature* Gargoyle::Replenish() const
 {
@@ -1042,14 +933,9 @@ Item* Margoyle::Body(string map) const
  left->SetCost(100);
  return left;
 }
-Item* Margoyle::Token(string map)
+string Margoyle::Token()
 {
- Item *token = new Item;
- token = loaditem("Potion3");
- token->SetPositionX(X);
- token->SetPositionY(Y);
- token->SetMapName(map);
- return token;
+	return "Potion3";
 }
 Creature* Margoyle::Replenish() const
 {
@@ -1074,14 +960,9 @@ Item* Stargoyle::Body(string map) const
  left->SetCost(10);
  return left;
 }
-Item* Stargoyle::Token(string map)
+string Stargoyle::Token()
 {
- Item *token = new Item;
- token = loaditem("Potion4");
- token->SetPositionX(X);
- token->SetPositionY(Y);
- token->SetMapName(map);
- return token;
+	return "Potion4";
 }
 Creature* Stargoyle::Replenish() const
 {
@@ -1107,14 +988,9 @@ Item* Ogre::Body(string map) const
 	left->SetCost(30);
 	return left;
 }
- Item* Ogre::Token(string map)
+ string Ogre::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	 return "Potion2";
 }
 Creature* Ogre::Replenish() const
 {
@@ -1129,14 +1005,9 @@ bool Troll::DroppedItem()
 	else 
 		return false;
 }
- Item* Troll::Token(string map)
+string Troll::Token()
 {
-	Item *token = new Item;
-	token = loadWeapon("TrollSword");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "TrollSword";
 }
  Item* Troll::Body(string map) const
 {
@@ -1162,14 +1033,9 @@ bool Magmaman::DroppedItem()
 	else 
 		return false;
 }
- Item* Magmaman::Token(string map)
+string Magmaman::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion3");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion3";
 }
  Item* Magmaman::Body(string map) const
 {
@@ -1209,14 +1075,9 @@ Item*Cyclops::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Item* Cyclops::Token(string map)
+string Cyclops::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* Cyclops::Replenish() const
 {
@@ -1244,14 +1105,9 @@ Item*Giant::Body(string map) const
 	left->SetCost(10);
 	return left;
 }
-Item* Giant::Token(string map)
+string Giant::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* Giant::Replenish() const
 {
@@ -1280,14 +1136,9 @@ Item*FrostGiant::Body(string map) const
 	left->SetCost(10);
 	return left;
 }
-Item* FrostGiant::Token(string map)
+string FrostGiant::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* FrostGiant::Replenish() const
 {
@@ -1315,17 +1166,14 @@ Item* StormGiant::Body(string map) const
 	left->SetCost(10);
 	return left;
 }
-Item* StormGiant::Token(string map)
+string StormGiant::Token()
 {
 	int R = rand()% 4 + 1;
-		Item *token = new Item;
+	string token;
 	if(R == 4)
-		token = loadArmor("Storm Shroud");
+		token = "Storm Shroud";
 	if(R < 4)
-		token = loadWeapon("StormSword");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
+		token = "StormSword";
 	return token;
 }
 Creature* StormGiant::Replenish() const
@@ -1354,14 +1202,9 @@ Item*Nymph::Body(string map) const
 	left->SetCost(175);
 	return left;
 }
-Item* Nymph::Token(string map)
+string Nymph::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* Nymph::Replenish() const
 {
@@ -1389,14 +1232,9 @@ Item*IceWizard::Body(string map) const
 	left->SetCost(30);
 	return left;
 }
-Item* IceWizard::Token(string map)
+string IceWizard::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* IceWizard::Replenish() const
 {
@@ -1436,14 +1274,9 @@ Item* Snowman::Body(string map) const
 	left->SetCost(30);
 	return left;
 }
-Item* Snowman::Token(string map)
+string Snowman::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Refresh");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Refresh";
 }
 Creature* Snowman::Replenish() const
 {
@@ -1471,14 +1304,9 @@ Item*ShrineGuard::Body(string map) const
 	left->SetCost(200);
 	return left;
 }
-Item* ShrineGuard::Token(string map)
+string ShrineGuard::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("IceChain");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "IceChain";
 }
 Creature* ShrineGuard::Replenish() const
 {
@@ -1506,14 +1334,9 @@ Item*RockGolem::Body(string map) const
 	left->SetCost(200);
 	return left;
 }
-Item* RockGolem::Token(string map)
+string RockGolem::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* RockGolem::Replenish() const
 {
@@ -1541,14 +1364,9 @@ Item*IronGolem::Body(string map) const
 	left->SetCost(400);
 	return left;
 }
-Item* IronGolem::Token(string map)
+string IronGolem::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* IronGolem::Replenish() const
 {
@@ -1576,14 +1394,9 @@ Item*SteelGolem::Body(string map) const
 	left->SetCost(800);
 	return left;
 }
-Item* SteelGolem::Token(string map)
+string SteelGolem::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion3");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion3";
 }
 Creature* SteelGolem::Replenish() const
 {
@@ -1611,14 +1424,9 @@ Item*Treeman::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Item* Treeman::Token(string map)
+string Treeman::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion2");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion2";
 }
 Creature* Treeman::Replenish() const
 {
@@ -1646,14 +1454,9 @@ Item*Acolyte::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-Item* Acolyte::Token(string map)
+string Acolyte::Token()
 {
-	Item *token = new Item;
-	token = loaditem("SoulCatcher");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "SoulCatcher";
 }
 Creature* Acolyte::Replenish() const
 {
@@ -1682,14 +1485,9 @@ Item*FireDemon::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Item* FireDemon::Token(string map)
+string FireDemon::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion3");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion3";
 }
 Creature* FireDemon::Replenish() const
 {
@@ -1723,33 +1521,33 @@ Creature* Skeleton::Replenish() const
 
 bool Ghoul::DroppedItem()
 {
-	int num = rand()% 100 + 1;
-	if(num < 11)
-		return true;
-	else 
-		return false;	
+	return false;	
 }
  Item* Ghoul::Body(string map) const
 {
 	Item *left = new Item;
-	left->SetName("Mangled Flesh");
-	left->SetMapName(map);
-	left->SetPositionX(X);
-	left->SetPositionY(Y);
-	left->SetKeep(true);
-	left->SetCost(0);
+
+	int num = rand() % 100 + 1;
+	if (num < 11)
+	{
+		left->SetName("Ghoul's Eye");
+		left->SetMapName(map);
+		left->SetPositionX(X);
+		left->SetPositionY(Y);
+		left->SetKeep(true);
+		left->SetCost(1000);
+	}
+	else
+	{
+		left->SetName("Mangled Flesh");
+		left->SetMapName(map);
+		left->SetPositionX(X);
+		left->SetPositionY(Y);
+		left->SetKeep(true);
+		left->SetCost(0);
+	}
+
 	return left;
-}
- Item* Ghoul::Token(string map)
-{
-	Item *token = new Item;
-	token->SetName("Ghoul's Eye");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	token->SetCost(1000);
-	return token;
 }
 Creature* Ghoul::Replenish() const
 {
@@ -1776,35 +1574,36 @@ Creature* Ghost::Replenish() const
 //====================================================== Phantom ================================================
 bool Phantom::DroppedItem()
 {
-	int num = rand()% 100 + 1;
-	if(num < 15)
-		return true;
-	else 
-		return false;	
+	return false;
 }
 Item* Phantom::Body(string map) const
 {
 	Item *left = new Item;
-	left->SetName("Onyx Stone");
-	left->SetMapName(map);
-	left->SetPositionX(X);
-	left->SetPositionY(Y);
-	left->SetKeep(true);
-	left->SetCost(200);
+
+	int num = rand() % 100 + 1;
+	if (num < 15)
+	{
+		left->SetName("Ruby Gem");
+		left->SetMapName(map);
+		left->SetPositionX(X);
+		left->SetPositionY(Y);
+		left->SetKeep(true);
+		left->SetCost(1000);
+	}		
+	else
+	{
+		left->SetName("Onyx Stone");
+		left->SetMapName(map);
+		left->SetPositionX(X);
+		left->SetPositionY(Y);
+		left->SetKeep(true);
+		left->SetCost(200);
+	}
+		
+
 	return left;
 }
 
-Item* Phantom::Token(string map)
-{
-	Item *token = new Item;
-	token->SetName("Ruby Gem");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	token->SetCost(1000);
-	return token;
-}
 Creature* Phantom::Replenish() const
 {
 	return new Phantom;
@@ -1830,14 +1629,9 @@ Item* Vampire::Body(string map) const
 	return left;
 }
 
-Item* Vampire::Token(string map)
+string Vampire::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion4");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion4";
 }
 Creature* Vampire::Replenish() const
 {
@@ -1860,15 +1654,9 @@ bool WoodPriest::DroppedItem()
 {
 	return true;	
 }
- Item* WoodPriest::Token(string map)
+ string WoodPriest::Token()
 {
-	Item *token = new Item;
-	token = loadWeapon("Slicer");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	return token;
+	return "Slicer";
 }
 Item* WoodPriest::Body(string map) const
 {
@@ -1894,16 +1682,14 @@ Creature* WoodPriest::Replenish() const
 {
 	return new Wolf;
 }
-void WoodPriest::banter()
+vector<string> WoodPriest::Banter()
 {
-	clrtop(1);
-	text("Who are you!?",13,2,white);
-	text("You insignificant maggot. So you think you can aid the",13,3,white);
-	text("gods? Your fate will be decided now!",13,4,white);
-	text("When I CRUSH YOU!!!",13,5,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("Who are you!?");
+	speech.push_back("You insignificant maggot. So you think you can aid the");
+	speech.push_back("gods? Your fate will be decided now!");
+	speech.push_back("When I CRUSH YOU!!!");
+	return speech;
 }
 
 //==========================================================================
@@ -1913,15 +1699,9 @@ bool IcePriest::DroppedItem()
 {
 	return true;	
 }
- Item* IcePriest::Token(string map)
+ string IcePriest::Token()
 {
-	Item *token = new Item;
-	token = loadWeapon("Ice Sword");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	return token;
+	return "Ice Sword";
 }
 Item* IcePriest::Body(string map) const
 {
@@ -1947,16 +1727,14 @@ Creature* IcePriest::Replenish() const
 {
 	return new PolarBear;
 }
-void IcePriest::banter()
+vector<string> IcePriest::Banter()
 {
-	clrtop(1);
-	text("So... You defeated the priest of the wood.",13,2,white);
-	text("You may be formidable, but you are no match for me.",13,3,white);
-	text("And anyway, I thought you would be...",13,4,white);
-	text("       ...taller.",13,5,white);
-	text("",13,23,white);;
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("So... You defeated the priest of the wood.");
+	speech.push_back("You may be formidable, but you are no match for me.");
+	speech.push_back("And anyway, I thought you would be...");
+	speech.push_back("       ...taller.");
+	return speech;
 }
 //==========================================================================
 //   Fire Priest
@@ -1965,15 +1743,9 @@ bool FirePriest::DroppedItem()
 {
 	return true;	
 }
- Item* FirePriest::Token(string map)
+ string FirePriest::Token()
 {
-	Item *token = new Item;
-	token = loadWeapon("Fire Sword");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	return token;
+	return "Fire Sword";
 }
 Item* FirePriest::Body(string map) const
 {
@@ -1999,15 +1771,13 @@ Creature* FirePriest::Replenish() const
 {
 	return new Salamander;
 }
-void FirePriest::banter()
+vector<string> FirePriest::Banter()
 {
-	clrtop(1);
-	text("You are disrupting everything! You fool! Don't you realize!?",13,2,white);
-	text("Your power comes from the gods. They can take it away from you",13,3,white);
-	text("once you've accomplished their goals! You're being USED!!!!",13,4,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("You are disrupting everything! You fool! Don't you realize!?");
+	speech.push_back("Your power comes from the gods. They can take it away from you");
+	speech.push_back("once you've accomplished their goals! You're being USED!!!!");
+	return speech;
 }
 //==========================================================================
 //   Wind Priest
@@ -2016,15 +1786,9 @@ bool WindPriest::DroppedItem()
 {
 	return true;	
 }
- Item* WindPriest::Token(string map)
+ string WindPriest::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion4");
-	token->SetMapName(map);
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetKeep(true);
-	return token;
+	return "Potion4";
 }
 Item* WindPriest::Body(string map) const
 {
@@ -2051,14 +1815,12 @@ Creature* WindPriest::Replenish() const
 	return new Wyvern;
 }
 
-void WindPriest::banter()
+vector<string> WindPriest::Banter()
 {
-	clrtop(1);
-	text("Your power may be great, however, you will not last long.",13,2,white);
-	text("This devilish island will be your grave.",13,3,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("Your power may be great, however, you will not last long.");
+	speech.push_back("This devilish island will be your grave.");
+	return speech;
 }
 //==========================================================================
 //   God of War
@@ -2088,15 +1850,13 @@ Creature* GodOfWar::Replenish() const
 {
 	return new Goblin;
 }
-void GodOfWar::banter()
+vector<string> GodOfWar::Banter()
 {
-	clrtop(1);
-	text("You have served me well human. However, your power is now",13,2,white);
-	text("far too great. Becuase you threaten the power of the gods",13,3,white);
-	text("I must now dispose of you. Kind of like a paper plate!",13,4,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("You have served me well human. However, your power is now");
+	speech.push_back("far too great. Becuase you threaten the power of the gods");
+	speech.push_back("I must now dispose of you. Kind of like a paper plate!");
+	return speech;
 }
 //==========================================================================
 //   God of Life
@@ -2128,15 +1888,13 @@ Creature* GodOfLife::Replenish() const
 	return new Goblin;
 }
 
-void GodOfLife::banter()
+vector<string> GodOfLife::Banter()
 {
-	clrtop(1);
-	text("Your power has become great. I believe you can rule the gods!",13,2,white);
-	text("To test your mettle, you must defeat me, and take my place as",13,3,white);
-	text("the god of life. Only then can you ensure peace for all.",13,4,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("Your power has become great. I believe you can rule the gods!");
+	speech.push_back("To test your mettle, you must defeat me, and take my place as");
+	speech.push_back("the god of life. Only then can you ensure peace for all.");
+	return speech;
 }
 //==========================================================================
 //   God of Chaos
@@ -2166,14 +1924,12 @@ Creature* GodOfChaos::Replenish() const
 {
 	return new Goblin;
 }
-void GodOfChaos::banter()
+vector<string> GodOfChaos::Banter()
 {
-	clrtop(1);
-	text("Our alliance was an uneasy one from the beginning.",13,2,white);
-	text("Now is the time to see who can really rule the world!",13,3,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("Our alliance was an uneasy one from the beginning.");
+	speech.push_back("Now is the time to see who can really rule the world!");
+	return speech;
 }
 
 //==========================================================================
@@ -2205,16 +1961,14 @@ Creature* GodOfDeath::Replenish() const
 	return new Goblin;
 }
 
-void GodOfDeath::banter()
+vector<string> GodOfDeath::Banter()
 {
-	clrtop(1);
-	text("I usually reward my servants well. You, however, have grown quite",13,2,white);
-	text("powerful. If I were to slay you and absorb your power...",13,3,white);
-	text("... I could rise from my pit and rule the overworld as well!",13,4,white);
-	text("So, don't think of it as betrayal. Think of it as another fight.", 79, 23,white);
-	text("",13,23,white);
-	system("pause");
-	clrtop(1);
+	vector<string> speech;
+	speech.push_back("I usually reward my servants well. You, however, have grown quite");
+	speech.push_back("powerful. If I were to slay you and absorb your power...");
+	speech.push_back("... I could rise from my pit and rule the overworld as well!");
+	speech.push_back("So, don't think of it as betrayal. Think of it as another fight.");
+	return speech;
 }
 //==========================================================================
 //   Green Dragon
@@ -2234,14 +1988,9 @@ Item*GreenDragon::Body(string map) const
 	left->SetCost(5000);
 	return left;
 }
-Item* GreenDragon::Token(string map)
+string GreenDragon::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("GreenMail");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "GreenMail";
 }
 void GreenDragon::Win(Player *p2)
 {
@@ -2254,10 +2003,6 @@ void GreenDragon::Win(Player *p2)
 Creature* GreenDragon::Replenish() const
 {
 	return new Goblin;
-}
-
-void GreenDragon::banter()
-{
 }
 //==========================================================================
 //   Blue Dragon
@@ -2277,14 +2022,9 @@ Item*BlueDragon::Body(string map) const
 	left->SetCost(5000);
 	return left;
 }
-Item* BlueDragon::Token(string map)
+string BlueDragon::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("BlueMail");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "BlueMail";
 }
 void BlueDragon::Win(Player *p2)
 {
@@ -2296,9 +2036,6 @@ void BlueDragon::Win(Player *p2)
 Creature* BlueDragon::Replenish() const
 {
 	return new Goblin;
-}
-void BlueDragon::banter()
-{
 }
 //==========================================================================
 //   Red Dragon
@@ -2318,14 +2055,9 @@ Item*RedDragon::Body(string map) const
 	left->SetCost(5000);
 	return left;
 }
-Item* RedDragon::Token(string map)
+string RedDragon::Token()
 {
-	Item *token = new Item;
-	token = loadArmor("RedMail");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "RedMail";
 }
 void RedDragon::Win(Player *p2)
 {
@@ -2337,9 +2069,6 @@ void RedDragon::Win(Player *p2)
 Creature* RedDragon::Replenish() const
 {
 	return new Goblin;
-}
-void RedDragon::banter()
-{
 }
 //==========================================================================
 //  Fly
@@ -2381,14 +2110,9 @@ Item*Monk::Body(string map) const
 	left->SetCost(5000);
 	return left;
 }
-Item* Monk::Token(string map)
+string Monk::Token()
 {
-	Item *token = new Item;
-	token = loaditem("Potion");
-	token->SetPositionX(X);
-	token->SetPositionY(Y);
-	token->SetMapName(map);
-	return token;
+	return "Potion";
 }
 void Monk::Win(Player *p2)
 {
@@ -2402,6 +2126,9 @@ Creature* Monk::Replenish() const
 	return new Fly;
 }
 
-void Monk::banter()
+vector<string> Monk::Banter()
 {
+	vector<string> speech;
+	speech.push_back("You could find no peaceful way?");
+	return speech;
 }

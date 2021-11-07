@@ -1,7 +1,6 @@
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
 #include <string>			//For Strings
-#include <format>
 #include <fstream>
 
 #include "Armor.h"
@@ -41,7 +40,7 @@ int Armor::GetEvadeModifier()
 string Armor::Display()
 {
 	char message[50];
-	sprintf(message, "Absorbs %d and adds %d to your evade  ", DefenseModifier, EvadeModifier);
+	sprintf_s(message, "Absorbs %d and adds %d to your evade  ", DefenseModifier, EvadeModifier);
 	return string(message);
 }
 

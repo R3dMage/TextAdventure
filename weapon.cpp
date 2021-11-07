@@ -77,7 +77,7 @@ bool Weapon::HasLifeSteal()
 string Weapon::Display()
 {
 	char message[50];
-	sprintf(message, "Deals %d to %d points of damage     ", DamageModifier, Damage + DamageModifier - 1);
+	sprintf_s(message, "Deals %d to %d points of damage     ", DamageModifier, Damage + DamageModifier - 1);
 	return string(message);
 }
 

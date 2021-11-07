@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "GameDisplay.h"
+#include "ItemRepository.h"
 #include "ISaveLoadGame.h"
 #include "Player.h"
 #include "Item.h"
@@ -10,7 +11,7 @@
 class MainMenuSystem
 {
 public:
-	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver);
+	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository);
 
 	void HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
 	void HandleInventory(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);	
@@ -31,7 +32,8 @@ public:
 	bool MoveCursor(COORD& cursorPosition, bool& bSelect, bool& bEsc, int Ymin, int Ymax);
 
 private:
-	GameDisplay* MainDisplay;
+	GameDisplay* Display;
 	ISaveLoadGame* GameSaver;
+	ItemRepository* Items;
 };
 

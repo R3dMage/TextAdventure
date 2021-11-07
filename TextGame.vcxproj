@@ -89,6 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)fmod\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,15 +159,18 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="CFmod.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Enemies.h" />
+    <ClInclude Include="FightDisplay.h" />
     <ClInclude Include="GameDisplay.h" />
     <ClInclude Include="ISaveLoadGame.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemRepository.h" />
     <ClInclude Include="Local.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MainMenuSystem.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Plots.h" />
     <ClInclude Include="SaveLoadGame.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
@@ -181,9 +185,11 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Eother.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="CFmod.cpp" />
+    <ClCompile Include="FightDisplay.cpp" />
     <ClCompile Include="GameDisplay.cpp" />
     <ClCompile Include="ISaveLoadGame.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemRepository.cpp" />
     <ClCompile Include="Local.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Magic.cpp" />
