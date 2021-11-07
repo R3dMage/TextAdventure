@@ -67,7 +67,7 @@ string Creature::GetType()
 void Creature::SetDamage(int num)
 {
 	if(num < 0){num = 0;}
-	Damage = num;
+	BaseDamage = num;
 }
 void Creature::SetDamageModifier(int num)
 {
@@ -130,7 +130,7 @@ void Creature::SetKa(int N)
 }
 int Creature::GetDamage()
 {
-	return Damage;
+	return BaseDamage;
 }
 int Creature::GetDamageModifier()
 {

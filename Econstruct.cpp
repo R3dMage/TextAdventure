@@ -13,7 +13,7 @@ Elf::Elf()
 {
 	Name = "Elf";
 	Level =		2;
-	Damage =	6;
+	BaseDamage =	6;
 	DamageModifier =	5;
 	HitPoints = MaxHP =  40;
 	Ka = MaxKa =  10;
@@ -27,7 +27,7 @@ ElvenMage::ElvenMage()
 {
 	Name = "Elven Mage";
 	Level =		4;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	10;
 	HitPoints = MaxHP =  58;
 	Ka = MaxKa =	20;
@@ -42,7 +42,7 @@ ElvenWarrior::ElvenWarrior()
 {
 	Name = "Elven Warrior";
 	Level =		4;
-	Damage =	20;
+	BaseDamage =	20;
 	DamageModifier =	10;
 	HitPoints = MaxHP =  65;
 	Ka = MaxKa =  10;
@@ -57,7 +57,7 @@ FireElf::FireElf()
 {
 	Name = "Fire Elf";
 	Level =		8;
-	Damage =	35;
+	BaseDamage =	35;
 	DamageModifier =	20;
 	Defense =		10;
 	HitPoints = MaxHP =  100;
@@ -74,7 +74,7 @@ IceElf::IceElf()
 {
 	Name = "Ice Elf";
 	Level =		6;
-	Damage =	20;
+	BaseDamage =	20;
 	DamageModifier =	20;
 	Defense =		8;
 	MagicDefense =	15;
@@ -95,15 +95,15 @@ ranger::ranger()
 	{
 	case 6:
 	case 7:
-		Damage = 15;	DamageModifier = 15;	Defense = 7; MagicDefense =	15;
+		BaseDamage = 15;	DamageModifier = 15;	Defense = 7; MagicDefense =	15;
 		HitPoints = MaxHP = 110;	Gold = 190;	Experience = 225;
 		break;
 	case 8:
-		Damage = 15; DamageModifier = 20;	Defense = 9; MagicDefense =	15;
+		BaseDamage = 15; DamageModifier = 20;	Defense = 9; MagicDefense =	15;
 		HitPoints = MaxHP = 180;	Gold = 260;	Experience = 350;
 		break;
 	case 9:
-		Damage = 20; DamageModifier = 20;	Defense = 12; MagicDefense =	20;
+		BaseDamage = 20; DamageModifier = 20;	Defense = 12; MagicDefense =	20;
 		HitPoints = MaxHP = 200;	Gold = 400;	Experience = 400;
 		break;
 	}
@@ -118,7 +118,7 @@ Orc::Orc()
 {
 	Name = "Orc";
 	Level =		2;
-	Damage =	7;
+	BaseDamage =	7;
 	DamageModifier =	8;
 	HitPoints = MaxHP =	40;
 	Evade =		4;
@@ -131,7 +131,7 @@ OrcSorceror::OrcSorceror()
 {
 	Name = "Orc Sorceror";
 	Level =		4;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	10;
 	HitPoints = MaxHP =	58;
 	Ka = MaxKa =	20;
@@ -146,7 +146,7 @@ OrcSoldier::OrcSoldier()
 {
 	Name = "Orc Soldier";
 	Level =		4;
-	Damage =	30;
+	BaseDamage =	30;
 	DamageModifier =	10;
 	HitPoints = MaxHP =	65;
 	Ka = MaxKa =  10;
@@ -160,7 +160,7 @@ FireOrc::FireOrc()
 {
 	Name = "Fire Orc";
 	Level = 8;
-	Damage = 30;
+	BaseDamage = 30;
 	DamageModifier = 20;
 	HitPoints = MaxHP = 200;
 	Ka = MaxKa = 30;
@@ -174,7 +174,7 @@ IceOrc::IceOrc()
 {
 	Name = "Ice Orc";
 	Level = 6;
-	Damage = 20;
+	BaseDamage = 20;
 	DamageModifier = 20;
 	HitPoints = MaxHP = 150;
 	Ka = MaxKa = 20;
@@ -191,16 +191,16 @@ OrcWanderer::OrcWanderer()
 	switch(Level)
 	{
 	case 6:
-		Damage = 11;	DamageModifier = 10;	Defense = 7;
+		BaseDamage = 11;	DamageModifier = 10;	Defense = 7;
 		HitPoints = MaxHP = 100;	Gold = 220;	Experience = 225;
 		break;
 	case 7:
 	case 8:
-		Damage = 15; DamageModifier = 15;	Defense = 9; MagicDefense =	5;
+		BaseDamage = 15; DamageModifier = 15;	Defense = 9; MagicDefense =	5;
 		HitPoints = MaxHP = 120;	Gold = 260;	Experience = 250;
 		break;
 	case 9:
-		Damage = 20; DamageModifier = 20;	Defense = 11; MagicDefense =	10;
+		BaseDamage = 20; DamageModifier = 20;	Defense = 11; MagicDefense =	10;
 		HitPoints = MaxHP = 180;	Gold = 400;	Experience = 400;
 		break;
 	}
@@ -215,7 +215,7 @@ Human::Human()
 {
 	Name = "Human Peasant";
 	Level =		2;
-	Damage =	8;
+	BaseDamage =	8;
 	DamageModifier =	3;
 	HitPoints = MaxHP =	30;
 	Ka = MaxKa =  0;
@@ -234,17 +234,17 @@ Knight::Knight()
 	{
 	case 5:
 	case 6:
-		Damage = 11;	DamageModifier = 6;	Defense = 7; MagicDefense =	10;
+		BaseDamage = 11;	DamageModifier = 6;	Defense = 7; MagicDefense =	10;
 		HitPoints = MaxHP = 70;	Gold = 120;	Experience = 125;
 		break;
 	case 7:
 	case 8:
-		Damage = 15; DamageModifier = 8;	Defense = 9; MagicDefense =	15;
+		BaseDamage = 15; DamageModifier = 8;	Defense = 9; MagicDefense =	15;
 		HitPoints = MaxHP = 120;	Gold = 160;	Experience = 150;
 		break;
 	case 9:
 	case 10:
-		Damage = 20; DamageModifier = 10;	Defense = 11; MagicDefense =	20;
+		BaseDamage = 20; DamageModifier = 10;	Defense = 11; MagicDefense =	20;
 		HitPoints = MaxHP = 160;	Gold = 200;	Experience = 200;
 		break;
 	}
@@ -262,7 +262,7 @@ Wizard::Wizard()
 {
 	Name = "Human Wizard";
 	Level =		6;
-	Damage =	20;
+	BaseDamage =	20;
 	DamageModifier =	20;
 	HitPoints = MaxHP =	90;
 	Ka = MaxKa =  30;
@@ -280,7 +280,7 @@ Goblin::Goblin()
 {
 	Name = "Goblin";
 	Level =		1;
-	Damage =	6;
+	BaseDamage =	6;
 	DamageModifier =	4;
 	HitPoints = MaxHP = 10;
 	Defense = 2;
@@ -292,7 +292,7 @@ Ogre::Ogre()
 {
 	Name =		"Ogre";
 	Level =		3;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	10;
 	HitPoints = MaxHP =	60;
 	Defense = 10;
@@ -305,7 +305,7 @@ Troll::Troll()
 {
 	Name =		"Troll";
 	Level =		3;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	5;
 	HitPoints = MaxHP =	55;
 	Defense = 5;
@@ -318,7 +318,7 @@ Magmaman::Magmaman()
 {
 	Name = "Magma Man";
 	Level = 8;
-	Damage = 30;
+	BaseDamage = 30;
 	DamageModifier = 30;
 	HitPoints = MaxHP = 350;
 	Defense = 30;
@@ -332,7 +332,7 @@ Cyclops::Cyclops()
 {
 	Name = "Cyclops";
 	Level = 9;
-	Damage = 30;
+	BaseDamage = 30;
 	DamageModifier = 20;
 	HitPoints = MaxHP = 200;
 	Defense = 20;
@@ -345,7 +345,7 @@ Giant::Giant()
 {
 	Name = "Giant";
 	Level = 7;
-	Damage = 20;
+	BaseDamage = 20;
 	DamageModifier = 10;
 	HitPoints = MaxHP = 95;
 	Defense = 15;
@@ -357,7 +357,7 @@ FrostGiant::FrostGiant()
 {
 	Name = "Frost Giant";
 	Level = 8;
-	Damage = 27;
+	BaseDamage = 27;
 	DamageModifier = 13;
 	HitPoints = MaxHP = 125;
 	Defense = 25;
@@ -371,7 +371,7 @@ StormGiant::StormGiant()
 {
 	Name = "Storm Giant";
 	Level = 12;
-	Damage = 40;
+	BaseDamage = 40;
 	DamageModifier = 20;
 	HitPoints = MaxHP = 400;
 	Defense = 35;
@@ -384,7 +384,7 @@ Nymph::Nymph()
 {
 	Name = "Forest Nymph";
 	Level = 4;
-	Damage = 10;
+	BaseDamage = 10;
 	DamageModifier = 10;
 	HitPoints = MaxHP = 40;
 	MagicDefense = 50;
@@ -396,7 +396,7 @@ IceWizard::IceWizard()
 {
 	Name = "Ice Wizard";
 	Level = 6;
-	Damage = 10;
+	BaseDamage = 10;
 	DamageModifier = 1;
 	HitPoints = MaxHP = 75;
 	MagicDefense = 60;
@@ -408,7 +408,7 @@ Snowman::Snowman()
 {
 	Name = "Snowman";
 	Level = 5;
-	Damage = 15;
+	BaseDamage = 15;
 	DamageModifier = 15;
 	HitPoints = MaxHP = 100;
 	Defense = 15;
@@ -422,7 +422,7 @@ ShrineGuard::ShrineGuard()
 {
 	Name = "Shrine Guardian";
 	Level = 8;
-	Damage = 25;
+	BaseDamage = 25;
 	DamageModifier = 20;
 	Defense = 15;
 	HitPoints = MaxHP = 125;
@@ -435,7 +435,7 @@ RockGolem::RockGolem()
 {
 	Name = "Rock Golem";
 	Level = 7;
-	Damage = 25;
+	BaseDamage = 25;
 	DamageModifier = 22;
 	Defense = 10;
 	HitPoints = MaxHP = 200;
@@ -448,7 +448,7 @@ IronGolem::IronGolem()
 {
 	Name = "Iron Golem";
 	Level = 9;
-	Damage = 40;
+	BaseDamage = 40;
 	DamageModifier = 33;
 	Defense = 30;
 	HitPoints = MaxHP = 500;
@@ -461,7 +461,7 @@ SteelGolem::SteelGolem()
 {
 	Name = "Steel Golem";
 	Level = 16;
-	Damage = 100;
+	BaseDamage = 100;
 	DamageModifier = 10;
 	Defense = 50;
 	HitPoints = MaxHP = 800;
@@ -474,7 +474,7 @@ Treeman::Treeman()
 {
 	Name = "Treeman";
 	Level = 6;
-	Damage = 30;
+	BaseDamage = 30;
 	DamageModifier = 10;
 	HitPoints = MaxHP = 75;
 	Defense = 10;
@@ -488,7 +488,7 @@ Acolyte::Acolyte()
 {
 	Name = "Acolyte";
 	Level = 1;
-	Damage = 1;
+	BaseDamage = 1;
 	DamageModifier = 1;
 	HitPoints = MaxHP = 1;
 	Evade = 1;
@@ -502,7 +502,7 @@ GiantSpider::GiantSpider()
 {
 	Name = "Giant Spider";
 	Level =		2;
-	Damage =	7;
+	BaseDamage =	7;
 	DamageModifier =	4;
 	HitPoints = MaxHP =  20;
 	Evade =		5;
@@ -515,7 +515,7 @@ Wolf::Wolf()
 {
 	Name = "Rabid Wolf";
 	Level =		1;
-	Damage =	6;
+	BaseDamage =	6;
 	DamageModifier =	3;
 	HitPoints = MaxHP =	8;
 	Evade =		5;
@@ -527,7 +527,7 @@ Raven::Raven()
 {
 	Name = "Wild Raven";
 	Level =		1;
-	Damage =	6;
+	BaseDamage =	6;
 	DamageModifier =	3;
 	HitPoints = MaxHP =	8;
 	Evade =		5;
@@ -538,7 +538,7 @@ Snake::Snake()
 {
 	Name = "Big Snake";
 	Level =		1;
-	Damage =	4;
+	BaseDamage =	4;
 	DamageModifier =	3;
 	HitPoints = MaxHP =	10;
 	Evade =		5;
@@ -549,7 +549,7 @@ Eagle::Eagle()
 {
 	Name = "Giant Eagle";
 	Level =		4;
-	Damage =	15;
+	BaseDamage =	15;
 	DamageModifier =	8;
 	HitPoints = MaxHP =	45;
 	Evade =		10;
@@ -560,7 +560,7 @@ PolarBear::PolarBear()
 {
 	Name = "Polar Bear";
 	Level =		5;
-	Damage =	23;
+	BaseDamage =	23;
 	DamageModifier =	13;
 	HitPoints = MaxHP =	75;
 	Evade =		5;
@@ -572,7 +572,7 @@ Salamander::Salamander()
 {
 	Name = "Salamander";
 	Level =		6;
-	Damage =	20;
+	BaseDamage =	20;
 	DamageModifier =	25;
 	HitPoints = MaxHP =	200;
 	MagicDefense =	15;
@@ -585,7 +585,7 @@ FireDemon::FireDemon()
 {
 	Name = "Fire Demon";
 	Level =		10;
-	Damage =	30;
+	BaseDamage =	30;
 	DamageModifier =	25;
 	HitPoints = MaxHP =	250;
 	Defense		=	20;
@@ -599,7 +599,7 @@ Centipede::Centipede()
 {
 	Name = "Giant Centipede";
 	Level =		10;
-	Damage =	40;
+	BaseDamage =	40;
 	DamageModifier =	40;
 	HitPoints = MaxHP =	450;
 	Evade =		5;
@@ -610,7 +610,7 @@ Wyvern::Wyvern()
 {
 	Name = "Wyvern";
 	Level =		11;
-	Damage =	40;
+	BaseDamage =	40;
 	DamageModifier =	40;
 	HitPoints = MaxHP =	400;
 	Defense =		20;
@@ -623,7 +623,7 @@ Hydra::Hydra()
 {
 	Name = "Hydra";
 	Level =		11;
-	Damage =	60;
+	BaseDamage =	60;
 	DamageModifier =	40;
 	HitPoints = MaxHP =	450;
 	Defense =		35;
@@ -636,7 +636,7 @@ Minotaur::Minotaur()
 {
 	Name = "Minotaur";
 	Level =		14;
-	Damage =	70;
+	BaseDamage =	70;
 	DamageModifier =	50;
 	HitPoints = MaxHP =	565;
 	Defense =		45;
@@ -649,7 +649,7 @@ Gargoyle::Gargoyle()
 {
 	Name = "Gargoyle";
 	Level =		6;
-	Damage =	20;
+	BaseDamage =	20;
 	DamageModifier =	10;
 	HitPoints = MaxHP =	100;
 	Evade =		50;
@@ -660,7 +660,7 @@ Margoyle::Margoyle()
 {
 	Name = "Margoyle";
 	Level = 12;
-	Damage = 40;
+	BaseDamage = 40;
 	DamageModifier = 20;
 	HitPoints = MaxHP = 200;
 	Defense = 15;
@@ -673,7 +673,7 @@ Stargoyle::Stargoyle()
 {
 	Name = "Stargoyle";
 	Level = 24;
-	Damage = 80;
+	BaseDamage = 80;
 	DamageModifier = 40;
 	HitPoints = MaxHP = 400;
 	Defense = 20;
@@ -691,7 +691,7 @@ Skeleton::Skeleton()
 {
 	Name = "Skeleton";
 	Level =		2;
-	Damage =	7;
+	BaseDamage =	7;
 	DamageModifier =	3;
 	HitPoints = MaxHP =	20;
 	Evade =		9;
@@ -704,7 +704,7 @@ Ghoul::Ghoul()
 {
 	Name = "Ghoul";
 	Level =		2;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	5;
 	HitPoints = MaxHP = 25;
 	Evade =		4;
@@ -717,7 +717,7 @@ Ghost::Ghost()
 {
 	Name = "Ghost";
 	Level =		6;
-	Damage =	10;
+	BaseDamage =	10;
 	DamageModifier =	10;
 	HitPoints = MaxHP =	35;
 	Evade =		40;
@@ -730,7 +730,7 @@ Phantom::Phantom()
 {
 	Name = "Phantom";
 	Level = 4;
-	Damage = 20;
+	BaseDamage = 20;
 	DamageModifier = 10;
 	HitPoints = MaxHP = 70;
 	Evade = 5;
@@ -743,7 +743,7 @@ Vampire::Vampire()
 {
 	Name = "Vampire";
 	Level = 12;
-	Damage = 50;
+	BaseDamage = 50;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 275;
 	MagicDefense = 75;
@@ -760,7 +760,7 @@ WoodPriest::WoodPriest()
 {
 	Name = "Wood Priest";
 	Level = 15;
-	Damage = 25;
+	BaseDamage = 25;
 	DamageModifier = 25;
 	HitPoints = MaxHP = 200;
 	Ka = MaxKa = 35;
@@ -777,7 +777,7 @@ IcePriest::IcePriest()
 {
 	Name = "Ice Priest";
 	Level = 20;
-	Damage = 30;
+	BaseDamage = 30;
 	DamageModifier = 30;
 	HitPoints = MaxHP = 400;
 	Ka = MaxKa = 175;
@@ -794,7 +794,7 @@ FirePriest::FirePriest()
 {
 	Name = "Fire Priest";
 	Level = 25;
-	Damage = 50;
+	BaseDamage = 50;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 600;
 	Ka = MaxKa = 225;
@@ -811,7 +811,7 @@ WindPriest::WindPriest()
 {
 	Name = "Wind Priest";
 	Level = 30;
-	Damage = 75;
+	BaseDamage = 75;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 800;
 	Ka = MaxKa = 300;
@@ -827,7 +827,7 @@ GodOfWar::GodOfWar()
 {
 	Name = "God of War";
 	Level = 99;
-	Damage = 200;
+	BaseDamage = 200;
 	DamageModifier = 50;
 	Defense = 75;
 	HitPoints = MaxHP = 4000;
@@ -844,7 +844,7 @@ GodOfLife::GodOfLife()
 {
 	Name = "God of Life";
 	Level = 99;
-	Damage = 100;
+	BaseDamage = 100;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 3000;
 	Ka = MaxKa = 300;
@@ -862,7 +862,7 @@ GodOfChaos::GodOfChaos()
 {
 	Name = "God of Chaos";
 	Level = 99;
-	Damage = 100;
+	BaseDamage = 100;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 3500;
 	Ka = MaxKa = 300;
@@ -880,7 +880,7 @@ GodOfDeath::GodOfDeath()
 {
 	Name = "God of Death";
 	Level = 99;
-	Damage = 200;
+	BaseDamage = 200;
 	DamageModifier = 100;
 	HitPoints = MaxHP = 5000;
 	Ka = MaxKa = 200;
@@ -902,7 +902,7 @@ Monk::Monk()
 {
 	Name = "Peaceful Monk";
 	Level = 69;
-	Damage = 10;
+	BaseDamage = 10;
 	DamageModifier = 10;
 	Defense = 75;
 	HitPoints = MaxHP = 125;
@@ -917,7 +917,7 @@ Fly::Fly()
 {
 	Name = "Fly";
 	Level = 0;
-	Damage = 2;
+	BaseDamage = 2;
 	DamageModifier = 2;
 	HitPoints = MaxHP = 10;
 	Evade = 0;
@@ -928,7 +928,7 @@ GreenDragon::GreenDragon()
 {
 	Name = "Green Dragon";
 	Level = 80;
-	Damage = 50;
+	BaseDamage = 50;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 2000;
 	Evade = 15;
@@ -944,7 +944,7 @@ BlueDragon::BlueDragon()
 {
 	Name = "Blue Dragon";
 	Level = 80;
-	Damage = 50;
+	BaseDamage = 50;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 2000;
 	Defense = 50;
@@ -960,7 +960,7 @@ RedDragon::RedDragon()
 {
 	Name = "Red Dragon";
 	Level = 80;
-	Damage = 50;
+	BaseDamage = 50;
 	DamageModifier = 50;
 	HitPoints = MaxHP = 2000;
 	Defense = 50;

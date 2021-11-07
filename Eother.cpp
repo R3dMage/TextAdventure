@@ -562,7 +562,7 @@ void Adventurer::setmap(string M)
 	switch(Level)
 	{
 	case 1:
-		Damage = 5;
+		BaseDamage = 5;
 		DamageModifier = 5;
 		HitPoints = MaxHP = 25;
 		Evade = 3;
@@ -570,7 +570,7 @@ void Adventurer::setmap(string M)
 		Experience = 15;
 		break;
 	case 2:
-		Damage = 6;
+		BaseDamage = 6;
 		DamageModifier = 6;
 		HitPoints = MaxHP = 40;
 		Evade = 5;
@@ -578,7 +578,7 @@ void Adventurer::setmap(string M)
 		Experience = 30;
 		break;
 	case 3:
-		Damage = 8;
+		BaseDamage = 8;
 		DamageModifier = 8;
 		HitPoints = MaxHP = 65;
 		Ka = MaxKa = 10;
@@ -587,7 +587,7 @@ void Adventurer::setmap(string M)
 		Experience = 50;
 		break;
 	case 4:
-		Damage = 10;
+		BaseDamage = 10;
 		DamageModifier = 10;
 		HitPoints = MaxHP = 90;
 		Ka = MaxKa = 12;
@@ -597,7 +597,7 @@ void Adventurer::setmap(string M)
 		Experience = 85;
 		break;
 	case 5:
-		Damage = 12;
+		BaseDamage = 12;
 		DamageModifier = 12;
 		HitPoints = MaxHP = 120;
 		Ka = MaxKa = 15;
@@ -607,7 +607,7 @@ void Adventurer::setmap(string M)
 		Experience = 100;
 		break;
 	case 6:
-		Damage = 15;
+		BaseDamage = 15;
 		DamageModifier = 15;
 		HitPoints = MaxHP = 150;
 		Ka = MaxKa = 20;
@@ -617,7 +617,7 @@ void Adventurer::setmap(string M)
 		Experience = 125;
 		break;
 	case 7:
-		Damage = 18;
+		BaseDamage = 18;
 		DamageModifier = 18;
 		HitPoints = MaxHP = 160;
 		Ka = MaxKa = 25;
@@ -626,7 +626,7 @@ void Adventurer::setmap(string M)
 		Gold = 200;
 		Experience = 150;
 	case 8:
-		Damage = 20;
+		BaseDamage = 20;
 		DamageModifier = 20;
 		HitPoints = MaxHP = 170;
 		Ka = MaxKa = 30;
@@ -636,7 +636,7 @@ void Adventurer::setmap(string M)
 		Experience = 175;
 		break;
 	case 9:
-		Damage = 22;
+		BaseDamage = 22;
 		DamageModifier = 22;
 		HitPoints = MaxHP = 200;
 		Ka = MaxKa = 35;
@@ -646,7 +646,7 @@ void Adventurer::setmap(string M)
 		Experience = 200;
 		break;
 	case 10:
-		Damage = 25;
+		BaseDamage = 25;
 		DamageModifier = 25;
 		HitPoints = MaxHP = 220;
 		Ka = MaxKa = 40;

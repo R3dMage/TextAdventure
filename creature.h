@@ -71,7 +71,7 @@ protected:
 	int		HitPoints;
 	int		MaxHP;
 	int		Experience;
-	int		Damage;
+	int		BaseDamage;
 	int		DamageModifier;
 	int		Defense;
 	int		MagicDefense;
