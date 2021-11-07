@@ -94,41 +94,34 @@ bool Item::GetKeep()
 	return Keep;
 }
 
-void Item::Display()
+string Item::Display()
 {
+	string displayText;
 	switch(Type)
 	{
-	case -1:
-		text("                                           ",30,11,white);
-		break;
 	case 0:
-		text("Heals 25 points of life                    ",30,11,white);
+		displayText = "Heals 25 points of life                    ";
 		break;
 	case 1:
-		text("Restores 5 to 10 point of ka",30,11,white);
+		displayText = "Restores 5 to 10 point of ka";
 		break;
 	case 2:
-		text("Increases Strength 1-5 points              ",30,11,white);
+		displayText = "Increases Strength 1-5 points              ";
 		break;
 	case 3:
-		text("Increases Mind 1-5 points                  ",30,11,white);
+		displayText = "Increases Mind 1-5 points                  ";
 		break;
 	case 4:
-		text("Heals 75 points of life              ",30,11,white);
+		displayText = "Heals 75 points of life                    ";
 		break;
 	case 5:
-		text("Heals 150 points of life              ",30,11,white);
+		displayText = "Heals 150 points of life              ";
 		break;
 	case 6:
-		text("Heals all of your life              ",30,11,white);
+		displayText = "Heals all of your life              ";
 		break;
+	default:
+		displayText = "                                           ";
 	}
-	DisplayCost();
-}
-
-void Item::DisplayCost()
-{
-	text("Value: ",1,22,white);
-	num(Cost,2,23,white);
-	cout << " GP  ";
+	return displayText;
 }

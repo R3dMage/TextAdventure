@@ -4,6 +4,7 @@
 #include "Creature.h"
 
 #define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
+#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 Creature::Creature()
 {
@@ -28,22 +29,9 @@ Creature::Creature()
 	Music = "battle.mp3";
 }
 
-void Creature::Banter()
+vector<string> Creature::Banter()
 {
-}
-
-void Creature::DisplayInfo()
-{
-	#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-	text(Name,13,1,white);
-	text("Level: ",13,2,white);
-	text("HP:    ",13,3,white);
-	text("Ka:    ",13,4,white);
-	num(Level,20,2,white);
-	num(HitPoints,17,3,white);
-	num(Ka,17,4,white);
-
-
+	return vector<string>();
 }
 
 void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
@@ -63,23 +51,10 @@ void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*
 	text("Enemies Damage: ",13,11,white);
 	cout << damage << "              ";
 	Creature::DisplayDamage(damage);
-	player->DisplayInfo();
 }
 
 void Creature::Win(Player *player)
 {
-	text("After every enemy dies you get stuff!!!",13,9,green);
-	text("Gold: ",13,11,green);
-	text("Exp : ",13,12,green);
-	num(Gold,20,11,green);
-	num(Experience,20,12,green);
-	player->SetTotalKills(player->GetTotalKills() + 1);
-	player->SetGold(player->GetGold() + Gold);
-	player->SetExperience(player->GetExperience() + Experience);
-	player->DisplayInfo();
-	text("",79,23,white);
-	Sleep(3000);
-
 }
 string Creature::GetWeakness()
 {
@@ -92,7 +67,7 @@ string Creature::GetType()
 void Creature::SetDamage(int num)
 {
 	if(num < 0){num = 0;}
-	Damage = num;
+	BaseDamage = num;
 }
 void Creature::SetDamageModifier(int num)
 {
@@ -155,7 +130,7 @@ void Creature::SetKa(int N)
 }
 int Creature::GetDamage()
 {
-	return Damage;
+	return BaseDamage;
 }
 int Creature::GetDamageModifier()
 {
@@ -331,38 +306,12 @@ return false;
 
 }
 
-
-
-void Creature::DisplayDamage(int D)
-{
-	int X = 13;
-	while(X < 50)
-	{
-		text("                                                            ",13,9,green);
-		num(D,X,9,FOREGROUND_RED | FOREGROUND_INTENSITY);
-		Sleep(50);
-		X++;
-		text("   ",X-1,9,FOREGROUND_RED);
-	}
-}
-void Creature::DisplayCure(int D)
-{
-	int X = 13;
-	while(X < 50)
-	{
-		num(D,X,9,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Sleep(50);
-		X++;
-		text("   ",X-1,9,FOREGROUND_GREEN);
-	}
-}
-
 bool Creature::DroppedItem()
 { return false; }
 
 
-Item* Creature::Token(string Map)
-{ Item *flag = new Item; return flag;}
+string Creature::Token()
+{ return string(); }
 
 void Creature::LoadPosition(int X, int Y)
 {
@@ -384,7 +333,7 @@ bool Creature::TalkTo(Player *player)
 {
 	return false;
 }
-char * Creature::GetMusic()
+string Creature::GetMusic()
 {
 	return Music;
 }
@@ -396,5 +345,61 @@ void Creature::slowDisp(string szText)
 	{
 		cout << szText[i];
 		Sleep(75);
+	}
+}
+
+void Creature::clr()
+{
+	int Y = 11;
+	while (Y < 24)
+	{
+		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Y++;
+	}
+}
+
+void Creature::text(string szText, short X, short Y, WORD color)
+{
+	HANDLE OutputH;
+	COORD pos = { X, Y };
+
+	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(OutputH, color);
+	SetConsoleCursorPosition(OutputH, pos);
+
+	cout << szText;
+}
+
+void Creature::num(int num, short X, short Y, WORD color)
+{
+	HANDLE OutputH;
+	COORD pos = { X, Y };
+
+	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(OutputH, color);
+	SetConsoleCursorPosition(OutputH, pos);
+
+	cout << num;
+}
+
+void Creature::DisplayDamage(int amount)
+{
+	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
+}
+
+void Creature::DisplayCure(int amount)
+{
+	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+}
+
+void Creature::DisplayHitPointUpdate(int amount, WORD color)
+{
+	int X = 13;
+	while (X < 50)
+	{
+		num(amount, X, 9, color);
+		Sleep(50);
+		X++;
+		text("   ", X - 1, 9, color);
 	}
 }

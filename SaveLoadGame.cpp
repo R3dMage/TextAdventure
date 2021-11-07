@@ -2,6 +2,12 @@
 
 using namespace std;
 
+SaveLoadGame::SaveLoadGame(ItemRepository* itemRepository, GameDisplay* gameDisplay)
+{
+	Items = itemRepository;
+	Display = gameDisplay;
+}
+
 void SaveLoadGame::SaveGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map)
 {
 	string Savefile = player->GetName();
@@ -10,7 +16,7 @@ void SaveLoadGame::SaveGame(Player* player, vector<Item*>& worldItems, vector<It
 
 	fout.open(Savefile.c_str());
 
-	player->Save(fout);
+	SavePlayer(player, fout);
 	SaveMagic(spells, fout);
 	SaveInventory(playerInventory, fout);
 	SaveGround(worldItems, fout);
@@ -19,6 +25,45 @@ void SaveLoadGame::SaveGame(Player* player, vector<Item*>& worldItems, vector<It
 	fout.close();
 }
 
+void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
+{
+	fout << "Name: " << player->GetName() << endl;
+	fout << "HP: " << player->GetCurrentHitPoints() << endl;
+	fout << "MHP: " << player->GetMaxHitPoints() << endl;
+	fout << "Ka: " << player->GetCurrentKa() << endl;
+	fout << "MKa: " << player->GetMaxKa() << endl;
+	fout << "Gold: " << player->GetGold() << endl;
+	fout << "Exp: " << player->GetExperience() << endl;
+	fout << "Next: " << player->GetExperienceForNextLevel() << endl;
+	fout << "Lvl: " << player->GetLevel() << endl;
+	fout << "Evade: " << player->GetEvade() << endl;
+	fout << "Str: " << player->GetStrength() << endl;
+	fout << "Mind: " << player->GetMind() << endl;
+	fout << "X: " << player->GetPositionX() << endl;
+	fout << "Y: " << player->GetPositionY() << endl;
+	fout << "Kills: " << player->GetTotalKills() << endl;
+	fout << "bSpells: " << player->HasLearnedSpells() << endl;
+	fout << "bjoined: " << player->GetMemberHasJoined() << endl;
+	fout << "Invis: " << player->GetIsInvisible() << endl;
+	fout << "Weapon: " << player->GetWeapon()->GetName() << endl;
+	fout << "Armor: " << player->GetArmor()->GetName() << endl;
+	fout << "elf: " << player->RaceReactions.Elf << endl;
+	fout << "orc: " << player->RaceReactions.Orc << endl;
+	fout << "hum: " << player->RaceReactions.Human << endl;
+	fout << "elfk: " << player->RaceKillCounts.ElfKillCount << endl;
+	fout << "orck: " << player->RaceKillCounts.OrcKillCount << endl;
+	fout << "humk: " << player->RaceKillCounts.HumanKillCount << endl;
+	fout << "start: " << player->PlotEventStates.Start << endl;
+	fout << "P1: " << player->PlotEventStates.Priest1 << endl;
+	fout << "P2: " << player->PlotEventStates.Priest2 << endl;
+	fout << "P3: " << player->PlotEventStates.Priest3 << endl;
+	fout << "P4: " << player->PlotEventStates.Priest4 << endl;
+	fout << "Grn: " << player->PlotEventStates.GreenDragon << endl;
+	fout << "Blu: " << player->PlotEventStates.BlueDragon << endl;
+	fout << "Red: " << player->PlotEventStates.RedDragon << endl;
+	fout << "Mnk: " << player->PlotEventStates.Monk << endl;
+	fout << "Music: " << player->GetIsMusicOn() << endl;
+}
 
 void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map, string filename)
 {
@@ -29,11 +74,10 @@ void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<It
 	fin.open(fName.c_str());
 	if (fin.fail())
 	{
-		text("ERROR LOADING SAVED CHARACTER \n\n", 13, 11, FOREGROUND_RED);
-		system("pause");
+		Display->DisplayError("ERROR LOADING SAVED CHARACTER");
 		exit(0);
-	}
-	player->Load(fin);
+	};
+	LoadPlayer(player, fin);
 	LoadMagic(spells, fin);
 	LoadInventory(playerInventory, fin);
 	LoadGround(worldItems, fin);
@@ -89,6 +133,91 @@ void SaveLoadGame::SaveMagic(vector<Magic*>& spells, ofstream& fout)
 	}
 }
 
+void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
+{
+	string Temp;
+	string Value;
+	int Number;
+	bool Truth;
+	string A;
+	string W;
+	fin >> Temp >> Value;
+	player->SetName(Value);
+	fin >> Temp >> Number;
+	player->SetHitPoints(Number);
+	fin >> Temp >> Number;
+	player->SetMaxHitPoints(Number);
+	fin >> Temp >> Number;
+	player->SetKa(Number);
+	fin >> Temp >> Number;
+	player->SetMaxKa(Number);
+	fin >> Temp >> Number;
+	player->SetGold(Number);
+	fin >> Temp >> Number;
+	player->SetExperience(Number);
+	fin >> Temp >> Number;
+	player->SetExperienceNeeded(Number);
+	fin >> Temp >> Number;
+	player->SetLevel(Number);
+	fin >> Temp >> Number;
+	player->SetEvade(Number);
+	fin >> Temp >> Number;
+	player->SetStrength(Number);
+	fin >> Temp >> Number;
+	player->SetMind(Number);
+	fin >> Temp >> Number;
+	player->SetPositionX(Number);
+	fin >> Temp >> Number;
+	player->SetPositionY(Number);
+	fin >> Temp >> Number;
+	player->SetTotalKills(Number);
+	fin >> Temp >> Truth;
+	player->SetHasSpells(Truth);
+	fin >> Temp >> Truth;
+	player->SetMemberHasJoined(Truth);
+	fin >> Temp >> Truth;
+	player->SetIsInvisible(Truth);
+	fin >> Temp;
+	getline(fin, W);	W = ItemRepository::rotate(W);
+	fin >> Temp;
+	getline(fin, A);	A = ItemRepository::rotate(A);
+	fin >> Temp >> Number;
+	player->SetReactionElf(Number);
+	fin >> Temp >> Number;
+	player->SetReactionOrc(Number);
+	fin >> Temp >> Number;
+	player->SetReactionHuman(Number);
+	fin >> Temp >> Number;;
+	player->RaceKillCounts.ElfKillCount = Number;
+	fin >> Temp >> Number;
+	player->RaceKillCounts.OrcKillCount = Number;
+	fin >> Temp >> Number;
+	player->RaceKillCounts.HumanKillCount = Number;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Start = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Priest1 = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Priest2 = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Priest3 = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Priest4 = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.GreenDragon = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.BlueDragon = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.RedDragon = Truth;
+	fin >> Temp >> Truth;
+	player->PlotEventStates.Monk = Truth;
+	fin >> Temp >> Truth;
+	player->SetMusicIsOn(Truth);
+	player->SetWeapon(Items->GetWeapon(W));
+	player->SetArmor(Items->GetArmor(A));
+	player->SetIsLoaded(true);
+}
+
 void SaveLoadGame::LoadInventory(vector<Item*>& playerInventory, ifstream& fin)
 {
 	unsigned int i;
@@ -105,7 +234,7 @@ void SaveLoadGame::LoadInventory(vector<Item*>& playerInventory, ifstream& fin)
 	for (i = 0; i < j; i++)
 	{
 		holder = new Item;
-		fin >> szHolder;	getline(fin, temp);	holder->SetName(rotate(temp));
+		fin >> szHolder;	getline(fin, temp);	holder->SetName(ItemRepository::rotate(temp));
 		fin >> szHolder >> temp;	holder->SetMapName(temp);
 		fin >> szHolder >> Xtemp;	holder->SetPositionX(Xtemp);
 		fin >> szHolder >> Xtemp;	holder->SetPositionY(Xtemp);
@@ -116,9 +245,9 @@ void SaveLoadGame::LoadInventory(vector<Item*>& playerInventory, ifstream& fin)
 		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
 		if (holder->GetIsWeapon())
-			playerInventory.push_back(loadWeapon(holder->GetName()));
+			playerInventory.push_back(Items->GetWeapon(holder->GetName()));
 		else if (holder->GetIsArmor())
-			playerInventory.push_back(loadArmor(holder->GetName()));
+			playerInventory.push_back(Items->GetArmor(holder->GetName()));
 		else
 			playerInventory.push_back(holder);
 	}
@@ -140,7 +269,7 @@ void SaveLoadGame::LoadGround(vector<Item*>& worldInventory, ifstream& fin)
 	for (i = 0; i < j; i++)
 	{
 		holder = new Item;
-		fin >> szHolder;	getline(fin, temp);	holder->SetName(rotate(temp));
+		fin >> szHolder;	getline(fin, temp);	holder->SetName(ItemRepository::rotate(temp));
 		fin >> szHolder >> temp;	holder->SetMapName(temp);
 		fin >> szHolder >> Xtemp;	holder->SetPositionX(Xtemp);
 		fin >> szHolder >> Xtemp;	holder->SetPositionY(Xtemp);
@@ -151,9 +280,9 @@ void SaveLoadGame::LoadGround(vector<Item*>& worldInventory, ifstream& fin)
 		fin >> szHolder >> Y;	holder->SetIsArmor(Y);
 
 		if (holder->GetIsWeapon())
-			worldInventory.push_back(loadWeapon(holder->GetName()));
+			worldInventory.push_back(Items->GetWeapon(holder->GetName()));
 		else if (holder->GetIsArmor())
-			worldInventory.push_back(loadArmor(holder->GetName()));
+			worldInventory.push_back(Items->GetArmor(holder->GetName()));
 		else
 			worldInventory.push_back(holder);
 	}
@@ -172,7 +301,7 @@ void SaveLoadGame::LoadMagic(vector<Magic*>& spells, ifstream& fin)
 	{
 		fin >> temp;
 		getline(fin, N);
-		spells.push_back(GetMagic(rotate(N)));
+		spells.push_back(GetMagic(ItemRepository::rotate(N)));
 	}
 }
 

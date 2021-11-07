@@ -5,9 +5,6 @@
 
 using namespace std;
 
-void text(string szText,short X,short Y,WORD color);
-void num(int num, short X, short Y,WORD color);
-
 class Weapon : public Item{
 public:
 	Weapon();
@@ -24,7 +21,7 @@ public:
 	string GetAttribute2();
 	void SetAttribute2(string);
 
-	virtual void Display();
+	virtual std::string Display();
 	void Save(string name);
 private:
 	string Attribute1;

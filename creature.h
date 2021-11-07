@@ -3,16 +3,10 @@
 
 #include <windows.h>		//I'm not sure
 #include <iostream>			//Always needed
-#include <string>			//For Strings
+#include <string>			//For std::strings
 
 #include "Player.h"
 #include "Item.h"
-
-using namespace std;
-
-Item* loaditem(string name);
-void text(string,short,short,WORD);
-void num(int num, short X, short Y,WORD color);
 
 class Creature{
 public:
@@ -42,7 +36,7 @@ public:
 	int GetY();
 	void SetMagicDefense(int);
 	int GetMagicDefense();
-	void SetName(string);
+	void SetName(std::string);
 	void SetTalkTo(bool);
 	bool GetTalkTo();
 	void SetRunAway(bool);
@@ -54,35 +48,30 @@ public:
 	bool GetRunAway();
 	void SetDontMove(bool);
 	bool GetDontMove();
-	string GetType();
-	string GetName();
-	string GetWeakness();
-	string gettoken();
-	string GetMap();
-	char* GetMusic();
-	virtual void SetMap(string);
+	std::string GetType();
+	std::string GetName();
+	std::string GetWeakness();
+	std::string GetMap();
+	std::string GetMusic();
+	virtual void SetMap(std::string);
 
-	void DisplayInfo();
-	void DisplayDamage(int);
-	void DisplayCure(int);
-	void slowDisp(string);
+	void slowDisp(std::string);
 	void LoadPosition(int X, int Y);
 	virtual Creature* Replenish() const = 0;
-	virtual Item* Body(string) const = 0;
-	Item* Loadtoken();
+	virtual Item* Body(std::string) const = 0;
 	virtual void Win(Player *player);
 	virtual bool DroppedItem();
-	virtual void Attack(Player *player, vector<Item*> &playerInventory,vector<Item*> &worldItems,string map);
-	virtual Item* Token(string);
+	virtual void Attack(Player *player, std::vector<Item*> &playerInventory,std::vector<Item*> &worldItems,std::string map);
+	virtual string Token();
 	virtual bool TalkTo(Player *player);
-	virtual void Banter();
+	virtual std::vector<std::string> Banter();
 
 protected:
 	int 	Level;
 	int		HitPoints;
 	int		MaxHP;
 	int		Experience;
-	int		Damage;
+	int		BaseDamage;
 	int		DamageModifier;
 	int		Defense;
 	int		MagicDefense;
@@ -98,13 +87,20 @@ protected:
 	bool	DontMove;
 	bool	IsAsleep;
 	bool	IsPoisoned;
-	string  Type;
-	string	Name;
-	string  Map;
-	string  Weakness;
-	char *  Music;
+	std::string  Type;
+	std::string	Name;
+	std::string  Map;
+	std::string  Weakness;
+	std::string  Music;
 
 	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
 	void DrawCursor(COORD pos, WORD color, unsigned char curs);
+
+	void clr();
+	void text(std::string szText, short X, short Y, WORD color);
+	void num(int num, short X, short Y, WORD color);
+	void DisplayDamage(int amount);
+	void DisplayCure(int amount);
+	void DisplayHitPointUpdate(int amount, WORD color);
 };
 #endif 

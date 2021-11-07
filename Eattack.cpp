@@ -8,16 +8,13 @@
 
 
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define green FOREGROUND_GREEN
-#define white FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define blue FOREGROUND_BLUE
 
 //============================================================================================
 // Elf
 //============================================================================================
 void Elf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -40,17 +37,17 @@ void Elf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "              ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "              ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -59,7 +56,7 @@ void Elf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 //============================================================================================
 void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -88,7 +85,7 @@ void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 40 + 20;
+			damage = rand() % 40 + 20;
 			text("", 13, 9, white);
 			slowDisp(snow);
 			text(GetName(), 13, 11, white);
@@ -98,7 +95,7 @@ void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		if (X > 10 && X < 50 && Ka > 4)
 		{
-			Damage = rand() % 20 + 20;
+			damage = rand() % 20 + 20;
 			text("", 13, 9, white);
 			slowDisp(briarbush);
 			text(GetName(), 13, 11, white);
@@ -108,18 +105,18 @@ void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -128,38 +125,38 @@ void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void ElvenWarrior::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	Armor* arm;
 	arm = player->GetArmor();
 	string strike = "Spirits of the wood guide my blade. POWER STRIKE!!!";
 
 	if (HitPoints <= 10 && Ka >= 4)
 	{
-		Damage = rand() % 20 + 10;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 20 + 10;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		slowDisp(strike);
 		text("The Elven Warrior strikes out with immense speed!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -167,7 +164,7 @@ void ElvenWarrior::Attack(Player* player, vector<Item*>& playerInventory, vector
 //============================================================================================
 void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	int dodge = rand() % 100 + 1;
 	Armor* arm;
@@ -175,7 +172,7 @@ void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 
 	if (choice > 75 && Ka >= 6)
 	{
-		Damage = rand() % 20 + 28;
+		damage = rand() % 20 + 28;
 		SetKa(Ka - 6);
 		text("", 13, 9, white);
 		text("The Ice Elf hurls a magical icicle at you!", 13, 11, white);
@@ -189,25 +186,25 @@ void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 
 		else
 		{
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                 ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                 ";
+			Creature::DisplayDamage(damage);
 		}
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -215,7 +212,7 @@ void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	int dodge = rand() % 100 + 1;
 	Armor* arm;
@@ -223,7 +220,7 @@ void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 
 	if (choice > 75 && Ka >= 10)
 	{
-		Damage = rand() % 30 + 48;
+		damage = rand() % 30 + 48;
 		SetKa(Ka - 10);
 		text("", 13, 9, white);
 		text("The Fire Elf sprays fire from his hand!", 13, 11, white);
@@ -236,25 +233,25 @@ void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		}
 		else
 		{
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                 ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                 ";
+			Creature::DisplayDamage(damage);
 		}
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -262,7 +259,7 @@ void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int choice = rand() % 100 + 1;
 	int dodge = rand() % 100 + 1;
@@ -278,21 +275,21 @@ void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 		{
 		case 6:
 		case 7:
-			Damage = rand() % 25 + 20;
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			damage = rand() % 25 + 20;
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("", 13, 9, white);
 			slowDisp(strike);
 			text("The Elven Ranger strikes out with immense speed!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			text("                                                            ", 13, 9, white);
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                             ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                             ";
+			Creature::DisplayDamage(damage);
 			SetKa(Ka - 10);
 			break;
 		case 8:
 		case 9:
-			Damage = rand() % 30 + 30;
+			damage = rand() % 30 + 30;
 			text("", 13, 9, white);
 			slowDisp(briarbush);
 			text(GetName(), 13, 11, white);
@@ -319,17 +316,17 @@ void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -338,7 +335,7 @@ void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	Armor* arm;
 
 	if (HitPoints < 10)
@@ -346,18 +343,17 @@ void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 	else
 	{
 		arm = player->GetArmor();
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
-		player->DisplayInfo();
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -366,7 +362,7 @@ void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 //============================================================================================
 void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -381,12 +377,12 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
-		Damage = rand() % 20 + 20;
-		cure = Damage;
+		damage = rand() % 20 + 20;
+		cure = damage;
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                       ";
-		Creature::DisplayDamage(Damage);
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		cout << damage << "                                       ";
+		Creature::DisplayDamage(damage);
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("                                                            ", 13, 9, white);
 		text("The Orc Sorceror is healed: ", 13, 8, white);
 		num(cure, 41, 8, green);
@@ -399,7 +395,7 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 50 + 20;
+			damage = rand() % 50 + 20;
 			text("", 13, 9, white);
 			slowDisp(fire);
 			text(GetName(), 13, 11, white);
@@ -409,7 +405,7 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		}
 		if (X > 10 && X < 50 && Ka > 4)
 		{
-			Damage = rand() % 30 + 20;
+			damage = rand() % 30 + 20;
 			text("", 13, 9, white);
 			slowDisp(arrow);
 			text(GetName(), 13, 11, white);
@@ -419,18 +415,18 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		}
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -439,38 +435,38 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 void OrcSoldier::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	Armor* arm;
 	arm = player->GetArmor();
 	string strike = "Pathetic human feel the wrath of the orcs!!!";
 
 	if (HitPoints <= 10 && Ka >= 5)
 	{
-		Damage = rand() % 15 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 15 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		slowDisp(strike);
 		text("The Orc Soldier strikes out with immense power!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -479,7 +475,7 @@ void OrcSoldier::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void FireOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -487,31 +483,31 @@ void FireOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 
 	if (choice > 75 && Ka >= 10)
 	{
-		Damage = rand() % 35 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 35 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		slowDisp(strike);
 		text("You are pelted with scalding hot rocks from above", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 10);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -520,7 +516,7 @@ void FireOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void IceOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -528,31 +524,31 @@ void IceOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 
 	if (choice > 75 && Ka >= 10)
 	{
-		Damage = rand() % 25 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 25 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		slowDisp(strike);
 		text("Wind colder than what seems possible chills you to the bones", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 10);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -561,7 +557,7 @@ void IceOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	//bool nodam;
@@ -577,12 +573,12 @@ void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
-		Damage = rand() % 35 + 20;
-		cure = Damage;
+		damage = rand() % 35 + 20;
+		cure = damage;
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                       ";
-		Creature::DisplayDamage(Damage);
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		cout << damage << "                                       ";
+		Creature::DisplayDamage(damage);
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("                                                            ", 13, 9, white);
 		text("The Adventurer is healed: ", 13, 8, white);
 		num(cure, 41, 8, green);
@@ -595,7 +591,7 @@ void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 50 + 50;
+			damage = rand() % 50 + 50;
 			text("", 13, 9, white);
 			slowDisp(fire);
 			text("The Orc Wanderer casts fire!", 13, 11, white);
@@ -604,23 +600,23 @@ void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<
 		}
 		else
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			if (State == 1)
-				X = Damage / 8;
+				X = damage / 8;
 			else
 				X = 0;
-			Damage += X;
+			damage += X;
 			text(GetName(), 13, 11, white);
 			cout << " strikes out at you!";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -629,7 +625,7 @@ void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	bool nodam = false;
 	Armor* arm;
@@ -640,7 +636,7 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 
 	if (HitPoints <= 10 && Ka >= 10)
 	{
-		Damage = rand() % 20 + 20;
+		damage = rand() % 20 + 20;
 		text("", 13, 9, white);
 		slowDisp(arain);
 		text("Acid rain falls from the sky!!!", 13, 11, white);
@@ -652,7 +648,7 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 		X = rand() % 100 + 1;
 		if (X > 50 && player->GetMagicStatus() == 1)
 		{
-			Damage = 0;
+			damage = 0;
 			text("", 13, 9, white);
 			slowDisp(D);
 			player->SetMagicStatus(0);
@@ -664,7 +660,7 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 		}
 		else if (X < 50 && Ka > 4)
 		{
-			Damage = rand() % 40 + 20;
+			damage = rand() % 40 + 20;
 			text("", 13, 9, white);
 			slowDisp(szshock);
 			text("Electricy flies toward you, and your muscles tense", 13, 11, white);
@@ -674,20 +670,20 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
 		if (!nodam)
 		{
-			Damage -= arm->GetDefenseModifier();
-			if (Damage < 0)
-				Damage = 1;
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			damage -= arm->GetDefenseModifier();
+			if (damage < 0)
+				damage = 1;
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                    ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                    ";
+			Creature::DisplayDamage(damage);
 		}
 	}
 }
@@ -697,7 +693,7 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	bool nodam;
@@ -714,12 +710,12 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
-		Damage = rand() % 20 + 20;
-		cure = Damage;
+		damage = rand() % 20 + 20;
+		cure = damage;
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                       ";
-		Creature::DisplayDamage(Damage);
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		cout << damage << "                                       ";
+		Creature::DisplayDamage(damage);
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("                                                            ", 13, 9, white);
 		text("The Adventurer is healed: ", 13, 8, white);
 		num(cure, 41, 8, green);
@@ -729,7 +725,7 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	else if (State == 0 && Ka >= 4 && Level > 2)
 	{
-		Damage = 0;
+		damage = 0;
 		text("", 13, 9, white);
 		slowDisp(str);
 		State = 1;
@@ -744,7 +740,7 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10 && Level > 5)
 		{
-			Damage = rand() % 50 + 50;
+			damage = rand() % 50 + 50;
 			text("", 13, 9, white);
 			slowDisp(skel);
 			text("Skeletal hands strike from the soil!", 13, 11, white);
@@ -753,23 +749,23 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		else
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			if (State == 1)
-				X = Damage / 8;
+				X = damage / 8;
 			else
 				X = 0;
-			Damage += X;
+			damage += X;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you!";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -777,38 +773,38 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void Stargoyle::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 
 	if (choice > 85)
 	{
-		Damage = rand() % 100 + 100;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 100 + 100;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Stargoyle points at the heavens and laughs", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("You see a huge meteor tearing through the atmosphere, at you!", 13, 11, white);
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -817,24 +813,24 @@ void Stargoyle::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void GiantSpider::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int Poison = rand() % 100 + 1;
 	Armor* arm;
 
 	arm = player->GetArmor();
-	Damage = rand() % Damage + DamageModifier;
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage = rand() % BaseDamage + DamageModifier;
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "              ";
-	Creature::DisplayDamage(Damage);
-	player->DisplayInfo();
-	//clear();
+	cout << damage << "              ";
+	Creature::DisplayDamage(damage);
+	//player->DisplayInfo();
+	
 	if (Poison < 25)
 	{
 		if (!player->GetIsPoisoned())
@@ -852,37 +848,37 @@ void GiantSpider::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 void Ghost::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 
 	if (choice > 75)
 	{
-		Damage = rand() % 15 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 15 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The ghost reaches out and touches you, with hands like ice.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                            ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -890,36 +886,36 @@ void Ghost::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 void Magmaman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 	if (choice > 75 && Ka >= 4)
 	{
-		Damage = rand() % 35 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 35 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Magmaman blasts searing hot wind at you from his mouth", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                           ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -929,36 +925,36 @@ void Magmaman::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 //============================================================================================
 void FrostGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 	if (choice > 75 && Ka >= 4)
 	{
-		Damage = rand() % 15 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 15 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Frost Giant blows bone-chilling wind at you from his mouth", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                           ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -967,36 +963,36 @@ void FrostGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void StormGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 	if (choice > 75 && Ka >= 4)
 	{
-		Damage = rand() % 60 + 30;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 60 + 30;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Storm Giant strikes you with lightning!!!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                           ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1005,7 +1001,7 @@ void StormGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void Nymph::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	int R = 0;
 	Armor* arm;
@@ -1026,17 +1022,17 @@ void Nymph::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " stabs you with her long dagger!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 	if (player->GetIsAsleep())
 	{
@@ -1056,7 +1052,7 @@ void Nymph::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1084,7 +1080,7 @@ void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 50 + 20;
+			damage = rand() % 50 + 20;
 			text("", 13, 9, white);
 			slowDisp(avalanche);
 			text(GetName(), 13, 11, white);
@@ -1094,7 +1090,7 @@ void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		if (X > 10 && X <= 80 && Ka > 5)
 		{
-			Damage = rand() % 30 + 20;
+			damage = rand() % 30 + 20;
 			text("", 13, 9, white);
 			slowDisp(chill);
 			text(GetName(), 13, 11, white);
@@ -1104,18 +1100,18 @@ void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		else if (X > 80)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1124,37 +1120,37 @@ void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void Snowman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 	if (choice > 75 && Ka >= 4)
 	{
-		Damage = rand() % 20 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 20 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Snowman throws a big, icy snowball at you!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cout << "And laughs!";
 		text("                                                           ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1163,7 +1159,7 @@ void Snowman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1191,7 +1187,7 @@ void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka >= 10)
 		{
-			Damage = rand() % 40 + 20;
+			damage = rand() % 40 + 20;
 			text("", 13, 9, white);
 			slowDisp(slam);
 			text(GetName(), 13, 11, white);
@@ -1201,7 +1197,7 @@ void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		}
 		else if (X > 10 && X < 50 && Ka > 5)
 		{
-			Damage = rand() % 20 + 20;
+			damage = rand() % 20 + 20;
 			text("", 13, 9, white);
 			slowDisp(briarbush);
 			text(GetName(), 13, 11, white);
@@ -1211,18 +1207,18 @@ void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		}
 		else
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " bashes you with heavy limbs!";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1232,7 +1228,7 @@ void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void FireDemon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -1241,42 +1237,42 @@ void FireDemon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		choice = rand() % 100 + 1;
 		if (choice < 50)
 		{
-			Damage = rand() % 20 + 30;
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			damage = rand() % 20 + 30;
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("", 13, 9, white);
 			text("The Fire Demon throws a big fireball at you!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			cout << "And laughs!";
 			text("                                                           ", 13, 9, white);
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                 ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                 ";
+			Creature::DisplayDamage(damage);
 		}
 		else
 		{
-			Damage = rand() % 20 + 40;
-			player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+			damage = rand() % 20 + 40;
+			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			text("", 13, 9, white);
 			text("The Fire Demon grabs you, and engulfs you in flames!!!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			text("Enemies Damage: ", 13, 11, white);
-			cout << Damage << "                                 ";
-			Creature::DisplayDamage(Damage);
+			cout << damage << "                                 ";
+			Creature::DisplayDamage(damage);
 		}
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1285,36 +1281,36 @@ void FireDemon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void Hydra::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int choice = rand() % 100 + 1;
 	Armor* arm;
 	arm = player->GetArmor();
 	if (choice > 75 && Ka >= 4)
 	{
-		Damage = rand() % 20 + 20;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % 20 + 20;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("", 13, 9, white);
 		text("The Hydra breathes noxious gas in your direction!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		text("                                                           ", 13, 9, white);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                 ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                 ";
+		Creature::DisplayDamage(damage);
 		SetKa(Ka - 4);
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage = rand() % BaseDamage + DamageModifier;
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text(GetName(), 13, 11, white);
 		cout << " bites you!";
 		Sleep(player->GetPauseDuration());
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                             ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                             ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1323,24 +1319,24 @@ void Hydra::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 void Centipede::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int Poison = rand() % 100 + 1;
 	Armor* arm;
 
 	arm = player->GetArmor();
-	Damage = rand() % Damage + DamageModifier;
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage = rand() % BaseDamage + DamageModifier;
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "              ";
-	Creature::DisplayDamage(Damage);
-	player->DisplayInfo();
-	//clear();
+	cout << damage << "              ";
+	Creature::DisplayDamage(damage);
+	// player->DisplayInfo();
+	
 	if (Poison < 25)
 	{
 		if (!player->GetIsPoisoned())
@@ -1357,25 +1353,25 @@ void Centipede::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void Vampire::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int Poison = rand() % 100 + 1;
 	Armor* arm;
 
 	arm = player->GetArmor();
-	Damage = rand() % Damage + DamageModifier;
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage = rand() % BaseDamage + DamageModifier;
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "              ";
-	Creature::DisplayDamage(Damage);
-	Damage = Damage / 4;
-	SetHitPoints(GetHitPoints() + Damage);
-	player->DisplayInfo();
+	cout << damage << "              ";
+	Creature::DisplayDamage(damage);
+	damage = damage / 4;
+	SetHitPoints(GetHitPoints() + damage);
+	//player->DisplayInfo();
 	if (Poison < 15)
 	{
 		if (!player->GetIsPoisoned())
@@ -1392,7 +1388,7 @@ void Vampire::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1420,7 +1416,7 @@ void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 40 + 20;
+			damage = rand() % 40 + 20;
 			text("", 13, 9, white);
 			slowDisp(cyclone);
 			text(GetName(), 13, 11, white);
@@ -1430,7 +1426,7 @@ void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		}
 		if (X > 10 && X < 50 && Ka > 4)
 		{
-			Damage = rand() % 20 + 20;
+			damage = rand() % 20 + 20;
 			text("", 13, 9, white);
 			slowDisp(windstorm);
 			text(GetName(), 13, 11, white);
@@ -1440,18 +1436,18 @@ void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 		}
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1461,7 +1457,7 @@ void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1489,7 +1485,7 @@ void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 40 + 35;
+			damage = rand() % 40 + 35;
 			text("", 13, 9, white);
 			slowDisp(snow);
 			text(GetName(), 13, 11, white);
@@ -1499,7 +1495,7 @@ void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		if (X > 10 && X < 50 && Ka > 4)
 		{
-			Damage = rand() % 30 + 25;
+			damage = rand() % 30 + 25;
 			text("", 13, 9, white);
 			slowDisp(briarbush);
 			text(GetName(), 13, 11, white);
@@ -1509,18 +1505,18 @@ void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1529,7 +1525,7 @@ void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1557,7 +1553,7 @@ void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 50 + 20;
+			damage = rand() % 50 + 20;
 			text("", 13, 9, white);
 			slowDisp(avalanche);
 			cout << "A glacier falls on you out of nowhere!!";
@@ -1566,7 +1562,7 @@ void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		if (X > 10 && X <= 80 && Ka > 5)
 		{
-			Damage = rand() % 30 + 20;
+			damage = rand() % 30 + 20;
 			text("", 13, 9, white);
 			slowDisp(chill);
 			cout << "Ice punctures and tears at you!";
@@ -1575,18 +1571,18 @@ void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		else if (X > 80)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1595,7 +1591,7 @@ void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1622,7 +1618,7 @@ void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 50 + 20;
+			damage = rand() % 50 + 20;
 			text("", 13, 9, white);
 			slowDisp(landslide);
 			cout << "Boulders fall on you from high above";
@@ -1631,7 +1627,7 @@ void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		if (X > 10 && X <= 80 && Ka > 5)
 		{
-			Damage = rand() % 30 + 20;
+			damage = rand() % 30 + 20;
 			text("", 13, 9, white);
 			slowDisp(flame);
 			cout << "Flames fly from his fingers torching you";
@@ -1640,18 +1636,18 @@ void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		else if (X > 80)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1660,7 +1656,7 @@ void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1688,7 +1684,7 @@ void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 10)
 		{
-			Damage = rand() % 60 + 50;
+			damage = rand() % 60 + 50;
 			text("", 13, 9, white);
 			slowDisp(lightning);
 			cout << "A bolt of lightning strikes you!";
@@ -1697,7 +1693,7 @@ void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		if (X > 10 && X <= 80 && Ka > 5)
 		{
-			Damage = rand() % 30 + 30;
+			damage = rand() % 30 + 30;
 			text("", 13, 9, white);
 			slowDisp(arain);
 			cout << "Acid rain falls upon you burning, and scalding you";
@@ -1706,18 +1702,18 @@ void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		}
 		else if (X > 80)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1726,7 +1722,7 @@ void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	int X;
 	Armor* arm;
@@ -1755,7 +1751,7 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		X = rand() % 100 + 1;
 		if (X < 10 && Ka > 20)
 		{
-			Damage = rand() % 80 + 50;
+			damage = rand() % 80 + 50;
 			text("", 13, 9, white);
 			slowDisp(lifestop);
 			text(GetName(), 13, 11, white);
@@ -1765,7 +1761,7 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		if (X < 20 && Ka > 10)
 		{
-			Damage = rand() % 60 + 30;
+			damage = rand() % 60 + 30;
 			text("", 13, 9, white);
 			slowDisp(snow);
 			text(GetName(), 13, 11, white);
@@ -1775,7 +1771,7 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		if (X > 20 && X < 80 && Ka > 4)
 		{
-			Damage = rand() % 40 + 40;
+			damage = rand() % 40 + 40;
 			text("", 13, 9, white);
 			slowDisp(briarbush);
 			text(GetName(), 13, 11, white);
@@ -1785,18 +1781,18 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 		}
 		else if (X > 50)
 		{
-			Damage = rand() % Damage + DamageModifier;
+			damage = rand() % BaseDamage + DamageModifier;
 			text(GetName(), 13, 11, white);
 			cout << " Attacks you with his staff";
 			Sleep(player->GetPauseDuration());
 		}
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 //============================================================================================
@@ -1804,7 +1800,7 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -1815,7 +1811,7 @@ void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	X = rand() % 100 + 1;
 	if (X < 10 && Ka > 20)
 	{
-		Damage = rand() % 80 + 50;
+		damage = rand() % 80 + 50;
 		text("", 13, 9, white);
 		slowDisp(magma);
 		text(GetName(), 13, 11, white);
@@ -1825,7 +1821,7 @@ void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	if (X < 20 && Ka > 10)
 	{
-		Damage = rand() % 60 + 30;
+		damage = rand() % 60 + 30;
 		text("", 13, 9, white);
 		slowDisp(snow);
 		text(GetName(), 13, 11, white);
@@ -1835,7 +1831,7 @@ void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	if (X > 20 && X < 80 && Ka > 4)
 	{
-		Damage = rand() % 40 + 40;
+		damage = rand() % 40 + 40;
 		text("", 13, 9, white);
 		slowDisp(fire);
 		text(GetName(), 13, 11, white);
@@ -1845,25 +1841,25 @@ void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	else if (X > 50)
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you with his staff";
 		Sleep(player->GetPauseDuration());
 	}
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "                                    ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "                                    ";
+	Creature::DisplayDamage(damage);
 }
 //============================================================================================
 // God of War
 //============================================================================================
 void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -1874,7 +1870,7 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 	X = rand() % 100 + 1;
 	if (X < 10)
 	{
-		Damage = rand() % 90 + 60;
+		damage = rand() % 90 + 60;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " swings his massive hammer at you";
@@ -1883,7 +1879,7 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 	}
 	if (X < 20)
 	{
-		Damage = rand() % 60 + 30;
+		damage = rand() % 60 + 30;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " Attacks with his battle axe";
@@ -1892,7 +1888,7 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 	}
 	if (X > 20 && X < 80)
 	{
-		Damage = rand() % 40 + 40;
+		damage = rand() % 40 + 40;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " swings his sword";
@@ -1901,18 +1897,18 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 	}
 	else if (X > 50)
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " punches you!";
 		Sleep(player->GetPauseDuration());
 	}
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "                                    ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "                                    ";
+	Creature::DisplayDamage(damage);
 }
 
 //============================================================================================
@@ -1920,7 +1916,7 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 //============================================================================================
 void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int cure;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -1932,12 +1928,12 @@ void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 		slowDisp(drain);
 		text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
-		Damage = rand() % 100 + 90;
-		cure = Damage;
+		damage = rand() % 100 + 90;
+		cure = damage;
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                       ";
-		Creature::DisplayDamage(Damage);
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		cout << damage << "                                       ";
+		Creature::DisplayDamage(damage);
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("                                                            ", 13, 9, white);
 		text("The god of death is healed: ", 13, 8, white);
 		num(cure, 41, 8, green);
@@ -1947,18 +1943,18 @@ void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	else
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " Attacks you with his scythe";
 		Sleep(player->GetPauseDuration());
 
-		Damage -= arm->GetDefenseModifier();
-		if (Damage < 0)
-			Damage = 1;
-		player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+		damage -= arm->GetDefenseModifier();
+		if (damage < 0)
+			damage = 1;
+		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		text("Enemies Damage: ", 13, 11, white);
-		cout << Damage << "                                    ";
-		Creature::DisplayDamage(Damage);
+		cout << damage << "                                    ";
+		Creature::DisplayDamage(damage);
 	}
 }
 
@@ -1973,7 +1969,7 @@ void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -1981,7 +1977,7 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 	X = rand() % 100 + 1;
 	if (X < 10)
 	{
-		Damage = rand() % 100 + 60;
+		damage = rand() % 100 + 60;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes a superheated fire at you!";
@@ -1990,7 +1986,7 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 	}
 	if (X < 20)
 	{
-		Damage = rand() % 60 + 30;
+		damage = rand() % 60 + 30;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes fire at you!";
@@ -1999,7 +1995,7 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 	}
 	if (X > 20 && X < 80)
 	{
-		Damage = rand() % 40 + 40;
+		damage = rand() % 40 + 40;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " strikes you with his tail!";
@@ -2008,18 +2004,18 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 	}
 	else if (X > 50)
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " slashes at you with his claws!";
 		Sleep(player->GetPauseDuration());
 	}
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "                                    ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "                                    ";
+	Creature::DisplayDamage(damage);
 }
 
 //============================================================================================
@@ -2027,7 +2023,7 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -2035,7 +2031,7 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	X = rand() % 100 + 1;
 	if (X < 10)
 	{
-		Damage = rand() % 100 + 60;
+		damage = rand() % 100 + 60;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes a superchilled ice at you!";
@@ -2044,7 +2040,7 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	if (X < 20)
 	{
-		Damage = rand() % 60 + 30;
+		damage = rand() % 60 + 30;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes icy wind at you!";
@@ -2053,7 +2049,7 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	if (X > 20 && X < 80)
 	{
-		Damage = rand() % 40 + 40;
+		damage = rand() % 40 + 40;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " strikes you with his tail!";
@@ -2062,18 +2058,18 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 	}
 	else if (X > 50)
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " slashes at you with his claws!";
 		Sleep(player->GetPauseDuration());
 	}
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "                                    ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "                                    ";
+	Creature::DisplayDamage(damage);
 }
 
 //============================================================================================
@@ -2081,7 +2077,7 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
 {
-	int Damage = 0;
+	int damage = 0;
 	int X;
 	Armor* arm;
 	arm = player->GetArmor();
@@ -2089,7 +2085,7 @@ void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 	X = rand() % 100 + 1;
 	if (X < 10)
 	{
-		Damage = rand() % 200 + 100;
+		damage = rand() % 200 + 100;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes liquified steel fire at you!";
@@ -2098,7 +2094,7 @@ void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 	}
 	if (X < 20)
 	{
-		Damage = rand() % 60 + 30;
+		damage = rand() % 60 + 30;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " breathes lava at you!";
@@ -2107,7 +2103,7 @@ void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 	}
 	if (X > 20 && X < 80)
 	{
-		Damage = rand() % 40 + 40;
+		damage = rand() % 40 + 40;
 		text("", 13, 9, white);
 		text(GetName(), 13, 11, white);
 		cout << " strikes you with his tail!";
@@ -2116,16 +2112,16 @@ void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 	}
 	else if (X > 50)
 	{
-		Damage = rand() % Damage + DamageModifier;
+		damage = rand() % BaseDamage + DamageModifier;
 		text(GetName(), 13, 11, white);
 		cout << " slashes at you with his claws!";
 		Sleep(player->GetPauseDuration());
 	}
-	Damage -= arm->GetDefenseModifier();
-	if (Damage < 0)
-		Damage = 1;
-	player->SetHitPoints(player->GetCurrentHitPoints() - Damage);
+	damage -= arm->GetDefenseModifier();
+	if (damage < 0)
+		damage = 1;
+	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 	text("Enemies Damage: ", 13, 11, white);
-	cout << Damage << "                                    ";
-	Creature::DisplayDamage(Damage);
+	cout << damage << "                                    ";
+	Creature::DisplayDamage(damage);
 }
