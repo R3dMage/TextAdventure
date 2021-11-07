@@ -156,7 +156,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 				if(Evd > enemy->GetEvade())
 				{
 					run = true;					
-					PlaySound("run.wav",NULL, SND_FILENAME | SND_ASYNC);					
+					PlaySound("./data/run.wav",NULL, SND_FILENAME | SND_ASYNC);					
 					fightDisplay->DisplayMessage("You ran away", player->GetPauseDuration());
 					fightDisplay->clear();
 					break;
@@ -316,7 +316,7 @@ void World::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, vec
 	player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
 	fightDisplay->clear();
 	player->StopMusic();
-	PlaySound("WinBattle.wav", NULL, SND_FILENAME | SND_ASYNC);
+	PlaySound("./data/WinBattle.wav", NULL, SND_FILENAME | SND_ASYNC);
 	
 	fightDisplay->DisplayWinContent(player, enemy);	
 	player->SetTotalKills(player->GetTotalKills() + 1);
