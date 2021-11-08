@@ -96,9 +96,6 @@ protected:
 	std::string  Weakness;
 	std::string  Music;
 
-	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
-	void DrawCursor(COORD pos, WORD color, unsigned char curs);
-
 	void text(std::string szText, short X, short Y, WORD color);
 	void num(int num, short X, short Y, WORD color);
 };
