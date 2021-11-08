@@ -3,8 +3,6 @@
 #include "player.h"
 #include "creature.h"
 
-#define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 class FightDisplay : public GameDisplay
 {
 public:

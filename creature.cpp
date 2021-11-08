@@ -3,9 +3,6 @@
 #include <string>			//For Strings
 #include "Creature.h"
 
-#define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 Creature::Creature()
 {
 	SetDamage(1);
@@ -22,7 +19,7 @@ Creature::Creature()
 	CanTalkTo = false;
 	RunAway = false;
 	DontMove = false;
-	bant = false;
+	HasBanter = false;
 	Type = "normal";
 	Weakness = "neutral";
 	Map = "none";
@@ -34,7 +31,7 @@ vector<string> Creature::Banter()
 	return vector<string>();
 }
 
-void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
+void Creature::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	Armor *arm;
@@ -45,15 +42,15 @@ void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*
 	if(damage < 0)
 		damage = 0;
 	player->SetHitPoints(player->GetCurrentHitPoints()-damage);
-	text(GetName(),13,11,white);
+	display->text(GetName(),13,11,white);
 	cout << " attacks you!";
 	Sleep(player->GetPauseDuration());
-	text("Enemies Damage: ",13,11,white);
+	display->text("Enemies Damage: ",13,11,white);
 	cout << damage << "              ";
-	Creature::DisplayDamage(damage);
+	display->DisplayDamage(damage);
 }
 
-void Creature::Win(Player *player)
+void Creature::Win(Player *player, TextDisplay* display)
 {
 }
 string Creature::GetWeakness()
@@ -121,6 +118,10 @@ void Creature::SetY(int num)
 void Creature::SetName(string szName)
 {
 	Name = szName;
+}
+bool Creature::GetHasBanter()
+{
+	return HasBanter;
 }
 void Creature::SetKa(int N)
 {
@@ -235,80 +236,6 @@ void Creature::SetDontMove(bool B)
 {
 	DontMove = B;
 }
-void Creature::DrawCursor(COORD position, WORD color, unsigned char cursor)
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH,color);
-	SetConsoleCursorPosition(OutputH,position);
-
-	cout << cursor;
-}
-
-bool Creature::MoveCursor(COORD &cursorPosition,bool &wasSelected,int Ymin, int Ymax)
-{
-	INPUT_RECORD InputRecord;
-	COORD OldCursPos = cursorPosition;
-	DWORD Events = 0;
-	HANDLE hInput;
-	bool bCursMov = false;
-	int bKeyDown = 0;
-	hInput = GetStdHandle(STD_INPUT_HANDLE);
-	ReadConsoleInput(hInput, &InputRecord,1,&Events);
-	bKeyDown = InputRecord.Event.KeyEvent.bKeyDown;
-	if(InputRecord.EventType == KEY_EVENT && bKeyDown)
-	{
-		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
-		{
-			if(cursorPosition.Y < Ymax)
-			{
-				cursorPosition.Y++;
-                bCursMov = true;
-			}
-			else
-			{
-				cursorPosition.Y = Ymin;
-				bCursMov = true;
-			}
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
-		{
-			if(cursorPosition.Y > Ymin)
-			{
-				cursorPosition.Y--;
-				bCursMov = true;
-			}
-			else
-			{
-				cursorPosition.Y = Ymax;
-				bCursMov = true;
-			}
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
-		{
-			bCursMov = false;
-			//cout << "-";
-			wasSelected = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
-		{
-			bCursMov = false;
-			wasSelected = true;
-		}
-	}	
-	if(bCursMov)
-	{
-		HANDLE	OutputH;
-		OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleCursorPosition(OutputH,OldCursPos);
-		cout << "  ";
-		//text("  ",OldCursPos.X, OldCursPos.Y,FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		//PlaySound("beep.wav",NULL,SND_FILENAME | SND_ASYNC);
-		return true;
-	}
-return false;
-
-}
 
 bool Creature::DroppedItem()
 { return false; }
@@ -340,70 +267,4 @@ bool Creature::TalkTo(Player *player)
 string Creature::GetMusic()
 {
 	return Music;
-}
-void Creature::slowDisp(string szText)
-{
-	unsigned int i;
-
-	for(i=0;i < szText.size();i++)
-	{
-		cout << szText[i];
-		Sleep(75);
-	}
-}
-
-void Creature::clr()
-{
-	int Y = 11;
-	while (Y < 24)
-	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		Y++;
-	}
-}
-
-void Creature::text(string szText, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << szText;
-}
-
-void Creature::num(int num, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << num;
-}
-
-void Creature::DisplayDamage(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
-
-void Creature::DisplayCure(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
-void Creature::DisplayHitPointUpdate(int amount, WORD color)
-{
-	int X = 13;
-	while (X < 50)
-	{
-		num(amount, X, 9, color);
-		Sleep(50);
-		X++;
-		text("   ", X - 1, 9, color);
-	}
 }

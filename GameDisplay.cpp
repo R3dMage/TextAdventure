@@ -1,9 +1,6 @@
 #include <iostream>
 #include "GameDisplay.h"
 
-#define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 using namespace std;
 
 void GameDisplay::BoxScreen()
@@ -334,30 +331,6 @@ void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 	text(name, 16, yPosition, color);
 }
 
-void GameDisplay::text(string szText, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << szText;
-}
-
-void GameDisplay::num(int num, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << num;
-}
-
 void GameDisplay::DisplayError(string errorText)
 {
 	text(errorText, 13, 11, FOREGROUND_RED);
@@ -416,15 +389,6 @@ void GameDisplay::DisplayCost(int cost)
 	cout << " GP  ";
 }
 
-void GameDisplay::SlowDisplay(string szText)
-{
-	for (unsigned int i = 0; i < szText.size(); i++)
-	{
-		cout << szText[i];
-		Sleep(75);
-	}
-}
-
 void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 {
 	unsigned int Offset = 0;
@@ -443,26 +407,4 @@ void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 	}
 	if (Offset < 10)
 		text("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
-void GameDisplay::DisplayDamage(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
-
-void GameDisplay::DisplayCure(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
-void GameDisplay::DisplayHitPointUpdate(int amount, WORD color)
-{
-	int X = 13;
-	while (X < 50)
-	{
-		num(amount, X, 9, color);
-		Sleep(50);
-		X++;
-		text("   ", X - 1, 9, color);
-	}
 }

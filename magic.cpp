@@ -4,12 +4,7 @@
 //it contains all the spells that the player may learn.
 //====================================================================================================
 
-
 #include "Magic.h"
-
-
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 
 Magic::Magic()
 {

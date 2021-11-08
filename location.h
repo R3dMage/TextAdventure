@@ -1,12 +1,7 @@
 #ifndef LOCATION_H
 #define LOCATION_H
 
-#include <fstream>
 #include <string>
-#include <windows.h>
-#include <iostream>
-
-using namespace std;
 
 class Location{
 public:
@@ -18,11 +13,11 @@ public:
 	void SetPositionY(int);
 	void SetNeoX(int);
 	void SetNeoY(int);
-	void SetMapChangeName(string);
-	void SetShopName(string);
-	void SetDescription(string);
-	void SetSummary(string);
-	void SetPlotText(string);
+	void SetMapChangeName(std::string);
+	void SetShopName(std::string);
+	void SetDescription(std::string);
+	void SetSummary(std::string);
+	void SetPlotText(std::string);
 	bool GetIsMapChange();
 	bool GetIsShop();
 	bool GetHasPlot();
@@ -30,11 +25,11 @@ public:
 	int GetPositionY();
 	int GetNeoX();
 	int GetNeoY();
-	string GetMapChangeName();
-	string GetShopName();
-	string GetDescription();
-	string GetSummary();
-	string GetPlotText();
+	std::string GetMapChangeName();
+	std::string GetShopName();
+	std::string GetDescription();
+	std::string GetSummary();
+	std::string GetPlotText();
 
 private:
 	bool IsMapChange;
@@ -44,12 +39,12 @@ private:
 	int PositionY;
 	int NeoX;
 	int NeoY;
-	string MapChangeName;
-	string ShopName;
-	string Description;
-	string Summary;
-	string PlotText;
-	string szChng;
-	string DisplayValue;
+	std::string MapChangeName;
+	std::string ShopName;
+	std::string Description;
+	std::string Summary;
+	std::string PlotText;
+	std::string szChng;
+	std::string DisplayValue;
 };
 #endif

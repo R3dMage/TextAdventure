@@ -12,12 +12,12 @@ class Elf : public Creature{
 public:
 	Elf();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
 	virtual Greeting GetGreeting(Player *player);
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 
 };
 
@@ -25,7 +25,7 @@ class ElvenMage : public Elf{
 public:
 	ElvenMage();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -36,7 +36,7 @@ class ElvenWarrior : public Elf{
 public:
 	ElvenWarrior();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -47,7 +47,7 @@ class FireElf : public Elf{
 public:
 	FireElf();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -57,7 +57,7 @@ class IceElf : public Elf{
 public:
 	IceElf();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -67,7 +67,7 @@ class ranger : public Elf{
 public:
 	ranger();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -80,12 +80,12 @@ class Orc : public Creature{
 public:
 	Orc();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
 	virtual Greeting GetGreeting(Player *player);
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	
 };
 
@@ -93,7 +93,7 @@ class OrcSorceror : public Orc{
 public:
 	OrcSorceror();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -104,7 +104,7 @@ class OrcSoldier : public Orc{
 public:
 	OrcSoldier();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -115,7 +115,7 @@ class FireOrc : public Orc{
 public:
 	FireOrc();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -125,7 +125,7 @@ class IceOrc : public Orc{
 public:
 	IceOrc();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -135,7 +135,7 @@ class OrcWanderer : public Orc{
 public:
 	OrcWanderer();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
@@ -151,7 +151,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual Greeting GetGreeting(Player *player);
 };
 class Knight : public Human{
@@ -167,7 +167,7 @@ class Wizard : public Human{
 public:
 	Wizard();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual string Token();
 	//virtual Greeting GetGreeting(player *player);
@@ -177,7 +177,7 @@ class Adventurer : public Human{
 public:
 	Adventurer();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual void setmap(string);
@@ -190,7 +190,7 @@ class GiantSpider : public Creature{
 public:
 	GiantSpider();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 };
 
@@ -235,7 +235,7 @@ class FireDemon : public Creature{
 public:
 	FireDemon();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -245,7 +245,7 @@ class Centipede : public Creature{
 public:
 	Centipede();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 };
 class Wyvern : public Creature{
@@ -258,7 +258,7 @@ class Hydra : public Creature{
 public:
 	Hydra();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 };
 class Minotaur : public Creature{
@@ -292,7 +292,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 };
 	
 //=============================================================================================================
@@ -329,7 +329,7 @@ class Magmaman : public Creature{
 public:
 	Magmaman();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -354,7 +354,7 @@ class FrostGiant : public Creature{
 public:
 	FrostGiant();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -363,7 +363,7 @@ class StormGiant : public Creature{
 public:
 	StormGiant();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -372,7 +372,7 @@ class Nymph : public Creature{
 public:
 	Nymph();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -381,7 +381,7 @@ class IceWizard : public Creature{
 public:
 	IceWizard();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -390,7 +390,7 @@ class Snowman : public Creature{
 public:
 	Snowman();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;virtual bool DroppedItem();
 	virtual string Token();
 };
@@ -430,7 +430,7 @@ class Treeman : public Creature{
 public:
 	Treeman();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -439,7 +439,7 @@ class Acolyte : public Creature{
 public:
 	Acolyte();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 	virtual bool DroppedItem();
 	virtual string Token();
@@ -468,7 +468,7 @@ class Ghost : public Creature{
 public:
 	Ghost();
 	virtual Creature* Replenish() const;
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Item* Body(string map) const;
 };
 
@@ -487,7 +487,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 };
 
 //=============================================================================================================
@@ -497,92 +497,92 @@ public:
 class WoodPriest : public Creature{
 public:
 	WoodPriest();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class IcePriest : public Creature{
 public:
 	IcePriest();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class FirePriest : public Creature{
 public:
 	FirePriest();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class WindPriest : public Creature{
 public:
 	WindPriest();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class GodOfWar : public Creature{
 public:
 	GodOfWar();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class GodOfLife : public Creature{
 public:
 	GodOfLife();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class GodOfChaos : public Creature{
 public:
 	GodOfChaos();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
 class GodOfDeath : public Creature{
 public:
 	GodOfDeath();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -594,34 +594,34 @@ public:
 class GreenDragon : public Creature{
 public:
 	GreenDragon();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 
 class BlueDragon : public Creature{
 public:
 	BlueDragon();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 
 class RedDragon : public Creature{
 public:
 	RedDragon();
-	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 	
 class Monk : public Creature{
@@ -631,7 +631,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 

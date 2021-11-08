@@ -5,6 +5,7 @@
 #include <iostream>			//Always needed
 #include <string>			//For std::strings
 
+#include "TextDisplay.h"
 #include "Greeting.h"
 #include "Player.h"
 #include "Item.h"
@@ -12,7 +13,6 @@
 class Creature{
 public:
 	Creature();
-	bool bant;
 
 	void SetLevel(int);
 	int GetLevel();
@@ -38,6 +38,7 @@ public:
 	void SetMagicDefense(int);
 	int GetMagicDefense();
 	void SetName(std::string);
+	bool GetHasBanter();
 	void SetTalkTo(bool);
 	bool GetTalkTo();
 	void SetRunAway(bool);
@@ -57,13 +58,12 @@ public:
 	virtual Greeting GetGreeting(Player* player);
 	virtual void SetMap(std::string);
 
-	void slowDisp(std::string);
 	void LoadPosition(int X, int Y);
 	virtual Creature* Replenish() const = 0;
 	virtual Item* Body(std::string) const = 0;
-	virtual void Win(Player *player);
+	virtual void Win(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
-	virtual void Attack(Player *player, std::vector<Item*> &playerInventory,std::vector<Item*> &worldItems,std::string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual string Token();
 	virtual bool TalkTo(Player *player);
 	virtual std::vector<std::string> Banter();
@@ -84,6 +84,7 @@ protected:
 	int		Ka;
 	int		MaxKa;
 	int		State;
+	bool	HasBanter;
 	bool	CanTalkTo;
 	bool	RunAway;
 	bool	DontMove;
@@ -95,14 +96,5 @@ protected:
 	std::string  Weakness;
 	std::string  Music;
 
-	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
-	void DrawCursor(COORD pos, WORD color, unsigned char curs);
-
-	void clr();
-	void text(std::string szText, short X, short Y, WORD color);
-	void num(int num, short X, short Y, WORD color);
-	void DisplayDamage(int amount);
-	void DisplayCure(int amount);
-	void DisplayHitPointUpdate(int amount, WORD color);
 };
 #endif 

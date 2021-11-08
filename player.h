@@ -2,13 +2,9 @@
 #define PLAYER_H
 
 #include <string>
-#include <windows.h>
-#include <iostream>
 #include <time.h>
-#include <vector>
 #include "CFmod.h"
 #include "Fmod.h"
-#include "Item.h"
 #include "Weapon.h"
 #include "Armor.h"
 

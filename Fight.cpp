@@ -12,7 +12,6 @@
 #include "Location.h"
 #include "FightDisplay.h"
 
-
 void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map)
 {
 	FightDisplay* fightDisplay = new FightDisplay();
@@ -45,7 +44,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 
 	fightDisplay->DisplayAttackAnnouncement(enemy);
 
-	if(enemy->bant)									// Check if enemy will talk before the fight
+	if(enemy->GetHasBanter())						// Check if enemy will talk before the fight
 		enemy->Banter();							// Enemy's prefight speech
 
 	while(enemy->GetHitPoints() > 0 && player->GetCurrentHitPoints() > 0 && !run)
@@ -209,7 +208,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 					if(player->GetCurrentHitPoints() < 1)
 						break;
 				}
-				enemy->Attack(player,playerInventory,worldItems,map);							// Enemy attack
+				enemy->Attack(player, fightDisplay);							// Enemy attack
 				fightDisplay->DisplayPlayerInfo(player);
 				fightDisplay->clear();
 			}
