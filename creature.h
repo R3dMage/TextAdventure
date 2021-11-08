@@ -13,7 +13,6 @@
 class Creature{
 public:
 	Creature();
-	bool bant;
 
 	void SetLevel(int);
 	int GetLevel();
@@ -39,6 +38,7 @@ public:
 	void SetMagicDefense(int);
 	int GetMagicDefense();
 	void SetName(std::string);
+	bool GetHasBanter();
 	void SetTalkTo(bool);
 	bool GetTalkTo();
 	void SetRunAway(bool);
@@ -84,6 +84,7 @@ protected:
 	int		Ka;
 	int		MaxKa;
 	int		State;
+	bool	HasBanter;
 	bool	CanTalkTo;
 	bool	RunAway;
 	bool	DontMove;

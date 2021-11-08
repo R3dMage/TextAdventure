@@ -770,7 +770,7 @@ WoodPriest::WoodPriest()
 	Gold = 350;
 	Experience = 400;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 IcePriest::IcePriest()
@@ -787,7 +787,7 @@ IcePriest::IcePriest()
 	Gold = 500;
 	Experience = 750;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 FirePriest::FirePriest()
@@ -804,7 +804,7 @@ FirePriest::FirePriest()
 	Gold = 1000;
 	Experience = 1500;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 WindPriest::WindPriest()
@@ -820,7 +820,7 @@ WindPriest::WindPriest()
 	Evade = 15;
 	Gold = 2000;
 	Experience = 2500;
-	bant = true;
+	HasBanter = true;
 }
 
 GodOfWar::GodOfWar()
@@ -837,7 +837,7 @@ GodOfWar::GodOfWar()
 	Gold = 0;
 	Experience = 0;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 GodOfLife::GodOfLife()
@@ -855,7 +855,7 @@ GodOfLife::GodOfLife()
 	Gold = 0;
 	Experience = 0;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 GodOfChaos::GodOfChaos()
@@ -873,7 +873,7 @@ GodOfChaos::GodOfChaos()
 	Gold = 0;
 	Experience = 0;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 GodOfDeath::GodOfDeath()
@@ -890,7 +890,7 @@ GodOfDeath::GodOfDeath()
 	Gold = 0;
 	Experience = 0;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 
@@ -911,7 +911,7 @@ Monk::Monk()
 	Gold = 0;
 	Experience = 9999;
 	Map = "field2";
-	bant = true;
+	HasBanter = true;
 }
 Fly::Fly()
 {
@@ -937,7 +937,7 @@ GreenDragon::GreenDragon()
 	Gold = 6000;
 	Experience = 2000;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 BlueDragon::BlueDragon()
@@ -953,7 +953,7 @@ BlueDragon::BlueDragon()
 	Gold = 6000;
 	Experience = 2000;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 RedDragon::RedDragon()
@@ -969,7 +969,7 @@ RedDragon::RedDragon()
 	Gold = 6000;
 	Experience = 2000;
 	DontMove = true;
-	bant = true;
+	HasBanter = true;
 }
 
 /*

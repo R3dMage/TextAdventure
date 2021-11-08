@@ -19,7 +19,7 @@ Creature::Creature()
 	CanTalkTo = false;
 	RunAway = false;
 	DontMove = false;
-	bant = false;
+	HasBanter = false;
 	Type = "normal";
 	Weakness = "neutral";
 	Map = "none";
@@ -118,6 +118,10 @@ void Creature::SetY(int num)
 void Creature::SetName(string szName)
 {
 	Name = szName;
+}
+bool Creature::GetHasBanter()
+{
+	return HasBanter;
 }
 void Creature::SetKa(int N)
 {
