@@ -47,7 +47,7 @@ void Creature::Attack(Player *player, TextDisplay* display)
 	Sleep(player->GetPauseDuration());
 	text("Enemies Damage: ",13,11,white);
 	cout << damage << "              ";
-	Creature::DisplayDamage(damage);
+	display->DisplayDamage(damage);
 }
 
 void Creature::Win(Player *player)
@@ -348,17 +348,17 @@ void Creature::slowDisp(string szText)
 		Sleep(75);
 	}
 }
-
-void Creature::clr()
-{
-	int Y = 11;
-	while (Y < 24)
-	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		Y++;
-	}
-}
-
+//
+//void Creature::clr()
+//{
+//	int Y = 11;
+//	while (Y < 24)
+//	{
+//		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+//		Y++;
+//	}
+//}
+//
 void Creature::text(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
@@ -382,25 +382,25 @@ void Creature::num(int num, short X, short Y, WORD color)
 
 	cout << num;
 }
-
-void Creature::DisplayDamage(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
-
-void Creature::DisplayCure(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
-void Creature::DisplayHitPointUpdate(int amount, WORD color)
-{
-	int X = 13;
-	while (X < 50)
-	{
-		num(amount, X, 9, color);
-		Sleep(50);
-		X++;
-		text("   ", X - 1, 9, color);
-	}
-}
+//
+//void Creature::DisplayDamage(int amount)
+//{
+//	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
+//}
+//
+//void Creature::DisplayCure(int amount)
+//{
+//	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+//}
+//
+//void Creature::DisplayHitPointUpdate(int amount, WORD color)
+//{
+//	int X = 13;
+//	while (X < 50)
+//	{
+//		num(amount, X, 9, color);
+//		Sleep(50);
+//		X++;
+//		text("   ", X - 1, 9, color);
+//	}
+//}

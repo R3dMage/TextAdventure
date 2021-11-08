@@ -31,13 +31,10 @@ public:
 	void DisplayCastingCost(int amount);
 	void DisplayIncantation(string description, string incantation);
 	void DisplaySpellName(string name, int yPosition, WORD color);
-	void DisplayDamage(int amount);
-	void DisplayCure(int amount);
 
 	void DisplayError(string errorText);
 
 private:
-	void DisplayHitPointUpdate(int amount, WORD color);
 	void DisplayCost(int cost);
 	void SlowDisplay(string szText);
 };

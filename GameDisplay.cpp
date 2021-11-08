@@ -417,25 +417,3 @@ void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 	if (Offset < 10)
 		text("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 }
-
-void GameDisplay::DisplayDamage(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
-
-void GameDisplay::DisplayCure(int amount)
-{
-	DisplayHitPointUpdate(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
-void GameDisplay::DisplayHitPointUpdate(int amount, WORD color)
-{
-	int X = 13;
-	while (X < 50)
-	{
-		num(amount, X, 9, color);
-		Sleep(50);
-		X++;
-		text("   ", X - 1, 9, color);
-	}
-}
