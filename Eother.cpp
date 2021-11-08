@@ -40,13 +40,13 @@ void Elf::Win(Player* p2, TextDisplay* display)
 		
 	if(p2->RaceKillCounts.ElfKillCount < 4)
 	{
-		display->text("                                                               ",13,9,white);
-		display->text("                                                               ",13,8,white);
-		display->text("",13,8,white);
+		display->DisplayText("                                                               ",13,9,white);
+		display->DisplayText("                                                               ",13,8,white);
+		display->DisplayText("",13,8,white);
 		display->SlowDisplay("You have slain an elf, one of the god of life's most treasured ");		
-		display->text("",13,9,white);
+		display->DisplayText("",13,9,white);
 		display->SlowDisplay("beings...");
-		display->text("",79,23,white);	
+		display->DisplayText("",79,23,white);	
 	}
 	
 	
@@ -246,13 +246,13 @@ void Orc::Win(Player* p2, TextDisplay* display)
 		
 	if(p2->RaceKillCounts.OrcKillCount < 4)
 	{
-		display->text("                                                                ",13,9,white);
-		display->text("                                                                ",13,8,white);
-		display->text("",13,8,white);
+		display->DisplayText("                                                                ",13,9,white);
+		display->DisplayText("                                                                ",13,8,white);
+		display->DisplayText("",13,8,white);
 		display->SlowDisplay("You have slain an orc, one of the god of chaos's most treasured ");		
-		display->text("",13,9,white);
+		display->DisplayText("",13,9,white);
 		display->SlowDisplay("beings...");
-		display->text("",79,23,white);	
+		display->DisplayText("",79,23,white);	
 	}
 }
 Creature* Orc::Replenish() const
@@ -445,8 +445,8 @@ void Human::Win(Player* p2, TextDisplay* display)
 	p2->RaceKillCounts.HumanKillCount += 1;
 	if(p2->RaceKillCounts.HumanKillCount == 5)
 	{//                                       65
-		display->text("                                                           ",13,9,white);
-		display->text("A price has now been put on your head. You're a wanted man.",13,9,white);
+		display->DisplayText("                                                           ",13,9,white);
+		display->DisplayText("A price has now been put on your head. You're a wanted man.",13,9,white);
 		Sleep(3000);
 		
 		p2->SetReactionHuman(1);
@@ -454,13 +454,13 @@ void Human::Win(Player* p2, TextDisplay* display)
 	
 	if(p2->RaceKillCounts.HumanKillCount < 5)
 	{
-		display->text("                                                                ",13,9,white);
-		display->text("                                                                ",13,8,white);
-		display->text("",13,8,white);
+		display->DisplayText("                                                                ",13,9,white);
+		display->DisplayText("                                                                ",13,8,white);
+		display->DisplayText("",13,8,white);
 		display->SlowDisplay("You have slain a human, one of the god of wars most treasured");
-		display->text("",13,9,white);
+		display->DisplayText("",13,9,white);
 		display->SlowDisplay("beings...");
-		display->text("",79,23,white);
+		display->DisplayText("",79,23,white);
 	}
 }
 Creature* Human::Replenish() const
@@ -1661,10 +1661,10 @@ Item* WoodPriest::Body(string map) const
 }
 void WoodPriest::Win(Player* p2, TextDisplay* display)
 {
-	display->text("After defeating the Wood Priest you must travel north.",13,11,white);
-	display->text("Past the forests to the frozen tundra.",13,12,white);
+	display->DisplayText("After defeating the Wood Priest you must travel north.",13,11,white);
+	display->DisplayText("Past the forests to the frozen tundra.",13,12,white);
 	p2->PlotEventStates.Priest1 = true;
-	display->text("",79,23,white);
+	display->DisplayText("",79,23,white);
 }
 Creature* WoodPriest::Replenish() const
 {
@@ -1704,10 +1704,10 @@ Item* IcePriest::Body(string map) const
 }
 void IcePriest::Win(Player* p2, TextDisplay* display)
 {
-	display->text("After defeating the Ice Priest you must travel west.",13,11,white);
-	display->text("Into the mountain and defeat the Fire Priest.",13,12,white);
+	display->DisplayText("After defeating the Ice Priest you must travel west.",13,11,white);
+	display->DisplayText("Into the mountain and defeat the Fire Priest.",13,12,white);
 	p2->PlotEventStates.Priest2 = true;
-	display->text("",79,23,white);
+	display->DisplayText("",79,23,white);
 }
 Creature* IcePriest::Replenish() const
 {
@@ -1746,10 +1746,10 @@ Item* FirePriest::Body(string map) const
 }
 void FirePriest::Win(Player* p2, TextDisplay* display)
 {
-	display->text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
-	display->text("Beneath the cemetary lies the teleporter.",13,12,white);
+	display->DisplayText("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
+	display->DisplayText("Beneath the cemetary lies the teleporter.",13,12,white);
 	p2->PlotEventStates.Priest3 = true;
-	display->text("",79,23,white);
+	display->DisplayText("",79,23,white);
 }
 Creature* FirePriest::Replenish() const
 {
@@ -1787,10 +1787,10 @@ Item* WindPriest::Body(string map) const
 }
 void WindPriest::Win(Player* p2, TextDisplay* display)
 {
-	display->text("After defeating the the 4 priests. You must find the truth.",13,11,white);
-	display->text("Go thee to the ancient water temple.",13,12,white);
+	display->DisplayText("After defeating the the 4 priests. You must find the truth.",13,11,white);
+	display->DisplayText("Go thee to the ancient water temple.",13,12,white);
 	p2->PlotEventStates.Priest4 = true;
-	display->text("",79,23,white);
+	display->DisplayText("",79,23,white);
 }
 Creature* WindPriest::Replenish() const
 {
@@ -1968,8 +1968,8 @@ string GreenDragon::Token()
 }
 void GreenDragon::Win(Player* p2, TextDisplay* display)
 {
-	display->text("The Green Dragon lies vanquished. ",13,11,white);
-	display->text("Peace begins to return to the island.",13,12,white);
+	display->DisplayText("The Green Dragon lies vanquished. ",13,11,white);
+	display->DisplayText("Peace begins to return to the island.",13,12,white);
 	Sleep(3000);	
 }
 
@@ -2001,8 +2001,8 @@ string BlueDragon::Token()
 }
 void BlueDragon::Win(Player* p2, TextDisplay* display)
 {
-	display->text("The Blue Dragon lies vanquished. ",13,11,white);
-	display->text("Peace begins to return to the tundra.",13,12,white);
+	display->DisplayText("The Blue Dragon lies vanquished. ",13,11,white);
+	display->DisplayText("Peace begins to return to the tundra.",13,12,white);
 	Sleep(3000);	
 }
 Creature* BlueDragon::Replenish() const
@@ -2033,8 +2033,8 @@ string RedDragon::Token()
 }
 void RedDragon::Win(Player* p2, TextDisplay* display)
 {
-	display->text("The Red Dragon lies vanquished. ",13,11,white);
-	display->text("Peace begins to return to the mountains.",13,12,white);
+	display->DisplayText("The Red Dragon lies vanquished. ",13,11,white);
+	display->DisplayText("Peace begins to return to the mountains.",13,12,white);
 	Sleep(3000);	
 }
 Creature* RedDragon::Replenish() const
@@ -2087,8 +2087,8 @@ string Monk::Token()
 }
 void Monk::Win(Player* p2, TextDisplay* display)
 {
-	display->text("The peaceful monk lies vanquished. ",13,11,white);
-	display->text("Don't you feel better about yourself now?",13,11,white);
+	display->DisplayText("The peaceful monk lies vanquished. ",13,11,white);
+	display->DisplayText("Don't you feel better about yourself now?",13,11,white);
 	Sleep(3000);	
 }
 Creature* Monk::Replenish() const

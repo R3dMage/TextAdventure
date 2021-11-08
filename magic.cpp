@@ -52,7 +52,7 @@ void MinorHeal::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	cur += multi;
 	player->SetKa(player->GetCurrentKa() - Cost);	
 	player->SetHitPoints(player->GetCurrentHitPoints() + cur);
-	display->text("You were healed: ",13,8,white); 
+	display->DisplayText("You were healed: ",13,8,white); 
 	cout << cur;
 	display->DisplayCure(cur);
 }
@@ -71,7 +71,7 @@ void MajorHeal::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	cur *= multi;
 	player->SetKa(player->GetCurrentKa() - Cost);	
 	player->SetHitPoints(player->GetCurrentHitPoints() + cur);
-	display->text("You were healed: ",13,8,white);
+	display->DisplayText("You were healed: ",13,8,white);
 	cout << cur;
 	display->DisplayCure(cur);
 }
@@ -98,8 +98,8 @@ void BriarBush::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -127,8 +127,8 @@ void Blizzard::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -155,8 +155,8 @@ void PerfectStorm::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -184,14 +184,14 @@ void DrainLife::Cast(Player *player, Creature *enemy, GameDisplay* display)
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
 	player->SetHitPoints(player->GetCurrentHitPoints() + Damage);
 	
-	display->text("                                                                ",13,9,white);
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,9,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 	Sleep(player->GetPauseDuration());
 	
-	display->text("You were healed: ",13,8,white); cout << Damage;
+	display->DisplayText("You were healed: ",13,8,white); cout << Damage;
 	display->DisplayCure(Damage);
 }
 
@@ -216,9 +216,9 @@ void StealKa::Cast(Player* player, Creature* enemy, GameDisplay* display)
 		Damage = Damage - Damage/4;
 	
 	enemy->SetKa(KA - Damage);
-	display->text("                                                                ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
 	player->SetKa(player->GetCurrentKa() + Damage);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -244,8 +244,8 @@ void FireArrow::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -272,8 +272,8 @@ void Fire::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -300,8 +300,8 @@ void Lava::Cast(Player *player, Creature *enemy, GameDisplay* display)
 	Damage -= (enemy->GetMaxKa() / 4);
 	Damage -= enemy->GetDefense();
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);		
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -356,8 +356,8 @@ void Shock::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	
 	Damage -= (enemy->GetMaxKa() / 4);
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);			
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -382,8 +382,8 @@ void AcidRain::Cast(Player *player, Creature *enemy, GameDisplay* display)
 	
 	Damage -= (enemy->GetMaxKa() / 4);
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -408,8 +408,8 @@ void LightningBolt::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	
 	Damage -= (enemy->GetMaxKa() / 4);
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);	
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -431,8 +431,8 @@ void Poison::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 	enemy->SetState(3);
@@ -456,8 +456,8 @@ void RaiseSkeleton::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	
 	Damage -= (enemy->GetDefense());
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 	enemy->SetState(2);
@@ -482,8 +482,8 @@ void DarkStrike::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	if(X < enemy->GetMagicDefense())
 		Damage = Damage - Damage/4;
 	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-	display->text("                                                                ",13,11,white);
-	display->text("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }
@@ -502,8 +502,8 @@ void Critical::Cast(Player* player, Creature* enemy, GameDisplay* display)
 	int Damage = enemy->GetHitPoints() - enemy->GetHitPoints()/8;
 	player->SetKa(player->GetCurrentKa() - Cost);
 	enemy->SetHitPoints(enemy->GetHitPoints()/8);
-	display->text("Your Damage: ",13,11,white);
-	display->text("                                                                ",13,11,white);
+	display->DisplayText("Your Damage: ",13,11,white);
+	display->DisplayText("                                                                ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
 }

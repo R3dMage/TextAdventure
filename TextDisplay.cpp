@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void TextDisplay::text(string szText, short X, short Y, WORD color)
+void TextDisplay::DisplayText(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
 	COORD pos = { X, Y };
@@ -15,7 +15,7 @@ void TextDisplay::text(string szText, short X, short Y, WORD color)
 	cout << szText;
 }
 
-void TextDisplay::num(int num, short X, short Y, WORD color)
+void TextDisplay::DisplayNumber(int num, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
 	COORD pos = { X, Y };
@@ -42,10 +42,10 @@ void TextDisplay::DisplayRunningNumber(int amount, WORD color)
 	int X = 13;
 	while (X < 50)
 	{
-		num(amount, X, 9, color);
+		DisplayNumber(amount, X, 9, color);
 		Sleep(50);
 		X++;
-		text("   ", X - 1, 9, color);
+		DisplayText("   ", X - 1, 9, color);
 	}
 }
 

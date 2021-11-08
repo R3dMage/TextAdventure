@@ -176,7 +176,7 @@ void GameDisplay::clr()
 	int Y = 11;
 	while (Y < 24)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 }
@@ -186,15 +186,15 @@ void GameDisplay::clear()
 	int Y = 1;
 	while (Y < 10)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		text("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 	Y = 11;
 	while (Y < 24)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		text("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 	DScreen();
@@ -207,7 +207,7 @@ void GameDisplay::clrtop(int Y)
 {
 	while (Y < 10)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 }
@@ -219,8 +219,8 @@ void GameDisplay::clrbottom()
 	int Y = 11;
 	while (Y < 24)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		text("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 }
@@ -232,7 +232,7 @@ void GameDisplay::clritems()
 	int Y = 11;
 	while (Y < 24)
 	{
-		text("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
 		Y++;
 	}
 }
@@ -240,8 +240,8 @@ void GameDisplay::clritems()
 string GameDisplay::GetFileName()
 {
 	string filename = "";
-	text("Enter name of character: ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	text("", 38, 11, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	DisplayText("Enter name of character: ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	DisplayText("", 38, 11, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	cin >> filename;
 
 	return filename;
@@ -250,100 +250,100 @@ string GameDisplay::GetFileName()
 void GameDisplay::DisplayPlayerInfo(Player* player)
 {
 	if (player->GetIsPoisoned())
-		text(player->GetName() , 1, 1, green);
+		DisplayText(player->GetName() , 1, 1, green);
 	else
-		text(player->GetName(), 1, 1, white);
-	text("HP:    ", 1, 2, white);
-	text("Ka:    ", 1, 3, white);
-	text("GP:    ", 1, 4, white);
-	num(player->GetCurrentHitPoints(), 5, 2, white);
-	text("/", 8, 2, white);
-	num(player->GetMaxHitPoints(), 9, 2, white);
-	num(player->GetCurrentKa(), 5, 3, white);
-	text("/", 8, 3, white);
-	num(player->GetMaxKa(), 9, 3, white);
-	num(player->GetGold(), 5, 4, white);
-	text("X:   ", 1, 6, white);
-	text("Y:   ", 1, 7, white);
-	num(player->GetPositionX(), 3, 6, white);
-	num(player->GetPositionY(), 3, 7, white);
-	text("           ", 1, 8, white);
-	text("           ", 1, 9, white);
-	text(player->GetWeapon()->GetName(), 1, 8, white);
-	text(player->GetArmor()->GetName(), 1, 9, white);
+		DisplayText(player->GetName(), 1, 1, white);
+	DisplayText("HP:    ", 1, 2, white);
+	DisplayText("Ka:    ", 1, 3, white);
+	DisplayText("GP:    ", 1, 4, white);
+	DisplayNumber(player->GetCurrentHitPoints(), 5, 2, white);
+	DisplayText("/", 8, 2, white);
+	DisplayNumber(player->GetMaxHitPoints(), 9, 2, white);
+	DisplayNumber(player->GetCurrentKa(), 5, 3, white);
+	DisplayText("/", 8, 3, white);
+	DisplayNumber(player->GetMaxKa(), 9, 3, white);
+	DisplayNumber(player->GetGold(), 5, 4, white);
+	DisplayText("X:   ", 1, 6, white);
+	DisplayText("Y:   ", 1, 7, white);
+	DisplayNumber(player->GetPositionX(), 3, 6, white);
+	DisplayNumber(player->GetPositionY(), 3, 7, white);
+	DisplayText("           ", 1, 8, white);
+	DisplayText("           ", 1, 9, white);
+	DisplayText(player->GetWeapon()->GetName(), 1, 8, white);
+	DisplayText(player->GetArmor()->GetName(), 1, 9, white);
 }
 
 void GameDisplay::DisplayPlayerStatus(Player* player)
 {
 	Weapon* weapon = player->GetWeapon();
 
-	text("Name:   ", 13, 11, white);
+	DisplayText("Name:   ", 13, 11, white);
 	cout << player->GetName();
-	text("HP:     ", 13, 12, white);
+	DisplayText("HP:     ", 13, 12, white);
 	cout << player->GetCurrentHitPoints() << "/" << player->GetMaxHitPoints();
-	text("Str:    ", 13, 13, white);
+	DisplayText("Str:    ", 13, 13, white);
 	cout << player->GetStrength();
-	text("Mind:   ", 13, 14, white);
+	DisplayText("Mind:   ", 13, 14, white);
 	cout << player->GetMind();
-	text("%Evade: ", 13, 15, white);
+	DisplayText("%Evade: ", 13, 15, white);
 	cout << player->GetEvade();
-	text("Kills:  ", 13, 16, white);
+	DisplayText("Kills:  ", 13, 16, white);
 	cout << player->GetTotalKills();
-	text("Weapon Damage: ", 13, 17, white);
+	DisplayText("Weapon Damage: ", 13, 17, white);
 	cout << weapon->GetDamageModifier() << " to " << weapon->GetDamageModifier() + weapon->GetDamage() - 1;
-	text("Total Damage:  ", 13, 18, white);
+	DisplayText("Total Damage:  ", 13, 18, white);
 	cout << weapon->GetDamageModifier() + 2 << " to " << weapon->GetDamage() + weapon->GetDamageModifier() + player->GetStrength() / 2 - 1;
-	text("Level:  ", 31, 12, white);
+	DisplayText("Level:  ", 31, 12, white);
 	cout << player->GetLevel();
-	text("Exp:    ", 31, 13, white);
+	DisplayText("Exp:    ", 31, 13, white);
 	cout << player->GetExperience();
-	text("NxtLev: ", 31, 14, white);
+	DisplayText("NxtLev: ", 31, 14, white);
 	cout << player->GetExperienceForNextLevel();
-	text("Gold:   ", 31, 15, white);
+	DisplayText("Gold:   ", 31, 15, white);
 	cout << player->GetGold();
-	text("Orc Kills: ", 45, 12, white);
+	DisplayText("Orc Kills: ", 45, 12, white);
 	cout << player->RaceKillCounts.OrcKillCount;
-	text("Elf Kills: ", 45, 13, white);
+	DisplayText("Elf Kills: ", 45, 13, white);
 	cout << player->RaceKillCounts.ElfKillCount;
-	text("Hmn Kills: ", 45, 14, white);
+	DisplayText("Hmn Kills: ", 45, 14, white);
 	cout << player->RaceKillCounts.HumanKillCount;
-	text("", 13, 23, white);
+	DisplayText("", 13, 23, white);
 	system("pause");
 }
 
 void GameDisplay::DisplayCastingCost(int amount)
 {
-	text("       ", 1, 23, white);
-	num(amount, 1, 23, white);
-	text("ka", 4, 23, white);
+	DisplayText("       ", 1, 23, white);
+	DisplayNumber(amount, 1, 23, white);
+	DisplayText("ka", 4, 23, white);
 }
 
 void GameDisplay::DisplayIncantation(string description, string incantation)
 {
-	text("", 13, 9, white);
+	DisplayText("", 13, 9, white);
 	SlowDisplay(incantation);
-	text(description, 13, 11, white);
+	DisplayText(description, 13, 11, white);
 	Sleep(1500);
 }
 
 void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 {
-	text(name, 16, yPosition, color);
+	DisplayText(name, 16, yPosition, color);
 }
 
 void GameDisplay::DisplayError(string errorText)
 {
-	text(errorText, 13, 11, FOREGROUND_RED);
+	DisplayText(errorText, 13, 11, FOREGROUND_RED);
 	system("pause");
 }
 
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 {
 	unsigned int offset = 0;
-	text(" [---Items---] ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN);
+	DisplayText(" [---Items---] ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN);
 	while (offset < playerInventory.size())
 	{
-		text(playerInventory[offset]->GetName(), 15, 12 + offset, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		DisplayText(playerInventory[offset]->GetName(), 15, 12 + offset, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		offset++;
 		if (offset >= 12)
 			break;
@@ -355,28 +355,28 @@ void GameDisplay::DisplayItem(Item* item)
 	switch (item->GetType())
 	{
 	case -1:
-		text("                                           ", 30, 11, white);
+		DisplayText("                                           ", 30, 11, white);
 		break;
 	case 0:
-		text("Heals 25 points of life                    ", 30, 11, white);
+		DisplayText("Heals 25 points of life                    ", 30, 11, white);
 		break;
 	case 1:
-		text("Restores 5 to 10 point of ka", 30, 11, white);
+		DisplayText("Restores 5 to 10 point of ka", 30, 11, white);
 		break;
 	case 2:
-		text("Increases Strength 1-5 points              ", 30, 11, white);
+		DisplayText("Increases Strength 1-5 points              ", 30, 11, white);
 		break;
 	case 3:
-		text("Increases Mind 1-5 points                  ", 30, 11, white);
+		DisplayText("Increases Mind 1-5 points                  ", 30, 11, white);
 		break;
 	case 4:
-		text("Heals 75 points of life              ", 30, 11, white);
+		DisplayText("Heals 75 points of life              ", 30, 11, white);
 		break;
 	case 5:
 		("Heals 150 points of life              ", 30, 11, white);
 		break;
 	case 6:
-		text("Heals all of your life              ", 30, 11, white);
+		DisplayText("Heals all of your life              ", 30, 11, white);
 		break;
 	}
 	DisplayCost(item->GetCost());
@@ -384,8 +384,8 @@ void GameDisplay::DisplayItem(Item* item)
 
 void GameDisplay::DisplayCost(int cost)
 {
-	text("Value: ", 1, 22, white);
-	num(cost, 2, 23, white);
+	DisplayText("Value: ", 1, 22, white);
+	DisplayNumber(cost, 2, 23, white);
 	cout << " GP  ";
 }
 
@@ -393,12 +393,12 @@ void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;
-	text("[---Ground---]", 13, 1, FOREGROUND_RED | FOREGROUND_GREEN);
+	DisplayText("[---Ground---]", 13, 1, FOREGROUND_RED | FOREGROUND_GREEN);
 	while (Offset < stuff.size())
 	{
 		if (stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
 		{
-			text(stuff[Offset]->GetName(), 15, 2 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			DisplayText(stuff[Offset]->GetName(), 15, 2 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 			NumItems++;
 		}
 		Offset++;
@@ -406,5 +406,5 @@ void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 			break;
 	}
 	if (Offset < 10)
-		text("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		DisplayText("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 }

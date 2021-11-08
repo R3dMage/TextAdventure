@@ -197,7 +197,7 @@ void World::Locations(string map, Player *player,bool load)
 	fin.open(MapName.c_str());
 	if(fin.fail())
 	{
-		Display->text("ERROR LOADING MAP",13,11,FOREGROUND_RED);	//Errors that tell you what went wrong are useful
+		Display->DisplayText("ERROR LOADING MAP",13,11,FOREGROUND_RED);	//Errors that tell you what went wrong are useful
 		system("pause");
 		exit(0);
 	}
@@ -296,29 +296,29 @@ void World::Locations(string map, Player *player,bool load)
 		if(description.length() > 65)
 		{
 			DescriptionDisplay(description,d1,d2,d3);
-			Display->text(d1,13,11,white);
-			Display->text(d2,13,12,white);
-			Display->text(d3,13,13,white);
+			Display->DisplayText(d1,13,11,white);
+			Display->DisplayText(d2,13,12,white);
+			Display->DisplayText(d3,13,13,white);
 			d1 = d2 = d3 = "";
 		}
 		else
 		{
-			Display->text(description,13,11,white);
+			Display->DisplayText(description,13,11,white);
 		}
 
-		Display->text("North",13,15,yellow);		Display->text(north,19,15,white);
-		Display->text("South",13,16,yellow);		Display->text(south,19,16,white);
-		Display->text("East",13,17,yellow);		Display->text(east,18,17,white);
-		Display->text("West",13,18,yellow);		Display->text(west,18,18,white);	
+		Display->DisplayText("North",13,15,yellow);		Display->DisplayText(north,19,15,white);
+		Display->DisplayText("South",13,16,yellow);		Display->DisplayText(south,19,16,white);
+		Display->DisplayText("East",13,17,yellow);		Display->DisplayText(east,18,17,white);
+		Display->DisplayText("West",13,18,yellow);		Display->DisplayText(west,18,18,white);	
 //=============================================================================================================
 		if((T+Xmax) < static_cast<int>(Vmap.size()) && Vmap[T + Xmax]->GetIsMapChange())
-			Display->text("North",13,15,green);
+			Display->DisplayText("North",13,15,green);
 		if((T-Xmax) > 0 && Vmap[T - Xmax]->GetIsMapChange())
-			Display->text("South",13,16,green);
+			Display->DisplayText("South",13,16,green);
 		if((T % Xmax != Xmax-1) && (T + 1 < total) && (Vmap[T+1]->GetIsMapChange()))
-			Display->text("East ",13,17,green);
+			Display->DisplayText("East ",13,17,green);
 		if((T % Xmax != 0) && (T - 1 >= 0) && (Vmap[T-1]->GetIsMapChange()))
-			Display->text("West",13,18,green);
+			Display->DisplayText("West",13,18,green);
 
 		Display->DisplayPlayerInfo(player);
 
@@ -327,12 +327,12 @@ void World::Locations(string map, Player *player,bool load)
 // Adding Map size 5/16/05.
 // Rem. Out encounter size and # of squares for beta version 6/14/05
 //=============================================================================================================
-		Display->text("          ",2,22,white);
-		Display->num(Xmax,2,22,white);
-		Display->text("x",4,22,white);
-		Display->num(Ymax,5,22,white);
-		Display->text("          ",2,19,white);
-		Display->text(map,2,19,yellow);			
+		Display->DisplayText("          ",2,22,white);
+		Display->DisplayNumber(Xmax,2,22,white);
+		Display->DisplayText("x",4,22,white);
+		Display->DisplayNumber(Ymax,5,22,white);
+		Display->DisplayText("          ",2,19,white);
+		Display->DisplayText(map,2,19,yellow);			
 //		Display->num(T,2,20,yellow);			T = 0;
 //		Display->num(static_cast<int>(encounter.size()),2,21,blue);
 //=============================================================================================================
@@ -359,38 +359,38 @@ void World::Locations(string map, Player *player,bool load)
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 
-		Display->text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|         |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|    |    |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("| ---+--- |",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|    |    |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|         |",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("\\---------/",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|         |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|    |    |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("| ---+--- |",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|    |    |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|         |",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("\\---------/",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 		if(player->GetPositionY() == Ymax)
-			Display->text("N",6,12,FOREGROUND_BLUE);
+			Display->DisplayText("N",6,12,FOREGROUND_BLUE);
 		else
-			Display->text("N",6,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			Display->DisplayText("N",6,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		if(player->GetPositionY() == 1)
-			Display->text("S",6,16,FOREGROUND_BLUE);
+			Display->DisplayText("S",6,16,FOREGROUND_BLUE);
 		else
-			Display->text("S",6,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			Display->DisplayText("S",6,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		if(player->GetPositionX() == Xmax)
 		{
-			Display->text("E",10,14,FOREGROUND_BLUE);
+			Display->DisplayText("E",10,14,FOREGROUND_BLUE);
 		}
 		else		
 		{
-			Display->text("E",10,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			Display->DisplayText("E",10,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 		
 		if(player->GetPositionX() == 1)
 		{
-			Display->text("W",2,14,FOREGROUND_BLUE);
+			Display->DisplayText("W",2,14,FOREGROUND_BLUE);
 		}
 		else
 		{
-			Display->text("W",2,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			Display->DisplayText("W",2,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 //================================================================================================================
 
@@ -421,7 +421,7 @@ void World::Locations(string map, Player *player,bool load)
 				fin.open(MapName.c_str());
 				if(fin.fail())
 				{
-					Display->text("ERROR LOADING MAP \n\n",13,11,FOREGROUND_RED);
+					Display->DisplayText("ERROR LOADING MAP \n\n",13,11,FOREGROUND_RED);
 					system("pause");
 					exit(0);
 				}
@@ -447,7 +447,7 @@ void World::Locations(string map, Player *player,bool load)
 		
 		if(map == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
 		{
-			Display->text("You are not yet powerful enough to enter here.",13,11,white);
+			Display->DisplayText("You are not yet powerful enough to enter here.",13,11,white);
 			Sleep(3000);
 			map = "field";
 			player->SetPositionX(17);
@@ -581,7 +581,7 @@ bool World::Walk(bool &selectionWasMade, bool &escapeWasPressed, Player *player,
 			selectionWasMade = true;
 		}
 	}	
-	Display->text(" ", 79, 23,white);
+	Display->DisplayText(" ", 79, 23,white);
 return false;	
 }
 //				This is the shop where you buy weapons and armor
@@ -656,13 +656,13 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayPlayerItems(playerInventory);
 
-		Display->text("[-----For Sale-----]",13,1,yellow);
-		Display->text(wsell1->GetName(),15,2,white);		Display->num(wsell1->GetCost(),28,2,white);
-		Display->text(wsell2->GetName(),15,3,white);		Display->num(wsell2->GetCost(),28,3,white);
-		Display->text(wsell3->GetName(),15,4,white);		Display->num(wsell3->GetCost(),28,4,white);
-		Display->text(asell1->GetName(),15,5,white);		Display->num(asell1->GetCost(),28,5,white);
-		Display->text(asell2->GetName(),15,6,white);		Display->num(asell2->GetCost(),28,6,white);
-		Display->text(asell3->GetName(),15,7,white);		Display->num(asell3->GetCost(),28,7,white);
+		Display->DisplayText("[-----For Sale-----]",13,1,yellow);
+		Display->DisplayText(wsell1->GetName(),15,2,white);		Display->DisplayNumber(wsell1->GetCost(),28,2,white);
+		Display->DisplayText(wsell2->GetName(),15,3,white);		Display->DisplayNumber(wsell2->GetCost(),28,3,white);
+		Display->DisplayText(wsell3->GetName(),15,4,white);		Display->DisplayNumber(wsell3->GetCost(),28,4,white);
+		Display->DisplayText(asell1->GetName(),15,5,white);		Display->DisplayNumber(asell1->GetCost(),28,5,white);
+		Display->DisplayText(asell2->GetName(),15,6,white);		Display->DisplayNumber(asell2->GetCost(),28,6,white);
+		Display->DisplayText(asell3->GetName(),15,7,white);		Display->DisplayNumber(asell3->GetCost(),28,7,white);
 
 		Menu->DrawCursor(CursPos,yellow,175);
 		wsell1->Display();
@@ -694,7 +694,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 					break;
 				}
 			}
-			Display->text(" ", 79, 23,white);
+			Display->DisplayText(" ", 79, 23,white);
 		}while(!bSel);
 		if(bEsc)
 			break;
@@ -759,7 +759,7 @@ void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
 		}
 		if(!funds)
 		{
-			Display->text("You do not have sufficient funds",13,9,white);
+			Display->DisplayText("You do not have sufficient funds",13,9,white);
 			Sleep(1500);
 		}
 		
@@ -808,13 +808,13 @@ void World::Inn(Player *player,string map)
 		CursPos.X = 2;
 		CursPos.Y = 12;
 		bSel = false;
-		Display->text("Will you be spending the night?",13,11,white);
-		Display->text("[---",13,1,brown);	cout << name << "--]";
-		Display->text("One night: ",13,2,white); Display->num(price,24,2,yellow);
-		Display->text("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|  Yes    |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("Will you be spending the night?",13,11,white);
+		Display->DisplayText("[---",13,1,brown);	cout << name << "--]";
+		Display->DisplayText("One night: ",13,2,white); Display->DisplayNumber(price,24,2,yellow);
+		Display->DisplayText("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  Yes    |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
 		Menu->DrawCursor(CursPos,yellow,175);
 		do
@@ -823,7 +823,7 @@ void World::Inn(Player *player,string map)
 			{
 				Menu->DrawCursor(CursPos,yellow,175);
 			}
-			Display->text(" ", 79, 23,white);
+			Display->DisplayText(" ", 79, 23,white);
 		}while(!bSel);
 		if(bEsc)
 			break;
@@ -834,7 +834,7 @@ void World::Inn(Player *player,string map)
 		case 12:
 			if(player->GetGold() < price)
 			{
-				Display->text("You have insufficient funds",13,11,yellow);
+				Display->DisplayText("You have insufficient funds",13,11,yellow);
 				Sleep(player->GetPauseDuration());
 			}
 			else
@@ -842,13 +842,13 @@ void World::Inn(Player *player,string map)
 				player->SetGold(player->GetGold() - price);
 				player->SetHitPoints(player->GetMaxHitPoints());
 				player->SetKa(player->GetMaxKa());
-				Display->text("Pleasure doing business with you!",13,11,white);
+				Display->DisplayText("Pleasure doing business with you!",13,11,white);
 				Sleep(player->GetPauseDuration());
 				bEsc = true;
 			}
 			break;
 		case 13:
-			Display->text("Sorry, maybe next time.                   ",13,11,white);
+			Display->DisplayText("Sorry, maybe next time.                   ",13,11,white);
 			Sleep(player->GetPauseDuration());
 			bEsc = true;
 			break;
@@ -930,13 +930,13 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayPlayerItems(playerInventory);
 
-		Display->text("[-----For Sale-----]",13,1,yellow);
-		Display->text(isell1->GetName(),15,2,white);		Display->num(isell1->GetCost(),28,2,white);
-		Display->text(isell2->GetName(),15,3,white);		Display->num(isell2->GetCost(),28,3,white);
-		Display->text(isell3->GetName(),15,4,white);		Display->num(isell3->GetCost(),28,4,white);
-		Display->text(isell4->GetName(),15,5,white);		Display->num(isell4->GetCost(),28,5,white);
-		Display->text(isell5->GetName(),15,6,white);		Display->num(isell5->GetCost(),28,6,white);
-		Display->text(isell6->GetName(),15,7,white);		Display->num(isell6->GetCost(),28,7,white);
+		Display->DisplayText("[-----For Sale-----]",13,1,yellow);
+		Display->DisplayText(isell1->GetName(),15,2,white);		Display->DisplayNumber(isell1->GetCost(),28,2,white);
+		Display->DisplayText(isell2->GetName(),15,3,white);		Display->DisplayNumber(isell2->GetCost(),28,3,white);
+		Display->DisplayText(isell3->GetName(),15,4,white);		Display->DisplayNumber(isell3->GetCost(),28,4,white);
+		Display->DisplayText(isell4->GetName(),15,5,white);		Display->DisplayNumber(isell4->GetCost(),28,5,white);
+		Display->DisplayText(isell5->GetName(),15,6,white);		Display->DisplayNumber(isell5->GetCost(),28,6,white);
+		Display->DisplayText(isell6->GetName(),15,7,white);		Display->DisplayNumber(isell6->GetCost(),28,7,white);
 
 		Menu->DrawCursor(CursPos,yellow,175);
 		isell1->Display();
@@ -968,7 +968,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 					break;
 				}
 			}
-			Display->text(" ", 79, 23,white);
+			Display->DisplayText(" ", 79, 23,white);
 		}while(!bSel);
 		if(bEsc)
 			break;
@@ -1033,7 +1033,7 @@ void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
 		}
 		if(!funds)
 		{
-			Display->text("You do not have sufficient funds",13,9,white);
+			Display->DisplayText("You do not have sufficient funds",13,9,white);
 			Sleep(1500);
 		}		
 	}// End while bEsc
@@ -1069,15 +1069,15 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		Display->clrbottom();
 		Display->clrtop(3);
 		Display->DisplayPlayerInfo(player);
-		Display->text("[---We buy STUFF!---]",13,1,brown);
+		Display->DisplayText("[---We buy STUFF!---]",13,1,brown);
 		if(playerInventory.size() < 1)
 		{
-			Display->text("You have nothing to sell!!!",13,3,white);
+			Display->DisplayText("You have nothing to sell!!!",13,3,white);
 			Sleep(player->GetPauseDuration());
 			return;
 		}
 		else
-			Display->text("What would you like to sell?",13,3,white);
+			Display->DisplayText("What would you like to sell?",13,3,white);
 
 		Display->DisplayPlayerItems(playerInventory);
 		while(!selectionWasMade)
@@ -1099,7 +1099,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 					offset = cursorPosition.Y - 12;
 					playerInventory[offset]->Display();
 				}
-				Display->text(" ", 79, 23,white);
+				Display->DisplayText(" ", 79, 23,white);
 			}while(!selectionWasMade);
 		}// End While bSel
 		if(escapeWasPressed)
@@ -1113,9 +1113,9 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		selectionWasMade = false;
 		
 		sellPrice = static_cast<int>(iUsed->GetCost() * sellMultiplier);
-		Display->text(playerInventory[offset]->GetName(),15,cursorPosition.Y,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->text("This Item?                  ",13,3,white);
-		Display->text(iUsed->GetName(),13,5,white);
+		Display->DisplayText(playerInventory[offset]->GetName(),15,cursorPosition.Y,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("This Item?                  ",13,3,white);
+		Display->DisplayText(iUsed->GetName(),13,5,white);
 		cout << "   " << sellPrice << "GP";
 		do
 		{
@@ -1124,7 +1124,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 			{
 				Menu->DrawCursor(cursorPosition,yellow,175);
 			}
-			Display->text(" ", 79, 23,white);
+			Display->DisplayText(" ", 79, 23,white);
 		}while(!selectionWasMade);
 		if(escapeWasPressed)
 		{
@@ -1145,7 +1145,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 //==================================================================================================
 		Display->clrbottom();
 		Display->DisplayPlayerInfo(player);
-		Display->text("There you go!",13,3,white);
+		Display->DisplayText("There you go!",13,3,white);
 		Sleep(player->GetPauseDuration());
 
 	}//----------------------------------->End While bLeave	
@@ -1181,7 +1181,7 @@ bool World::Overflow(int size)
 {
 	if(size >= 10)
 	{
-		Display->text("You do not have enough room!",13,12,white);
+		Display->DisplayText("You do not have enough room!",13,12,white);
 		Sleep(3000);
 		return true;
 	}
@@ -1333,7 +1333,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 		if(HasMagic(magic,"Minor Heal"))
 			return;
 		//p2->setbspells(true);             Just there to test when to give ka
-		Display->text("The god of life has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of life has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new MinorHeal);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1341,7 +1341,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Briar Bush"))
 			return;
-		Display->text("The god of life has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of life has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new BriarBush);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1349,7 +1349,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Major Heal"))
 			return;
-		Display->text("The god of life has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of life has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new MajorHeal);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1357,7 +1357,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Snow"))
 			return;
-		Display->text("The god of life has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of life has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Blizzard);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1366,7 +1366,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 		if(HasMagic(magic,"Drain Life"))
 			return;
 		player->SetHasSpells(true);
-		Display->text("The god of chaos has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new DrainLife);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1374,7 +1374,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Flame Arrow"))
 			return;
-		Display->text("The god of chaos has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new FireArrow);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1382,7 +1382,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Steal Ka"))
 			return;
-		Display->text("The god of chaos has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new StealKa);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1390,7 +1390,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Fire"))
 			return;
-		Display->text("The god of chaos has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of chaos has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Fire);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1399,7 +1399,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 		if(HasMagic(magic,"Strength"))
 			return;
 		player->SetHasSpells(true);
-		Display->text("The god of war has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of war has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Might);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1407,7 +1407,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Dispel"))
 			return;
-		Display->text("The god of war has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of war has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Dispel);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1415,7 +1415,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Shock"))
 			return;
-		Display->text("The god of war has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of war has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Shock);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1423,7 +1423,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Acid Rain"))
 			return;
-		Display->text("The god of war has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of war has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new AcidRain);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1432,7 +1432,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 		if(HasMagic(magic,"Poison"))
 			return;
 		player->SetHasSpells(true);
-		Display->text("The god of death has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of death has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Poison);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1440,7 +1440,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Skeleton"))
 			return;
-		Display->text("The god of death has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of death has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new RaiseSkeleton);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1448,7 +1448,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Dark Strike"))
 			return;
-		Display->text("The god of death has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of death has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new DarkStrike);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1456,7 +1456,7 @@ void World::CheckMagic(Player *player,vector<Magic*> &magic)
 	{
 		if(HasMagic(magic,"Critical"))
 			return;
-		Display->text("The god of death has rewarded you with a magic spell!",13,9,white);
+		Display->DisplayText("The god of death has rewarded you with a magic spell!",13,9,white);
 		magic.push_back(new Critical);
 		Sleep(player->GetPauseDuration());
 	}
@@ -1478,11 +1478,11 @@ bool World::HasMagic(vector<Magic*> M,string name)
 //==========================================================================================================
 void World::Intro()
 {
-	Display->text("In the past when gods could be bested by mortal men, ",13,2,white);
-	Display->text("four priests are keeping the pantheon at bay and ruling",13,3,white);
-	Display->text("the world for their own evil schemes. If the priests were ",13,4,white);
-	Display->text("out of the picture however...",13,5,white);
-	Display->text(" ", 13, 6,white);
+	Display->DisplayText("In the past when gods could be bested by mortal men, ",13,2,white);
+	Display->DisplayText("four priests are keeping the pantheon at bay and ruling",13,3,white);
+	Display->DisplayText("the world for their own evil schemes. If the priests were ",13,4,white);
+	Display->DisplayText("out of the picture however...",13,5,white);
+	Display->DisplayText(" ", 13, 6,white);
 	system("pause");
 }
 /*==========================================================================================================
@@ -1533,17 +1533,17 @@ void World::plot(string Map, string ID)
 	rotate(holder);
 	speaker = speaker + holder + "---]";
 
-	Display->text(speaker, 13, 1, brown);
+	Display->DisplayText(speaker, 13, 1, brown);
 	while (!fin.eof())
 	{
 		fin >> szThing;
 		getline(fin, spoken);
 		rotate(spoken);
-		Display->text(spoken, 13, i, white);
+		Display->DisplayText(spoken, 13, i, white);
 		spoken = " ";
 		i++;
 	}
-	Display->text("", 13, 23, white);
+	Display->DisplayText("", 13, 23, white);
 	system("pause");
 }
 
