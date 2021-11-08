@@ -895,6 +895,50 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 	}//==================================End of While loop==================================
 }
 
+bool MainMenuSystem::TalkTo(Greeting* greeting, int pauseDuration)
+{
+	int choice;
+	int X = 13;
+	bool bSel;
+	bool bEsc;
+	COORD CursPos;
+
+	Display->clr();
+	CursPos.X = 2;
+	CursPos.Y = 12;
+	bSel = false;
+	Display->text(greeting->GetIntroduction(), 13, 11, white);
+	Display->text("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("|  Talk   |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("|  Fight  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("|         |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->text("           ", 1, 17, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+	DrawCursor(CursPos, yellow, 175);
+	do
+	{
+		if (MoveCursor(CursPos, bSel, bEsc, 12, X))
+		{
+			DrawCursor(CursPos, yellow, 175);
+		}
+		Display->text(" ", 79, 23, white);
+	} while (!bSel);
+	choice = CursPos.Y;
+	switch (choice)
+	{
+	case 12:
+		Display->text(greeting->GetDetails(), 13, 9, white);
+		Sleep(pauseDuration);
+		return greeting->GetIsHostile();
+		break;
+	case 13:
+		return true;
+		break;
+	}
+}
+
 void MainMenuSystem::ClearTextBottomRight(int Y)
 {
 	while (Y < 24)

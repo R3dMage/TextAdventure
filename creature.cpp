@@ -196,6 +196,10 @@ bool Creature::GetDontMove()
 {
 	return DontMove;
 }
+Greeting Creature::GetGreeting(Player* player)
+{
+	return Greeting(string(), string(), false);
+}
 void Creature::SetState(int N)
 {
 	State = N;

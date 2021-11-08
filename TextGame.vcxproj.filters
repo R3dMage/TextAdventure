@@ -93,6 +93,9 @@
     <ClInclude Include="Plots.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Greeting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="ItemRepository.cpp">
       <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Greeting.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "Greeting.h"
 #include "GameDisplay.h"
 #include "ItemRepository.h"
 #include "ISaveLoadGame.h"
@@ -24,6 +25,7 @@ public:
 	void Use(Player* player, vector<Item*>& playerInventory, bool& Iused, bool bFight);
 	void MagicMenu(Player* player, vector<Magic*>& spells);
 	void InFightMagicMenu(Player* player, Creature* enemy, vector<Magic*>& spells, bool& bEsc);
+	bool TalkTo(Greeting* greeting, int pauseDuration);
 
 	void ClearTextBottomRight(int);
 	void SlideDown(vector<Item*>&, int);
