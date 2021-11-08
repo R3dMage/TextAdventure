@@ -6,9 +6,6 @@
 #include "Enemies.h"
 #include "World.h"
 
-
-#define red FOREGROUND_RED | FOREGROUND_INTENSITY
-#define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
 //======================================================  ELF  ==========================================
 bool Elf::DroppedItem()
 {

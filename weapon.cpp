@@ -6,8 +6,6 @@
 #include "Weapon.h"
 using namespace std;
 
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 Weapon::Weapon()
 {
 	IsWeapon = true;

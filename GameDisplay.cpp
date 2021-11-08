@@ -311,6 +311,21 @@ void GameDisplay::DisplayPlayerStatus(Player* player)
 	system("pause");
 }
 
+void GameDisplay::DisplayCastingCost(int amount)
+{
+	text("       ", 1, 23, white);
+	num(amount, 1, 23, white);
+	text("ka", 4, 23, white);
+}
+
+void GameDisplay::DisplayIncantation(string description, string incantation)
+{
+	text("", 13, 9, white);
+	SlowDisplay(incantation);
+	text(description, 13, 11, white);
+	Sleep(1500);
+}
+
 void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 {
 	text(name, 16, yPosition, color);

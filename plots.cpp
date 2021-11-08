@@ -1,7 +1,5 @@
 #include "Plots.h"
 
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 Plots::Plots(GameDisplay* display)
 {
 	Display = display;

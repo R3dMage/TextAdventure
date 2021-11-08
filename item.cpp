@@ -3,8 +3,6 @@
 #include <fstream>			//For file accessing
 #include <string>			//For Strings
 
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 #include "Item.h"
 
 using namespace std;
