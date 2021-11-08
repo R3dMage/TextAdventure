@@ -1,5 +1,3 @@
-#include <windows.h>		//I'm not sure
-#include <iostream>			//Always needed
 #include <string>			//For Strings
 
 #include "Enemies.h"
