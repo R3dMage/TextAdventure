@@ -1,8 +1,7 @@
 #pragma once
-#include <Windows.h>
-#include <string>
 #include <vector>
 
+#include "TextDisplay.h"
 #include "item.h"
 #include "player.h"
 
@@ -16,7 +15,7 @@
 #define red FOREGROUND_RED | FOREGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-class GameDisplay
+class GameDisplay : public TextDisplay
 {
 public:	
 	void BoxScreen();
@@ -42,8 +41,6 @@ public:
 	void DisplayCastingCost(int amount);
 	void DisplayIncantation(string description, string incantation);
 	void DisplaySpellName(string name, int yPosition, WORD color);
-	void text(std::string szText, short X, short Y, WORD color);
-	void num(int num, short X, short Y, WORD color);
 	void DisplayDamage(int amount);
 	void DisplayCure(int amount);
 

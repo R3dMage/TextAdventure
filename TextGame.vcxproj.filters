@@ -96,6 +96,9 @@
     <ClInclude Include="Greeting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextDisplay.h">
+      <Filter>Display</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Greeting.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextDisplay.cpp">
+      <Filter>Display</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

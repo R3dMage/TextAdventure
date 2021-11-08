@@ -1,9 +1,6 @@
 #include <iostream>
 #include "GameDisplay.h"
 
-#define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 using namespace std;
 
 void GameDisplay::BoxScreen()
@@ -314,48 +311,9 @@ void GameDisplay::DisplayPlayerStatus(Player* player)
 	system("pause");
 }
 
-void GameDisplay::DisplayCastingCost(int amount)
-{
-	text("       ", 1, 23, white);
-	num(amount, 1, 23, white);
-	text("ka", 4, 23, white);
-}
-
-void GameDisplay::DisplayIncantation(string description, string incantation)
-{
-	text("", 13, 9, white);
-	SlowDisplay(incantation);
-	text(description, 13, 11, white);
-	Sleep(1500);
-}
-
 void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 {
 	text(name, 16, yPosition, color);
-}
-
-void GameDisplay::text(string szText, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << szText;
-}
-
-void GameDisplay::num(int num, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << num;
 }
 
 void GameDisplay::DisplayError(string errorText)
