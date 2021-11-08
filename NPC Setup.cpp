@@ -7,14 +7,11 @@
 #include "Creature.h"
 #include "Enemies.h"
 
-
-
 void World::SetupNcps(vector<Creature*> &npc,string mapName,int xMax, int yMax,GameEvents plot,RaceReactionIndex raceReaction,char*& musicFile)
 {
 	string MapInfo = mapName + ".ifo";
 	unsigned int T;
-	unsigned int i;
-	
+	unsigned int i;	
 
 	npc.clear();
 	T = xMax * yMax;

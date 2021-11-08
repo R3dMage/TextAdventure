@@ -5,7 +5,6 @@
 // advancing, but who knows I might change that notion too. 2/21/05
 //================================================================================================================
 
-
 Greeting Elf::GetGreeting(Player *player)
 {
 	

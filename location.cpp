@@ -1,7 +1,3 @@
-#include <fstream>
-#include <string>
-#include <windows.h>
-#include <iostream>
 #include "Location.h"
 
 using namespace std;
