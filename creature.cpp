@@ -40,7 +40,7 @@ void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*
 	Armor *arm;
 
 	arm = player->GetArmor();
-	damage = rand()% damage + DamageModifier;
+	damage = rand()% BaseDamage + DamageModifier;
 	damage -= arm->GetDefenseModifier();
 	if(damage < 0)
 		damage = 0;
