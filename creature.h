@@ -99,11 +99,7 @@ protected:
 	bool MoveCursor(COORD &CursPos, bool &bSelect, int Ymin, int Ymax);
 	void DrawCursor(COORD pos, WORD color, unsigned char curs);
 
-	//void clr();
 	void text(std::string szText, short X, short Y, WORD color);
 	void num(int num, short X, short Y, WORD color);
-	//void DisplayDamage(int amount);
-	//void DisplayCure(int amount);
-	//void DisplayHitPointUpdate(int amount, WORD color);
 };
 #endif 
