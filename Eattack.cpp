@@ -4,15 +4,11 @@
 #include <fstream>			//For reading/writing files
 
 #include "Enemies.h"
-#include "World.h"
-
-
-#define red FOREGROUND_RED | FOREGROUND_INTENSITY
 
 //============================================================================================
 // Elf
 //============================================================================================
-void Elf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Elf::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -54,7 +50,7 @@ void Elf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 //============================================================================================
 // Elven Mage
 //============================================================================================
-void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void ElvenMage::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -123,7 +119,7 @@ void ElvenMage::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Elven Warrior
 //============================================================================================
-void ElvenWarrior::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void ElvenWarrior::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -162,7 +158,7 @@ void ElvenWarrior::Attack(Player* player, vector<Item*>& playerInventory, vector
 //============================================================================================
 // Ice Elf
 //============================================================================================
-void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void IceElf::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -210,7 +206,7 @@ void IceElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 // Fire Elf
 //============================================================================================
-void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void FireElf::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -257,7 +253,7 @@ void FireElf::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Elven Ranger
 //============================================================================================
-void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void ranger::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -333,7 +329,7 @@ void ranger::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 // Orc
 //============================================================================================
-void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Orc::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -360,7 +356,7 @@ void Orc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& 
 //============================================================================================
 // Orc Sorceror
 //============================================================================================
-void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void OrcSorceror::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -433,7 +429,7 @@ void OrcSorceror::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 // Orc Soldier
 //============================================================================================
-void OrcSoldier::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void OrcSoldier::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -473,7 +469,7 @@ void OrcSoldier::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Fire Orc
 //============================================================================================
-void FireOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void FireOrc::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -514,7 +510,7 @@ void FireOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Ice Orc
 //============================================================================================
-void IceOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void IceOrc::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -555,7 +551,7 @@ void IceOrc::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 // Orc Wanderer
 //============================================================================================
-void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void OrcWanderer::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -623,7 +619,7 @@ void OrcWanderer::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 // Human Wizard
 //============================================================================================
-void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Wizard::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -691,7 +687,7 @@ void Wizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*
 //============================================================================================
 // Human Adventurer
 //============================================================================================
-void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Adventurer::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -771,7 +767,7 @@ void Adventurer::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Stargoyle
 //============================================================================================
-void Stargoyle::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Stargoyle::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -811,7 +807,7 @@ void Stargoyle::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Giant Spider
 //============================================================================================
-void GiantSpider::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GiantSpider::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -846,7 +842,7 @@ void GiantSpider::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 // Ghost
 //============================================================================================
-void Ghost::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Ghost::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -884,7 +880,7 @@ void Ghost::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 // Magmaman
 //============================================================================================
-void Magmaman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Magmaman::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -923,7 +919,7 @@ void Magmaman::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 //============================================================================================
 // Frost Giant
 //============================================================================================
-void FrostGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void FrostGiant::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -961,7 +957,7 @@ void FrostGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Storm Giant
 //============================================================================================
-void StormGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void StormGiant::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -999,7 +995,7 @@ void StormGiant::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Nymph
 //============================================================================================
-void Nymph::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Nymph::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1050,7 +1046,7 @@ void Nymph::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 // Ice Wizard
 //============================================================================================
-void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void IceWizard::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1118,7 +1114,7 @@ void IceWizard::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Snowman
 //============================================================================================
-void Snowman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Snowman::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1157,7 +1153,7 @@ void Snowman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Treeman
 //============================================================================================
-void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Treeman::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1226,7 +1222,7 @@ void Treeman::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Fire Demon
 //============================================================================================
-void FireDemon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void FireDemon::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1279,7 +1275,7 @@ void FireDemon::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Hydra
 //============================================================================================
-void Hydra::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Hydra::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1317,7 +1313,7 @@ void Hydra::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>
 //============================================================================================
 // Centipede
 //============================================================================================
-void Centipede::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Centipede::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -1351,7 +1347,7 @@ void Centipede::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Vampire
 //============================================================================================
-void Vampire::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Vampire::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -1386,7 +1382,7 @@ void Vampire::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Acolyte
 //============================================================================================
-void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void Acolyte::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1455,7 +1451,7 @@ void Acolyte::Attack(Player* player, vector<Item*>& playerInventory, vector<Item
 //============================================================================================
 // Wood Priest
 //============================================================================================
-void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void WoodPriest::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1523,7 +1519,7 @@ void WoodPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Ice Priest
 //============================================================================================
-void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void IcePriest::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1589,7 +1585,7 @@ void IcePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // Fire Priest
 //============================================================================================
-void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void FirePriest::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1654,7 +1650,7 @@ void FirePriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Wind Priest
 //============================================================================================
-void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void WindPriest::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1720,7 +1716,7 @@ void WindPriest::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // God of Life
 //============================================================================================
-void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GodOfLife::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1798,7 +1794,7 @@ void GodOfLife::Attack(Player* player, vector<Item*>& playerInventory, vector<It
 //============================================================================================
 // God of Chaos
 //============================================================================================
-void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GodOfChaos::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -1857,7 +1853,7 @@ void GodOfChaos::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // God of War
 //============================================================================================
-void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GodOfWar::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -1914,7 +1910,7 @@ void GodOfWar::Attack(Player* player, vector<Item*>& playerInventory, vector<Ite
 //============================================================================================
 // God of Death
 //============================================================================================
-void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GodOfDeath::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1967,7 +1963,7 @@ void GodOfDeath::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Green Dragon
 //============================================================================================
-void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void GreenDragon::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -2021,7 +2017,7 @@ void GreenDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<
 //============================================================================================
 // Blue Dragon
 //============================================================================================
-void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void BlueDragon::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -2075,7 +2071,7 @@ void BlueDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<I
 //============================================================================================
 // Red Dragon
 //============================================================================================
-void RedDragon::Attack(Player* player, vector<Item*>& playerInventory, vector<Item*>& worldItems, string map)
+void RedDragon::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	int X;

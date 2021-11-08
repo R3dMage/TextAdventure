@@ -12,7 +12,6 @@
 #include "Location.h"
 #include "FightDisplay.h"
 
-
 void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map)
 {
 	FightDisplay* fightDisplay = new FightDisplay();
@@ -209,7 +208,7 @@ void World::Fight(Player *player, Creature *enemy, vector<Item*> &playerInventor
 					if(player->GetCurrentHitPoints() < 1)
 						break;
 				}
-				enemy->Attack(player,playerInventory,worldItems,map);							// Enemy attack
+				enemy->Attack(player, fightDisplay);							// Enemy attack
 				fightDisplay->DisplayPlayerInfo(player);
 				fightDisplay->clear();
 			}

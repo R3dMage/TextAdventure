@@ -3,9 +3,6 @@
 #include <string>			//For Strings
 #include "Creature.h"
 
-#define green FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-
 Creature::Creature()
 {
 	SetDamage(1);
@@ -34,7 +31,7 @@ vector<string> Creature::Banter()
 	return vector<string>();
 }
 
-void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*> &worldItems,string map)
+void Creature::Attack(Player *player, TextDisplay* display)
 {
 	int damage = 0;
 	Armor *arm;

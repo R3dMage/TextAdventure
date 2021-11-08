@@ -5,6 +5,7 @@
 #include <iostream>			//Always needed
 #include <string>			//For std::strings
 
+#include "TextDisplay.h"
 #include "Greeting.h"
 #include "Player.h"
 #include "Item.h"
@@ -63,7 +64,7 @@ public:
 	virtual Item* Body(std::string) const = 0;
 	virtual void Win(Player *player);
 	virtual bool DroppedItem();
-	virtual void Attack(Player *player, std::vector<Item*> &playerInventory,std::vector<Item*> &worldItems,std::string map);
+	virtual void Attack(Player *player, TextDisplay* display);
 	virtual string Token();
 	virtual bool TalkTo(Player *player);
 	virtual std::vector<std::string> Banter();
