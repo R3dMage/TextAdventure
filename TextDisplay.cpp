@@ -48,3 +48,12 @@ void TextDisplay::DisplayRunningNumber(int amount, WORD color)
 		text("   ", X - 1, 9, color);
 	}
 }
+
+void TextDisplay::SlowDisplay(string szText)
+{
+	for (unsigned int i = 0; i < szText.size(); i++)
+	{
+		cout << szText[i];
+		Sleep(75);
+	}
+}

@@ -17,7 +17,7 @@ public:
 	virtual Item* Body(string map) const;
 	virtual string Token();
 	virtual Greeting GetGreeting(Player *player);
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 
 };
 
@@ -85,7 +85,7 @@ public:
 	virtual Item* Body(string map) const;
 	virtual string Token();
 	virtual Greeting GetGreeting(Player *player);
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	
 };
 
@@ -151,7 +151,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual Greeting GetGreeting(Player *player);
 };
 class Knight : public Human{
@@ -502,7 +502,7 @@ public:
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -514,7 +514,7 @@ public:
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -526,7 +526,7 @@ public:
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -538,7 +538,7 @@ public:
 	virtual bool DroppedItem();
 	virtual string Token();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -549,7 +549,7 @@ public:
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -560,7 +560,7 @@ public:
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -571,7 +571,7 @@ public:
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -582,7 +582,7 @@ public:
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 
@@ -599,7 +599,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 
 class BlueDragon : public Creature{
@@ -610,7 +610,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 
 class RedDragon : public Creature{
@@ -621,7 +621,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 };
 	
 class Monk : public Creature{
@@ -631,7 +631,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual void Win(Player *player);
+	virtual void Win(Player* player, TextDisplay* display);
 	virtual vector<string> Banter();
 };
 

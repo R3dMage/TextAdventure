@@ -42,15 +42,15 @@ void Creature::Attack(Player *player, TextDisplay* display)
 	if(damage < 0)
 		damage = 0;
 	player->SetHitPoints(player->GetCurrentHitPoints()-damage);
-	text(GetName(),13,11,white);
+	display->text(GetName(),13,11,white);
 	cout << " attacks you!";
 	Sleep(player->GetPauseDuration());
-	text("Enemies Damage: ",13,11,white);
+	display->text("Enemies Damage: ",13,11,white);
 	cout << damage << "              ";
 	display->DisplayDamage(damage);
 }
 
-void Creature::Win(Player *player)
+void Creature::Win(Player *player, TextDisplay* display)
 {
 }
 string Creature::GetWeakness()
@@ -263,38 +263,4 @@ bool Creature::TalkTo(Player *player)
 string Creature::GetMusic()
 {
 	return Music;
-}
-void Creature::slowDisp(string szText)
-{
-	unsigned int i;
-
-	for(i=0;i < szText.size();i++)
-	{
-		cout << szText[i];
-		Sleep(75);
-	}
-}
-
-void Creature::text(string szText, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << szText;
-}
-
-void Creature::num(int num, short X, short Y, WORD color)
-{
-	HANDLE OutputH;
-	COORD pos = { X, Y };
-
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << num;
 }

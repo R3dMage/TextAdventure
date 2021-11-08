@@ -73,7 +73,7 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 	num(enemy->GetGold(), 20, 11, green);
 	num(enemy->GetExperience(), 20, 12, green);
 
-	enemy->Win(player);
+	enemy->Win(player, this);
 	Sleep(player->GetPauseDuration());
 }
 

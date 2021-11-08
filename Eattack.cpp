@@ -19,7 +19,7 @@ void Elf::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 10 && Ka >= 4)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 11;
@@ -64,7 +64,7 @@ void ElvenMage::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 10 && Ka >= 4)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 11;
@@ -83,7 +83,7 @@ void ElvenMage::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(snow);
+			display->SlowDisplay(snow);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Snow!";
 			Sleep(player->GetPauseDuration());
@@ -93,7 +93,7 @@ void ElvenMage::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 20 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(briarbush);
+			display->SlowDisplay(briarbush);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast briar-bush!";
 			Sleep(player->GetPauseDuration());
@@ -131,7 +131,7 @@ void ElvenWarrior::Attack(Player *player, TextDisplay* display)
 		damage = rand() % 20 + 10;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		display->text("", 13, 9, white);
-		slowDisp(strike);
+		display->SlowDisplay(strike);
 		display->text("The Elven Warrior strikes out with immense speed!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		display->text("                                                            ", 13, 9, white);
@@ -274,7 +274,7 @@ void ranger::Attack(Player *player, TextDisplay* display)
 			damage = rand() % 25 + 20;
 			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 			display->text("", 13, 9, white);
-			slowDisp(strike);
+			display->SlowDisplay(strike);
 			display->text("The Elven Ranger strikes out with immense speed!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			display->text("                                                            ", 13, 9, white);
@@ -287,7 +287,7 @@ void ranger::Attack(Player *player, TextDisplay* display)
 		case 9:
 			damage = rand() % 30 + 30;
 			display->text("", 13, 9, white);
-			slowDisp(briarbush);
+			display->SlowDisplay(briarbush);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast briar-bush!";
 			Sleep(player->GetPauseDuration());
@@ -298,7 +298,7 @@ void ranger::Attack(Player *player, TextDisplay* display)
 	else if (HitPoints <= 35 && Ka >= 4)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 11;
@@ -370,7 +370,7 @@ void OrcSorceror::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 10 && Ka >= 4)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(drain);
+		display->SlowDisplay(drain);
 		display->text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		damage = rand() % 20 + 20;
@@ -393,7 +393,7 @@ void OrcSorceror::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(fire);
+			display->SlowDisplay(fire);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Fire";
 			Sleep(player->GetPauseDuration());
@@ -403,7 +403,7 @@ void OrcSorceror::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(arrow);
+			display->SlowDisplay(arrow);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast flame arrow";
 			Sleep(player->GetPauseDuration());
@@ -441,7 +441,7 @@ void OrcSoldier::Attack(Player *player, TextDisplay* display)
 		damage = rand() % 15 + 20;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		display->text("", 13, 9, white);
-		slowDisp(strike);
+		display->SlowDisplay(strike);
 		display->text("The Orc Soldier strikes out with immense power!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		display->text("                                                            ", 13, 9, white);
@@ -482,7 +482,7 @@ void FireOrc::Attack(Player *player, TextDisplay* display)
 		damage = rand() % 35 + 20;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		display->text("", 13, 9, white);
-		slowDisp(strike);
+		display->SlowDisplay(strike);
 		display->text("You are pelted with scalding hot rocks from above", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		display->text("                                                            ", 13, 9, white);
@@ -523,7 +523,7 @@ void IceOrc::Attack(Player *player, TextDisplay* display)
 		damage = rand() % 25 + 20;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		display->text("", 13, 9, white);
-		slowDisp(strike);
+		display->SlowDisplay(strike);
 		display->text("Wind colder than what seems possible chills you to the bones", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		display->text("                                                            ", 13, 9, white);
@@ -566,7 +566,7 @@ void OrcWanderer::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 10 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(drain);
+		display->SlowDisplay(drain);
 		display->text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		damage = rand() % 35 + 20;
@@ -589,7 +589,7 @@ void OrcWanderer::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 50;
 			display->text("", 13, 9, white);
-			slowDisp(fire);
+			display->SlowDisplay(fire);
 			display->text("The Orc Wanderer casts fire!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			Ka -= 10;
@@ -634,7 +634,7 @@ void Wizard::Attack(Player *player, TextDisplay* display)
 	{
 		damage = rand() % 20 + 20;
 		display->text("", 13, 9, white);
-		slowDisp(arain);
+		display->SlowDisplay(arain);
 		display->text("Acid rain falls from the sky!!!", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		SetKa(Ka - 10);
@@ -646,7 +646,7 @@ void Wizard::Attack(Player *player, TextDisplay* display)
 		{
 			damage = 0;
 			display->text("", 13, 9, white);
-			slowDisp(D);
+			display->SlowDisplay(D);
 			player->SetMagicStatus(0);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Dispel";
@@ -658,7 +658,7 @@ void Wizard::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(szshock);
+			display->SlowDisplay(szshock);
 			display->text("Electricy flies toward you, and your muscles tense", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			Ka -= 4;
@@ -703,7 +703,7 @@ void Adventurer::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 10 && Ka >= 4 && Level > 3)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(drain);
+		display->SlowDisplay(drain);
 		display->text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		damage = rand() % 20 + 20;
@@ -723,7 +723,7 @@ void Adventurer::Attack(Player *player, TextDisplay* display)
 	{
 		damage = 0;
 		display->text("", 13, 9, white);
-		slowDisp(str);
+		display->SlowDisplay(str);
 		State = 1;
 		display->text(GetName(), 13, 11, white);
 		cout << " has become visably stronger!!";
@@ -738,7 +738,7 @@ void Adventurer::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 50;
 			display->text("", 13, 9, white);
-			slowDisp(skel);
+			display->SlowDisplay(skel);
 			display->text("Skeletal hands strike from the soil!", 13, 11, white);
 			Sleep(player->GetPauseDuration());
 			Ka -= 10;
@@ -1060,7 +1060,7 @@ void IceWizard::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 28 && Ka >= 4)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(breeze);
+		display->SlowDisplay(breeze);
 		display->text("A slight breeze revitalizes the Ice Wizard.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 21;
@@ -1078,7 +1078,7 @@ void IceWizard::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(avalanche);
+			display->SlowDisplay(avalanche);
 			display->text(GetName(), 13, 11, white);
 			cout << " Snow avalanches out of nowhere!!";
 			Sleep(player->GetPauseDuration());
@@ -1088,7 +1088,7 @@ void IceWizard::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(chill);
+			display->SlowDisplay(chill);
 			display->text(GetName(), 13, 11, white);
 			cout << " icy wind rips into you!";
 			Sleep(player->GetPauseDuration());
@@ -1167,7 +1167,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 20 && Ka >= 5)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the Treeman in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 16;
@@ -1185,7 +1185,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(slam);
+			display->SlowDisplay(slam);
 			display->text(GetName(), 13, 11, white);
 			cout << "Branches reach down, pick you up and slam you hard into the ground";
 			Sleep(player->GetPauseDuration());
@@ -1195,7 +1195,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 20 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(briarbush);
+			display->SlowDisplay(briarbush);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast briar-bush!";
 			Sleep(player->GetPauseDuration());
@@ -1396,7 +1396,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 40 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("A slight breeze wafts through the fight.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 50 + 21;
@@ -1414,7 +1414,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(cyclone);
+			display->SlowDisplay(cyclone);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Cyclone!";
 			Sleep(player->GetPauseDuration());
@@ -1424,7 +1424,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 20 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(windstorm);
+			display->SlowDisplay(windstorm);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Windstorm!";
 			Sleep(player->GetPauseDuration());
@@ -1465,7 +1465,7 @@ void WoodPriest::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 25 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the priest in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 40 + 11;
@@ -1483,7 +1483,7 @@ void WoodPriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 35;
 			display->text("", 13, 9, white);
-			slowDisp(snow);
+			display->SlowDisplay(snow);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Snow!";
 			Sleep(player->GetPauseDuration());
@@ -1493,7 +1493,7 @@ void WoodPriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 25;
 			display->text("", 13, 9, white);
-			slowDisp(briarbush);
+			display->SlowDisplay(briarbush);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast briar-bush!";
 			Sleep(player->GetPauseDuration());
@@ -1533,7 +1533,7 @@ void IcePriest::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 28 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(breeze);
+		display->SlowDisplay(breeze);
 		display->text("A slight breeze revitalizes the priest.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 21;
@@ -1551,7 +1551,7 @@ void IcePriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(avalanche);
+			display->SlowDisplay(avalanche);
 			cout << "A glacier falls on you out of nowhere!!";
 			Sleep(player->GetPauseDuration());
 			Ka -= 10;
@@ -1560,7 +1560,7 @@ void IcePriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(chill);
+			display->SlowDisplay(chill);
 			cout << "Ice punctures and tears at you!";
 			Sleep(player->GetPauseDuration());
 			Ka -= 5;
@@ -1599,7 +1599,7 @@ void FirePriest::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 30)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(potion);
+		display->SlowDisplay(potion);
 		display->text("The priest chugs a potion", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 21;
@@ -1616,7 +1616,7 @@ void FirePriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 50 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(landslide);
+			display->SlowDisplay(landslide);
 			cout << "Boulders fall on you from high above";
 			Sleep(player->GetPauseDuration());
 			Ka -= 10;
@@ -1625,7 +1625,7 @@ void FirePriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 20;
 			display->text("", 13, 9, white);
-			slowDisp(flame);
+			display->SlowDisplay(flame);
 			cout << "Flames fly from his fingers torching you";
 			Sleep(player->GetPauseDuration());
 			Ka -= 5;
@@ -1664,7 +1664,7 @@ void WindPriest::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 60 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the priest in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 30 + 21;
@@ -1682,7 +1682,7 @@ void WindPriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 60 + 50;
 			display->text("", 13, 9, white);
-			slowDisp(lightning);
+			display->SlowDisplay(lightning);
 			cout << "A bolt of lightning strikes you!";
 			Sleep(player->GetPauseDuration());
 			Ka -= 10;
@@ -1691,7 +1691,7 @@ void WindPriest::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 30 + 30;
 			display->text("", 13, 9, white);
-			slowDisp(arain);
+			display->SlowDisplay(arain);
 			cout << "Acid rain falls upon you burning, and scalding you";
 			Sleep(player->GetPauseDuration());
 			Ka -= 5;
@@ -1731,7 +1731,7 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 40 && Ka >= 10)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(heal);
+		display->SlowDisplay(heal);
 		display->text("Light shines down from above engulfing the god in brightness", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		cure = rand() % 100 + 101;
@@ -1749,7 +1749,7 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 80 + 50;
 			display->text("", 13, 9, white);
-			slowDisp(lifestop);
+			display->SlowDisplay(lifestop);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Pain!";
 			Sleep(player->GetPauseDuration());
@@ -1759,7 +1759,7 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 60 + 30;
 			display->text("", 13, 9, white);
-			slowDisp(snow);
+			display->SlowDisplay(snow);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast Snow!";
 			Sleep(player->GetPauseDuration());
@@ -1769,7 +1769,7 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 		{
 			damage = rand() % 40 + 40;
 			display->text("", 13, 9, white);
-			slowDisp(briarbush);
+			display->SlowDisplay(briarbush);
 			display->text(GetName(), 13, 11, white);
 			cout << " cast briar-bush!";
 			Sleep(player->GetPauseDuration());
@@ -1809,7 +1809,7 @@ void GodOfChaos::Attack(Player *player, TextDisplay* display)
 	{
 		damage = rand() % 80 + 50;
 		display->text("", 13, 9, white);
-		slowDisp(magma);
+		display->SlowDisplay(magma);
 		display->text(GetName(), 13, 11, white);
 		cout << " cast Pain!";
 		Sleep(player->GetPauseDuration());
@@ -1819,7 +1819,7 @@ void GodOfChaos::Attack(Player *player, TextDisplay* display)
 	{
 		damage = rand() % 60 + 30;
 		display->text("", 13, 9, white);
-		slowDisp(snow);
+		display->SlowDisplay(snow);
 		display->text(GetName(), 13, 11, white);
 		cout << " cast Snow!";
 		Sleep(player->GetPauseDuration());
@@ -1829,7 +1829,7 @@ void GodOfChaos::Attack(Player *player, TextDisplay* display)
 	{
 		damage = rand() % 40 + 40;
 		display->text("", 13, 9, white);
-		slowDisp(fire);
+		display->SlowDisplay(fire);
 		display->text(GetName(), 13, 11, white);
 		cout << " cast flame";
 		Sleep(player->GetPauseDuration());
@@ -1921,7 +1921,7 @@ void GodOfDeath::Attack(Player *player, TextDisplay* display)
 	if (HitPoints <= 50 && Ka >= 20)
 	{
 		display->text("", 13, 9, white);
-		slowDisp(drain);
+		display->SlowDisplay(drain);
 		display->text("You grow cold, and feel like something was taken.", 13, 11, white);
 		Sleep(player->GetPauseDuration());
 		damage = rand() % 100 + 90;

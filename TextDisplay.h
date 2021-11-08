@@ -19,6 +19,7 @@ public:
 	void num(int num, short X, short Y, WORD color);
 	void DisplayDamage(int amount);
 	void DisplayCure(int amount);
+	void SlowDisplay(std::string szText);
 
 private:
 	void DisplayRunningNumber(int amount, WORD color);

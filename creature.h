@@ -58,11 +58,10 @@ public:
 	virtual Greeting GetGreeting(Player* player);
 	virtual void SetMap(std::string);
 
-	void slowDisp(std::string);
 	void LoadPosition(int X, int Y);
 	virtual Creature* Replenish() const = 0;
 	virtual Item* Body(std::string) const = 0;
-	virtual void Win(Player *player);
+	virtual void Win(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();
 	virtual void Attack(Player *player, TextDisplay* display);
 	virtual string Token();
@@ -96,7 +95,5 @@ protected:
 	std::string  Weakness;
 	std::string  Music;
 
-	void text(std::string szText, short X, short Y, WORD color);
-	void num(int num, short X, short Y, WORD color);
 };
 #endif 

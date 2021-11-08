@@ -389,15 +389,6 @@ void GameDisplay::DisplayCost(int cost)
 	cout << " GP  ";
 }
 
-void GameDisplay::SlowDisplay(string szText)
-{
-	for (unsigned int i = 0; i < szText.size(); i++)
-	{
-		cout << szText[i];
-		Sleep(75);
-	}
-}
-
 void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
 {
 	unsigned int Offset = 0;

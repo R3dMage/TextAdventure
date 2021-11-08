@@ -36,5 +36,4 @@ public:
 
 private:
 	void DisplayCost(int cost);
-	void SlowDisplay(string szText);
 };
