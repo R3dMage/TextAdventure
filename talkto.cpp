@@ -1,11 +1,6 @@
 #include <iostream>
 #include "Enemies.h"
 
-#define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-#define yellow FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY 
-#define brown FOREGROUND_RED | FOREGROUND_GREEN
-#define blue FOREGROUND_BLUE | FOREGROUND_INTENSITY
-
 //================================================================================================================
 // This file contains all the code for all the random dialogue in the game. None of which should be very plot
 // advancing, but who knows I might change that notion too. 2/21/05
