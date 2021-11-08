@@ -16,8 +16,8 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
-	virtual void Win(Player *player);	
+	virtual Greeting GetGreeting(Player *player);
+	virtual void Win(Player *player);
 
 };
 
@@ -29,7 +29,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 };
 
 class ElvenWarrior : public Elf{
@@ -40,7 +40,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 };
 
 class FireElf : public Elf{
@@ -84,7 +84,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 	virtual void Win(Player *player);
 	
 };
@@ -97,7 +97,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 };
 
 class OrcSoldier : public Orc{
@@ -108,7 +108,7 @@ public:
 	virtual bool DroppedItem();
 	virtual Item* Body(string map) const;
 	virtual string Token();
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 };
 
 class FireOrc : public Orc{
@@ -152,7 +152,7 @@ public:
 	virtual Item* Body(string map) const;
 	virtual string Token();
 	virtual void Win(Player *player);
-	virtual bool TalkTo(Player *player);
+	virtual Greeting GetGreeting(Player *player);
 };
 class Knight : public Human{
 public:
@@ -160,7 +160,7 @@ public:
 	virtual Creature* Replenish() const;
 	virtual bool DroppedItem();
 	virtual string Token();
-	//virtual bool TalkTo(player *player);
+	//virtual Greeting GetGreeting(player *player);
 };
 
 class Wizard : public Human{
@@ -170,7 +170,7 @@ public:
 	virtual void Attack(Player *player,vector<Item*> &playerInventory, vector<Item*> &worldItems,string map);
 	virtual bool DroppedItem();
 	virtual string Token();
-	//virtual bool TalkTo(player *player);
+	//virtual Greeting GetGreeting(player *player);
 };
 
 class Adventurer : public Human{

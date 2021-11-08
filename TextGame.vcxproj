@@ -161,6 +161,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="FightDisplay.h" />
     <ClInclude Include="GameDisplay.h" />
+    <ClInclude Include="Greeting.h" />
     <ClInclude Include="ISaveLoadGame.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemRepository.h" />
@@ -187,6 +188,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="CFmod.cpp" />
     <ClCompile Include="FightDisplay.cpp" />
     <ClCompile Include="GameDisplay.cpp" />
+    <ClCompile Include="Greeting.cpp" />
     <ClCompile Include="ISaveLoadGame.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemRepository.cpp" />

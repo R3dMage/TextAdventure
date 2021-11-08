@@ -40,7 +40,7 @@ void Creature::Attack(Player *player,vector<Item*> &playerInventory,vector<Item*
 	Armor *arm;
 
 	arm = player->GetArmor();
-	damage = rand()% damage + DamageModifier;
+	damage = rand()% BaseDamage + DamageModifier;
 	damage -= arm->GetDefenseModifier();
 	if(damage < 0)
 		damage = 0;
@@ -195,6 +195,10 @@ bool Creature::GetRunAway()
 bool Creature::GetDontMove()
 {
 	return DontMove;
+}
+Greeting Creature::GetGreeting(Player* player)
+{
+	return Greeting(string(), string(), false);
 }
 void Creature::SetState(int N)
 {

@@ -40,8 +40,7 @@ void Elf::Win(Player *p2)
 	p2->RaceKillCounts.ElfKillCount += 1;
 	if(p2->RaceKillCounts.OrcKillCount == 0)
 		p2->SetReactionOrc(3);
-	
-	Sleep(3000);
+		
 	if(p2->RaceKillCounts.ElfKillCount < 4)
 	{
 		text("                                                               ",13,9,white);
@@ -50,8 +49,7 @@ void Elf::Win(Player *p2)
 		slowDisp("You have slain an elf, one of the god of life's most treasured ");		
 		text("",13,9,white);
 		slowDisp("beings...");
-		text("",79,23,white);
-		Sleep(3000);
+		text("",79,23,white);	
 	}
 	
 	
@@ -248,8 +246,7 @@ void Orc::Win(Player *p2)
 	p2->RaceKillCounts.OrcKillCount += 1;
 	if(p2->RaceKillCounts.ElfKillCount == 0)
 		p2->SetReactionElf(3);
-	
-	Sleep(3000);
+		
 	if(p2->RaceKillCounts.OrcKillCount < 4)
 	{
 		text("                                                                ",13,9,white);
@@ -258,8 +255,7 @@ void Orc::Win(Player *p2)
 		slowDisp("You have slain an orc, one of the god of chaos's most treasured ");		
 		text("",13,9,white);
 		slowDisp("beings...");
-		text("",79,23,white);
-		Sleep(3000);
+		text("",79,23,white);	
 	}
 }
 Creature* Orc::Replenish() const
@@ -459,8 +455,6 @@ void Human::Win(Player *p2)
 		p2->SetReactionHuman(1);
 	}
 	
-	Sleep(3000);
-	text("",79,23,white);
 	if(p2->RaceKillCounts.HumanKillCount < 5)
 	{
 		text("                                                                ",13,9,white);
@@ -470,7 +464,6 @@ void Human::Win(Player *p2)
 		text("",13,9,white);
 		slowDisp("beings...");
 		text("",79,23,white);
-		Sleep(3000);		
 	}
 }
 Creature* Human::Replenish() const
@@ -1671,12 +1664,10 @@ Item* WoodPriest::Body(string map) const
 }
 void WoodPriest::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("After defeating the Wood Priest you must travel north.",13,11,white);
 	text("Past the forests to the frozen tundra.",13,12,white);
 	p2->PlotEventStates.Priest1 = true;
 	text("",79,23,white);
-	Sleep(5000);	
 }
 Creature* WoodPriest::Replenish() const
 {
@@ -1716,12 +1707,10 @@ Item* IcePriest::Body(string map) const
 }
 void IcePriest::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("After defeating the Ice Priest you must travel west.",13,11,white);
 	text("Into the mountain and defeat the Fire Priest.",13,12,white);
 	p2->PlotEventStates.Priest2 = true;
 	text("",79,23,white);
-	Sleep(5000);	
 }
 Creature* IcePriest::Replenish() const
 {
@@ -1760,12 +1749,10 @@ Item* FirePriest::Body(string map) const
 }
 void FirePriest::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
 	text("Beneath the cemetary lies the teleporter.",13,12,white);
 	p2->PlotEventStates.Priest3 = true;
 	text("",79,23,white);
-	Sleep(5000);	
 }
 Creature* FirePriest::Replenish() const
 {
@@ -1808,7 +1795,6 @@ void WindPriest::Win(Player *p2)
 	text("Go thee to the ancient water temple.",13,12,white);
 	p2->PlotEventStates.Priest4 = true;
 	text("",79,23,white);
-	Sleep(5000);	
 }
 Creature* WindPriest::Replenish() const
 {
@@ -1842,8 +1828,6 @@ Item* GodOfWar::Body(string map) const
 }
 void GodOfWar::Win(Player *p2)
 {
-	Creature::Win(p2);
-	Sleep(3000);	
 }
 
 Creature* GodOfWar::Replenish() const
@@ -1879,8 +1863,6 @@ Item* GodOfLife::Body(string map) const
 
 void GodOfLife::Win(Player *p2)
 {
-	Creature::Win(p2);
-	Sleep(3000);	
 }
 
 Creature* GodOfLife::Replenish() const
@@ -1916,8 +1898,6 @@ Item* GodOfChaos::Body(string map) const
 }
 void GodOfChaos::Win(Player *p2)
 {
-	Creature::Win(p2);
-	Sleep(3000);	
 }
 
 Creature* GodOfChaos::Replenish() const
@@ -1952,8 +1932,6 @@ Item* GodOfDeath::Body(string map) const
 }
 void GodOfDeath::Win(Player *p2)
 {
-	Creature::Win(p2);
-	Sleep(3000);	
 }
 
 Creature* GodOfDeath::Replenish() const
@@ -1994,7 +1972,6 @@ string GreenDragon::Token()
 }
 void GreenDragon::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("The Green Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the island.",13,12,white);
 	Sleep(3000);	
@@ -2028,7 +2005,6 @@ string BlueDragon::Token()
 }
 void BlueDragon::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("The Blue Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the tundra.",13,12,white);
 	Sleep(3000);	
@@ -2061,7 +2037,6 @@ string RedDragon::Token()
 }
 void RedDragon::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("The Red Dragon lies vanquished. ",13,11,white);
 	text("Peace begins to return to the mountains.",13,12,white);
 	Sleep(3000);	
@@ -2116,7 +2091,6 @@ string Monk::Token()
 }
 void Monk::Win(Player *p2)
 {
-	Creature::Win(p2);
 	text("The peaceful monk lies vanquished. ",13,11,white);
 	text("Don't you feel better about yourself now?",13,11,white);
 	Sleep(3000);	

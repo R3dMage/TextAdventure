@@ -74,6 +74,7 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 	num(enemy->GetExperience(), 20, 12, green);
 
 	enemy->Win(player);
+	Sleep(player->GetPauseDuration());
 }
 
 void FightDisplay::DisplayLevelUp(Player* player)

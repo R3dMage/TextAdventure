@@ -483,10 +483,11 @@ void World::Locations(string map, Player *player,bool load)
 					if(!encounter[i]->GetTalkTo())
 						Fight(player,encounter[i],inv,Globals,spells,map);	
 					else
-					{
-						//clear();
+					{						
 						Display->DisplayPlayerInfo(player);
-						if(encounter[i]->TalkTo(player))
+						Greeting greeting = encounter[i]->GetGreeting(player);
+
+						if (Menu->TalkTo(&greeting, player->GetPauseDuration()))
 							Fight(player,encounter[i],inv,Globals,spells,map);
 					}
 					if(encounter[i]->GetHitPoints() <= 0)							

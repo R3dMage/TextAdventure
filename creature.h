@@ -5,6 +5,7 @@
 #include <iostream>			//Always needed
 #include <string>			//For std::strings
 
+#include "Greeting.h"
 #include "Player.h"
 #include "Item.h"
 
@@ -53,6 +54,7 @@ public:
 	std::string GetWeakness();
 	std::string GetMap();
 	std::string GetMusic();
+	virtual Greeting GetGreeting(Player* player);
 	virtual void SetMap(std::string);
 
 	void slowDisp(std::string);
