@@ -25,6 +25,9 @@
     <Filter Include="Display">
       <UniqueIdentifier>{b82eca0b-dfc2-41d3-ba2c-47c1fa1313dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{e9b5e896-7db9-4209-93a4-fae1e2e7d7b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,9 +39,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CFmod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -46,9 +46,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enemies.h">
@@ -72,12 +69,6 @@
     <ClInclude Include="Magic.h">
       <Filter>Magic</Filter>
     </ClInclude>
-    <ClInclude Include="ISaveLoadGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveLoadGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenuSystem.h">
       <Filter>Display</Filter>
     </ClInclude>
@@ -90,24 +81,30 @@
     <ClInclude Include="ItemRepository.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Plots.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Greeting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextDisplay.h">
       <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="CFmod.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Greeting.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ISaveLoadGame.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoadGame.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Plots.h">
+      <Filter>GameEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CFmod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Local.cpp">
@@ -120,12 +117,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plots.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
@@ -158,12 +149,6 @@
     <ClCompile Include="Talkto.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ISaveLoadGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveLoadGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
@@ -176,11 +161,29 @@
     <ClCompile Include="ItemRepository.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Greeting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TextDisplay.cpp">
       <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="CFmod.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Greeting.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ISaveLoadGame.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Plots.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadGame.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
