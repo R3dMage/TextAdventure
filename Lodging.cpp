@@ -39,7 +39,7 @@ void Lodging::Enter(Player* player, string mapName)
 
 	Display->ClearAll();
 	Display->DisplayPlayerInfo(player);
-	Display->DisplayText(stream.str(), 13, 11, white);
+	Display->DisplayText(stream.str(), 13, 1, brown);
 	Display->DisplayText("One night: ", 13, 2, white); 
 	Display->DisplayNumber(Price, 24, 2, yellow);
 
