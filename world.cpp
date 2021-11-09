@@ -9,6 +9,7 @@
 #include "SaveLoadGame.h"
 #include "ArmoryShop.h"
 #include "MagicShop.h"
+#include "Lodging.h"
 
 World::World(GameDisplay* gameDisplay, ItemRepository* items)
 {
@@ -270,13 +271,19 @@ void World::Locations(string map, Player *player, bool load)
 				ArmoryShop armory(Display, Menu, Items, map);
 				armory.ShowShop(player, playerInventory);
 			}
-			if(ShopType == "inn")
-				Inn(player,map);
+			
+			if (ShopType == "inn")
+			{
+				Lodging lodging(Display, Menu);
+				lodging.Enter(player, map);
+			}
+			
 			if (ShopType == "magic")
 			{
 				MagicShop magicShop(Display, Menu, Items, map);
 				magicShop.ShowShop(player, playerInventory);
 			}
+			
 			if(ShopType == "buy")
 				PawnShop(player,playerInventory,map);
 		}		
@@ -607,96 +614,6 @@ bool World::Walk(bool &selectionWasMade, bool &escapeWasPressed, Player *player,
 	}	
 	Display->DisplayText(" ", 79, 23,white);
 return false;	
-}
-
-//==========================================================================================================
-//	Function for what happens when you go to an inn.
-//==========================================================================================================
-void World::Inn(Player *player,string map)
-{
-	int choice = 0;
-	int price = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	COORD CursPos; 
-	string name;
-
-	if(map == "valesh")					//Price and name of the inn in Valesh
-	{
-		price = 55;
-		name = "Inn of the Lucky Whale";
-	}
-	if(map == "elvencity")				//Price and name of the inn in ElvenCity
-	{
-		price = 105;
-		name = "Inn of warm dreams";
-	}
-
-	if(map == "marintown")				//Price and name of the inn in Marintown
-	{
-		price = 155;
-		name = "Inn of Soft Love";
-	}
-
-	if(map == "yamashi")				//Price and name of the inn in Yamashi
-	{
-		price = 255;
-		name = "Inn of the Mountain";
-	}
-	while(!bEsc)
-	{
-		Display->ClearAll();
-		Display->DisplayPlayerInfo(player);
-		CursPos.X = 2;
-		CursPos.Y = 12;
-		bSel = false;
-		Display->DisplayText("Will you be spending the night?",13,11,white);
-		Display->DisplayText("[---",13,1,brown);	cout << name << "--]";
-		Display->DisplayText("One night: ",13,2,white); Display->DisplayNumber(price,24,2,yellow);
-		Display->DisplayText("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|  Yes    |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|  No     |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("\\---------/",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-
-		Menu->DrawCursor(CursPos,yellow,175);
-		do
-		{
-			if(Menu->MoveCursor(CursPos,bSel,bEsc,12,13))
-			{
-				Menu->DrawCursor(CursPos,yellow,175);
-			}
-			Display->DisplayText(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
-			break;
-
-		choice = CursPos.Y;
-		switch(choice)
-		{
-		case 12:
-			if(player->GetGold() < price)
-			{
-				Display->DisplayText("You have insufficient funds",13,11,yellow);
-				Sleep(player->GetPauseDuration());
-			}
-			else
-			{
-				player->SetGold(player->GetGold() - price);
-				player->SetHitPoints(player->GetMaxHitPoints());
-				player->SetKa(player->GetMaxKa());
-				Display->DisplayText("Pleasure doing business with you!",13,11,white);
-				Sleep(player->GetPauseDuration());
-				bEsc = true;
-			}
-			break;
-		case 13:
-			Display->DisplayText("Sorry, maybe next time.                   ",13,11,white);
-			Sleep(player->GetPauseDuration());
-			bEsc = true;
-			break;
-		}
-	}//--------End while bEsc
-	Display->ClearAll();
 }
 
 void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
