@@ -171,7 +171,7 @@ void GameDisplay::PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, 
 	cout << CTR;
 }
 
-void GameDisplay::clr()
+void GameDisplay::ClearTopRight()
 {
 	int Y = 11;
 	while (Y < 24)
@@ -181,7 +181,7 @@ void GameDisplay::clr()
 	}
 }
 
-void GameDisplay::clear()
+void GameDisplay::ClearAll()
 {
 	int Y = 1;
 	while (Y < 10)
@@ -203,7 +203,7 @@ void GameDisplay::clear()
 //=====================================================================================
 //	This function clears above the midline
 //=====================================================================================
-void GameDisplay::clrtop(int Y)
+void GameDisplay::ClearTopBelow(int Y)
 {
 	while (Y < 10)
 	{
@@ -214,7 +214,7 @@ void GameDisplay::clrtop(int Y)
 //=====================================================================================
 //	This function clears below the midline
 //=====================================================================================
-void GameDisplay::clrbottom()
+void GameDisplay::ClearBottom()
 {
 	int Y = 11;
 	while (Y < 24)
@@ -227,7 +227,7 @@ void GameDisplay::clrbottom()
 //====================================================================================
 // This function is the same as clr, WTF is with that?
 //====================================================================================
-void GameDisplay::clritems()
+void GameDisplay::ClearBottomRight()
 {
 	int Y = 11;
 	while (Y < 24)
@@ -363,7 +363,7 @@ void GameDisplay::DisplayCost(int cost)
 	cout << " GP  ";
 }
 
-void GameDisplay::ground(vector<Item*> stuff, string Map, int X, int Y)
+void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string Map, int X, int Y)
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;

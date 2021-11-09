@@ -18,7 +18,7 @@ void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vect
 	{
 		ClearTextBottomRight(11);
 		Display->DisplayPlayerInfo(player);
-		Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+		Display->DisplayItemsOnGround(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
@@ -136,7 +136,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 						break;
 					}
 				}
-				Display->clrtop(2);
+				Display->ClearTopBelow(2);
 			}
 			else
 			{
@@ -155,7 +155,7 @@ void MainMenuSystem::HandleInventory(Player* player, vector<Item*>& worldItems, 
 			while (!escapeWasPressed)
 			{
 				Display->DisplayPlayerItems(playerInventory);
-				Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+				Display->DisplayItemsOnGround(worldItems, map, player->GetPositionX(), player->GetPositionY());
 				cursorPosition.X = 2;
 				cursorPosition.Y = 12;
 				selectionWasMade = false;
@@ -255,7 +255,7 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 		{
 			Display->DisplayText("          ", 1, 22, white);
 			Display->DisplayText("          ", 1, 23, white);
-			Display->clrbottom();
+			Display->ClearBottom();
 			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
@@ -303,7 +303,7 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 
 	while (!escapeWasPressed)
 	{
-		Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+		Display->DisplayItemsOnGround(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		Display->DisplayPlayerItems(playerInventory);
 		selectionWasMade = false;
 		cursorPosition.X = 13;
@@ -324,7 +324,7 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 		{
 			Display->DisplayText("          ", 1, 22, white);
 			Display->DisplayText("          ", 1, 23, white);
-			Display->clrbottom();
+			Display->ClearBottom();
 			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
@@ -375,7 +375,7 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 		{
 			Display->DisplayText("          ", 1, 22, white);
 			Display->DisplayText("          ", 1, 23, white);
-			Display->clrbottom();
+			Display->ClearBottom();
 			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
@@ -573,7 +573,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayPlayerItems(playerInventory);
 		if (!isFighting)
-			Display->ground(worldItems, map, player->GetPositionX(), player->GetPositionY());
+			Display->DisplayItemsOnGround(worldItems, map, player->GetPositionX(), player->GetPositionY());
 		cursorPosition.X = 2;
 		cursorPosition.Y = 15;
 		selectionWasMade = false;
@@ -656,7 +656,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 
 	while (!escapeWasPressed && playerInventory.size() > 0)
 	{
-		Display->clritems();
+		Display->ClearBottomRight();
 		Display->DisplayPlayerItems(playerInventory);
 		Display->DisplayPlayerInfo(player);
 
@@ -685,7 +685,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 		{
 			Display->DisplayText("          ", 1, 22, white);
 			Display->DisplayText("          ", 1, 23, white);
-			Display->clrbottom();
+			Display->ClearBottom();
 			Display->DisplayPlayerItems(playerInventory);
 			return;
 		}
@@ -750,13 +750,13 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 				break;
 			}
 			itemWasUsed = true;
-			Display->clrtop(2);
+			Display->ClearTopBelow(2);
 			if (isFighting)
 				escapeWasPressed = true;
 		}
 
 	}// End While escapeWasPressed && playerInventory.size() > 0
-	Display->clrbottom();
+	Display->ClearBottom();
 }
 void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 {
@@ -769,7 +769,7 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 
 	while (!escapeWasPressed)
 	{
-		Display->clear();
+		Display->ClearAll();
 		Display->DisplayPlayerInfo(player);
 		cursorPosition.X = 14;
 		cursorPosition.Y = 13;
@@ -903,7 +903,7 @@ bool MainMenuSystem::TalkTo(Greeting* greeting, int pauseDuration)
 	bool bEsc;
 	COORD CursPos;
 
-	Display->clr();
+	Display->ClearTopRight();
 	CursPos.X = 2;
 	CursPos.Y = 12;
 	bSel = false;

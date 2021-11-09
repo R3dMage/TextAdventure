@@ -39,7 +39,7 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 		cursorPosition.Y = 2;
 		itemSelected = false;
 		funds = true;
-		Display->clear();
+		Display->ClearAll();
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayPlayerItems(playerInventory);
 
@@ -79,5 +79,5 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 			Sleep(1500);
 		}
 	}// End while bEsc
-	Display->clear();
+	Display->ClearAll();
 }

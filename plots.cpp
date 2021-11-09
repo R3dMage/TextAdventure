@@ -14,13 +14,13 @@ void Plots::Check(GameEvents* plotEventStates, string map, int PositionX, int Po
 	{
 		plotEventStates->Start = true;
 
-		Display->clrtop(1);
+		Display->ClearTopBelow(1);
 		Display->DisplayText("The town elder approaches you. He tells you of a priest who",13,2,white);
 		Display->DisplayText("went mad with power! Rumor has it that he went to an island",13,3,white);
 		Display->DisplayText("only accessable by ferry from Marintown. A fishing port to the",13,4,white);
 		Display->DisplayText("east. You must take the eastern road to get there. Good Luck.",13,5,white);
 		Display->DisplayText("", 13, 23,white);
 		system("pause");
-		Display->clrtop(1);
+		Display->ClearTopBelow(1);
 	}
 }

@@ -192,7 +192,7 @@ void World::Locations(string map, Player *player, bool load)
 		playerInventory.push_back(Items->GetItem("RedMail"));
 	}
 
-    Display->clear();	
+    Display->ClearAll();	
 
 	ifstream fin;									//fin is what I use as an ifstream operator
 	MapName = "./data/" + map + ".tgm";				//This adds the extensions we need to access Map Files
@@ -256,7 +256,7 @@ void World::Locations(string map, Player *player, bool load)
 
 		if(mapLocations[playerPositionIndex]->GetHasPlot())
 		{
-			Display->clear();
+			Display->ClearAll();
 			Display->DisplayPlayerInfo(player);
 			
 			plot(map,mapLocations[playerPositionIndex]->GetPlotText());
@@ -414,10 +414,10 @@ void World::Locations(string map, Player *player, bool load)
 //================================================================================================================
 
 //		This function clears the items that WERE on the ground		
-		Display->clrtop(2);
+		Display->ClearTopBelow(2);
 
 //		Function that displays what's on the ground =)
-		Display->ground(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		Display->DisplayItemsOnGround(worldItems,map,player->GetPositionX(),player->GetPositionY());
 
 
 		while(!selectionWasMade)
@@ -645,7 +645,7 @@ void World::Inn(Player *player,string map)
 	}
 	while(!bEsc)
 	{
-		Display->clear();
+		Display->ClearAll();
 		Display->DisplayPlayerInfo(player);
 		CursPos.X = 2;
 		CursPos.Y = 12;
@@ -696,7 +696,7 @@ void World::Inn(Player *player,string map)
 			break;
 		}
 	}//--------End while bEsc
-	Display->clear();
+	Display->ClearAll();
 }
 
 void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
@@ -725,8 +725,8 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 	while(!bLeave)
 	{
 		selectionWasMade = false;
-		Display->clrbottom();
-		Display->clrtop(3);
+		Display->ClearBottom();
+		Display->ClearTopBelow(3);
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayText("[---We buy STUFF!---]",13,1,brown);
 		if(playerInventory.size() < 1)
@@ -763,8 +763,8 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		}// End While bSel
 		if(escapeWasPressed)
 		{
-			Display->clrbottom();
-			Display->clrtop(1);
+			Display->ClearBottom();
+			Display->ClearTopBelow(1);
 			return;
 		}
 		offset = cursorPosition.Y - 12;
@@ -802,7 +802,7 @@ void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
 		Menu->SlideDown(playerInventory,offset);
 		playerInventory.pop_back();
 //==================================================================================================
-		Display->clrbottom();
+		Display->ClearBottom();
 		Display->DisplayPlayerInfo(player);
 		Display->DisplayText("There you go!",13,3,white);
 		Sleep(player->GetPauseDuration());
