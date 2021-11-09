@@ -28,6 +28,9 @@
     <Filter Include="GameEngine">
       <UniqueIdentifier>{e9b5e896-7db9-4209-93a4-fae1e2e7d7b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Shops">
+      <UniqueIdentifier>{e3d2ab32-dcd0-4071-95a7-92fab667f0be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -101,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="Plots.h">
       <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ArmoryShop.h">
+      <Filter>GameEngine\Shops</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>GameEngine\Shops</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicShop.h">
+      <Filter>GameEngine\Shops</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +196,15 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ArmoryShop.cpp">
+      <Filter>GameEngine\Shops</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>GameEngine\Shops</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicShop.cpp">
+      <Filter>GameEngine\Shops</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
