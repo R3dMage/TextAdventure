@@ -7,6 +7,8 @@
 #include "Enemies.h"
 #include "Location.h"
 #include "SaveLoadGame.h"
+#include "ArmoryShop.h"
+#include "MagicShop.h"
 
 World::World(GameDisplay* gameDisplay, ItemRepository* items)
 {
@@ -256,12 +258,18 @@ void World::Locations(string map, Player *player,bool load)
 		if(Vmap[T]->GetIsShop())
 		{
 			ShopType = Vmap[T]->GetShopName();
-			if(ShopType == "armory")
-				Armory(inv,player,map);
+			if (ShopType == "armory")
+			{
+				ArmoryShop armory(Display, Menu, Items, map);
+				armory.ShowShop(player, inv);
+			}
 			if(ShopType == "inn")
 				Inn(player,map);
-			if(ShopType == "magic")
-				MagicShop(inv,player,map);
+			if (ShopType == "magic")
+			{
+				MagicShop magicShop(Display, Menu, Items, map);
+				magicShop.ShowShop(player, inv);
+			}
 			if(ShopType == "buy")
 				PawnShop(player,inv,map);
 		}		
@@ -584,188 +592,6 @@ bool World::Walk(bool &selectionWasMade, bool &escapeWasPressed, Player *player,
 	Display->DisplayText(" ", 79, 23,white);
 return false;	
 }
-//				This is the shop where you buy weapons and armor
-void World::Armory(vector<Item*> &playerInventory,Player *player,string map)
-{
-	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	bool funds = true;
-	COORD CursPos; 
-	Item* wsell1;
-	Item* wsell2;
-	Item* wsell3;
-	Item* asell1;
-	Item* asell2;
-	Item* asell3;
-
-	if(map == "valesh")
-	{
-		wsell1 = Items->GetItem("Rapier");
-		wsell2 = Items->GetItem("Longsword");
-		wsell3 = Items->GetItem("Scimitar");
-		asell1 = Items->GetItem("Padded");
-		asell2 = Items->GetItem("Leather");
-		asell3 = Items->GetItem("Lt.Chain");
-	}
-	else if(map == "elvencity")
-	{
-		wsell1 = Items->GetItem("+1 Rapier");
-		wsell2 = Items->GetItem("+1Longsword");
-		wsell3 = Items->GetItem("+1 Scimitar");
-		asell1 = Items->GetItem("Padded");
-		asell2 = Items->GetItem("Leather");
-		asell3 = Items->GetItem("Elvenchain");
-	}
-	else if(map == "marintown")
-	{
-		wsell1 = Items->GetItem("Scimitar");
-		wsell2 = Items->GetItem("Claymore");
-		wsell3 = Items->GetItem("Spitfire");
-		asell1 = Items->GetItem("Leather");
-		asell2 = Items->GetItem("Lt.Chain");
-		asell3 = Items->GetItem("SteelMail");
-	}
-	else if(map == "yamashi")
-	{
-		wsell1 = Items->GetItem("Spitfire");
-		wsell2 = Items->GetItem("Hammer");
-		wsell3 = Items->GetItem("Katana");
-		asell1 = Items->GetItem("Leather");
-		asell2 = Items->GetItem("Lt.Chain");
-		asell3 = Items->GetItem("SteelMail");
-	}
-	else
-	{
-		wsell1 = Items->GetItem("Rapier");
-		wsell2 = Items->GetItem("Longsword");
-		wsell3 = Items->GetItem("Scimitar");
-		asell1 = Items->GetItem("Padded");
-		asell2 = Items->GetItem("Leather");
-		asell3 = Items->GetItem("Lt.Chain");
-	}
-
-	while(!bEsc)
-	{		
-		
-		CursPos.X = 13;
-		CursPos.Y = 2;
-		bSel = false;
-		funds = true;
-		Display->clear();
-		Display->DisplayPlayerInfo(player);
-		Display->DisplayPlayerItems(playerInventory);
-
-		Display->DisplayText("[-----For Sale-----]",13,1,yellow);
-		Display->DisplayText(wsell1->GetName(),15,2,white);		Display->DisplayNumber(wsell1->GetCost(),28,2,white);
-		Display->DisplayText(wsell2->GetName(),15,3,white);		Display->DisplayNumber(wsell2->GetCost(),28,3,white);
-		Display->DisplayText(wsell3->GetName(),15,4,white);		Display->DisplayNumber(wsell3->GetCost(),28,4,white);
-		Display->DisplayText(asell1->GetName(),15,5,white);		Display->DisplayNumber(asell1->GetCost(),28,5,white);
-		Display->DisplayText(asell2->GetName(),15,6,white);		Display->DisplayNumber(asell2->GetCost(),28,6,white);
-		Display->DisplayText(asell3->GetName(),15,7,white);		Display->DisplayNumber(asell3->GetCost(),28,7,white);
-
-		Menu->DrawCursor(CursPos,yellow,175);
-		wsell1->Display();
-		do
-		{
-			if(Menu->MoveCursor(CursPos,bSel,bEsc,2,7))
-			{
-				Menu->DrawCursor(CursPos,yellow,175);
-				choice = CursPos.Y;
-				switch(choice)
-				{
-				case 2:
-					wsell1->Display();
-					break;
-				case 3:
-					wsell2->Display();
-					break;
-				case 4:
-					wsell3->Display();
-					break;
-				case 5:
-					asell1->Display();
-					break;
-				case 6:
-					asell2->Display();
-					break;
-				case 7:
-					asell3->Display();
-					break;
-				}
-			}
-			Display->DisplayText(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
-			break;
-
-		choice = CursPos.Y;
-		switch(choice)
-		{
-		case 2:
-			if(player->GetGold() < wsell1->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(wsell1);
-				player->SetGold(player->GetGold()-wsell1->GetCost());
-			}
-			break;
-		case 3:
-			if(player->GetGold() < wsell2->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(wsell2);
-				player->SetGold(player->GetGold()-wsell2->GetCost());
-			}
-			break;
-		case 4:
-			if(player->GetGold() < wsell3->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(wsell3);
-				player->SetGold(player->GetGold()-wsell3->GetCost());
-			}
-			break;
-		case 5:
-			if(player->GetGold() < asell1->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(asell1);
-				player->SetGold(player->GetGold()-asell1->GetCost());
-			}
-			break;
-		case 6:
-			if(player->GetGold() < asell2->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(asell2);
-				player->SetGold(player->GetGold()-asell2->GetCost());
-			}
-			break;
-		case 7:
-			if(player->GetGold() < asell3->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(asell3);
-				player->SetGold(player->GetGold()-asell3->GetCost());
-			}
-			break;
-		}
-		if(!funds)
-		{
-			Display->DisplayText("You do not have sufficient funds",13,9,white);
-			Sleep(1500);
-		}
-		
-	}
-	Display->clear();
-}
 
 //==========================================================================================================
 //	Function for what happens when you go to an inn.
@@ -854,189 +680,6 @@ void World::Inn(Player *player,string map)
 			break;
 		}
 	}//--------End while bEsc
-	Display->clear();
-}
-
-void World::MagicShop(vector<Item*> &playerInventory,Player *player,string map)
-{
-	int choice = 0;
-	bool bEsc = false;
-	bool bSel = false;
-	bool funds = true;
-	COORD CursPos; 
-	Item *isell1;
-	Item *isell2;
-	Item *isell3;
-	Item *isell4;
-	Item *isell5;
-	Item *isell6;
-
-	if(map == "valesh")
-	{
-		isell1 = Items->GetItem("Potion");
-		isell2 = Items->GetItem("Potion");
-		isell3 = Items->GetItem("Potion");
-		isell4 = Items->GetItem("Potion");
-		isell5 = Items->GetItem("Potion");
-		isell6 = Items->GetItem("Potion");
-	}
-	else if(map == "elvencity")
-	{
-		isell1 = Items->GetItem("Potion");
-		isell2 = Items->GetItem("Potion");
-		isell3 = Items->GetItem("Potion2");
-		isell4 = Items->GetItem("Refresh");
-		isell5 = Items->GetItem("Refresh");
-		isell6 = Items->GetItem("Refresh");
-	}
-
-	else if(map == "marintown")
-	{
-		isell1 = Items->GetItem("Potion");
-		isell2 = Items->GetItem("Potion2");
-		isell3 = Items->GetItem("Potion3");
-		isell4 = Items->GetItem("Refresh");
-		isell5 = Items->GetItem("Refresh");
-		isell6 = Items->GetItem("RedVial");
-	}
-
-	else if(map == "yamashi")
-	{
-		isell1 = Items->GetItem("Potion2");
-		isell2 = Items->GetItem("Potion3");
-		isell3 = Items->GetItem("Potion3");
-		isell4 = Items->GetItem("Refresh");
-		isell5 = Items->GetItem("Refresh");
-		isell6 = Items->GetItem("BlueVial");
-	}
-	else
-	{
-		isell1 = Items->GetItem("Potion");
-		isell2 = Items->GetItem("Potion");
-		isell3 = Items->GetItem("Potion");
-		isell4 = Items->GetItem("Potion");
-		isell5 = Items->GetItem("Potion");
-		isell6 = Items->GetItem("Potion");
-	}
-
-	while(!bEsc)
-	{		
-		
-		CursPos.X = 13;
-		CursPos.Y = 2;
-		bSel = false;
-		funds = true;
-		Display->clear();
-		Display->DisplayPlayerInfo(player);
-		Display->DisplayPlayerItems(playerInventory);
-
-		Display->DisplayText("[-----For Sale-----]",13,1,yellow);
-		Display->DisplayText(isell1->GetName(),15,2,white);		Display->DisplayNumber(isell1->GetCost(),28,2,white);
-		Display->DisplayText(isell2->GetName(),15,3,white);		Display->DisplayNumber(isell2->GetCost(),28,3,white);
-		Display->DisplayText(isell3->GetName(),15,4,white);		Display->DisplayNumber(isell3->GetCost(),28,4,white);
-		Display->DisplayText(isell4->GetName(),15,5,white);		Display->DisplayNumber(isell4->GetCost(),28,5,white);
-		Display->DisplayText(isell5->GetName(),15,6,white);		Display->DisplayNumber(isell5->GetCost(),28,6,white);
-		Display->DisplayText(isell6->GetName(),15,7,white);		Display->DisplayNumber(isell6->GetCost(),28,7,white);
-
-		Menu->DrawCursor(CursPos,yellow,175);
-		isell1->Display();
-		do
-		{
-			if(Menu->MoveCursor(CursPos,bSel,bEsc,2,7))
-			{
-				Menu->DrawCursor(CursPos,yellow,175);
-				choice = CursPos.Y;
-				switch(choice)
-				{
-				case 2:
-					isell1->Display();
-					break;
-				case 3:
-					isell2->Display();
-					break;
-				case 4:
-					isell3->Display();
-					break;
-				case 5:
-					isell4->Display();
-					break;
-				case 6:
-					isell5->Display();
-					break;
-				case 7:
-					isell6->Display();
-					break;
-				}
-			}
-			Display->DisplayText(" ", 79, 23,white);
-		}while(!bSel);
-		if(bEsc)
-			break;
-
-		choice = CursPos.Y;
-		switch(choice)
-		{
-		case 2:
-			if(player->GetGold() < isell1->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell1);
-				player->SetGold(player->GetGold()-isell1->GetCost());
-			}
-			break;
-		case 3:
-			if(player->GetGold() < isell2->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell2);
-				player->SetGold(player->GetGold()-isell2->GetCost());
-			}
-			break;
-		case 4:
-			if(player->GetGold() < isell3->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell3);
-				player->SetGold(player->GetGold()-isell3->GetCost());
-			}
-			break;
-		case 5:
-			if(player->GetGold() < isell4->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell4);
-				player->SetGold(player->GetGold()-isell4->GetCost());
-			}
-			break;
-		case 6:
-			if(player->GetGold() < isell5->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell5);
-				player->SetGold(player->GetGold()-isell5->GetCost());
-			}
-			break;
-		case 7:
-			if(player->GetGold() < isell6->GetCost())
-				funds = false;
-			if(funds)
-			{
-				playerInventory.push_back(isell6);
-				player->SetGold(player->GetGold()-isell6->GetCost());
-			}
-			break;
-		}
-		if(!funds)
-		{
-			Display->DisplayText("You do not have sufficient funds",13,9,white);
-			Sleep(1500);
-		}		
-	}// End while bEsc
 	Display->clear();
 }
 
