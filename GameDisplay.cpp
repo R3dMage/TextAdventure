@@ -352,33 +352,7 @@ void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 
 void GameDisplay::DisplayItem(Item* item)
 {
-	switch (item->GetType())
-	{
-	case -1:
-		DisplayText("                                           ", 30, 11, white);
-		break;
-	case 0:
-		DisplayText("Heals 25 points of life                    ", 30, 11, white);
-		break;
-	case 1:
-		DisplayText("Restores 5 to 10 point of ka", 30, 11, white);
-		break;
-	case 2:
-		DisplayText("Increases Strength 1-5 points              ", 30, 11, white);
-		break;
-	case 3:
-		DisplayText("Increases Mind 1-5 points                  ", 30, 11, white);
-		break;
-	case 4:
-		DisplayText("Heals 75 points of life              ", 30, 11, white);
-		break;
-	case 5:
-		("Heals 150 points of life              ", 30, 11, white);
-		break;
-	case 6:
-		DisplayText("Heals all of your life              ", 30, 11, white);
-		break;
-	}
+	DisplayText(item->Display(), 30, 11, white);
 	DisplayCost(item->GetCost());
 }
 
