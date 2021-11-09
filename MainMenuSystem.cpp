@@ -7,6 +7,51 @@ MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSave
 	Items = itemRepository;
 }
 
+bool MainMenuSystem::YesOrNoPrompt()
+{
+	int choice = 0;
+	bool escapeWasPressed = false;
+	bool selectionWasMade = false;
+	COORD curosrPosition;
+
+	while (!escapeWasPressed)
+	{
+		Display->ClearAll();
+		curosrPosition.X = 2;
+		curosrPosition.Y = 12;
+		selectionWasMade = false;
+		Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  Yes    |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  No     |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("\\---------/", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+		DrawCursor(curosrPosition, yellow, 175);
+		do
+		{
+			if (MoveCursor(curosrPosition, selectionWasMade, escapeWasPressed, 12, 13))
+			{
+				DrawCursor(curosrPosition, yellow, 175);
+			}
+			Display->DisplayText(" ", 79, 23, white);
+		} while (!selectionWasMade);
+		if (escapeWasPressed)
+			break;
+
+		choice = curosrPosition.Y;
+		switch (choice)
+		{
+		case 12:
+			return true;
+			break;
+		case 13:
+			return false;
+			break;
+		}
+	}
+
+	return false;
+}
+
 void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string& map)
 {
 	int choice = 0;
