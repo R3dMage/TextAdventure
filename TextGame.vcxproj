@@ -168,6 +168,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="ItemRepository.h" />
     <ClInclude Include="Local.h" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Lodging.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicShop.h" />
     <ClInclude Include="MainMenuSystem.h" />
@@ -199,6 +200,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="ItemRepository.cpp" />
     <ClCompile Include="Local.cpp" />
     <ClCompile Include="Location.cpp" />
+    <ClCompile Include="Lodging.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="MagicShop.cpp" />
     <ClCompile Include="Main.cpp" />
