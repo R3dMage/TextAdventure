@@ -935,36 +935,40 @@ void World::LoadMap(vector< Location* > &mapLocations, string &mapFileName,int &
 //==========================================================================================================
 void World::Move(vector<Creature*> &encounter,int Xmax, int Ymax)
 {
-	int RND;
+	int random;
 	unsigned int i;
-	for(i=0;i < encounter.size();i++)
+	for(i = 0; i < encounter.size(); i++)
 		{
-			RND = rand()%4+1;
-			if(encounter[i]->GetDontMove())
-				RND = 5;
-			switch(RND)
+			random = rand()% 4 + 1;
+			Creature* creature = encounter[i];
+
+			if (creature->GetDontMove())
+				continue;
+
+			switch(random)
 			{
 			case 1:
-				encounter[i]->SetX(encounter[i]->GetX()+1);
-				if(encounter[i]->GetX() > Xmax)
-					encounter[i]->SetX(Xmax);
+				creature->SetX(creature->GetX() + 1);
+				if(creature->GetX() > Xmax)
+					creature->SetX(Xmax);
 				break;
 			case 2:
-				encounter[i]->SetX(encounter[i]->GetX()-1);
+				creature->SetX(creature->GetX() - 1);
 				break;
 			case 3:
-				encounter[i]->SetY(encounter[i]->GetY()+1);
-				if(encounter[i]->GetY() > Ymax)
-					encounter[i]->SetY(Ymax);
+				creature->SetY(creature->GetY() + 1);
+				if(creature->GetY() > Ymax)
+					creature->SetY(Ymax);
 				break;
 			case 4:
-				encounter[i]->SetY(encounter[i]->GetY()-1);
+				creature->SetY(creature->GetY() - 1);
 				break;
 			default:
 				break;
-			}//---------End Switch
-		}//-----------------End For loop
+			}
+		}
 }
+
 //==========================================================================================================
 //	This function checks to see if Player is eligable for any magics, and checks so not to give the same
 //  one twice. REM added 1/5/06
