@@ -114,6 +114,9 @@
     <ClInclude Include="MagicShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
+    <ClInclude Include="Lodging.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="MagicShop.cpp">
       <Filter>GameEngine\Shops</Filter>
+    </ClCompile>
+    <ClCompile Include="Lodging.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
