@@ -6,19 +6,19 @@ void FightDisplay::DisplayAttackAnnouncement(Creature* enemy)
 	DisplayText(enemy->GetName(), 41, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	DisplayText("", 13, 12, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 	system("pause");
-	clear();
+	ClearAll();
 }
 
 void FightDisplay::DisplayBanter(std::vector<string> speech)
 {
-	clrtop(1);
+	ClearTopBelow(1);
 	for (unsigned int i = 0; i < speech.size(); i++)
 	{
 		DisplayText(speech[i], 13, i + 1, white);
 	}
 	DisplayText(string(), 13, 23, white);
 	system("pause");
-	clrtop(1);
+	ClearTopBelow(1);
 }
 
 void FightDisplay::DisplayMessage(string message, int pauseDuration)
@@ -65,7 +65,7 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 {
 	DisplayText("The enemy has been slain", 13, 11, white);
 	Sleep(player->GetPauseDuration());
-	clear();
+	ClearAll();
 
 	DisplayText("After every enemy dies you get stuff!!!", 13, 9, green);
 	DisplayText("Gold: ", 13, 11, green);
@@ -79,7 +79,7 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 
 void FightDisplay::DisplayLevelUp(Player* player)
 {
-	clear();
+	ClearAll();
 	DisplayText("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
 	DisplayText("", 79, 23, white);
 	Sleep(player->GetPauseDuration());
