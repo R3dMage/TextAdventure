@@ -9,11 +9,9 @@ class GameDisplay : public TextDisplay
 {
 public:	
 	void BoxScreen();
-	void DScreen();
-	void DSScreen();
+	void DrawBoxWithCross();
 	void DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin);
-	void ShopBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
-	void PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
+	void DrawCross(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
 
 	void ClearTopRight();
 	void ClearAll();

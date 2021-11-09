@@ -21,7 +21,7 @@ void GameDisplay::BoxScreen()
 }
 
 // Draws border, then draws cross
-void GameDisplay::DScreen()
+void GameDisplay::DrawBoxWithCross()
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -41,31 +41,7 @@ void GameDisplay::DScreen()
 	int num11 = 185;
 
 	DrawScreen(CursPos, num5, num2, num3, num4, num1, num6, 78, 0, 24, 0);
-	PBox(CursPos, num7, num8, num11, num10, num9, num6, num1, 78, 0, 24, 0);
-}
-
-// Draws border, then draws just the horizontal line
-void GameDisplay::DSScreen()
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
-
-	COORD CursPos = { 0,0 };
-	int num1 = 186;
-	int num2 = 187;
-	int num3 = 188;
-	int num4 = 200;
-	int num5 = 201;
-	int num6 = 205;
-	int num7 = 204;
-	int num8 = 203;
-	int num9 = 206;
-	int num10 = 202;
-	int num11 = 185;
-
-	DrawScreen(CursPos, num5, num2, num3, num4, num1, num6, 78, 0, 24, 0);
-	ShopBox(CursPos, num7, num8, num11, num10, num9, num6, num1, 78, 0, 24, 0);
+	DrawCross(CursPos, num7, num8, num11, num10, num9, num6, num1, 78, 0, 24, 0);
 }
 
 // Draws a border around the game area
@@ -113,26 +89,8 @@ void GameDisplay::DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, 
 	} while (pos.Y > Ymin);
 }
 
-// Draws a horizontal line at Y=10
-void GameDisplay::ShopBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin)
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	pos.Y = 10;
-
-	SetConsoleCursorPosition(OutputH, pos);
-	cout << RC;
-	pos.X++;
-	do
-	{
-		SetConsoleCursorPosition(OutputH, pos);
-		cout << HL;
-		pos.X++;
-	} while (pos.X < Xmax);
-}
-
 // Draws the lines across - PlayBox maybe the intent?
-void GameDisplay::PBox(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin)
+void GameDisplay::DrawCross(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin)
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -197,7 +155,7 @@ void GameDisplay::ClearAll()
 		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
 		Y++;
 	}
-	DScreen();
+	DrawBoxWithCross();
 }
 
 //=====================================================================================
