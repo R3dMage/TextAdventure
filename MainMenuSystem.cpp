@@ -16,7 +16,6 @@ bool MainMenuSystem::YesOrNoPrompt()
 
 	while (!escapeWasPressed)
 	{
-		Display->ClearAll();
 		curosrPosition.X = 2;
 		curosrPosition.Y = 12;
 		selectionWasMade = false;
