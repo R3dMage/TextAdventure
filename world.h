@@ -20,7 +20,6 @@ public:
 	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
 	void PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy);
 	void Locations(string,Player*,bool);
-	void PawnShop(Player *, vector<Item*> &,string map);
 	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
 	void DescriptionDisplay(string, string &, string &, string &);
