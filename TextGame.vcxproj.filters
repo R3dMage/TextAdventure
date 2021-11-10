@@ -117,6 +117,9 @@
     <ClInclude Include="Lodging.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
+    <ClInclude Include="PawnShop.h">
+      <Filter>GameEngine\Shops</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="Lodging.cpp">
       <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnShop.cpp">
+      <Filter>GameEngine\Shops</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

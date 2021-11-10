@@ -173,6 +173,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="MagicShop.h" />
     <ClInclude Include="MainMenuSystem.h" />
     <ClInclude Include="Orc.h" />
+    <ClInclude Include="PawnShop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Plots.h" />
     <ClInclude Include="SaveLoadGame.h" />
@@ -206,6 +207,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuSystem.cpp" />
     <ClCompile Include="NPC Setup.cpp" />
+    <ClCompile Include="PawnShop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Plots.cpp" />
     <ClCompile Include="SaveLoadGame.cpp" />
