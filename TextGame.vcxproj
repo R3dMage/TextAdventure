@@ -157,6 +157,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="ArmoryShop.h" />
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="CFmod.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Enemies.h" />
@@ -187,6 +188,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
   <ItemGroup>
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="ArmoryShop.cpp" />
+    <ClCompile Include="Battle.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Eattack.cpp" />
     <ClCompile Include="Econstruct.cpp" />
