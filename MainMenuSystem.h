@@ -22,7 +22,7 @@ public:
 	void DeleteItem(vector<Item*>& playerInventory);
 	void Options(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& M, string& map);
 	void OptionsMenu(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& M, string& map);
-	void UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool& bFight, bool& bLeave, string map);
+	void UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool bFight, bool& bLeave, string map);
 	void Use(Player* player, vector<Item*>& playerInventory, bool& Iused, bool bFight);
 	void MagicMenu(Player* player, vector<Magic*>& spells);
 	void InFightMagicMenu(Player* player, Creature* enemy, vector<Magic*>& spells, bool& bEsc);

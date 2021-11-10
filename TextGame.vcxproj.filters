@@ -120,6 +120,9 @@
     <ClInclude Include="PawnShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -188,9 +191,6 @@
     <ClCompile Include="Greeting.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="ISaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
@@ -217,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="PawnShop.cpp">
       <Filter>GameEngine\Shops</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

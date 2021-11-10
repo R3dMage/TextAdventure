@@ -601,7 +601,7 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 		}
 	}// End of While(escapeWasPressed)
 }
-void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool& isFighting, bool& didLeave, string map)
+void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool isFighting, bool& didLeave, string map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;

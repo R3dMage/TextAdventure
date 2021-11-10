@@ -19,6 +19,7 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items)
 	GameSaver = new SaveLoadGame(Items, Display);
 	Menu = new MainMenuSystem(Display, GameSaver, Items);
 	GamePlots = new Plots(Display);
+	Fight = new Battle(Menu, new FightDisplay(), Items);
 }
 
 World::~World()
@@ -506,16 +507,16 @@ void World::Locations(string map, Player *player, bool load)
 				Creature* creature = encounter[i];
 
 				if (player->GetPositionX() == creature->GetX() && player->GetPositionY() == creature->GetY() && creature->GetHitPoints() != 0)
-				{			
+				{
 					if (!creature->GetTalkTo())
-						Fight(player, creature, playerInventory, worldItems, spells, map);
+						Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
 					else
 					{						
 						Display->DisplayPlayerInfo(player);
 						Greeting greeting = creature->GetGreeting(player);
 
 						if (Menu->TalkTo(&greeting, player->GetPauseDuration()))
-							Fight(player, creature, playerInventory, worldItems, spells, map);
+							Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
 					}
 					if (creature->GetHitPoints() <= 0)							
 					{
@@ -547,7 +548,7 @@ void World::Locations(string map, Player *player, bool load)
 			player->SetIsLoaded(false);
 
 		if(monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && map == "field2")
-			Fight(player, monk[0], playerInventory, worldItems, spells, map);
+			Fight->Engage(player, monk[0], playerInventory, worldItems, spells, map);
 
 
 //===============================================================================================
