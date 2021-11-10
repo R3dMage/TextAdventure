@@ -9,6 +9,7 @@
 #include "MainMenuSystem.h"
 #include "ItemRepository.h"
 #include "Plots.h"
+#include "Battle.h"
 
 class World
 {
@@ -16,9 +17,7 @@ public:
 	World(GameDisplay* gameDisplay, ItemRepository* items);
 	~World();
 	void StartGame();
-	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);
-	void Fight(Player *player, Creature *guy, vector<Item*> &playerInventory,vector<Item*> &worldItems,vector<Magic*> &spells,string map);
-	void PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy);
+	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);	
 	void Locations(string,Player*,bool);
 	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
@@ -33,6 +32,7 @@ private:
 	ISaveLoadGame* GameSaver;
 	ItemRepository* Items;
 	Plots* GamePlots;
+	Battle* Fight;
 
 	void Intro();
 	bool MusicNameComparer(char *,char *);
@@ -41,7 +41,6 @@ private:
 	void CheckMagic(Player *,vector<Magic*> &);
 	bool HasMagic(vector<Magic*>,string);
 	void ReplenishEnemy(vector<Creature*> &enemies,int num);
-	void Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, vector<Item*>& worldItems, string map);
 
 	void plot(string map, string ID);
 	string rotate(string pStr);
