@@ -10,6 +10,7 @@
 #include "ArmoryShop.h"
 #include "MagicShop.h"
 #include "Lodging.h"
+#include "PawnShop.h"
 
 World::World(GameDisplay* gameDisplay, ItemRepository* items)
 {
@@ -284,8 +285,11 @@ void World::Locations(string map, Player *player, bool load)
 				magicShop.ShowShop(player, playerInventory);
 			}
 			
-			if(ShopType == "buy")
-				PawnShop(player,playerInventory,map);
+			if (ShopType == "buy")
+			{
+				PawnShop pawnShop(Display, Menu);
+				pawnShop.Enter(player, playerInventory, map);
+			}
 		}		
 
 		monk[0]->LoadPosition(Xmax,Ymax);
@@ -615,120 +619,6 @@ bool World::Walk(bool &selectionWasMade, bool &escapeWasPressed, Player *player,
 	Display->DisplayText(" ", 79, 23,white);
 return false;	
 }
-
-void World::PawnShop(Player *player, vector<Item*> &playerInventory,string map)
-{
-	//item *temp;
-	Item *iUsed;
-	unsigned int offset = 0;
-	int choice = 0;
-	int sellPrice;
-	double sellMultiplier = .75;
-	bool escapeWasPressed = false;
-	bool selectionWasMade = false;
-	bool bLeave = false;
-	Item holder;
-	COORD cursorPosition;
-	
-
-	if(map == "valesh")
-		sellMultiplier = .5;
-	if(map == "elvencity")
-		sellMultiplier = .6;
-	if(map == "marintown")
-		sellMultiplier = .75;
-	if(map == "yamashi")
-		sellMultiplier = .85;
-	while(!bLeave)
-	{
-		selectionWasMade = false;
-		Display->ClearBottom();
-		Display->ClearTopBelow(3);
-		Display->DisplayPlayerInfo(player);
-		Display->DisplayText("[---We buy STUFF!---]",13,1,brown);
-		if(playerInventory.size() < 1)
-		{
-			Display->DisplayText("You have nothing to sell!!!",13,3,white);
-			Sleep(player->GetPauseDuration());
-			return;
-		}
-		else
-			Display->DisplayText("What would you like to sell?",13,3,white);
-
-		Display->DisplayPlayerItems(playerInventory);
-		while(!selectionWasMade)
-		{
-			escapeWasPressed = false;
-			selectionWasMade = false;
-			cursorPosition.X = 13;
-			cursorPosition.Y = 12;
-
-			Menu->DrawCursor(cursorPosition,yellow,175);
-			offset = cursorPosition.Y - 12;
-			playerInventory[offset]->Display();
-			do
-			{
-				choice = static_cast<int>(11+playerInventory.size());
-				if(Menu->MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,12,choice))
-				{
-					Menu->DrawCursor(cursorPosition,yellow,175);
-					offset = cursorPosition.Y - 12;
-					playerInventory[offset]->Display();
-				}
-				Display->DisplayText(" ", 79, 23,white);
-			}while(!selectionWasMade);
-		}// End While bSel
-		if(escapeWasPressed)
-		{
-			Display->ClearBottom();
-			Display->ClearTopBelow(1);
-			return;
-		}
-		offset = cursorPosition.Y - 12;
-		iUsed = playerInventory[offset];
-		selectionWasMade = false;
-		
-		sellPrice = static_cast<int>(iUsed->GetCost() * sellMultiplier);
-		Display->DisplayText(playerInventory[offset]->GetName(),15,cursorPosition.Y,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("This Item?                  ",13,3,white);
-		Display->DisplayText(iUsed->GetName(),13,5,white);
-		cout << "   " << sellPrice << "GP";
-		do
-		{
-			
-			if(Menu->MoveCursor(cursorPosition,selectionWasMade,escapeWasPressed,cursorPosition.Y,cursorPosition.Y))
-			{
-				Menu->DrawCursor(cursorPosition,yellow,175);
-			}
-			Display->DisplayText(" ", 79, 23,white);
-		}while(!selectionWasMade);
-		if(escapeWasPressed)
-		{
-			return;
-		}
-		selectionWasMade = false;
-		player->SetGold(player->GetGold() + sellPrice);
-//==========================================CODE TO REMOVE ITEM=====================================
-		//temp = pstuff[pstuff.size()-1];
-		//pstuff[pstuff.size()-1] = pstuff[Offset];
-		//pstuff[Offset] = temp;
-		//pstuff.pop_back();
-//==================================================================================================
-
-//======================================NEW CODE TO REMOVE ITEM=====================================
-		Menu->SlideDown(playerInventory,offset);
-		playerInventory.pop_back();
-//==================================================================================================
-		Display->ClearBottom();
-		Display->DisplayPlayerInfo(player);
-		Display->DisplayText("There you go!",13,3,white);
-		Sleep(player->GetPauseDuration());
-
-	}//----------------------------------->End While bLeave	
-}//--------------------------------------->End Buyer function
-
-
-
 
 //==========================================================================================================
 //	Function for replenishing enemies
