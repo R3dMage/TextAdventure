@@ -121,7 +121,7 @@
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
     <ClInclude Include="Battle.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +191,6 @@
     <ClCompile Include="Greeting.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="ISaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
@@ -222,7 +219,7 @@
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
     <ClCompile Include="Battle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

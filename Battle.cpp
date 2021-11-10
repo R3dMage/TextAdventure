@@ -8,7 +8,7 @@ Battle::Battle(MainMenuSystem* menu, FightDisplay* fightDisplay, ItemRepository*
 	Items = itemRepository;
 }
 
-void Battle::Encounter(Player* player, Creature* enemy, std::vector<Item*>& inventory, std::vector<Item*>& worldItems, std::vector<Magic*>& spells, std::string mapName)
+void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerInventory, std::vector<Item*>& worldItems, std::vector<Magic*>& spells, std::string mapName)
 {
 	COORD CursPos;					// Mystical Cursor Position
 	string Ename = enemy->GetName();	// Name of the enemy
@@ -16,19 +16,13 @@ void Battle::Encounter(Player* player, Creature* enemy, std::vector<Item*>& inve
 	int Evd;						// An Evade variable
 	int Damage;						// A Damage Variable
 	int R = 0;						// R?
-	Weapon* weap = player->GetWeapon(); // Weapon Variable
-	Armor* arm = player->GetArmor();	// Armor Variable
-	bool bEsc = false;				// Escape bool for menu
-	bool bSel = false;				// Select bool for menu
-	bool bLeave = false;			// Leave  bool for menu
+	Weapon* weapon = player->GetWeapon(); // Weapon Variable
+	Armor* armor = player->GetArmor();	// Armor Variable
+	
 	bool bWeak = false;				// Weakness bool for, checking weakness
 	bool bMagical = false;			// Magical bool for checking magicalness
-	bool pass;						// Bool for passing through code without fighting
-	bool fight;						// Used to check if player selected fight
-	bool magic;						// Used to check if player selected magic
-	bool item;						// Used to check if player selected item
-	bool run = false;				// To check if player will run
 	bool bFight = true;				// To check if player is in a fight
+	bool run = false;
 
 	Display->ClearAll();
 	/*==================================================================
@@ -44,14 +38,13 @@ void Battle::Encounter(Player* player, Creature* enemy, std::vector<Item*>& inve
 
 	while (enemy->GetHitPoints() > 0 && player->GetCurrentHitPoints() > 0 && !run)
 	{
-		bSel = false;
-		bEsc = false;
-		bLeave = false;
-		fight = false;
-		magic = false;
-		item = false;
-		run = false;
-		pass = false;
+		bool bEsc = false;				// Escape bool for menu
+		bool bSel = false;				// Select bool for menu
+		bool bLeave = false;			// Leave  bool for menu
+		bool fight = false;
+		bool magic = false;
+		bool item = false;
+		bool pass = false;
 
 		Display->DisplayPlayerInfo(player);	// Display player info
 		Display->DisplayCreatureStatus(enemy); // Display enemy info, this will probably be phased out, or tweaked
@@ -90,86 +83,44 @@ void Battle::Encounter(Player* player, Creature* enemy, std::vector<Item*>& inve
 			switch (choice)
 			{
 			case 15:
-				fight = true;
+				PlayerAttack(player, Display, enemy);
 				break;
 			case 16:
-				magic = true;
+				PlayerMagic(player, enemy, spells, bEsc, pass);
 				break;
 			case 17:
-				item = true;
+				Menu->UseItem(player, worldItems, playerInventory, true, bLeave, mapName);
+				if (bLeave)
+					pass = true;
+				armor = player->GetArmor();
+				weapon = player->GetWeapon();
 				break;
 			case 18:
 				run = true;
 				break;
 			}
 
-			//===========================================================================================================
-			//	This is the primary melee fighting code. Pretty straightforward. I hope.
-			//===========================================================================================================
-
-			if (fight)
-			{
-				PlayerAttack(player, Display, enemy);
-			}
-			//===========================================================================================================
-			//	This is the code if the player wants to use magic.
-			//===========================================================================================================
-			if (magic)
-			{
-				if (!player->HasLearnedSpells())
-				{
-					pass = true;
-					Display->DisplayMessage("You have no magic", player->GetPauseDuration());
-				}
-				else
-				{
-					Menu->InFightMagicMenu(player, enemy, spells, bEsc);
-					if (bEsc)
-						pass = true;
-				}
-			}
-
-			//===========================================================================================================
-			//	This is the code if the player uses an item.
-			//===========================================================================================================
-
-			if (item)
-			{
-				Menu->UseItem(player, worldItems, inventory, bFight, bLeave, mapName);
-				if (bLeave)
-					pass = true;
-				arm = player->GetArmor();
-				weap = player->GetWeapon();
-			}
 			/*============================================================================================
 				Should the player try to run, we go here
 			============================================================================================*/
 			if (run)
 			{
-				Evd = rand() % 100 + 1;
-				if (Evd > enemy->GetEvade())
-				{
-					run = true;
-					PlaySound("./data/run.wav", NULL, SND_FILENAME | SND_ASYNC);
-					Display->DisplayMessage("You ran away", player->GetPauseDuration());
-					Display->ClearAll();
+				if (RunAway(player, enemy))
 					break;
-				}
-				else
-				{
-					Display->DisplayMessage("The enemy thought you should stay", player->GetPauseDuration());
-					pass = false;
-					run = false;
-				}
+
+				run = false;
 			}
+			
 			if (enemy->GetHitPoints() <= 0)
 				pass = true;
+			
 			if (enemy->GetState() == 2)
 			{
 				Display->DisplayMessage("The enemy is stunned", player->GetPauseDuration());
 				pass = true;
 				enemy->SetState(0);
 			}
+			
 			if (enemy->GetState() == 3)
 			{
 				Damage = rand() % 10 + 10;
@@ -189,7 +140,7 @@ void Battle::Encounter(Player* player, Creature* enemy, std::vector<Item*>& inve
 			Display->DisplayCreatureStatus(enemy);
 			Display->DisplayPlayerInfo(player);
 			Evd = rand() % 100 + 1;
-			if (Evd <= player->GetEvade() + arm->GetEvadeModifier() && !player->GetIsAsleep())	// Elaborate equation for evasion
+			if (Evd <= player->GetEvade() + armor->GetEvadeModifier() && !player->GetIsAsleep())	// Elaborate equation for evasion
 			{
 				Display->DisplayMessage("You dodged the enemy attack", player->GetPauseDuration());
 			}
@@ -302,6 +253,36 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 		fightDisplay->DisplayDamage(Damage / 2);
 	}
 
+}
+
+void Battle::PlayerMagic(Player* player, Creature* enemy, std::vector<Magic*>& spells, bool& bEsc, bool &pass)
+{
+	if (!player->HasLearnedSpells())
+	{
+		pass = true;
+		Display->DisplayMessage("You have no magic", player->GetPauseDuration());
+	}
+	else
+	{
+		Menu->InFightMagicMenu(player, enemy, spells, bEsc);
+		if (bEsc)
+			pass = true;
+	}
+}
+
+bool Battle::RunAway(Player* player, Creature* enemy)
+{
+	int Evd = rand() % 100 + 1;
+	if (Evd > enemy->GetEvade())
+	{
+		PlaySound("./data/run.wav", NULL, SND_FILENAME | SND_ASYNC);
+		Display->DisplayMessage("You ran away", player->GetPauseDuration());
+		Display->ClearAll();
+	}
+	else
+	{
+		Display->DisplayMessage("The enemy thought you should stay", player->GetPauseDuration());
+	}
 }
 
 void Battle::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, vector<Item*>& worldItems, string map)

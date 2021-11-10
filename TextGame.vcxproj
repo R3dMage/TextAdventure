@@ -193,7 +193,6 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Eattack.cpp" />
     <ClCompile Include="Econstruct.cpp" />
     <ClCompile Include="Eother.cpp" />
-    <ClCompile Include="Fight.cpp" />
     <ClCompile Include="CFmod.cpp" />
     <ClCompile Include="FightDisplay.cpp" />
     <ClCompile Include="GameDisplay.cpp" />
