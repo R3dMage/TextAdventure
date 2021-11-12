@@ -130,7 +130,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpellStore.h">
-      <Filter>GameEngine</Filter>
+      <Filter>Magic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +237,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpellStore.cpp">
-      <Filter>GameEngine</Filter>
+      <Filter>Magic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
