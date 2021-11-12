@@ -12,8 +12,6 @@ public:
 	Armor* GetArmor(std::string name);
 	Weapon* GetWeapon(std::string name);
 
-	static string rotate(std::string text);
-
 private:
 	void Load(GameDisplay* display);
 	void LoadArmor(GameDisplay* display);
