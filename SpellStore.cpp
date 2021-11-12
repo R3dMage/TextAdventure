@@ -150,7 +150,7 @@ void SpellStore::CheckMagic(PlayerKillCounts killCounts, Player* player)
 
 bool SpellStore::HasMagic(string spellName)
 {
-	for (unsigned int i; i < Spells.size(); i++)
+	for (unsigned int i = 0; i < Spells.size(); i++)
 	{
 		if (Spells[i]->GetName() == spellName)
 			return true;
