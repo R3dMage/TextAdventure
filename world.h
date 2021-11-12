@@ -18,9 +18,9 @@ public:
 	World(GameDisplay* gameDisplay, ItemRepository* items);
 	~World();
 	void StartGame();
-	void Move(vector<Creature*> &encounter,int Xmax, int Ymax);	
-	void Locations(string,Player*,bool);
-	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
+	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
+	void Locations(string map, Player* player, bool playerIsLoaded);
+	void SetupNcps(vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plotEvents, RaceReactionIndex raceReaction, char*& musicFile);
 	bool Overflow(int size);
 	
 	
@@ -35,12 +35,12 @@ private:
 	Battle* Fight;
 
 	void Intro();
-	bool MusicNameComparer(char *,char *);
-	void SetMusic(char*, Player *);
+	bool MusicNameComparer(char* name1, char* name2);
+	void SetMusic(char* musicFileName, Player* player);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void CheckMagic(Player *,vector<Magic*> &);
-	bool HasMagic(vector<Magic*>,string);
-	void ReplenishEnemy(vector<Creature*> &enemies,int num);
+	void CheckMagic(Player* player, vector<Magic*>& spells);
+	bool HasMagic(vector<Magic*> spells,string spellName);
+	void ReplenishEnemy(vector<Creature*>& enemies, int num);
 
 	void plot(string map, string ID);
 };
