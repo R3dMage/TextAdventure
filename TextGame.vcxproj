@@ -180,6 +180,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Plots.h" />
     <ClInclude Include="SaveLoadGame.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="PlayerMagicProvider.h" />
     <ClInclude Include="TextDisplay.h" />
     <ClInclude Include="VirtualMap.h" />
     <ClInclude Include="Weapon.h" />
@@ -216,6 +217,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="Plots.cpp" />
     <ClCompile Include="SaveLoadGame.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="PlayerMagicProvider.cpp" />
     <ClCompile Include="Talkto.cpp" />
     <ClCompile Include="TextDisplay.cpp" />
     <ClCompile Include="VirtualMap.cpp" />

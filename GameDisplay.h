@@ -4,6 +4,7 @@
 #include "TextDisplay.h"
 #include "item.h"
 #include "player.h"
+#include "location.h"
 #include "PlayerEnvironment.h"
 
 class GameDisplay : public TextDisplay
