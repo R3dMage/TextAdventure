@@ -10,6 +10,7 @@
 #include "ItemRepository.h"
 #include "Plots.h"
 #include "Battle.h"
+#include "VirtualMap.h"
 
 class World
 {
@@ -21,13 +22,12 @@ public:
 	void Locations(string,Player*,bool);
 	void SetupNcps(vector<Creature*> &npc, string mapName,int xMax,int yMax,GameEvents plotEvents,RaceReactionIndex raceReaction,char*& musicFile);
 	bool Overflow(int size);
-	void DescriptionDisplay(string, string &, string &, string &);
-	void LoadMap(vector< Location* > &locations, string &mapName, int &Xmax, int &Ymax, bool &bTown);
 	
 	
 
 private:
 	GameDisplay* Display;
+	VirtualMap* CurrentMap;
 	MainMenuSystem* Menu;
 	ISaveLoadGame* GameSaver;
 	ItemRepository* Items;
@@ -43,7 +43,6 @@ private:
 	void ReplenishEnemy(vector<Creature*> &enemies,int num);
 
 	void plot(string map, string ID);
-	string rotate(string pStr);
 };
 
 #endif

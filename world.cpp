@@ -80,33 +80,16 @@ void World::StartGame()
 void World::Locations(string map, Player *player, bool load)
 {	
 	unsigned int i;
-	int Xmax = 0;
-	int Ymax = 0;
 	int time = 0;
 	int choice;
-	int total;
 	int playerPositionIndex=0;
 	COORD cursorPosition;
 
 	char *musicFileName = "town.mp3";
     char *mapMusic = "town.mp3";
 
-	string description;
-	string line1;
-	string line2;
-	string line3;
-	string summary;
-	string szHolder;
 	string oldMap = map;
-	string MapName;
-	string ShopType;
-	string szPlot;
-
-	string north;
-	string south;
-	string east;
-	string west;
-
+		
 	bool selectionWasMade;
 	bool escapeWasPressed;
 	bool bTown = false;
@@ -122,8 +105,6 @@ void World::Locations(string map, Player *player, bool load)
 	vector< Item* > worldItems(0);					//Globals will contain ALL the items in the world
 	vector< Item* > playerInventory(0);				//inv is the players inventory
 	vector< Creature* > encounter(0);				//encounter holds all the enemies on a certain map
-	vector< Location* > mapLocations(0);			//Vmap holds the Map in memory, so no running around
-													//taking up time looking in map files. Well we look once. Then keep it in memory
 	vector<Magic*> spells(0);						//Magik will hold all the spells granted to the player
 
 
@@ -195,79 +176,66 @@ void World::Locations(string map, Player *player, bool load)
 		playerInventory.push_back(Items->GetItem("RedMail"));
 	}
 
-    Display->ClearAll();	
+    Display->ClearAll();
 
-	ifstream fin;									//fin is what I use as an ifstream operator
-	MapName = "./data/" + map + ".tgm";				//This adds the extensions we need to access Map Files
-	fin.open(MapName.c_str());
-	if(fin.fail())
-	{
-		Display->DisplayText("ERROR LOADING MAP",13,11,FOREGROUND_RED);	//Errors that tell you what went wrong are useful
-		system("pause");
-		exit(0);
-	}
-	fin.close();
-	LoadMap(mapLocations,MapName,Xmax,Ymax,bTown);		//This function loads all the map places into the V(irtual)map in memory
-	SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);	//This function sets up the enemies according to the map
+	CurrentMap = new VirtualMap(map);
+
+	SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);	//This function sets up the enemies according to the map
+
 	if(MusicNameComparer(musicFileName,mapMusic))
 		mapMusic = musicFileName;
-	SetMusic(mapMusic,player);
 
+	SetMusic(mapMusic,player);
+	
+	if(!player->PlotEventStates.Monk)
+		monk.push_back(new Monk);					//This puts in THE only monk in the game.
+	else
+		monk.push_back(new Fly);
 
 	while(player->GetCurrentHitPoints() > 0)			//This is THE while loop for the game
 	{
-		
+		monk[0]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+
 		selectionWasMade   = false;
-		escapeWasPressed   = false; 
-
-		if(!player->PlotEventStates.Monk)
-			monk.push_back(new Monk);					//This puts in THE only monk in the game.
-		else
-			monk.push_back(new Fly);
-
-		
+		escapeWasPressed   = false; 		
 
 //======================================================================================================
 //					Code for loading up the descriptions, Map Changes, Plots, and Shops!
 //Feb.2005 Added virtual map so as not to access the file EVERY time you move
 //======================================================================================================
 		
-
-		total = Xmax * Ymax;
-		playerPositionIndex = (player->GetPositionY() - 1) * Xmax + player->GetPositionX() - 1;
+		PlayerEnvironment surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
+		Location* playerLocation = surroundings.PlayerLocation;
 		
-		if(mapLocations[playerPositionIndex]->GetIsMapChange())
+		if(surroundings.PlayerLocation->GetIsMapChange())
 		{
-			player->SetPositionX(mapLocations[playerPositionIndex]->GetNeoX());
-			player->SetPositionY(mapLocations[playerPositionIndex]->GetNeoY());
+			player->SetPositionX(surroundings.PlayerLocation->GetNeoX());
+			player->SetPositionY(surroundings.PlayerLocation->GetNeoY());
 
-			map = mapLocations[playerPositionIndex]->GetMapChangeName();
-			
-			MapName = "./data/" + map + ".tgm";
-			LoadMap(mapLocations,MapName,Xmax,Ymax,bTown);
-			SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
+			map = surroundings.PlayerLocation->GetMapChangeName();
+
+			CurrentMap->LoadMap(map);
+			SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);
 			
 			if(MusicNameComparer(musicFileName,mapMusic))
 				mapMusic = musicFileName;
 			
 			SetMusic(mapMusic,player);
-
-			total = Xmax * Ymax;
 			
-			playerPositionIndex = (player->GetPositionY()-1) * Xmax + player->GetPositionX() - 1;
+			surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
 		}
 
-		if(mapLocations[playerPositionIndex]->GetHasPlot())
+		if(surroundings.PlayerLocation->GetHasPlot())
 		{
 			Display->ClearAll();
 			Display->DisplayPlayerInfo(player);
 			
-			plot(map,mapLocations[playerPositionIndex]->GetPlotText());
+			plot(map, surroundings.PlayerLocation->GetPlotText());
 		}
 		
-		if(mapLocations[playerPositionIndex]->GetIsShop())
+		if(surroundings.PlayerLocation->GetIsShop())
 		{
-			ShopType = mapLocations[playerPositionIndex]->GetShopName();
+			string ShopType = surroundings.PlayerLocation->GetShopName();
 			if (ShopType == "armory")
 			{
 				ArmoryShop armory(Display, Menu, Items, map);
@@ -291,66 +259,11 @@ void World::Locations(string map, Player *player, bool load)
 				PawnShop pawnShop(Display, Menu);
 				pawnShop.Enter(player, playerInventory, map);
 			}
-		}		
-
-		monk[0]->LoadPosition(Xmax,Ymax);
-
-//=============================================================================================================
-//										loads up the proper summaries
-//=============================================================================================================
-		if(playerPositionIndex + Xmax >= total)
-			north = "There is no path to follow";
-		else
-			north = mapLocations[playerPositionIndex + Xmax]->GetSummary();
-		if(playerPositionIndex - Xmax < 0)
-			south = "There is no path to follow";
-		else
-			south = mapLocations[playerPositionIndex - Xmax]->GetSummary();
-		if(playerPositionIndex % Xmax == Xmax-1)
-			east = "There is no path to follow";
-		else
-			east = mapLocations[playerPositionIndex + 1]->GetSummary();
-		if(playerPositionIndex % Xmax == 0)
-			west = "There is no path to follow";
-		else
-			west = mapLocations[playerPositionIndex - 1]->GetSummary();
-		description = mapLocations[playerPositionIndex]->GetDescription();
-
+		}
 //============================================================================================================= 
 //									Puts location descriptions on the screen!
 //=============================================================================================================
-		Menu->ClearTextBottomRight(11);
-		if(description.length() > 65)
-		{
-			DescriptionDisplay(description,line1,line2,line3);
-			Display->DisplayText(line1,13,11,white);
-			Display->DisplayText(line2,13,12,white);
-			Display->DisplayText(line3,13,13,white);
-			line1 = line2 = line3 = "";
-		}
-		else
-		{
-			Display->DisplayText(description,13,11,white);
-		}
-
-		Display->DisplayText("North",13,15,yellow);		Display->DisplayText(north,19,15,white);
-		Display->DisplayText("South",13,16,yellow);		Display->DisplayText(south,19,16,white);
-		Display->DisplayText("East",13,17,yellow);		Display->DisplayText(east,18,17,white);
-		Display->DisplayText("West",13,18,yellow);		Display->DisplayText(west,18,18,white);
-
-//=============================================================================================================
-		if((playerPositionIndex + Xmax) < static_cast<int>(mapLocations.size()) && mapLocations[playerPositionIndex + Xmax]->GetIsMapChange())
-			Display->DisplayText("North",13,15,green);
-		
-		if((playerPositionIndex - Xmax) > 0 && mapLocations[playerPositionIndex - Xmax]->GetIsMapChange())
-			Display->DisplayText("South",13,16,green);
-		
-		if((playerPositionIndex % Xmax != Xmax-1) && (playerPositionIndex + 1 < total) && (mapLocations[playerPositionIndex + 1]->GetIsMapChange()))
-			Display->DisplayText("East ",13,17,green);
-		
-		if((playerPositionIndex % Xmax != 0) && (playerPositionIndex - 1 >= 0) && (mapLocations[playerPositionIndex - 1]->GetIsMapChange()))
-			Display->DisplayText("West",13,18,green);
-
+		Display->DisplayLocation(&surroundings);
 		Display->DisplayPlayerInfo(player);
 
 //=============================================================================================================
@@ -359,9 +272,9 @@ void World::Locations(string map, Player *player, bool load)
 // Rem. Out encounter size and # of squares for beta version 6/14/05
 //=============================================================================================================
 		Display->DisplayText("          ",2,22,white);
-		Display->DisplayNumber(Xmax,2,22,white);
+		Display->DisplayNumber(CurrentMap->GetMaxX(), 2, 22, white);
 		Display->DisplayText("x",4,22,white);
-		Display->DisplayNumber(Ymax,5,22,white);
+		Display->DisplayNumber(CurrentMap->GetMaxY(), 5, 22, white);
 		Display->DisplayText("          ",2,19,white);
 		Display->DisplayText(map,2,19,yellow);			
 //		Display->num(T,2,20,yellow);			T = 0;
@@ -398,7 +311,7 @@ void World::Locations(string map, Player *player, bool load)
 		Display->DisplayText("|         |",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("\\---------/",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-		if(player->GetPositionY() == Ymax)
+		if(player->GetPositionY() == CurrentMap->GetMaxY())
 			Display->DisplayText("N",6,12,FOREGROUND_BLUE);
 		else
 			Display->DisplayText("N",6,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -406,7 +319,7 @@ void World::Locations(string map, Player *player, bool load)
 			Display->DisplayText("S",6,16,FOREGROUND_BLUE);
 		else
 			Display->DisplayText("S",6,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		if(player->GetPositionX() == Xmax)
+		if(player->GetPositionX() == CurrentMap->GetMaxX())
 		{
 			Display->DisplayText("E",10,14,FOREGROUND_BLUE);
 		}
@@ -425,7 +338,7 @@ void World::Locations(string map, Player *player, bool load)
 		}
 //================================================================================================================
 
-//		This function clears the items that WERE on the ground		
+//		This function clears the items that WERE on the ground
 		Display->ClearTopBelow(2);
 
 //		Function that displays what's on the ground =)
@@ -435,9 +348,9 @@ void World::Locations(string map, Player *player, bool load)
 		while(!selectionWasMade)
 		{
 			if(load)
-				load = false;			
+				load = false;
 			//Display->num(time,15,5,ftext);
-			Walk(selectionWasMade,escapeWasPressed,player,Xmax,Ymax,time);
+			Walk(selectionWasMade, escapeWasPressed, player, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), time);
 			//time++;
 		}
 		selectionWasMade = false;
@@ -449,20 +362,14 @@ void World::Locations(string map, Player *player, bool load)
 			Menu->HandleMainMenu(player,spells,worldItems,playerInventory,map);
 			if(player->GetIsLoaded())
 			{
-				MapName = "./data/" + map + ".tgm";						//This adds the extensions we need to access Map Files
-				fin.open(MapName.c_str());
-				if(fin.fail())
-				{
-					Display->DisplayText("ERROR LOADING MAP \n\n",13,11,FOREGROUND_RED);
-					system("pause");
-					exit(0);
-				}
+				CurrentMap->LoadMap(map);
+				SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);
 				
-				LoadMap(mapLocations,MapName,Xmax,Ymax,bTown);
-				SetupNcps(encounter,map,Xmax,Ymax,player->PlotEventStates,player->RaceReactions,musicFileName);
 				if(MusicNameComparer(musicFileName,mapMusic))
 					mapMusic = musicFileName;
+				
 				SetMusic(mapMusic,player);
+				
 				player->SetIsLoaded(false);
 			}
 			choice = 0;
@@ -475,7 +382,6 @@ void World::Locations(string map, Player *player, bool load)
 //  So, if the player tries, it warps them away! Or at least outside the temple. Maybe later it 
 //  will check other places, I don't know yet 6/12/05.
 //===============================================================================================
-
 		
 		if(map == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
 		{
@@ -484,15 +390,14 @@ void World::Locations(string map, Player *player, bool load)
 			map = "field";
 			player->SetPositionX(17);
 			player->SetPositionY(1);
-			MapName = "./data/" + map + ".tgm";
-			LoadMap(mapLocations, MapName, Xmax, Ymax, bTown);
-			SetupNcps(encounter, map, Xmax, Ymax, player->PlotEventStates, player->RaceReactions,musicFileName);
+			
+			CurrentMap->LoadMap(map);
+			SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions,musicFileName);
 			
 			if(MusicNameComparer(musicFileName,mapMusic))
 				mapMusic = musicFileName;
 			
 			SetMusic(mapMusic, player);
-
 		}
 
 //=================================================================================================================
@@ -518,7 +423,7 @@ void World::Locations(string map, Player *player, bool load)
 						if (Menu->TalkTo(&greeting, player->GetPauseDuration()))
 							Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
 					}
-					if (creature->GetHitPoints() <= 0)							
+					if (creature->GetHitPoints() <= 0)
 					{
 						worldItems.push_back(creature->Body(map));		//Drops enemy unique item if the enemy is dead
 					}
@@ -530,15 +435,15 @@ void World::Locations(string map, Player *player, bool load)
 					for (i = 0; i < encounter.size();i++)
 					{
 						if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
-						{				
-							ReplenishEnemy(encounter, i);							
-							encounter[encounter.size()-1]->LoadPosition(Xmax, Ymax);
+						{
+							ReplenishEnemy(encounter, i);
+							encounter[encounter.size()-1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 						}
 					}
 					if (monk[0]->GetHitPoints() <= 0)
 					{
-						ReplenishEnemy(monk, i);							
-						monk[monk.size()-1]->LoadPosition(Xmax, Ymax);
+						ReplenishEnemy(monk, i);
+						monk[monk.size()-1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 					}
 
 				}
@@ -555,7 +460,7 @@ void World::Locations(string map, Player *player, bool load)
 //									Function for moving enemies around on the map
 //===============================================================================================
 
-		Move(encounter, Xmax, Ymax);
+		Move(encounter, CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 	}// -------------------------------->End Walking Loop
 }
 //===================================================================================================================
@@ -639,7 +544,6 @@ void World::ReplenishEnemy(vector<Creature*> &enemies, int index)
 //  Member of its own class. What fun.
 }
 
-
 //==========================================================================================================
 //	This function was designed to check the number of items in inventory. If you were going to go over the 
 //	limit of 10 it would tell you you're out of room. Not yet implemented 5/11/05
@@ -656,103 +560,6 @@ bool World::Overflow(int size)
 		return false;
 }
 
-
-//==========================================================================================================
-//	This function splits up the description string, into 3 strings of text. Sort of text wrapping.
-//==========================================================================================================
-void World::DescriptionDisplay(string description, string &first, string &second, string &third)
-{
-	int i = 0;
-	int j = 0;
-	j = static_cast<int>(description.size() / 65);
-	i = static_cast<int>(description.size() % 65);
-
-	first = description.substr(0,65);
-	second = description.substr(65,i);
-	
-	if(j > 1)	//If there is more than 130 characters in the description
-	{
-		first = description.substr(0,65);		//Creates a string out of the first 65 characters
-		second = description.substr(65,65);	//Creates a string out of the second 65 characters
-        third = description.substr(130,i);		//Creates a string out of the third 65 characters
-	}
-}
-
-void World::LoadMap(vector< Location* > &mapLocations, string &mapFileName,int &Xmax, int &Ymax, bool &isTown)
-{
-	ifstream fin;
-	string szHolder;
-
-	COORD max = {0,0};
-	int t;
-	int i = 0;
-
-	fin.open(mapFileName.c_str());
-	mapLocations.clear();
-	fin >> szHolder >> isTown;
-	fin >> szHolder >> szHolder;
-	while(!fin.eof())
-	{		
-		mapLocations.push_back(new Location);
-		fin >> szHolder; 
-		if(szHolder == "P:")
-		{
-			mapLocations[i]->SetHasPlot(true);
-			fin >> szHolder;	mapLocations[i]->SetPlotText(szHolder);
-			fin >> szHolder;
-		}
-		if(szHolder == "MC:")
-		{
-			mapLocations[i]->SetIsMapChange(true);
-			getline(fin,szHolder);
-			mapLocations[i]->SetMapChangeName(rotate(szHolder));
-			fin >> szHolder;
-			fin >> t;
-			mapLocations[i]->SetNeoX(t);
-			fin >> szHolder;
-			fin >> t;
-			mapLocations[i]->SetNeoY(t);
-			fin >> szHolder;
-		}
-		if(szHolder == "Shop:")
-		{
-			mapLocations[i]->SetIsShop(true);
-			getline(fin,szHolder);
-			mapLocations[i]->SetShopName(rotate(szHolder));
-			fin >> szHolder;
-		}
-		if(szHolder == "X:")
-		{
-			fin >> t;
-			if(t > max.X)
-				max.X = t;
-			mapLocations[i]->SetPositionX(t);
-			fin >> szHolder;
-		}
-		if(szHolder == "Y:")
-		{
-			fin >> t;
-			if(t > max.Y)
-				max.Y = t;
-			mapLocations[i]->SetPositionY(t);
-			fin >> szHolder;
-		}
-		if(szHolder == "L:")
-		{
-			getline(fin,szHolder);
-			mapLocations[i]->SetDescription(rotate(szHolder));
-			fin >> szHolder;
-		}
-		if(szHolder == "S:")
-		{
-			getline(fin,szHolder);
-			mapLocations[i]->SetSummary(rotate(szHolder));
-		}
-		i++;
-	}
-	Xmax = max.X;
-	Ymax = max.Y;
-}
 //==========================================================================================================
 //	This function runs through the vector of creatures, moving them around the map in a random fashion
 //  5/10/05
@@ -940,7 +747,7 @@ bool World::HasMagic(vector<Magic*> M,string name)
 	for(i=0;i<M.size();i++)
 	{
 		if(name == M[i]->GetName())
-			return true;		
+			return true;
 	}
 	return false;
 }
@@ -1000,27 +807,20 @@ void World::plot(string Map, string ID)
 		exit(0);
 	}
 	fin >> szThing;
+	fin.get();
 	getline(fin, holder);
-	rotate(holder);
 	speaker = speaker + holder + "---]";
 
 	Display->DisplayText(speaker, 13, 1, brown);
 	while (!fin.eof())
 	{
 		fin >> szThing;
+		fin.get();
 		getline(fin, spoken);
-		rotate(spoken);
 		Display->DisplayText(spoken, 13, i, white);
 		spoken = " ";
 		i++;
 	}
 	Display->DisplayText("", 13, 23, white);
 	system("pause");
-}
-
-string World::rotate(string pStr)
-{
-	string rStr;
-	rStr = pStr.substr(1, pStr.length() - 1);
-	return rStr;
 }
