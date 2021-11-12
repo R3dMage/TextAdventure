@@ -176,10 +176,12 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Orc.h" />
     <ClInclude Include="PawnShop.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerEnvironment.h" />
     <ClInclude Include="Plots.h" />
     <ClInclude Include="SaveLoadGame.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="TextDisplay.h" />
+    <ClInclude Include="VirtualMap.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="stdafx.h" />
@@ -210,11 +212,13 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="NPC Setup.cpp" />
     <ClCompile Include="PawnShop.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerEnvironment.cpp" />
     <ClCompile Include="Plots.cpp" />
     <ClCompile Include="SaveLoadGame.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Talkto.cpp" />
     <ClCompile Include="TextDisplay.cpp" />
+    <ClCompile Include="VirtualMap.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="stdafx.cpp" />
