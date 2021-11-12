@@ -4,6 +4,7 @@
 #include "TextDisplay.h"
 #include "item.h"
 #include "player.h"
+#include "PlayerEnvironment.h"
 
 class GameDisplay : public TextDisplay
 {
@@ -20,6 +21,7 @@ public:
 	void ClearBottomRight();
 
 	std::string GetFileName();
+	void DisplayLocation(PlayerEnvironment* playerEnvironment);
 	void DisplayPlayerInfo(Player* player);
 	void DisplayPlayerStatus(Player* player);
 	void DisplayPlayerItems(std::vector<Item*>& playerInventory);
@@ -34,4 +36,7 @@ public:
 
 private:
 	void DisplayCost(int cost);
+	void DisplayDescription(string description);
+	void DisplayLongDescription(string description);
+	WORD GetDirectionColor(Location* location);
 };

@@ -278,10 +278,12 @@ bool Battle::RunAway(Player* player, Creature* enemy)
 		PlaySound("./data/run.wav", NULL, SND_FILENAME | SND_ASYNC);
 		Display->DisplayMessage("You ran away", player->GetPauseDuration());
 		Display->ClearAll();
+		return true;
 	}
 	else
 	{
 		Display->DisplayMessage("The enemy thought you should stay", player->GetPauseDuration());
+		return false;
 	}
 }
 
