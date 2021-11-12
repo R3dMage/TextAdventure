@@ -11,6 +11,7 @@
 #include "Plots.h"
 #include "Battle.h"
 #include "VirtualMap.h"
+#include "PlayerMagicProvider.h"
 
 class World
 {
@@ -33,13 +34,12 @@ private:
 	ItemRepository* Items;
 	Plots* GamePlots;
 	Battle* Fight;
+	PlayerMagicProvider* MagicProvider;
 
 	void Intro();
 	bool MusicNameComparer(char* name1, char* name2);
 	void SetMusic(char* musicFileName, Player* player);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void CheckMagic(Player* player, vector<Magic*>& spells);
-	bool HasMagic(vector<Magic*> spells,string spellName);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);
 
 	void plot(string map, string ID);
