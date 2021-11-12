@@ -129,7 +129,7 @@
     <ClInclude Include="PlayerEnvironment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpellStore.h">
+    <ClInclude Include="PlayerMagicProvider.h">
       <Filter>Magic</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,7 +236,7 @@
     <ClCompile Include="PlayerEnvironment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpellStore.cpp">
+    <ClCompile Include="PlayerMagicProvider.cpp">
       <Filter>Magic</Filter>
     </ClCompile>
   </ItemGroup>
