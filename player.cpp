@@ -385,10 +385,3 @@ void Player::StopMusic()
 {
 	MapMusic.FreeSound();
 }
-
-string rotate(string pStr)
-{
-	string rStr;
-	rStr = pStr.substr(1, pStr.length() - 1);
-	return rStr;
-}

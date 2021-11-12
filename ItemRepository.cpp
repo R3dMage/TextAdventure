@@ -57,8 +57,9 @@ void ItemRepository::LoadArmor(GameDisplay* display)
 		Armor* armorPtr = new Armor;
 		fin >> szName;
 		fin >> szWord;
+		fin.get();
 		getline(fin, temp);
-		armorPtr->SetName(rotate(temp));
+		armorPtr->SetName(temp);
 		fin >> szWord >> num;
 		armorPtr->SetDefenseModifier(num);
 		fin >> szWord >> num;
@@ -92,16 +93,17 @@ void ItemRepository::LoadWeapons(GameDisplay* display)
 	{
 		Weapon* weapon = new Weapon;
 		fin >> szWord;
-		getline(fin, temp);
-		szName = rotate(temp);
-
+		fin.get();
+		getline(fin, szName);
 		weapon->SetName(szName);
 		fin >> szWord;
+		fin.get();
 		getline(fin, temp);
-		weapon->SetAttribute1(rotate(temp));
+		weapon->SetAttribute1(temp);
 		fin >> szWord;
+		fin.get();
 		getline(fin, temp);
-		weapon->SetAttribute2(rotate(temp));
+		weapon->SetAttribute2(temp);
 		fin >> szWord >> num;
 		weapon->SetDamage(num);
 		fin >> szWord >> num;
@@ -145,11 +147,4 @@ void ItemRepository::LoadItems(GameDisplay* display)
 
 		Items.push_back(itemPtr);
 	}
-}
-
-string ItemRepository::rotate(string pStr)
-{
-	string rStr;
-	rStr = pStr.substr(1, pStr.length() - 1);
-	return rStr;
 }
