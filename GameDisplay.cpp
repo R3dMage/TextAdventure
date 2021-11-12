@@ -205,6 +205,67 @@ string GameDisplay::GetFileName()
 	return filename;
 }
 
+void GameDisplay::DisplayLocation(PlayerEnvironment* playerEnvironment)
+{
+	ClearBottomRight();
+	DisplayDescription(playerEnvironment->PlayerLocation->GetDescription());
+
+	DisplayText("North", 13, 15, GetDirectionColor(playerEnvironment->NorthOfPlayer));
+	DisplayText("South", 13, 16, GetDirectionColor(playerEnvironment->SouthOfPlayer));
+	DisplayText("East", 13, 17, GetDirectionColor(playerEnvironment->EastOfPlayer));
+	DisplayText("West", 13, 18, GetDirectionColor(playerEnvironment->WestOfPlayer));
+
+	DisplayText(playerEnvironment->NorthOfPlayer->GetSummary(), 19, 15, white);
+	DisplayText(playerEnvironment->SouthOfPlayer->GetSummary(), 19, 16, white);
+	DisplayText(playerEnvironment->EastOfPlayer->GetSummary(), 18, 17, white);
+	DisplayText(playerEnvironment->WestOfPlayer->GetSummary(), 18, 18, white);
+}
+
+void GameDisplay::DisplayDescription(string description)
+{
+	if (description.length() <= 65)
+	{
+		DisplayText(description, 13, 11, white);
+		return;
+	}
+
+	DisplayLongDescription(description);
+}
+
+void GameDisplay::DisplayLongDescription(string description)
+{
+	string first;
+	string second;
+	string third;
+
+	int i = 0;
+	int j = 0;
+	j = static_cast<int>(description.size() / 65);
+	i = static_cast<int>(description.size() % 65);
+
+	first = description.substr(0, 65);
+	second = description.substr(65, i);
+
+	if (j > 1)	//If there is more than 130 characters in the description
+	{
+		first = description.substr(0, 65);		//Creates a string out of the first 65 characters
+		second = description.substr(65, 65);	//Creates a string out of the second 65 characters
+		third = description.substr(130, i);		//Creates a string out of the third 65 characters
+	}
+
+	DisplayText(first, 13, 11, white);
+	DisplayText(second, 13, 12, white);
+	DisplayText(third, 13, 13, white);
+}
+
+WORD GameDisplay::GetDirectionColor(Location* location)
+{
+	if (location->GetIsMapChange())
+		return green;
+
+	return yellow;
+}
+
 void GameDisplay::DisplayPlayerInfo(Player* player)
 {
 	if (player->GetIsPoisoned())
