@@ -54,6 +54,11 @@ int VirtualMap::GetMaxY()
 	return MaxPositionY;
 }
 
+std::string VirtualMap::GetMusicFileName()
+{
+	return MusicFileName;
+}
+
 void VirtualMap::LoadMap(std::string mapName)
 {
 	ifstream fin;

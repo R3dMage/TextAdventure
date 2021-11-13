@@ -12,6 +12,7 @@ public:
 	PlayerEnvironment GetPlayerEnvironment(int playerX, int playerY);
 	int GetMaxX();
 	int GetMaxY();
+	std::string GetMusicFileName();
 
 private:
 	int MaxPositionX;
