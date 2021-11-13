@@ -12,11 +12,12 @@
 #include "Lodging.h"
 #include "PawnShop.h"
 
-World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer)
+World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap)
 {
 	Display = gameDisplay;
 	Items = items;
 	Music = musicPlayer;
+	CurrentMap = virtualMap;
 	GameSaver = new SaveLoadGame(Items, Display);
 	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer);
 	GamePlots = new Plots(Display);
@@ -26,9 +27,11 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* music
 
 World::~World()
 {
-	free(Display);
-	free(GameSaver);
-	free(Menu);
+	delete GameSaver;
+	delete Menu;
+	delete GamePlots;
+	delete Fight;
+	delete MagicProvider;
 }
 
 void World::StartGame()
@@ -312,7 +315,7 @@ void World::Locations(string map, Player *player, bool load)
 		{
 			Display->DisplayText("E",10,14,FOREGROUND_BLUE);
 		}
-		else		
+		else
 		{
 			Display->DisplayText("E",10,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}

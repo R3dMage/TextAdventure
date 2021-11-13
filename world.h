@@ -17,7 +17,7 @@
 class World
 {
 public:
-	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer);
+	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap);
 	~World();
 	void StartGame();
 	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
