@@ -9,7 +9,8 @@
 
 class GameDisplay : public TextDisplay
 {
-public:	
+public:
+	GameDisplay(GameSettings* settings);
 	void BoxScreen();
 	void DrawBoxWithCross();
 	void DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin);

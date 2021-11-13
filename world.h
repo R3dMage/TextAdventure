@@ -13,11 +13,12 @@
 #include "VirtualMap.h"
 #include "PlayerMagicProvider.h"
 #include "MusicPlayer.h"
+#include "GameSettings.h"
 
 class World
 {
 public:
-	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap);
+	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap, GameSettings* gameSettings);
 	~World();
 	void StartGame();
 	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
@@ -36,6 +37,7 @@ private:
 	Battle* Fight;
 	PlayerMagicProvider* MagicProvider;
 	MusicPlayer* Music;
+	GameSettings* Settings;
 
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);

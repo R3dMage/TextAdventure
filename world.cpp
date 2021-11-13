@@ -13,16 +13,17 @@
 #include "PawnShop.h"
 #include "NpcCreator.h"
 
-World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap)
+World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap, GameSettings* gameSettings)
 {
 	Display = gameDisplay;
 	Items = items;
 	Music = musicPlayer;
 	CurrentMap = virtualMap;
+	Settings = gameSettings;
 	GameSaver = new SaveLoadGame(Items, Display);
-	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer);
+	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer, gameSettings);
 	GamePlots = new Plots(Display);
-	Fight = new Battle(Menu, new FightDisplay(), Items, musicPlayer);
+	Fight = new Battle(Menu, new FightDisplay(gameSettings), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
 }
 
@@ -375,7 +376,7 @@ void World::Locations(string map, Player *player, bool load)
 						Display->DisplayPlayerInfo(player);
 						Greeting greeting = creature->GetGreeting(player);
 
-						if (Menu->TalkTo(&greeting, player->GetPauseDuration()))
+						if (Menu->TalkTo(&greeting, Settings->GetPauseDuration()))
 							Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
 					}
 					if (creature->GetHitPoints() <= 0)

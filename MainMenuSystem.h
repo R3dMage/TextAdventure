@@ -9,12 +9,14 @@
 #include "Item.h"
 #include "magic.h"
 #include "MusicPlayer.h"
+#include "GameSettings.h"
 
 class MainMenuSystem
 {
 public:
-	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer);
+	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer, GameSettings* settings);
 
+	void TitleScreenMenu();
 	bool YesOrNoPrompt();
 	void HandleMainPlayerMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
 	void HandleInventory(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);	
@@ -22,7 +24,7 @@ public:
 	void Drop(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);
 	void DeleteItem(vector<Item*>& playerInventory);
 	void Options(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& M, string& map);
-	void OptionsMenu(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& M, string& map);
+	void OptionsMenu();
 	void UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool bFight, bool& bLeave, string map);
 	void Use(Player* player, vector<Item*>& playerInventory, bool& Iused, bool bFight);
 	void MagicMenu(Player* player, vector<Magic*>& spells);
@@ -40,4 +42,5 @@ private:
 	ISaveLoadGame* GameSaver;
 	ItemRepository* Items;
 	MusicPlayer* Music;
+	GameSettings* Settings;
 };

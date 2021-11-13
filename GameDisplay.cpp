@@ -3,6 +3,11 @@
 
 using namespace std;
 
+GameDisplay::GameDisplay(GameSettings* settings) :
+	TextDisplay(settings)
+{
+}
+
 void GameDisplay::BoxScreen()
 {
 	HANDLE OutputH;

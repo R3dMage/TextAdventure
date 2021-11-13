@@ -1,4 +1,4 @@
-#include "Settings.h"
+#include "GameSettings.h"
 
 void GameSettings::SetPauseDuration(int pauseDuration)
 {

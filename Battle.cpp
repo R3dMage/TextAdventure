@@ -56,12 +56,12 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 			if (R < 50)								// 50% chance of waking up. NOTE: Maybe make that enemy specific %
 			{
 				player->SetIsAsleep(false);
-				Display->DisplayMessage("You awake from sleep!", player->GetPauseDuration());
+				Display->DisplayMessage("You awake from sleep!");
 			}
 		}
 		if (player->GetIsAsleep())					// Checks if you're still asleep after your chance to wake
 		{
-			Display->DisplayMessage("You are asleep", player->GetPauseDuration());
+			Display->DisplayMessage("You are asleep");
 		}
 		else
 		{
@@ -117,7 +117,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 			
 			if (enemy->GetState() == 2)
 			{
-				Display->DisplayMessage("The enemy is stunned", player->GetPauseDuration());
+				Display->DisplayMessage("The enemy is stunned");
 				pass = true;
 				enemy->SetState(0);
 			}
@@ -126,7 +126,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 			{
 				Damage = rand() % 10 + 10;
 				enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
-				Display->DisplayMessageWithRedNumber("The enemy takes poison damage: ", Damage, player->GetPauseDuration());
+				Display->DisplayMessageWithRedNumber("The enemy takes poison damage: ", Damage);
 				if (enemy->GetHitPoints() <= 0)
 					pass = true;
 			}
@@ -143,7 +143,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 			Evd = rand() % 100 + 1;
 			if (Evd <= player->GetEvade() + armor->GetEvadeModifier() && !player->GetIsAsleep())	// Elaborate equation for evasion
 			{
-				Display->DisplayMessage("You dodged the enemy attack", player->GetPauseDuration());
+				Display->DisplayMessage("You dodged the enemy attack");
 			}
 			else
 			{
@@ -151,7 +151,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 				{
 					Damage = rand() % 10 + 1;								// Conjure up some poison damage
 					player->SetHitPoints(player->GetCurrentHitPoints() - Damage);						// Incur that damage	
-					Display->DisplayMessageWithRedNumber("You take poison damage: ", Damage, player->GetPauseDuration());
+					Display->DisplayMessageWithRedNumber("You take poison damage: ", Damage);
 					if (player->GetCurrentHitPoints() < 1)
 						break;
 				}
@@ -176,14 +176,14 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 	if (player->GetCurrentHitPoints() <= 0)
 	{
 		Display->ClearAll();
-		Display->DisplayMessage("You have died", player->GetPauseDuration());
+		Display->DisplayMessage("You have died");
 		return;
 	}
 
 	if (enemy->GetRunAway())
 	{
 		Display->ClearAll();
-		Display->DisplayMessage("The enemy has run off!!!", player->GetPauseDuration());
+		Display->DisplayMessage("The enemy has run off!!!");
 		enemy->SetRunAway(false);
 		Display->ClearAll();
 	}
@@ -202,7 +202,7 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 	int Evd = rand() % 100 + 1;
 	if (Evd <= enemy->GetEvade())
 	{
-		fightDisplay->DisplayMessage("The enemy has dodged your attack!", player->GetPauseDuration());
+		fightDisplay->DisplayMessage("The enemy has dodged your attack!");
 		return;
 	}
 
@@ -217,7 +217,7 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 		int D2 = rand() % weap->GetDamage() + weap->GetDamageModifier();
 		StrMod = rand() % (player->GetStrength() / 2) + 2;
 		D2 += StrMod;
-		fightDisplay->DisplayMessage("2 Hits!!", player->GetPauseDuration());
+		fightDisplay->DisplayMessage("2 Hits!!");
 		Damage += D2;
 	}
 	//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
@@ -243,14 +243,14 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 
 	stringstream messageStream;
 	messageStream << "Your Damage :" << Damage;
-	fightDisplay->DisplayMessage(messageStream.str(), 0);
+	fightDisplay->DisplayMessage(messageStream.str());
 	fightDisplay->DisplayDamage(Damage);
 	if (weap->HasLifeSteal())
 	{
 		player->SetHitPoints(player->GetCurrentHitPoints() + Damage / 2);
 		messageStream.str(string());
 		messageStream << "Life Gained:    " << Damage / 2;
-		fightDisplay->DisplayMessage(messageStream.str(), 0);
+		fightDisplay->DisplayMessage(messageStream.str());
 		fightDisplay->DisplayDamage(Damage / 2);
 	}
 
@@ -261,7 +261,7 @@ void Battle::PlayerMagic(Player* player, Creature* enemy, std::vector<Magic*>& s
 	if (!player->HasLearnedSpells())
 	{
 		pass = true;
-		Display->DisplayMessage("You have no magic", player->GetPauseDuration());
+		Display->DisplayMessage("You have no magic");
 	}
 	else
 	{
@@ -277,13 +277,13 @@ bool Battle::RunAway(Player* player, Creature* enemy)
 	if (Evd > enemy->GetEvade())
 	{
 		PlaySound("./data/run.wav", NULL, SND_FILENAME | SND_ASYNC);
-		Display->DisplayMessage("You ran away", player->GetPauseDuration());
+		Display->DisplayMessage("You ran away");
 		Display->ClearAll();
 		return true;
 	}
 	else
 	{
-		Display->DisplayMessage("The enemy thought you should stay", player->GetPauseDuration());
+		Display->DisplayMessage("The enemy thought you should stay");
 		return false;
 	}
 }
