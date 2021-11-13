@@ -11,6 +11,7 @@
 #include "MagicShop.h"
 #include "Lodging.h"
 #include "PawnShop.h"
+#include "NpcCreator.h"
 
 World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap)
 {
@@ -178,7 +179,7 @@ void World::Locations(string map, Player *player, bool load)
 
 	CurrentMap = new VirtualMap(map);
 
-	SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);	//This function sets up the enemies according to the map
+	NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 
 	Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 	
@@ -210,7 +211,7 @@ void World::Locations(string map, Player *player, bool load)
 			map = surroundings.PlayerLocation->GetMapChangeName();
 
 			CurrentMap->LoadMap(map);
-			SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+			NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
 			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 			
@@ -322,7 +323,7 @@ void World::Locations(string map, Player *player, bool load)
 			if(player->GetIsLoaded())
 			{
 				CurrentMap->LoadMap(map);
-				SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+				NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 				
 				Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 				
@@ -349,7 +350,7 @@ void World::Locations(string map, Player *player, bool load)
 			player->SetPositionY(1);
 			
 			CurrentMap->LoadMap(map);
-			SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+			NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
 			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 		}

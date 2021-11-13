@@ -135,6 +135,9 @@
     <ClInclude Include="Plots.h">
       <Filter>Display</Filter>
     </ClInclude>
+    <ClInclude Include="NpcCreator.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -163,9 +166,6 @@
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Items</Filter>
-    </ClCompile>
-    <ClCompile Include="NPC Setup.cpp">
-      <Filter>Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Magic.cpp">
       <Filter>Magic</Filter>
@@ -244,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="Plots.cpp">
       <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="NpcCreator.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

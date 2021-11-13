@@ -22,7 +22,6 @@ public:
 	void StartGame();
 	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
 	void Locations(string map, Player* player, bool playerIsLoaded);
-	void SetupNpcs(vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plotEvents, RaceReactionIndex raceReaction);
 	bool Overflow(int size);
 	
 	
