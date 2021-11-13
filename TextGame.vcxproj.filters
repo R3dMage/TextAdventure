@@ -132,6 +132,9 @@
     <ClInclude Include="PlayerMagicProvider.h">
       <Filter>Magic</Filter>
     </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="PlayerMagicProvider.cpp">
       <Filter>Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

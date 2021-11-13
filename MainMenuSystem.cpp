@@ -1,10 +1,11 @@
 #include "MainMenuSystem.h"
 
-MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository)
+MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer)
 {
 	Display = gameDisplay;
 	GameSaver = gameSaver;
 	Items = itemRepository;
+	Music = musicPlayer;
 }
 
 bool MainMenuSystem::YesOrNoPrompt()
@@ -534,9 +535,9 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 		/*=======================================
 		Displays the current music status
 		========================================*/
-		if (cursorPosition.Y == 12 && player->GetIsMusicOn())
+		if (cursorPosition.Y == 12 && Music->GetIsMusicOn())
 			Display->DisplayText("Music: On    ", 13, 12, yellow);
-		else if (cursorPosition.Y == 12 && !player->GetIsMusicOn())
+		else if (cursorPosition.Y == 12 && !Music->GetIsMusicOn())
 			Display->DisplayText("Music: Off   ", 13, 12, yellow);
 		//========================================
 		DrawCursor(cursorPosition, yellow, 175);
@@ -549,9 +550,9 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 				/*=======================================
 				Displays the current music status
 				========================================*/
-				if (cursorPosition.Y == 12 && player->GetIsMusicOn())
+				if (cursorPosition.Y == 12 && Music->GetIsMusicOn())
 					Display->DisplayText("Music: On     ", 13, 12, yellow);
-				else if (cursorPosition.Y == 12 && !player->GetIsMusicOn())
+				else if (cursorPosition.Y == 12 && !Music->GetIsMusicOn())
 					Display->DisplayText("Music: Off    ", 13, 12, yellow);
 				/*========================================
 				Displays current player pause duration
@@ -579,7 +580,7 @@ void MainMenuSystem::OptionsMenu(Player* player, vector<Item*>& worldItems, vect
 		{
 		case 12:
 			Display->DisplayText("Changing Music.", 13, 11, yellow);
-			player->ToggleMusic();
+			Music->ToggleMusic();
 			Sleep(player->GetPauseDuration());
 			Display->DisplayText("               ", 13, 11, yellow);
 			break;

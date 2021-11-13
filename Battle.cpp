@@ -1,11 +1,12 @@
 #include <sstream>
 #include "Battle.h"
 
-Battle::Battle(MainMenuSystem* menu, FightDisplay* fightDisplay, ItemRepository* itemRepository)
+Battle::Battle(MainMenuSystem* menu, FightDisplay* fightDisplay, ItemRepository* itemRepository, MusicPlayer* musicPlayer)
 {
 	Menu = menu;
 	Display = fightDisplay;
 	Items = itemRepository;
+	Music = musicPlayer;
 }
 
 void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerInventory, std::vector<Item*>& worldItems, std::vector<Magic*>& spells, std::string mapName)
@@ -29,7 +30,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		This calls some music to play for the fights, dynamic according
 		to the different enemies. How awesome is that?
 	===================================================================*/
-	player->PlayMusic(enemy->GetMusic().c_str());
+	Music->PlayMusic(enemy->GetMusic().c_str());
 
 	Display->DisplayAttackAnnouncement(enemy);
 
@@ -190,7 +191,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		Here, we put the map music back on. Providing of course
 		that we haven't changed musicFilename at all. I hope!
 	=============================================================*/
-	player->PlayMusic(player->GetMusicFilename());
+	Music->PlayMusic(Music->GetMusicFilename());
 }
 
 void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy)
@@ -292,7 +293,7 @@ void Battle::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, ve
 	player->SetMagicStatus(0);						// After a fight state gets set to zero
 	player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
 	fightDisplay->ClearAll();
-	player->StopMusic();
+	Music->StopMusic();
 	PlaySound("./data/WinBattle.wav", NULL, SND_FILENAME | SND_ASYNC);
 
 	fightDisplay->DisplayWinContent(player, enemy);

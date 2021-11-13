@@ -33,8 +33,6 @@ public:
 	void DisplayIncantation(string description, string incantation);
 	void DisplaySpellName(string name, int yPosition, WORD color);
 
-	void DisplayError(string errorText);
-
 private:
 	void DisplayCost(int cost);
 	void DisplayDescription(string description);

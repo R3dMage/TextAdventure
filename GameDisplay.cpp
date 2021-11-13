@@ -350,12 +350,6 @@ void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 	DisplayText(name, 16, yPosition, color);
 }
 
-void GameDisplay::DisplayError(string errorText)
-{
-	DisplayText(errorText, 13, 11, FOREGROUND_RED);
-	system("pause");
-}
-
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 {
 	unsigned int offset = 0;

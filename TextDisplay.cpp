@@ -27,6 +27,12 @@ void TextDisplay::DisplayNumber(int num, short X, short Y, WORD color)
 	cout << num;
 }
 
+void TextDisplay::DisplayError(string errorText)
+{
+	DisplayText(errorText, 13, 11, FOREGROUND_RED);
+	system("pause");
+}
+
 void TextDisplay::DisplayDamage(int amount)
 {
 	DisplayRunningNumber(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
