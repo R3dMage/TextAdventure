@@ -39,8 +39,6 @@ private:
 	MusicPlayer* Music;
 
 	void Intro();
-	bool MusicNameComparer(char* name1, char* name2);
-	void SetMusic(char* musicFileName, Player* player);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);
 
