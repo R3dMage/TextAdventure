@@ -139,7 +139,7 @@
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="GameSettings.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +252,7 @@
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="GameSettings.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
