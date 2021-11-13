@@ -315,7 +315,7 @@ void World::Locations(string map, Player *player, bool load)
 		{
 			Display->DisplayText("E",10,14,FOREGROUND_BLUE);
 		}
-		else		
+		else
 		{
 			Display->DisplayText("E",10,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
