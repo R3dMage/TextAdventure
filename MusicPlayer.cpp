@@ -1,4 +1,3 @@
-#include <string>
 #include "MusicPlayer.h"
 
 using namespace std;
@@ -20,11 +19,17 @@ bool MusicPlayer::GetIsMusicOn()
 	return MusicIsOn;
 }
 
-void MusicPlayer::SetMusicFilename(char* filename)
+void MusicPlayer::SetMusicFilename(string filename)
 {
-	MusicFilename = filename;
+	if (MusicFilename != filename)
+	{
+		MusicFilename = filename;
+		if (MusicIsOn)
+			PlayMusic(MusicFilename);
+	}
 }
-char* MusicPlayer::GetMusicFilename()
+
+string MusicPlayer::GetMusicFilename()
 {
 	return MusicFilename;
 }
@@ -32,7 +37,7 @@ char* MusicPlayer::GetMusicFilename()
 /*==================================
 	Plays the game music
 ===================================*/
-void MusicPlayer::PlayMusic(const char* filename)
+void MusicPlayer::PlayMusic(string filename)
 {
 	const char* dataPath = "./data/";
 
@@ -54,9 +59,6 @@ void MusicPlayer::PlayMusic(const char* filename)
 }
 
 void MusicPlayer::ToggleMusic()
-/* ==========================
-	Turns music on/off
-============================*/
 {
 	if (MusicIsOn)
 	{
@@ -67,10 +69,9 @@ void MusicPlayer::ToggleMusic()
 	else
 	{
 		MusicIsOn = true;
-		PlayMusic(MusicFilename);
+		PlayMusic(MusicFilename.c_str());
 	}
 }
-
 
 void MusicPlayer::StopMusic()
 {

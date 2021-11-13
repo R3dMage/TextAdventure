@@ -22,7 +22,7 @@ public:
 	void StartGame();
 	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
 	void Locations(string map, Player* player, bool playerIsLoaded);
-	void SetupNcps(vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plotEvents, RaceReactionIndex raceReaction, char*& musicFile);
+	void SetupNpcs(vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plotEvents, RaceReactionIndex raceReaction);
 	bool Overflow(int size);
 	
 	
@@ -39,8 +39,6 @@ private:
 	MusicPlayer* Music;
 
 	void Intro();
-	bool MusicNameComparer(char* name1, char* name2);
-	void SetMusic(char* musicFileName, Player* player);
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);
 

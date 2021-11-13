@@ -87,9 +87,6 @@ void World::Locations(string map, Player *player, bool load)
 	int playerPositionIndex=0;
 	COORD cursorPosition;
 
-	char *musicFileName = "town.mp3";
-    char *mapMusic = "town.mp3";
-
 	string oldMap = map;
 		
 	bool selectionWasMade;
@@ -182,12 +179,9 @@ void World::Locations(string map, Player *player, bool load)
 
 	CurrentMap = new VirtualMap(map);
 
-	SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);	//This function sets up the enemies according to the map
+	SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);	//This function sets up the enemies according to the map
 
-	if(MusicNameComparer(musicFileName,mapMusic))
-		mapMusic = musicFileName;
-
-	SetMusic(mapMusic,player);
+	Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 	
 	if(!player->PlotEventStates.Monk)
 		monk.push_back(new Monk);					//This puts in THE only monk in the game.
@@ -217,12 +211,9 @@ void World::Locations(string map, Player *player, bool load)
 			map = surroundings.PlayerLocation->GetMapChangeName();
 
 			CurrentMap->LoadMap(map);
-			SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);
+			SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
-			if(MusicNameComparer(musicFileName,mapMusic))
-				mapMusic = musicFileName;
-			
-			SetMusic(mapMusic, player);
+			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 			
 			surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
 		}
@@ -358,19 +349,15 @@ void World::Locations(string map, Player *player, bool load)
 		selectionWasMade = false;
 
         if(escapeWasPressed)//=================>  This is the code that calls the player menu for advanced fun
-				//   Basically, Press Esc for the menu
 		{
 			//clear();                    For smooth look remarked out on 2/15/06
-			Menu->HandleMainMenu(player,spells,worldItems,playerInventory,map);
+			Menu->HandleMainMenu(player, spells, worldItems, playerInventory, map);
 			if(player->GetIsLoaded())
 			{
 				CurrentMap->LoadMap(map);
-				SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions, musicFileName);
+				SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 				
-				if(MusicNameComparer(musicFileName,mapMusic))
-					mapMusic = musicFileName;
-				
-				SetMusic(mapMusic,player);
+				Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 				
 				player->SetIsLoaded(false);
 			}
@@ -378,6 +365,7 @@ void World::Locations(string map, Player *player, bool load)
 		}
 //=======[Function to check, and change plots]======================		
 		GamePlots->Check(&player->PlotEventStates, map, player->GetPositionX(), player->GetPositionY());
+
 //===============================================================================================
 //							This section will be checking player location
 //	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
@@ -394,12 +382,9 @@ void World::Locations(string map, Player *player, bool load)
 			player->SetPositionY(1);
 			
 			CurrentMap->LoadMap(map);
-			SetupNcps(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions,musicFileName);
+			SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
-			if(MusicNameComparer(musicFileName,mapMusic))
-				mapMusic = musicFileName;
-			
-			SetMusic(mapMusic, player);
+			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 		}
 
 //=================================================================================================================
@@ -614,33 +599,6 @@ void World::Intro()
 	Display->DisplayText("out of the picture however...",13,5,white);
 	Display->DisplayText(" ", 13, 6,white);
 	system("pause");
-}
-/*==========================================================================================================
-	A string comparison function. Yeah I wrote my own, wanna fight about it?
-============================================================================================================*/
-bool World::MusicNameComparer(char* string1,char* string2)
-{
-	if(string1 == string2)
-		return false;
-	else
-		return true;	
-}
-
-/*===========================================
-This function will play music of the game
-=============================================*/
-void World::SetMusic(char * mapMusic, Player *player)
-{
-/*================================================
-    copy the map music into the player's music
-    otherwise, there are problems. sheesh. 1/9/07
-=================================================*/
-	Music->SetMusicFilename(mapMusic);
-
-	if(Music->GetIsMusicOn())
-	{
-		Music->PlayMusic(mapMusic);
-	}
 }
 
 void World::plot(string Map, string ID)
