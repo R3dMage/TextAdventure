@@ -93,9 +93,6 @@
     <ClInclude Include="World.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Plots.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="ArmoryShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
@@ -123,17 +120,20 @@
     <ClInclude Include="Player.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="VirtualMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMagicProvider.h">
       <Filter>Magic</Filter>
     </ClInclude>
     <ClInclude Include="MusicPlayer.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnvironment.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualMap.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Plots.h">
+      <Filter>Display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +197,6 @@
     <ClCompile Include="ISaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Plots.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="SaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
@@ -233,17 +230,20 @@
     <ClCompile Include="Player.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="VirtualMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerEnvironment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMagicProvider.cpp">
       <Filter>Magic</Filter>
     </ClCompile>
     <ClCompile Include="MusicPlayer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEnvironment.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualMap.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Plots.cpp">
+      <Filter>Display</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
