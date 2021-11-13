@@ -8,11 +8,12 @@
 #include "Player.h"
 #include "Item.h"
 #include "magic.h"
+#include "MusicPlayer.h"
 
 class MainMenuSystem
 {
 public:
-	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository);
+	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer);
 
 	bool YesOrNoPrompt();
 	void HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
@@ -38,5 +39,5 @@ private:
 	GameDisplay* Display;
 	ISaveLoadGame* GameSaver;
 	ItemRepository* Items;
+	MusicPlayer* Music;
 };
-

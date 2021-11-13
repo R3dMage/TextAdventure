@@ -12,14 +12,15 @@
 #include "Lodging.h"
 #include "PawnShop.h"
 
-World::World(GameDisplay* gameDisplay, ItemRepository* items)
+World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer)
 {
 	Display = gameDisplay;
 	Items = items;
+	Music = musicPlayer;
 	GameSaver = new SaveLoadGame(Items, Display);
-	Menu = new MainMenuSystem(Display, GameSaver, Items);
+	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer);
 	GamePlots = new Plots(Display);
-	Fight = new Battle(Menu, new FightDisplay(), Items);
+	Fight = new Battle(Menu, new FightDisplay(), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
 }
 
@@ -221,7 +222,7 @@ void World::Locations(string map, Player *player, bool load)
 			if(MusicNameComparer(musicFileName,mapMusic))
 				mapMusic = musicFileName;
 			
-			SetMusic(mapMusic,player);
+			SetMusic(mapMusic, player);
 			
 			surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
 		}
@@ -634,11 +635,11 @@ void World::SetMusic(char * mapMusic, Player *player)
     copy the map music into the player's music
     otherwise, there are problems. sheesh. 1/9/07
 =================================================*/
-	player->SetMusicFilename(mapMusic);
+	Music->SetMusicFilename(mapMusic);
 
-	if(player->GetIsMusicOn())
+	if(Music->GetIsMusicOn())
 	{
-		player->PlayMusic(mapMusic);
+		Music->PlayMusic(mapMusic);
 	}
 }
 

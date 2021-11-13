@@ -3,8 +3,6 @@
 
 #include <string>
 #include <time.h>
-#include "CFmod.h"
-#include "Fmod.h"
 #include "Weapon.h"
 #include "Armor.h"
 
@@ -91,16 +89,9 @@ public:
 	bool GetIsAsleep();
 	void SetIsInvisible(bool);
 	bool GetIsInvisible();
-	void SetMusicIsOn(bool);
-	bool GetIsMusicOn();
-	void SetMusicFilename(char *);
-	char * GetMusicFilename();
 
 	bool ReachedNextLevel();
 	void IncreaseLevel();
-	void PlayMusic(const char *);
-	void StopMusic();
-	void ToggleMusic();
 
 	PlayerKillCounts RaceKillCounts;
 	GameEvents PlotEventStates;
@@ -109,7 +100,6 @@ public:
 
 private:
 	//time_h	p_time;						// Time in game
-	CFmod	MapMusic;						// Music controller
 	string	Name;							// Player's Name
 	Weapon*	EquippedWeapon;					// Current Weapon
 	Armor*	EquippedArmor;					// Current Armor
@@ -135,14 +125,12 @@ private:
 	bool	HasSpells;						// Whether or not player has spells
 	bool	MemberHasJoined;				// ???
 	bool	IsLoaded;						// Whether or not a character has been loaded
-	char *  MusicFilename;					// Name of musicFile
 
 /* =========================================================
    These will be player specific options that can be changed
    in the option menu should the player so choose. 
    =========================================================*/
 
-	bool	MusicIsOn;		// Option to turn music on or off
 	bool	Invisible;		// Sometimes you want to be invisible to enemies
 };
 #endif

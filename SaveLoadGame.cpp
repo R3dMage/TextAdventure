@@ -62,28 +62,11 @@ void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
 	fout << "Blu: " << player->PlotEventStates.BlueDragon << endl;
 	fout << "Red: " << player->PlotEventStates.RedDragon << endl;
 	fout << "Mnk: " << player->PlotEventStates.Monk << endl;
-	fout << "Music: " << player->GetIsMusicOn() << endl;
 }
 
-void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map, string filename)
+void SaveLoadGame::SaveOptions(MusicPlayer* musicPlayer, ofstream& fout)
 {
-	string fName = filename + ".svg";
-	string temp;
-
-	ifstream fin;
-	fin.open(fName.c_str());
-	if (fin.fail())
-	{
-		Display->DisplayError("ERROR LOADING SAVED CHARACTER");
-		exit(0);
-	};
-	LoadPlayer(player, fin);
-	LoadMagic(spells, fin);
-	LoadInventory(playerInventory, fin);
-	LoadGround(worldItems, fin);
-	fin >> temp >> map;
-
-	fin.close();	
+	fout << "Music: " << musicPlayer->GetIsMusicOn() << endl;
 }
 
 void SaveLoadGame::SaveInventory(vector<Item*>& inventory, ofstream& fout)
@@ -131,6 +114,27 @@ void SaveLoadGame::SaveMagic(vector<Magic*>& spells, ofstream& fout)
 	{
 		fout << "Spell" << i + 1 << ": " << spells[i]->GetName() << endl;
 	}
+}
+
+void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map, string filename)
+{
+	string fName = filename + ".svg";
+	string temp;
+
+	ifstream fin;
+	fin.open(fName.c_str());
+	if (fin.fail())
+	{
+		Display->DisplayError("ERROR LOADING SAVED CHARACTER");
+		exit(0);
+	};
+	LoadPlayer(player, fin);
+	LoadMagic(spells, fin);
+	LoadInventory(playerInventory, fin);
+	LoadGround(worldItems, fin);
+	fin >> temp >> map;
+
+	fin.close();
 }
 
 void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
@@ -213,11 +217,17 @@ void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 	player->PlotEventStates.RedDragon = truth;
 	fin >> temp >> truth;
 	player->PlotEventStates.Monk = truth;
-	fin >> temp >> truth;
-	player->SetMusicIsOn(truth);
 	player->SetWeapon(Items->GetWeapon(weaponName));
 	player->SetArmor(Items->GetArmor(armorName));
 	player->SetIsLoaded(true);
+}
+
+void SaveLoadGame::LoadOptions(MusicPlayer* musicPlayer, ifstream& fin)
+{
+	bool truth;
+	string temp;
+	fin >> temp >> truth;
+	musicPlayer->SetIsMusicOn(truth);
 }
 
 void SaveLoadGame::LoadInventory(vector<Item*>& playerInventory, ifstream& fin)

@@ -17,6 +17,7 @@ class TextDisplay
 public:
 	void DisplayText(std::string szText, short X, short Y, WORD color);
 	void DisplayNumber(int num, short X, short Y, WORD color);
+	void DisplayError(std::string errorText);
 	void DisplayDamage(int amount);
 	void DisplayCure(int amount);
 	void SlowDisplay(std::string szText);

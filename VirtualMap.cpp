@@ -7,7 +7,7 @@ using namespace std;
 VirtualMap::VirtualMap(std::string name)
 {
 	MapName = name;
-	LoadMap("./data/" + name + ".tgm");
+	LoadMap(name);
 
 	EmptyLocation = new Location();
 	EmptyLocation->SetSummary("There is no path to follow");
@@ -54,9 +54,10 @@ int VirtualMap::GetMaxY()
 	return MaxPositionY;
 }
 
-void VirtualMap::LoadMap(std::string mapFileName)
+void VirtualMap::LoadMap(std::string mapName)
 {
 	ifstream fin;
+	string mapFileName = "./data/" + mapName + ".tgm";
 	string szHolder;
 
 	COORD max = { 0,0 };

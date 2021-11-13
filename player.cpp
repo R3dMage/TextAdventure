@@ -42,9 +42,6 @@ Player::Player()
 	PlotEventStates.RedDragon = false;
 	PlotEventStates.Start = false;
 	IsLoaded = false;
-	MusicIsOn = true;
-	MusicFilename = "";
-	MapMusic.Init();
 
 	Armor armor;
 	EquippedArmor = &armor;
@@ -293,59 +290,6 @@ bool Player::GetIsInvisible()
 {
 	return Invisible;
 }
-void Player::SetMusicIsOn(bool musicOn)
-{
-	MusicIsOn = musicOn;
-}
-bool Player::GetIsMusicOn()
-{ return MusicIsOn;		}
-
-void Player::SetMusicFilename(char * filename)
-{ MusicFilename = filename;	}
-char * Player::GetMusicFilename()
-{ return MusicFilename;	}
-
-/*==================================
-	Plays the game music
-===================================*/
-void Player::PlayMusic(const char *filename)
-{
-	const char* dataPath = "./data/";
-	
-	string fullPath = dataPath;
-	fullPath.append(filename);
-		
-	if(fullPath.c_str())
-	{
-		if( !MapMusic.LoadSong(fullPath.c_str()) )
-		{
-			// text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
-			cout << "MUSIC FILE LOAD FAILED!!!!!";
-			exit(1);
-		}
-		MapMusic.PlaySong();
-	}
-	else
-		MapMusic.FreeSound();
-}
-
-void Player::ToggleMusic()
-/* ==========================
-	Turns music on/off
-============================*/
-{ 
-	if(MusicIsOn)
-	{
-		MusicIsOn = false;
-		MapMusic.FreeSound();
-		MapMusic.FreeSoundSystem();
-	}
-	else
-	{
-		MusicIsOn = true;
-		PlayMusic(MusicFilename);
-	}
-}
 
 bool Player::ReachedNextLevel()
 {
@@ -379,9 +323,4 @@ void Player::IncreaseLevel()
 	Num1 = rand()% (GetMind()/2) + 1;
 	SetMaxKa(GetMaxKa() + static_cast<int>(Num1));
 	ExperienceNeededForNextLevel = Level * Level * 50;
-}
-
-void Player::StopMusic()
-{
-	MapMusic.FreeSound();
 }

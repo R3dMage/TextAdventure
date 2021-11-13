@@ -12,11 +12,12 @@
 #include "Battle.h"
 #include "VirtualMap.h"
 #include "PlayerMagicProvider.h"
+#include "MusicPlayer.h"
 
 class World
 {
 public:
-	World(GameDisplay* gameDisplay, ItemRepository* items);
+	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer);
 	~World();
 	void StartGame();
 	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
@@ -35,6 +36,7 @@ private:
 	Plots* GamePlots;
 	Battle* Fight;
 	PlayerMagicProvider* MagicProvider;
+	MusicPlayer* Music;
 
 	void Intro();
 	bool MusicNameComparer(char* name1, char* name2);

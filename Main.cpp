@@ -11,8 +11,9 @@ void main()
 	gameDisplay->BoxScreen();
 	
 	ItemRepository* itemRepository = new ItemRepository(gameDisplay);
+	MusicPlayer* musicPlayer = new MusicPlayer(gameDisplay);
 
-	World globe(gameDisplay, itemRepository);
+	World globe(gameDisplay, itemRepository, musicPlayer);
 		
 	globe.StartGame();
 }
