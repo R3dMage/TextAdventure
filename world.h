@@ -38,11 +38,8 @@ private:
 	PlayerMagicProvider* MagicProvider;
 	MusicPlayer* Music;
 
-	void Intro();
 	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);
-
-	void plot(string map, string ID);
 };
 
 #endif

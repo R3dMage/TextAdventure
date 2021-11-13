@@ -7,6 +7,8 @@ class Plots
 {
 public:
 	Plots(GameDisplay* display);
+	void DisplayIntro();
+	void DisplayPlot(std::string map, std::string ID);
 	void Check(GameEvents* plotEventStates, std::string map, int PositionX, int PositionY);
 
 private:

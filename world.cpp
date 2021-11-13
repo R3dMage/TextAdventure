@@ -80,7 +80,7 @@ void World::StartGame()
 }
 
 void World::Locations(string map, Player *player, bool load)
-{	
+{
 	unsigned int i;
 	int time = 0;
 	int choice;
@@ -88,10 +88,9 @@ void World::Locations(string map, Player *player, bool load)
 	COORD cursorPosition;
 
 	string oldMap = map;
-		
+
 	bool selectionWasMade;
 	bool escapeWasPressed;
-	bool bTown = false;
 
 //==============================================================================================================
 //		These are the vectors that are used throughout the game to maintain inventory, items on the ground
@@ -99,13 +98,10 @@ void World::Locations(string map, Player *player, bool load)
 //===============================================================================================================
 
 	vector< Creature* > monk(0);					//This is a seperate vector for THE monk.
-
-
 	vector< Item* > worldItems(0);					//Globals will contain ALL the items in the world
 	vector< Item* > playerInventory(0);				//inv is the players inventory
 	vector< Creature* > encounter(0);				//encounter holds all the enemies on a certain map
 	vector<Magic*> spells(0);						//Magik will hold all the spells granted to the player
-
 
 //===========================================================================================================
 //  This sets up the items in their starting places for the player to find. It uses the if(load) to prevent
@@ -123,7 +119,7 @@ void World::Locations(string map, Player *player, bool load)
 		vial->SetMapName("forest1");
 		vial->SetPositionX(5);
 		vial->SetPositionY(5);
-		vial->SetKeep(true);	
+		vial->SetKeep(true);
 
 		Item *horseshoe;
 		horseshoe = new Item;
@@ -139,16 +135,16 @@ void World::Locations(string map, Player *player, bool load)
 		playerInventory.push_back(Items->GetItem("Potion"));
 		playerInventory.push_back(Items->GetItem("Potion"));
 		worldItems.push_back(vial);
-		worldItems.push_back(horseshoe);	
+		worldItems.push_back(horseshoe);
 
 		monk.push_back(new Monk);						//This puts in THE only monk in the game.
 
-		Intro();									//Calls the games intro
+		GamePlots->DisplayIntro();
 	}
 
 
 	if(load)
-	{		
+	{
 		GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, player->GetName());
 	}
 
@@ -223,7 +219,7 @@ void World::Locations(string map, Player *player, bool load)
 			Display->ClearAll();
 			Display->DisplayPlayerInfo(player);
 			
-			plot(map, surroundings.PlayerLocation->GetPlotText());
+			GamePlots->DisplayPlot(map, surroundings.PlayerLocation->GetPlotText());
 		}
 		
 		if(surroundings.PlayerLocation->GetIsShop())
@@ -586,51 +582,4 @@ void World::Move(vector<Creature*> &encounter,int Xmax, int Ymax)
 				break;
 			}
 		}
-}
-
-//==========================================================================================================
-//	Intro to the game!
-//==========================================================================================================
-void World::Intro()
-{
-	Display->DisplayText("In the past when gods could be bested by mortal men, ",13,2,white);
-	Display->DisplayText("four priests are keeping the pantheon at bay and ruling",13,3,white);
-	Display->DisplayText("the world for their own evil schemes. If the priests were ",13,4,white);
-	Display->DisplayText("out of the picture however...",13,5,white);
-	Display->DisplayText(" ", 13, 6,white);
-	system("pause");
-}
-
-void World::plot(string Map, string ID)
-{
-	int i = 3;
-	ifstream fin;
-	string szThing;
-	string file = Map + ID + ".plt";
-	string holder;
-	string speaker = "[---";
-	string spoken;
-	fin.open(file.c_str());
-	if (fin.fail())
-	{
-		Display->DisplayError("ERROR LOADING PLOT");
-		exit(0);
-	}
-	fin >> szThing;
-	fin.get();
-	getline(fin, holder);
-	speaker = speaker + holder + "---]";
-
-	Display->DisplayText(speaker, 13, 1, brown);
-	while (!fin.eof())
-	{
-		fin >> szThing;
-		fin.get();
-		getline(fin, spoken);
-		Display->DisplayText(spoken, 13, i, white);
-		spoken = " ";
-		i++;
-	}
-	Display->DisplayText("", 13, 23, white);
-	system("pause");
 }

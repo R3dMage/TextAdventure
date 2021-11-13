@@ -1,8 +1,55 @@
+#include <fstream>
 #include "Plots.h"
+
+using namespace std;
 
 Plots::Plots(GameDisplay* display)
 {
 	Display = display;
+}
+
+void Plots::DisplayIntro()
+{
+	Display->DisplayText("In the past when gods could be bested by mortal men, ", 13, 2, white);
+	Display->DisplayText("four priests are keeping the pantheon at bay and ruling", 13, 3, white);
+	Display->DisplayText("the world for their own evil schemes. If the priests were ", 13, 4, white);
+	Display->DisplayText("out of the picture however...", 13, 5, white);
+	Display->DisplayText(" ", 13, 6, white);
+	system("pause");
+}
+
+void Plots::DisplayPlot(string Map, string ID)
+{
+	int i = 3;
+	ifstream fin;
+	string szThing;
+	string file = Map + ID + ".plt";
+	string holder;
+	string speaker = "[---";
+	string spoken;
+	fin.open(file.c_str());
+	if (fin.fail())
+	{
+		Display->DisplayError("ERROR LOADING PLOT");
+		exit(0);
+	}
+	fin >> szThing;
+	fin.get();
+	getline(fin, holder);
+	speaker = speaker + holder + "---]";
+
+	Display->DisplayText(speaker, 13, 1, brown);
+	while (!fin.eof())
+	{
+		fin >> szThing;
+		fin.get();
+		getline(fin, spoken);
+		Display->DisplayText(spoken, 13, i, white);
+		spoken = " ";
+		i++;
+	}
+	Display->DisplayText("", 13, 23, white);
+	system("pause");
 }
 
 /*================================================================================
