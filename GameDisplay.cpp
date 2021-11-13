@@ -134,7 +134,7 @@ void GameDisplay::ClearTopRight()
 	int Y = 11;
 	while (Y < 24)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
 		Y++;
 	}
 }
@@ -144,15 +144,15 @@ void GameDisplay::ClearAll()
 	int Y = 1;
 	while (Y < 10)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
+		DisplayText("           ", 1, Y, white);
 		Y++;
 	}
 	Y = 11;
 	while (Y < 24)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
+		DisplayText("           ", 1, Y, white);
 		Y++;
 	}
 	DrawBoxWithCross();
@@ -165,7 +165,7 @@ void GameDisplay::ClearTopBelow(int Y)
 {
 	while (Y < 10)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
 		Y++;
 	}
 }
@@ -177,8 +177,8 @@ void GameDisplay::ClearBottom()
 	int Y = 11;
 	while (Y < 24)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
-		DisplayText("           ", 1, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
+		DisplayText("           ", 1, Y, white);
 		Y++;
 	}
 }
@@ -190,7 +190,7 @@ void GameDisplay::ClearBottomRight()
 	int Y = 11;
 	while (Y < 24)
 	{
-		DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		DisplayText("                                                                 ", 13, Y, white);
 		Y++;
 	}
 }
@@ -198,11 +198,47 @@ void GameDisplay::ClearBottomRight()
 string GameDisplay::GetFileName()
 {
 	string filename = "";
-	DisplayText("Enter name of character: ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	DisplayText("", 38, 11, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	DisplayText("Enter name of character: ", 13, 11, yellow);
+	DisplayText("", 38, 11, white);
 	cin >> filename;
 
 	return filename;
+}
+
+void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
+{
+	DisplayText("/---------\\", 1, 11, compassColor);
+	DisplayText("|         |", 1, 12, compassColor);
+	DisplayText("|    |    |", 1, 13, compassColor);
+	DisplayText("| ---+--- |", 1, 14, compassColor);
+	DisplayText("|    |    |", 1, 15, compassColor);
+	DisplayText("|         |", 1, 16, compassColor);
+	DisplayText("\\---------/", 1, 17, compassColor);
+
+	if (playerY == maxX)
+		DisplayText("N", 6, 12, blue);
+	else
+		DisplayText("N", 6, 12, compassColor);
+	if (playerY == 1)
+		DisplayText("S", 6, 16, blue);
+	else
+		DisplayText("S", 6, 16, compassColor);
+	if (playerX == maxX)
+	{
+		DisplayText("E", 10, 14, blue);
+	}
+	else
+	{
+		DisplayText("E", 10, 14, compassColor);
+	}
+	if (playerX == 1)
+	{
+		DisplayText("W", 2, 14, blue);
+	}
+	else
+	{
+		DisplayText("W", 2, 14, compassColor);
+	}
 }
 
 void GameDisplay::DisplayLocation(PlayerEnvironment* playerEnvironment)
@@ -353,10 +389,10 @@ void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)
 {
 	unsigned int offset = 0;
-	DisplayText(" [---Items---] ", 13, 11, FOREGROUND_RED | FOREGROUND_GREEN);
+	DisplayText(" [---Items---] ", 13, 11, brown);
 	while (offset < playerInventory.size())
 	{
-		DisplayText(playerInventory[offset]->GetName(), 15, 12 + offset, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		DisplayText(playerInventory[offset]->GetName(), 15, 12 + offset, yellow);
 		offset++;
 		if (offset >= 12)
 			break;
@@ -380,12 +416,12 @@ void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string Map, int X, i
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;
-	DisplayText("[---Ground---]", 13, 1, FOREGROUND_RED | FOREGROUND_GREEN);
+	DisplayText("[---Ground---]", 13, 1, brown);
 	while (Offset < stuff.size())
 	{
 		if (stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
 		{
-			DisplayText(stuff[Offset]->GetName(), 15, 2 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			DisplayText(stuff[Offset]->GetName(), 15, 2 + NumItems, yellow);
 			NumItems++;
 		}
 		Offset++;
@@ -393,5 +429,5 @@ void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string Map, int X, i
 			break;
 	}
 	if (Offset < 10)
-		DisplayText("                       ", 15, 3 + NumItems, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		DisplayText("                       ", 15, 3 + NumItems, yellow);
 }

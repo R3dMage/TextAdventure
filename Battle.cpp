@@ -70,12 +70,12 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 
 			Display->DisplayFightMenu();
 
-			Menu->DrawCursor(CursPos, ftext, 26);
+			Menu->DrawCursor(CursPos, ftext, 175);
 			do
 			{
 				if (Menu->MoveCursor(CursPos, bSel, bEsc, 15, 18))
 				{
-					Menu->DrawCursor(CursPos, ftext, 26);
+					Menu->DrawCursor(CursPos, ftext, 175);
 				}
 				// text("", 79, 23, ftext);
 			} while (!bSel);
