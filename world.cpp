@@ -291,43 +291,11 @@ void World::Locations(string map, Player *player, bool load)
 // can't go that way anymore.
 //===========================================================================================================
 
-
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 
-		Display->DisplayText("/---------\\",1,11,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |",1,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|    |    |",1,13,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("| ---+--- |",1,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|    |    |",1,15,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |",1,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("\\---------/",1,17,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayCompass(player->GetPositionX(), player->GetPositionY(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 
-		if(player->GetPositionY() == CurrentMap->GetMaxY())
-			Display->DisplayText("N",6,12,FOREGROUND_BLUE);
-		else
-			Display->DisplayText("N",6,12,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		if(player->GetPositionY() == 1)
-			Display->DisplayText("S",6,16,FOREGROUND_BLUE);
-		else
-			Display->DisplayText("S",6,16,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		if(player->GetPositionX() == CurrentMap->GetMaxX())
-		{
-			Display->DisplayText("E",10,14,FOREGROUND_BLUE);
-		}
-		else
-		{
-			Display->DisplayText("E",10,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		}
-		
-		if(player->GetPositionX() == 1)
-		{
-			Display->DisplayText("W",2,14,FOREGROUND_BLUE);
-		}
-		else
-		{
-			Display->DisplayText("W",2,14,FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		}
 //================================================================================================================
 
 //		This function clears the items that WERE on the ground

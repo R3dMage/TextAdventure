@@ -22,6 +22,8 @@ public:
 	void ClearBottomRight();
 
 	std::string GetFileName();
+
+	void DisplayCompass(int playerX, int playerY, int maxX, int maxY);
 	void DisplayLocation(PlayerEnvironment* playerEnvironment);
 	void DisplayPlayerInfo(Player* player);
 	void DisplayPlayerStatus(Player* player);
