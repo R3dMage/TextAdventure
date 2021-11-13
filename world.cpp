@@ -319,7 +319,7 @@ void World::Locations(string map, Player *player, bool load)
         if(escapeWasPressed)//=================>  This is the code that calls the player menu for advanced fun
 		{
 			//clear();                    For smooth look remarked out on 2/15/06
-			Menu->HandleMainMenu(player, spells, worldItems, playerInventory, map);
+			Menu->HandleMainPlayerMenu(player, spells, worldItems, playerInventory, map);
 			if(player->GetIsLoaded())
 			{
 				CurrentMap->LoadMap(map);

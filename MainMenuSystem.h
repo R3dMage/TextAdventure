@@ -16,7 +16,7 @@ public:
 	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer);
 
 	bool YesOrNoPrompt();
-	void HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
+	void HandleMainPlayerMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
 	void HandleInventory(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);	
 	void Equip(Player* player, vector<Item*>& playerInventory);
 	void Drop(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);

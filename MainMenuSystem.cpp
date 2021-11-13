@@ -52,7 +52,7 @@ bool MainMenuSystem::YesOrNoPrompt()
 	return false;
 }
 
-void MainMenuSystem::HandleMainMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string& map)
+void MainMenuSystem::HandleMainPlayerMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string& map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;
