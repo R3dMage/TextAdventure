@@ -21,7 +21,8 @@ public:
 	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap, GameSettings* gameSettings);
 	~World();
 	void TitleScreen();
-	void StartGame();
+	void SetupGame();
+	void PlayGame();
 	
 	
 
@@ -40,15 +41,14 @@ private:
 	// State of the game
 	Player* player;
 	std::string map;
-	std::vector< Creature* > monk;					//This is a seperate vector for THE monk.
-	std::vector< Item* > worldItems;				//Globals will contain ALL the items in the world
-	std::vector< Item* > playerInventory;			//inv is the players inventory
-	std::vector< Creature* > encounter;				//encounter holds all the enemies on a certain map
-	std::vector<Magic*> spells;						//Magik will hold all the spells granted to the player
+	std::vector<Creature*> monk;				// This is a seperate vector for THE monk.
+	std::vector<Item*> worldItems;				// Globals will contain ALL the items in the world
+	std::vector<Item*> playerInventory;			// inv is the players inventory
+	std::vector<Creature*> encounter;			// encounter holds all the enemies on a certain map
+	std::vector<Magic*> spells;					// Magik will hold all the spells granted to the player
 
-	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
-	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void Locations(string map, Player* player, bool playerIsLoaded);
+	void MoveCreatures(vector<Creature*>& encounter, int Xmax, int Ymax);
+	bool CheckForPlayerMovement(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
 	void ReplenishEnemy(vector<Creature*>& enemies, int num);
 	bool Overflow(int size);
 };

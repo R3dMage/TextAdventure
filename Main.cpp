@@ -21,6 +21,6 @@ void main()
 	World globe(gameDisplay, itemRepository, musicPlayer, virtualMap, gameSettings);
 
 	globe.TitleScreen();
-
-	globe.StartGame();
+	globe.SetupGame();
+	globe.PlayGame();
 }
