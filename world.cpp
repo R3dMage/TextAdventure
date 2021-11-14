@@ -25,6 +25,8 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* music
 	GamePlots = new Plots(Display);
 	Fight = new Battle(Menu, new FightDisplay(gameSettings), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
+	player = new Player();
+	map = "valesh";
 }
 
 World::~World()
@@ -36,9 +38,13 @@ World::~World()
 	delete MagicProvider;
 }
 
+void World::TitleScreen()
+{
+	Menu->TitleScreenMenu(player, spells, worldItems, playerInventory, map);
+}
+
 void World::StartGame()
 {
-	Player player;
 	ifstream fin;
 	string filename;
 	string temp;
@@ -48,8 +54,8 @@ void World::StartGame()
 
 	cout << "Enter your name: ";
 	cin.get(name, 10);
-	player.SetName(name);
-	filename = player.GetName() + ".svg";
+	player->SetName(name);
+	filename = player->GetName() + ".svg";
 
 	fin.open(filename.c_str());
 	fin >> temp;
@@ -58,30 +64,30 @@ void World::StartGame()
 	if (temp != "Name:")
 	{
 		load = false;
-		player.SetArmor(Items->GetArmor("Clothes"));
-		player.SetWeapon(Items->GetWeapon("Dagger"));
-		Display->DisplayPlayerStatus(&player);
+		player->SetArmor(Items->GetArmor("Clothes"));
+		player->SetWeapon(Items->GetWeapon("Dagger"));
+		Display->DisplayPlayerStatus(player);
 		system("cls");
 	}
 	if (temp == "Name:")
 		load = true;
 
 	string cheat = "rex";
-	if (player.GetName() == cheat.c_str())
+	if (player->GetName() == cheat.c_str())
 	{
 		map = "icefield1";
 		//p.setelf(1);
 		//p.setbspells(true);
-		player.SetGold(5000);
+		player->SetGold(5000);
 		//p.setmka(50);
-		player.SetMaxHitPoints(500);
-		player.SetHitPoints(500);
-		player.SetKa(50);
+		player->SetMaxHitPoints(500);
+		player->SetHitPoints(500);
+		player->SetKa(50);
 		//p.setweapon(loadWeapon("DeathSword"));
 		//p.setarmor(loadArmor("Hvy.Chain"));
 	}
 
-	Locations(map, &player, load);
+	Locations(map, player, load);
 }
 
 void World::Locations(string map, Player *player, bool load)
@@ -100,13 +106,7 @@ void World::Locations(string map, Player *player, bool load)
 //==============================================================================================================
 //		These are the vectors that are used throughout the game to maintain inventory, items on the ground
 // locations on the virtual maps in memory, AND what magic spells the character has.
-//===============================================================================================================
-
-	vector< Creature* > monk(0);					//This is a seperate vector for THE monk.
-	vector< Item* > worldItems(0);					//Globals will contain ALL the items in the world
-	vector< Item* > playerInventory(0);				//inv is the players inventory
-	vector< Creature* > encounter(0);				//encounter holds all the enemies on a certain map
-	vector<Magic*> spells(0);						//Magik will hold all the spells granted to the player
+//==============================================================================================================
 
 //===========================================================================================================
 //  This sets up the items in their starting places for the player to find. It uses the if(load) to prevent

@@ -9,14 +9,15 @@ MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSave
 	Settings = settings;
 }
 
-void MainMenuSystem::TitleScreenMenu()
+void MainMenuSystem::TitleScreenMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string map)
 {
 	int choice = 0;
 	bool escapeWasPressed = false;
 	bool selectionWasMade = false;
+	bool startGame = false;
 	COORD cursorPosition;
 
-	while (!escapeWasPressed)
+	while (!startGame)
 	{
 		ClearTextBottomRight(11);
 		cursorPosition.X = 2;
@@ -26,31 +27,35 @@ void MainMenuSystem::TitleScreenMenu()
 		Display->DisplayText("|  New    |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|  Load   |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|  Setup  |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  Quit   |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("           ", 1, 17, blue);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
-			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 14))
+			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
 			{
 				DrawCursor(cursorPosition, yellow, 175);
 			}
 			Display->DisplayText(" ", 79, 23, white);
 		} while (!selectionWasMade);
-		if (escapeWasPressed)
-			break;
 
 		choice = cursorPosition.Y;
 		switch (choice)
 		{
 		case 12:
+			startGame = true;
 			break;
 		case 13:
+			GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, Display->GetFileName());
+			startGame = true;
 			break;
 		case 14:
 			OptionsMenu();
+			break;
+		case 15:
+			exit(0);
 			break;
 		}
 	}// End of While(escapeWasPressed)
@@ -542,7 +547,7 @@ void MainMenuSystem::Options(Player* player, vector<Item*>& worldItems, vector<I
 			Display->DisplayText("            ", 13, 11, yellow);
 			break;
 		case 13:
-			GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, Display->GetFileName());			
+			GameSaver->LoadGame(player, worldItems, playerInventory, spells, map, Display->GetFileName());
 			break;
 		case 14:
 			OptionsMenu();
@@ -1104,7 +1109,6 @@ bool MainMenuSystem::MoveCursor(COORD& CursPos, bool& bSelect, bool& bEsc, int Y
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
 		{
 			bCursMov = false;
-			//cout << "-";
 			bSelect = true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)

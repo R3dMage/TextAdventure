@@ -16,7 +16,7 @@ class MainMenuSystem
 public:
 	MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer, GameSettings* settings);
 
-	void TitleScreenMenu();
+	void TitleScreenMenu(Player* player, vector<Magic*>& spells, vector<Item*>& worldItems, vector<Item*>& playerInventory, string map);
 	bool YesOrNoPrompt();
 	void HandleMainPlayerMenu(Player* player, vector<Magic*>& spells, vector<Item*>& Stuff, vector<Item*>& playerInventory, string&);
 	void HandleInventory(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, string);	
