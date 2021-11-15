@@ -45,11 +45,12 @@ void MainMenuSystem::TitleScreenMenu(GameState* gameState)
 		switch (choice)
 		{
 		case 12:
-			gameState->InitializeState(Items, Display->GetFileName());
+			gameState->NewGameState(Items, Display->GetFileName());
 			startGame = true;
 			break;
 		case 13:
 			GameSaver->LoadGame(Display->GetFileName(), gameState);
+			gameState->LoadGameState();
 			startGame = true;
 			break;
 		case 14:
@@ -169,7 +170,6 @@ void MainMenuSystem::HandleMainPlayerMenu(GameState* gameState)
 }
 void MainMenuSystem::HandleInventory(GameState* gameState)
 {
-	unsigned int offset;
 	int choice = 0;
 	int Y = 11;
 	bool escapeWasPressed = false;
