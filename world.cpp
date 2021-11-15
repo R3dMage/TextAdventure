@@ -11,7 +11,6 @@
 #include "MagicShop.h"
 #include "Lodging.h"
 #include "PawnShop.h"
-#include "NpcCreator.h"
 
 World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap, GameSettings* gameSettings)
 {
@@ -50,17 +49,13 @@ void World::SetupGame()
 	vector<Creature*> monk = CurrentState->GetMonk();
 
 	CurrentMap = new VirtualMap(CurrentState->GetMapName());
-	NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+	CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 	Music->SetMusicFilename(CurrentMap->GetMusicFileName());	
 }
 
 void World::PlayGame()
 {
-	unsigned int i;
 	int time = 0;
-	int choice;
-	int playerPositionIndex=0;
-	COORD cursorPosition;
 
 	Player* player = CurrentState->GetPlayer();
 	
@@ -76,67 +71,9 @@ void World::PlayGame()
 		selectionWasMade   = false;
 		escapeWasPressed   = false;
 
-//======================================================================================================
-//					Code for loading up the descriptions, Map Changes, Plots, and Shops!
-//Feb.2005 Added virtual map so as not to access the file EVERY time you move
-//======================================================================================================
-		
+		CheckPlayerLocation(player);
+
 		PlayerEnvironment surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
-		Location* playerLocation = surroundings.PlayerLocation;
-		
-		if(surroundings.PlayerLocation->GetIsMapChange())
-		{
-			player->SetPositionX(surroundings.PlayerLocation->GetNeoX());
-			player->SetPositionY(surroundings.PlayerLocation->GetNeoY());
-
-			CurrentState->SetMapName(surroundings.PlayerLocation->GetMapChangeName());
-
-			CurrentMap->LoadMap(CurrentState->GetMapName());
-			NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
-			
-			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
-			
-			surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
-		}
-
-		if(surroundings.PlayerLocation->GetHasPlot())
-		{
-			Display->ClearAll();
-			Display->DisplayPlayerInfo(player);
-			
-			GamePlots->DisplayPlot(CurrentState->GetMapName(), surroundings.PlayerLocation->GetPlotText());
-		}
-		
-		if(surroundings.PlayerLocation->GetIsShop())
-		{
-			string ShopType = surroundings.PlayerLocation->GetShopName();
-			if (ShopType == "armory")
-			{
-				ArmoryShop armory(Display, Menu, Items, CurrentState->GetMapName());
-				armory.ShowShop(player, CurrentState->GetPlayerInventory());
-			}
-			
-			if (ShopType == "inn")
-			{
-				Lodging lodging(Display, Menu);
-				lodging.Enter(player, CurrentState->GetMapName());
-			}
-			
-			if (ShopType == "magic")
-			{
-				MagicShop magicShop(Display, Menu, Items, CurrentState->GetMapName());
-				magicShop.ShowShop(player, CurrentState->GetPlayerInventory());
-			}
-			
-			if (ShopType == "buy")
-			{
-				PawnShop pawnShop(Display, Menu);
-				pawnShop.Enter(player, CurrentState->GetPlayerInventory(), CurrentState->GetMapName());
-			}
-		}
-//============================================================================================================= 
-//									Puts location descriptions on the screen!
-//=============================================================================================================
 		Display->DisplayLocation(&surroundings);
 		Display->DisplayPlayerInfo(player);
 
@@ -168,39 +105,29 @@ void World::PlayGame()
 		//	k += 2;
 		//}
 
-		cursorPosition.X = 2;
-		cursorPosition.Y = 12;
-
 		Display->DisplayCompass(player->GetPositionX(), player->GetPositionY(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 
-//		This function clears the items that WERE on the ground
+		//	This function clears any items that WERE on the ground
 		Display->ClearTopBelow(2);
-
-//		Function that displays what's on the ground =)
 		Display->DisplayItemsOnGround(CurrentState->GetWorldItems(), CurrentState->GetMapName(), player);
 
-		while(!selectionWasMade)
-		{
-			CheckForPlayerMovement(selectionWasMade, escapeWasPressed, player, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), time);
-		}
-		selectionWasMade = false;
+		CheckForPlayerMovement(escapeWasPressed, player, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), time);
 
-        if(escapeWasPressed)//=================>  This is the code that calls the player menu for advanced fun
+		if(escapeWasPressed)//=================>  This is the code that calls the player menu for advanced fun
 		{
 			//clear();                    For smooth look commented out on 2/15/06
 			Menu->HandleMainPlayerMenu(CurrentState);
 			if(player->GetIsLoaded())
 			{
 				CurrentMap->LoadMap(CurrentState->GetMapName());
-				NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+				CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 				
 				Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 				
 				player->SetIsLoaded(false);
 			}
-			choice = 0;
 		}
-//=======[Function to check, and change plots]======================		
+
 		GamePlots->Check(&player->PlotEventStates, CurrentState->GetMapName(), player->GetPositionX(), player->GetPositionY());
 
 //===============================================================================================
@@ -219,71 +146,12 @@ void World::PlayGame()
 			player->SetPositionY(1);
 			
 			CurrentMap->LoadMap(CurrentState->GetMapName());
-			NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+			CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 			
 			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 		}
 
-//=================================================================================================================
-//											Enemy Encounter Code
-//Cycles through encounter[] checking if any encounter are at the players current location.
-//==================================================================================================================
-
-		vector<Creature*> monk = CurrentState->GetMonk();
-		vector<Creature*> encounters = CurrentState->GetCreatures();
-		if (!player->GetIsLoaded())//								This makes sure that you're not attacked when you load the game.
-		{
-			for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
-			{
-				Creature* creature = *encounter;
-
-				if (player->GetPositionX() == creature->GetX() && player->GetPositionY() == creature->GetY() && creature->GetHitPoints() != 0)
-				{
-					if (!creature->GetTalkTo())
-						Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
-					else
-					{						
-						Display->DisplayPlayerInfo(player);
-						Greeting greeting = creature->GetGreeting(player);
-
-						if (Menu->TalkTo(&greeting, Settings->GetPauseDuration()))
-							Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
-					}
-					if (creature->GetHitPoints() <= 0)
-					{
-						CurrentState->GetWorldItems().push_back(creature->Body(CurrentState->GetMapName()));		//Drops enemy unique item if the enemy is dead
-					}
-					MagicProvider->CheckMagic(player, CurrentState->GetPlayerSpells());
-
-
-					if (monk[0]->GetHitPoints() <= 0)
-					{
-						ReplenishEnemy(monk, i);
-						monk[monk.size()-1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-					}
-
-				}
-			}
-
-//===========================================================================================================
-//					Replenishes the dead enemies, so we don't run out of them on a map
-//Moved to inside the for loop 6/14/05
-//===========================================================================================================
-			for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
-			{
-				Creature* creature = *encounter;
-				if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
-				{
-					ReplenishEnemy(CurrentState->GetCreatures(), i);
-					encounter[encounters.size() - 1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-				}
-			}
-		}
-		if(player->GetIsLoaded())
-			player->SetIsLoaded(false);
-
-		if(monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && CurrentState->GetMapName() == "field2")
-			Fight->Engage(player, monk[0], CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
+		CheckForEnemyEncounters(player);
 
 
 //===============================================================================================
@@ -293,9 +161,125 @@ void World::PlayGame()
 		MoveCreatures(CurrentState->GetCreatures(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 	}// -------------------------------->End Walking Loop
 }
-//===================================================================================================================
-//                                              End Function
-//===================================================================================================================
+
+void World::CheckForEnemyEncounters(Player* player)
+{
+	//=================================================================================================================
+	//											Enemy Encounter Code
+	//Cycles through encounter[] checking if any encounter are at the players current location.
+	//==================================================================================================================
+
+	vector<Creature*> monk = CurrentState->GetMonk();
+	vector<Creature*> encounters = CurrentState->GetCreatures();
+	if (!player->GetIsLoaded())//								This makes sure that you're not attacked when you load the game.
+	{
+		for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
+		{
+			Creature* creature = *encounter;
+
+			if (player->GetPositionX() == creature->GetX() && player->GetPositionY() == creature->GetY() && creature->GetHitPoints() != 0)
+			{
+				if (!creature->GetTalkTo())
+					Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
+				else
+				{
+					Display->DisplayPlayerInfo(player);
+					Greeting greeting = creature->GetGreeting(player);
+
+					if (Menu->TalkTo(&greeting, Settings->GetPauseDuration()))
+						Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
+				}
+				if (creature->GetHitPoints() <= 0)
+				{
+					CurrentState->GetWorldItems().push_back(creature->Body(CurrentState->GetMapName()));		//Drops enemy unique item if the enemy is dead
+				}
+				MagicProvider->CheckMagic(player, CurrentState->GetPlayerSpells());
+
+
+				if (monk[0]->GetHitPoints() <= 0)
+				{
+					ReplenishEnemy(monk[0]);
+					monk[monk.size() - 1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+				}
+
+			}
+		}
+
+		//===========================================================================================================
+		//					Replenishes the dead enemies, so we don't run out of them on a map
+		//Moved to inside the for loop 6/14/05
+		//===========================================================================================================
+		for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
+		{
+			Creature* creature = *encounter;
+			if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
+			{
+				ReplenishEnemy(creature);
+				creature->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+			}
+		}
+	}
+	if (player->GetIsLoaded())
+		player->SetIsLoaded(false);
+
+	if (monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && CurrentState->GetMapName() == "field2")
+		Fight->Engage(player, monk[0], CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
+}
+
+void World::CheckPlayerLocation(Player* player)
+{
+	PlayerEnvironment surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
+	Location* playerLocation = surroundings.PlayerLocation;
+
+	if (surroundings.PlayerLocation->GetIsMapChange())
+	{
+		player->SetPositionX(surroundings.PlayerLocation->GetNeoX());
+		player->SetPositionY(surroundings.PlayerLocation->GetNeoY());
+
+		CurrentState->SetMapName(surroundings.PlayerLocation->GetMapChangeName());
+
+		CurrentMap->LoadMap(CurrentState->GetMapName());
+		CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());		
+
+		Music->SetMusicFilename(CurrentMap->GetMusicFileName());
+	}
+
+	else if (surroundings.PlayerLocation->GetHasPlot())
+	{
+		Display->ClearAll();
+		Display->DisplayPlayerInfo(player);
+
+		GamePlots->DisplayPlot(CurrentState->GetMapName(), surroundings.PlayerLocation->GetPlotText());
+	}
+
+	else if (surroundings.PlayerLocation->GetIsShop())
+	{
+		string ShopType = surroundings.PlayerLocation->GetShopName();
+		if (ShopType == "armory")
+		{
+			ArmoryShop armory(Display, Menu, Items, CurrentState->GetMapName());
+			armory.ShowShop(player, CurrentState->GetPlayerInventory());
+		}
+
+		if (ShopType == "inn")
+		{
+			Lodging lodging(Display, Menu);
+			lodging.Enter(player, CurrentState->GetMapName());
+		}
+
+		if (ShopType == "magic")
+		{
+			MagicShop magicShop(Display, Menu, Items, CurrentState->GetMapName());
+			magicShop.ShowShop(player, CurrentState->GetPlayerInventory());
+		}
+
+		if (ShopType == "buy")
+		{
+			PawnShop pawnShop(Display, Menu);
+			pawnShop.Enter(player, CurrentState->GetPlayerInventory(), CurrentState->GetMapName());
+		}
+	}
+}
 
 
 //==========================================================================================================
@@ -303,53 +287,58 @@ void World::PlayGame()
 //	to load up the description of the place you've moved to. Also it takes the bEsc variable to see if you
 //  hit Esc key to enter the menu.
 //==========================================================================================================
-bool World::CheckForPlayerMovement(bool &selectionWasMade, bool &escapeWasPressed, Player *player,int Xmax, int Ymax, int &T)
+bool World::CheckForPlayerMovement(bool &escapeWasPressed, Player *player, int Xmax,int Ymax, int &time)
 {
-	T++;
+	time++;
 	INPUT_RECORD InputRecord;
 	DWORD Events = 0;
 	HANDLE hInput;
-	bool bCursMov = false;
+	bool cursorMoved = false;
+	bool selectionWasMade = false;
 	int bKeyDown = 0;
 	hInput = GetStdHandle(STD_INPUT_HANDLE);
-	ReadConsoleInput(hInput, &InputRecord,1,&Events);
-	bKeyDown = InputRecord.Event.KeyEvent.bKeyDown;
-	if(InputRecord.EventType == KEY_EVENT && bKeyDown)
+
+	while (!selectionWasMade)
 	{
-		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
-		// If you hit up, go up! But not if your as up as you can go on the map.
+		ReadConsoleInput(hInput, &InputRecord,1,&Events);
+		bKeyDown = InputRecord.Event.KeyEvent.bKeyDown;
+		if (InputRecord.EventType == KEY_EVENT && bKeyDown)
 		{
-			player->SetPositionY(player->GetPositionY()+1);
-			if(player->GetPositionY() > Ymax)
-				player->SetPositionY(Ymax);
-			selectionWasMade = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
-		// If you hit down, go down! The Player Class prevents Y from being 0.
-		{
-			player->SetPositionY(player->GetPositionY()-1);
-			selectionWasMade = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT)
-		// If you hit right, go right! But not if your as right as you can go on the map.
-		{
-			player->SetPositionX(player->GetPositionX()+1);
-			if(player->GetPositionX() > Xmax)
-				player->SetPositionX(Xmax);
-			selectionWasMade = true;
-		}
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_LEFT)
-		// If you hit left, go left! The player class prevents X from being 0.
-		{
-			player->SetPositionX(player->GetPositionX()-1);
-			selectionWasMade = true;
-		}
-		
-		else if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
-		// This changes bEsc, so that the main loop knows to go into the menu function
-		{
-			escapeWasPressed = true;
-			selectionWasMade = true;
+			if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
+				// If you hit up, go up! But not if your as up as you can go on the map.
+			{
+				player->SetPositionY(player->GetPositionY() + 1);
+				if (player->GetPositionY() > Ymax)
+					player->SetPositionY(Ymax);
+				selectionWasMade = true;
+			}
+			else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
+				// If you hit down, go down! The Player Class prevents Y from being 0.
+			{
+				player->SetPositionY(player->GetPositionY() - 1);
+				selectionWasMade = true;
+			}
+			else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT)
+				// If you hit right, go right! But not if your as right as you can go on the map.
+			{
+				player->SetPositionX(player->GetPositionX() + 1);
+				if (player->GetPositionX() > Xmax)
+					player->SetPositionX(Xmax);
+				selectionWasMade = true;
+			}
+			else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_LEFT)
+				// If you hit left, go left! The player class prevents X from being 0.
+			{
+				player->SetPositionX(player->GetPositionX() - 1);
+				selectionWasMade = true;
+			}
+
+			else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
+				// This changes bEsc, so that the main loop knows to go into the menu function
+			{
+				escapeWasPressed = true;
+				selectionWasMade = true;
+			}
 		}
 	}	
 	Display->DisplayText(" ", 79, 23,white);
@@ -359,19 +348,11 @@ return false;
 //==========================================================================================================
 //	Function for replenishing enemies
 //==========================================================================================================
-void World::ReplenishEnemy(vector<Creature*> &enemies, int index)
+void World::ReplenishEnemy(Creature* enemy)
 {
-	Creature *temp;
-
-	temp = enemies[enemies.size()-1];				//Saves off the last in the vector
-	enemies[enemies.size()-1] = enemies[index];		//Moves the killed enemy to the last slot
-	enemies[index] = temp;							//Moves saved last into the slot of slain enemy
-	temp = enemies[enemies.size()-1];				//Saves off slain enemy to use its replenish function
-	enemies.pop_back();
-	enemies.push_back(temp->Replenish());			//Dynamically replenishes the enemy with a new one!
-
-//  Well not too dynamically. It's all taken care of by the classes replenish funcion which just returns a new
-//  Member of its own class. What fun.
+	Creature* temp = enemy->Replenish();
+	delete enemy;
+	enemy = temp;
 }
 
 //==========================================================================================================
