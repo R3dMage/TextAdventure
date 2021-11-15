@@ -1,12 +1,11 @@
 #include "NpcCreator.h"
 
-void NpcCreator::SetupNpcs(std::vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plot, RaceReactionIndex raceReaction)
+vector<Creature*> NpcCreator::SetupNpcs(string mapName, int xMax, int yMax, GameEvents plot, RaceReactionIndex raceReaction)
 {
+	vector<Creature*> npc;
 	string MapInfo = mapName + ".ifo";
 	unsigned int totalMapLocations;
 	unsigned int i;
-
-	ClearCreatures(npc);
 
 	totalMapLocations = xMax * yMax;
 	totalMapLocations = totalMapLocations / 5;
@@ -422,12 +421,5 @@ void NpcCreator::SetupNpcs(std::vector<Creature*>& npc, string mapName, int xMax
 			npc[0]->LoadPosition(3, 5);
 		}
 	}
-}
-
-void NpcCreator::ClearCreatures(std::vector<Creature*>& creatures)
-{
-	for (unsigned int i = 0; i < creatures.size(); i++)
-	{
-		delete creatures[i];
-	}
+	return npc;
 }
