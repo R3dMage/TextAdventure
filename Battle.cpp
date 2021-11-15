@@ -66,14 +66,14 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		else
 		{
 			CursPos.X = 2;
-			CursPos.Y = 15;
+			CursPos.Y = 12;
 
 			Display->DisplayFightMenu();
 
 			Menu->DrawCursor(CursPos, ftext, 175);
 			do
 			{
-				if (Menu->MoveCursor(CursPos, bSel, bEsc, 15, 18))
+				if (Menu->MoveCursor(CursPos, bSel, bEsc, 12, 15))
 				{
 					Menu->DrawCursor(CursPos, ftext, 175);
 				}
