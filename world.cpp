@@ -25,8 +25,8 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* music
 	GamePlots = new Plots(Display);
 	Fight = new Battle(Menu, new FightDisplay(gameSettings), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
-	player = new Player();
-	map = "valesh";
+
+	CurrentState = new GameState();
 }
 
 World::~World()
@@ -40,80 +40,18 @@ World::~World()
 
 void World::TitleScreen()
 {
-	Menu->TitleScreenMenu(player, spells, worldItems, playerInventory, map);
+	Menu->TitleScreenMenu(CurrentState);
 }
 
 void World::SetupGame()
 {
-	if (Settings->GetIsNewGame())
-	{
-		char name[255];
-		cout << "Enter your name: ";
-		cin.get(name, 10);
-		player->SetName(name);
-		player->SetArmor(Items->GetArmor("Clothes"));
-		player->SetWeapon(Items->GetWeapon("Dagger"));
-	
-		Item* vial;
-		vial = new Item;
-		vial->SetName("Empty Vial");
-		vial->SetMapName("forest1");
-		vial->SetPositionX(5);
-		vial->SetPositionY(5);
-		vial->SetKeep(true);
+	// GamePlots->DisplayIntro();
+	Player* player = CurrentState->GetPlayer();
+	vector<Creature*> monk = CurrentState->GetMonk();
 
-		Item* horseshoe;
-		horseshoe = new Item;
-		horseshoe->SetName("Horseshoe");
-		horseshoe->SetMapName("field");
-		horseshoe->SetPositionX(5);
-		horseshoe->SetPositionY(5);
-		horseshoe->SetKeep(true);
-		//==============================================================================================================
-		//			This section of code pushes them into their proper vectors =)
-		//==============================================================================================================
-
-		playerInventory.push_back(Items->GetItem("Potion"));
-		playerInventory.push_back(Items->GetItem("Potion"));
-		worldItems.push_back(vial);
-		worldItems.push_back(horseshoe);
-
-		GamePlots->DisplayIntro();
-	}
-
-	string cheat = "rex";
-	if (player->GetName() == cheat.c_str())
-	{
-		map = "icefield1";
-		
-		player->SetGold(5000);
-		player->SetMaxHitPoints(500);
-		player->SetHitPoints(500);
-		player->SetMaxKa(100);
-		player->SetKa(100);
-		player->SetPositionX(5);
-		player->SetPositionY(9);
-
-		player->SetHasSpells(true);
-		spells.push_back(new MinorHeal);
-		spells.push_back(new MajorHeal);
-		spells.push_back(new BriarBush);
-		spells.push_back(new Blizzard);
-		spells.push_back(new PerfectStorm);
-		map = "island1";
-		playerInventory.push_back(Items->GetItem("+1 Scimitar"));
-		playerInventory.push_back(Items->GetItem("DeathSword"));
-		playerInventory.push_back(Items->GetItem("RedMail"));
-	}
-
-	CurrentMap = new VirtualMap(map);
-	NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
-	Music->SetMusicFilename(CurrentMap->GetMusicFileName());
-
-	if (!player->PlotEventStates.Monk)
-		monk.push_back(new Monk);					//This puts in THE only monk in the game.
-	else
-		monk.push_back(new Fly);
+	CurrentMap = new VirtualMap(CurrentState->GetMapName());
+	NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+	Music->SetMusicFilename(CurrentMap->GetMusicFileName());	
 }
 
 void World::PlayGame()
@@ -123,15 +61,17 @@ void World::PlayGame()
 	int choice;
 	int playerPositionIndex=0;
 	COORD cursorPosition;
+
+	Player* player = CurrentState->GetPlayer();
 	
 	bool selectionWasMade;
 	bool escapeWasPressed;
 
-    Display->ClearAll();	
+    Display->ClearAll();
 
 	while(player->GetCurrentHitPoints() > 0)			//This is THE while loop for the game
 	{
-		monk[0]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+		CurrentState->GetMonk()[0]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 
 		selectionWasMade   = false;
 		escapeWasPressed   = false;
@@ -149,10 +89,10 @@ void World::PlayGame()
 			player->SetPositionX(surroundings.PlayerLocation->GetNeoX());
 			player->SetPositionY(surroundings.PlayerLocation->GetNeoY());
 
-			map = surroundings.PlayerLocation->GetMapChangeName();
+			CurrentState->SetMapName(surroundings.PlayerLocation->GetMapChangeName());
 
-			CurrentMap->LoadMap(map);
-			NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+			CurrentMap->LoadMap(CurrentState->GetMapName());
+			NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
 			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 			
@@ -164,7 +104,7 @@ void World::PlayGame()
 			Display->ClearAll();
 			Display->DisplayPlayerInfo(player);
 			
-			GamePlots->DisplayPlot(map, surroundings.PlayerLocation->GetPlotText());
+			GamePlots->DisplayPlot(CurrentState->GetMapName(), surroundings.PlayerLocation->GetPlotText());
 		}
 		
 		if(surroundings.PlayerLocation->GetIsShop())
@@ -172,26 +112,26 @@ void World::PlayGame()
 			string ShopType = surroundings.PlayerLocation->GetShopName();
 			if (ShopType == "armory")
 			{
-				ArmoryShop armory(Display, Menu, Items, map);
-				armory.ShowShop(player, playerInventory);
+				ArmoryShop armory(Display, Menu, Items, CurrentState->GetMapName());
+				armory.ShowShop(player, CurrentState->GetPlayerInventory());
 			}
 			
 			if (ShopType == "inn")
 			{
 				Lodging lodging(Display, Menu);
-				lodging.Enter(player, map);
+				lodging.Enter(player, CurrentState->GetMapName());
 			}
 			
 			if (ShopType == "magic")
 			{
-				MagicShop magicShop(Display, Menu, Items, map);
-				magicShop.ShowShop(player, playerInventory);
+				MagicShop magicShop(Display, Menu, Items, CurrentState->GetMapName());
+				magicShop.ShowShop(player, CurrentState->GetPlayerInventory());
 			}
 			
 			if (ShopType == "buy")
 			{
 				PawnShop pawnShop(Display, Menu);
-				pawnShop.Enter(player, playerInventory, map);
+				pawnShop.Enter(player, CurrentState->GetPlayerInventory(), CurrentState->GetMapName());
 			}
 		}
 //============================================================================================================= 
@@ -210,9 +150,9 @@ void World::PlayGame()
 		Display->DisplayText("x",4,22,white);
 		Display->DisplayNumber(CurrentMap->GetMaxY(), 5, 22, white);
 		Display->DisplayText("          ",2,19,white);
-		Display->DisplayText(map,2,19,yellow);			
+		Display->DisplayText(CurrentState->GetMapName(),2,19,yellow);			
 //		Display->num(T,2,20,yellow);			T = 0;
-//		Display->num(static_cast<int>(encounter.size()),2,21,blue);
+//		Display->num(static_cast<int>(CurrentState->GetCreatures().size()),2,21,blue);
 //=============================================================================================================
 //								 Code that displays enemies grid locations
 // commented out Enemy grid locations 6/14/05
@@ -223,8 +163,8 @@ void World::PlayGame()
 		//	int j = 16;
 		//	Display->text("X: ",13,8,white);
 		//	Display->text("Y: ",13,9,white);
-		//	Display->num(encounter[i]->getX(),j+i+k,8,white);
-		//	Display->num(encounter[i]->getY(),j+i+k,9,white);
+		//	Display->num(CurrentState->GetCreatures()[i]->getX(),j+i+k,8,white);
+		//	Display->num(CurrentState->GetCreatures()[i]->getY(),j+i+k,9,white);
 		//	k += 2;
 		//}
 
@@ -237,7 +177,7 @@ void World::PlayGame()
 		Display->ClearTopBelow(2);
 
 //		Function that displays what's on the ground =)
-		Display->DisplayItemsOnGround(worldItems,map,player->GetPositionX(),player->GetPositionY());
+		Display->DisplayItemsOnGround(CurrentState->GetWorldItems(), CurrentState->GetMapName(), player);
 
 		while(!selectionWasMade)
 		{
@@ -248,11 +188,11 @@ void World::PlayGame()
         if(escapeWasPressed)//=================>  This is the code that calls the player menu for advanced fun
 		{
 			//clear();                    For smooth look commented out on 2/15/06
-			Menu->HandleMainPlayerMenu(player, spells, worldItems, playerInventory, map);
+			Menu->HandleMainPlayerMenu(CurrentState);
 			if(player->GetIsLoaded())
 			{
-				CurrentMap->LoadMap(map);
-				NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+				CurrentMap->LoadMap(CurrentState->GetMapName());
+				NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 				
 				Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 				
@@ -261,7 +201,7 @@ void World::PlayGame()
 			choice = 0;
 		}
 //=======[Function to check, and change plots]======================		
-		GamePlots->Check(&player->PlotEventStates, map, player->GetPositionX(), player->GetPositionY());
+		GamePlots->Check(&player->PlotEventStates, CurrentState->GetMapName(), player->GetPositionX(), player->GetPositionY());
 
 //===============================================================================================
 //							This section will be checking player location
@@ -270,16 +210,16 @@ void World::PlayGame()
 //  will check other places, I don't know yet 6/12/05.
 //===============================================================================================
 		
-		if(map == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
+		if(CurrentState->GetMapName() == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
 		{
 			Display->DisplayText("You are not yet powerful enough to enter here.",13,11,white);
 			Sleep(3000);
-			map = "field";
+			CurrentState->GetMapName() = "field";
 			player->SetPositionX(17);
 			player->SetPositionY(1);
 			
-			CurrentMap->LoadMap(map);
-			NpcCreator::SetupNpcs(encounter, map, CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
+			CurrentMap->LoadMap(CurrentState->GetMapName());
+			NpcCreator::SetupNpcs(CurrentState->GetCreatures(), CurrentState->GetMapName(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY(), player->PlotEventStates, player->RaceReactions);
 			
 			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 		}
@@ -289,42 +229,33 @@ void World::PlayGame()
 //Cycles through encounter[] checking if any encounter are at the players current location.
 //==================================================================================================================
 
+		vector<Creature*> monk = CurrentState->GetMonk();
+		vector<Creature*> encounters = CurrentState->GetCreatures();
 		if (!player->GetIsLoaded())//								This makes sure that you're not attacked when you load the game.
 		{
-			for (i = 0; i < encounter.size(); i++)
+			for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
 			{
-				Creature* creature = encounter[i];
+				Creature* creature = *encounter;
 
 				if (player->GetPositionX() == creature->GetX() && player->GetPositionY() == creature->GetY() && creature->GetHitPoints() != 0)
 				{
 					if (!creature->GetTalkTo())
-						Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
+						Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
 					else
 					{						
 						Display->DisplayPlayerInfo(player);
 						Greeting greeting = creature->GetGreeting(player);
 
 						if (Menu->TalkTo(&greeting, Settings->GetPauseDuration()))
-							Fight->Engage(player, creature, playerInventory, worldItems, spells, map);
+							Fight->Engage(player, creature, CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
 					}
 					if (creature->GetHitPoints() <= 0)
 					{
-						worldItems.push_back(creature->Body(map));		//Drops enemy unique item if the enemy is dead
+						CurrentState->GetWorldItems().push_back(creature->Body(CurrentState->GetMapName()));		//Drops enemy unique item if the enemy is dead
 					}
-					MagicProvider->CheckMagic(player, spells);
+					MagicProvider->CheckMagic(player, CurrentState->GetPlayerSpells());
 
-//===========================================================================================================
-//					Replenishes the dead enemies, so we don't run out of them on a map
-//Moved to inside the for loop 6/14/05
-//===========================================================================================================
-					for (i = 0; i < encounter.size();i++)
-					{
-						if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
-						{
-							ReplenishEnemy(encounter, i);
-							encounter[encounter.size()-1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-						}
-					}
+
 					if (monk[0]->GetHitPoints() <= 0)
 					{
 						ReplenishEnemy(monk, i);
@@ -333,19 +264,33 @@ void World::PlayGame()
 
 				}
 			}
+
+//===========================================================================================================
+//					Replenishes the dead enemies, so we don't run out of them on a map
+//Moved to inside the for loop 6/14/05
+//===========================================================================================================
+			for (vector<Creature*>::iterator encounter = encounters.begin(); encounter != encounters.end(); ++encounter)
+			{
+				Creature* creature = *encounter;
+				if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
+				{
+					ReplenishEnemy(CurrentState->GetCreatures(), i);
+					encounter[encounters.size() - 1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+				}
+			}
 		}
 		if(player->GetIsLoaded())
 			player->SetIsLoaded(false);
 
-		if(monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && map == "field2")
-			Fight->Engage(player, monk[0], playerInventory, worldItems, spells, map);
+		if(monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && CurrentState->GetMapName() == "field2")
+			Fight->Engage(player, monk[0], CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
 
 
 //===============================================================================================
 //									Function for moving enemies around on the map
 //===============================================================================================
 
-		MoveCreatures(encounter, CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
+		MoveCreatures(CurrentState->GetCreatures(), CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 	}// -------------------------------->End Walking Loop
 }
 //===================================================================================================================

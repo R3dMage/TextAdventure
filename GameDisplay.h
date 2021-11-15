@@ -30,7 +30,7 @@ public:
 	void DisplayPlayerStatus(Player* player);
 	void DisplayPlayerItems(std::vector<Item*>& playerInventory);
 	void DisplayItem(Item* item);
-	void DisplayItemsOnGround(std::vector<Item*> worldItems, std::string map, int x, int y);
+	void DisplayItemsOnGround(std::vector<Item*> worldItems, std::string map, Player* player);
 
 	void DisplayCastingCost(int amount);
 	void DisplayIncantation(string description, string incantation);

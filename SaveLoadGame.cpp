@@ -8,19 +8,19 @@ SaveLoadGame::SaveLoadGame(ItemRepository* itemRepository, GameDisplay* gameDisp
 	Display = gameDisplay;
 }
 
-void SaveLoadGame::SaveGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map)
+void SaveLoadGame::SaveGame(GameState* gameState)
 {
-	string Savefile = player->GetName();
+	string Savefile = gameState->GetPlayer()->GetName();
 	Savefile = Savefile + ".svg";
 	ofstream fout;
 
 	fout.open(Savefile.c_str());
 
-	SavePlayer(player, fout);
-	SaveMagic(spells, fout);
-	SaveInventory(playerInventory, fout);
-	SaveGround(worldItems, fout);
-	fout << "Map: " << map;
+	SavePlayer(gameState->GetPlayer(), fout);
+	SaveMagic(gameState->GetPlayerSpells(), fout);
+	SaveInventory(gameState->GetPlayerInventory(), fout);
+	SaveGround(gameState->GetWorldItems(), fout);
+	fout << "Map: " << gameState->GetMapName();
 
 	fout.close();
 }
@@ -116,10 +116,11 @@ void SaveLoadGame::SaveMagic(vector<Magic*>& spells, ofstream& fout)
 	}
 }
 
-void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map, string filename)
+void SaveLoadGame::LoadGame(string filename, GameState* gameState)
 {
 	string fName = filename + ".svg";
 	string temp;
+	string mapName;
 
 	ifstream fin;
 	fin.open(fName.c_str());
@@ -128,11 +129,12 @@ void SaveLoadGame::LoadGame(Player* player, vector<Item*>& worldItems, vector<It
 		Display->DisplayError("ERROR LOADING SAVED CHARACTER");
 		exit(0);
 	};
-	LoadPlayer(player, fin);
-	LoadMagic(spells, fin);
-	LoadInventory(playerInventory, fin);
-	LoadGround(worldItems, fin);
-	fin >> temp >> map;
+	LoadPlayer(gameState->GetPlayer(), fin);
+	LoadMagic(gameState->GetPlayerSpells(), fin);
+	LoadInventory(gameState->GetPlayerInventory(), fin);
+	LoadGround(gameState->GetWorldItems(), fin);
+	fin >> temp >> mapName;
+	gameState->SetMapName(mapName);
 
 	fin.close();
 }

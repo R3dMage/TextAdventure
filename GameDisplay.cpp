@@ -417,14 +417,14 @@ void GameDisplay::DisplayCost(int cost)
 	cout << " GP  ";
 }
 
-void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string Map, int X, int Y)
+void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string map, Player* player)
 {
 	unsigned int Offset = 0;
 	int NumItems = 0;
 	DisplayText("[---Ground---]", 13, 1, brown);
 	while (Offset < stuff.size())
 	{
-		if (stuff[Offset]->GetPositionY() == Y && stuff[Offset]->GetPositionX() == X && stuff[Offset]->GetMapName() == Map)
+		if (stuff[Offset]->GetPositionY() == player->GetPositionY() && stuff[Offset]->GetPositionX() == player->GetPositionX() && stuff[Offset]->GetMapName() == map)
 		{
 			DisplayText(stuff[Offset]->GetName(), 15, 2 + NumItems, yellow);
 			NumItems++;

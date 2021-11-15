@@ -57,12 +57,12 @@ void FightDisplay::DisplayFightMenu()
 	DisplayText("           ", 1, 12, white);
 	DisplayText("           ", 1, 13, white);
 	DisplayText("                                                                 ", 13, 11, FOREGROUND_BLUE);
-	DisplayText("/---------\\", 1, 14, ftext);
-	DisplayText("|  Attack |", 1, 15, ftext);
-	DisplayText("|  Magic  |", 1, 16, ftext);
-	DisplayText("|  Item   |", 1, 17, ftext);
-	DisplayText("|  Run    |", 1, 18, ftext);
-	DisplayText("\\---------/", 1, 19, ftext);
+	DisplayText("/---------\\", 1, 11, ftext);
+	DisplayText("|  Attack |", 1, 12, ftext);
+	DisplayText("|  Magic  |", 1, 13, ftext);
+	DisplayText("|  Item   |", 1, 14, ftext);
+	DisplayText("|  Run    |", 1, 15, ftext);
+	DisplayText("\\---------/", 1, 16, ftext);
 }
 
 void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)

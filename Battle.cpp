@@ -83,20 +83,20 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 			choice = CursPos.Y;
 			switch (choice)
 			{
-			case 15:
+			case 12:
 				PlayerAttack(player, Display, enemy);
 				break;
-			case 16:
+			case 13:
 				PlayerMagic(player, enemy, spells, bEsc, pass);
 				break;
-			case 17:
+			case 14:
 				Menu->UseItem(player, worldItems, playerInventory, true, bLeave, mapName);
 				if (bLeave)
 					pass = true;
 				armor = player->GetArmor();
 				weapon = player->GetWeapon();
 				break;
-			case 18:
+			case 15:
 				run = true;
 				break;
 			}
