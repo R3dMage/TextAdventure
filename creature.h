@@ -1,9 +1,9 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-#include <windows.h>		//I'm not sure
-#include <iostream>			//Always needed
-#include <string>			//For std::strings
+#include <windows.h>
+#include <iostream>
+#include <string>
 
 #include "TextDisplay.h"
 #include "Greeting.h"
