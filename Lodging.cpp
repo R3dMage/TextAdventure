@@ -47,22 +47,19 @@ void Lodging::Enter(Player* player, string mapName)
 
 	if (!stayAtTheInn)
 	{
-		Display->DisplayText("Sorry, maybe next time.                   ", 13, 11, white);
-		Sleep(player->GetPauseDuration());
+		Display->DisplayTextAndPause("Sorry, maybe next time.                   ", 13, 11, white);
 		return;
 	}
 
 	if (player->GetGold() < Price)
 	{
-		Display->DisplayText("You have insufficient funds", 13, 11, yellow);
-		Sleep(player->GetPauseDuration());
+		Display->DisplayTextAndPause("You have insufficient funds", 13, 11, yellow);
 		return;
 	}
 
 	player->SetGold(player->GetGold() - Price);
 	player->SetHitPoints(player->GetMaxHitPoints());
 	player->SetKa(player->GetMaxKa());
-	Display->DisplayText("Pleasure doing business with you!", 13, 11, white);
-	Sleep(player->GetPauseDuration());
+	Display->DisplayTextAndPause("Pleasure doing business with you!", 13, 11, white);
 	Display->ClearAll();
 }

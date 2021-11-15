@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include "GameSettings.h"
 
 #define box FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define white FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -16,12 +17,17 @@
 class TextDisplay
 {
 public:
+	TextDisplay(GameSettings* settings);
 	void DisplayText(std::string szText, short X, short Y, WORD color);
+	void DisplayTextAndPause(std::string text, short X, short Y, WORD color);
 	void DisplayNumber(int num, short X, short Y, WORD color);
 	void DisplayError(std::string errorText);
 	void DisplayDamage(int amount);
 	void DisplayCure(int amount);
 	void SlowDisplay(std::string szText);
+
+protected:
+	GameSettings* Settings;
 
 private:
 	void DisplayRunningNumber(int amount, WORD color);

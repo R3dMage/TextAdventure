@@ -13,16 +13,19 @@
 #include "VirtualMap.h"
 #include "PlayerMagicProvider.h"
 #include "MusicPlayer.h"
+#include "GameSettings.h"
+#include "GameState.h"
 
 class World
 {
 public:
-	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap);
+	World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* musicPlayer, VirtualMap* virtualMap, GameSettings* gameSettings);
 	~World();
-	void StartGame();
-	void Move(vector<Creature*>& encounter, int Xmax, int Ymax);
-	void Locations(string map, Player* player, bool playerIsLoaded);
-	bool Overflow(int size);
+	void TitleScreen();
+	void SetupGame();
+	void PlayGame();
+
+
 	
 	
 
@@ -36,9 +39,17 @@ private:
 	Battle* Fight;
 	PlayerMagicProvider* MagicProvider;
 	MusicPlayer* Music;
+	GameSettings* Settings;
 
-	bool Walk(bool &bSelect,bool &bEsc, Player *player,int Xmax, int Ymax, int &T);
-	void ReplenishEnemy(vector<Creature*>& enemies, int num);
+	// State of the game
+	GameState* CurrentState;
+
+	void MoveCreatures(vector<Creature*>& encounter, int Xmax, int Ymax);
+	void CheckPlayerLocation(Player* player);
+	bool CheckForPlayerMovement(bool &bEsc,Player *player, int Xmax,int Ymax, int &T);
+	void CheckForEnemyEncounters(Player* player);
+	void ReplenishEnemy(Creature* enemy);
+	bool Overflow(int size);
 };
 
 #endif

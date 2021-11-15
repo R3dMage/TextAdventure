@@ -189,7 +189,7 @@ void DrainLife::Cast(Player *player, Creature *enemy, GameDisplay* display)
 	display->DisplayText("Your Damage: ",13,11,white);
 	cout << Damage;
 	display->DisplayDamage(Damage);
-	Sleep(player->GetPauseDuration());
+	display->DisplayTextAndPause("", 79, 23, white);
 	
 	display->DisplayText("You were healed: ",13,8,white); cout << Damage;
 	display->DisplayCure(Damage);

@@ -3,6 +3,11 @@
 
 using namespace std;
 
+TextDisplay::TextDisplay(GameSettings* settings)
+{
+	Settings = settings;
+}
+
 void TextDisplay::DisplayText(string szText, short X, short Y, WORD color)
 {
 	HANDLE OutputH;
@@ -13,6 +18,12 @@ void TextDisplay::DisplayText(string szText, short X, short Y, WORD color)
 	SetConsoleCursorPosition(OutputH, pos);
 
 	cout << szText;
+}
+
+void TextDisplay::DisplayTextAndPause(std::string text, short X, short Y, WORD color)
+{
+	DisplayText(text, X, Y, color);
+	Sleep(Settings->GetPauseDuration());
 }
 
 void TextDisplay::DisplayNumber(int num, short X, short Y, WORD color)

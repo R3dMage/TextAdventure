@@ -67,8 +67,6 @@ public:
 	int GetEvade();
 	void SetTotalKills(int);
 	int GetTotalKills();
-	void SetPauseDuration(int);
-	int GetPauseDuration();
 	void SetReactionElf(int);
 	int GetReactionElf();
 	void SetReactionHuman(int);

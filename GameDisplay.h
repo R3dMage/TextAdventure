@@ -9,7 +9,8 @@
 
 class GameDisplay : public TextDisplay
 {
-public:	
+public:
+	GameDisplay(GameSettings* settings);
 	void BoxScreen();
 	void DrawBoxWithCross();
 	void DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin);
@@ -29,7 +30,7 @@ public:
 	void DisplayPlayerStatus(Player* player);
 	void DisplayPlayerItems(std::vector<Item*>& playerInventory);
 	void DisplayItem(Item* item);
-	void DisplayItemsOnGround(std::vector<Item*> worldItems, std::string map, int x, int y);
+	void DisplayItemsOnGround(std::vector<Item*> worldItems, std::string map, Player* player);
 
 	void DisplayCastingCost(int amount);
 	void DisplayIncantation(string description, string incantation);

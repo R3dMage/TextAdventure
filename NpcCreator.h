@@ -7,6 +7,5 @@
 class NpcCreator
 {
 public:
-	static void SetupNpcs(std::vector<Creature*>& npc, string mapName, int xMax, int yMax, GameEvents plot, RaceReactionIndex raceReaction);
-	static void ClearCreatures(std::vector<Creature*>& creatures);
+	static std::vector<Creature*> SetupNpcs( string mapName, int xMax, int yMax, GameEvents plot, RaceReactionIndex raceReaction);
 };

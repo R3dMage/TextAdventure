@@ -11,8 +11,8 @@ class SaveLoadGame :
 {
 public:
 	SaveLoadGame(ItemRepository* itemRepository, GameDisplay* gameDisplay);
-	virtual void SaveGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map) override;
-	virtual void LoadGame(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, vector<Magic*>& spells, string& map, string filename) override;
+	virtual void SaveGame(GameState* gameState) override;
+	virtual void LoadGame(string filename, GameState* gameState) override;
 	
 protected:
 	void SavePlayer(Player* player, ofstream& fout);

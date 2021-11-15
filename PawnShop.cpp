@@ -43,8 +43,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 		Display->DisplayText("[---We buy STUFF!---]", 13, 1, brown);
 		if (playerInventory.size() < 1)
 		{
-			Display->DisplayText("You have nothing to sell!!!", 13, 3, white);
-			Sleep(player->GetPauseDuration());
+			Display->DisplayTextAndPause("You have nothing to sell!!!", 13, 3, white);
 			return;
 		}
 		else
@@ -112,7 +111,6 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 		//==================================================================================================
 		Display->ClearBottom();
 		Display->DisplayPlayerInfo(player);
-		Display->DisplayText("There you go!", 13, 3, white);
-		Sleep(player->GetPauseDuration());
+		Display->DisplayTextAndPause("There you go!", 13, 3, white);
 	}
 }

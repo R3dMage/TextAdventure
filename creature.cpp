@@ -42,9 +42,7 @@ void Creature::Attack(Player *player, TextDisplay* display)
 	if(damage < 0)
 		damage = 0;
 	player->SetHitPoints(player->GetCurrentHitPoints()-damage);
-	display->DisplayText(GetName(),13,11,white);
-	cout << " attacks you!";
-	Sleep(player->GetPauseDuration());
+	display->DisplayTextAndPause(GetName() + " attacks you!", 13, 11, white);
 	display->DisplayText("Enemies Damage: ",13,11,white);
 	cout << damage << "              ";
 	display->DisplayDamage(damage);

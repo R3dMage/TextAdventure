@@ -126,10 +126,6 @@ void Player::SetTotalKills(int kills)
 {
 	TotalKills = kills		;
 }
-void Player::SetPauseDuration(int pauseDuration)
-{
-	PauseDuration = pauseDuration;
-}
 
 Armor* Player::GetArmor()
 {
@@ -198,10 +194,6 @@ int Player::GetEvade()
 int Player::GetTotalKills()
 {
 	return TotalKills;
-}
-int Player::GetPauseDuration()
-{
-	return PauseDuration;
 }
 void Player::SetReactionElf(int reaction)
 {	

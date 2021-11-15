@@ -1,5 +1,10 @@
 #include "FightDisplay.h"
 
+FightDisplay::FightDisplay(GameSettings* settings) :
+	GameDisplay(settings)
+{
+}
+
 void FightDisplay::DisplayAttackAnnouncement(Creature* enemy)
 {
 	DisplayText("You have been attacked by a ", 13, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
@@ -21,19 +26,18 @@ void FightDisplay::DisplayBanter(std::vector<string> speech)
 	ClearTopBelow(1);
 }
 
-void FightDisplay::DisplayMessage(string message, int pauseDuration)
+void FightDisplay::DisplayMessage(string message)
 {
 	DisplayText(message, 13, 11, white);
-	DisplayText("", 79, 23, white);
-	Sleep(pauseDuration);
+	DisplayTextAndPause("", 79, 23, white);
 	DisplayText("                     ", 13, 11, white);
 }
 
-void FightDisplay::DisplayMessageWithRedNumber(string message, int damage, int pauseDuration)
+void FightDisplay::DisplayMessageWithRedNumber(string message, int damage)
 {
 	DisplayText(message, 13, 11, white);
 	DisplayNumber(damage, 45, 11, red);
-	Sleep(pauseDuration);
+	Sleep(Settings->GetPauseDuration());
 }
 
 void FightDisplay::DisplayCreatureStatus(Creature* creature)
@@ -53,18 +57,17 @@ void FightDisplay::DisplayFightMenu()
 	DisplayText("           ", 1, 12, white);
 	DisplayText("           ", 1, 13, white);
 	DisplayText("                                                                 ", 13, 11, FOREGROUND_BLUE);
-	DisplayText("/---------\\", 1, 14, ftext);
-	DisplayText("|  Attack |", 1, 15, ftext);
-	DisplayText("|  Magic  |", 1, 16, ftext);
-	DisplayText("|  Item   |", 1, 17, ftext);
-	DisplayText("|  Run    |", 1, 18, ftext);
-	DisplayText("\\---------/", 1, 19, ftext);
+	DisplayText("/---------\\", 1, 11, ftext);
+	DisplayText("|  Attack |", 1, 12, ftext);
+	DisplayText("|  Magic  |", 1, 13, ftext);
+	DisplayText("|  Item   |", 1, 14, ftext);
+	DisplayText("|  Run    |", 1, 15, ftext);
+	DisplayText("\\---------/", 1, 16, ftext);
 }
 
 void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 {
-	DisplayText("The enemy has been slain", 13, 11, white);
-	Sleep(player->GetPauseDuration());
+	DisplayTextAndPause("The enemy has been slain", 13, 11, white);
 	ClearAll();
 
 	DisplayText("After every enemy dies you get stuff!!!", 13, 9, green);
@@ -74,13 +77,12 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 	DisplayNumber(enemy->GetExperience(), 20, 12, green);
 
 	enemy->Win(player, this);
-	Sleep(player->GetPauseDuration());
+	Sleep(Settings->GetPauseDuration());
 }
 
 void FightDisplay::DisplayLevelUp(Player* player)
 {
 	ClearAll();
 	DisplayText("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
-	DisplayText("", 79, 23, white);
-	Sleep(player->GetPauseDuration());
+	DisplayTextAndPause("", 79, 23, white);
 }
