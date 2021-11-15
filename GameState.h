@@ -5,21 +5,25 @@
 #include "item.h"
 #include "creature.h"
 #include "magic.h"
+#include "NpcCreator.h"
 
 class GameState
 {
 public:
-	void InitializeState(ItemRepository* itemRepository, std::string playerName);
+	GameState();
+	void NewGameState(ItemRepository* itemRepository, std::string playerName);
+	void LoadGameState();
 	void PickupItems(GameDisplay* display);
+	void SetupNpcs(int xMax, int yMax);
 
 	Player* GetPlayer();
 	void SetMapName(std::string mapName);
 	std::string GetMapName();
 	std::vector<Creature*> GetCreatures();
 	std::vector<Creature*> GetMonk();
-	std::vector<Item*> GetPlayerInventory();
-	std::vector<Item*> GetWorldItems();
-	std::vector<Magic*> GetPlayerSpells();
+	std::vector<Item*>& GetPlayerInventory();
+	std::vector<Item*>& GetWorldItems();
+	std::vector<Magic*>& GetPlayerSpells();
 
 private:
 	Player* player;

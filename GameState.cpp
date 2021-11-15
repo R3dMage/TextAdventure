@@ -1,9 +1,13 @@
 #include "GameState.h"
 #include "enemies.h"
 
-void GameState::InitializeState(ItemRepository* itemRepository, string playerName)
+GameState::GameState()
 {
 	player = new Player();
+}
+
+void GameState::NewGameState(ItemRepository* itemRepository, string playerName)
+{
 	player->SetName(playerName);
 	player->SetArmor(itemRepository->GetArmor("Clothes"));
 	player->SetWeapon(itemRepository->GetWeapon("Dagger"));
@@ -29,10 +33,7 @@ void GameState::InitializeState(ItemRepository* itemRepository, string playerNam
 	worldItems.push_back(vial);
 	worldItems.push_back(horseshoe);
 
-	if (!player->PlotEventStates.Monk)
-		monk.push_back(new Monk);					//This puts in THE only monk in the game.
-	else
-		monk.push_back(new Fly);
+	monk.push_back(new Monk);					//This puts in THE only monk in the game.
 	
 	map = "valesh";
 
@@ -62,6 +63,14 @@ void GameState::InitializeState(ItemRepository* itemRepository, string playerNam
 	}
 }
 
+void GameState::LoadGameState()
+{
+	if (!player->PlotEventStates.Monk)
+		monk.push_back(new Monk);					//This puts in THE only monk in the game.
+	else
+		monk.push_back(new Fly);
+}
+
 void GameState::PickupItems(GameDisplay* display)
 {
 	Item* temp;
@@ -89,6 +98,15 @@ void GameState::PickupItems(GameDisplay* display)
 	}
 }
 
+void GameState::SetupNpcs(int xMax, int yMax)
+{
+	for (unsigned int i = 0; i < encounter.size(); i++)
+	{
+		delete encounter[i];
+	}
+	encounter = NpcCreator::SetupNpcs(map, xMax, yMax, player->PlotEventStates, player->RaceReactions);
+}
+
 void GameState::SetMapName(std::string mapName)
 {
 	map = mapName;
@@ -114,17 +132,17 @@ std::vector<Creature*> GameState::GetMonk()
 	return monk;
 }
 
-std::vector<Item*> GameState::GetPlayerInventory()
+std::vector<Item*>& GameState::GetPlayerInventory()
 {
 	return playerInventory;
 }
 
-std::vector<Item*> GameState::GetWorldItems()
+std::vector<Item*>& GameState::GetWorldItems()
 {
 	return worldItems;
 }
 
-std::vector<Magic*> GameState::GetPlayerSpells()
+std::vector<Magic*>& GameState::GetPlayerSpells()
 {
 	return spells;
 }
