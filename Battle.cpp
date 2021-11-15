@@ -175,8 +175,11 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 
 	if (player->GetCurrentHitPoints() <= 0)
 	{
+		// GET SOUND FOR DEATH
 		Display->ClearAll();
-		Display->DisplayMessage("You have died");
+		Display->DisplayText("You have died", 13, 11, red);
+		Display->DisplayText("", 13, 12, red);
+		system("pause");
 		return;
 	}
 
