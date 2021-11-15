@@ -20,7 +20,10 @@ void main()
 
 	World globe(gameDisplay, itemRepository, musicPlayer, virtualMap, gameSettings);
 
-	globe.TitleScreen();
-	globe.SetupGame();
-	globe.PlayGame();
+	while (true)
+	{
+		globe.TitleScreen();
+		globe.SetupGame();
+		globe.PlayGame();
+	}
 }
