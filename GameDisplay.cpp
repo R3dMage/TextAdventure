@@ -433,6 +433,5 @@ void GameDisplay::DisplayItemsOnGround(vector<Item*> stuff, string map, Player* 
 		if (NumItems > 10)
 			break;
 	}
-	if (Offset < 10)
-		DisplayText("                       ", 15, 3 + NumItems, yellow);
+	DisplayText("", 78, 24, white);
 }
