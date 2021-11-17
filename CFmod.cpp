@@ -87,7 +87,7 @@ void CFmod::CheckError(FMOD_RESULT result)
 
 void CFmod::FreeSound()
 {
-	m_pSound->release();	
+	m_pSound->release();
 }
 
 void CFmod::FreeSoundSystem()
