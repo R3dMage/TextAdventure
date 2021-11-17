@@ -460,11 +460,11 @@ void MainMenuSystem::OptionsMenu()
 	bool escapeWasPressed = false;
 	bool selectionWasMade = false;
 	COORD cursorPosition;
+	cursorPosition.X = 2;
+	cursorPosition.Y = 12;
 
 	while (!escapeWasPressed)
 	{
-		cursorPosition.X = 2;
-		cursorPosition.Y = 12;
 		selectionWasMade = false;
 		Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -484,10 +484,8 @@ void MainMenuSystem::OptionsMenu()
 		DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
-			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
+			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 13))
 			{
-				//clr(11);
-				DrawCursor(cursorPosition, yellow, 175);
 				/*=======================================
 				Displays the current music status
 				========================================*/
@@ -499,9 +497,11 @@ void MainMenuSystem::OptionsMenu()
 				Displays current player pause duration
 				========================================*/
 				if (cursorPosition.Y == 13) {
+					Display->DisplayText("              ", 13, 12, yellow);
 					Display->DisplayText("Speed: ", 13, 12, yellow);
 					cout << Settings->GetPauseDuration();
 				}
+				DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -511,9 +511,7 @@ void MainMenuSystem::OptionsMenu()
 		switch (choice)
 		{
 		case 12:
-			Display->DisplayText("Changing Music.", 13, 11, yellow);
 			Music->ToggleMusic();
-			Sleep(Settings->GetPauseDuration());
 			Display->DisplayText("               ", 13, 11, yellow);
 			break;
 		case 13:
