@@ -2,6 +2,7 @@
 class GameSettings
 {
 public:
+	GameSettings();
 	void SetPauseDuration(int pauseDuration);
 	int GetPauseDuration();
 	void SetVolume(int volume);

@@ -1,5 +1,11 @@
 #include "GameSettings.h"
 
+GameSettings::GameSettings()
+{
+	PauseDuration = 1500;
+	Volume = 100;
+}
+
 void GameSettings::SetPauseDuration(int pauseDuration)
 {
 	PauseDuration = pauseDuration;

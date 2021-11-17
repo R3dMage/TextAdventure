@@ -64,7 +64,6 @@ void MusicPlayer::ToggleMusic()
 	{
 		MusicIsOn = false;
 		MapMusic.FreeSound();
-		MapMusic.FreeSoundSystem();
 	}
 	else
 	{
