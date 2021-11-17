@@ -28,10 +28,10 @@ void SaveLoadGame::SaveGame(GameState* gameState)
 void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
 {
 	fout << "Name: " << player->GetName() << endl;
-	fout << "HP: " << player->GetCurrentHitPoints() << endl;
 	fout << "MHP: " << player->GetMaxHitPoints() << endl;
-	fout << "Ka: " << player->GetCurrentKa() << endl;
+	fout << "HP: " << player->GetCurrentHitPoints() << endl;
 	fout << "MKa: " << player->GetMaxKa() << endl;
+	fout << "Ka: " << player->GetCurrentKa() << endl;
 	fout << "Gold: " << player->GetGold() << endl;
 	fout << "Exp: " << player->GetExperience() << endl;
 	fout << "Next: " << player->GetExperienceForNextLevel() << endl;
@@ -150,13 +150,13 @@ void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 	fin >> temp >> value;
 	player->SetName(value);
 	fin >> temp >> number;
-	player->SetHitPoints(number);
-	fin >> temp >> number;
 	player->SetMaxHitPoints(number);
 	fin >> temp >> number;
-	player->SetKa(number);
-	fin >> temp >> number;
+	player->SetHitPoints(number);
+	fin >> temp >> number; 
 	player->SetMaxKa(number);
+	fin >> temp >> number;
+	player->SetKa(number);
 	fin >> temp >> number;
 	player->SetGold(number);
 	fin >> temp >> number;
