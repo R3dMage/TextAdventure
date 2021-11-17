@@ -341,8 +341,8 @@ bool World::CheckForPlayerMovement(bool &escapeWasPressed, Player *player, int X
 			}
 		}
 	}	
-	Display->DisplayText(" ", 79, 23,white);
-return false;	
+	Display->DisplayText("", 78, 24,white);
+	return false;	
 }
 
 //==========================================================================================================
