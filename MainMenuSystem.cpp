@@ -465,6 +465,8 @@ void MainMenuSystem::OptionsMenu()
 
 	Menu menu(cursorPosition, handler, 12, 14);
 	menu.Begin();
+	
+	delete(handler);
 }
 void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool isFighting, bool& didLeave, string map)
 {
