@@ -141,8 +141,11 @@
     <ClInclude Include="GameSettings.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
+    <ClInclude Include="MenuInputHandler.h">
+      <Filter>Display</Filter>
+    </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,8 +260,11 @@
     <ClCompile Include="GameSettings.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="MenuInputHandler.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
     <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
