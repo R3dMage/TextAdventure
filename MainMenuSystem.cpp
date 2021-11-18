@@ -469,7 +469,7 @@ void MainMenuSystem::OptionsMenu()
 		Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|  Speed  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText("|  Volume |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
