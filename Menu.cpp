@@ -1,9 +1,9 @@
-#include "MenuInputHandler.h"
+#include "Menu.h"
 #include <iostream>
 
 using namespace std;
 
-MenuInputHandler::MenuInputHandler(COORD initalPosition, int minY, int maxY)
+Menu::Menu(COORD initalPosition, int minY, int maxY)
 {
 	CursorPosition = initalPosition;
 	MaxPositionY = maxY;
@@ -12,22 +12,22 @@ MenuInputHandler::MenuInputHandler(COORD initalPosition, int minY, int maxY)
 	SelectionMade = false;
 }
 
-int MenuInputHandler::GetCurrentY()
+int Menu::GetCurrentY()
 {
 	return CursorPosition.Y;
 }
 
-bool MenuInputHandler::SelectionWasMade()
+bool Menu::SelectionWasMade()
 {
 	return SelectionMade;
 }
 
-bool MenuInputHandler::EscapeWasPressed()
+bool Menu::EscapeWasPressed()
 {
 	return EscapePressed;
 }
 
-bool MenuInputHandler::GetMenuInput()
+bool Menu::GetMenuInput()
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursorPosition;

@@ -2,10 +2,10 @@
 #include <Windows.h>
 
 
-class MenuInputHandler
+class Menu
 {
 public:
-	MenuInputHandler(COORD initalPosition, int minY, int maxY);
+	Menu(COORD initalPosition, int minY, int maxY);
 	int GetCurrentY();
 	bool SelectionWasMade();
 	bool EscapeWasPressed();
