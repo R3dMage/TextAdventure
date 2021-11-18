@@ -157,6 +157,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="ArmoryShop.h" />
+    <ClInclude Include="BaseMenuInputHandler.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="CFmod.h" />
     <ClInclude Include="Creature.h" />
@@ -174,9 +175,10 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicShop.h" />
     <ClInclude Include="MainMenuSystem.h" />
-    <ClInclude Include="MenuInputHandler.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="NpcCreator.h" />
+    <ClInclude Include="OptionsMenuHandler.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="PawnShop.h" />
     <ClInclude Include="Player.h" />
@@ -196,6 +198,7 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
   <ItemGroup>
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="ArmoryShop.cpp" />
+    <ClCompile Include="BaseMenuInputHandler.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Eattack.cpp" />
@@ -216,9 +219,10 @@ copy "$(SolutionDir)fmod\lib\x86\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="MagicShop.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuSystem.cpp" />
-    <ClCompile Include="MenuInputHandler.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="NpcCreator.cpp" />
+    <ClCompile Include="OptionsMenuHandler.cpp" />
     <ClCompile Include="PawnShop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerEnvironment.cpp" />
