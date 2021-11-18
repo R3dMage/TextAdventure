@@ -9,7 +9,7 @@ public:
 	int GetCurrentY();
 	bool SelectionWasMade();
 	bool EscapeWasPressed();
-	bool MoveCursor();
+	bool GetMenuInput();
 	
 private:
 	COORD CursorPosition;

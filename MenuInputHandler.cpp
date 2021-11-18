@@ -8,6 +8,8 @@ MenuInputHandler::MenuInputHandler(COORD initalPosition, int minY, int maxY)
 	CursorPosition = initalPosition;
 	MaxPositionY = maxY;
 	MinPositionY = minY;
+	EscapePressed = false;
+	SelectionMade = false;
 }
 
 int MenuInputHandler::GetCurrentY()
@@ -25,13 +27,13 @@ bool MenuInputHandler::EscapeWasPressed()
 	return EscapePressed;
 }
 
-bool MenuInputHandler::MoveCursor()
+bool MenuInputHandler::GetMenuInput()
 {
 	INPUT_RECORD InputRecord;
 	COORD OldCursPos = CursorPosition;
 	DWORD Events = 0;
 	HANDLE hInput;
-	bool bCursMov = false;
+	bool cursorMoved = false;
 	int bKeyDown = 0;
 	hInput = GetStdHandle(STD_INPUT_HANDLE);
 	ReadConsoleInput(hInput, &InputRecord, 1, &Events);
@@ -40,7 +42,7 @@ bool MenuInputHandler::MoveCursor()
 	{
 		if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
 		{
-			bCursMov = true;
+			cursorMoved = true;
 			if (CursorPosition.Y < MaxPositionY)
 			{
 				CursorPosition.Y++;
@@ -52,7 +54,7 @@ bool MenuInputHandler::MoveCursor()
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
 		{
-			bCursMov = true;
+			cursorMoved = true;
 			if (CursorPosition.Y > MinPositionY)
 			{
 				CursorPosition.Y--;
@@ -64,22 +66,22 @@ bool MenuInputHandler::MoveCursor()
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
 		{
-			bCursMov = false;
+			cursorMoved = false;
 			SelectionMade = true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_SPACE)
 		{
-			bCursMov = false;
+			cursorMoved = false;
 			SelectionMade = true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
 		{
-			bCursMov = false;
+			cursorMoved = false;
 			SelectionMade = true;
 			EscapePressed = true;
 		}
 	}
-	if (bCursMov)
+	if (cursorMoved)
 	{
 		HANDLE	OutputH;
 		OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
