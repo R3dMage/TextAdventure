@@ -1,3 +1,4 @@
+#include <sstream>
 #include "OptionsMenuHandler.h"
 
 OptionsMenuHandler::OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings)
@@ -26,6 +27,13 @@ void OptionsMenuHandler::DisplayMenu(int currentY)
 		Display->DisplayText("Speed: ", 13, 12, yellow);
 		cout << Settings->GetPauseDuration();
 	}
+
+	if (currentY == 14) {
+		stringstream stream;
+		stream << "Volume " << Settings->GetVolume() << "  ";
+		Display->DisplayText("              ", 13, 12, yellow);
+		Display->DisplayText(stream.str(), 13, 12, yellow);
+	}
 }
 
 void OptionsMenuHandler::OnKeyDown()
@@ -38,10 +46,24 @@ void OptionsMenuHandler::OnKeyUp()
 
 void OptionsMenuHandler::OnKeyLeft()
 {
+	int volume = Settings->GetVolume();
+	volume--;
+	if (volume < 0)
+		volume = 0;
+
+	Settings->SetVolume(volume);
+	Music->SetVolume(volume);
 }
 
 void OptionsMenuHandler::OnKeyRight()
 {
+	int volume = Settings->GetVolume();
+	volume++;
+	if (volume > 100)
+		volume = 100;
+	
+	Settings->SetVolume(volume);
+	Music->SetVolume(volume);
 }
 
 void OptionsMenuHandler::OnSelect()
