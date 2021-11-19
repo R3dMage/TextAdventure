@@ -63,39 +63,29 @@ bool Menu::GetMenuInput()
 	{
 		if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_DOWN)
 		{
+			MoveCursorDown();
 			InputHandler->OnKeyDown();
-			cursorMoved = true;
-			if (CursorPosition.Y < MaxPositionY)
-			{
-				CursorPosition.Y++;
-			}
-			else
-			{
-				CursorPosition.Y = MinPositionY;
-			}
+			ClearOldCursor(OldCursPos);
+			return true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_UP)
 		{
+			MoveCursorUp();
 			InputHandler->OnKeyUp();
-			cursorMoved = true;
-			if (CursorPosition.Y > MinPositionY)
-			{
-				CursorPosition.Y--;
-			}
-			else
-			{
-				CursorPosition.Y = MaxPositionY;
-			}
+			ClearOldCursor(OldCursPos);
+			return true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_LEFT)
 		{
 			InputHandler->OnKeyLeft();
-			cursorMoved = true;
+			ClearOldCursor(OldCursPos);
+			return true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT)
 		{
 			InputHandler->OnKeyRight();
-			cursorMoved = true;
+			ClearOldCursor(OldCursPos);
+			return true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
 		{
@@ -119,14 +109,42 @@ bool Menu::GetMenuInput()
 	}
 	if (cursorMoved)
 	{
-		HANDLE	OutputH;
-		OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleCursorPosition(OutputH, OldCursPos);
-		cout << "  ";
 		return true;
 	}
 
 	return false;
+}
+
+void Menu::MoveCursorUp()
+{
+	if (CursorPosition.Y > MinPositionY)
+	{
+		CursorPosition.Y--;
+	}
+	else
+	{
+		CursorPosition.Y = MaxPositionY;
+	}
+}
+
+void Menu::MoveCursorDown()
+{
+	if (CursorPosition.Y < MaxPositionY)
+	{
+		CursorPosition.Y++;
+	}
+	else
+	{
+		CursorPosition.Y = MinPositionY;
+	}
+}
+
+bool Menu::ClearOldCursor(COORD cursorPosition)
+{
+	HANDLE	OutputH;
+	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorPosition(OutputH, cursorPosition);
+	cout << "  ";
 }
 
 void Menu::DrawCursor(COORD position, WORD color, unsigned char cursor)

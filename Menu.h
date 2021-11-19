@@ -12,6 +12,9 @@ public:
 	bool EscapeWasPressed();
 	void Begin();
 	bool GetMenuInput();
+	void MoveCursorUp();
+	void MoveCursorDown();
+	bool ClearOldCursor(COORD cursorPosition);
 	void DrawCursor(COORD position, WORD color, unsigned char cursor);
 	
 private:
