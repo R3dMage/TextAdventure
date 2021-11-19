@@ -31,23 +31,20 @@ bool Menu::EscapeWasPressed()
 
 void Menu::Begin()
 {
-	while (!EscapePressed)
+	InputHandler->DisplayMenu(CursorPosition.Y);
+	while (!EscapePressed && !SelectionMade)
 	{
-		while (!SelectionMade)
+		DrawCursor(CursorPosition, yellow, 175);
+
+		if (GetMenuInput())
 		{
-			InputHandler->DisplayMenu(CursorPosition.Y);
 			DrawCursor(CursorPosition, yellow, 175);
-
-			if (GetMenuInput())
-			{
-				InputHandler->DisplayMenu(CursorPosition.Y);
-				DrawCursor(CursorPosition, yellow, 175);
-			}
-
-			if (EscapePressed)
-				break;
+			// OnMove method here
+			InputHandler->DisplayMenu(CursorPosition.Y);
 		}
-		InputHandler->OnChoiceMade(CursorPosition.Y);
+
+		if (SelectionMade)
+			InputHandler->OnChoiceMade(CursorPosition.Y);
 	}
 }
 
@@ -114,7 +111,7 @@ bool Menu::GetMenuInput()
 		{
 			InputHandler->OnEscape();
 			cursorMoved = false;
-			SelectionMade = true;
+			SelectionMade = false;
 			EscapePressed = true;
 		}
 	}
