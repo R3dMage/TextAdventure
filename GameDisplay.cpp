@@ -136,8 +136,8 @@ void GameDisplay::DrawCross(COORD pos, char RC, char BC, char LC, char UC, char 
 
 void GameDisplay::ClearTopRight()
 {
-	int Y = 11;
-	while (Y < 24)
+	int Y = 1;
+	while (Y < 10)
 	{
 		DisplayText("                                                                 ", 13, Y, white);
 		Y++;
