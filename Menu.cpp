@@ -4,19 +4,16 @@
 
 using namespace std;
 
-Menu::Menu(COORD initalPosition, BaseMenuInputHandler* inputHandler, int minY, int maxY)
+Menu::Menu(GameDisplay* display, BaseMenuInputHandler* inputHandler)
 {
-	CursorPosition = initalPosition;
+	Display = display;
 	InputHandler = inputHandler;
-	MaxPositionY = maxY;
-	MinPositionY = minY;
 	EscapePressed = false;
 	SelectionMade = false;
-}
-
-int Menu::GetCurrentY()
-{
-	return CursorPosition.Y;
+	CursorPosition.X = inputHandler->GetStartingX();
+	CursorPosition.Y = inputHandler->GetStartingY();
+	MaxPositionY = inputHandler->GetMaxY();
+	MinPositionY = inputHandler->GetMinY();
 }
 
 bool Menu::SelectionWasMade()
@@ -32,20 +29,23 @@ bool Menu::EscapeWasPressed()
 void Menu::Begin()
 {
 	InputHandler->DisplayMenu(CursorPosition.Y);
+	InputHandler->DisplayInfo(CursorPosition.Y);
+	DrawCursor(CursorPosition, yellow, 175);
+	
 	while (!EscapePressed && !SelectionMade)
 	{
-		DrawCursor(CursorPosition, yellow, 175);
 
 		if (GetMenuInput())
 		{
 			DrawCursor(CursorPosition, yellow, 175);
-			// OnMove method here
-			InputHandler->DisplayMenu(CursorPosition.Y);
+			InputHandler->DisplayInfo(CursorPosition.Y);
 		}
 
 		if (SelectionMade)
 			InputHandler->OnChoiceMade(CursorPosition.Y);
 	}
+	
+	Display->ClearBottomRight();
 }
 
 bool Menu::GetMenuInput()
@@ -90,10 +90,12 @@ bool Menu::GetMenuInput()
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_LEFT)
 		{
 			InputHandler->OnKeyLeft();
+			cursorMoved = true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RIGHT)
 		{
 			InputHandler->OnKeyRight();
+			cursorMoved = true;
 		}
 		else if (InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_RETURN)
 		{

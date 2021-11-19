@@ -6,6 +6,10 @@ OptionsMenuHandler::OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* mu
 	Display = gameDisplay;
 	Music = music;
 	Settings = settings;
+	StartingX = 2;
+	StartingY = 12;
+	MaxY = 14;
+	MinY = 12;
 }
 
 void OptionsMenuHandler::DisplayMenu(int currentY)
@@ -16,16 +20,19 @@ void OptionsMenuHandler::DisplayMenu(int currentY)
 	Display->DisplayText("|  Volume |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	Display->DisplayText("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+}
 
+void OptionsMenuHandler::DisplayInfo(int currentY)
+{
 	if (currentY == 12 && Music->GetIsMusicOn())
 		Display->DisplayText("Music: On    ", 13, 12, yellow);
 	else if (currentY == 12 && !Music->GetIsMusicOn())
 		Display->DisplayText("Music: Off   ", 13, 12, yellow);
 
 	if (currentY == 13) {
-		Display->DisplayText("              ", 13, 12, yellow);
-		Display->DisplayText("Speed: ", 13, 12, yellow);
-		cout << Settings->GetPauseDuration();
+		stringstream stream;
+		stream << "Speed: " << Settings->GetPauseDuration();
+		Display->DisplayText(stream.str(), 13, 12, yellow);
 	}
 
 	if (currentY == 14) {
@@ -34,6 +41,7 @@ void OptionsMenuHandler::DisplayMenu(int currentY)
 		Display->DisplayText("              ", 13, 12, yellow);
 		Display->DisplayText(stream.str(), 13, 12, yellow);
 	}
+	Display->DisplayText("", 78, 24, white);
 }
 
 void OptionsMenuHandler::OnKeyDown()
@@ -98,4 +106,5 @@ void OptionsMenuHandler::OnChoiceMade(int currentY)
 		Display->DisplayText("               ", 13, 11, yellow);
 		break;
 	}
+	Display->DisplayText("", 78, 24, white);
 }

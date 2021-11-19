@@ -10,6 +10,7 @@ public:
 	OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings);
 
 	virtual void DisplayMenu(int currentY) override;
+	virtual void DisplayInfo(int currentY) override;
 	virtual void OnKeyDown() override;
 	virtual void OnKeyUp() override;
 	virtual void OnKeyLeft() override;

@@ -459,11 +459,8 @@ void MainMenuSystem::Options(GameState* gameState)
 void MainMenuSystem::OptionsMenu()
 {
 	OptionsMenuHandler* handler = new OptionsMenuHandler(Display, Music, Settings);
-	COORD cursorPosition;
-	cursorPosition.X = 2;
-	cursorPosition.Y = 12;
 
-	Menu menu(cursorPosition, handler, 12, 14);
+	Menu menu(Display, handler);
 	menu.Begin();
 	
 	delete(handler);

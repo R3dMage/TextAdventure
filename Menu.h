@@ -1,13 +1,13 @@
 #pragma once
 #include <Windows.h>
+#include "GameDisplay.h"
 #include "BaseMenuInputHandler.h"
 
 
 class Menu
 {
 public:
-	Menu(COORD initalPosition, BaseMenuInputHandler* inputHandler, int minY, int maxY);
-	int GetCurrentY();
+	Menu(GameDisplay* display,BaseMenuInputHandler* inputHandler);
 	bool SelectionWasMade();
 	bool EscapeWasPressed();
 	void Begin();
@@ -21,4 +21,5 @@ private:
 	int MaxPositionY;
 	int MinPositionY;
 	BaseMenuInputHandler* InputHandler;
+	GameDisplay* Display;
 };
