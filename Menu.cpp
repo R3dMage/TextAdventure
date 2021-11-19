@@ -139,7 +139,7 @@ void Menu::MoveCursorDown()
 	}
 }
 
-bool Menu::ClearOldCursor(COORD cursorPosition)
+void Menu::ClearOldCursor(COORD cursorPosition)
 {
 	HANDLE	OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
