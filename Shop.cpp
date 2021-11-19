@@ -17,26 +17,26 @@ void Shop::AddItem(Item* item)
 
 void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 {
-	int choice = 0;
 	bool escapeWasPressed = false;
+	bool escapeConfirmation = false;
 	bool itemSelected = false;
 	bool funds = true;
 	COORD cursorPosition;
+	cursorPosition.X = 13;
+	cursorPosition.Y = 2;
 
 	PopulateInventory(MapName);
 	unsigned int maxY = Wares.size() + 1;
 
-	map<int, Item*> stuff;
+	map<int, Item*> itemsForSale;
 	
 	for (unsigned int i = 0; i < Wares.size(); i++)
 	{
-		stuff.insert(std::pair<int, Item*>(i + 2, Wares[i]));
+		itemsForSale.insert(std::pair<int, Item*>(i + 2, Wares[i]));
 	}
 
 	while (!escapeWasPressed)
 	{
-		cursorPosition.X = 13;
-		cursorPosition.Y = 2;
 		itemSelected = false;
 		funds = true;
 		Display->ClearAll();
@@ -52,32 +52,53 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 
 		Menu->DrawCursor(cursorPosition, yellow, 175);
 		Display->DisplayItem(Wares[0]);
-		do
+		while (!itemSelected && !escapeWasPressed)
 		{
 			if (Menu->MoveCursor(cursorPosition, itemSelected, escapeWasPressed, 2, maxY))
 			{
-				Menu->DrawCursor(cursorPosition, yellow, 175);
-				choice = cursorPosition.Y;
-				Display->DisplayItem(stuff[choice]);
+				Menu->DrawCursor(cursorPosition, yellow, 175);				
+				Display->DisplayItem(itemsForSale[cursorPosition.Y]);
 			}
-			Display->DisplayText(" ", 79, 23, white);
-		} while (!itemSelected);
+			Display->DisplayText("", 78, 24, white);
+		}
 		if (escapeWasPressed)
 			break;
 
-		choice = cursorPosition.Y;
-		if (player->GetGold() < stuff[choice]->GetCost())
-			funds = false;
-		if (funds)
+		itemSelected = false;
+		Display->DisplayText("This Item?                  ", 13, 9, white);
+		Display->DisplayText(itemsForSale[cursorPosition.Y]->GetName(), 15, cursorPosition.Y, green);
+		while (!itemSelected && !escapeConfirmation)
 		{
-			playerInventory.push_back(stuff[choice]);
-			player->SetGold(player->GetGold() - stuff[choice]->GetCost());
+			Menu->MoveCursor(cursorPosition, itemSelected, escapeConfirmation, cursorPosition.Y, cursorPosition.Y);
+			Menu->DrawCursor(cursorPosition, yellow, 175);
+			Display->DisplayText("", 78, 24, white);
 		}
-		if (!funds)
+		if (escapeConfirmation)
 		{
-			Display->DisplayText("You do not have sufficient funds", 13, 9, white);
-			Sleep(1500);
+			escapeConfirmation = false;
+			continue;
 		}
+
+		BuyItem(player, playerInventory, itemsForSale[cursorPosition.Y]);
+
 	}// End while bEsc
 	Display->ClearAll();
+}
+
+void Shop::BuyItem(Player* player, std::vector<Item*>& playerInventory, Item* item)
+{
+	bool funds = true;
+
+	if (player->GetGold() < item->GetCost())
+		funds = false;
+	if (funds)
+	{
+		playerInventory.push_back(item);
+		player->SetGold(player->GetGold() - item->GetCost());
+	}
+	if (!funds)
+	{
+		Display->DisplayText("You do not have sufficient funds", 13, 9, white);
+		Sleep(1500);
+	}
 }

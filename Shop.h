@@ -11,6 +11,8 @@ public:
 	Shop(GameDisplay* display, MainMenuSystem* menu, ItemRepository* itemRepository, std::string mapName);
 	void ShowShop(Player* player, vector<Item*> &playerInventory);
 
+	void BuyItem(Player* player, std::vector<Item*>& playerInventory, Item* item);
+
 protected:
 	virtual void PopulateInventory(std::string mapName) = 0;
 	void AddItem(Item* item);
