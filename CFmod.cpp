@@ -95,3 +95,13 @@ void CFmod::FreeSoundSystem()
 	m_pFmodSystem->close();
 	m_pFmodSystem->release();
 }
+
+void CFmod::SetVolume(int volume)
+{
+	if (volume < 1 || volume > 100)
+		return;
+
+	float actualVolume = (float)(volume / 100.0);
+
+	m_soundChannel->setVolume(actualVolume);
+}

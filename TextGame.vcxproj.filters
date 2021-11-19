@@ -31,6 +31,15 @@
     <Filter Include="GameEngine\Shops">
       <UniqueIdentifier>{e3d2ab32-dcd0-4071-95a7-92fab667f0be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Display\Menu">
+      <UniqueIdentifier>{40225dea-e177-4306-a5c9-20615af82352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Maps">
+      <UniqueIdentifier>{fac22389-a993-4362-ad30-3b9665333636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Music">
+      <UniqueIdentifier>{dfe748a1-09da-4525-962e-3a5ed779fdf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -63,9 +72,6 @@
     <ClInclude Include="Magic.h">
       <Filter>Magic</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuSystem.h">
-      <Filter>Display</Filter>
-    </ClInclude>
     <ClInclude Include="GameDisplay.h">
       <Filter>Display</Filter>
     </ClInclude>
@@ -77,9 +83,6 @@
     </ClInclude>
     <ClInclude Include="TextDisplay.h">
       <Filter>Display</Filter>
-    </ClInclude>
-    <ClInclude Include="CFmod.h">
-      <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Greeting.h">
       <Filter>Enemies</Filter>
@@ -102,19 +105,10 @@
     <ClInclude Include="MagicShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="Lodging.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="PawnShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
     <ClInclude Include="Battle.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Local.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Location.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -122,15 +116,6 @@
     </ClInclude>
     <ClInclude Include="PlayerMagicProvider.h">
       <Filter>Magic</Filter>
-    </ClInclude>
-    <ClInclude Include="MusicPlayer.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerEnvironment.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="VirtualMap.h">
-      <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Plots.h">
       <Filter>Display</Filter>
@@ -142,7 +127,40 @@
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsMenuHandler.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMenuInputHandler.h">
+      <Filter>Display\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuSystem.h">
+      <Filter>Display\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Display\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Local.h">
+      <Filter>GameEngine\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>GameEngine\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Lodging.h">
+      <Filter>GameEngine\Shops</Filter>
+    </ClInclude>
+    <ClInclude Include="CFmod.h">
+      <Filter>GameEngine\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
+      <Filter>GameEngine\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEnvironment.h">
+      <Filter>GameEngine\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualMap.h">
+      <Filter>GameEngine\Maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,9 +200,6 @@
     <ClCompile Include="GameDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuSystem.cpp">
-      <Filter>Display</Filter>
-    </ClCompile>
     <ClCompile Include="FightDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
@@ -193,9 +208,6 @@
     </ClCompile>
     <ClCompile Include="TextDisplay.cpp">
       <Filter>Display</Filter>
-    </ClCompile>
-    <ClCompile Include="CFmod.cpp">
-      <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Greeting.cpp">
       <Filter>Enemies</Filter>
@@ -218,19 +230,10 @@
     <ClCompile Include="MagicShop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="Lodging.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="PawnShop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
     <ClCompile Include="Battle.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Local.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Location.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -238,15 +241,6 @@
     </ClCompile>
     <ClCompile Include="PlayerMagicProvider.cpp">
       <Filter>Magic</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicPlayer.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerEnvironment.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="VirtualMap.cpp">
-      <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Plots.cpp">
       <Filter>Display</Filter>
@@ -258,7 +252,40 @@
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsMenuHandler.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMenuInputHandler.cpp">
+      <Filter>Display\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuSystem.cpp">
+      <Filter>Display\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Display\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Local.cpp">
+      <Filter>GameEngine\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>GameEngine\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Lodging.cpp">
+      <Filter>GameEngine\Shops</Filter>
+    </ClCompile>
+    <ClCompile Include="CFmod.cpp">
+      <Filter>GameEngine\Music</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>GameEngine\Music</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEnvironment.cpp">
+      <Filter>GameEngine\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualMap.cpp">
+      <Filter>GameEngine\Maps</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

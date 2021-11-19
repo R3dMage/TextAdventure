@@ -24,6 +24,8 @@ public:
 
 	void FreeSoundSystem();
 
+	void SetVolume(int volume);
+
 	FMOD::Sound* GetSound() {	return m_pSound;			}
 
 	//char *GetSongName()	{ return m_pSound->getName(); }

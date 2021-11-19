@@ -1,4 +1,6 @@
 #include "MainMenuSystem.h"
+#include "Menu.h"
+#include "OptionsMenuHandler.h"
 
 MainMenuSystem::MainMenuSystem(GameDisplay* gameDisplay, ISaveLoadGame* gameSaver, ItemRepository* itemRepository, MusicPlayer* musicPlayer, GameSettings* settings)
 {
@@ -456,81 +458,12 @@ void MainMenuSystem::Options(GameState* gameState)
 =====================================================================================*/
 void MainMenuSystem::OptionsMenu()
 {
-	int choice = 0;
-	bool escapeWasPressed = false;
-	bool selectionWasMade = false;
-	COORD cursorPosition;
-	cursorPosition.X = 2;
-	cursorPosition.Y = 12;
+	OptionsMenuHandler* handler = new OptionsMenuHandler(Display, Music, Settings);
 
-	while (!escapeWasPressed)
-	{
-		selectionWasMade = false;
-		Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|  Speed  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-
-		/*=======================================
-		Displays the current music status
-		========================================*/
-		if (cursorPosition.Y == 12 && Music->GetIsMusicOn())
-			Display->DisplayText("Music: On    ", 13, 12, yellow);
-		else if (cursorPosition.Y == 12 && !Music->GetIsMusicOn())
-			Display->DisplayText("Music: Off   ", 13, 12, yellow);
-		//========================================
-		DrawCursor(cursorPosition, yellow, 175);
-		do
-		{
-			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 13))
-			{
-				/*=======================================
-				Displays the current music status
-				========================================*/
-				if (cursorPosition.Y == 12 && Music->GetIsMusicOn())
-					Display->DisplayText("Music: On     ", 13, 12, yellow);
-				else if (cursorPosition.Y == 12 && !Music->GetIsMusicOn())
-					Display->DisplayText("Music: Off    ", 13, 12, yellow);
-				/*========================================
-				Displays current player pause duration
-				========================================*/
-				if (cursorPosition.Y == 13) {
-					Display->DisplayText("              ", 13, 12, yellow);
-					Display->DisplayText("Speed: ", 13, 12, yellow);
-					cout << Settings->GetPauseDuration();
-				}
-				DrawCursor(cursorPosition, yellow, 175);
-			}
-		} while (!selectionWasMade);
-		if (escapeWasPressed)
-			break;
-
-		choice = cursorPosition.Y;
-		switch (choice)
-		{
-		case 12:
-			Music->ToggleMusic();
-			Display->DisplayText("               ", 13, 11, yellow);
-			break;
-		case 13:
-			Display->DisplayText("Changing Speed?", 13, 11, yellow);
-			Sleep(Settings->GetPauseDuration());
-			Display->DisplayText("               ", 13, 11, yellow);
-			break;
-		case 14:
-			Display->DisplayText("To be added later.", 13, 11, yellow);
-			Sleep(Settings->GetPauseDuration());
-			Display->DisplayText("               ", 13, 11, yellow);
-			break;
-		case 15:
-			Display->DisplayText("To be added later.", 13, 11, yellow);
-			Sleep(Settings->GetPauseDuration());
-			Display->DisplayText("               ", 13, 11, yellow);
-			break;
-		}
-	}// End of While(escapeWasPressed)
+	Menu menu(Display, handler);
+	menu.Begin();
+	
+	delete(handler);
 }
 void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<Item*>& playerInventory, bool isFighting, bool& didLeave, string map)
 {

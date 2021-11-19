@@ -19,6 +19,11 @@ bool MusicPlayer::GetIsMusicOn()
 	return MusicIsOn;
 }
 
+void MusicPlayer::SetVolume(int volume)
+{
+	MapMusic.SetVolume(volume);
+}
+
 void MusicPlayer::SetMusicFilename(string filename)
 {
 	if (MusicFilename != filename)
