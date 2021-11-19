@@ -811,7 +811,7 @@ bool MainMenuSystem::TalkTo(Greeting* greeting, int pauseDuration)
 	bool bEsc;
 	COORD CursPos;
 
-	Display->ClearTopRight();
+	Display->ClearBottom();
 	CursPos.X = 2;
 	CursPos.Y = 12;
 	bSel = false;

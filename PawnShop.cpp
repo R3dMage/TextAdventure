@@ -44,6 +44,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 		if (playerInventory.size() < 1)
 		{
 			Display->DisplayTextAndPause("You have nothing to sell!!!", 13, 3, white);
+			Display->ClearTopRight();
 			return;
 		}
 		else
