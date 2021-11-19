@@ -18,9 +18,12 @@ void Shop::AddItem(Item* item)
 void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 {
 	bool escapeWasPressed = false;
+	bool escapeConfirmation = false;
 	bool itemSelected = false;
 	bool funds = true;
 	COORD cursorPosition;
+	cursorPosition.X = 13;
+	cursorPosition.Y = 2;
 
 	PopulateInventory(MapName);
 	unsigned int maxY = Wares.size() + 1;
@@ -34,8 +37,6 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 
 	while (!escapeWasPressed)
 	{
-		cursorPosition.X = 13;
-		cursorPosition.Y = 2;
 		itemSelected = false;
 		funds = true;
 		Display->ClearAll();
@@ -58,19 +59,35 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 				Menu->DrawCursor(cursorPosition, yellow, 175);				
 				Display->DisplayItem(itemsForSale[cursorPosition.Y]);
 			}
-			Display->DisplayText(" ", 79, 23, white);
+			Display->DisplayText("", 78, 24, white);
 		}
 		if (escapeWasPressed)
 			break;
 
+		itemSelected = false;
+		Display->DisplayText("This Item?                  ", 13, 9, white);
+		Display->DisplayText(itemsForSale[cursorPosition.Y]->GetName(), 15, cursorPosition.Y, green);
+		while (!itemSelected && !escapeConfirmation)
+		{
+			Menu->MoveCursor(cursorPosition, itemSelected, escapeConfirmation, cursorPosition.Y, cursorPosition.Y);
+			Menu->DrawCursor(cursorPosition, yellow, 175);
+			Display->DisplayText("", 78, 24, white);
+		}
+		if (escapeConfirmation)
+		{
+			escapeConfirmation = false;
+			continue;
+		}
+
 		BuyItem(player, playerInventory, itemsForSale[cursorPosition.Y]);
+
 	}// End while bEsc
 	Display->ClearAll();
 }
 
 void Shop::BuyItem(Player* player, std::vector<Item*>& playerInventory, Item* item)
 {
-	bool funds = false;
+	bool funds = true;
 
 	if (player->GetGold() < item->GetCost())
 		funds = false;
