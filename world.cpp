@@ -50,7 +50,7 @@ void World::SetupGame()
 
 	CurrentMap = new VirtualMap(CurrentState->GetMapName());
 	CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-	Music->SetMusicFilename(CurrentMap->GetMusicFileName());	
+	Music->PlayMusic(CurrentMap->GetMusicFileName());
 }
 
 void World::PlayGame()
@@ -125,6 +125,11 @@ void World::PlayGame()
 				Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 				
 				player->SetIsLoaded(false);
+			}
+			if (CurrentState->PlayerHasQuit())
+			{
+				CurrentState->SetQuit(false);
+				break;
 			}
 		}
 

@@ -4,6 +4,7 @@
 GameState::GameState()
 {
 	player = new Player();
+	Quit = false;
 }
 
 void GameState::NewGameState(ItemRepository* itemRepository, string playerName)
@@ -145,4 +146,14 @@ std::vector<Item*>& GameState::GetWorldItems()
 std::vector<Magic*>& GameState::GetPlayerSpells()
 {
 	return spells;
+}
+
+void GameState::SetQuit(bool quit)
+{
+	Quit = quit;
+}
+
+bool GameState::PlayerHasQuit()
+{
+	return Quit;
 }
