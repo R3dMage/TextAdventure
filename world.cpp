@@ -39,6 +39,7 @@ World::~World()
 
 void World::TitleScreen()
 {
+	Display->DisplayTitleScreen();
 	Menu->TitleScreenMenu(CurrentState);
 }
 
