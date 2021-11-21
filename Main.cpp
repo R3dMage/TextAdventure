@@ -14,7 +14,6 @@ void main()
 	MusicPlayer* musicPlayer = new MusicPlayer(gameDisplay);
 	SaveLoadGame* gameLoader = new SaveLoadGame(itemRepository, gameDisplay);
 	
-	gameDisplay->BoxScreen();
 
 	VirtualMap* virtualMap = new VirtualMap("valesh");
 
@@ -22,6 +21,8 @@ void main()
 
 	while (true)
 	{
+		system("cls");
+		gameDisplay->BoxScreen();
 		globe.TitleScreen();
 		globe.SetupGame();
 		globe.PlayGame();

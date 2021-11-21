@@ -114,7 +114,7 @@ void MainMenuSystem::HandleMainPlayerMenu(GameState* gameState)
 	bool selectionWasMade = false;
 	COORD cursorPosition;
 
-	while (!escapeWasPressed)
+	while (!escapeWasPressed && !gameState->PlayerHasQuit())
 	{
 		ClearTextBottomRight(11);
 		Display->DisplayPlayerInfo(gameState->GetPlayer());
@@ -402,7 +402,7 @@ void MainMenuSystem::Options(GameState* gameState)
 	bool selectionWasMade = false;
 	COORD cursorPosition;
 
-	while (!escapeWasPressed)
+	while (!escapeWasPressed && !gameState->PlayerHasQuit())
 	{
 		//clear();       For smooth look remarked out 2/15/06
 		Display->DisplayPlayerInfo(gameState->GetPlayer());
@@ -444,10 +444,8 @@ void MainMenuSystem::Options(GameState* gameState)
 			OptionsMenu();
 			break;
 		case 15:
-			system("cls");
-			Display->DisplayText("See you next time.", 13, 11, yellow);
-			Sleep(Settings->GetPauseDuration());
-			exit(0);
+			Music->StopMusic();
+			gameState->SetQuit(true);
 			break;
 		}
 	}// End of While(escapeWasPressed)

@@ -25,6 +25,9 @@ public:
 	std::vector<Item*>& GetWorldItems();
 	std::vector<Magic*>& GetPlayerSpells();
 
+	void SetQuit(bool quit);
+	bool PlayerHasQuit();
+
 private:
 	Player* player;
 	std::string map;
@@ -33,4 +36,5 @@ private:
 	std::vector<Item*> playerInventory;			// inv is the players inventory
 	std::vector<Creature*> encounter;			// encounter holds all the enemies on a certain map
 	std::vector<Magic*> spells;					// Magik will hold all the spells granted to the player
+	bool Quit;
 };
