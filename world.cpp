@@ -39,8 +39,9 @@ World::~World()
 
 void World::TitleScreen()
 {
+	Music->PlayMusic("TitleScreen.mp3");
 	Display->DisplayTitleScreen();
-	Menu->TitleScreenMenu(CurrentState);
+	Menu->TitleScreenMenu(CurrentState);	
 }
 
 void World::SetupGame()
