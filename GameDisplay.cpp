@@ -210,6 +210,11 @@ string GameDisplay::GetFileName()
 	return filename;
 }
 
+void GameDisplay::DisplayTitleScreen()
+{
+	DisplayText(" Adventure of Lexi ", 28, 5, brown);
+}
+
 void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 {
 	DisplayText("/---------\\", 1, 11, compassColor);
