@@ -45,6 +45,8 @@ private:
 	void CheckError(FMOD_RESULT result);
 
 	signed char m_loop;
+
+	float Volume;
 };
 
 #endif
