@@ -45,246 +45,246 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="source/stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="source/targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemies.h">
+    <ClInclude Include="source/Enemies.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Creature.h">
+    <ClInclude Include="source/Creature.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Orc.h">
+    <ClInclude Include="source/Orc.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Armor.h">
+    <ClInclude Include="source/Armor.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="source/Item.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="source/Weapon.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Magic.h">
+    <ClInclude Include="source/Magic.h">
       <Filter>Magic</Filter>
     </ClInclude>
-    <ClInclude Include="GameDisplay.h">
+    <ClInclude Include="source/GameDisplay.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="FightDisplay.h">
+    <ClInclude Include="source/FightDisplay.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="ItemRepository.h">
+    <ClInclude Include="source/ItemRepository.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="TextDisplay.h">
+    <ClInclude Include="source/TextDisplay.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="Greeting.h">
+    <ClInclude Include="source/Greeting.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ISaveLoadGame.h">
+    <ClInclude Include="source/ISaveLoadGame.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="SaveLoadGame.h">
+    <ClInclude Include="source/SaveLoadGame.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="World.h">
+    <ClInclude Include="source/World.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="ArmoryShop.h">
+    <ClInclude Include="source/ArmoryShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="Shop.h">
+    <ClInclude Include="source/Shop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="MagicShop.h">
+    <ClInclude Include="source/MagicShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="PawnShop.h">
+    <ClInclude Include="source/PawnShop.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="Battle.h">
+    <ClInclude Include="source/Battle.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="source/Player.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMagicProvider.h">
+    <ClInclude Include="source/PlayerMagicProvider.h">
       <Filter>Magic</Filter>
     </ClInclude>
-    <ClInclude Include="Plots.h">
+    <ClInclude Include="source/Plots.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="NpcCreator.h">
+    <ClInclude Include="source/NpcCreator.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameSettings.h">
+    <ClInclude Include="source/GameSettings.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
+    <ClInclude Include="source/GameState.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="OptionsMenuHandler.h">
+    <ClInclude Include="source/OptionsMenuHandler.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="BaseMenuInputHandler.h">
+    <ClInclude Include="source/BaseMenuInputHandler.h">
       <Filter>Display\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuSystem.h">
+    <ClInclude Include="source/MainMenuSystem.h">
       <Filter>Display\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
+    <ClInclude Include="source/Menu.h">
       <Filter>Display\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Local.h">
+    <ClInclude Include="source/Local.h">
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Location.h">
+    <ClInclude Include="source/Location.h">
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Lodging.h">
+    <ClInclude Include="source/Lodging.h">
       <Filter>GameEngine\Shops</Filter>
     </ClInclude>
-    <ClInclude Include="CFmod.h">
+    <ClInclude Include="source/CFmod.h">
       <Filter>GameEngine\Music</Filter>
     </ClInclude>
-    <ClInclude Include="MusicPlayer.h">
+    <ClInclude Include="source/MusicPlayer.h">
       <Filter>GameEngine\Music</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerEnvironment.h">
+    <ClInclude Include="source/PlayerEnvironment.h">
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="VirtualMap.h">
+    <ClInclude Include="source/VirtualMap.h">
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="source/stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="source/Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Creature.cpp">
+    <ClCompile Include="source/Creature.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Eattack.cpp">
+    <ClCompile Include="source/Eattack.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Econstruct.cpp">
+    <ClCompile Include="source/Econstruct.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Eother.cpp">
+    <ClCompile Include="source/Eother.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Armor.cpp">
+    <ClCompile Include="source/Armor.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
+    <ClCompile Include="source/Item.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
+    <ClCompile Include="source/Weapon.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Magic.cpp">
+    <ClCompile Include="source/Magic.cpp">
       <Filter>Magic</Filter>
     </ClCompile>
-    <ClCompile Include="Talkto.cpp">
+    <ClCompile Include="source/Talkto.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="GameDisplay.cpp">
+    <ClCompile Include="source/GameDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="FightDisplay.cpp">
+    <ClCompile Include="source/FightDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="ItemRepository.cpp">
+    <ClCompile Include="source/ItemRepository.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="TextDisplay.cpp">
+    <ClCompile Include="source/TextDisplay.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="Greeting.cpp">
+    <ClCompile Include="source/Greeting.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ISaveLoadGame.cpp">
+    <ClCompile Include="source/ISaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="SaveLoadGame.cpp">
+    <ClCompile Include="source/SaveLoadGame.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
+    <ClCompile Include="source/World.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="ArmoryShop.cpp">
+    <ClCompile Include="source/ArmoryShop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="Shop.cpp">
+    <ClCompile Include="source/Shop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="MagicShop.cpp">
+    <ClCompile Include="source/MagicShop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="PawnShop.cpp">
+    <ClCompile Include="source/PawnShop.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="Battle.cpp">
+    <ClCompile Include="source/Battle.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="source/Player.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMagicProvider.cpp">
+    <ClCompile Include="source/PlayerMagicProvider.cpp">
       <Filter>Magic</Filter>
     </ClCompile>
-    <ClCompile Include="Plots.cpp">
+    <ClCompile Include="source/Plots.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="NpcCreator.cpp">
+    <ClCompile Include="source/NpcCreator.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="GameSettings.cpp">
+    <ClCompile Include="source/GameSettings.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
+    <ClCompile Include="source/GameState.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsMenuHandler.cpp">
+    <ClCompile Include="source/OptionsMenuHandler.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="BaseMenuInputHandler.cpp">
+    <ClCompile Include="source/BaseMenuInputHandler.cpp">
       <Filter>Display\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuSystem.cpp">
+    <ClCompile Include="source/MainMenuSystem.cpp">
       <Filter>Display\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
+    <ClCompile Include="source/Menu.cpp">
       <Filter>Display\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Local.cpp">
+    <ClCompile Include="source/Local.cpp">
       <Filter>GameEngine\Maps</Filter>
     </ClCompile>
-    <ClCompile Include="Location.cpp">
+    <ClCompile Include="source/Location.cpp">
       <Filter>GameEngine\Maps</Filter>
     </ClCompile>
-    <ClCompile Include="Lodging.cpp">
+    <ClCompile Include="source/Lodging.cpp">
       <Filter>GameEngine\Shops</Filter>
     </ClCompile>
-    <ClCompile Include="CFmod.cpp">
+    <ClCompile Include="source/CFmod.cpp">
       <Filter>GameEngine\Music</Filter>
     </ClCompile>
-    <ClCompile Include="MusicPlayer.cpp">
+    <ClCompile Include="source/MusicPlayer.cpp">
       <Filter>GameEngine\Music</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerEnvironment.cpp">
+    <ClCompile Include="source/PlayerEnvironment.cpp">
       <Filter>GameEngine\Maps</Filter>
     </ClCompile>
-    <ClCompile Include="VirtualMap.cpp">
+    <ClCompile Include="source/VirtualMap.cpp">
       <Filter>GameEngine\Maps</Filter>
     </ClCompile>
   </ItemGroup>
