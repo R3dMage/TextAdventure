@@ -16,6 +16,7 @@ CFmod::CFmod()
 	memset(m_strName, 0, sizeof(char));
 
 	// Set the current song module to NULL
+	Volume = 1.0;
 	m_pSound = nullptr;
 	m_pFmodSystem = nullptr;
 	FMOD_RESULT result = FMOD::System_Create(&m_pFmodSystem);
@@ -77,6 +78,8 @@ void CFmod::PlaySong()
 {
 	FMOD_RESULT result = m_pFmodSystem->playSound(m_pSound, 0, false, &m_soundChannel);
 	CheckError(result);
+
+	m_soundChannel->setVolume(Volume);
 }
 
 void CFmod::CheckError(FMOD_RESULT result)
@@ -101,7 +104,7 @@ void CFmod::SetVolume(int volume)
 	if (volume < 1 || volume > 100)
 		return;
 
-	float actualVolume = (float)(volume / 100.0);
+	Volume = (float)(volume / 100.0);
 
-	m_soundChannel->setVolume(actualVolume);
+	m_soundChannel->setVolume(Volume);
 }
