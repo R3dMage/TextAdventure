@@ -59,7 +59,7 @@ public:
 	virtual void SetMap(std::string);
 
 	void LoadPosition(int X, int Y);
-	virtual Creature* Replenish() const = 0;
+	virtual void Replenish();
 	virtual Item* Body(std::string) const = 0;
 	virtual void Win(Player *player, TextDisplay* display);
 	virtual bool DroppedItem();

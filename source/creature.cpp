@@ -258,6 +258,12 @@ void Creature::LoadPosition(int X, int Y)
 	}
 }
 
+void Creature::Replenish()
+{
+	HitPoints = MaxHP;
+	Ka = MaxKa;
+}
+
 bool Creature::TalkTo(Player *player)
 {
 	return false;

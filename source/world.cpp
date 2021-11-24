@@ -221,7 +221,7 @@ void World::CheckForEnemyEncounters(Player* player)
 			Creature* creature = *encounter;
 			if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
 			{
-				ReplenishEnemy(creature);
+				creature->Replenish();
 				creature->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 			}
 		}
@@ -350,16 +350,6 @@ bool World::CheckForPlayerMovement(bool &escapeWasPressed, Player *player, int X
 	}	
 	Display->DisplayText("", 78, 24,white);
 	return false;	
-}
-
-//==========================================================================================================
-//	Function for replenishing enemies
-//==========================================================================================================
-void World::ReplenishEnemy(Creature* enemy)
-{
-	Creature* temp = enemy->Replenish();
-	delete enemy;
-	enemy = temp;
 }
 
 //==========================================================================================================
