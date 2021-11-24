@@ -30,7 +30,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		This calls some music to play for the fights, dynamic according
 		to the different enemies. How awesome is that?
 	===================================================================*/
-	Music->PlayMusic(enemy->GetMusic().c_str());
+	Music->PlayMusic(enemy->GetMusic());
 
 	Display->DisplayAttackAnnouncement(enemy);
 
