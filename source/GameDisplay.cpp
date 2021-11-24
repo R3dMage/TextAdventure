@@ -225,7 +225,7 @@ void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 	DisplayText("|         |", 1, 16, compassColor);
 	DisplayText("\\---------/", 1, 17, compassColor);
 
-	if (playerY == maxX)
+	if (playerY == maxY)
 		DisplayText("N", 6, 12, blue);
 	else
 		DisplayText("N", 6, 12, compassColor);
@@ -249,6 +249,7 @@ void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 	{
 		DisplayText("W", 2, 14, compassColor);
 	}
+	DisplayText("", 78, 24, white);
 }
 
 void GameDisplay::DisplayLocation(PlayerEnvironment* playerEnvironment)
