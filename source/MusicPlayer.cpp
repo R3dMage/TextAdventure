@@ -44,9 +44,8 @@ string MusicPlayer::GetMusicFilename()
 ===================================*/
 void MusicPlayer::PlayMusic(string filename)
 {
-	const char* dataPath = "./data/";
+	string fullPath = "./data/";
 
-	string fullPath = dataPath;
 	fullPath.append(filename);
 
 	if (fullPath.c_str())
