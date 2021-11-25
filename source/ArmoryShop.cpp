@@ -26,6 +26,15 @@ void ArmoryShop::PopulateInventory(string mapName)
 		AddItem(ItemFactory->GetItem("Leather"));
 		AddItem(ItemFactory->GetItem("Elvenchain"));
 	}
+	else if (mapName == "orccamp")
+	{
+		AddItem(ItemFactory->GetItem("Longsword"));
+		AddItem(ItemFactory->GetItem("TrollSword"));
+		AddItem(ItemFactory->GetItem("OrcBlade"));
+		AddItem(ItemFactory->GetItem("Padded"));
+		AddItem(ItemFactory->GetItem("Leather"));
+		AddItem(ItemFactory->GetItem("Orc_Mail"));
+	}
 	else if (mapName == "marintown")
 	{
 		AddItem(ItemFactory->GetItem("Scimitar"));
