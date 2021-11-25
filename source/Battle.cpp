@@ -30,7 +30,8 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		This calls some music to play for the fights, dynamic according
 		to the different enemies. How awesome is that?
 	===================================================================*/
-	Music->PlayMusic(enemy->GetMusic());
+	string originalMusic = Music->GetMusicFilename();
+	Music->SetMusicFilename(enemy->GetMusic());
 
 	Display->DisplayAttackAnnouncement(enemy);
 
@@ -194,7 +195,7 @@ void Battle::Engage(Player* player, Creature* enemy, std::vector<Item*>& playerI
 		Here, we put the map music back on. Providing of course
 		that we haven't changed musicFilename at all. I hope!
 	=============================================================*/
-	Music->PlayMusic(Music->GetMusicFilename());
+	Music->SetMusicFilename(originalMusic);
 }
 
 void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* enemy)

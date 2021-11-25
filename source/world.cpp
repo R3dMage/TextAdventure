@@ -39,7 +39,7 @@ World::~World()
 
 void World::TitleScreen()
 {
-	Music->PlayMusic("TitleScreen.mp3");
+	Music->SetMusicFilename("TitleScreen.mp3");
 	Display->DisplayTitleScreen();
 	Menu->TitleScreenMenu(CurrentState);	
 }
@@ -52,7 +52,7 @@ void World::SetupGame()
 
 	CurrentMap = new VirtualMap(CurrentState->GetMapName());
 	CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-	Music->PlayMusic(CurrentMap->GetMusicFileName());
+	Music->SetMusicFilename(CurrentMap->GetMusicFileName());
 }
 
 void World::PlayGame()
