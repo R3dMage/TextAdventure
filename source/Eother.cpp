@@ -1849,7 +1849,7 @@ string Monk::Token()
 void Monk::Win(Player* p2, TextDisplay* display)
 {
 	display->DisplayText("The peaceful monk lies vanquished. ",13,11,white);
-	display->DisplayText("Don't you feel better about yourself now?",13,11,white);
+	display->DisplayText("Don't you feel better about yourself now?",13,12,white);
 	Sleep(3000);	
 }
 
