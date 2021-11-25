@@ -11,5 +11,6 @@ public:
 private:
 	GameDisplay* Display;
 	MainMenuSystem* Menu;
+	const int CursorStartX = 13;
+	const int CursorStartY = 12;
 };
-
