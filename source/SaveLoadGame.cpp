@@ -145,8 +145,8 @@ void SaveLoadGame::SaveSettings(GameSettings* gameSettings)
 	ofstream fout;
 	fout.open(savefile.c_str());
 	
-	fout << gameSettings->GetPauseDuration();
-	fout << gameSettings->GetVolume();
+	fout << gameSettings->GetPauseDuration() << endl;
+	fout << gameSettings->GetVolume() << endl;
 	
 	fout.close();
 }
