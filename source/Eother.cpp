@@ -51,10 +51,6 @@ void Elf::Win(Player* p2, TextDisplay* display)
 	
 	
 }
-Creature* Elf::Replenish() const
-{
-	return new Elf;
-}
 //====================================================== Elven Mage ================================================
 bool ElvenMage::DroppedItem()
 {
@@ -78,10 +74,6 @@ Item* ElvenMage::Body(string map) const
 string ElvenMage::Token()
 {
 	return "Refresh";
-}
-Creature* ElvenMage::Replenish() const
-{
-	return new ElvenMage;
 }
 //====================================================== Elven Warrior ==============================================
 bool ElvenWarrior::DroppedItem()
@@ -107,10 +99,6 @@ string ElvenWarrior::Token()
 {
 	return "Elvenchain";
 }
-Creature* ElvenWarrior::Replenish() const
-{
-	return new ElvenWarrior;
-}
 //====================================================== Fire Elf ==============================================
 bool FireElf::DroppedItem()
 {
@@ -135,10 +123,6 @@ string FireElf::Token()
 {
 	return "Potion2";
 }
-Creature* FireElf::Replenish() const
-{
-	return new FireElf;
-}
 //====================================================== Ice Elf ==============================================
 bool IceElf::DroppedItem()
 {
@@ -162,10 +146,6 @@ Item* IceElf::Body(string map) const
 string IceElf::Token()
 {
 	return "Potion2";
-}
-Creature* IceElf::Replenish() const
-{
-	return new IceElf;
 }
 //====================================================== Elven Ranger ==============================================
 bool ranger::DroppedItem()
@@ -206,10 +186,6 @@ string ranger::Token()
 	}
 
 	return token;
-}
-Creature* ranger::Replenish() const
-{
-	return new ranger;
 }
 //======================================================{ ORC ==================================================
 
@@ -255,10 +231,6 @@ void Orc::Win(Player* p2, TextDisplay* display)
 		display->DisplayText("",79,23,white);	
 	}
 }
-Creature* Orc::Replenish() const
-{
-	return new Orc;
-}
 //====================================================== Orc Sorceror ===========================================
 bool OrcSorceror::DroppedItem()
 {
@@ -283,10 +255,6 @@ string OrcSorceror::Token()
 {
 	return "Refresh";
 }
-Creature* OrcSorceror::Replenish() const
-{
-	return new OrcSorceror;
-}
 //======================================================= Orc Soldier ==========================================
 bool OrcSoldier::DroppedItem()
 {
@@ -310,10 +278,6 @@ Item* OrcSoldier::Body(string map) const
 string OrcSoldier::Token()
 {
 	return "Orc_Mail";
-}
-Creature* OrcSoldier::Replenish() const
-{
-	return new OrcSoldier;
 }
 //====================================================== Fire Orc ==================================================
 
@@ -340,10 +304,6 @@ string FireOrc::Token()
 {
 	return "Potion2";
 }
-Creature* FireOrc::Replenish() const
-{
-	return new FireOrc;
-}
 //====================================================== Ice Orc ==================================================
 bool IceOrc::DroppedItem()
 {
@@ -367,10 +327,6 @@ Item* IceOrc::Body(string map) const
 string IceOrc::Token()
 {
 	return "Potion2";
-}
-Creature* IceOrc::Replenish() const
-{
- return new IceOrc;
 }
 //====================================================== Orc Wanderer ==================================================
 bool OrcWanderer::DroppedItem()
@@ -410,10 +366,6 @@ string OrcWanderer::Token()
 		break;
 	}
 	return token;
-}
-Creature* OrcWanderer::Replenish() const
-{
-	return new OrcWanderer;
 }
 //====================================================== Human ==================================================
 bool Human::DroppedItem()
@@ -463,10 +415,6 @@ void Human::Win(Player* p2, TextDisplay* display)
 		display->DisplayText("",79,23,white);
 	}
 }
-Creature* Human::Replenish() const
-{
-	return new Human;
-}
 //====================================================== Human Knight ============================================
 bool Knight::DroppedItem()
 {
@@ -494,10 +442,6 @@ string Knight::Token()
 	}
 	return token;
 }
-Creature* Knight::Replenish() const
-{
-	return new Knight;
-}
 //====================================================== Human Adventurer ===========================================
 bool Adventurer::DroppedItem()
 {
@@ -520,10 +464,6 @@ string Adventurer::Token()
 		break;
 	}
 	return token;
-}
-Creature* Adventurer::Replenish() const
-{
-	return new Adventurer;
 }
 void Adventurer::setmap(string M)
 {
@@ -660,10 +600,6 @@ string Wizard::Token()
 {
 	return "Refresh";
 }
-Creature* Wizard::Replenish() const
-{
-	return new Wizard;
-}
 //====================================================== ==================================================
 
 //======================================================{ GOBLIN_________________________________
@@ -690,10 +626,6 @@ string Goblin::Token()
 {
 	return "Potion";
 }
-Creature* Goblin::Replenish() const
-{
-	return new Goblin;
-}
 //================================================ Giant Spider ===============================================
 
 Item* GiantSpider::Body(string map) const
@@ -706,10 +638,6 @@ Item* GiantSpider::Body(string map) const
 	left->SetKeep(true);
 	left->SetCost(50);
 	return left;
-}
-Creature* GiantSpider::Replenish() const
-{
-	return new GiantSpider;
 }
 //======================================================< WOLF-------------------------------->>>
 
@@ -724,10 +652,6 @@ Item* Wolf::Body(string map) const
 	left->SetCost(15);
 	return left;
 }
-Creature* Wolf::Replenish() const
-{
-	return new Wolf;
-}
 //====================================================== Raven ============================================
 Item*Raven::Body(string map) const
 {
@@ -739,10 +663,6 @@ Item*Raven::Body(string map) const
 	left->SetKeep(true);
 	left->SetCost(10);
 	return left;
-}
-Creature* Raven::Replenish() const
-{
-	return new Raven;
 }
 //====================================================== Snake ============================================
 Item* Snake::Body(string map) const
@@ -756,10 +676,6 @@ Item* Snake::Body(string map) const
 	left->SetCost(20);
 	return left;
 }
-Creature* Snake::Replenish() const
-{
-	return new Snake;
-}
 //====================================================== Eagle ============================================
 Item* Eagle::Body(string map) const
 {
@@ -771,10 +687,6 @@ Item* Eagle::Body(string map) const
 	left->SetKeep(true);
 	left->SetCost(50);
 	return left;
-}
-Creature* Eagle::Replenish() const
-{
- return new Eagle;
 }
 //====================================================== Polar Bear ============================================
 Item* PolarBear::Body(string map) const
@@ -788,10 +700,6 @@ Item* PolarBear::Body(string map) const
 	left->SetCost(100);
 	return left;
 }
-Creature* PolarBear::Replenish() const
-{
- return new PolarBear;
-}
 //====================================================== Salamander ============================================
 Item* Salamander::Body(string map) const
 {
@@ -804,10 +712,7 @@ Item* Salamander::Body(string map) const
 	left->SetCost(200);
 	return left;
 }
-Creature* Salamander::Replenish() const
-{
- return new Salamander;
-}
+
 //====================================================== Centipede ============================================
 Item* Centipede::Body(string map) const
 {
@@ -819,10 +724,6 @@ Item* Centipede::Body(string map) const
 	left->SetKeep(true);
 	left->SetCost(150);
 	return left;
-}
-Creature* Centipede::Replenish() const
-{
- return new Centipede;
 }
 //====================================================== Wyvern ============================================
 Item* Wyvern::Body(string map) const
@@ -836,10 +737,6 @@ Item* Wyvern::Body(string map) const
 	left->SetCost(250);
 	return left;
 }
-Creature* Wyvern::Replenish() const
-{
- return new Wyvern;
-}
 //====================================================== Hydra ============================================
 Item* Hydra::Body(string map) const
 {
@@ -852,10 +749,6 @@ Item* Hydra::Body(string map) const
 	left->SetCost(300);
 	return left;
 }
-Creature* Hydra::Replenish() const
-{
- return new Hydra;
-}
 //====================================================== Minotaur ============================================
 Item* Minotaur::Body(string map) const
 {
@@ -867,10 +760,6 @@ Item* Minotaur::Body(string map) const
 	left->SetKeep(true);
 	left->SetCost(250);
 	return left;
-}
-Creature* Minotaur::Replenish() const
-{
- return new Minotaur;
 }
 //====================================================== Gargoyle ============================================
 bool Gargoyle::DroppedItem()
@@ -895,10 +784,6 @@ Item* Gargoyle::Body(string map) const
 string Gargoyle::Token()
 {
 	return "Potion";
-}
-Creature* Gargoyle::Replenish() const
-{
- return new Margoyle;
 }
 // Make gargoyles return more powerful form of gargoyle so hunting them is harder and more fun???
 //========================================================================================================
@@ -927,10 +812,6 @@ string Margoyle::Token()
 {
 	return "Potion3";
 }
-Creature* Margoyle::Replenish() const
-{
- return new Stargoyle;
-}
 
 //========================================================================================================
 //   Stargoyle
@@ -953,10 +834,6 @@ Item* Stargoyle::Body(string map) const
 string Stargoyle::Token()
 {
 	return "Potion4";
-}
-Creature* Stargoyle::Replenish() const
-{
- return new Gargoyle;
 }
 //====================================================== Ogre ==================================================
 bool Ogre::DroppedItem()
@@ -982,10 +859,6 @@ Item* Ogre::Body(string map) const
 {
 	 return "Potion2";
 }
-Creature* Ogre::Replenish() const
-{
-	return new Ogre;
-}
 //====================================================== Troll ============================================
 bool Troll::DroppedItem()
 {
@@ -1010,10 +883,7 @@ string Troll::Token()
 	left->SetCost(100);
 	return left;
 }
-Creature* Troll::Replenish() const
-{
-	return new Troll;
-}
+
 //==============================================  Magmaman  =========================================================
 bool Magmaman::DroppedItem()
 {
@@ -1037,10 +907,6 @@ string Magmaman::Token()
 	left->SetKeep(true);
 	left->SetCost(150);
 	return left;
-}
-Creature* Magmaman::Replenish() const
-{
-	return new Troll;
 }
 //========================================================================================================
 //   Cyclops
@@ -1069,10 +935,6 @@ string Cyclops::Token()
 {
 	return "Potion2";
 }
-Creature* Cyclops::Replenish() const
-{
-	return new Cyclops;
-}
 //========================================================================================================
 //   Giant
 //==========================================================================
@@ -1099,10 +961,7 @@ string Giant::Token()
 {
 	return "Potion2";
 }
-Creature* Giant::Replenish() const
-{
-	return new Giant;
-}
+
 //========================================================================================================
 //   Frost Giant
 //==========================================================================
@@ -1129,10 +988,6 @@ Item*FrostGiant::Body(string map) const
 string FrostGiant::Token()
 {
 	return "Potion2";
-}
-Creature* FrostGiant::Replenish() const
-{
-	return new FrostGiant;
 }
 //========================================================================================================
 //   Storm Giant
@@ -1166,10 +1021,6 @@ string StormGiant::Token()
 		token = "StormSword";
 	return token;
 }
-Creature* StormGiant::Replenish() const
-{
-	 return new StormGiant;
-}
 //========================================================================================================
 //   Nymph
 //==========================================================================
@@ -1196,10 +1047,6 @@ string Nymph::Token()
 {
 	return "Refresh";
 }
-Creature* Nymph::Replenish() const
-{
-	return new Nymph;
-}
 //========================================================================================================
 //   Ice Wizard
 //==========================================================================
@@ -1225,10 +1072,6 @@ Item*IceWizard::Body(string map) const
 string IceWizard::Token()
 {
 	return "Refresh";
-}
-Creature* IceWizard::Replenish() const
-{
-	 return new IceWizard;
 }
 //========================================================================================================
 //   Snowman
@@ -1268,10 +1111,6 @@ string Snowman::Token()
 {
 	return "Refresh";
 }
-Creature* Snowman::Replenish() const
-{
-	return new Snowman;
-}
 //========================================================================================================
 //   Shrine Guard
 //==========================================================================
@@ -1297,10 +1136,6 @@ Item*ShrineGuard::Body(string map) const
 string ShrineGuard::Token()
 {
 	return "IceChain";
-}
-Creature* ShrineGuard::Replenish() const
-{
-	return new ShrineGuard;
 }
 //========================================================================================================
 //   Rock Golem
@@ -1328,10 +1163,7 @@ string RockGolem::Token()
 {
 	return "Potion2";
 }
-Creature* RockGolem::Replenish() const
-{
-	return new RockGolem;
-}
+
 //========================================================================================================
 //   Iron Golem
 //==========================================================================
@@ -1357,10 +1189,6 @@ Item*IronGolem::Body(string map) const
 string IronGolem::Token()
 {
 	return "Potion2";
-}
-Creature* IronGolem::Replenish() const
-{
-	return new IronGolem;
 }
 //========================================================================================================
 //   Steel Golem
@@ -1388,10 +1216,7 @@ string SteelGolem::Token()
 {
 	return "Potion3";
 }
-Creature* SteelGolem::Replenish() const
-{
-	return new SteelGolem;
-}
+
 //========================================================================================================
 //   Treeman
 //==========================================================================
@@ -1418,10 +1243,6 @@ string Treeman::Token()
 {
 	return "Potion2";
 }
-Creature* Treeman::Replenish() const
-{
-	return new Treeman;
-}
 //========================================================================================================
 //   Acolyte
 //==========================================================================
@@ -1447,10 +1268,6 @@ Item*Acolyte::Body(string map) const
 string Acolyte::Token()
 {
 	return "SoulCatcher";
-}
-Creature* Acolyte::Replenish() const
-{
-	return new Acolyte;
 }
 
 //========================================================================================================
@@ -1479,10 +1296,6 @@ string FireDemon::Token()
 {
 	return "Potion3";
 }
-Creature* FireDemon::Replenish() const
-{
-	return new FireDemon;
-}
 // Watch out for new items while testing. Make sure you put them into the items file
 
 //====================================================== ==================================================
@@ -1502,10 +1315,6 @@ bool Skeleton::DroppedItem()
 	left->SetKeep(true);
 	left->SetCost(0);
 	return left;
-}
-Creature* Skeleton::Replenish() const
-{
-	return new Skeleton;
 }
 //======================================================< Ghoul >==========================================
 
@@ -1539,10 +1348,7 @@ bool Ghoul::DroppedItem()
 
 	return left;
 }
-Creature* Ghoul::Replenish() const
-{
-	return new Ghoul;
-}
+
 //====================================================== Ghost ================================================
 
  Item* Ghost::Body(string map) const
@@ -1556,10 +1362,7 @@ Creature* Ghoul::Replenish() const
 	left->SetCost(0);
 	return left;
 }
-Creature* Ghost::Replenish() const
-{
-	return new Ghost;
-}
+
 
 //====================================================== Phantom ================================================
 bool Phantom::DroppedItem()
@@ -1594,10 +1397,7 @@ Item* Phantom::Body(string map) const
 	return left;
 }
 
-Creature* Phantom::Replenish() const
-{
-	return new Phantom;
-}
+
 //====================================================== Vampire ==============================================
 bool Vampire::DroppedItem()
 {
@@ -1623,10 +1423,7 @@ string Vampire::Token()
 {
 	return "Potion4";
 }
-Creature* Vampire::Replenish() const
-{
-	return new Vampire;
-}
+
 
 //			---------------------------------------------------------------------------------
 //========================================================================================================
@@ -1666,10 +1463,7 @@ void WoodPriest::Win(Player* p2, TextDisplay* display)
 	p2->PlotEventStates.Priest1 = true;
 	display->DisplayText("",79,23,white);
 }
-Creature* WoodPriest::Replenish() const
-{
-	return new Wolf;
-}
+
 vector<string> WoodPriest::Banter()
 {
 	vector<string> speech;
@@ -1709,10 +1503,7 @@ void IcePriest::Win(Player* p2, TextDisplay* display)
 	p2->PlotEventStates.Priest2 = true;
 	display->DisplayText("",79,23,white);
 }
-Creature* IcePriest::Replenish() const
-{
-	return new PolarBear;
-}
+
 vector<string> IcePriest::Banter()
 {
 	vector<string> speech;
@@ -1751,10 +1542,7 @@ void FirePriest::Win(Player* p2, TextDisplay* display)
 	p2->PlotEventStates.Priest3 = true;
 	display->DisplayText("",79,23,white);
 }
-Creature* FirePriest::Replenish() const
-{
-	return new Salamander;
-}
+
 vector<string> FirePriest::Banter()
 {
 	vector<string> speech;
@@ -1792,10 +1580,7 @@ void WindPriest::Win(Player* p2, TextDisplay* display)
 	p2->PlotEventStates.Priest4 = true;
 	display->DisplayText("",79,23,white);
 }
-Creature* WindPriest::Replenish() const
-{
-	return new Wyvern;
-}
+
 
 vector<string> WindPriest::Banter()
 {
@@ -1826,10 +1611,7 @@ void GodOfWar::Win(Player* p2, TextDisplay* display)
 {
 }
 
-Creature* GodOfWar::Replenish() const
-{
-	return new Goblin;
-}
+
 vector<string> GodOfWar::Banter()
 {
 	vector<string> speech;
@@ -1861,10 +1643,7 @@ void GodOfLife::Win(Player* p2, TextDisplay* display)
 {
 }
 
-Creature* GodOfLife::Replenish() const
-{
-	return new Goblin;
-}
+
 
 vector<string> GodOfLife::Banter()
 {
@@ -1896,10 +1675,7 @@ void GodOfChaos::Win(Player* p2, TextDisplay* display)
 {
 }
 
-Creature* GodOfChaos::Replenish() const
-{
-	return new Goblin;
-}
+
 vector<string> GodOfChaos::Banter()
 {
 	vector<string> speech;
@@ -1930,10 +1706,7 @@ void GodOfDeath::Win(Player* p2, TextDisplay* display)
 {
 }
 
-Creature* GodOfDeath::Replenish() const
-{
-	return new Goblin;
-}
+
 
 vector<string> GodOfDeath::Banter()
 {
@@ -1973,10 +1746,7 @@ void GreenDragon::Win(Player* p2, TextDisplay* display)
 	Sleep(3000);	
 }
 
-Creature* GreenDragon::Replenish() const
-{
-	return new Goblin;
-}
+
 //==========================================================================
 //   Blue Dragon
 //==========================================================================
@@ -2005,10 +1775,7 @@ void BlueDragon::Win(Player* p2, TextDisplay* display)
 	display->DisplayText("Peace begins to return to the tundra.",13,12,white);
 	Sleep(3000);	
 }
-Creature* BlueDragon::Replenish() const
-{
-	return new Goblin;
-}
+
 //==========================================================================
 //   Red Dragon
 //==========================================================================
@@ -2037,10 +1804,7 @@ void RedDragon::Win(Player* p2, TextDisplay* display)
 	display->DisplayText("Peace begins to return to the mountains.",13,12,white);
 	Sleep(3000);	
 }
-Creature* RedDragon::Replenish() const
-{
-	return new Goblin;
-}
+
 //==========================================================================
 //  Fly
 //==========================================================================
@@ -2059,10 +1823,7 @@ Item*Fly::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-Creature* Fly::Replenish() const
-{
-	return new Fly;
-}
+
 //==========================================================================
 //   Monk
 //==========================================================================
@@ -2091,10 +1852,7 @@ void Monk::Win(Player* p2, TextDisplay* display)
 	display->DisplayText("Don't you feel better about yourself now?",13,11,white);
 	Sleep(3000);	
 }
-Creature* Monk::Replenish() const
-{
-	return new Fly;
-}
+
 
 vector<string> Monk::Banter()
 {

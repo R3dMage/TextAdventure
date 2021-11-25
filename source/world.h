@@ -48,7 +48,6 @@ private:
 	void CheckPlayerLocation(Player* player);
 	bool CheckForPlayerMovement(bool &bEsc,Player *player, int Xmax,int Ymax, int &T);
 	void CheckForEnemyEncounters(Player* player);
-	void ReplenishEnemy(Creature* enemy);
 	bool Overflow(int size);
 };
 
