@@ -21,6 +21,7 @@ public:
 	void ClearTopBelow(int Y);
 	void ClearBottom();
 	void ClearBottomRight();
+	void HideCursor();
 
 	std::string GetFileName();
 

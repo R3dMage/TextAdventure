@@ -200,6 +200,11 @@ void GameDisplay::ClearBottomRight()
 	}
 }
 
+void GameDisplay::HideCursor()
+{
+	DisplayText("", 78, 24, white);
+}
+
 string GameDisplay::GetFileName()
 {
 	string filename = "";
