@@ -68,6 +68,7 @@ void FightDisplay::DisplayFightMenu()
 void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 {
 	DisplayTextAndPause("The enemy has been slain", 13, 11, white);
+	HideCursor();
 	ClearAll();
 
 	DisplayText("After every enemy dies you get stuff!!!", 13, 9, green);
@@ -75,8 +76,10 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 	DisplayText("Exp : ", 13, 12, green);
 	DisplayNumber(enemy->GetGold(), 20, 11, green);
 	DisplayNumber(enemy->GetExperience(), 20, 12, green);
+	HideCursor();
 
 	enemy->Win(player, this);
+	HideCursor();
 	Sleep(Settings->GetPauseDuration());
 }
 
