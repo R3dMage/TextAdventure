@@ -15,38 +15,27 @@ public:
 	~CFmod();
 
 	void Init();
-
 	bool LoadSong(const char *strName);
-
 	void PlaySong();
-
+	bool LoadSound(const char* soundFile);
+	void PlaySoundFile();
 	void FreeSound();
-
 	void FreeSoundSystem();
-
 	void SetVolume(int volume);
-
-	FMOD::Sound* GetSound() {	return m_pSound;			}
-
-	//char *GetSongName()	{ return m_pSound->getName(); }
-
+	FMOD::Sound* GetSound() {	return m_BgmSound;			}
 	char *GetFileName()	{ return m_strName;					}
 
 private:
 
-	FMOD::Sound *m_pSound;
-
+	FMOD::Sound* m_BgmSound;
+	FMOD::Sound* m_SfxSound;
 	FMOD::System* m_pFmodSystem;
-
 	char m_strName[255];
-
-	FMOD::Channel *m_soundChannel;
-
-	void CheckError(FMOD_RESULT result);
-
+	FMOD::Channel* m_BgmChannel;
+	FMOD::Channel* m_SfxChannel;
 	signed char m_loop;
-
 	float Volume;
+	void CheckError(FMOD_RESULT result);
 };
 
 #endif

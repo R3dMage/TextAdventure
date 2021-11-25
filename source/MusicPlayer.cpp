@@ -7,7 +7,7 @@ MusicPlayer::MusicPlayer(TextDisplay* display)
 	Display = display;
 	MusicIsOn = true;
 	MusicFilename = "";
-	MapMusic.Init();
+	SoundSystem.Init();
 }
 
 void MusicPlayer::SetIsMusicOn(bool musicOn)
@@ -21,7 +21,7 @@ bool MusicPlayer::GetIsMusicOn()
 
 void MusicPlayer::SetVolume(int volume)
 {
-	MapMusic.SetVolume(volume);
+	SoundSystem.SetVolume(volume);
 }
 
 void MusicPlayer::SetMusicFilename(string filename)
@@ -50,16 +50,16 @@ void MusicPlayer::PlayMusic(string filename)
 
 	if (fullPath.c_str())
 	{
-		if (!MapMusic.LoadSong(fullPath.c_str()))
+		if (!SoundSystem.LoadSong(fullPath.c_str()))
 		{
 			// text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
 			Display->DisplayError("MUSIC FILE LOAD FAILED!!!");
 			exit(1);
 		}
-		MapMusic.PlaySong();
+		SoundSystem.PlaySong();
 	}
 	else
-		MapMusic.FreeSound();
+		SoundSystem.FreeSound();
 }
 
 void MusicPlayer::ToggleMusic()
@@ -67,7 +67,7 @@ void MusicPlayer::ToggleMusic()
 	if (MusicIsOn)
 	{
 		MusicIsOn = false;
-		MapMusic.FreeSound();
+		SoundSystem.FreeSound();
 	}
 	else
 	{
@@ -76,7 +76,25 @@ void MusicPlayer::ToggleMusic()
 	}
 }
 
+void MusicPlayer::PlaySoundFile(std::string fileName)
+{
+	string fullPath = "./data/";
+
+	fullPath.append(fileName);
+
+	if (fullPath.c_str())
+	{
+		if (!SoundSystem.LoadSound(fullPath.c_str()))
+		{
+			// text("MUSIC FILE PROBLEMS!!!",13,12,yellow);
+			Display->DisplayError("SOUND FILE LOAD FAILED!!!");
+			exit(1);
+		}
+		SoundSystem.PlaySoundFile();
+	}
+}
+
 void MusicPlayer::StopMusic()
 {
-	MapMusic.FreeSound();
+	SoundSystem.FreeSound();
 }

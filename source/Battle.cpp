@@ -280,7 +280,7 @@ bool Battle::RunAway(Player* player, Creature* enemy)
 	int Evd = rand() % 100 + 1;
 	if (Evd > enemy->GetEvade())
 	{
-		PlaySound("./data/run.wav", NULL, SND_FILENAME | SND_ASYNC);
+		Music->PlaySoundFile("run.wav");
 		Display->DisplayMessage("You ran away");
 		Display->ClearAll();
 		return true;
@@ -298,7 +298,7 @@ void Battle::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, ve
 	player->SetIsPoisoned(false);					// After a fight you are no longer poisoned
 	fightDisplay->ClearAll();
 	Music->StopMusic();
-	PlaySound("./data/WinBattle.wav", NULL, SND_FILENAME | SND_ASYNC);
+	Music->PlaySoundFile("WinBattle.wav");
 
 	fightDisplay->DisplayWinContent(player, enemy);
 	player->SetTotalKills(player->GetTotalKills() + 1);

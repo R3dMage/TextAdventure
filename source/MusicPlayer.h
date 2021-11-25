@@ -14,10 +14,11 @@ public:
 	std::string GetMusicFilename();
 	void StopMusic();
 	void ToggleMusic();
+	void PlaySoundFile(std::string fileName);
 
 private:
 	TextDisplay* Display;
-	CFmod MapMusic;
+	CFmod SoundSystem;
 	std::string MusicFilename;
 	bool MusicIsOn;
 	void PlayMusic(std::string fileName);

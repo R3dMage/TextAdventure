@@ -17,7 +17,7 @@ CFmod::CFmod()
 
 	// Set the current song module to NULL
 	Volume = 1.0;
-	m_pSound = nullptr;
+	m_BgmSound = nullptr;
 	m_pFmodSystem = nullptr;
 	FMOD_RESULT result = FMOD::System_Create(&m_pFmodSystem);
 	CheckError(result);	
@@ -60,12 +60,12 @@ bool CFmod::LoadSong(const char *strName)
 	if(!strName)
 		return false;
 
-	m_pSound->release();
+	m_BgmSound->release();
 
-	FMOD_RESULT result = m_pFmodSystem->createSound(strName, FMOD_DEFAULT, 0, &m_pSound);
+	FMOD_RESULT result = m_pFmodSystem->createSound(strName, FMOD_DEFAULT, 0, &m_BgmSound);
 	CheckError(result);
 
-	result = m_pSound->setMode(FMOD_LOOP_NORMAL);
+	result = m_BgmSound->setMode(FMOD_LOOP_NORMAL);
 	CheckError(result);
 
 	strcpy_s(m_strName, strName);
@@ -76,10 +76,31 @@ bool CFmod::LoadSong(const char *strName)
 
 void CFmod::PlaySong()
 {
-	FMOD_RESULT result = m_pFmodSystem->playSound(m_pSound, 0, false, &m_soundChannel);
+	FMOD_RESULT result = m_pFmodSystem->playSound(m_BgmSound, 0, false, &m_BgmChannel);
 	CheckError(result);
 
-	m_soundChannel->setVolume(Volume);
+	m_BgmChannel->setVolume(Volume);
+}
+
+bool CFmod::LoadSound(const char* soundFile)
+{
+	if (!soundFile)
+		return false;
+
+	m_SfxSound->release();
+
+	FMOD_RESULT result = m_pFmodSystem->createSound(soundFile, FMOD_DEFAULT, 0, &m_SfxSound);
+	CheckError(result);
+
+	return true;
+}
+
+void CFmod::PlaySoundFile()
+{
+	FMOD_RESULT result = m_pFmodSystem->playSound(m_SfxSound, 0, false, &m_SfxChannel);
+	CheckError(result);
+
+	m_SfxChannel->setVolume(Volume);
 }
 
 void CFmod::CheckError(FMOD_RESULT result)
@@ -90,7 +111,7 @@ void CFmod::CheckError(FMOD_RESULT result)
 
 void CFmod::FreeSound()
 {
-	m_pSound->release();
+	m_BgmSound->release();
 }
 
 void CFmod::FreeSoundSystem()
@@ -106,5 +127,5 @@ void CFmod::SetVolume(int volume)
 
 	Volume = (float)(volume / 100.0);
 
-	m_soundChannel->setVolume(Volume);
+	m_BgmChannel->setVolume(Volume);
 }
