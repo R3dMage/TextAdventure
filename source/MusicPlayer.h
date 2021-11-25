@@ -12,7 +12,6 @@ public:
 	void SetVolume(int volume);
 	void SetMusicFilename(std::string fileName);
 	std::string GetMusicFilename();
-	void PlayMusic(std::string fileName);
 	void StopMusic();
 	void ToggleMusic();
 
@@ -21,4 +20,5 @@ private:
 	CFmod MapMusic;
 	std::string MusicFilename;
 	bool MusicIsOn;
+	void PlayMusic(std::string fileName);
 };
