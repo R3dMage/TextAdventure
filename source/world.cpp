@@ -203,9 +203,12 @@ void World::CheckForEnemyEncounters(Player* player)
 				MagicProvider->CheckMagic(player, CurrentState->GetPlayerSpells());
 
 
-				if (monk[0]->GetHitPoints() <= 0)
+				if (monk.front()->GetHitPoints() <= 0)
 				{
-					ReplenishEnemy(monk[0]);
+					Creature* temp = monk.front();
+					delete temp;
+					monk.clear();
+					monk.push_back(new Fly());
 					monk[monk.size() - 1]->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 				}
 
@@ -221,7 +224,7 @@ void World::CheckForEnemyEncounters(Player* player)
 			Creature* creature = *encounter;
 			if (creature->GetHitPoints() <= 0 && !creature->GetDontMove())
 			{
-				ReplenishEnemy(creature);
+				creature->Replenish();
 				creature->LoadPosition(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
 			}
 		}
@@ -229,8 +232,8 @@ void World::CheckForEnemyEncounters(Player* player)
 	if (player->GetIsLoaded())
 		player->SetIsLoaded(false);
 
-	if (monk[0]->GetX() == player->GetPositionX() && monk[0]->GetY() == player->GetPositionY() && CurrentState->GetMapName() == "field2")
-		Fight->Engage(player, monk[0], CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
+	if (monk.front()->GetX() == player->GetPositionX() && monk.front()->GetY() == player->GetPositionY() && CurrentState->GetMapName() == "field2")
+		Fight->Engage(player, monk.front(), CurrentState->GetPlayerInventory(), CurrentState->GetWorldItems(), CurrentState->GetPlayerSpells(), CurrentState->GetMapName());
 }
 
 void World::CheckPlayerLocation(Player* player)
@@ -350,16 +353,6 @@ bool World::CheckForPlayerMovement(bool &escapeWasPressed, Player *player, int X
 	}	
 	Display->DisplayText("", 78, 24,white);
 	return false;	
-}
-
-//==========================================================================================================
-//	Function for replenishing enemies
-//==========================================================================================================
-void World::ReplenishEnemy(Creature* enemy)
-{
-	Creature* temp = enemy->Replenish();
-	delete enemy;
-	enemy = temp;
 }
 
 //==========================================================================================================
