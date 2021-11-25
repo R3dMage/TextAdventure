@@ -139,6 +139,36 @@ void SaveLoadGame::LoadGame(string filename, GameState* gameState)
 	fin.close();
 }
 
+void SaveLoadGame::SaveSettings(GameSettings* gameSettings)
+{
+	string savefile = "game.settings";
+	ofstream fout;
+	fout.open(savefile.c_str());
+	
+	fout << gameSettings->GetPauseDuration() << endl;
+	fout << gameSettings->GetVolume() << endl;
+	
+	fout.close();
+}
+
+void SaveLoadGame::LoadSettings(GameSettings* gameSettings)
+{
+	int value = 0;
+	string savefile = "game.settings";
+	ifstream fin;
+	fin.open(savefile.c_str());
+
+	if (fin.fail())
+		return;
+	
+	fin >> value;
+	gameSettings->SetPauseDuration(value);
+	fin >> value;
+	gameSettings->SetVolume(value);
+	
+	fin.close();
+}
+
 void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 {
 	string temp;

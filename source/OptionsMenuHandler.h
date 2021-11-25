@@ -3,11 +3,12 @@
 #include "GameDisplay.h"
 #include "MusicPlayer.h"
 #include "GameSettings.h"
+#include "ISaveLoadGame.h"
 
 class OptionsMenuHandler : public BaseMenuInputHandler
 {
 public:
-	OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings);
+	OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings, ISaveLoadGame* loader);
 
 	virtual void DisplayMenu(int currentY) override;
 	virtual void DisplayInfo(int currentY) override;
@@ -23,4 +24,5 @@ private:
 	GameDisplay* Display;
 	MusicPlayer* Music;
 	GameSettings* Settings;
+	ISaveLoadGame* Loader;
 };

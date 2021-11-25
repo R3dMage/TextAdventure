@@ -12,8 +12,10 @@ void main()
 	GameDisplay* gameDisplay = new GameDisplay(gameSettings);
 	ItemRepository* itemRepository = new ItemRepository(gameDisplay);
 	MusicPlayer* musicPlayer = new MusicPlayer(gameDisplay);
-	SaveLoadGame* gameLoader = new SaveLoadGame(itemRepository, gameDisplay);
 	
+	SaveLoadGame gameLoader(itemRepository, gameDisplay);
+	gameLoader.LoadSettings(gameSettings);
+	musicPlayer->SetVolume(gameSettings->GetVolume());
 
 	VirtualMap* virtualMap = new VirtualMap("valesh");
 

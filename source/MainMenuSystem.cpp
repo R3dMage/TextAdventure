@@ -456,7 +456,7 @@ void MainMenuSystem::Options(GameState* gameState)
 =====================================================================================*/
 void MainMenuSystem::OptionsMenu()
 {
-	OptionsMenuHandler* handler = new OptionsMenuHandler(Display, Music, Settings);
+	OptionsMenuHandler* handler = new OptionsMenuHandler(Display, Music, Settings, GameSaver);
 
 	Menu menu(Display, handler);
 	menu.Begin();

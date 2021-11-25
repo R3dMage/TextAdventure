@@ -1,11 +1,12 @@
 #include <sstream>
 #include "OptionsMenuHandler.h"
 
-OptionsMenuHandler::OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings)
+OptionsMenuHandler::OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* music, GameSettings* settings, ISaveLoadGame* loader)
 {
 	Display = gameDisplay;
 	Music = music;
 	Settings = settings;
+	Loader = loader;
 	StartingX = 2;
 	StartingY = 12;
 	MaxY = 14;
@@ -80,6 +81,7 @@ void OptionsMenuHandler::OnSelect()
 
 void OptionsMenuHandler::OnEscape()
 {
+	Loader->SaveSettings(Settings);
 }
 
 void OptionsMenuHandler::OnChoiceMade(int currentY)

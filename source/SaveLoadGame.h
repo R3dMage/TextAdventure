@@ -13,6 +13,8 @@ public:
 	SaveLoadGame(ItemRepository* itemRepository, GameDisplay* gameDisplay);
 	virtual void SaveGame(GameState* gameState) override;
 	virtual void LoadGame(string filename, GameState* gameState) override;
+	virtual void SaveSettings(GameSettings* gameSettings) override;
+	virtual void LoadSettings(GameSettings* gameSettings) override;
 	
 protected:
 	void SavePlayer(Player* player, ofstream& fout);
