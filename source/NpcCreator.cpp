@@ -400,24 +400,24 @@ vector<Creature*> NpcCreator::SetupNpcs(string mapName, int xMax, int yMax, Game
 
 	if (mapName == "temple2")
 	{
-		if (raceReaction.Elf == 3 && raceReaction.Human == 3)
+		if (plot.GodChoice == DeitySelection::ORDER)
 		{
 			npc.push_back(new GodOfLife);
 			npc[0]->LoadPosition(3, 5);
 		}
-		if (raceReaction.Orc == 3 && raceReaction.Human == 3)
+		if (plot.GodChoice == DeitySelection::CHAOS)
 		{
 			npc.push_back(new GodOfChaos);
 			npc[0]->LoadPosition(3, 5);
 		}
-		if (raceReaction.Elf == 3 && raceReaction.Human == 0 || raceReaction.Orc == 3 && raceReaction.Human == 0)
+		if (plot.GodChoice == DeitySelection::WAR)
 		{
-			npc.push_back(new GodOfLife);
+			npc.push_back(new GodOfWar);
 			npc[0]->LoadPosition(3, 5);
 		}
-		if (raceReaction.Elf == 0 && raceReaction.Orc == 0 && raceReaction.Human == 0)
+		if (plot.GodChoice == DeitySelection::DEATH)
 		{
-			npc.push_back(new GodOfLife);
+			npc.push_back(new GodOfDeath);
 			npc[0]->LoadPosition(3, 5);
 		}
 	}
