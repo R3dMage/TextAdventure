@@ -89,13 +89,14 @@ void Plots::Check(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
 
 void Plots::CheckTempleHall(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
 {
-	if (player->GetPositionX() == 1 && player->GetPositionY() == 2)
+	if (player->GetPositionX() == 1 && player->GetPositionY() == 2 && player->PlotEventStates.GodChoice == DeitySelection::NONE)
 	{
-		Display->DisplayText("Pledge yorself to a deity to recieve their blessings.", 13, 2, white);
-		Display->DisplayText("The God of Order will expect you to destroy Orcs.", 13, 3, white);
-		Display->DisplayText("The God of Chaos will expect you to destroy Elves.", 13, 4, white);
-		Display->DisplayText("The God of War will expect you to destroy Humans.", 13, 5, white);
-		Display->DisplayText("The God of Death will expect you to destroy all.", 13, 6, white);
+		Display->ClearAll();
+		Display->DisplayText(" Pledge yorself to a deity to recieve their blessings.", 13, 2, white);
+		Display->DisplayText(" The God of Order will expect you to destroy Orcs.", 13, 3, white);
+		Display->DisplayText(" The God of Chaos will expect you to destroy Elves.", 13, 4, white);
+		Display->DisplayText(" The God of War will expect you to destroy Humans.", 13, 5, white);
+		Display->DisplayText(" The God of Death will expect you to destroy all.", 13, 6, white);
 
 		BaseMenuInputHandler* input = new DeitySelectionHandler(Display, player);
 		Menu menu(Display, input);
@@ -105,6 +106,7 @@ void Plots::CheckTempleHall(VirtualMap* map, Player* player, MusicPlayer* soundS
 	if (player->GetPositionX() == 1 && player->GetPositionY() == 10)
 	{
 		Display->DisplayText("You are not yet powerful enough to enter here.", 13, 11, white);
+		Display->HideCursor();
 		Sleep(3000);
 		CurrentState->SetMapName("field");
 		player->SetPositionX(17);
