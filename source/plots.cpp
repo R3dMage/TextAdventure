@@ -1,5 +1,7 @@
 #include <fstream>
 #include "Plots.h"
+#include "Menu.h"
+#include "DeitySelectionHandler.h"
 
 using namespace std;
 
@@ -65,17 +67,9 @@ void Plots::Check(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
 	//  will check other places, I don't know yet 6/12/05.
 	//===============================================================================================
 
-	if (CurrentState->GetMapName() == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
+	if (CurrentState->GetMapName() == "templehall")
 	{
-		Display->DisplayText("You are not yet powerful enough to enter here.", 13, 11, white);
-		Sleep(3000);
-		CurrentState->SetMapName("field");
-		player->SetPositionX(17);
-		player->SetPositionY(1);
-
-		map->LoadMap(CurrentState->GetMapName());
-		CurrentState->SetupNpcs(map->GetMaxX(), map->GetMaxY());
-		soundSystem->SetMusicFilename(map->GetMusicFileName());
+		CheckTempleHall(map, player, soundSystem);
 	}
 
 	if(CurrentState->GetMapName() == "valesh" && player->GetPositionX() == 2 && player->GetPositionY() == 1 && !plotEventStates.Start)
@@ -90,5 +84,34 @@ void Plots::Check(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
 		Display->DisplayText("", 13, 23,white);
 		system("pause");
 		Display->ClearTopBelow(1);
+	}
+}
+
+void Plots::CheckTempleHall(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
+{
+	if (player->GetPositionX() == 1 && player->GetPositionY() == 2)
+	{
+		Display->DisplayText("Pledge yorself to a deity to recieve their blessings.", 13, 2, white);
+		Display->DisplayText("The God of Order will expect you to destroy Orcs.", 13, 3, white);
+		Display->DisplayText("The God of Chaos will expect you to destroy Elves.", 13, 4, white);
+		Display->DisplayText("The God of War will expect you to destroy Humans.", 13, 5, white);
+		Display->DisplayText("The God of Death will expect you to destroy all.", 13, 6, white);
+
+		BaseMenuInputHandler* input = new DeitySelectionHandler(Display, player);
+		Menu menu(Display, input);
+		menu.Begin();
+	}
+
+	if (player->GetPositionX() == 1 && player->GetPositionY() == 10)
+	{
+		Display->DisplayText("You are not yet powerful enough to enter here.", 13, 11, white);
+		Sleep(3000);
+		CurrentState->SetMapName("field");
+		player->SetPositionX(17);
+		player->SetPositionY(1);
+
+		map->LoadMap(CurrentState->GetMapName());
+		CurrentState->SetupNpcs(map->GetMaxX(), map->GetMaxY());
+		soundSystem->SetMusicFilename(map->GetMusicFileName());
 	}
 }

@@ -17,4 +17,6 @@ public:
 private:
 	GameDisplay* Display;
 	GameState* CurrentState;
+
+	void CheckTempleHall(VirtualMap* map, Player* player, MusicPlayer* soundSystem);
 };
