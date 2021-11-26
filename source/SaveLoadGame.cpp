@@ -42,6 +42,7 @@ void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
 	fout << "X: " << player->GetPositionX() << endl;
 	fout << "Y: " << player->GetPositionY() << endl;
 	fout << "Kills: " << player->GetTotalKills() << endl;
+	fout << "PKills: " << player->GetPledgedKills() << endl;
 	fout << "bSpells: " << player->HasLearnedSpells() << endl;
 	fout << "bjoined: " << player->GetMemberHasJoined() << endl;
 	fout << "Invis: " << player->GetIsInvisible() << endl;
@@ -208,6 +209,8 @@ void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 	player->SetPositionY(number);
 	fin >> temp >> number;
 	player->SetTotalKills(number);
+	fin >> temp >> number;
+	player->SetPledgedKills(number);
 	fin >> temp >> truth;
 	player->SetHasSpells(truth);
 	fin >> temp >> truth;
