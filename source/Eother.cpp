@@ -31,7 +31,7 @@ string Elf::Token()
 	return "Potion";
 }
 
-void Elf::Win(Player* p2, TextDisplay* display)
+void Elf::Win(Player* p2, GameDisplay* display)
 {	
 	p2->SetReactionElf(1);
 	p2->RaceKillCounts.ElfKillCount += 1;
@@ -43,7 +43,7 @@ void Elf::Win(Player* p2, TextDisplay* display)
 		display->DisplayText("                                                               ",13,9,white);
 		display->DisplayText("                                                               ",13,8,white);
 		display->DisplayText("",13,8,white);
-		display->SlowDisplay("You have slain an elf, one of the god of life's most treasured ");		
+		display->SlowDisplay("You have slain an elf, one of the god of order's most treasured ");		
 		display->DisplayText("",13,9,white);
 		display->SlowDisplay("beings...");
 		display->DisplayText("",79,23,white);	
@@ -213,7 +213,7 @@ string Orc::Token()
 	return "Potion";
 }
 
-void Orc::Win(Player* p2, TextDisplay* display)
+void Orc::Win(Player* p2, GameDisplay* display)
 {
 	p2->SetReactionOrc(1);
 	p2->RaceKillCounts.OrcKillCount += 1;
@@ -392,7 +392,7 @@ Item* Human::Body(string map) const
 	return left;
 }
 
-void Human::Win(Player* p2, TextDisplay* display)
+void Human::Win(Player* p2, GameDisplay* display)
 {
 	p2->RaceKillCounts.HumanKillCount += 1;
 	if(p2->RaceKillCounts.HumanKillCount == 5)
@@ -1456,7 +1456,7 @@ Item* WoodPriest::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void WoodPriest::Win(Player* p2, TextDisplay* display)
+void WoodPriest::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("After defeating the Wood Priest you must travel north.",13,11,white);
 	display->DisplayText("Past the forests to the frozen tundra.",13,12,white);
@@ -1496,7 +1496,7 @@ Item* IcePriest::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void IcePriest::Win(Player* p2, TextDisplay* display)
+void IcePriest::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("After defeating the Ice Priest you must travel west.",13,11,white);
 	display->DisplayText("Into the mountain and defeat the Fire Priest.",13,12,white);
@@ -1535,7 +1535,7 @@ Item* FirePriest::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void FirePriest::Win(Player* p2, TextDisplay* display)
+void FirePriest::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("After defeating the Fire Priest you must warp to the middle island.",13,11,white);
 	display->DisplayText("Beneath the cemetary lies the teleporter.",13,12,white);
@@ -1573,7 +1573,7 @@ Item* WindPriest::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void WindPriest::Win(Player* p2, TextDisplay* display)
+void WindPriest::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("After defeating the the 4 priests. You must find the truth.",13,11,white);
 	display->DisplayText("Go thee to the ancient water temple.",13,12,white);
@@ -1607,7 +1607,7 @@ Item* GodOfWar::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void GodOfWar::Win(Player* p2, TextDisplay* display)
+void GodOfWar::Win(Player* p2, GameDisplay* display)
 {
 }
 
@@ -1639,7 +1639,7 @@ Item* GodOfLife::Body(string map) const
 	return left;
 }
 
-void GodOfLife::Win(Player* p2, TextDisplay* display)
+void GodOfLife::Win(Player* p2, GameDisplay* display)
 {
 }
 
@@ -1671,7 +1671,7 @@ Item* GodOfChaos::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void GodOfChaos::Win(Player* p2, TextDisplay* display)
+void GodOfChaos::Win(Player* p2, GameDisplay* display)
 {
 }
 
@@ -1702,7 +1702,7 @@ Item* GodOfDeath::Body(string map) const
 	left->SetCost(0);
 	return left;
 }
-void GodOfDeath::Win(Player* p2, TextDisplay* display)
+void GodOfDeath::Win(Player* p2, GameDisplay* display)
 {
 }
 
@@ -1739,7 +1739,7 @@ string GreenDragon::Token()
 {
 	return "GreenMail";
 }
-void GreenDragon::Win(Player* p2, TextDisplay* display)
+void GreenDragon::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("The Green Dragon lies vanquished. ",13,11,white);
 	display->DisplayText("Peace begins to return to the island.",13,12,white);
@@ -1769,7 +1769,7 @@ string BlueDragon::Token()
 {
 	return "BlueMail";
 }
-void BlueDragon::Win(Player* p2, TextDisplay* display)
+void BlueDragon::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("The Blue Dragon lies vanquished. ",13,11,white);
 	display->DisplayText("Peace begins to return to the tundra.",13,12,white);
@@ -1798,7 +1798,7 @@ string RedDragon::Token()
 {
 	return "RedMail";
 }
-void RedDragon::Win(Player* p2, TextDisplay* display)
+void RedDragon::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("The Red Dragon lies vanquished. ",13,11,white);
 	display->DisplayText("Peace begins to return to the mountains.",13,12,white);
@@ -1846,7 +1846,7 @@ string Monk::Token()
 {
 	return "Potion";
 }
-void Monk::Win(Player* p2, TextDisplay* display)
+void Monk::Win(Player* p2, GameDisplay* display)
 {
 	display->DisplayText("The peaceful monk lies vanquished. ",13,11,white);
 	display->DisplayText("Don't you feel better about yourself now?",13,12,white);

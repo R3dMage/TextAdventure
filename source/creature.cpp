@@ -31,7 +31,7 @@ vector<string> Creature::Banter()
 	return vector<string>();
 }
 
-void Creature::Attack(Player *player, TextDisplay* display)
+void Creature::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	Armor *arm;
@@ -43,12 +43,10 @@ void Creature::Attack(Player *player, TextDisplay* display)
 		damage = 0;
 	player->SetHitPoints(player->GetCurrentHitPoints()-damage);
 	display->DisplayTextAndPause(GetName() + " attacks you!", 13, 11, white);
-	display->DisplayText("Enemies Damage: ",13,11,white);
-	cout << damage << "              ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }
 
-void Creature::Win(Player *player, TextDisplay* display)
+void Creature::Win(Player *player, GameDisplay* display)
 {
 }
 string Creature::GetWeakness()
