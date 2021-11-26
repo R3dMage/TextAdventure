@@ -163,7 +163,7 @@
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
     <ClInclude Include="source\DeitySelectionHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Display\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +291,7 @@
       <Filter>GameEngine\Maps</Filter>
     </ClCompile>
     <ClCompile Include="source\DeitySelectionHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Display\Menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
