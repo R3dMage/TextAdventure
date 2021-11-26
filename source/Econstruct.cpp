@@ -652,7 +652,7 @@ Gargoyle::Gargoyle()
 	HitPoints = MaxHP =	10;
 	Evade =		3;
 	Gold =		0;
-	Experience =		6;
+	Experience =		10;
 }
 Margoyle::Margoyle()
 {
