@@ -8,7 +8,7 @@
 //============================================================================================
 // Elf
 //============================================================================================
-void Elf::Attack(Player *player, TextDisplay* display)
+void Elf::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -22,10 +22,7 @@ void Elf::Attack(Player *player, TextDisplay* display)
 		display->SlowDisplay(heal);
 		display->DisplayTextAndPause("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		cure = rand() % 30 + 11;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Elf is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Elf is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 		display->DisplayText("                          ", 13, 8, white);
@@ -38,16 +35,14 @@ void Elf::Attack(Player *player, TextDisplay* display)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
 		display->DisplayTextAndPause(GetName() + " attacks you", 13, 11, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "              ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Elven Mage
 //============================================================================================
-void ElvenMage::Attack(Player *player, TextDisplay* display)
+void ElvenMage::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -64,10 +59,7 @@ void ElvenMage::Attack(Player *player, TextDisplay* display)
 		display->SlowDisplay(heal);
 		display->DisplayTextAndPause("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		cure = rand() % 30 + 11;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Elf is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Elf is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 		display->DisplayText("                                                            ", 13, 8, white);
@@ -104,16 +96,14 @@ void ElvenMage::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Elven Warrior
 //============================================================================================
-void ElvenWarrior::Attack(Player *player, TextDisplay* display)
+void ElvenWarrior::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -129,9 +119,7 @@ void ElvenWarrior::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Elven Warrior strikes out with immense speed!", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -144,15 +132,13 @@ void ElvenWarrior::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // Ice Elf
 //============================================================================================
-void IceElf::Attack(Player *player, TextDisplay* display)
+void IceElf::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -177,9 +163,7 @@ void IceElf::Attack(Player *player, TextDisplay* display)
 		else
 		{
 			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                 ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 		}
 	}
 	else
@@ -192,15 +176,13 @@ void IceElf::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // Fire Elf
 //============================================================================================
-void FireElf::Attack(Player *player, TextDisplay* display)
+void FireElf::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -224,9 +206,7 @@ void FireElf::Attack(Player *player, TextDisplay* display)
 		else
 		{
 			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                 ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 		}
 	}
 	else
@@ -239,15 +219,13 @@ void FireElf::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // Elven Ranger
 //============================================================================================
-void ranger::Attack(Player *player, TextDisplay* display)
+void ranger::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -272,9 +250,7 @@ void ranger::Attack(Player *player, TextDisplay* display)
 			display->DisplayText("The Elven Ranger strikes out with immense speed!", 13, 11, white);
 			display->DisplayTextAndPause("", 79, 29, white);
 			display->DisplayText("                                                            ", 13, 9, white);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                             ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 			SetKa(Ka - 10);
 			break;
 		case 8:
@@ -296,10 +272,7 @@ void ranger::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Light shines down from above engulfing the elf in brightness", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 11;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Elf is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Elf is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 		display->DisplayText("                                                            ", 13, 8, white);
@@ -314,16 +287,14 @@ void ranger::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Orc
 //============================================================================================
-void Orc::Attack(Player *player, TextDisplay* display)
+void Orc::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -341,16 +312,14 @@ void Orc::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Orc Sorceror
 //============================================================================================
-void OrcSorceror::Attack(Player *player, TextDisplay* display)
+void OrcSorceror::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -369,14 +338,9 @@ void OrcSorceror::Attack(Player *player, TextDisplay* display)
 		display->DisplayTextAndPause("", 79, 29, white);
 		damage = rand() % 20 + 20;
 		cure = damage;
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                       ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Orc Sorceror is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 41, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Orc Sorceror is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 	}
@@ -414,16 +378,14 @@ void OrcSorceror::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Orc Soldier
 //============================================================================================
-void OrcSoldier::Attack(Player *player, TextDisplay* display)
+void OrcSoldier::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	Armor* arm;
@@ -439,9 +401,7 @@ void OrcSoldier::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Orc Soldier strikes out with immense power!", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -454,16 +414,14 @@ void OrcSoldier::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Fire Orc
 //============================================================================================
-void FireOrc::Attack(Player *player, TextDisplay* display)
+void FireOrc::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -480,9 +438,7 @@ void FireOrc::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("You are pelted with scalding hot rocks from above", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 10);
 	}
 	else
@@ -495,16 +451,14 @@ void FireOrc::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Ice Orc
 //============================================================================================
-void IceOrc::Attack(Player *player, TextDisplay* display)
+void IceOrc::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -521,9 +475,7 @@ void IceOrc::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Wind colder than what seems possible chills you to the bones", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 10);
 	}
 	else
@@ -536,16 +488,14 @@ void IceOrc::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Orc Wanderer
 //============================================================================================
-void OrcWanderer::Attack(Player *player, TextDisplay* display)
+void OrcWanderer::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -565,14 +515,9 @@ void OrcWanderer::Attack(Player *player, TextDisplay* display)
 		display->DisplayTextAndPause("", 79, 29, white);
 		damage = rand() % 35 + 20;
 		cure = damage;
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                       ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Adventurer is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 41, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Orc Wanderer is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -604,16 +549,14 @@ void OrcWanderer::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Human Wizard
 //============================================================================================
-void Wizard::Attack(Player *player, TextDisplay* display)
+void Wizard::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -671,9 +614,7 @@ void Wizard::Attack(Player *player, TextDisplay* display)
 			if (damage < 0)
 				damage = 1;
 			player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                    ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 		}
 	}
 }
@@ -681,7 +622,7 @@ void Wizard::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Human Adventurer
 //============================================================================================
-void Adventurer::Attack(Player *player, TextDisplay* display)
+void Adventurer::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -702,14 +643,9 @@ void Adventurer::Attack(Player *player, TextDisplay* display)
 		display->DisplayTextAndPause("", 79, 29, white);
 		damage = rand() % 20 + 20;
 		cure = damage;
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                       ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Adventurer is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 41, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Adventurer is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 	}
@@ -753,15 +689,13 @@ void Adventurer::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // Stargoyle
 //============================================================================================
-void Stargoyle::Attack(Player *player, TextDisplay* display)
+void Stargoyle::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -776,10 +710,7 @@ void Stargoyle::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Stargoyle points at the heavens and laughs", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("You see a huge meteor tearing through the atmosphere, at you!", 13, 11, white);
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -792,16 +723,14 @@ void Stargoyle::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Giant Spider
 //============================================================================================
-void GiantSpider::Attack(Player *player, TextDisplay* display)
+void GiantSpider::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -816,9 +745,7 @@ void GiantSpider::Attack(Player *player, TextDisplay* display)
 	display->DisplayText(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	display->DisplayTextAndPause("", 79, 29, white);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "              ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 	//player->DisplayInfo();
 	
 	if (Poison < 25)
@@ -836,7 +763,7 @@ void GiantSpider::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Ghost
 //============================================================================================
-void Ghost::Attack(Player *player, TextDisplay* display)
+void Ghost::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -851,9 +778,7 @@ void Ghost::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The ghost reaches out and touches you, with hands like ice.", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -866,15 +791,13 @@ void Ghost::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // Magmaman
 //============================================================================================
-void Magmaman::Attack(Player *player, TextDisplay* display)
+void Magmaman::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -888,9 +811,7 @@ void Magmaman::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Magmaman blasts searing hot wind at you from his mouth", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                           ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -903,9 +824,7 @@ void Magmaman::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
@@ -913,7 +832,7 @@ void Magmaman::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Frost Giant
 //============================================================================================
-void FrostGiant::Attack(Player *player, TextDisplay* display)
+void FrostGiant::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -927,9 +846,7 @@ void FrostGiant::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Frost Giant blows bone-chilling wind at you from his mouth", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                           ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -942,16 +859,14 @@ void FrostGiant::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Storm Giant
 //============================================================================================
-void StormGiant::Attack(Player *player, TextDisplay* display)
+void StormGiant::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -965,9 +880,7 @@ void StormGiant::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Storm Giant strikes you with lightning!!!", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                           ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -980,16 +893,14 @@ void StormGiant::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Nymph
 //============================================================================================
-void Nymph::Attack(Player *player, TextDisplay* display)
+void Nymph::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1020,9 +931,7 @@ void Nymph::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " stabs you with her long dagger!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 	if (player->GetIsAsleep())
 	{
@@ -1040,7 +949,7 @@ void Nymph::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Ice Wizard
 //============================================================================================
-void IceWizard::Attack(Player *player, TextDisplay* display)
+void IceWizard::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1058,10 +967,7 @@ void IceWizard::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("A slight breeze revitalizes the Ice Wizard.", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 21;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Ice Wizard is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Ice Wizard is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 	}
@@ -1099,16 +1005,14 @@ void IceWizard::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Snowman
 //============================================================================================
-void Snowman::Attack(Player *player, TextDisplay* display)
+void Snowman::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1123,9 +1027,7 @@ void Snowman::Attack(Player *player, TextDisplay* display)
 		display->DisplayTextAndPause("", 79, 29, white);
 		cout << "And laughs!";
 		display->DisplayText("                                                           ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -1138,16 +1040,14 @@ void Snowman::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Treeman
 //============================================================================================
-void Treeman::Attack(Player *player, TextDisplay* display)
+void Treeman::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1165,10 +1065,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Light shines down from above engulfing the Treeman in brightness", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 16;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Treeman is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Treeman is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 	}
@@ -1206,9 +1103,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
@@ -1216,7 +1111,7 @@ void Treeman::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Fire Demon
 //============================================================================================
-void FireDemon::Attack(Player *player, TextDisplay* display)
+void FireDemon::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1234,9 +1129,7 @@ void FireDemon::Attack(Player *player, TextDisplay* display)
 			display->DisplayTextAndPause("", 79, 29, white);
 			cout << "And laughs!";
 			display->DisplayText("                                                           ", 13, 9, white);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                 ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 		}
 		else
 		{
@@ -1245,9 +1138,7 @@ void FireDemon::Attack(Player *player, TextDisplay* display)
 			display->DisplayText("", 13, 9, white);
 			display->DisplayText("The Fire Demon grabs you, and engulfs you in flames!!!", 13, 11, white);
 			display->DisplayTextAndPause("", 79, 29, white);
-			display->DisplayText("Enemies Damage: ", 13, 11, white);
-			cout << damage << "                                 ";
-			display->DisplayDamage(damage);
+			display->DisplayDamage("Enemy's Damage:", damage);
 		}
 	}
 	else
@@ -1260,16 +1151,14 @@ void FireDemon::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " Attacks you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Hydra
 //============================================================================================
-void Hydra::Attack(Player *player, TextDisplay* display)
+void Hydra::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int choice = rand() % 100 + 1;
@@ -1283,9 +1172,7 @@ void Hydra::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The Hydra breathes noxious gas in your direction!", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		display->DisplayText("                                                           ", 13, 9, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                 ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		SetKa(Ka - 4);
 	}
 	else
@@ -1298,16 +1185,14 @@ void Hydra::Attack(Player *player, TextDisplay* display)
 		display->DisplayText(GetName(), 13, 11, white);
 		cout << " bites you!";
 		display->DisplayTextAndPause("", 79, 29, white);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                             ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Centipede
 //============================================================================================
-void Centipede::Attack(Player *player, TextDisplay* display)
+void Centipede::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -1322,9 +1207,7 @@ void Centipede::Attack(Player *player, TextDisplay* display)
 	display->DisplayText(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	display->DisplayTextAndPause("", 79, 29, white);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "              ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 	// player->DisplayInfo();
 	
 	if (Poison < 25)
@@ -1341,7 +1224,7 @@ void Centipede::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Vampire
 //============================================================================================
-void Vampire::Attack(Player *player, TextDisplay* display)
+void Vampire::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int Poison = rand() % 100 + 1;
@@ -1356,9 +1239,7 @@ void Vampire::Attack(Player *player, TextDisplay* display)
 	display->DisplayText(GetName(), 13, 11, white);
 	cout << " Attacks you!";
 	display->DisplayTextAndPause("", 79, 29, white);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "              ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 	damage = damage / 4;
 	SetHitPoints(GetHitPoints() + damage);
 	//player->DisplayInfo();
@@ -1376,7 +1257,7 @@ void Vampire::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Acolyte
 //============================================================================================
-void Acolyte::Attack(Player *player, TextDisplay* display)
+void Acolyte::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1384,7 +1265,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 	Armor* arm;
 	arm = player->GetArmor();
 	string windstorm = "Wind! Strikedown my opponent!";
-	string cyclone = "Wind! Destroy my enemies!!!";
+	string cyclone = "Wind! Destroy my Enemy's!!!";
 	string heal = "Gentle zephyr caress, and heal my wounds.";
 
 	if (HitPoints <= 40 && Ka >= 10)
@@ -1394,10 +1275,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("A slight breeze wafts through the fight.", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 50 + 21;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The Acolyte is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The Acolyte is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -1435,9 +1313,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
@@ -1445,7 +1321,7 @@ void Acolyte::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Wood Priest
 //============================================================================================
-void WoodPriest::Attack(Player *player, TextDisplay* display)
+void WoodPriest::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1463,10 +1339,7 @@ void WoodPriest::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Light shines down from above engulfing the priest in brightness", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 40 + 11;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The priest is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The priest is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -1504,16 +1377,14 @@ void WoodPriest::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Ice Priest
 //============================================================================================
-void IcePriest::Attack(Player *player, TextDisplay* display)
+void IcePriest::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1531,10 +1402,7 @@ void IcePriest::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("A slight breeze revitalizes the priest.", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 21;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The priest is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The priest is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -1570,16 +1438,14 @@ void IcePriest::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Fire Priest
 //============================================================================================
-void FirePriest::Attack(Player *player, TextDisplay* display)
+void FirePriest::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1597,10 +1463,7 @@ void FirePriest::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("The priest chugs a potion", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 21;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The priest is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The priest is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 	}
 	else
@@ -1635,16 +1498,14 @@ void FirePriest::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // Wind Priest
 //============================================================================================
-void WindPriest::Attack(Player *player, TextDisplay* display)
+void WindPriest::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1662,10 +1523,7 @@ void WindPriest::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Light shines down from above engulfing the priest in brightness", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 30 + 21;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The priest is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The priest is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -1701,16 +1559,14 @@ void WindPriest::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
 //============================================================================================
 // God of Life
 //============================================================================================
-void GodOfLife::Attack(Player *player, TextDisplay* display)
+void GodOfLife::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1729,10 +1585,7 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 		display->DisplayText("Light shines down from above engulfing the god in brightness", 13, 11, white);
 		display->DisplayTextAndPause("", 79, 29, white);
 		cure = rand() % 100 + 101;
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The god is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 32, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The god is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 10);
 	}
@@ -1780,15 +1633,13 @@ void GodOfLife::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 //============================================================================================
 // God of Chaos
 //============================================================================================
-void GodOfChaos::Attack(Player *player, TextDisplay* display)
+void GodOfChaos::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -1840,14 +1691,12 @@ void GodOfChaos::Attack(Player *player, TextDisplay* display)
 	if (damage < 0)
 		damage = 1;
 	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "                                    ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }
 //============================================================================================
 // God of War
 //============================================================================================
-void GodOfWar::Attack(Player *player, TextDisplay* display)
+void GodOfWar::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -1896,15 +1745,13 @@ void GodOfWar::Attack(Player *player, TextDisplay* display)
 	if (damage < 0)
 		damage = 1;
 	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "                                    ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }
 
 //============================================================================================
 // God of Death
 //============================================================================================
-void GodOfDeath::Attack(Player *player, TextDisplay* display)
+void GodOfDeath::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int cure;
@@ -1920,14 +1767,9 @@ void GodOfDeath::Attack(Player *player, TextDisplay* display)
 		display->DisplayTextAndPause("", 79, 29, white);
 		damage = rand() % 100 + 90;
 		cure = damage;
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                       ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("                                                            ", 13, 9, white);
-		display->DisplayText("The god of death is healed: ", 13, 8, white);
-		display->DisplayNumber(cure, 41, 8, green);
-		display->DisplayCure(cure);
+		display->DisplayCure("The god of death is healed:", cure);
 		SetHitPoints(GetHitPoints() + cure);
 		SetKa(Ka - 4);
 	}
@@ -1942,9 +1784,7 @@ void GodOfDeath::Attack(Player *player, TextDisplay* display)
 		if (damage < 0)
 			damage = 1;
 		player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-		display->DisplayText("Enemies Damage: ", 13, 11, white);
-		cout << damage << "                                    ";
-		display->DisplayDamage(damage);
+		display->DisplayDamage("Enemy's Damage:", damage);
 	}
 }
 
@@ -1957,7 +1797,7 @@ void GodOfDeath::Attack(Player *player, TextDisplay* display)
 //============================================================================================
 // Green Dragon
 //============================================================================================
-void GreenDragon::Attack(Player *player, TextDisplay* display)
+void GreenDragon::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -2003,15 +1843,13 @@ void GreenDragon::Attack(Player *player, TextDisplay* display)
 	if (damage < 0)
 		damage = 1;
 	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "                                    ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }
 
 //============================================================================================
 // Blue Dragon
 //============================================================================================
-void BlueDragon::Attack(Player *player, TextDisplay* display)
+void BlueDragon::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -2057,15 +1895,13 @@ void BlueDragon::Attack(Player *player, TextDisplay* display)
 	if (damage < 0)
 		damage = 1;
 	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "                                    ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }
 
 //============================================================================================
 // Red Dragon
 //============================================================================================
-void RedDragon::Attack(Player *player, TextDisplay* display)
+void RedDragon::Attack(Player *player, GameDisplay* display)
 {
 	int damage = 0;
 	int X;
@@ -2111,7 +1947,5 @@ void RedDragon::Attack(Player *player, TextDisplay* display)
 	if (damage < 0)
 		damage = 1;
 	player->SetHitPoints(player->GetCurrentHitPoints() - damage);
-	display->DisplayText("Enemies Damage: ", 13, 11, white);
-	cout << damage << "                                    ";
-	display->DisplayDamage(damage);
+	display->DisplayDamage("Enemy's Damage:", damage);
 }

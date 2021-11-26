@@ -30,7 +30,7 @@ void FightDisplay::DisplayMessage(string message)
 {
 	DisplayText(message, 13, 11, white);
 	DisplayTextAndPause("", 79, 23, white);
-	DisplayText("                     ", 13, 11, white);
+	DisplayText("                               ", 13, 11, white);
 }
 
 void FightDisplay::DisplayMessageWithRedNumber(string message, int damage)

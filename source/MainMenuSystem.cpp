@@ -612,14 +612,12 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 			case 0:
 				Num = 25;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				Display->DisplayText("You were healed: ", 13, 8, white); cout << Num;
-				Display->DisplayCure(Num);
+				Display->DisplayCure("You were healed:", Num);
 				break;
 			case 1:
 				Num = 15;
 				player->SetKa(player->GetCurrentKa() + Num);
-				Display->DisplayText("Ka recovered: ", 13, 8, white); cout << Num;
-				Display->DisplayCure(Num);
+				Display->DisplayCure("Ka recovered:", Num);
 				break;
 			case 2:
 				Num = rand() % 5 + 1;
@@ -636,20 +634,17 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 			case 4:
 				Num = 75;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				Display->DisplayText("You were healed: ", 13, 8, white); cout << Num;
-				Display->DisplayCure(Num);
+				Display->DisplayCure("You were healed:", Num);
 				break;
 			case 5:
 				Num = 150;
 				player->SetHitPoints(player->GetCurrentHitPoints() + Num);
-				Display->DisplayText("You were healed: ", 13, 8, white); cout << Num;
-				Display->DisplayCure(Num);
+				Display->DisplayCure("You were healed:", Num);
 				break;
 			case 6:
 				Num = player->GetMaxHitPoints() - player->GetCurrentHitPoints();
 				player->SetHitPoints(player->GetMaxHitPoints());
-				Display->DisplayText("You were healed: ", 13, 8, white); cout << Num;
-				Display->DisplayCure(Num);
+				Display->DisplayCure("You were healed:", Num);
 			default:
 				Display->DisplayText("This item does nothing", 13, 8, white);
 				Sleep(Settings->GetPauseDuration());

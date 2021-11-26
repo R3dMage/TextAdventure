@@ -22,6 +22,7 @@ public:
 	void ClearBottom();
 	void ClearBottomRight();
 	void HideCursor();
+	void HideCursorAndPause();
 
 	std::string GetFileName();
 
@@ -35,8 +36,11 @@ public:
 	void DisplayItemsOnGround(std::vector<Item*> worldItems, std::string map, Player* player);
 
 	void DisplayCastingCost(int amount);
-	void DisplayIncantation(string description, string incantation);
-	void DisplaySpellName(string name, int yPosition, WORD color);
+	void DisplayIncantation(std::string description, string incantation);
+	void DisplaySpellName(std::string name, int yPosition, WORD color);
+
+	void DisplayDamage(std::string message, int amount);
+	void DisplayCure(std::string, int amount);
 
 private:
 	void DisplayCost(int cost);

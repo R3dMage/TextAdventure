@@ -205,6 +205,12 @@ void GameDisplay::HideCursor()
 	DisplayText("", 78, 24, white);
 }
 
+void GameDisplay::HideCursorAndPause()
+{
+	HideCursor();
+	Sleep(Settings->GetPauseDuration());
+}
+
 string GameDisplay::GetFileName()
 {
 	string filename = "";
@@ -423,6 +429,26 @@ void GameDisplay::DisplayIncantation(string description, string incantation)
 void GameDisplay::DisplaySpellName(string name, int yPosition, WORD color)
 {
 	DisplayText(name, 16, yPosition, color);
+}
+
+void GameDisplay::DisplayDamage(std::string message, int amount)
+{
+	int length = message.size() + 1;
+
+	DisplayText("                                                                ", 13, 11, white);
+	DisplayText(message, 13, 11, white);
+	DisplayNumber(amount, 13 + length, 11, red);
+	HideCursorAndPause();
+}
+
+void GameDisplay::DisplayCure(string message, int amount)
+{
+	int length = message.size() + 1;
+
+	DisplayText("                                                                ", 13, 11, white);
+	DisplayText(message, 13, 11, white);
+	DisplayNumber(amount, 13 + length, 11, green);
+	HideCursorAndPause();
 }
 
 void GameDisplay::DisplayPlayerItems(vector<Item*>& playerInventory)

@@ -44,16 +44,6 @@ void TextDisplay::DisplayError(string errorText)
 	system("pause");
 }
 
-void TextDisplay::DisplayDamage(int amount)
-{
-	DisplayRunningNumber(amount, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
-
-void TextDisplay::DisplayCure(int amount)
-{
-	DisplayRunningNumber(amount, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
-
 void TextDisplay::DisplayRunningNumber(int amount, WORD color)
 {
 	int X = 13;

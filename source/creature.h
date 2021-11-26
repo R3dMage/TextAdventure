@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-#include "TextDisplay.h"
+#include "GameDisplay.h"
 #include "Greeting.h"
 #include "Player.h"
 #include "Item.h"
@@ -61,9 +61,9 @@ public:
 	void LoadPosition(int X, int Y);
 	virtual void Replenish();
 	virtual Item* Body(std::string) const = 0;
-	virtual void Win(Player *player, TextDisplay* display);
+	virtual void Win(Player *player, GameDisplay* display);
 	virtual bool DroppedItem();
-	virtual void Attack(Player *player, TextDisplay* display);
+	virtual void Attack(Player *player, GameDisplay* display);
 	virtual string Token();
 	virtual bool TalkTo(Player *player);
 	virtual std::vector<std::string> Banter();
