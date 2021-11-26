@@ -6,6 +6,14 @@
 #include "Weapon.h"
 #include "Armor.h"
 
+enum DeitySelection {
+	NONE = 0,
+	ORDER = 1,
+	CHAOS = 2,
+	WAR = 3,
+	DEATH = 4
+};
+
 struct RaceReactionIndex{
 	int Elf;
 	int Human;
@@ -26,6 +34,7 @@ struct GameEvents{
 	bool BlueDragon;
 	bool RedDragon;
 	bool Monk;
+	DeitySelection GodChoice;
 };
 
 class Player {

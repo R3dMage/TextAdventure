@@ -41,6 +41,7 @@ Player::Player()
 	PlotEventStates.BlueDragon = false;
 	PlotEventStates.RedDragon = false;
 	PlotEventStates.Start = false;
+	PlotEventStates.GodChoice = DeitySelection::NONE;
 	IsLoaded = false;
 
 	Armor armor;
