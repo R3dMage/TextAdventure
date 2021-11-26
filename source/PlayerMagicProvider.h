@@ -13,4 +13,8 @@ public:
 private:
 	TextDisplay* Display;
 	bool HasMagic(string spellName, vector<Magic*>& spells);
+	void CheckChaos(Player* player, vector<Magic*>& spells);
+	void CheckDeath(Player* player, vector<Magic*>& spells);
+	void CheckOrder(Player* player, vector<Magic*>& spells);
+	void CheckWar(Player* player, vector<Magic*>& spells);
 };
