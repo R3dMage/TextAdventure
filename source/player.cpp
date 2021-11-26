@@ -28,7 +28,7 @@ Player::Player()
 	PauseDuration = 1500;
 	RaceReactions.Elf =		2;
 	RaceReactions.Human =	3;
-	RaceReactions.Orc =		1;
+	RaceReactions.Orc =		2;
 	RaceKillCounts.ElfKillCount = 0;
 	RaceKillCounts.HumanKillCount = 0;
 	RaceKillCounts.OrcKillCount = 0;
