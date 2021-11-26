@@ -137,29 +137,7 @@ void World::PlayGame()
 
 		GamePlots->Check(&player->PlotEventStates, CurrentState->GetMapName(), player->GetPositionX(), player->GetPositionY());
 
-//===============================================================================================
-//							This section will be checking player location
-//	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
-//  So, if the player tries, it warps them away! Or at least outside the temple. Maybe later it 
-//  will check other places, I don't know yet 6/12/05.
-//===============================================================================================
-		
-		if(CurrentState->GetMapName() == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
-		{
-			Display->DisplayText("You are not yet powerful enough to enter here.",13,11,white);
-			Sleep(3000);
-			CurrentState->GetMapName() = "field";
-			player->SetPositionX(17);
-			player->SetPositionY(1);
-			
-			CurrentMap->LoadMap(CurrentState->GetMapName());
-			CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-			
-			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
-		}
-
 		CheckForEnemyEncounters(player);
-
 
 //===============================================================================================
 //									Function for moving enemies around on the map
