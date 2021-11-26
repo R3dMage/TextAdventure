@@ -84,12 +84,18 @@ void World::PlayGame()
 // Adding Map size 5/16/05.
 // Commented out encounter size and # of squares for beta version 6/14/05
 //=============================================================================================================
+		Display->DisplayText("          ", 2, 18, white);
+		Display->DisplayText("Location:", 1, 18, white);
+		Display->DisplayText("          ",2,19,white);
+		Display->DisplayText(CurrentState->GetMapName(),2,19,yellow);
+
+		Display->DisplayText("          ", 2, 21, white);
+		Display->DisplayText("Map Size:", 1, 21, white);
 		Display->DisplayText("          ",2,22,white);
 		Display->DisplayNumber(CurrentMap->GetMaxX(), 2, 22, white);
 		Display->DisplayText("x",4,22,white);
 		Display->DisplayNumber(CurrentMap->GetMaxY(), 5, 22, white);
-		Display->DisplayText("          ",2,19,white);
-		Display->DisplayText(CurrentState->GetMapName(),2,19,yellow);			
+
 //		Display->num(T,2,20,yellow);			T = 0;
 //		Display->num(static_cast<int>(CurrentState->GetCreatures().size()),2,21,blue);
 //=============================================================================================================
