@@ -213,16 +213,16 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 	bool bWeak = false;
 	bool bMagical = false;
 	Weapon* weap = player->GetWeapon();
-	int Damage = rand() % weap->GetDamage() + weap->GetDamageModifier();//--->|Weapon's Damage
-	int StrMod = rand() % (player->GetStrength() / 2) + 2;//-------------------->|Strength modifier
-	Damage += StrMod;
+	int damage = rand() % weap->GetDamage() + weap->GetDamageModifier();//--->|Weapon's Damage
+	int strengthModifier = rand() % (player->GetStrength() / 2) + 2;//-------------------->|Strength modifier
+	damage += strengthModifier;
 	if (weap->GetHitsTwice())//-------------------------------------->|Xtra hit check
 	{
-		int D2 = rand() % weap->GetDamage() + weap->GetDamageModifier();
-		StrMod = rand() % (player->GetStrength() / 2) + 2;
-		D2 += StrMod;
+		int modifiedDamage = rand() % weap->GetDamage() + weap->GetDamageModifier();
+		strengthModifier = rand() % (player->GetStrength() / 2) + 2;
+		modifiedDamage += strengthModifier;
 		fightDisplay->DisplayMessage("2 Hits!!");
-		Damage += D2;
+		damage += modifiedDamage;
 	}
 	//----------------------->Checks for weakness in the monsters. Double Damage is pretty cool
 	if (weap->GetAttribute1() == enemy->GetWeakness() || weap->GetAttribute2() == enemy->GetWeakness())
@@ -232,32 +232,26 @@ void Battle::PlayerAttack(Player* player, FightDisplay* fightDisplay, Creature* 
 		bMagical = true;
 	//----------------->|If the creature is weak against the player's weapon, then double damage.
 	if (bWeak)
-		Damage *= 2;
+		damage *= 2;
 	//----------------------------------------------------->|Damage to the undead is cut in half. 
 	if (!bWeak && !bMagical && enemy->GetType() == "undead")
-		Damage /= 2;
+		damage /= 2;
 	//PlaySound("sword1.wav",NULL,SND_FILENAME | SND_ASYNC);
 
 
 	//----------------------------------------------------->|Some enemies have good defenses				
-	Damage = Damage - enemy->GetDefense();
-	if (Damage < 1)
-		Damage = 1;//-------------------------------------->|But damage is always at least 1.
-	enemy->SetHitPoints(enemy->GetHitPoints() - Damage);
+	damage = damage - enemy->GetDefense();
+	if (damage < 1)
+		damage = 1;//-------------------------------------->|But damage is always at least 1.
+	enemy->SetHitPoints(enemy->GetHitPoints() - damage);
 
-	stringstream messageStream;
-	messageStream << "Your Damage :" << Damage;
-	fightDisplay->DisplayMessage(messageStream.str());
-	fightDisplay->DisplayDamage(Damage);
+	fightDisplay->DisplayDamage("Your damage:", damage);
+
 	if (weap->HasLifeSteal())
 	{
-		player->SetHitPoints(player->GetCurrentHitPoints() + Damage / 2);
-		messageStream.str(string());
-		messageStream << "Life Gained:    " << Damage / 2;
-		fightDisplay->DisplayMessage(messageStream.str());
-		fightDisplay->DisplayDamage(Damage / 2);
+		player->SetHitPoints(player->GetCurrentHitPoints() + damage / 2);
+		fightDisplay->DisplayCure("Life Gained:", damage / 2);
 	}
-
 }
 
 void Battle::PlayerMagic(Player* player, Creature* enemy, std::vector<Magic*>& spells, bool& bEsc, bool &pass)
