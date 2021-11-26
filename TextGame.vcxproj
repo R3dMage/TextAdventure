@@ -200,6 +200,7 @@ copy "$(SolutionDir)fmod\lib\x64\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="source/World.h" />
     <ClInclude Include="source/stdafx.h" />
     <ClInclude Include="source/targetver.h" />
+    <ClInclude Include="source\DeitySelectionHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source/Armor.cpp" />
@@ -243,6 +244,7 @@ copy "$(SolutionDir)fmod\lib\x64\fmod.dll" "$(TargetDir)"</Command>
     <ClCompile Include="source/Weapon.cpp" />
     <ClCompile Include="source/World.cpp" />
     <ClCompile Include="source/stdafx.cpp" />
+    <ClCompile Include="source\DeitySelectionHandler.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

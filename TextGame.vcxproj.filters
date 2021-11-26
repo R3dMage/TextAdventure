@@ -162,6 +162,9 @@
     <ClInclude Include="source/VirtualMap.h">
       <Filter>GameEngine\Maps</Filter>
     </ClInclude>
+    <ClInclude Include="source\DeitySelectionHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source/stdafx.cpp">
@@ -286,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="source/VirtualMap.cpp">
       <Filter>GameEngine\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DeitySelectionHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
