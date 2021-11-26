@@ -39,7 +39,7 @@ bool PlayerMagicProvider::HasMagic(string spellName, vector<Magic*>& spells)
 
 void PlayerMagicProvider::CheckChaos(Player* player, vector<Magic*>& spells)
 {
-	int totalKills = player->GetTotalKills() + 2 * player->RaceKillCounts.ElfKillCount;
+	int totalKills = player->GetPledgedKills() + 2 * player->RaceKillCounts.ElfKillCount;
 
 	if (totalKills > 20 && totalKills < 40)
 	{
@@ -74,7 +74,7 @@ void PlayerMagicProvider::CheckChaos(Player* player, vector<Magic*>& spells)
 
 void PlayerMagicProvider::CheckDeath(Player* player, vector<Magic*>& spells)
 {
-	int totalKills = player->GetTotalKills() / 2;
+	int totalKills = player->GetPledgedKills() / 2;
 
 	if (totalKills > 20 && totalKills < 40)
 	{
@@ -109,7 +109,7 @@ void PlayerMagicProvider::CheckDeath(Player* player, vector<Magic*>& spells)
 
 void PlayerMagicProvider::CheckOrder(Player* player, vector<Magic*>& spells)
 {
-	int totalKills = player->GetTotalKills() + 2 * player->RaceKillCounts.OrcKillCount;
+	int totalKills = player->GetPledgedKills() + 2 * player->RaceKillCounts.OrcKillCount;
 
 	if (totalKills > 20 && totalKills < 40)
 	{
@@ -143,7 +143,7 @@ void PlayerMagicProvider::CheckOrder(Player* player, vector<Magic*>& spells)
 
 void PlayerMagicProvider::CheckWar(Player* player, vector<Magic*>& spells)
 {
-	int totalKills = player->GetTotalKills() + 2 * player->RaceKillCounts.HumanKillCount;
+	int totalKills = player->GetPledgedKills() + 2 * player->RaceKillCounts.HumanKillCount;
 
 	if (totalKills > 20 && totalKills < 40)
 	{
