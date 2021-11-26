@@ -378,6 +378,29 @@ void GameDisplay::DisplayPlayerStatus(Player* player)
 	cout << player->RaceKillCounts.ElfKillCount;
 	DisplayText("Hmn Kills: ", 45, 14, white);
 	cout << player->RaceKillCounts.HumanKillCount;
+	string god;
+	switch (player->PlotEventStates.GodChoice)
+	{
+	case DeitySelection::CHAOS:
+		god = "GOD OF CHAOS";
+		break;
+	case DeitySelection::DEATH:
+		god = "GOD OF DEATH";
+		break;
+	case DeitySelection::NONE:
+		god = "NO GOD";
+		break;
+	case DeitySelection::ORDER:
+		god = "GOD OF ORDER";
+		break;
+	case DeitySelection::WAR:
+		god = "GOD OF WAR";
+		break;
+	default:
+		break;
+	}
+	DisplayText("Pledged to: ", 45, 15, white);
+	cout << god;
 	DisplayText("", 13, 23, white);
 	system("pause");
 }
