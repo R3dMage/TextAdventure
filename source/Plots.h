@@ -12,7 +12,7 @@ public:
 	Plots(GameDisplay* display, GameState* state);
 	void DisplayIntro();
 	void DisplayPlot(std::string map, std::string ID);
-	void Check(GameEvents* plotEventStates, VirtualMap* map, Player* player, MusicPlayer* soundSystem);
+	void Check(VirtualMap* map, Player* player, MusicPlayer* soundSystem);
 
 private:
 	GameDisplay* Display;

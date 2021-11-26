@@ -55,8 +55,9 @@ void Plots::DisplayPlot(string Map, string ID)
 /*================================================================================
 	This function is designed to handle all the plots in the game
 =================================================================================*/
-void Plots::Check(GameEvents* plotEventStates, VirtualMap* map, Player* player, MusicPlayer* soundSystem)
+void Plots::Check(VirtualMap* map, Player* player, MusicPlayer* soundSystem)
 {
+	GameEvents plotEventStates = player->PlotEventStates;
 	//===============================================================================================
 	//							This section will be checking player location
 	//	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
@@ -77,9 +78,9 @@ void Plots::Check(GameEvents* plotEventStates, VirtualMap* map, Player* player, 
 		soundSystem->SetMusicFilename(map->GetMusicFileName());
 	}
 
-	if(CurrentState->GetMapName() == "valesh" && player->GetPositionX() == 2 && player->GetPositionY() == 1 && !plotEventStates->Start)
+	if(CurrentState->GetMapName() == "valesh" && player->GetPositionX() == 2 && player->GetPositionY() == 1 && !plotEventStates.Start)
 	{
-		plotEventStates->Start = true;
+		plotEventStates.Start = true;
 
 		Display->ClearTopBelow(1);
 		Display->DisplayText("The town elder approaches you. He tells you of a priest who",13,2,white);

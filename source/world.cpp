@@ -19,13 +19,12 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* music
 	Music = musicPlayer;
 	CurrentMap = virtualMap;
 	Settings = gameSettings;
+	CurrentState = new GameState();
 	GameSaver = new SaveLoadGame(Items, Display);
 	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer, gameSettings);
-	GamePlots = new Plots(Display);
+	GamePlots = new Plots(Display, CurrentState);
 	Fight = new Battle(Menu, new FightDisplay(gameSettings), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
-
-	CurrentState = new GameState();
 }
 
 World::~World()
@@ -135,7 +134,7 @@ void World::PlayGame()
 			}
 		}
 
-		GamePlots->Check(&player->PlotEventStates, CurrentState->GetMapName(), player->GetPositionX(), player->GetPositionY());
+		GamePlots->Check(CurrentMap, player, Music);
 
 		CheckForEnemyEncounters(player);
 
