@@ -53,11 +53,11 @@ void DeitySelectionHandler::OnChoiceMade(int currentY)
 {
 	Display->ClearTopRight();
 
-	Display->DisplayText("Blinding light opens up around you.", 13, 2, white);
-	Display->DisplayText("You gaze upon the hall and you can feel the aura of protection", 13, 3, white);
-	Display->DisplayText("your new deity has cloaked you in. You feel filled with purpose", 13, 4, white);
-	Display->DisplayText("and ambition.", 13, 5, white);
-	Display->DisplayText("Now go forth, destroy the four priests and bring your God's", 13, 6, white);
+	Display->DisplayText(" Blinding light opens up around you.", 13, 2, white);
+	Display->DisplayText(" You gaze upon the hall and you can feel the aura of protection", 13, 3, white);
+	Display->DisplayText(" your new deity has cloaked you in. You feel filled with purpose", 13, 4, white);
+	Display->DisplayText(" and ambition.", 13, 5, white);
+	Display->DisplayText(" Now go forth, destroy the four priests and bring your God's", 13, 6, white);
 	Display->DisplayText(" vision to the world.", 13, 7, white);
 	Display->DisplayText("", 13, 8, white);
 	system("pause");
