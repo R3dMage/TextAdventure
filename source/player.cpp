@@ -28,7 +28,7 @@ Player::Player()
 	PauseDuration = 1500;
 	RaceReactions.Elf =		2;
 	RaceReactions.Human =	3;
-	RaceReactions.Orc =		1;
+	RaceReactions.Orc =		2;
 	RaceKillCounts.ElfKillCount = 0;
 	RaceKillCounts.HumanKillCount = 0;
 	RaceKillCounts.OrcKillCount = 0;
@@ -41,6 +41,7 @@ Player::Player()
 	PlotEventStates.BlueDragon = false;
 	PlotEventStates.RedDragon = false;
 	PlotEventStates.Start = false;
+	PlotEventStates.GodChoice = DeitySelection::NONE;
 	IsLoaded = false;
 
 	Armor armor;
@@ -194,6 +195,14 @@ int Player::GetEvade()
 int Player::GetTotalKills()
 {
 	return TotalKills;
+}
+void Player::SetPledgedKills(int kills)
+{
+	PledgedKills = kills;
+}
+int Player::GetPledgedKills()
+{
+	return PledgedKills;
 }
 void Player::SetReactionElf(int reaction)
 {	

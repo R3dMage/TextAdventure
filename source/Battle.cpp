@@ -301,6 +301,8 @@ void Battle::Win(FightDisplay* fightDisplay, Player* player, Creature* enemy, ve
 	Music->PlaySoundFile("WinBattle.wav");
 
 	fightDisplay->DisplayWinContent(player, enemy);
+	if (enemy->GetLevel() >= player->GetLevel())
+		player->SetPledgedKills(player->GetPledgedKills() + 1);
 	player->SetTotalKills(player->GetTotalKills() + 1);
 	player->SetGold(player->GetGold() + enemy->GetGold());
 	player->SetExperience(player->GetExperience() + enemy->GetExperience());

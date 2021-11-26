@@ -42,6 +42,7 @@ void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
 	fout << "X: " << player->GetPositionX() << endl;
 	fout << "Y: " << player->GetPositionY() << endl;
 	fout << "Kills: " << player->GetTotalKills() << endl;
+	fout << "PKills: " << player->GetPledgedKills() << endl;
 	fout << "bSpells: " << player->HasLearnedSpells() << endl;
 	fout << "bjoined: " << player->GetMemberHasJoined() << endl;
 	fout << "Invis: " << player->GetIsInvisible() << endl;
@@ -62,6 +63,7 @@ void SaveLoadGame::SavePlayer(Player* player, ofstream& fout)
 	fout << "Blu: " << player->PlotEventStates.BlueDragon << endl;
 	fout << "Red: " << player->PlotEventStates.RedDragon << endl;
 	fout << "Mnk: " << player->PlotEventStates.Monk << endl;
+	fout << "God: " << player->PlotEventStates.GodChoice << endl;
 }
 
 void SaveLoadGame::SaveOptions(MusicPlayer* musicPlayer, ofstream& fout)
@@ -207,6 +209,8 @@ void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 	player->SetPositionY(number);
 	fin >> temp >> number;
 	player->SetTotalKills(number);
+	fin >> temp >> number;
+	player->SetPledgedKills(number);
 	fin >> temp >> truth;
 	player->SetHasSpells(truth);
 	fin >> temp >> truth;
@@ -248,6 +252,8 @@ void SaveLoadGame::LoadPlayer(Player* player, ifstream& fin)
 	fin >> temp >> truth;
 	player->PlotEventStates.RedDragon = truth;
 	fin >> temp >> truth;
+	fin >> temp >> number;
+	player->PlotEventStates.GodChoice = (DeitySelection)number;
 	player->PlotEventStates.Monk = truth;
 	player->SetWeapon(Items->GetWeapon(weaponName));
 	player->SetArmor(Items->GetArmor(armorName));

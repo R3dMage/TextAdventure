@@ -19,13 +19,12 @@ World::World(GameDisplay* gameDisplay, ItemRepository* items, MusicPlayer* music
 	Music = musicPlayer;
 	CurrentMap = virtualMap;
 	Settings = gameSettings;
+	CurrentState = new GameState();
 	GameSaver = new SaveLoadGame(Items, Display);
 	Menu = new MainMenuSystem(Display, GameSaver, Items, musicPlayer, gameSettings);
-	GamePlots = new Plots(Display);
+	GamePlots = new Plots(Display, CurrentState);
 	Fight = new Battle(Menu, new FightDisplay(gameSettings), Items, musicPlayer);
 	MagicProvider = new PlayerMagicProvider(Display);
-
-	CurrentState = new GameState();
 }
 
 World::~World()
@@ -74,6 +73,7 @@ void World::PlayGame()
 		escapeWasPressed   = false;
 
 		CheckPlayerLocation(player);
+		GamePlots->Check(CurrentMap, player, Music);
 
 		PlayerEnvironment surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
 		Display->DisplayLocation(&surroundings);
@@ -135,31 +135,8 @@ void World::PlayGame()
 			}
 		}
 
-		GamePlots->Check(&player->PlotEventStates, CurrentState->GetMapName(), player->GetPositionX(), player->GetPositionY());
-
-//===============================================================================================
-//							This section will be checking player location
-//	If the player hasn't defeated the 4 priests, then he can't enter the temple sanctum 
-//  So, if the player tries, it warps them away! Or at least outside the temple. Maybe later it 
-//  will check other places, I don't know yet 6/12/05.
-//===============================================================================================
-		
-		if(CurrentState->GetMapName() == "templehall" && player->GetPositionX() == 1 && player->GetPositionY() == 10)
-		{
-			Display->DisplayText("You are not yet powerful enough to enter here.",13,11,white);
-			Sleep(3000);
-			CurrentState->GetMapName() = "field";
-			player->SetPositionX(17);
-			player->SetPositionY(1);
-			
-			CurrentMap->LoadMap(CurrentState->GetMapName());
-			CurrentState->SetupNpcs(CurrentMap->GetMaxX(), CurrentMap->GetMaxY());
-			
-			Music->SetMusicFilename(CurrentMap->GetMusicFileName());
-		}
 
 		CheckForEnemyEncounters(player);
-
 
 //===============================================================================================
 //									Function for moving enemies around on the map
