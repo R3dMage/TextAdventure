@@ -73,6 +73,7 @@ void World::PlayGame()
 		escapeWasPressed   = false;
 
 		CheckPlayerLocation(player);
+		GamePlots->Check(CurrentMap, player, Music);
 
 		PlayerEnvironment surroundings = CurrentMap->GetPlayerEnvironment(player->GetPositionX(), player->GetPositionY());
 		Display->DisplayLocation(&surroundings);
@@ -134,7 +135,6 @@ void World::PlayGame()
 			}
 		}
 
-		GamePlots->Check(CurrentMap, player, Music);
 
 		CheckForEnemyEncounters(player);
 
