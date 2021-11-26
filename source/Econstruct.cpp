@@ -646,13 +646,13 @@ Minotaur::Minotaur()
 Gargoyle::Gargoyle()
 {
 	Name = "Gargoyle";
-	Level =		6;
-	BaseDamage =	20;
-	DamageModifier =	10;
-	HitPoints = MaxHP =	100;
-	Evade =		50;
-	Gold =		28;
-	Experience =		97;
+	Level =		1;
+	BaseDamage =	5;
+	DamageModifier =	1;
+	HitPoints = MaxHP =	10;
+	Evade =		3;
+	Gold =		0;
+	Experience =		6;
 }
 Margoyle::Margoyle()
 {
