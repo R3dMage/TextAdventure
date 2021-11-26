@@ -196,6 +196,14 @@ int Player::GetTotalKills()
 {
 	return TotalKills;
 }
+void Player::SetPledgedKills(int kills)
+{
+	PledgedKills = kills;
+}
+int Player::GetPledgedKills()
+{
+	return PledgedKills;
+}
 void Player::SetReactionElf(int reaction)
 {	
 	RaceReactions.Elf = reaction;	

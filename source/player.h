@@ -76,6 +76,8 @@ public:
 	int GetEvade();
 	void SetTotalKills(int);
 	int GetTotalKills();
+	void SetPledgedKills(int);
+	int GetPledgedKills();
 	void SetReactionElf(int);
 	int GetReactionElf();
 	void SetReactionHuman(int);
@@ -124,6 +126,7 @@ private:
 	int		MaxKa;							// Max Magic Points
 	int		ExperienceNeededForNextLevel;	// Experience for next level
 	int		TotalKills;						// # of kills
+	int		PledgedKills;					// # of kills pledged to deity
 	int		PauseDuration;					// Pause duration in milliseconds
 	int		MagicStatus;					// Current state
 	bool	IsInFight;						// To determine if there is a fight
