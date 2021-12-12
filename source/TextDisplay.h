@@ -26,7 +26,4 @@ public:
 
 protected:
 	GameSettings* Settings;
-
-private:
-	void DisplayRunningNumber(int amount, WORD color);
 };
