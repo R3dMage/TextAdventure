@@ -13,8 +13,6 @@ public:
 	GameDisplay(GameSettings* settings);
 	void BoxScreen();
 	void DrawBoxWithCross();
-	void DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin);
-	void DrawCross(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
 
 	void ClearTopRight();
 	void ClearAll();
@@ -43,6 +41,9 @@ public:
 	void DisplayCure(std::string, int amount);
 
 private:
+	void DrawCross(COORD pos, char RC, char BC, char LC, char UC, char CTR, char HL, char VL, int Xmax, int Xmin, int Ymax, int Ymin);
+	void DrawScreen(COORD pos, char ULC, char URC, char LRC, char LLC, char VL, char HL, int Xmax, int Xmin, int Ymax, int Ymin);
+	
 	void DisplayCost(int cost);
 	void DisplayDescription(string description);
 	void DisplayLongDescription(string description);
