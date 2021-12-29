@@ -26,6 +26,7 @@ Player::Player()
 	IsInFight = false;
 	MagicStatus = 0;
 	PauseDuration = 1500;
+	PledgedKills = 0;
 	RaceReactions.Elf =		2;
 	RaceReactions.Human =	3;
 	RaceReactions.Orc =		2;
