@@ -44,18 +44,6 @@ void TextDisplay::DisplayError(string errorText)
 	system("pause");
 }
 
-void TextDisplay::DisplayRunningNumber(int amount, WORD color)
-{
-	int X = 13;
-	while (X < 50)
-	{
-		DisplayNumber(amount, X, 9, color);
-		Sleep(50);
-		X++;
-		DisplayText("   ", X - 1, 9, color);
-	}
-}
-
 void TextDisplay::SlowDisplay(string szText)
 {
 	for (unsigned int i = 0; i < szText.size(); i++)
