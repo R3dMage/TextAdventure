@@ -15,12 +15,12 @@ OptionsMenuHandler::OptionsMenuHandler(GameDisplay* gameDisplay, MusicPlayer* mu
 
 void OptionsMenuHandler::DisplayMenu(int currentY)
 {
-	Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Music  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Speed  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Volume |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|         |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->DisplayText("/---------\\", 1, 11, box);
+	Display->DisplayText("|  Music  |", 1, 12, box);
+	Display->DisplayText("|  Speed  |", 1, 13, box);
+	Display->DisplayText("|  Volume |", 1, 14, box);
+	Display->DisplayText("|         |", 1, 15, box);
+	Display->DisplayText("\\---------/", 1, 16, box);
 }
 
 void OptionsMenuHandler::DisplayInfo(int currentY)
