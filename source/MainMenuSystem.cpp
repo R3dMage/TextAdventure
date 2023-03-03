@@ -25,12 +25,12 @@ void MainMenuSystem::TitleScreenMenu(GameState* gameState)
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		Display->DisplayText("/---------\\", 1, 11, box);
-		Display->DisplayText("|  New    |", 1, 12, box);
-		Display->DisplayText("|  Load   |", 1, 13, box);
-		Display->DisplayText("|  Setup  |", 1, 14, box);
-		Display->DisplayText("|  Quit   |", 1, 15, box);
-		Display->DisplayText("\\---------/", 1, 16, box);
+		Display->DisplayText("/---------\\", 1, 11, cyan);
+		Display->DisplayText("|  New    |", 1, 12, cyan);
+		Display->DisplayText("|  Load   |", 1, 13, cyan);
+		Display->DisplayText("|  Setup  |", 1, 14, cyan);
+		Display->DisplayText("|  Quit   |", 1, 15, cyan);
+		Display->DisplayText("\\---------/", 1, 16, cyan);
 		Display->DisplayText("           ", 1, 17, blue);
 
 		DrawCursor(cursorPosition, yellow, 175);
@@ -76,10 +76,10 @@ bool MainMenuSystem::YesOrNoPrompt()
 		curosrPosition.X = 2;
 		curosrPosition.Y = 12;
 		selectionWasMade = false;
-		Display->DisplayText("/---------\\", 1, 11, box);
-		Display->DisplayText("|  Yes    |", 1, 12, box);
-		Display->DisplayText("|  No     |", 1, 13, box);
-		Display->DisplayText("\\---------/", 1, 14, box);
+		Display->DisplayText("/---------\\", 1, 11, cyan);
+		Display->DisplayText("|  Yes    |", 1, 12, cyan);
+		Display->DisplayText("|  No     |", 1, 13, cyan);
+		Display->DisplayText("\\---------/", 1, 14, cyan);
 
 		DrawCursor(curosrPosition, yellow, 175);
 		do
@@ -122,12 +122,12 @@ void MainMenuSystem::HandleMainPlayerMenu(GameState* gameState)
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		Display->DisplayText("/---------\\", 1, 11, box);
-		Display->DisplayText("|  Inv.   |", 1, 12, box);
-		Display->DisplayText("|  Status |", 1, 13, box);
-		Display->DisplayText("|  Magic  |", 1, 14, box);
-		Display->DisplayText("|  Options|", 1, 15, box);
-		Display->DisplayText("\\---------/", 1, 16, box);
+		Display->DisplayText("/---------\\", 1, 11, cyan);
+		Display->DisplayText("|  Inv.   |", 1, 12, cyan);
+		Display->DisplayText("|  Status |", 1, 13, cyan);
+		Display->DisplayText("|  Magic  |", 1, 14, cyan);
+		Display->DisplayText("|  Options|", 1, 15, cyan);
+		Display->DisplayText("\\---------/", 1, 16, cyan);
 		Display->DisplayText("           ", 1, 17, blue);
 
 		DrawCursor(cursorPosition, yellow, 175);
@@ -186,12 +186,12 @@ void MainMenuSystem::HandleInventory(GameState* gameState)
 		selectionWasMade = false;
 		pickup = false;
 		selectedUse = false;
-		Display->DisplayText("/---------\\", 1, 11, box);
-		Display->DisplayText("|  PickUp |", 1, 12, box);
-		Display->DisplayText("|  Utilize|", 1, 13, box);
-		Display->DisplayText("|         |", 1, 14, box);
-		Display->DisplayText("|         |", 1, 15, box);
-		Display->DisplayText("\\---------/", 1, 16, box);
+		Display->DisplayText("/---------\\", 1, 11, cyan);
+		Display->DisplayText("|  PickUp |", 1, 12, cyan);
+		Display->DisplayText("|  Utilize|", 1, 13, cyan);
+		Display->DisplayText("|         |", 1, 14, cyan);
+		Display->DisplayText("|         |", 1, 15, cyan);
+		Display->DisplayText("\\---------/", 1, 16, cyan);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -409,12 +409,12 @@ void MainMenuSystem::Options(GameState* gameState)
 		cursorPosition.X = 2;
 		cursorPosition.Y = 12;
 		selectionWasMade = false;
-		Display->DisplayText("/---------\\", 1, 11, box);
-		Display->DisplayText("|  Save   |", 1, 12, box);
-		Display->DisplayText("|  Load   |", 1, 13, box);
-		Display->DisplayText("|  Setup  |", 1, 14, box);
-		Display->DisplayText("|  Quit   |", 1, 15, box);
-		Display->DisplayText("\\---------/", 1, 16, box);
+		Display->DisplayText("/---------\\", 1, 11, cyan);
+		Display->DisplayText("|  Save   |", 1, 12, cyan);
+		Display->DisplayText("|  Load   |", 1, 13, cyan);
+		Display->DisplayText("|  Setup  |", 1, 14, cyan);
+		Display->DisplayText("|  Quit   |", 1, 15, cyan);
+		Display->DisplayText("\\---------/", 1, 16, cyan);
 
 		DrawCursor(cursorPosition, yellow, 175);
 		do
@@ -471,7 +471,7 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 	bool Iused = false;
 	COORD cursorPosition;
 
-	WORD color = isFighting ? ftext : box;
+	WORD color = isFighting ? ftext : cyan;
 
 	while (!escapeWasPressed)
 	{
@@ -809,13 +809,13 @@ bool MainMenuSystem::TalkTo(Greeting* greeting, int pauseDuration)
 	CursPos.Y = 12;
 	bSel = false;
 	Display->DisplayText(greeting->GetIntroduction(), 13, 11, white);
-	Display->DisplayText("/---------\\", 1, 11, box);
-	Display->DisplayText("|  Talk   |", 1, 12, box);
-	Display->DisplayText("|  Fight  |", 1, 13, box);
-	Display->DisplayText("|         |", 1, 14, box);
-	Display->DisplayText("|         |", 1, 15, box);
-	Display->DisplayText("\\---------/", 1, 16, box);
-	Display->DisplayText("           ", 1, 17, box);
+	Display->DisplayText("/---------\\", 1, 11, cyan);
+	Display->DisplayText("|  Talk   |", 1, 12, cyan);
+	Display->DisplayText("|  Fight  |", 1, 13, cyan);
+	Display->DisplayText("|         |", 1, 14, cyan);
+	Display->DisplayText("|         |", 1, 15, cyan);
+	Display->DisplayText("\\---------/", 1, 16, cyan);
+	Display->DisplayText("           ", 1, 17, cyan);
 
 	DrawCursor(CursPos, yellow, 175);
 	do

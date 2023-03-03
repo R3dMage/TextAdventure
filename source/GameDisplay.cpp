@@ -228,29 +228,29 @@ void GameDisplay::DisplayTitleScreen()
 
 void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 {
-	DisplayText("/---------\\", 1, 11, box);
-	DisplayText("|         |", 1, 12, box);
-	DisplayText("|    |    |", 1, 13, box);
-	DisplayText("| ---+--- |", 1, 14, box);
-	DisplayText("|    |    |", 1, 15, box);
-	DisplayText("|         |", 1, 16, box);
-	DisplayText("\\---------/", 1, 17, box);
+	DisplayText("/---------\\", 1, 11, cyan);
+	DisplayText("|         |", 1, 12, cyan);
+	DisplayText("|    |    |", 1, 13, cyan);
+	DisplayText("| ---+--- |", 1, 14, cyan);
+	DisplayText("|    |    |", 1, 15, cyan);
+	DisplayText("|         |", 1, 16, cyan);
+	DisplayText("\\---------/", 1, 17, cyan);
 
 	if (playerY == maxY)
 		DisplayText("N", 6, 12, blue);
 	else
-		DisplayText("N", 6, 12, box);
+		DisplayText("N", 6, 12, cyan);
 	if (playerY == 1)
 		DisplayText("S", 6, 16, blue);
 	else
-		DisplayText("S", 6, 16, box);
+		DisplayText("S", 6, 16, cyan);
 	if (playerX == maxX)
 	{
 		DisplayText("E", 10, 14, blue);
 	}
 	else
 	{
-		DisplayText("E", 10, 14, box);
+		DisplayText("E", 10, 14, cyan);
 	}
 	if (playerX == 1)
 	{
@@ -258,7 +258,7 @@ void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 	}
 	else
 	{
-		DisplayText("W", 2, 14, box);
+		DisplayText("W", 2, 14, cyan);
 	}
 	DisplayText("", 78, 24, white);
 }
