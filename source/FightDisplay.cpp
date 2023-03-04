@@ -7,9 +7,9 @@ FightDisplay::FightDisplay(GameSettings* settings) :
 
 void FightDisplay::DisplayAttackAnnouncement(Creature* enemy)
 {
-	DisplayText("You have been attacked by a ", 13, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	DisplayText(enemy->GetName(), 41, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	DisplayText("", 13, 12, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	DisplayText("You have been attacked by a ", 13, 11, blue);
+	DisplayText(enemy->GetName(), 41, 11, blue);
+	DisplayText("", 13, 12, blue);
 	system("pause");
 	ClearAll();
 }
