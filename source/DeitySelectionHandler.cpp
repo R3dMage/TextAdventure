@@ -13,12 +13,12 @@ DeitySelectionHandler::DeitySelectionHandler(GameDisplay* gameDisplay, Player* p
 
 void DeitySelectionHandler::DisplayMenu(int currentY)
 {
-	Display->DisplayText("/---------\\", 1, 11, box);
-	Display->DisplayText("|  Order  |", 1, 12, box);
-	Display->DisplayText("|  Chaos  |", 1, 13, box);
-	Display->DisplayText("|  War    |", 1, 14, box);
-	Display->DisplayText("|  Death  |", 1, 15, box);
-	Display->DisplayText("\\---------/", 1, 16, box);
+	Display->DisplayText("/---------\\", 1, 11, cyan);
+	Display->DisplayText("|  Order  |", 1, 12, cyan);
+	Display->DisplayText("|  Chaos  |", 1, 13, cyan);
+	Display->DisplayText("|  War    |", 1, 14, cyan);
+	Display->DisplayText("|  Death  |", 1, 15, cyan);
+	Display->DisplayText("\\---------/", 1, 16, cyan);
 }
 
 void DeitySelectionHandler::DisplayInfo(int currentY)
