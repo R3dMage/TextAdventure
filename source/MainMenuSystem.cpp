@@ -373,7 +373,7 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 
 		offset = cursorPosition.Y - 12;
 		selectionWasMade = false;
-		Display->DisplayText(playerInventory[offset]->GetName(), 15, cursorPosition.Y, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		Display->DisplayText(playerInventory[offset]->GetName(), 15, cursorPosition.Y, red);
 		do
 		{
 
@@ -843,7 +843,7 @@ void MainMenuSystem::ClearTextBottomRight(int Y)
 {
 	while (Y < 24)
 	{
-		Display->DisplayText("                                                                 ", 13, Y, FOREGROUND_BLUE);
+		Display->DisplayText("                                                                 ", 13, Y, white);
 		Y++;
 	}
 }

@@ -85,7 +85,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 		selectionWasMade = false;
 
 		sellPrice = static_cast<int>(selectedItem->GetCost() * sellMultiplier);
-		Display->DisplayText(playerInventory[offset]->GetName(), 15, cursorPosition.Y, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		Display->DisplayText(playerInventory[offset]->GetName(), 15, cursorPosition.Y, green);
 		Display->DisplayText("This Item?                  ", 13, 3, white);
 		Display->DisplayText(selectedItem->GetName(), 13, 5, white);
 		cout << "   " << sellPrice << "GP";

@@ -12,7 +12,7 @@ void GameDisplay::BoxScreen()
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(OutputH, grey);
 
 	COORD CursPos = { 0,0 };
 	int num1 = 186;
@@ -30,7 +30,7 @@ void GameDisplay::DrawBoxWithCross()
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(OutputH, grey);
 
 	COORD CursPos = { 0,0 };
 	int num1 = 186;
