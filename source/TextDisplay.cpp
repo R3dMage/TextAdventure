@@ -40,7 +40,7 @@ void TextDisplay::DisplayNumber(int num, short X, short Y, WORD color)
 
 void TextDisplay::DisplayError(string errorText)
 {
-	DisplayText(errorText, 13, 11, FOREGROUND_RED);
+	DisplayText(errorText, 13, 11, dkred);
 	system("pause");
 }
 
