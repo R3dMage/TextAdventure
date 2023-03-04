@@ -40,7 +40,7 @@ void DeitySelectionHandler::DisplayInfo(int currentY)
 		Display->HideCursor();
 		break;
 	case 15:
-		Display->DisplayText("Become my agent upon the land and recieve true power!", 13, 12, BACKGROUND_RED | BACKGROUND_INTENSITY );
+		Display->DisplayText("Become my agent upon the land and recieve true power!", 13, 12, blackOnRed );
 		Display->HideCursor();
 		break;
 	default:
