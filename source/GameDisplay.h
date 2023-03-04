@@ -25,6 +25,7 @@ public:
 	std::string GetFileName();
 
 	void DisplayTitleScreen();
+	void DisplayMessage(std::string message, WORD color = white);
 	void DisplayCompass(int playerX, int playerY, int maxX, int maxY);
 	void DisplayLocation(PlayerEnvironment* playerEnvironment);
 	void DisplayPlayerInfo(Player* player);

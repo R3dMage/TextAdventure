@@ -93,9 +93,9 @@ void GameState::PickupItems(GameDisplay* display)
 	}
 	else
 	{
-		display->DisplayText("You do not have enough room!", 13, 9, white);
+		display->DisplayMessage("You do not have enough room!");
 		Sleep(3000);
-		display->DisplayText("                            ", 13, 9, white);
+		display->DisplayMessage("                            ");
 	}
 }
 
