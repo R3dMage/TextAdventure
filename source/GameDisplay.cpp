@@ -226,6 +226,11 @@ void GameDisplay::DisplayTitleScreen()
 	DisplayText(" Adventure of Lexi ", 28, 5, brown);
 }
 
+void GameDisplay::DisplayMessage(string message, WORD color)
+{
+	DisplayText(message, 13, 9, color);
+}
+
 void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 {
 	DisplayText("/---------\\", 1, 11, cyan);
