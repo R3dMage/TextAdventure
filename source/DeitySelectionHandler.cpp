@@ -13,12 +13,12 @@ DeitySelectionHandler::DeitySelectionHandler(GameDisplay* gameDisplay, Player* p
 
 void DeitySelectionHandler::DisplayMenu(int currentY)
 {
-	Display->DisplayText("/---------\\", 1, 11, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Order  |", 1, 12, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Chaos  |", 1, 13, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  War    |", 1, 14, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("|  Death  |", 1, 15, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	Display->DisplayText("\\---------/", 1, 16, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	Display->DisplayText("/---------\\", 1, 11, cyan);
+	Display->DisplayText("|  Order  |", 1, 12, cyan);
+	Display->DisplayText("|  Chaos  |", 1, 13, cyan);
+	Display->DisplayText("|  War    |", 1, 14, cyan);
+	Display->DisplayText("|  Death  |", 1, 15, cyan);
+	Display->DisplayText("\\---------/", 1, 16, cyan);
 }
 
 void DeitySelectionHandler::DisplayInfo(int currentY)
@@ -40,7 +40,7 @@ void DeitySelectionHandler::DisplayInfo(int currentY)
 		Display->HideCursor();
 		break;
 	case 15:
-		Display->DisplayText("Become my agent upon the land and recieve true power!", 13, 12, BACKGROUND_RED | BACKGROUND_INTENSITY );
+		Display->DisplayText("Become my agent upon the land and recieve true power!", 13, 12, blackOnRed );
 		Display->HideCursor();
 		break;
 	default:

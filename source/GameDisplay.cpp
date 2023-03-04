@@ -12,7 +12,7 @@ void GameDisplay::BoxScreen()
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(OutputH, grey);
 
 	COORD CursPos = { 0,0 };
 	int num1 = 186;
@@ -30,7 +30,7 @@ void GameDisplay::DrawBoxWithCross()
 {
 	HANDLE OutputH;
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
+	SetConsoleTextAttribute(OutputH, grey);
 
 	COORD CursPos = { 0,0 };
 	int num1 = 186;
@@ -228,29 +228,29 @@ void GameDisplay::DisplayTitleScreen()
 
 void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 {
-	DisplayText("/---------\\", 1, 11, compassColor);
-	DisplayText("|         |", 1, 12, compassColor);
-	DisplayText("|    |    |", 1, 13, compassColor);
-	DisplayText("| ---+--- |", 1, 14, compassColor);
-	DisplayText("|    |    |", 1, 15, compassColor);
-	DisplayText("|         |", 1, 16, compassColor);
-	DisplayText("\\---------/", 1, 17, compassColor);
+	DisplayText("/---------\\", 1, 11, cyan);
+	DisplayText("|         |", 1, 12, cyan);
+	DisplayText("|    |    |", 1, 13, cyan);
+	DisplayText("| ---+--- |", 1, 14, cyan);
+	DisplayText("|    |    |", 1, 15, cyan);
+	DisplayText("|         |", 1, 16, cyan);
+	DisplayText("\\---------/", 1, 17, cyan);
 
 	if (playerY == maxY)
 		DisplayText("N", 6, 12, blue);
 	else
-		DisplayText("N", 6, 12, compassColor);
+		DisplayText("N", 6, 12, cyan);
 	if (playerY == 1)
 		DisplayText("S", 6, 16, blue);
 	else
-		DisplayText("S", 6, 16, compassColor);
+		DisplayText("S", 6, 16, cyan);
 	if (playerX == maxX)
 	{
 		DisplayText("E", 10, 14, blue);
 	}
 	else
 	{
-		DisplayText("E", 10, 14, compassColor);
+		DisplayText("E", 10, 14, cyan);
 	}
 	if (playerX == 1)
 	{
@@ -258,7 +258,7 @@ void GameDisplay::DisplayCompass(int playerX, int playerY, int maxX, int maxY)
 	}
 	else
 	{
-		DisplayText("W", 2, 14, compassColor);
+		DisplayText("W", 2, 14, cyan);
 	}
 	DisplayText("", 78, 24, white);
 }

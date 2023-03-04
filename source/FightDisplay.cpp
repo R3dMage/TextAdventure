@@ -7,9 +7,9 @@ FightDisplay::FightDisplay(GameSettings* settings) :
 
 void FightDisplay::DisplayAttackAnnouncement(Creature* enemy)
 {
-	DisplayText("You have been attacked by a ", 13, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	DisplayText(enemy->GetName(), 41, 11, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-	DisplayText("", 13, 12, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	DisplayText("You have been attacked by a ", 13, 11, blue);
+	DisplayText(enemy->GetName(), 41, 11, blue);
+	DisplayText("", 13, 12, blue);
 	system("pause");
 	ClearAll();
 }
@@ -56,7 +56,7 @@ void FightDisplay::DisplayFightMenu()
 	DisplayText("           ", 1, 11, white);
 	DisplayText("           ", 1, 12, white);
 	DisplayText("           ", 1, 13, white);
-	DisplayText("                                                                 ", 13, 11, FOREGROUND_BLUE);
+	DisplayText("                                                                 ", 13, 11, white);
 	DisplayText("/---------\\", 1, 11, ftext);
 	DisplayText("|  Attack |", 1, 12, ftext);
 	DisplayText("|  Magic  |", 1, 13, ftext);
@@ -86,6 +86,6 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 void FightDisplay::DisplayLevelUp(Player* player)
 {
 	ClearAll();
-	DisplayText("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
+	DisplayText("You have gone up in level!!", 13, 11, dkgreen);
 	DisplayTextAndPause("", 79, 23, white);
 }
