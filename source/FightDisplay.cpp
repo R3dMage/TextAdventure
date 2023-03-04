@@ -56,7 +56,7 @@ void FightDisplay::DisplayFightMenu()
 	DisplayText("           ", 1, 11, white);
 	DisplayText("           ", 1, 12, white);
 	DisplayText("           ", 1, 13, white);
-	DisplayText("                                                                 ", 13, 11, FOREGROUND_BLUE);
+	DisplayText("                                                                 ", 13, 11, white);
 	DisplayText("/---------\\", 1, 11, ftext);
 	DisplayText("|  Attack |", 1, 12, ftext);
 	DisplayText("|  Magic  |", 1, 13, ftext);
@@ -86,6 +86,6 @@ void FightDisplay::DisplayWinContent(Player* player, Creature* enemy)
 void FightDisplay::DisplayLevelUp(Player* player)
 {
 	ClearAll();
-	DisplayText("You have gone up in level!!", 13, 11, FOREGROUND_GREEN);
+	DisplayText("You have gone up in level!!", 13, 11, dkgreen);
 	DisplayTextAndPause("", 79, 23, white);
 }
