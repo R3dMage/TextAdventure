@@ -1,4 +1,5 @@
 #pragma once
+#include "ITextDisplay.h"
 #include <Windows.h>
 #include <string>
 #include "GameSettings.h"
@@ -16,7 +17,7 @@
 #define blackOnRed BACKGROUND_RED | BACKGROUND_INTENSITY
 #define ftext BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
-class TextDisplay
+class TextDisplay : public ITextDisplay
 {
 public:
 	TextDisplay(GameSettings* settings);

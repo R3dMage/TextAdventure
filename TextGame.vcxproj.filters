@@ -165,6 +165,9 @@
     <ClInclude Include="source\DeitySelectionHandler.h">
       <Filter>Display\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="source\ITextDisplay.h">
+      <Filter>Display</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source/stdafx.cpp">
