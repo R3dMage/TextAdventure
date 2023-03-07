@@ -208,6 +208,7 @@ copy "$(SolutionDir)fmod\lib\x64\fmod.dll" "$(TargetDir)"</Command>
     <ClInclude Include="source/stdafx.h" />
     <ClInclude Include="source/targetver.h" />
     <ClInclude Include="source\DeitySelectionHandler.h" />
+    <ClInclude Include="source\ITextDisplay.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source/Armor.cpp" />
