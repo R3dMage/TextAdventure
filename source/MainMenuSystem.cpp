@@ -33,12 +33,12 @@ void MainMenuSystem::TitleScreenMenu(GameState* gameState)
 		Display->DisplayText("\\---------/", 1, 16, cyan);
 		Display->DisplayText("           ", 1, 17, blue);
 
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 
@@ -81,12 +81,12 @@ bool MainMenuSystem::YesOrNoPrompt()
 		Display->DisplayText("|  No     |", 1, 13, cyan);
 		Display->DisplayText("\\---------/", 1, 14, cyan);
 
-		DrawCursor(curosrPosition, yellow, 175);
+		Display->DrawCursor(curosrPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(curosrPosition, selectionWasMade, escapeWasPressed, 12, 13))
 			{
-				DrawCursor(curosrPosition, yellow, 175);
+				Display->DrawCursor(curosrPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -130,12 +130,12 @@ void MainMenuSystem::HandleMainPlayerMenu(GameState* gameState)
 		Display->DisplayText("\\---------/", 1, 16, cyan);
 		Display->DisplayText("           ", 1, 17, blue);
 
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -193,12 +193,12 @@ void MainMenuSystem::HandleInventory(GameState* gameState)
 		Display->DisplayText("|         |", 1, 15, cyan);
 		Display->DisplayText("\\---------/", 1, 16, cyan);
 
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 13))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -232,14 +232,14 @@ void MainMenuSystem::Equip(Player* player, vector<Item*>& playerInventory)
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
 		Offset = cursorPosition.Y - 12;
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		playerInventory[Offset]->Display();
 		do
 		{
 			choice = static_cast<int>(11 + playerInventory.size());
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, choice))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				Offset = cursorPosition.Y - 12;
 				playerInventory[Offset]->Display();
 			}
@@ -301,13 +301,13 @@ void MainMenuSystem::Drop(Player* player, vector<Item*>& worldItems, vector<Item
 		selectionWasMade = false;
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			choice = static_cast<int>(11 + playerInventory.size());
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, choice))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				Offset = cursorPosition.Y - 12;
 				playerInventory[Offset]->Display();
 			}
@@ -351,13 +351,13 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 		selectionWasMade = false;
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			choice = static_cast<int>(11 + playerInventory.size());
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, choice))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 12;
 				playerInventory[offset]->Display();
 			}
@@ -379,7 +379,7 @@ void MainMenuSystem::DeleteItem(vector<Item*>& playerInventory)
 
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, cursorPosition.Y, cursorPosition.Y))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -416,12 +416,12 @@ void MainMenuSystem::Options(GameState* gameState)
 		Display->DisplayText("|  Quit   |", 1, 15, cyan);
 		Display->DisplayText("\\---------/", 1, 16, cyan);
 
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -492,12 +492,12 @@ void MainMenuSystem::UseItem(Player* player, vector<Item*>& worldItems, vector<I
 		Display->DisplayText("|  XXXX   |", 1, 15, color);
 		Display->DisplayText("\\---------/", 1, 16, color);
 
-		DrawCursor(cursorPosition, color, 175);
+		Display->DrawCursor(cursorPosition, color, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, 15))
 			{
-				DrawCursor(cursorPosition, color, 175);
+				Display->DrawCursor(cursorPosition, color, 175);
 			}
 		} while (!selectionWasMade);
 		if (escapeWasPressed)
@@ -573,7 +573,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 		selectionWasMade = false;
 		cursorPosition.X = 13;
 		cursorPosition.Y = 12;
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 
 		playerInventory[offset]->Display();
 		do
@@ -581,7 +581,7 @@ void MainMenuSystem::Use(Player* player, vector<Item*>& playerInventory, bool& i
 			choice = static_cast<int>(11 + playerInventory.size());
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, choice))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 12;
 				playerInventory[offset]->Display();
 			}
@@ -698,14 +698,14 @@ void MainMenuSystem::MagicMenu(Player* player, vector<Magic*>& spells)
 			else
 				Display->DisplaySpellName(spells[i]->GetName(), i + 13, green);			
 		}
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		offset = cursorPosition.Y - 13;
 		Display->DisplayCastingCost(spells[offset]->GetCost());
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 13, 12 + static_cast<int>(spells.size())))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 13;
 				Display->DisplayCastingCost(spells[offset]->GetCost());
 			}
@@ -765,12 +765,12 @@ void MainMenuSystem::InFightMagicMenu(Player* player, Creature* enemy, vector<Ma
 				Display->DisplaySpellName(spells[i]->GetName(), i + 13, green);
 		}
 		Display->DisplayCastingCost(spells[offset]->GetCost());
-		DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		do
 		{
 			if (MoveCursor(cursorPosition, selectionWasMade, pressedEscape, 13, 12 + static_cast<int>(spells.size())))
 			{
-				DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				offset = cursorPosition.Y - 13;
 				Display->DisplayCastingCost(spells[offset]->GetCost());
 			}
@@ -817,12 +817,12 @@ bool MainMenuSystem::TalkTo(Greeting* greeting, int pauseDuration)
 	Display->DisplayText("\\---------/", 1, 16, cyan);
 	Display->DisplayText("           ", 1, 17, cyan);
 
-	DrawCursor(CursPos, yellow, 175);
+	Display->DrawCursor(CursPos, yellow, 175);
 	do
 	{
 		if (MoveCursor(CursPos, bSel, bEsc, 12, X))
 		{
-			DrawCursor(CursPos, yellow, 175);
+			Display->DrawCursor(CursPos, yellow, 175);
 		}
 	} while (!bSel);
 	choice = CursPos.Y;
@@ -866,19 +866,6 @@ void MainMenuSystem::SlideDown(vector<Item*>& playerInventory, int X)
 		Y++;
 	}
 	playerInventory[playerInventory.size() - 1] = temp;
-}
-
-void MainMenuSystem::DrawCursor(COORD pos, WORD color, unsigned char curs)
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, pos);
-
-	cout << curs;
-	pos.X = 78;
-	pos.Y = 24;
-	SetConsoleCursorPosition(OutputH, pos);
 }
 
 bool MainMenuSystem::MoveCursor(COORD& CursPos, bool& bSelect, bool& bEsc, int Ymin, int Ymax)

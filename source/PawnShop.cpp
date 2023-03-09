@@ -56,7 +56,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 			escapeWasPressed = false;
 			selectionWasMade = false;
 
-			Menu->DrawCursor(cursorPosition, yellow, 175);
+			Display->DrawCursor(cursorPosition, yellow, 175);
 			offset = cursorPosition.Y - 12;
 			Display->DisplayItem(playerInventory[offset]);
 			
@@ -65,7 +65,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 				choice = 11 + playerInventory.size();
 				if (Menu->MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, 12, choice))
 				{
-					Menu->DrawCursor(cursorPosition, yellow, 175);
+					Display->DrawCursor(cursorPosition, yellow, 175);
 					offset = cursorPosition.Y - CursorStartY;
 					playerInventory[offset]->Display();
 				}
@@ -94,7 +94,7 @@ void PawnShop::Enter(Player* player, std::vector<Item*>& playerInventory, string
 		{
 			if (Menu->MoveCursor(cursorPosition, selectionWasMade, escapeWasPressed, cursorPosition.Y, cursorPosition.Y))
 			{
-				Menu->DrawCursor(cursorPosition, yellow, 175);
+				Display->DrawCursor(cursorPosition, yellow, 175);
 			}
 			Display->DisplayText(" ", 78, 24, white);
 		} while (!selectionWasMade);
