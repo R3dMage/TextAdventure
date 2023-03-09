@@ -50,13 +50,13 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 			Display->DisplayNumber(Wares[i]->GetCost(), 28, i + 2, white);
 		}
 
-		Menu->DrawCursor(cursorPosition, yellow, 175);
+		Display->DrawCursor(cursorPosition, yellow, 175);
 		Display->DisplayItem(Wares[0]);
 		while (!itemSelected && !escapeWasPressed)
 		{
 			if (Menu->MoveCursor(cursorPosition, itemSelected, escapeWasPressed, 2, maxY))
 			{
-				Menu->DrawCursor(cursorPosition, yellow, 175);				
+				Display->DrawCursor(cursorPosition, yellow, 175);
 				Display->DisplayItem(itemsForSale[cursorPosition.Y]);
 			}
 			Display->DisplayText("", 78, 24, white);
@@ -70,7 +70,7 @@ void Shop::ShowShop(Player* player, vector<Item*> &playerInventory)
 		while (!itemSelected && !escapeConfirmation)
 		{
 			Menu->MoveCursor(cursorPosition, itemSelected, escapeConfirmation, cursorPosition.Y, cursorPosition.Y);
-			Menu->DrawCursor(cursorPosition, yellow, 175);
+			Display->DrawCursor(cursorPosition, yellow, 175);
 			Display->DisplayText("", 78, 24, white);
 		}
 		if (escapeConfirmation)

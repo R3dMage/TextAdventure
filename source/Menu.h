@@ -15,7 +15,6 @@ public:
 	void MoveCursorUp();
 	void MoveCursorDown();
 	void ClearOldCursor(COORD cursorPosition);
-	void DrawCursor(COORD position, WORD color, unsigned char cursor);
 	
 private:
 	COORD CursorPosition;

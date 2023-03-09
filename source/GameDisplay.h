@@ -21,6 +21,7 @@ public:
 	void ClearBottomRight();
 	void HideCursor();
 	void HideCursorAndPause();
+	void DrawCursor(COORD position, WORD color, unsigned char cursor);
 
 	std::string GetFileName();
 

@@ -30,14 +30,14 @@ void Menu::Begin()
 {
 	InputHandler->DisplayMenu(CursorPosition.Y);
 	InputHandler->DisplayInfo(CursorPosition.Y);
-	DrawCursor(CursorPosition, yellow, 175);
+	Display->DrawCursor(CursorPosition, yellow, 175);
 	
 	while (!EscapePressed && !SelectionMade)
 	{
 
 		if (GetMenuInput())
 		{
-			DrawCursor(CursorPosition, yellow, 175);
+			Display->DrawCursor(CursorPosition, yellow, 175);
 			InputHandler->DisplayInfo(CursorPosition.Y);
 		}
 
@@ -145,17 +145,4 @@ void Menu::ClearOldCursor(COORD cursorPosition)
 	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(OutputH, cursorPosition);
 	cout << "  ";
-}
-
-void Menu::DrawCursor(COORD position, WORD color, unsigned char cursor)
-{
-	HANDLE OutputH;
-	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(OutputH, color);
-	SetConsoleCursorPosition(OutputH, position);
-
-	cout << cursor;
-	position.X = 78;
-	position.Y = 24;
-	SetConsoleCursorPosition(OutputH, position);
 }

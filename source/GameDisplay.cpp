@@ -211,6 +211,19 @@ void GameDisplay::HideCursorAndPause()
 	Sleep(Settings->GetPauseDuration());
 }
 
+void GameDisplay::DrawCursor(COORD position, WORD color, unsigned char cursor)
+{
+	HANDLE OutputH;
+	OutputH = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(OutputH, color);
+	SetConsoleCursorPosition(OutputH, position);
+
+	cout << cursor;
+	position.X = 78;
+	position.Y = 24;
+	SetConsoleCursorPosition(OutputH, position);
+}
+
 string GameDisplay::GetFileName()
 {
 	string filename = "";

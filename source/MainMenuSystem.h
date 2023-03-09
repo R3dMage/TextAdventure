@@ -35,7 +35,6 @@ public:
 	void ClearTextBottomRight(int);
 	void SlideDown(vector<Item*>&, int);
 
-	void DrawCursor(COORD pos, WORD color, unsigned char curs);
 	bool MoveCursor(COORD& cursorPosition, bool& bSelect, bool& bEsc, int Ymin, int Ymax);
 
 private:
